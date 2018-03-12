@@ -1,0 +1,27 @@
+#ifndef PSS_ASTROTYPES_VERSION_H
+#define PSS_ASTROTYPES_VERSION_H
+
+
+#define ASTROTYPES_BUILD_TYPE "@CMAKE_BUILD_TYPE@"
+#define ASTROTYPES_VERSION "@PROJECT_VERSION@"
+#define PROJECT_NAME "@PROJECT_NAME@"
+#define ASTROTYPES_RCS_VERSION "@PROJECT_SOURCE_VERSION@"
+
+#if defined(__DATE__) && defined(__TIME__)
+#   define ASTROTYPES_VERSION_LONG "@PROJECT_VERSION@ (@CMAKE_BUILD_TYPE@), " __DATE__ " " __TIME__
+#   define ASTROTYPES_BUILD_INFO "(@CMAKE_BUILD_TYPE@) v" VERSION " (" __DATE__ " " __TIME__")"
+#else
+#   define ASTROTYPES_VERSION_LONG "@PROJECT_VERSION@ (@CMAKE_BUILD_TYPE@)"
+#   define ASTROTYPES_BUILD_INFO "(@CMAKE_BUILD_TYPE@) v" ASTROTYPES_VERSION
+#endif
+
+namespace pss {
+namespace astrotypes {
+
+extern const char* version;
+extern const char* full_version;
+
+} // namespace astrotypes
+} // namespace pss
+
+#endif // PSS_ASTROTYPES_VERSION_H
