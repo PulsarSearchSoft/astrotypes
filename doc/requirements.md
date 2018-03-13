@@ -3,15 +3,7 @@
 
 Starting point for the requirements discussed during the astrotype sprint in Amsterdam (March 2018).
 
-##  Code Conventions
-
-Imported from cheetah.
-
-## Licence
-
-MIT.
-
-## Modules
+## Components
 
 * Defined data types
     * Time-Frequency data type
