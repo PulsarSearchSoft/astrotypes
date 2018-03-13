@@ -63,16 +63,16 @@ struct NumericalRepresentation<std::list<T, Allocator>>
     typedef T type;
 };
 
-template<int S, typename T, typename Allocator>
-struct NumericalRepresentation<std::array<S, T, Allocator>>
+template<typename T, int S >
+struct NumericalRepresentation<std::array<T, S>>
 {
     typedef T type;
 };
 
-template<typename T, typename Allocator>
-struct NumericalRepresentation<std::map<T, Allocator>>
+template<typename... Ts>
+struct NumericalRepresentation<std::map<Ts...>>
 {
-    typedef T type;
+    typedef typename std::map<Ts...>::value_type::second_type type;
 };
 
 } // namespace astrotypes
