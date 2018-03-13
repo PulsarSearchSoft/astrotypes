@@ -39,5 +39,11 @@ set(VERSION_MINOR 0)
 set(VERSION_PATCH 0)
 set(PROJECT_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH} ${PROJECT_SOURCE_VERSION}")
 
+# documentation
+if(NOT DOC_INSTALL_DIR)
+  set(DOC_INSTALL_DIR ${MODULES_INSTALL_DIR}/doc)
+endif(NOT DOC_INSTALL_DIR)
+include(doxygen)
+
 # === process through the cheetah tree:
 add_subdirectory(src)
