@@ -19,8 +19,19 @@ if(ENABLE_DOC)
     add_custom_target(doc ${doc_all_target}
       ${DOXYGEN_EXECUTABLE} ${CMAKE_BINARY_DIR}/DoxyfileAPI
       WORKING_DIRECTORY ${DOXYGEN_BUILD_DIR}
-      COMMENT "Generating API documentation with Doxygen" VERBATIM)
-
+      COMMENT "Generating documentation with Doxygen" VERBATIM)
+    add_custom_target(publish_doc
+      COMMAND git clone -b gh-pages git@github.com:PulsarSearchSoft/astrotypes.git gh-pages
+      COMMAND cp -r ${DOXYGEN_BUILD_DIR}/html gh-pages/
+      DEPENDS doc
+      WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+      COMMENT "Publishing documentation on GitHub pages" VERBATIM)
+    add_custom_command(TARGET publish_doc POST_BUILD
+      COMMAND git add html
+      COMMAND git commit -a -m "Updating documentation."
+      COMMAND git push
+      COMMAND rm -rf ${CMAKE_BINARY_DIR}/gh-pages
+      WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/gh-pages)
     install(DIRECTORY ${DOXYGEN_BUILD_DIR}/
             DESTINATION ${DOC_INSTALL_DIR}
             PATTERN "${DOXYGEN_BUILD_DIR}/*"
