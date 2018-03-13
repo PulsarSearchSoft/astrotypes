@@ -29,18 +29,12 @@
 
 # project name and specify the minumum cmake version.
 project(astrotypes CXX)
-cmake_minimum_required(VERSION 2.8.12 FATAL_ERROR)
 
 # cmake setup.
-list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake)
-enable_testing()
+list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+message("SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}")
 
-# project version.
-include(git_version)
-set(VERSION_MAJOR 0)
-set(VERSION_MINOR 0)
-set(VERSION_PATCH 0)
-set(PROJECT_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH} ${PROJECT_SOURCE_VERSION}")
+enable_testing()
 
 # dev tool integration
 include(code_coverage)  # Add code_coverage targets
@@ -77,7 +71,7 @@ install(FILES ${PROJECT_BINARY_DIR}/${CMAKE_PROJECT_NAME}/version.h
     DESTINATION ${INCLUDE_INSTALL_DIR})
 
 # === process through the cheetah tree:
-add_subdirectory(${CMAKE_PROJECT_NAME})
+add_subdirectory(pss/${CMAKE_PROJECT_NAME})
 
 # === Print build options summary.
 set(DEBUG_PRINT ON)
