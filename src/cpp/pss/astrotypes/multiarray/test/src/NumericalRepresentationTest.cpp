@@ -21,7 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "astrotypes/multiarray/test/NumericalRepresentationTest.h"
+#include "NumericalRepresentationTest.h"
+#include "pss/astrotypes/multiarray/NumericalRepresentation.h"
 
 
 namespace pss {
@@ -58,7 +59,7 @@ TEST_F(NumericalRepresentationTest, test_std_vector)
 
 TEST_F(NumericalRepresentationTest, test_std_map)
 {
-    static_assert(std::is_same<typename NumericalRepresentation<std::map<bool>>::type, bool>::value, "wrong type");
+    static_assert(std::is_same<typename NumericalRepresentation<std::map<int, bool>>::type, bool>::value, "wrong type");
 }
 
 TEST_F(NumericalRepresentationTest, test_std_list)
