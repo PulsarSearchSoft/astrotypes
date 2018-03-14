@@ -21,20 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "../MultiArray.h"
+#include "pss/astrotypes/multiarray/Slice.h"
 
 
 namespace pss {
 namespace astrotypes {
 
-template<typename T, typename FirstDimension>
-MultiArray<T, FirstDimension>::MultiArray(DimensionSize<FirstDimension> const&)
+// ----- single dimension specialisation
+template<typename Parent, typename Dimension>
+Slice<Parent, Dimension>::Slice(Parent& parent, std::pair<DimensionIndex<Dimension>, DimensionIndex<Dimension>> const& d)
+    : _parent(parent)
+    , _span(d.second - d.first)
+    , _ptr(parent.begin() + static_cast<const std::size_t>(d.first))
 {
 }
 
-template<typename T, typename FirstDimension>
-MultiArray<T, FirstDimension>::~MultiArray()
+template<typename Parent, typename Dimension>
+Slice<Parent, Dimension>::~Slice()
 {
+}
+
+template<typename Parent, typename Dimension>
+template<typename Dim>
+typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimension>>::type Slice<Parent, Dimension>::size() const
+{
+    return _span;
+}
+
+template<typename Parent, typename Dimension>
+template<typename Dim>
+typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSize<Dim>>::type Slice<Parent, Dimension>::size() const
+{
+    return DimensionSize<Dim>(0);
+}
+
+template<typename Parent, typename Dimension>
+typename Slice<Parent, Dimension>::reference_type Slice<Parent, Dimension>::operator[](std::size_t p) const
+{
+    return *(_ptr + p);
 }
 
 } // namespace astrotypes

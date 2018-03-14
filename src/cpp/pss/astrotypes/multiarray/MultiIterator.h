@@ -2,6 +2,7 @@
  * MIT License
  * 
  * Copyright (c) 2018 PulsarSearchSoft
+ * Copyright (c) 2017 The SKA Organization (taken from the panda project)
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,21 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "../MultiArray.h"
+#ifndef PSS_ASTROTYPES_MULTIARRAY_MULTIITERATOR_H
+#define PSS_ASTROTYPES_MULTIARRAY_MULTIITERATOR_H
 
 
 namespace pss {
 namespace astrotypes {
 
-template<typename T, typename FirstDimension>
-MultiArray<T, FirstDimension>::MultiArray(DimensionSize<FirstDimension> const&)
-{
-}
+/**
+ * @brief
+ * @details
+ */
 
-template<typename T, typename FirstDimension>
-MultiArray<T, FirstDimension>::~MultiArray()
+class MultiIterator
 {
-}
+    public:
+        MultiIterator();
+        ~MultiIterator();
+
+    private:
+};
+
 
 } // namespace astrotypes
 } // namespace pss
+#include "detail/MultiIterator.cpp"
+
+#endif // PSS_ASTROTYPES_MULTIARRAY_MULTIITERATOR_H

@@ -21,21 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "../MultiArray.h"
+#include "../MultiArrayTest.h"
+#include "pss/astrotypes/multiarray/MultiArray.h"
 
 
 namespace pss {
 namespace astrotypes {
+namespace test {
 
-template<typename T, typename FirstDimension>
-MultiArray<T, FirstDimension>::MultiArray(DimensionSize<FirstDimension> const&)
+
+MultiArrayTest::MultiArrayTest()
+    : ::testing::Test()
 {
 }
 
-template<typename T, typename FirstDimension>
-MultiArray<T, FirstDimension>::~MultiArray()
+MultiArrayTest::~MultiArrayTest()
 {
 }
 
+void MultiArrayTest::SetUp()
+{
+}
+
+void MultiArrayTest::TearDown()
+{
+}
+
+TEST_F(MultiArrayTest, test_something)
+{
+}
+
+} // namespace test
 } // namespace astrotypes
 } // namespace pss

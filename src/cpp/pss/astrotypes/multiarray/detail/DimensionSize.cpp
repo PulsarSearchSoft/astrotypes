@@ -21,20 +21,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "../MultiArray.h"
-
 
 namespace pss {
 namespace astrotypes {
 
-template<typename T, typename FirstDimension>
-MultiArray<T, FirstDimension>::MultiArray(DimensionSize<FirstDimension> const&)
+
+template<typename Dimension>
+DimensionSize<Dimension>::DimensionSize(std::size_t size)
+    : _size(size)
 {
 }
 
-template<typename T, typename FirstDimension>
-MultiArray<T, FirstDimension>::~MultiArray()
+template<typename Dimension>
+DimensionSize<Dimension>::~DimensionSize()
 {
+}
+
+template<typename Dimension>
+DimensionSize<Dimension>::operator std::size_t()
+{
+    return _size;
+}
+
+
+template<typename Dimension>
+bool DimensionSize<Dimension>::operator<(DimensionSize<Dimension> const& b) const
+{
+    return _size < b._size;
 }
 
 } // namespace astrotypes
