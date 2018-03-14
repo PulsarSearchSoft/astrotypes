@@ -6,8 +6,9 @@ Starting point for the requirements discussed during the astrotype sprint in Ams
 ## Components
 
 * Defined data types
-    * Time-Frequency data type
-    * Time-DM data type
+    * Time-Frequency
+    * Frequency-Time
+    * Time-DM
     * Units
 * SIGPROC file format
     * Reader
@@ -30,6 +31,7 @@ Starting point for the requirements discussed during the astrotype sprint in Ams
             the view, and the number of elements included in the view
         * To express a view with gaps is necessary to use a collection of views over the same data type
     * They should provide iterators
+        * Iterators should make them compatibles with C++ STL algorithms
     * It should be possible to associate metadata to each object e.g. through inheritance
     * It should be possible to use an iterator from one data type to point to data in another data type
         * An index mapper must be provided
