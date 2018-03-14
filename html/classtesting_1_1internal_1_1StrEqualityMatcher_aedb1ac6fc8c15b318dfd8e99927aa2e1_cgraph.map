@@ -1,0 +1,5 @@
+<map id="testing::internal::StrEqualityMatcher::MatchAndExplain" name="testing::internal::StrEqualityMatcher::MatchAndExplain">
+<area shape="rect" id="node2" href="$namespacetesting_1_1internal.html#a383de24b1cca6648c14b03964c0ed843" title="testing::internal::\lCaseInsensitiveStringEquals" alt="" coords="207,13,413,54"/>
+<area shape="rect" id="node3" href="$namespacetesting_1_1internal.html#aebfd0cd34de52d7973a5b2d03ba848cf" title="testing::internal::\lCaseInsensitiveCStringEquals" alt="" coords="461,13,676,54"/>
+<area shape="rect" id="node4" href="$classtesting_1_1internal_1_1String.html#a7ce24c41c67b928fe89434d3571c988c" title="testing::internal::\lString::CaseInsensitiveCString\lEquals" alt="" coords="724,5,943,61"/>
+</map>

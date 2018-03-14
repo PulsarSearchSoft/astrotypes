@@ -1,0 +1,4 @@
+<map id="testing::internal::IsAProtocolMessage&lt; T &gt;" name="testing::internal::IsAProtocolMessage&lt; T &gt;">
+<area shape="rect" id="node2" href="$structtesting_1_1internal_1_1bool__constant.html" title="{testing::internal::\lbool_constant\&lt; ImplicitlyConvertible\l\&lt; const T *, const ::ProtocolMessage\l *\&gt;::value\|\|ImplicitlyConvertible\l\&lt; const T *, const ::proto2::Message\l *\&gt;::value \&gt;\n|+ value\l|}" alt="" coords="5,233,269,384"/>
+<area shape="rect" id="node3" href="$structtesting_1_1internal_1_1bool__constant.html" title="{testing::internal::\lbool_constant\&lt; bool\l_value \&gt;\n|+ value\l|}" alt="" coords="59,5,215,112"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="testing::internal::LosslessArithmeticConvertibleImpl&lt; kInteger, From, kInteger, To &gt;" name="testing::internal::LosslessArithmeticConvertibleImpl&lt; kInteger, From, kInteger, To &gt;">
+<area shape="rect" id="node2" href="$structtesting_1_1internal_1_1bool__constant.html" title="{testing::internal::\lbool_constant\&lt;((sizeof\l(From)\&lt; sizeof(To)) &amp;&amp;\l(!GMOCK_IS_SIGNED_(From)\l\|\|GMOCK_IS_SIGNED_(To)))\l\|\|((sizeof(From)==sizeof\l(To)) &amp;&amp;(GMOCK_IS_SIGNED_\l(From)==GMOCK_IS_SIGNED_(To)))\&gt;\n|+ value\l|}" alt="" coords="5,248,272,428"/>
+<area shape="rect" id="node3" href="$structtesting_1_1internal_1_1bool__constant.html" title="{testing::internal::\lbool_constant\&lt; bool\l_value \&gt;\n|+ value\l|}" alt="" coords="61,5,217,112"/>
+</map>

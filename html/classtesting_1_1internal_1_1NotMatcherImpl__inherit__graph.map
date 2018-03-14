@@ -1,0 +1,4 @@
+<map id="testing::internal::NotMatcherImpl&lt; T &gt;" name="testing::internal::NotMatcherImpl&lt; T &gt;">
+<area shape="rect" id="node2" href="$classtesting_1_1MatcherInterface.html" title="{testing::MatcherInterface\&lt; T \&gt;\n||+ MatchAndExplain()\l}" alt="" coords="9,175,232,252"/>
+<area shape="rect" id="node3" href="$classtesting_1_1MatcherDescriberInterface.html" title="{testing::MatcherDescriber\lInterface\n||+ ~MatcherDescriberInterface()\l+ DescribeTo()\l+ DescribeNegationTo()\l}" alt="" coords="5,5,236,127"/>
+</map>

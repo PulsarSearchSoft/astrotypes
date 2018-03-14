@@ -1,0 +1,4 @@
+<map id="testing::internal::Ge2Matcher" name="testing::internal::Ge2Matcher">
+<area shape="rect" id="node2" href="$classtesting_1_1internal_1_1PairMatchBase.html" title="{testing::internal::\lPairMatchBase\&lt; Ge2Matcher,\l AnyGe \&gt;\n||+ operator Matcher\&lt; \l::testing::tuple\&lt; T1,\l T2 \&gt; \&gt;()\l+ operator Matcher\&lt; const\l ::testing::tuple\&lt; T1,\l T2 \&gt; &amp;\&gt;()\l}" alt="" coords="5,233,220,413"/>
+<area shape="rect" id="node3" href="$classtesting_1_1internal_1_1PairMatchBase.html" title="{testing::internal::\lPairMatchBase\&lt; D, Op \&gt;\n||+ operator Matcher\&lt; \l::testing::tuple\&lt; T1,\l T2 \&gt; \&gt;()\l+ operator Matcher\&lt; const\l ::testing::tuple\&lt; T1,\l T2 \&gt; &amp; \&gt;()\l}" alt="" coords="13,5,212,171"/>
+</map>

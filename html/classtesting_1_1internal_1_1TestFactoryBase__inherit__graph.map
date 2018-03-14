@@ -1,0 +1,4 @@
+<map id="testing::internal::TestFactoryBase" name="testing::internal::TestFactoryBase">
+<area shape="rect" id="node2" href="$classtesting_1_1internal_1_1ParameterizedTestFactory.html" title="{testing::internal::\lParameterizedTestFactory\l\&lt; TestClass \&gt;\n||+ ParameterizedTestFactory()\l+ CreateTest()\l}" alt="" coords="5,175,224,296"/>
+<area shape="rect" id="node3" href="$classtesting_1_1internal_1_1TestFactoryImpl.html" title="{testing::internal::\lTestFactoryImpl\&lt; TestClass \&gt;\n||+ CreateTest()\l}" alt="" coords="249,189,469,281"/>
+</map>

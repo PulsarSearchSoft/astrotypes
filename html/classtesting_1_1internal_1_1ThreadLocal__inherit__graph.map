@@ -1,0 +1,4 @@
+<map id="testing::internal::ThreadLocal&lt; T &gt;" name="testing::internal::ThreadLocal&lt; T &gt;">
+<area shape="rect" id="node2" href="$classtesting_1_1internal_1_1ThreadLocal.html" title="{testing::internal::\lThreadLocal\&lt; std::vector\l\&lt; testing::internal::TraceInfo \&gt; \&gt;\n||+ ThreadLocal()\l+ ThreadLocal()\l+ pointer()\l+ pointer()\l+ get()\l+ set()\l}" alt="" coords="5,248,244,428"/>
+<area shape="rect" id="node3" href="$classtesting_1_1internal_1_1ThreadLocal.html" title="{testing::internal::\lThreadLocal\&lt; testing\l::TestPartResultReporterInterface *\&gt;\n||+ ThreadLocal()\l+ ThreadLocal()\l+ pointer()\l+ pointer()\l+ get()\l+ set()\l}" alt="" coords="269,248,530,428"/>
+</map>

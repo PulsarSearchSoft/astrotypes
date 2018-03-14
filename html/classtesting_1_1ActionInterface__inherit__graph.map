@@ -1,0 +1,8 @@
+<map id="testing::ActionInterface&lt; F &gt;" name="testing::ActionInterface&lt; F &gt;">
+<area shape="rect" id="node2" href="$classtesting_1_1ActionInterface.html" title="{testing::ActionInterface\l\&lt; OriginalFunction \&gt;\n||+ ActionInterface()\l+ ~ActionInterface()\l+ Perform()\l}" alt="" coords="5,175,180,296"/>
+<area shape="rect" id="node3" href="$classtesting_1_1ActionInterface.html" title="{testing::ActionInterface\l\&lt; VoidResult \&gt;\n||+ ActionInterface()\l+ ~ActionInterface()\l+ Perform()\l}" alt="" coords="204,175,379,296"/>
+<area shape="rect" id="node4" href="$classtesting_1_1ActionInterface.html" title="{testing::ActionInterface\l\&lt; InnerFunctionType \&gt;\n||+ ActionInterface()\l+ ~ActionInterface()\l+ Perform()\l}" alt="" coords="403,175,577,296"/>
+<area shape="rect" id="node5" href="$classtesting_1_1ActionInterface.html" title="{testing::ActionInterface\l\&lt; F1 \&gt;\n||+ ActionInterface()\l+ ~ActionInterface()\l+ Perform()\l}" alt="" coords="601,175,776,296"/>
+<area shape="rect" id="node7" href="$classtesting_1_1ActionInterface.html" title="{testing::ActionInterface\l\&lt; F2 \&gt;\n||+ ActionInterface()\l+ ~ActionInterface()\l+ Perform()\l}" alt="" coords="800,175,975,296"/>
+<area shape="rect" id="node6" href="$classtesting_1_1internal_1_1ActionAdaptor.html" title="{testing::internal::\lActionAdaptor\&lt; F1, F2 \&gt;\n||+ ActionAdaptor()\l+ Perform()\l}" alt="" coords="597,345,780,452"/>
+</map>

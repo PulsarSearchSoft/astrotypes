@@ -1,0 +1,6 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node2" href="$namespacetesting.html#af6d1c13e9376c77671e37545cd84359c" title="testing::Return" alt="" coords="143,5,261,32"/>
+<area shape="rect" id="node4" href="$namespacetesting.html#ae041df61ff61ccb9753ba15b4309e1a6" title="testing::DoDefault" alt="" coords="131,56,273,83"/>
+<area shape="rect" id="node5" href="$classInterface.html#a65d6ae604e7e9a513aec72c9c94e0b97" title="Interface::VoidFromString" alt="" coords="108,107,296,133"/>
+<area shape="rect" id="node3" href="$namespacetesting_1_1internal.html#a0f6d06bf8c3093b9c22bb08723db201e" title="testing::internal::move" alt="" coords="344,5,515,32"/>
+</map>

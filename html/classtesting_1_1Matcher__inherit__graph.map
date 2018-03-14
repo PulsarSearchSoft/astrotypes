@@ -1,0 +1,21 @@
+<map id="testing::Matcher&lt; T &gt;" name="testing::Matcher&lt; T &gt;">
+<area shape="rect" id="node3" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l ArgumentTuple &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="5,448,183,569"/>
+<area shape="rect" id="node4" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; RefToConst\lProperty \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="207,448,424,569"/>
+<area shape="rect" id="node5" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l ArgTuple &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="448,448,625,569"/>
+<area shape="rect" id="node6" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l Pointee &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="649,448,827,569"/>
+<area shape="rect" id="node7" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l SecondType &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="851,448,1028,569"/>
+<area shape="rect" id="node8" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; Result\lType \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="1052,448,1235,569"/>
+<area shape="rect" id="node9" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l Element &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="1259,448,1436,569"/>
+<area shape="rect" id="node10" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; U \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="1460,455,1627,562"/>
+<area shape="rect" id="node11" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l KeyType &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="1651,448,1828,569"/>
+<area shape="rect" id="node12" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; Distance\lType \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="1852,448,2051,569"/>
+<area shape="rect" id="node13" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; To &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="2075,455,2257,562"/>
+<area shape="rect" id="node14" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l FieldType &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="2281,448,2459,569"/>
+<area shape="rect" id="node15" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; To \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="2483,455,2657,562"/>
+<area shape="rect" id="node16" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l ::std::vector\&lt; LhsValue \&gt; &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="2681,448,2899,569"/>
+<area shape="rect" id="node17" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; SizeType \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="2923,455,3139,562"/>
+<area shape="rect" id="node18" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; InnerMatcher\lArg \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="3163,448,3390,569"/>
+<area shape="rect" id="node19" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const T &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="3415,455,3629,562"/>
+<area shape="rect" id="node20" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l FirstType &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="3653,448,3831,569"/>
+<area shape="rect" id="node2" href="$classtesting_1_1internal_1_1MatcherBase.html" title="{testing::internal::\lMatcherBase\&lt; T \&gt;\n||+ MatchAndExplain()\l+ Matches()\l+ DescribeTo()\l+ DescribeNegationTo()\l+ ExplainMatchResultTo()\l+ GetDescriber()\l# MatcherBase()\l# MatcherBase()\l# ~MatcherBase()\l}" alt="" coords="1749,5,1940,215"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node2" href="$namespacetesting.html#a5faf05cfaae6074439960048e478b1c8" title="testing::Truly" alt="" coords="145,13,253,39"/>
+<area shape="rect" id="node4" href="$classInvokeHelper.html#aef16e38107cd8ddc0a52d7d0ab153211" title="InvokeHelper::StaticBool\lFromString" alt="" coords="108,64,291,105"/>
+<area shape="rect" id="node5" href="$classtesting_1_1internal_1_1MatcherBase.html#a3b479673ff40cac1a7d548e91d789cb2" title="testing::internal::\lMatcherBase::Matches" alt="" coords="115,129,283,171"/>
+<area shape="rect" id="node3" href="$namespacetesting.html#a667ca94f190ec2e17ee2fbfdb7d3da04" title="testing::MakePolymorphic\lMatcher" alt="" coords="339,5,529,47"/>
+</map>

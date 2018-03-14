@@ -1,0 +1,43 @@
+<map id="testing::internal::MatcherBase&lt; T &gt;" name="testing::internal::MatcherBase&lt; T &gt;">
+<area shape="rect" id="node2" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; const ::std\l::vector\&lt; LhsValue \&gt; &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="5,329,191,450"/>
+<area shape="rect" id="node3" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; const ArgTuple &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="215,336,426,443"/>
+<area shape="rect" id="node4" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; const ArgumentTuple &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="450,336,703,443"/>
+<area shape="rect" id="node5" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; const Element &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="728,336,935,443"/>
+<area shape="rect" id="node6" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; const FieldType &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="959,336,1175,443"/>
+<area shape="rect" id="node7" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; const FirstType &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="1199,336,1413,443"/>
+<area shape="rect" id="node8" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; const KeyType &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="1437,336,1647,443"/>
+<area shape="rect" id="node9" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; const Pointee &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="1671,336,1874,443"/>
+<area shape="rect" id="node10" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; const SecondType &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="1898,336,2130,443"/>
+<area shape="rect" id="node11" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; const T &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="2155,336,2316,443"/>
+<area shape="rect" id="node12" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; DistanceType \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="2340,336,2533,443"/>
+<area shape="rect" id="node13" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; InnerMatcherArg \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="2558,336,2769,443"/>
+<area shape="rect" id="node14" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; RefToConstProperty \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="2793,336,3027,443"/>
+<area shape="rect" id="node15" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; ResultType \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="3052,336,3229,443"/>
+<area shape="rect" id="node16" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; SizeType \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="3254,336,3417,443"/>
+<area shape="rect" id="node17" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; To &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="3441,336,3571,443"/>
+<area shape="rect" id="node18" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; To \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="3595,336,3715,443"/>
+<area shape="rect" id="node19" href="$classtesting_1_1Matcher.html" title="{Matcher\&lt; U \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="3739,336,3854,443"/>
+<area shape="rect" id="node20" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; T \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="3878,336,4043,443"/>
+<area shape="rect" id="node39" href="$classtesting_1_1internal_1_1MatcherBase.html" title="{testing::internal::\lMatcherBase\&lt; internal\l::string \&gt;\n||+ MatchAndExplain()\l+ Matches()\l+ DescribeTo()\l+ DescribeNegationTo()\l+ ExplainMatchResultTo()\l+ GetDescriber()\l# MatcherBase()\l# MatcherBase()\l# ~MatcherBase()\l}" alt="" coords="5016,277,5207,501"/>
+<area shape="rect" id="node41" href="$classtesting_1_1internal_1_1MatcherBase.html" title="{testing::internal::\lMatcherBase\&lt; const internal\l::string &amp;\&gt;\n||+ MatchAndExplain()\l+ Matches()\l+ DescribeTo()\l+ DescribeNegationTo()\l+ ExplainMatchResultTo()\l+ GetDescriber()\l# MatcherBase()\l# MatcherBase()\l# ~MatcherBase()\l}" alt="" coords="5679,277,5890,501"/>
+<area shape="rect" id="node21" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l ArgumentTuple &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="1907,586,2084,707"/>
+<area shape="rect" id="node22" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; RefToConst\lProperty \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="2108,586,2325,707"/>
+<area shape="rect" id="node23" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l ArgTuple &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="2349,586,2527,707"/>
+<area shape="rect" id="node24" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l Pointee &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="2551,586,2728,707"/>
+<area shape="rect" id="node25" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l SecondType &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="2752,586,2929,707"/>
+<area shape="rect" id="node26" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; Result\lType \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="2953,586,3136,707"/>
+<area shape="rect" id="node27" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l Element &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="3160,586,3337,707"/>
+<area shape="rect" id="node28" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; U \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="3361,593,3528,700"/>
+<area shape="rect" id="node29" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l KeyType &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="3552,586,3729,707"/>
+<area shape="rect" id="node30" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; Distance\lType \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="3753,586,3952,707"/>
+<area shape="rect" id="node31" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; To &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="3976,593,4159,700"/>
+<area shape="rect" id="node32" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l FieldType &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="4183,586,4360,707"/>
+<area shape="rect" id="node33" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; To \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="4385,593,4558,700"/>
+<area shape="rect" id="node34" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l ::std::vector\&lt; LhsValue \&gt; &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="4583,586,4800,707"/>
+<area shape="rect" id="node35" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; SizeType \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="4825,593,5041,700"/>
+<area shape="rect" id="node36" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; InnerMatcher\lArg \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="5065,586,5291,707"/>
+<area shape="rect" id="node37" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const T &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="5316,593,5531,700"/>
+<area shape="rect" id="node38" href="$classtesting_1_1Matcher.html" title="{testing::Matcher\&lt; const\l FirstType &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="5555,586,5732,707"/>
+<area shape="rect" id="node40" href="$classtesting_1_1Matcher_3_01internal_1_1string_01_4.html" title="{testing::Matcher\&lt; internal\l::string \&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="5757,579,5949,715"/>
+<area shape="rect" id="node42" href="$classtesting_1_1Matcher_3_01const_01internal_1_1string_01_6_4.html" title="{testing::Matcher\&lt; const\l internal::string &amp;\&gt;\n||+ Matcher()\l+ Matcher()\l+ Matcher()\l+ Matcher()\l}" alt="" coords="5973,579,6151,715"/>
+</map>

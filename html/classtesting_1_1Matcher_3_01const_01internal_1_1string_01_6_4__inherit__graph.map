@@ -1,0 +1,4 @@
+<map id="testing::Matcher&lt; const internal::string &amp;&gt;" name="testing::Matcher&lt; const internal::string &amp;&gt;">
+<area shape="rect" id="node2" href="$classtesting_1_1internal_1_1MatcherBase.html" title="{testing::internal::\lMatcherBase\&lt; const internal\l::string &amp;\&gt;\n||+ MatchAndExplain()\l+ Matches()\l+ DescribeTo()\l+ DescribeNegationTo()\l+ ExplainMatchResultTo()\l+ GetDescriber()\l# MatcherBase()\l# MatcherBase()\l# ~MatcherBase()\l}" alt="" coords="5,277,216,501"/>
+<area shape="rect" id="node3" href="$classtesting_1_1internal_1_1MatcherBase.html" title="{testing::internal::\lMatcherBase\&lt; T \&gt;\n||+ MatchAndExplain()\l+ Matches()\l+ DescribeTo()\l+ DescribeNegationTo()\l+ ExplainMatchResultTo()\l+ GetDescriber()\l# MatcherBase()\l# MatcherBase()\l# ~MatcherBase()\l}" alt="" coords="15,5,206,215"/>
+</map>

@@ -1,0 +1,13 @@
+<map id="testing::internal::WhenDynamicCastToMatcher&lt; To &amp; &gt;::MatchAndExplain" name="testing::internal::WhenDynamicCastToMatcher&lt; To &amp; &gt;::MatchAndExplain">
+<area shape="rect" id="node2" href="$namespacetesting_1_1internal.html#a0821df2611d54c79bac990719ad8a2dd" title="testing::internal::\lMatchPrintAndExplain" alt="" coords="268,235,432,276"/>
+<area shape="rect" id="node3" href="$classtesting_1_1MatchResultListener.html#ac34f9771f2ba6128cd6a1348b3aebda3" title="testing::MatchResultListener\l::IsInterested" alt="" coords="490,5,697,47"/>
+<area shape="rect" id="node4" href="$classtesting_1_1internal_1_1MatcherBase.html#a3b479673ff40cac1a7d548e91d789cb2" title="testing::internal::\lMatcherBase::Matches" alt="" coords="509,71,677,112"/>
+<area shape="rect" id="node5" href="$classtesting_1_1internal_1_1MatcherBase.html#a08429a6d7e7d330de4a4eb4e272105a7" title="testing::internal::\lMatcherBase::MatchAndExplain" alt="" coords="480,136,707,177"/>
+<area shape="rect" id="node6" href="$namespacetesting_1_1internal.html#a30708fa2bacf11895b03bdb21eb72309" title="testing::internal::\lUniversalPrint" alt="" coords="527,201,660,243"/>
+<area shape="rect" id="node9" href="$classtesting_1_1MatchResultListener.html#a5abecb247e005f7f50a94898e3f44ee3" title="testing::MatchResultListener\l::stream" alt="" coords="490,267,697,308"/>
+<area shape="rect" id="node10" href="$namespacetesting_1_1internal.html#abeedf209750a21d996983e84224ac816" title="testing::internal::\lIsReadableTypeName" alt="" coords="511,332,676,373"/>
+<area shape="rect" id="node11" href="$namespacetesting_1_1internal.html#ad609eb8bac84ab487464a3449c57640a" title="testing::internal::\lPrintIfNotEmpty" alt="" coords="527,397,660,439"/>
+<area shape="rect" id="node12" href="$classtesting_1_1StringMatchResultListener.html#a77e501016fa53b76e7eee1739d25dde9" title="testing::StringMatchResult\lListener::str" alt="" coords="497,463,690,504"/>
+<area shape="rect" id="node7" href="$classtesting_1_1internal_1_1UniversalPrinter.html#aecec021e1abbaa260b701e24e3fe33eb" title="testing::internal::\lUniversalPrinter::Print" alt="" coords="755,201,920,243"/>
+<area shape="rect" id="node8" href="$namespacetesting_1_1internal.html#a8fd10cc30084c36a89c74868c8bd53f8" title="testing::internal::\lPrintTo" alt="" coords="968,201,1101,243"/>
+</map>

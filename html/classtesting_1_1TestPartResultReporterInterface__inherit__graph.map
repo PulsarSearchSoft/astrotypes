@@ -1,0 +1,6 @@
+<map id="testing::TestPartResultReporterInterface" name="testing::TestPartResultReporterInterface">
+<area shape="rect" id="node2" href="$classtesting_1_1internal_1_1DefaultGlobalTestPartResultReporter.html" title="{testing::internal::\lDefaultGlobalTestPartResult\lReporter\n||+ DefaultGlobalTestPartResult\lReporter()\l+ ReportTestPartResult()\l}" alt="" coords="5,182,228,318"/>
+<area shape="rect" id="node3" href="$classtesting_1_1internal_1_1DefaultPerThreadTestPartResultReporter.html" title="{testing::internal::\lDefaultPerThreadTestPartResult\lReporter\n||+ DefaultPerThreadTestPart\lResultReporter()\l+ ReportTestPartResult()\l}" alt="" coords="252,182,483,318"/>
+<area shape="rect" id="node4" href="$classtesting_1_1internal_1_1HasNewFatalFailureHelper.html" title="{testing::internal::\lHasNewFatalFailureHelper\n||+ HasNewFatalFailureHelper()\l+ ~HasNewFatalFailureHelper()\l+ ReportTestPartResult()\l+ has_new_fatal_failure()\l}" alt="" coords="507,182,737,318"/>
+<area shape="rect" id="node5" href="$classtesting_1_1ScopedFakeTestPartResultReporter.html" title="{testing::ScopedFakeTestPart\lResultReporter\n||+ ScopedFakeTestPartResult\lReporter()\l+ ScopedFakeTestPartResult\lReporter()\l+ ~ScopedFakeTestPartResult\lReporter()\l+ ReportTestPartResult()\l}" alt="" coords="762,160,983,340"/>
+</map>

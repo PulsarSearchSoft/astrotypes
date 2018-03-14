@@ -1,0 +1,5 @@
+<map id="testing::internal::UnitTestImpl::AddTestInfo" name="testing::internal::UnitTestImpl::AddTestInfo">
+<area shape="rect" id="node2" href="$classtesting_1_1internal_1_1FilePath.html#a0f7b48e493656679cb82a2b679620c4e" title="testing::internal::\lFilePath::GetCurrentDir" alt="" coords="245,5,417,47"/>
+<area shape="rect" id="node3" href="$classtesting_1_1TestInfo.html#a036a20710c8c2252889544daba9a8ff9" title="testing::TestInfo::\ltest_case_name" alt="" coords="263,71,399,112"/>
+<area shape="rect" id="node4" href="$classtesting_1_1TestInfo.html#a7759bc57f4350ad406cbbb0b3bcea320" title="testing::TestInfo::\ltype_param" alt="" coords="263,136,399,177"/>
+</map>

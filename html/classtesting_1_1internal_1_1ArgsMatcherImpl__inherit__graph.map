@@ -1,0 +1,5 @@
+<map id="testing::internal::ArgsMatcherImpl&lt; ArgsTuple, k0, k1, k2, k3, k4, k5, k6, k7, k8, k9 &gt;" name="testing::internal::ArgsMatcherImpl&lt; ArgsTuple, k0, k1, k2, k3, k4, k5, k6, k7, k8, k9 &gt;">
+<area shape="rect" id="node2" href="$classtesting_1_1MatcherInterface.html" title="{testing::MatcherInterface\l\&lt; ArgsTuple \&gt;\n||+ MatchAndExplain()\l}" alt="" coords="33,316,219,408"/>
+<area shape="rect" id="node3" href="$classtesting_1_1MatcherDescriberInterface.html" title="{testing::MatcherDescriber\lInterface\n||+ ~MatcherDescriberInterface()\l+ DescribeTo()\l+ DescribeNegationTo()\l}" alt="" coords="5,5,236,127"/>
+<area shape="rect" id="node4" href="$classtesting_1_1MatcherInterface.html" title="{testing::MatcherInterface\&lt; T \&gt;\n||+ MatchAndExplain()\l}" alt="" coords="141,176,364,253"/>
+</map>

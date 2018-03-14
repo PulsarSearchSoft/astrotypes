@@ -1,0 +1,5 @@
+<map id="testing::internal::PairMatcherImpl&lt; PairType &gt;" name="testing::internal::PairMatcherImpl&lt; PairType &gt;">
+<area shape="rect" id="node2" href="$classtesting_1_1MatcherInterface.html" title="{testing::MatcherInterface\l\&lt; PairType \&gt;\n||+ MatchAndExplain()\l}" alt="" coords="33,316,219,408"/>
+<area shape="rect" id="node3" href="$classtesting_1_1MatcherDescriberInterface.html" title="{testing::MatcherDescriber\lInterface\n||+ ~MatcherDescriberInterface()\l+ DescribeTo()\l+ DescribeNegationTo()\l}" alt="" coords="5,5,236,127"/>
+<area shape="rect" id="node4" href="$classtesting_1_1MatcherInterface.html" title="{testing::MatcherInterface\&lt; T \&gt;\n||+ MatchAndExplain()\l}" alt="" coords="141,176,364,253"/>
+</map>

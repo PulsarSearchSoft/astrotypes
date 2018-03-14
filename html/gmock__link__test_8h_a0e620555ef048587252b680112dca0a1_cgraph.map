@@ -1,0 +1,8 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="node2" href="$namespacetesting.html#a810d81f5492f18034596d61cf12b8758" title="testing::StartsWith" alt="" coords="108,5,251,32"/>
+<area shape="rect" id="node4" href="$namespacetesting.html#af6d1c13e9376c77671e37545cd84359c" title="testing::Return" alt="" coords="120,157,239,184"/>
+<area shape="rect" id="node6" href="$namespacetesting.html#a58520638912f363594ed173a4c7e134c" title="testing::EndsWith" alt="" coords="111,56,247,83"/>
+<area shape="rect" id="node7" href="$namespacetesting.html#a89643f279c0a36c2cf941abb5620756e" title="testing::HasSubstr" alt="" coords="109,107,250,133"/>
+<area shape="rect" id="node3" href="$namespacetesting.html#a667ca94f190ec2e17ee2fbfdb7d3da04" title="testing::MakePolymorphic\lMatcher" alt="" coords="299,49,489,90"/>
+<area shape="rect" id="node5" href="$namespacetesting_1_1internal.html#a0f6d06bf8c3093b9c22bb08723db201e" title="testing::internal::move" alt="" coords="309,157,479,184"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="testing::internal::FloatingPoint::AlmostEquals" name="testing::internal::FloatingPoint::AlmostEquals">
+<area shape="rect" id="node2" href="$classtesting_1_1internal_1_1FloatingPoint.html#a1fc654fd206efa98e480aa1e034f30d5" title="testing::internal::\lFloatingPoint::is_nan" alt="" coords="257,39,415,80"/>
+<area shape="rect" id="node3" href="$classtesting_1_1internal_1_1FloatingPoint.html#af6bf8fab8df572ecb137a3516ff390ae" title="testing::internal::\lFloatingPoint::exponent_bits" alt="" coords="463,5,669,47"/>
+<area shape="rect" id="node4" href="$classtesting_1_1internal_1_1FloatingPoint.html#aa17337e50a2ac855719bc0676529558f" title="testing::internal::\lFloatingPoint::fraction_bits" alt="" coords="468,71,664,112"/>
+</map>
