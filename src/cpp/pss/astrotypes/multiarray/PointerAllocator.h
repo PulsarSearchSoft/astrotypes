@@ -1,3 +1,7 @@
+/**
+ * @file PointerAllocator.h
+ * @brief Pointer allocator.
+ */
 /*
  * MIT License
  *
@@ -30,34 +34,63 @@
 namespace pss {
 namespace astrotypes {
 
+/**
+ * @class template<typename LocalType> class PointerAllocator
+ * @extends StandardAllocator<LocalType>
+ * @brief Dummy allocator that stores a pointer to a previously allocated area of memory.
+ */
 template<typename LocalType>
 class PointerAllocator : public StandardAllocator<LocalType>
 {
 public:
   using value_type = LocalType;
 
-  explicit PointerAllocator(LocalType * pointer) noexcept
+  /**
+   * @fn explicit PointerAllocator(value_type * pointer) noexcept
+   * @brief Construct the allocator from a pointer to previously allocated memory.
+   * @param pointer Pointer to previously allocated memory
+   */
+  explicit PointerAllocator(value_type * pointer) noexcept
   {
     _pointer = pointer;
   }
 
+  /**
+   * @fn value_type * allocate(std::size_t size)
+   * @brief Returns a pointer to the previously allocated memory.
+   * @param size Ignored parameter, here for compatibility with allocate interface
+   * @return Pointer to the previously allocated memory area
+   */
   value_type * allocate(std::size_t size)
   {
     return _pointer;
   }
+  /**
+   * @fn void deallocate(value_type * pointer, std::size_t size) noexcept
+   * @brief Empty deallocator.
+   * @param pointer Ignored parameter, here for compatibility with allocate interface
+   * @param size Ignored parameter, here for compatibility with allocate interface
+   */
   void deallocate(value_type * pointer, std::size_t size) noexcept {}
 
 private:
   value_type * _pointer = nullptr;
 };
 
+/**
+ * @fn template<typename FirstType, typename SecondType> bool operator==(PointerAllocator<FirstType> const &, PointerAllocator<SecondType> const &) noexcept
+ * @brief Allows to test for equivalence of PointerAllocator objects.
+ */
 template<typename FirstType, typename SecondType>
 bool operator==(PointerAllocator<FirstType> const &, PointerAllocator<SecondType> const &) noexcept
 {
   return true;
 }
 
-
+/**
+ * @fn template<typename FirstType, typename SecondType> bool operator!=(PointerAllocator<FirstType> const &, PointerAllocator<SecondType> const &) noexcept
+ * @brief Allows to test for diversity of PointerAllocator objects.
+ */
 template<typename FirstType, typename SecondType>
 bool operator!=(PointerAllocator<FirstType> const &, PointerAllocator<SecondType> const &) noexcept
 {
