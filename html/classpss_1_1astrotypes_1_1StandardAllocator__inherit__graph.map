@@ -1,3 +1,4 @@
 <map id="pss::astrotypes::StandardAllocator&lt; LocalType &gt;" name="pss::astrotypes::StandardAllocator&lt; LocalType &gt;">
-<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1PointerAllocator.html" title="{pss::astrotypes::Pointer\lAllocator\&lt; LocalType \&gt;\n||+ PointerAllocator()\l+ allocate()\l+ deallocate()\l}" alt="" coords="11,189,187,311"/>
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1PointerAllocator.html" title="{pss::astrotypes::Pointer\lAllocator\&lt; LocalType \&gt;\n||+ PointerAllocator()\l+ allocate()\l+ deallocate()\l}" alt="" coords="5,189,181,311"/>
+<area shape="rect" id="node3" href="$classtemplate_3_01typename_01LocalType_01_4.html" title="Minimal allocator. " alt="" coords="205,204,368,296"/>
 </map>

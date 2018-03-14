@@ -81,7 +81,8 @@ Inheritance diagram for pss::astrotypes::StandardAllocator&lt; LocalType &gt;:</
 <div class="dyncontent">
 <div class="center"><img src="classpss_1_1astrotypes_1_1StandardAllocator__inherit__graph.png" border="0" usemap="#pss_1_1astrotypes_1_1StandardAllocator_3_01LocalType_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="pss_1_1astrotypes_1_1StandardAllocator_3_01LocalType_01_4_inherit__map" id="pss_1_1astrotypes_1_1StandardAllocator_3_01LocalType_01_4_inherit__map">
-<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1PointerAllocator.html" title="{pss::astrotypes::Pointer\lAllocator\&lt; LocalType \&gt;\n||+ PointerAllocator()\l+ allocate()\l+ deallocate()\l}" alt="" coords="11,189,187,311"/>
+<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1PointerAllocator.html" title="{pss::astrotypes::Pointer\lAllocator\&lt; LocalType \&gt;\n||+ PointerAllocator()\l+ allocate()\l+ deallocate()\l}" alt="" coords="5,189,181,311"/>
+<area shape="rect" id="node3" href="classtemplate_3_01typename_01LocalType_01_4.html" title="Minimal allocator. " alt="" coords="205,204,368,296"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -101,6 +102,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ae58de026a23a32993c25a6c6c2bb9cae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate an area of contiguos memory.  <a href="#ae58de026a23a32993c25a6c6c2bb9cae">More...</a><br /></td></tr>
 <tr class="separator:ae58de026a23a32993c25a6c6c2bb9cae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad81fbed309ef1435049359b5f94dd8c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html#ad81fbed309ef1435049359b5f94dd8c8">deallocate</a> (<a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html#a008fca6cf67926994d96945a72fdb10b">value_type</a> *pointer, std::size_t size) noexcept</td></tr>
+<tr class="memdesc:ad81fbed309ef1435049359b5f94dd8c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a previously allocated memory area.  <a href="#ad81fbed309ef1435049359b5f94dd8c8">More...</a><br /></td></tr>
 <tr class="separator:ad81fbed309ef1435049359b5f94dd8c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
@@ -208,11 +210,11 @@ template&lt;typename LocalType&gt; </div>
 <p>Allocate an area of contiguos memory. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">size</td><td>The number of elements that the allocated memory area should fit </td></tr>
+    <tr><td class="paramname">size</td><td>Number of elements that the allocated memory area should fit </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to the allocated memory area </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Pointer to the allocated memory area </dd></dl>
 
 </div>
 </div>
@@ -252,12 +254,21 @@ template&lt;typename LocalType&gt; </div>
 </table>
 </div><div class="memdoc">
 
+<p>Free a previously allocated memory area. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pointer</td><td>Pointer to the memory area to deallocate </td></tr>
+    <tr><td class="paramname">size</td><td>Number of elements that the allocated memory area should fit </td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 14 2018 16:53:48 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 14 2018 17:23:38 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>
