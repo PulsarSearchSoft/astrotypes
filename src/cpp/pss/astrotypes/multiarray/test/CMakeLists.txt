@@ -4,6 +4,8 @@ link_directories(${GTEST_LIBRARY_DIR})
 set(
    gtest_multiarray_src
    src/NumericalRepresentationTest.cpp
+   src/StandardAllocatorTest.cpp
+   src/PointerAllocatorTest.cpp
 )
 
 add_executable(gtest_multiarray ${gtest_multiarray_src} )
