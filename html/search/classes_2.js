@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['numericalrepresentation',['NumericalRepresentation',['../structpss_1_1astrotypes_1_1NumericalRepresentation.html',1,'pss::astrotypes']]],
-  ['numericalrepresentation_3c_20std_3a_3aarray_3c_20t_2c_20s_20_3e_20_3e',['NumericalRepresentation&lt; std::array&lt; T, S &gt; &gt;',['../structpss_1_1astrotypes_1_1NumericalRepresentation_3_01std_1_1array_3_01T_00_01S_01_4_01_4.html',1,'pss::astrotypes']]],
-  ['numericalrepresentation_3c_20std_3a_3alist_3c_20t_2c_20allocator_20_3e_20_3e',['NumericalRepresentation&lt; std::list&lt; T, Allocator &gt; &gt;',['../structpss_1_1astrotypes_1_1NumericalRepresentation_3_01std_1_1list_3_01T_00_01Allocator_01_4_01_4.html',1,'pss::astrotypes']]],
-  ['numericalrepresentation_3c_20std_3a_3amap_3c_20ts_2e_2e_2e_20_3e_20_3e',['NumericalRepresentation&lt; std::map&lt; Ts... &gt; &gt;',['../structpss_1_1astrotypes_1_1NumericalRepresentation_3_01std_1_1map_3_01Ts_8_8_8_01_4_01_4.html',1,'pss::astrotypes']]],
-  ['numericalrepresentation_3c_20std_3a_3avector_3c_20t_2c_20allocator_20_3e_20_3e',['NumericalRepresentation&lt; std::vector&lt; T, Allocator &gt; &gt;',['../structpss_1_1astrotypes_1_1NumericalRepresentation_3_01std_1_1vector_3_01T_00_01Allocator_01_4_01_4.html',1,'pss::astrotypes']]],
-  ['numericalrepresentation_3c_20t_5b_5d_3e',['NumericalRepresentation&lt; T[]&gt;',['../structpss_1_1astrotypes_1_1NumericalRepresentation_3_01T[]_4.html',1,'pss::astrotypes']]],
-  ['numericalrepresentationtest',['NumericalRepresentationTest',['../classpss_1_1astrotypes_1_1test_1_1NumericalRepresentationTest.html',1,'pss::astrotypes::test']]]
+  ['multiarray',['MultiArray',['../classpss_1_1astrotypes_1_1MultiArray.html',1,'pss::astrotypes']]],
+  ['multiarray_3c_20t_2c_20firstdimension_20_3e',['MultiArray&lt; T, FirstDimension &gt;',['../classpss_1_1astrotypes_1_1MultiArray_3_01T_00_01FirstDimension_01_4.html',1,'pss::astrotypes']]],
+  ['multiarray_3c_20t_2c_20firstdimension_2c_20seconddimension_2c_20otherdimensions_2e_2e_2e_20_3e',['MultiArray&lt; T, FirstDimension, SecondDimension, OtherDimensions... &gt;',['../classpss_1_1astrotypes_1_1MultiArray_3_01T_00_01FirstDimension_00_01SecondDimension_00_01OtherDimensions_8_8_8_01_4.html',1,'pss::astrotypes']]],
+  ['multiarraytest',['MultiArrayTest',['../classpss_1_1astrotypes_1_1test_1_1MultiArrayTest.html',1,'pss::astrotypes::test']]],
+  ['multiiterator',['MultiIterator',['../classpss_1_1astrotypes_1_1MultiIterator.html',1,'pss::astrotypes']]]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['hasnewfatalfailurehelper',['HasNewFatalFailureHelper',['../classtesting_1_1internal_1_1HasNewFatalFailureHelper.html',1,'testing::internal']]],
-  ['hassubstrmatcher',['HasSubstrMatcher',['../classtesting_1_1internal_1_1HasSubstrMatcher.html',1,'testing::internal']]]
+  ['view',['View',['../classpss_1_1astrotypes_1_1View.html',1,'pss::astrotypes']]],
+  ['viewiterator',['ViewIterator',['../classpss_1_1astrotypes_1_1ViewIterator.html',1,'pss::astrotypes']]]
 ];

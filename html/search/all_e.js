@@ -1,10 +1,10 @@
 var searchData=
 [
-  ['_7eindexmapper',['~IndexMapper',['../classpss_1_1astrotypes_1_1IndexMapper.html#af4e548e36d7c6818abef54213e64316d',1,'pss::astrotypes::IndexMapper']]],
-  ['_7emultiarray',['~MultiArray',['../classpss_1_1astrotypes_1_1MultiArray.html#ab7aebffa663e932dfb852117f3a8a44e',1,'pss::astrotypes::MultiArray']]],
-  ['_7enumericalrepresentationtest',['~NumericalRepresentationTest',['../classpss_1_1astrotypes_1_1test_1_1NumericalRepresentationTest.html#ad8dbe6b2ec42fb5ee0aa99c0800aae4c',1,'pss::astrotypes::test::NumericalRepresentationTest']]],
-  ['_7epointerallocatortest',['~PointerAllocatorTest',['../classpss_1_1astrotypes_1_1test_1_1PointerAllocatorTest.html#a8e297940d878042e072598a774d96467',1,'pss::astrotypes::test::PointerAllocatorTest']]],
-  ['_7estandardallocatortest',['~StandardAllocatorTest',['../classpss_1_1astrotypes_1_1test_1_1StandardAllocatorTest.html#ad09c15a1483e6008b1c6adcc19f0a1cb',1,'pss::astrotypes::test::StandardAllocatorTest']]],
-  ['_7eview',['~View',['../classpss_1_1astrotypes_1_1View.html#ac0dc1709f9c1ad667696a13693100551',1,'pss::astrotypes::View']]],
-  ['_7eviewiterator',['~ViewIterator',['../classpss_1_1astrotypes_1_1ViewIterator.html#a295bc6a8b1fabfd0317f6e611d338204',1,'pss::astrotypes::ViewIterator']]]
+  ['value_5ftype',['value_type',['../classpss_1_1astrotypes_1_1MultiArray_3_01T_00_01FirstDimension_00_01SecondDimension_00_01OtherDimensions_8_8_8_01_4.html#a50310b192d83bbe4318ef8671dae0cc8',1,'pss::astrotypes::MultiArray&lt; T, FirstDimension, SecondDimension, OtherDimensions... &gt;::value_type()'],['../classpss_1_1astrotypes_1_1PointerAllocator.html#a7e7cc3c5c51d2a077a74f0037c2a3a7b',1,'pss::astrotypes::PointerAllocator::value_type()'],['../classpss_1_1astrotypes_1_1StandardAllocator.html#a008fca6cf67926994d96945a72fdb10b',1,'pss::astrotypes::StandardAllocator::value_type()'],['../structpss_1_1astrotypes_1_1test_1_1ParentType.html#aef591c4685373714fe250303ad4fe6af',1,'pss::astrotypes::test::ParentType::value_type()']]],
+  ['view',['View',['../classpss_1_1astrotypes_1_1View.html',1,'pss::astrotypes::View&lt; MultiArrayType &gt;'],['../classpss_1_1astrotypes_1_1View.html#aa6992cebf9f0b20eca2e0f7b8a167b04',1,'pss::astrotypes::View::View()']]],
+  ['view_2ecpp',['View.cpp',['../View_8cpp.html',1,'']]],
+  ['view_2eh',['View.h',['../View_8h.html',1,'']]],
+  ['viewiterator',['ViewIterator',['../classpss_1_1astrotypes_1_1ViewIterator.html',1,'pss::astrotypes::ViewIterator&lt; ViewType &gt;'],['../classpss_1_1astrotypes_1_1ViewIterator.html#a8350a5840db324275cda68be65ef7013',1,'pss::astrotypes::ViewIterator::ViewIterator()']]],
+  ['viewiterator_2ecpp',['ViewIterator.cpp',['../ViewIterator_8cpp.html',1,'']]],
+  ['viewiterator_2eh',['ViewIterator.h',['../ViewIterator_8h.html',1,'']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['iterator',['Iterator',['../classpss_1_1astrotypes_1_1View.html#a31f01b3178d865b54f9cfb964ba309b5',1,'pss::astrotypes::View']]]
+  ['dimension',['dimension',['../classpss_1_1astrotypes_1_1DimensionSize.html#ae74711d4460f1fbd5a8f34626d47cffc',1,'pss::astrotypes::DimensionSize']]]
 ];

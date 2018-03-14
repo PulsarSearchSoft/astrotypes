@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['deallocate',['deallocate',['../classpss_1_1astrotypes_1_1PointerAllocator.html#ad5324aadc65c95aa98d3e6df2b6de760',1,'pss::astrotypes::PointerAllocator::deallocate()'],['../classpss_1_1astrotypes_1_1StandardAllocator.html#ad81fbed309ef1435049359b5f94dd8c8',1,'pss::astrotypes::StandardAllocator::deallocate()']]],
-  ['developers_5fguide_2emd',['developers_guide.md',['../developers__guide_8md.html',1,'']]],
-  ['developers_5fguide',['developers_guide',['../md_doc_developers_guide.html',1,'']]]
+  ['cbegin',['cbegin',['../classpss_1_1astrotypes_1_1View.html#a125618d048d36c6fbe33f80f6289a19e',1,'pss::astrotypes::View']]],
+  ['cend',['cend',['../classpss_1_1astrotypes_1_1View.html#a84773b79188423d129a63eb27b94994c',1,'pss::astrotypes::View']]],
+  ['constiterator',['ConstIterator',['../classpss_1_1astrotypes_1_1View.html#a71a87e50f31d4e784b3ec8f6e21979a4',1,'pss::astrotypes::View']]]
 ];

@@ -73,13 +73,21 @@ $(function() {
 <div class="title">MultiArray.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="MultiArray_8cpp.html">detail/MultiArray.cpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="Slice_8h_source.html">Slice.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="DimensionSize_8h_source.html">DimensionSize.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="MultiArray_8cpp.html">detail/MultiArray.cpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for MultiArray.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="MultiArray_8h__incl.png" border="0" usemap="#src_2cpp_2pss_2astrotypes_2multiarray_2MultiArray_8h" alt=""/></div>
 <map name="src_2cpp_2pss_2astrotypes_2multiarray_2MultiArray_8h" id="src_2cpp_2pss_2astrotypes_2multiarray_2MultiArray_8h">
-<area shape="rect" id="node2" href="MultiArray_8cpp.html" title="detail/MultiArray.cpp" alt="" coords="15,95,173,121"/>
+<area shape="rect" id="node2" href="Slice_8h.html" title="Slice.h" alt="" coords="309,95,375,121"/>
+<area shape="rect" id="node4" href="DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="301,244,431,271"/>
+<area shape="rect" id="node9" href="MultiArray_8cpp.html" title="detail/MultiArray.cpp" alt="" coords="478,95,635,121"/>
+<area shape="rect" id="node3" href="DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="33,169,173,196"/>
+<area shape="rect" id="node8" href="Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="281,169,403,196"/>
+<area shape="rect" id="node6" href="DimensionIndex_8cpp.html" title="detail/DimensionIndex.cpp" alt="" coords="5,244,201,271"/>
+<area shape="rect" id="node5" href="DimensionSize_8cpp.html" title="detail/DimensionSize.cpp" alt="" coords="273,319,459,345"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -87,7 +95,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="MultiArray_8h__dep__incl.png" border="0" usemap="#src_2cpp_2pss_2astrotypes_2multiarray_2MultiArray_8hdep" alt=""/></div>
 <map name="src_2cpp_2pss_2astrotypes_2multiarray_2MultiArray_8hdep" id="src_2cpp_2pss_2astrotypes_2multiarray_2MultiArray_8hdep">
-<area shape="rect" id="node2" href="MultiArray_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/detail/MultiArray.cpp" alt="" coords="5,95,239,136"/>
+<area shape="rect" id="node2" href="MultiArray_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/detail/MultiArray.cpp" alt="" coords="5,102,239,143"/>
+<area shape="rect" id="node3" href="MultiArrayTest_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/test/src/MultiArray\lTest.cpp" alt="" coords="263,95,480,151"/>
 </map>
 </div>
 </div>
@@ -95,7 +104,12 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray&lt; T &gt;</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray&lt; T, Dimensions &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">template classes to specify multiple dimesion arrays with explicit dimension types  <a href="classpss_1_1astrotypes_1_1MultiArray.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01T_00_01FirstDimension_00_01SecondDimension_00_01OtherDimensions_8_8_8_01_4.html">pss::astrotypes::MultiArray&lt; T, FirstDimension, SecondDimension, OtherDimensions... &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01T_00_01FirstDimension_01_4.html">pss::astrotypes::MultiArray&lt; T, FirstDimension &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -108,7 +122,7 @@ Namespaces</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 14 2018 17:24:21 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 14 2018 18:00:42 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>
