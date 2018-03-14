@@ -21,21 +21,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "../MultiArray.h"
+#ifndef PSS_ASTROTYPES_MULTIARRAY_DIMENSIONINDEX_H
+#define PSS_ASTROTYPES_MULTIARRAY_DIMENSIONINDEX_H
+
+#include "DimensionSize.h"
 
 
 namespace pss {
 namespace astrotypes {
 
-template<typename T, typename FirstDimension>
-MultiArray<T, FirstDimension>::MultiArray(DimensionSize<FirstDimension> const&)
-{
-}
+/**
+ * @brief
+ *      A tagged dimensionIndex variable
+ * @details
+ */
 
-template<typename T, typename FirstDimension>
-MultiArray<T, FirstDimension>::~MultiArray()
+template<typename Dimension>
+class DimensionIndex
 {
-}
+    public:
+        explicit DimensionIndex(std::size_t);
+        ~DimensionIndex();
+        operator std::size_t& ();
+        operator std::size_t () const;
+
+        inline DimensionSize<Dimension> operator-(DimensionIndex<Dimension> const&) const;
+
+        bool operator<(DimensionIndex<Dimension> const&) const;
+
+    private:
+        std::size_t _index;
+        
+};
 
 } // namespace astrotypes
 } // namespace pss
+#include "detail/DimensionIndex.cpp"
+
+#endif // PSS_ASTROTYPES_MULTIARRAY_DIMENSIONINDEX_H

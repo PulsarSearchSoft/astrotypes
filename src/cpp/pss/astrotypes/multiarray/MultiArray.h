@@ -24,25 +24,78 @@
 #ifndef PSS_ASTROTYPES_MULTIARRAY_H
 #define PSS_ASTROTYPES_MULTIARRAY_H
 
+#include "Slice.h"
+#include "DimensionSize.h"
 
 namespace pss {
 namespace astrotypes {
 
 /**
  * @brief
+ *      template classes to specify multiple dimesion arrays with explicit dimension types
+ * @tparam T the type fo object to be stored in the array (e.g. float, int, Stikes, etc)
+ *
  * @details
  */
-
-template<typename T>
+template<typename T, typename... Dimensions>
 class MultiArray
 {
+};
+
+template<typename T, typename FirstDimension, typename SecondDimension, typename... OtherDimensions>
+class MultiArray<T, FirstDimension, SecondDimension, OtherDimensions...>
+{
+        typedef MultiArray<T> SelfType;
+
     public:
-        MultiArray();
+        typedef T value_type;
+        typedef T& reference_type;
+
+    public:
+        MultiArray(DimensionSize<SecondDimension> const&, DimensionSize<OtherDimensions> const& ... sizes);
         ~MultiArray();
+
+        /**
+         * @brief take a slice of data at the specified index of the first dimension
+         */
+        Slice<SelfType, OtherDimensions...> operator[](std::size_t index);
+
+        /**
+         * @brief resize the array in the specified dimension
+         */
+        template<typename Dimension>
+        void resize(std::size_t size);
+
+        /**
+         * @brief resize the array in the specified dimension
+         */
+        template<typename Dimension>
+        void size();
 
     private:
 };
 
+// specialisation for single dimension arrays
+template<typename T, typename FirstDimension>
+class MultiArray<T, FirstDimension>
+{
+        typedef MultiArray<T, FirstDimension> SelfType;
+        typedef T& reference_type;
+        typedef T const& const_reference_type;
+        typedef T value_type;
+
+    public:
+        MultiArray(DimensionSize<FirstDimension> const& size);
+        ~MultiArray();
+
+        /**
+         * @brief 
+         */
+        reference_type operator[](std::size_t index);
+        const_reference_type operator[](std::size_t index) const;
+
+    private:
+};
 
 } // namespace astrotypes
 } // namespace pss
