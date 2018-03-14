@@ -43,14 +43,9 @@ public:
 
   value_type * allocate(std::size_t size)
   {
-    assert(size);
     return _pointer;
   }
-  void deallocate(value_type * pointer, std::size_t size) noexcept
-  {
-    assert(pointer);
-    assert(size);
-  }
+  void deallocate(value_type * pointer, std::size_t size) noexcept {}
 
 private:
   value_type * _pointer = nullptr;

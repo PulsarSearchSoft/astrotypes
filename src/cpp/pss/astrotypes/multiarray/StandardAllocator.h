@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 #include <memory>
 #include <new>
 #include <cassert>
@@ -47,7 +48,6 @@ public:
     }
     void deallocate(value_type * pointer, std::size_t size) noexcept
     {
-      assert(size);
       ::operator delete(pointer);
     }
 };
