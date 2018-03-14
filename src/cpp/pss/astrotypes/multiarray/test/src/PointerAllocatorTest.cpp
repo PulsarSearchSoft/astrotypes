@@ -1,18 +1,18 @@
 /*
  * MIT License
- *
+ * 
  * Copyright (c) 2018 PulsarSearchSoft
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,50 +22,47 @@
  * SOFTWARE.
  */
 
-#include <memory>
-#include <new>
-#include <cassert>
+#include "PointerAllocatorTest.h"
+#include "pss/astrotypes/multiarray/PointerAllocator.h"
 
-#ifndef ASTROTYPES_STANDARDALLOCATOR_H
-#define ASTROTYPES_STANDARDALLOCATOR_H
 
 namespace pss {
 namespace astrotypes {
+namespace test {
 
-template<typename LocalType>
-class StandardAllocator
+
+PointerAllocatorTest::PointerAllocatorTest()
+    : ::testing::Test()
 {
-public:
-    using value_type = LocalType;
-
-    StandardAllocator() noexcept = default;
-    template<typename OtherType> StandardAllocator(StandardAllocator<OtherType> const &) noexcept {}
-
-    value_type * allocate(std::size_t size)
-    {
-      return static_cast<value_type *>(::operator new(size * sizeof(value_type)));
-    }
-    void deallocate(value_type * pointer, std::size_t size) noexcept
-    {
-      assert(size);
-      ::operator delete(pointer);
-    }
-};
-
-template<typename FirstType, typename SecondType>
-bool operator==(StandardAllocator<FirstType> const &, StandardAllocator<SecondType> const &) noexcept
-{
-  return true;
 }
 
-
-template<typename FirstType, typename SecondType>
-bool operator!=(StandardAllocator<FirstType> const &, StandardAllocator<SecondType> const &) noexcept
+PointerAllocatorTest::~PointerAllocatorTest()
 {
-  return false;
 }
 
+void PointerAllocatorTest::SetUp()
+{
+}
+
+void PointerAllocatorTest::TearDown()
+{
+}
+
+TEST(PointerAllocatorTest, test_std_vector)
+{
+  const std::size_t size = 47;
+  int * array = new int [size];
+  PointerAllocator<int> pointer_allocator(array);
+  std::vector<int, PointerAllocator<int>> allocated_vector(pointer_allocator);
+  
+  for ( std::size_t i = 0; i < size; i++ ) {
+    allocated_vector.push_back(i);
+  }
+  for ( std::size_t i = 0; i < size; i++ ) {
+    ASSERT_EQ(i, array[i]);
+  }
+}
+
+} // namespace test
 } // namespace astrotypes
 } // namespace pss
-
-#endif // ASTROTYPES_STANDARDALLOCATOR_H

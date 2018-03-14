@@ -34,21 +34,26 @@ template<typename LocalType>
 class PointerAllocator : public StandardAllocator<LocalType>
 {
 public:
-    using value_type = LocalType;
+  using value_type = LocalType;
 
-    explicit PointerAllocator(LocalType * pointer) noexcept
-    {
-        _pointer = pointer;
-    }
+  explicit PointerAllocator(LocalType * pointer) noexcept
+  {
+    _pointer = pointer;
+  }
 
-    value_type * allocate(std::size_t size)
-    {
-        return _pointer;
-    }
-    void deallocate(value_type * pointer, std::size_t size) noexcept {}
+  value_type * allocate(std::size_t size)
+  {
+    assert(size);
+    return _pointer;
+  }
+  void deallocate(value_type * pointer, std::size_t size) noexcept
+  {
+    assert(pointer);
+    assert(size);
+  }
 
 private:
-    value_type * _pointer = nullptr;
+  value_type * _pointer = nullptr;
 };
 
 template<typename FirstType, typename SecondType>
