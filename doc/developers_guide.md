@@ -6,7 +6,7 @@ Do not introduce any new dependencies on any other product without consultation
 
 ## Build Products
 The project will build the pipeline executable, two c++ libraries, and their associated header files.
-One library will support the main product and the second a library is a set of utilitites to aid in unit testing code
+One library will support the main product and the second a library is a set of utilities to aid in unit testing code
 that uses the main library.
 
 # Repository
