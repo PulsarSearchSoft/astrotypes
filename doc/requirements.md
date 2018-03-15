@@ -6,10 +6,10 @@ Starting point for the requirements discussed during the astrotype sprint in Ams
 ## Components
 
 * Defined data types
-    * Time-Frequency
-    * Frequency-Time
-    * Time-DM
-    * Units
+    * Time-Frequency (TF)
+    * Frequency-Time (FT)
+    * Time-DM (TD)
+    * Units (U)
 * SIGPROC file format
     * Reader
     * Writer
@@ -19,20 +19,21 @@ Starting point for the requirements discussed during the astrotype sprint in Ams
 
 ## Requirements
 
-* Data types
-    * They should have an arbitrary number of dimensions
-        * The size of each dimension is specified in the constructor
-        * Dimensions are ordered in the way they appear in the template declaration e.g. the rightmost dimension is the 
-            include(doxygen) fastest changing one
-        * Dimensions must have an associated unit
-        * It should be possible to address dimensions e.g. to transpose a data type
-    * They should provide views
-        * A view is specified by expressing, for each dimension, a pair containing the index of the first element included in 
-            the view, and the number of elements included in the view
-        * To express a view with gaps is necessary to use a collection of views over the same data type
-    * They should provide iterators
-        * Iterators should make them compatibles with C++ STL algorithms
-    * It should be possible to associate metadata to each object e.g. through inheritance
-    * It should be possible to use an iterator from one data type to point to data in another data type
-        * An index mapper must be provided
-    * They should wrap memory and allow operations on memory that is not owned by them e.g. a PSRDADA buffer
+### Data Types
+
+| Level | Description | Interested Object | Status |
+|:-----:|:-----------:|:-----------------:|:------------:|
+| 0 | A data type should have an arbitrary number of dimensions | [MultiArray](https://pulsarsearchsoft.github.io/astrotypes/html/classpss_1_1astrotypes_1_1MultiArray.html) | |
+| 1 | Dimensions are specified in the object constructor | [MultiArray](https://pulsarsearchsoft.github.io/astrotypes/html/classpss_1_1astrotypes_1_1MultiArray.html) | |
+| 1 | Dimensions are ordered om the way they appear in the object constructor | [MultiArray](https://pulsarsearchsoft.github.io/astrotypes/html/classpss_1_1astrotypes_1_1MultiArray.html) | |
+| 1 | Dimensions have a unit associated | | |
+| 1 | Dimensions can be addressed | | |
+| 1 | Dimensions can be transposed | | |
+| 0 | A data type should provide views over arbitrary sections of it | [Slice](https://pulsarsearchsoft.github.io/astrotypes/html/classpss_1_1astrotypes_1_1Slice.html) | |
+| 0 | A data type should provide access iterators | | |
+| 1 | Iterators should provide compatibility with C++ STL | | |
+| 2 | A mapping between iterators of certain data types should be possible | | |
+| 0 | A data type could have associated metadata | | |
+| 0 | A data type should be able to provide access to memory it does not own | | |
+| 0 | A data type should be resizeable at runtime | [MultiArray](https://pulsarsearchsoft.github.io/astrotypes/html/classpss_1_1astrotypes_1_1MultiArray.html) | |
+

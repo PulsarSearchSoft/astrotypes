@@ -6,8 +6,9 @@ include_directories(../..)                  # include paths should all be prefix
 include_directories(${PROJECT_BINARY_DIR})  # pick up generated files
 
 SUBPACKAGE(multiarray)
+SUBPACKAGE(units)
 
-# should come after all SUBPACKGE directives
+# should come after all SUBPACKAGE directives
 include_subpackage_files()
 #add_library(${CMAKE_PROJECT_NAME} ${lib_src_cpu}) 
 
