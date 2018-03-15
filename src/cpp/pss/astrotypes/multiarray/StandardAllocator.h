@@ -1,7 +1,3 @@
-/**
- * @file StandardAllocator.h
- * @brief Standard memory allocator.
- */
 /*
  * MIT License
  *
@@ -38,7 +34,6 @@ namespace pss {
 namespace astrotypes {
 
 /**
- * @class template<typename LocalType> class StandardAllocator
  * @brief Minimal allocator.
  */
 template<typename LocalType>
@@ -51,7 +46,6 @@ public:
   template<typename OtherType> StandardAllocator(StandardAllocator<OtherType> const &) noexcept {}
 
   /**
-   * @fn value_type * allocate(std::size_t size)
    * @brief Allocate an area of contiguos memory.
    * @param size Number of elements that the allocated memory area should fit
    * @return Pointer to the allocated memory area
@@ -61,7 +55,6 @@ public:
     return static_cast<value_type *>(::operator new(size * sizeof(value_type)));
   }
   /**
-   * @fn void deallocate(value_type * pointer, std::size_t size) noexcept
    * @brief Free a previously allocated memory area.
    * @param pointer Pointer to the memory area to deallocate
    * @param size Number of elements that the allocated memory area should fit
@@ -73,7 +66,6 @@ public:
 };
 
 /**
- * @fn template<typename FirstType, typename SecondType> bool operator==(StandardAllocator<FirstType> const &, StandardAllocator<SecondType> const &) noexcept
  * @brief Allows to test for equivalence of StandardAllocator objects.
  */
 template<typename FirstType, typename SecondType>
@@ -83,7 +75,6 @@ bool operator==(StandardAllocator<FirstType> const &, StandardAllocator<SecondTy
 }
 
 /**
- * @fn template<typename FirstType, typename SecondType> bool operator!=(StandardAllocator<FirstType> const &, StandardAllocator<SecondType> const &) noexcept
  * @brief Allows to test for diversity of StandardAllocator objects.
  */
 template<typename FirstType, typename SecondType>
