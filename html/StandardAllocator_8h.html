@@ -74,9 +74,6 @@ $(function() {
 <div class="title">StandardAllocator.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>Standard memory allocator.  
-<a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;new&gt;</code><br />
 <code>#include &lt;cassert&gt;</code><br />
@@ -90,7 +87,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="StandardAllocator_8h__dep__incl.png" border="0" usemap="#src_2cpp_2pss_2astrotypes_2multiarray_2StandardAllocator_8hdep" alt=""/></div>
 <map name="src_2cpp_2pss_2astrotypes_2multiarray_2StandardAllocator_8hdep" id="src_2cpp_2pss_2astrotypes_2multiarray_2StandardAllocator_8hdep">
-<area shape="rect" id="node2" href="PointerAllocator_8h.html" title="Pointer allocator. " alt="" coords="5,102,220,143"/>
+<area shape="rect" id="node2" href="PointerAllocator_8h.html" title="src/cpp/pss/astrotypes\l/multiarray/PointerAllocator.h" alt="" coords="5,102,220,143"/>
 <area shape="rect" id="node4" href="StandardAllocatorTest_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/test/src/Standard\lAllocatorTest.cpp" alt="" coords="245,95,453,151"/>
 <area shape="rect" id="node3" href="PointerAllocatorTest_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/test/src/Pointer\lAllocatorTest.cpp" alt="" coords="15,199,211,255"/>
 </map>
@@ -101,6 +98,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html">pss::astrotypes::StandardAllocator&lt; LocalType &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimal allocator.  <a href="classpss_1_1astrotypes_1_1StandardAllocator.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -112,21 +110,19 @@ Namespaces</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a9649828a6494cff7a8e1ded2c40343e8"><td class="memTemplParams" colspan="2">template&lt;typename FirstType , typename SecondType &gt; </td></tr>
-<tr class="memitem:a9649828a6494cff7a8e1ded2c40343e8"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html#a9649828a6494cff7a8e1ded2c40343e8">pss::astrotypes::operator==</a> (StandardAllocator&lt; FirstType &gt; const &amp;, StandardAllocator&lt; SecondType &gt; const &amp;) noexcept</td></tr>
-<tr class="memdesc:a9649828a6494cff7a8e1ded2c40343e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows to test for equivalence of <a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html">StandardAllocator</a> objects.  <a href="namespacepss_1_1astrotypes.html#a9649828a6494cff7a8e1ded2c40343e8">More...</a><br /></td></tr>
-<tr class="separator:a9649828a6494cff7a8e1ded2c40343e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b9db1f893dd7de5ae78c27cbcd38d9f"><td class="memTemplParams" colspan="2">template&lt;typename FirstType , typename SecondType &gt; </td></tr>
-<tr class="memitem:a3b9db1f893dd7de5ae78c27cbcd38d9f"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html#a3b9db1f893dd7de5ae78c27cbcd38d9f">pss::astrotypes::operator!=</a> (StandardAllocator&lt; FirstType &gt; const &amp;, StandardAllocator&lt; SecondType &gt; const &amp;) noexcept</td></tr>
-<tr class="memdesc:a3b9db1f893dd7de5ae78c27cbcd38d9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows to test for diversity of <a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html">StandardAllocator</a> objects.  <a href="namespacepss_1_1astrotypes.html#a3b9db1f893dd7de5ae78c27cbcd38d9f">More...</a><br /></td></tr>
-<tr class="separator:a3b9db1f893dd7de5ae78c27cbcd38d9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2ad153f67d3c8bb47a441d382e3c181"><td class="memTemplParams" colspan="2">template&lt;typename FirstType , typename SecondType &gt; </td></tr>
+<tr class="memitem:ab2ad153f67d3c8bb47a441d382e3c181"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html#ab2ad153f67d3c8bb47a441d382e3c181">pss::astrotypes::operator==</a> (StandardAllocator&lt; FirstType &gt; const &amp;, StandardAllocator&lt; SecondType &gt; const &amp;) noexcept</td></tr>
+<tr class="memdesc:ab2ad153f67d3c8bb47a441d382e3c181"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows to test for equivalence of <a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html" title="Minimal allocator. ">StandardAllocator</a> objects.  <a href="namespacepss_1_1astrotypes.html#ab2ad153f67d3c8bb47a441d382e3c181">More...</a><br /></td></tr>
+<tr class="separator:ab2ad153f67d3c8bb47a441d382e3c181"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af53ad9fbaf062e119847beaf9fc78a12"><td class="memTemplParams" colspan="2">template&lt;typename FirstType , typename SecondType &gt; </td></tr>
+<tr class="memitem:af53ad9fbaf062e119847beaf9fc78a12"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html#af53ad9fbaf062e119847beaf9fc78a12">pss::astrotypes::operator!=</a> (StandardAllocator&lt; FirstType &gt; const &amp;, StandardAllocator&lt; SecondType &gt; const &amp;) noexcept</td></tr>
+<tr class="memdesc:af53ad9fbaf062e119847beaf9fc78a12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allows to test for diversity of <a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html" title="Minimal allocator. ">StandardAllocator</a> objects.  <a href="namespacepss_1_1astrotypes.html#af53ad9fbaf062e119847beaf9fc78a12">More...</a><br /></td></tr>
+<tr class="separator:af53ad9fbaf062e119847beaf9fc78a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Standard memory allocator. </p>
-</div></div><!-- contents -->
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 15 2018 12:37:09 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Mar 15 2018 12:43:39 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>

@@ -75,14 +75,16 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Minimal allocator.  
+ <a href="classpss_1_1astrotypes_1_1StandardAllocator.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="StandardAllocator_8h_source.html">src/cpp/pss/astrotypes/multiarray/StandardAllocator.h</a>&gt;</code></p>
 <div class="dynheader">
 Inheritance diagram for pss::astrotypes::StandardAllocator&lt; LocalType &gt;:</div>
 <div class="dyncontent">
 <div class="center"><img src="classpss_1_1astrotypes_1_1StandardAllocator__inherit__graph.png" border="0" usemap="#pss_1_1astrotypes_1_1StandardAllocator_3_01LocalType_01_4_inherit__map" alt="Inheritance graph"/></div>
 <map name="pss_1_1astrotypes_1_1StandardAllocator_3_01LocalType_01_4_inherit__map" id="pss_1_1astrotypes_1_1StandardAllocator_3_01LocalType_01_4_inherit__map">
-<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1PointerAllocator.html" title="{pss::astrotypes::Pointer\lAllocator\&lt; LocalType \&gt;\n||+ PointerAllocator()\l+ allocate()\l+ deallocate()\l}" alt="" coords="5,189,181,311"/>
-<area shape="rect" id="node3" href="classtemplate_3_01typename_01LocalType_01_4.html" title="Minimal allocator. " alt="" coords="205,204,368,296"/>
+<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1PointerAllocator.html" title="Dummy allocator that stores a pointer to a previously allocated area of memory. " alt="" coords="11,189,187,311"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -98,14 +100,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac87ec27e47ea6f9fb6052de25fc38845"><td class="memTemplParams" colspan="2">template&lt;typename OtherType &gt; </td></tr>
 <tr class="memitem:ac87ec27e47ea6f9fb6052de25fc38845"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html#ac87ec27e47ea6f9fb6052de25fc38845">StandardAllocator</a> (<a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html">StandardAllocator</a>&lt; OtherType &gt; const &amp;) noexcept</td></tr>
 <tr class="separator:ac87ec27e47ea6f9fb6052de25fc38845"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae58de026a23a32993c25a6c6c2bb9cae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html#a008fca6cf67926994d96945a72fdb10b">value_type</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html#ae58de026a23a32993c25a6c6c2bb9cae">allocate</a> (std::size_t size)</td></tr>
-<tr class="memdesc:ae58de026a23a32993c25a6c6c2bb9cae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate an area of contiguos memory.  <a href="#ae58de026a23a32993c25a6c6c2bb9cae">More...</a><br /></td></tr>
-<tr class="separator:ae58de026a23a32993c25a6c6c2bb9cae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c12b697ccf04869f1b080e6b6a90644"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html#a008fca6cf67926994d96945a72fdb10b">value_type</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html#a8c12b697ccf04869f1b080e6b6a90644">allocate</a> (std::size_t size)</td></tr>
+<tr class="memdesc:a8c12b697ccf04869f1b080e6b6a90644"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate an area of contiguos memory.  <a href="#a8c12b697ccf04869f1b080e6b6a90644">More...</a><br /></td></tr>
+<tr class="separator:a8c12b697ccf04869f1b080e6b6a90644"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad81fbed309ef1435049359b5f94dd8c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html#ad81fbed309ef1435049359b5f94dd8c8">deallocate</a> (<a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html#a008fca6cf67926994d96945a72fdb10b">value_type</a> *pointer, std::size_t size) noexcept</td></tr>
 <tr class="memdesc:ad81fbed309ef1435049359b5f94dd8c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free a previously allocated memory area.  <a href="#ad81fbed309ef1435049359b5f94dd8c8">More...</a><br /></td></tr>
 <tr class="separator:ad81fbed309ef1435049359b5f94dd8c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Typedef Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><h3>template&lt;typename LocalType&gt;<br />
+class pss::astrotypes::StandardAllocator&lt; LocalType &gt;</h3>
+
+<p>Minimal allocator. </p>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
 <a id="a008fca6cf67926994d96945a72fdb10b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a008fca6cf67926994d96945a72fdb10b">&#9670;&nbsp;</a></span>value_type</h2>
 
@@ -181,8 +188,8 @@ template&lt;typename OtherType &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae58de026a23a32993c25a6c6c2bb9cae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae58de026a23a32993c25a6c6c2bb9cae">&#9670;&nbsp;</a></span>allocate()</h2>
+<a id="a8c12b697ccf04869f1b080e6b6a90644"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c12b697ccf04869f1b080e6b6a90644">&#9670;&nbsp;</a></span>allocate()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -193,7 +200,7 @@ template&lt;typename LocalType&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html#a008fca6cf67926994d96945a72fdb10b">value_type</a> * <a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html">pss::astrotypes::StandardAllocator</a>&lt; LocalType &gt;::allocate </td>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html#a008fca6cf67926994d96945a72fdb10b">value_type</a>* <a class="el" href="classpss_1_1astrotypes_1_1StandardAllocator.html">pss::astrotypes::StandardAllocator</a>&lt; LocalType &gt;::allocate </td>
           <td>(</td>
           <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>size</em></td><td>)</td>
@@ -268,7 +275,7 @@ template&lt;typename LocalType&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Mar 15 2018 12:37:09 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Mar 15 2018 12:43:39 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>
