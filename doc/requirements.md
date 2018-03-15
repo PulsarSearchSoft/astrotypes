@@ -35,4 +35,5 @@ Starting point for the requirements discussed during the astrotype sprint in Ams
 | 2 | A mapping between iterators of certain data types should be possible | | |
 | 0 | A data type could have associated metadata | | |
 | 0 | A data type should be able to provide access to memory it does not own | | |
+| 0 | A data type should be resizeable at runtime | [MultiArray](https://pulsarsearchsoft.github.io/astrotypes/html/classpss_1_1astrotypes_1_1MultiArray.html) | |
 
