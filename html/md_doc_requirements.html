@@ -70,10 +70,10 @@ $(function() {
 <h2>Components</h2>
 <ul>
 <li>Defined data types<ul>
-<li>Time-Frequency</li>
-<li>Frequency-Time</li>
-<li>Time-DM</li>
-<li>Units</li>
+<li>Time-Frequency (TF)</li>
+<li>Frequency-Time (FT)</li>
+<li>Time-DM (TD)</li>
+<li>Units (U)</li>
 </ul>
 </li>
 <li>SIGPROC file format<ul>
@@ -88,37 +88,39 @@ $(function() {
 </li>
 </ul>
 <h2>Requirements</h2>
-<ul>
-<li>Data types<ul>
-<li>They should have an arbitrary number of dimensions<ul>
-<li>The size of each dimension is specified in the constructor</li>
-<li>Dimensions are ordered in the way they appear in the template declaration e.g. the rightmost dimension is the include(doxygen) fastest changing one</li>
-<li>Dimensions must have an associated unit</li>
-<li>It should be possible to address dimensions e.g. to transpose a data type</li>
-</ul>
-</li>
-<li>They should provide views<ul>
-<li>A view is specified by expressing, for each dimension, a pair containing the index of the first element included in the view, and the number of elements included in the view</li>
-<li>To express a view with gaps is necessary to use a collection of views over the same data type</li>
-</ul>
-</li>
-<li>They should provide iterators<ul>
-<li>Iterators should make them compatibles with C++ STL algorithms</li>
-</ul>
-</li>
-<li>It should be possible to associate metadata to each object e.g. through inheritance</li>
-<li>It should be possible to use an iterator from one data type to point to data in another data type<ul>
-<li>An index mapper must be provided</li>
-</ul>
-</li>
-<li>They should wrap memory and allow operations on memory that is not owned by them e.g. a PSRDADA buffer </li>
-</ul>
-</li>
-</ul>
+<h3>Data Types</h3>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter">Level  </th><th class="markdownTableHeadCenter">Description  </th><th class="markdownTableHeadCenter">Interested Object  </th><th class="markdownTableHeadCenter">Status   </th></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">0  </td><td class="markdownTableBodyCenter">A data type should have an arbitrary number of dimensions  </td><td class="markdownTableBodyCenter"><a href="https://pulsarsearchsoft.github.io/astrotypes/html/classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>  </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">1  </td><td class="markdownTableBodyCenter">Dimensions are specified in the object constructor  </td><td class="markdownTableBodyCenter"><a href="https://pulsarsearchsoft.github.io/astrotypes/html/classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>  </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">1  </td><td class="markdownTableBodyCenter">Dimensions are ordered om the way they appear in the object constructor  </td><td class="markdownTableBodyCenter"><a href="https://pulsarsearchsoft.github.io/astrotypes/html/classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>  </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">1  </td><td class="markdownTableBodyCenter">Dimensions have a unit associated  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">1  </td><td class="markdownTableBodyCenter">Dimensions can be addressed  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">1  </td><td class="markdownTableBodyCenter">Dimensions can be transposed  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">0  </td><td class="markdownTableBodyCenter">A data type should provide views over arbitrary sections of it  </td><td class="markdownTableBodyCenter"><a href="https://pulsarsearchsoft.github.io/astrotypes/html/classpss_1_1astrotypes_1_1Slice.html">Slice</a>  </td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">0  </td><td class="markdownTableBodyCenter">A data type should provide access iterators  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">1  </td><td class="markdownTableBodyCenter">Iterators should provide compatibility with C++ STL  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">2  </td><td class="markdownTableBodyCenter">A mapping between iterators of certain data types should be possible  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableBody" class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">0  </td><td class="markdownTableBodyCenter">A data type could have associated metadata  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+<tr class="markdownTableBody" class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">0  </td><td class="markdownTableBodyCenter">A data type should be able to provide access to memory it does not own  </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter"></td></tr>
+</table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 14 2018 18:00:42 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Mar 15 2018 11:28:46 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.14
 </small></address>
