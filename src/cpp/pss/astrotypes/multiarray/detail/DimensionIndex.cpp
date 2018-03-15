@@ -56,6 +56,12 @@ DimensionSize<Dimension> DimensionIndex<Dimension>::operator-(DimensionIndex<Dim
 }
 
 template<typename Dimension>
+DimensionIndex<Dimension> DimensionIndex<Dimension>::operator+(DimensionSize<Dimension> const& s) const
+{
+    return DimensionIndex<Dimension>(_index + static_cast<std::size_t>(s));
+}
+
+template<typename Dimension>
 bool DimensionIndex<Dimension>::operator<(DimensionIndex<Dimension> const& b) const
 {
     return _index < b._index;

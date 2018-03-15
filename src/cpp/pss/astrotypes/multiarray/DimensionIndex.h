@@ -46,6 +46,7 @@ class DimensionIndex
         operator std::size_t () const;
 
         inline DimensionSize<Dimension> operator-(DimensionIndex<Dimension> const&) const;
+        inline DimensionIndex<Dimension> operator+(DimensionSize<Dimension> const&) const;
 
         bool operator<(DimensionIndex<Dimension> const&) const;
 

@@ -43,6 +43,12 @@ DimensionSize<Dimension>::operator std::size_t()
     return _size;
 }
 
+template<typename Dimension>
+DimensionSize<Dimension>::operator std::size_t() const
+{
+    return _size;
+}
+
 
 template<typename Dimension>
 bool DimensionSize<Dimension>::operator<(DimensionSize<Dimension> const& b) const
