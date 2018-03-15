@@ -28,6 +28,7 @@
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #pragma GCC diagnostic ignored "-Wunused-variable"
 #include <boost/units/systems/si/time.hpp>
+#include <boost/units/quantity.hpp>
 #pragma GCC diagnostic pop
 
 #ifndef ASTROTYPES_UNITS_TIME_H
