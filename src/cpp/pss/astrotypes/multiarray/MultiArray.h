@@ -26,6 +26,7 @@
 
 #include "Slice.h"
 #include "DimensionSize.h"
+#include "DimensionIndex.h"
 
 namespace pss {
 namespace astrotypes {
@@ -42,23 +43,26 @@ class MultiArray
 {
 };
 
-template<typename T, typename FirstDimension, typename SecondDimension, typename... OtherDimensions>
-class MultiArray<T, FirstDimension, SecondDimension, OtherDimensions...>
+template<typename T, typename FirstDimension, typename... OtherDimensions>
+class MultiArray<T, FirstDimension, OtherDimensions...> : MultiArray<T, OtherDimensions...>
 {
+        typedef MultiArray<T, OtherDimensions...> BaseT;
         typedef MultiArray<T> SelfType;
+        typedef Slice<SelfType, OtherDimensions...> SliceType;
 
     public:
         typedef T value_type;
         typedef T& reference_type;
+        typedef T const& const_reference_type;
 
     public:
-        MultiArray(DimensionSize<SecondDimension> const&, DimensionSize<OtherDimensions> const& ... sizes);
+        MultiArray(DimensionSize<FirstDimension> const&, DimensionSize<OtherDimensions> const& ... sizes);
         ~MultiArray();
 
         /**
          * @brief take a slice of data at the specified index of the first dimension
          */
-        Slice<SelfType, OtherDimensions...> operator[](std::size_t index);
+        SliceType operator[](DimensionIndex<FirstDimension> index);
 
         /**
          * @brief resize the array in the specified dimension
@@ -68,11 +72,20 @@ class MultiArray<T, FirstDimension, SecondDimension, OtherDimensions...>
 
         /**
          * @brief resize the array in the specified dimension
+         *      @code
+         *      multi_array.template size<DimensionA>();
+         *      @endcode
          */
-        template<typename Dimension>
-        void size();
+        template<typename Dim>
+        typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type 
+        size() const;
+
+        template<typename Dim>
+        typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
+        size() const;
 
     private:
+        DimensionSize<FirstDimension>     _size;
 };
 
 // specialisation for single dimension arrays
@@ -80,6 +93,9 @@ template<typename T, typename FirstDimension>
 class MultiArray<T, FirstDimension>
 {
         typedef MultiArray<T, FirstDimension> SelfType;
+        typedef Slice<SelfType, FirstDimension> SliceType;
+
+    public:
         typedef T& reference_type;
         typedef T const& const_reference_type;
         typedef T value_type;
@@ -91,10 +107,19 @@ class MultiArray<T, FirstDimension>
         /**
          * @brief 
          */
-        reference_type operator[](std::size_t index);
-        const_reference_type operator[](std::size_t index) const;
+        SliceType operator[](DimensionIndex<FirstDimension> index);
+
+        template<typename Dim>
+        typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type 
+        size() const;
+
+        template<typename Dim>
+        typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
+        size() const;
 
     private:
+        DimensionSize<FirstDimension> _size;
+        
 };
 
 } // namespace astrotypes

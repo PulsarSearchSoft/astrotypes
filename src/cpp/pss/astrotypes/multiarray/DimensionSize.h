@@ -46,9 +46,11 @@ class DimensionSize
         ~DimensionSize();
 
         operator std::size_t();
-        operator std::size_t () const;
+        operator std::size_t() const;
 
         bool operator<(DimensionSize<Dimension> const&) const;
+        bool operator==(DimensionSize<Dimension> const& s) const;
+        bool operator!=(DimensionSize<Dimension> const& s) const;
 
     private:
         std::size_t _size;

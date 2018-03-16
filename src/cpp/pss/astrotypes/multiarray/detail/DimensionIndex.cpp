@@ -50,6 +50,13 @@ DimensionIndex<Dimension>::operator std::size_t() const
 }
 
 template<typename Dimension>
+DimensionIndex<Dimension>& DimensionIndex<Dimension>::operator++()
+{
+    ++_index;
+    return *this;
+}
+
+template<typename Dimension>
 DimensionSize<Dimension> DimensionIndex<Dimension>::operator-(DimensionIndex<Dimension> const& b) const
 {
     return DimensionSize<Dimension>(_index - b._index);

@@ -49,6 +49,7 @@ class DimensionIndex
         inline DimensionIndex<Dimension> operator+(DimensionSize<Dimension> const&) const;
 
         bool operator<(DimensionIndex<Dimension> const&) const;
+        DimensionIndex<Dimension>& operator++();
 
     private:
         std::size_t _index;

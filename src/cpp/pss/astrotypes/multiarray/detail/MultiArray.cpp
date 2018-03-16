@@ -21,12 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "../MultiArray.h"
-
 
 namespace pss {
 namespace astrotypes {
 
+template<typename T, typename FirstDimension, typename... Dimensions>
+typename MultiArray<T, FirstDimension, Dimensions...>::SliceType MultiArray<T, FirstDimension, Dimensions...>::operator[](DimensionIndex<FirstDimension> index)
+{
+    return SliceType(*this, std::make_pair(index, DimensionSize<FirstDimension>(1))
+                          , std::make_pair(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template size<Dimensions>()))...);
+}
+
+template<typename T, typename FirstDimension, typename... Dimensions>
+template<typename Dim>
+typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
+MultiArray<T, FirstDimension, Dimensions...>::size() const
+{
+    return BaseT::size();
+}
+
+template<typename T, typename FirstDimension, typename... Dimensions>
+template<typename Dim>
+typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type 
+MultiArray<T, FirstDimension, Dimensions...>::size() const
+{
+    return _size;
+}
+
+/////////////////////////////////////////////////////////////
+// Single Dimension specialisation 
+/////////////////////////////////////////////////////////////
 template<typename T, typename FirstDimension>
 MultiArray<T, FirstDimension>::MultiArray(DimensionSize<FirstDimension> const&)
 {
@@ -35,6 +59,28 @@ MultiArray<T, FirstDimension>::MultiArray(DimensionSize<FirstDimension> const&)
 template<typename T, typename FirstDimension>
 MultiArray<T, FirstDimension>::~MultiArray()
 {
+}
+
+template<typename T, typename FirstDimension>
+template<typename Dim>
+typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
+MultiArray<T, FirstDimension>::size() const
+{
+    return DimensionSize<Dim>(0);
+}
+
+template<typename T, typename FirstDimension>
+template<typename Dim>
+typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type 
+MultiArray<T, FirstDimension>::size() const
+{
+    return _size;
+}
+
+template<typename T, typename FirstDimension>
+typename MultiArray<T, FirstDimension>::SliceType MultiArray<T, FirstDimension>::operator[](DimensionIndex<FirstDimension> index)
+{
+    return SliceType(*this, std::make_pair(index, DimensionSize<FirstDimension>(1)));
 }
 
 } // namespace astrotypes
