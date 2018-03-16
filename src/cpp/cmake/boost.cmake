@@ -11,7 +11,9 @@ if(NOT USE_THIRDPARTY_BOOST)
     endif()
 endif()
 if(NOT Boost_FOUND) # If no boost install is found, use the included third-party boost/units
-    message(STATUS "Using thirdparty boost...")
+    message(STATUS "Using thirdparty boost.")
     # We do noy use find_package(Boost ...) here, as that calls FindBoost.cmake, which requires libraries to exist, and units is header-only
-    set(Boost_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/boost/1.65/boost)
+    set(Boost_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/thirdparty/boost/1.65 CACHE PATH "" FORCE)
+    set(Boost_MAJOR_VERSION 1)
+    set(Boost_MINOR_VERSION 65)
 endif()

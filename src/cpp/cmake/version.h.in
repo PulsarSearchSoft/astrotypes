@@ -6,6 +6,8 @@
 #define ASTROTYPES_VERSION "@PROJECT_VERSION@"
 #define PROJECT_NAME "@PROJECT_NAME@"
 #define ASTROTYPES_RCS_VERSION "@PROJECT_SOURCE_VERSION@"
+#define ASTROTYPES_BOOST_MAJOR_VERSION @Boost_MAJOR_VERSION@
+#define ASTROTYPES_BOOST_MINOR_VERSION @Boost_MINOR_VERSION@
 
 #if defined(__DATE__) && defined(__TIME__)
 #   define ASTROTYPES_VERSION_LONG "@PROJECT_VERSION@ (@CMAKE_BUILD_TYPE@), " __DATE__ " " __TIME__
@@ -20,6 +22,7 @@ namespace astrotypes {
 
 extern const char* version;
 extern const char* full_version;
+extern const char* boost_version;
 
 } // namespace astrotypes
 } // namespace pss

@@ -33,8 +33,3 @@ endif ()
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -Wall -Wno-unused-local-typedefs")
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-O2 -g -Wall -Wextra -pedantic -Wno-unused-local-typedefs")
 set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g -Wall -Wextra -pedantic -Wno-unused-local-typedefs")
-
-# Set include directories for dependencies
-include_directories(
-    ${Boost_INCLUDE_DIRS}
-)
