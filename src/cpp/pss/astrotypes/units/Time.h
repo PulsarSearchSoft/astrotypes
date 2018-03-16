@@ -56,7 +56,10 @@ static boost::units::si::time const seconds = boost::units::si::second;
 /**
  * @brief Time dimension type.
  */
-using Time = boost::units::quantity<boost::units::si::time, double>;
+template<typename TimeUnit, typename NumericalRep>
+struct Time : public boost::units::quantity<typename std::enable_if<std::is_same<boost::units::si::time, typename TimeUnit::type>::value, TimeUnit>::type, NumericalRep>
+{
+};
 
 /**
  * @brief Second data type.
