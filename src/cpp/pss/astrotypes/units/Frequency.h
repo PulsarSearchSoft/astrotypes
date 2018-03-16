@@ -30,6 +30,7 @@
 #include <boost/units/systems/si/frequency.hpp>
 #include <boost/units/quantity.hpp>
 #include <boost/units/make_scaled_unit.hpp>
+#include <type_traits>
 #pragma GCC diagnostic pop
 
 #ifndef ASTROTYPES_UNITS_FREQUENCY_H
@@ -47,7 +48,11 @@ static boost::units::si::frequency const hz = boost::units::si::hertz;
 /**
  * @brief Frequency dimension type.
  */
-using Frequency = boost::units::quantity<MegaHertz, double>;
+template<typename FreqUnit, typename NumericalRep>
+struct Frequency : public boost::units::quantity<typename std::enable_if<std::is_same<boost::units::si::frequency, typename FreqUnit::type>::value, FreqUnit>::type, NumericalRep>
+{
+};
+
 /**
  * @brief Fourier frequency type.
  */
