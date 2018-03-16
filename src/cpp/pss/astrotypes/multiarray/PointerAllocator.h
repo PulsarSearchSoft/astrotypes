@@ -37,36 +37,37 @@ namespace astrotypes {
 template<typename LocalType>
 class PointerAllocator : public StandardAllocator<LocalType>
 {
-public:
-  using value_type = LocalType;
+    public:
+        using value_type = LocalType;
 
-  /**
-   * @brief Construct the allocator from a pointer to previously allocated memory.
-   * @param pointer Pointer to previously allocated memory
-   */
-  explicit PointerAllocator(value_type * pointer) noexcept
-  {
-    _pointer = pointer;
-  }
+        /**
+         * @brief Construct the allocator from a pointer to previously allocated memory.
+         * @param pointer Pointer to previously allocated memory
+         */
+        explicit PointerAllocator(value_type * pointer) noexcept
+        {
+            _pointer = pointer;
+        }
 
-  /**
-   * @brief Returns a pointer to the previously allocated memory.
-   * @param size Ignored parameter, here for compatibility with allocate interface
-   * @return Pointer to the previously allocated memory area
-   */
-  value_type * allocate(std::size_t size)
-  {
-    return _pointer;
-  }
-  /**
-   * @brief Empty deallocator.
-   * @param pointer Ignored parameter, here for compatibility with allocate interface
-   * @param size Ignored parameter, here for compatibility with allocate interface
-   */
-  void deallocate(value_type * pointer, std::size_t size) noexcept {}
+        /**
+         * @brief Returns a pointer to the previously allocated memory.
+         * @param size Ignored parameter, here for compatibility with allocate interface
+         * @return Pointer to the previously allocated memory area
+         */
+        value_type * allocate(std::size_t)
+        {
+            return _pointer;
+        }
 
-private:
-  value_type * _pointer = nullptr;
+        /**
+         * @brief Empty deallocator.
+         * @param pointer Ignored parameter, here for compatibility with allocate interface
+         * @param size Ignored parameter, here for compatibility with allocate interface
+         */
+        void deallocate(value_type* , std::size_t) noexcept {}
+
+    private:
+        value_type * _pointer = nullptr;
 };
 
 /**
@@ -75,7 +76,7 @@ private:
 template<typename FirstType, typename SecondType>
 bool operator==(PointerAllocator<FirstType> const &, PointerAllocator<SecondType> const &) noexcept
 {
-  return true;
+    return true;
 }
 
 /**

@@ -50,17 +50,17 @@ void PointerAllocatorTest::TearDown()
 
 TEST(PointerAllocatorTest, test_std_vector)
 {
-  const std::size_t size = 47;
-  int * array = new int [size];
-  PointerAllocator<int> pointer_allocator(array);
-  std::vector<int, PointerAllocator<int>> allocated_vector(pointer_allocator);
-  
-  for ( std::size_t i = 0; i < size; i++ ) {
-    allocated_vector.push_back(i);
-  }
-  for ( std::size_t i = 0; i < size; i++ ) {
-    ASSERT_EQ(i, array[i]);
-  }
+    const std::size_t size = sizeof(std::vector<int, PointerAllocator<int>>);
+    int * array = new int [size];
+    PointerAllocator<int> pointer_allocator(array);
+    std::vector<int, PointerAllocator<int>> allocated_vector(pointer_allocator);
+
+    for ( std::size_t i = 0; i < size; i++ ) {
+        allocated_vector.push_back(i);
+    }
+    for ( std::size_t i = 0; i < size; i++ ) {
+        ASSERT_EQ(i, array[i]);
+    }
 }
 
 } // namespace test

@@ -22,7 +22,6 @@
  * SOFTWARE.
  */
 
-#pragma GCC diagnostic ignored "-Wunused-parameter"
 #include <memory>
 #include <new>
 #include <cassert>
@@ -39,30 +38,30 @@ namespace astrotypes {
 template<typename LocalType>
 class StandardAllocator
 {
-public:
-  using value_type = LocalType;
+    public:
+        using value_type = LocalType;
 
-  StandardAllocator() noexcept = default;
-  template<typename OtherType> StandardAllocator(StandardAllocator<OtherType> const &) noexcept {}
+        StandardAllocator() noexcept = default;
+        template<typename OtherType> StandardAllocator(StandardAllocator<OtherType> const &) noexcept {}
 
-  /**
-   * @brief Allocate an area of contiguos memory.
-   * @param size Number of elements that the allocated memory area should fit
-   * @return Pointer to the allocated memory area
-   */
-  value_type * allocate(std::size_t size)
-  {
-    return static_cast<value_type *>(::operator new(size * sizeof(value_type)));
-  }
-  /**
-   * @brief Free a previously allocated memory area.
-   * @param pointer Pointer to the memory area to deallocate
-   * @param size Number of elements that the allocated memory area should fit
-   */
-  void deallocate(value_type * pointer, std::size_t size) noexcept
-  {
-    ::operator delete(pointer);
-  }
+        /**
+         * @brief Allocate an area of contiguos memory.
+         * @param size Number of elements that the allocated memory area should fit
+         * @return Pointer to the allocated memory area
+         */
+        value_type * allocate(std::size_t size)
+        {
+            return static_cast<value_type *>(::operator new(size * sizeof(value_type)));
+        }
+        /**
+         * @brief Free a previously allocated memory area.
+         * @param pointer Pointer to the memory area to deallocate
+         * @param size Number of elements that the allocated memory area should fit
+         */
+        void deallocate(value_type * pointer, std::size_t) noexcept
+        {
+            ::operator delete(pointer);
+        }
 };
 
 /**
@@ -71,7 +70,7 @@ public:
 template<typename FirstType, typename SecondType>
 bool operator==(StandardAllocator<FirstType> const &, StandardAllocator<SecondType> const &) noexcept
 {
-  return true;
+    return true;
 }
 
 /**
@@ -80,7 +79,7 @@ bool operator==(StandardAllocator<FirstType> const &, StandardAllocator<SecondTy
 template<typename FirstType, typename SecondType>
 bool operator!=(StandardAllocator<FirstType> const &, StandardAllocator<SecondType> const &) noexcept
 {
-  return false;
+    return false;
 }
 
 } // namespace astrotypes
