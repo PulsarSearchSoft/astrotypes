@@ -29,6 +29,7 @@
 #pragma GCC diagnostic ignored "-Wunused-variable"
 #include <boost/units/systems/si/time.hpp>
 #include <boost/units/quantity.hpp>
+#include <boost/units/make_scaled_unit.hpp>
 #pragma GCC diagnostic pop
 #include <chrono>
 
@@ -39,31 +40,31 @@ namespace pss {
 namespace astrotypes {
 
 // Units
-using time = boost::units::si::time;
-using second = time;
-using seconds = second;
-using millisecond = boost::units::make_scaled_unit<second, boost::units::scale<10,
-    boost::units::static_rational<-3>>>::type;
-using milliseconds = millisecond;
-using microsecond = boost::units::make_scaled_unit<second, boost::units::scale<10,
+using MilliSecond = boost::units::make_scaled_unit<boost::units::si::time, 
+    boost::units::scale<10, boost::units::static_rational<-3>>>::type;
+using MilliSeconds = MilliSecond;
+using MicroSecond = boost::units::make_scaled_unit<boost::units::si::time, boost::units::scale<10,
     boost::units::static_rational<-6>>>::type;
-using microseconds = microsecond;
-using nanosecond = boost::units::make_scaled_unit<second, boost::units::scale<10,
+using MicroSeconds = MicroSecond;
+using NanoSecond = boost::units::make_scaled_unit<boost::units::si::time, boost::units::scale<10,
     boost::units::static_rational<-9>>>::type;
-using nanoseconds = nanosecond;
+using NanoSeconds = NanoSecond;
+
+static boost::units::si::time const second = boost::units::si::second;
+static boost::units::si::time const seconds = boost::units::si::second;
 
 /**
  * @brief Time dimension type.
  */
-using Time = boost::units::quantity<time, double>;
+using Time = boost::units::quantity<boost::units::si::time, double>;
 
 /**
  * @brief Second data type.
  */
 template<typename DataType>
-class Seconds : public boost::units::quantity<second, DataType>
+class Seconds : public boost::units::quantity<boost::units::si::time, DataType>
 {
-    using BaseType = boost::units::quantity<second, DataType>;
+    using BaseType = boost::units::quantity<boost::units::si::time, DataType>;
 
     /**
      * @brief Default empty constructor.
@@ -74,7 +75,7 @@ class Seconds : public boost::units::quantity<second, DataType>
      * @param quantity boost::units::quantity object from which to convert
      */
     template<typename UnitType, typename OtherDataType>
-    Seconds(boost::units::quantity<UnitType, OtherDataType> const & quantity) : BaseType(quantity) {}
+    explicit Seconds(boost::units::quantity<UnitType, OtherDataType> const & quantity) : BaseType(quantity) {}
     /**
      * @brief Conversion from std::chrono::duration types
      * @param duration std::chrono::duration from which to convert
@@ -90,11 +91,11 @@ class Seconds : public boost::units::quantity<second, DataType>
  * @brief Mimic the std::duration_cast for boost::units::quantity
  */
 template<typename DataType, typename DurationType, typename PeriodType>
-constexpr boost::units::quantity<time, DataType> duration_cast(const std::chrono::duration<DurationType, PeriodType> &
+constexpr boost::units::quantity<boost::units::si::time, DataType> duration_cast(const std::chrono::duration<DurationType, PeriodType> &
     duration) {
-    return boost::units::quantity<time, DataType>(std::chrono::duration_cast<std::chrono::duration<DataType,
-        std::ration<1, 1>>>(duration).count() * seconds);
-};
+    return boost::units::quantity<boost::units::si::time, DataType>(std::chrono::duration_cast<std::chrono::duration<DataType,
+        std::ratio<1, 1>>>(duration).count() * seconds);
+}
 
 } // namespace astrotypes
 } // namespace pss
