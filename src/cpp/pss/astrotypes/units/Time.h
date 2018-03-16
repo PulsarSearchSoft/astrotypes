@@ -66,6 +66,7 @@ class Seconds : public boost::units::quantity<boost::units::si::time, DataType>
 {
     using BaseType = boost::units::quantity<boost::units::si::time, DataType>;
 
+public:
     /**
      * @brief Default empty constructor.
      */
