@@ -3,6 +3,7 @@ link_directories(${GTEST_LIBRARY_DIR})
 
 set(gtest_units_src
     src/UtilitiesTest.cpp
+    src/TimeTest.cpp
 )
 
 add_executable(gtest_units ${gtest_units_src} )
