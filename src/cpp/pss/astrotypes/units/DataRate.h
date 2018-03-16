@@ -27,27 +27,21 @@
 #pragma GCC diagnostic ignored "-Wpragmas"
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 #pragma GCC diagnostic ignored "-Wunused-variable"
+#include <boost/units/systems/information/byte.hpp>
 #include <boost/units/quantity.hpp>
 #pragma GCC diagnostic pop
-#include <functional>
+#include "Time.h"
 
-#ifndef ASTROTYPES_UNITS_UTILITIES_H
-#define ASTROTYPES_UNITS_UTILITIES_H
+#ifndef ASTROTYPES_UNITS_DATARATE_H
+#define ASTROTYPES_UNITS_DATARATE_H
 
-namespace std {
+namespace pss {
+namespace astrotypes {
 
-/**
- * @brief Generic type to make boost::units::quantity hashable
- */
-template<typename UnitsType, typename DataType>
-struct hash<boost::units::quantity<UnitsType, DataType>>
-{
-    std::size_t operator()(const boost::units::quantity<UnitsType, DataType> & quantity) const
-    {
-        return std::hash<DataType>()(quantity.value());
-    }
-};
+using data_rate_system = boost::units::make_system<boost::units::information::byte_base_unit,
+    boost::units::si::second_base_unit>::type;
 
-} // namespace std
+} // namespace astrotypes
+} // namespace pss
 
-#endif // ASTROTYPES_UNITS_UTILITIES_H
+#endif //ASTROTYPES_UNITS_DATARATE_H

@@ -22,32 +22,29 @@
  * SOFTWARE.
  */
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wall"
-#pragma GCC diagnostic ignored "-Wpragmas"
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-#pragma GCC diagnostic ignored "-Wunused-variable"
-#include <boost/units/quantity.hpp>
-#pragma GCC diagnostic pop
-#include <functional>
+#include "pss/astrotypes/units/Time.h"
+#include "../UtilitiesTest.h"
 
-#ifndef ASTROTYPES_UNITS_UTILITIES_H
-#define ASTROTYPES_UNITS_UTILITIES_H
+namespace pss {
+namespace astrotypes {
+namespace test {
 
-namespace std {
+void UtilitiesTest::SetUp() {}
 
-/**
- * @brief Generic type to make boost::units::quantity hashable
- */
-template<typename UnitsType, typename DataType>
-struct hash<boost::units::quantity<UnitsType, DataType>>
+void UtilitiesTest::TearDown() {}
+
+UtilitiesTest::UtilitiesTest() {}
+
+UtilitiesTest::~UtilitiesTest() {}
+
+TEST(UtilitiesTest, test_hash)
 {
-    std::size_t operator()(const boost::units::quantity<UnitsType, DataType> & quantity) const
-    {
-        return std::hash<DataType>()(quantity.value());
-    }
-};
+    double value = 12345.6;
+    pss::astrotypes::Time quantity(value * pss::astrotypes::seconds);
+    ASSERT_EQ(std::hash<double>()(value), std::hash<pss::astrotypes::Time>()(quantity));
+}
 
-} // namespace std
+} // namespace test
+} // namespace astrotypes
+} // namespace pss
 
-#endif // ASTROTYPES_UNITS_UTILITIES_H

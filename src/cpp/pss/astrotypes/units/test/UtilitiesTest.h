@@ -22,32 +22,28 @@
  * SOFTWARE.
  */
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wall"
-#pragma GCC diagnostic ignored "-Wpragmas"
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-#pragma GCC diagnostic ignored "-Wunused-variable"
-#include <boost/units/quantity.hpp>
-#pragma GCC diagnostic pop
-#include <functional>
+#include <gtest/gtest.h>
+#include "pss/astrotypes/units/Utilities.h"
 
-#ifndef ASTROTYPES_UNITS_UTILITIES_H
-#define ASTROTYPES_UNITS_UTILITIES_H
+#ifndef ASTROTYPES_UNITS_UTILITIESTEST_H
+#define ASTROTYPES_UNITS_UTILITIESTEST_H
 
-namespace std {
+namespace pss {
+namespace astrotypes {
+namespace test {
 
-/**
- * @brief Generic type to make boost::units::quantity hashable
- */
-template<typename UnitsType, typename DataType>
-struct hash<boost::units::quantity<UnitsType, DataType>>
+class UtilitiesTest : public ::testing::Test
 {
-    std::size_t operator()(const boost::units::quantity<UnitsType, DataType> & quantity) const
-    {
-        return std::hash<DataType>()(quantity.value());
-    }
+protected:
+    void SetUp() override;
+    void TearDown() override;
+public:
+    UtilitiesTest();
+    ~UtilitiesTest();
 };
 
-} // namespace std
+} // test
+} // namespace astrotypes
+} // namespace pss
 
-#endif // ASTROTYPES_UNITS_UTILITIES_H
+#endif // ASTROTYPES_UNITS_UTILITIESTEST_H
