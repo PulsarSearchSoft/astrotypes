@@ -22,38 +22,32 @@
  * SOFTWARE.
  */
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wall"
-#pragma GCC diagnostic ignored "-Wpragmas"
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-#pragma GCC diagnostic ignored "-Wunused-variable"
-#include <boost/units/systems/si/frequency.hpp>
-#include <boost/units/quantity.hpp>
-#include <boost/units/make_scaled_unit.hpp>
-#pragma GCC diagnostic pop
-
-#ifndef ASTROTYPES_UNITS_FREQUENCY_H
-#define ASTROTYPES_UNITS_FREQUENCY_H
+#include "../TimeTest.h"
 
 namespace pss {
 namespace astrotypes {
+namespace test {
 
-// Units
-using MegaHertz = boost::units::make_scaled_unit<boost::units::si::frequency, boost::units::scale<10, boost::units::static_rational<6>>>::type;
+void TimeTest::SetUp() {}
 
-static boost::units::si::frequency const hertz = boost::units::si::hertz;
-static boost::units::si::frequency const hz = boost::units::si::hertz;
+void TimeTest::TearDown() {}
 
-/**
- * @brief Frequency dimension type.
- */
-using Frequency = boost::units::quantity<MegaHertz, double>;
-/**
- * @brief Fourier frequency type.
- */
-using FourierFrequency = boost::units::quantity<boost::units::si::frequency, double>;
+TimeTest::TimeTest() {}
 
+TimeTest::~TimeTest() {}
+
+TEST(TimeTest, test_seconds)
+{
+    std::chrono::seconds chrono_seconds(10);
+    std::chrono::milliseconds chrono_milliseconds(1000);
+    pss::astrotypes::Seconds<int> local_seconds(chrono_seconds);
+
+    ASSERT_EQ(chrono_seconds.count(), local_seconds.value());
+    local_seconds = pss::astrotypes::Seconds<int>(chrono_milliseconds);
+    ASSERT_EQ(1, local_seconds.value());
+}
+
+} // namespace test
 } // namespace astrotypes
 } // namespace pss
 
-#endif // ASTROTYPES_UNITS_FREQUENCY_H

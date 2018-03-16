@@ -22,38 +22,28 @@
  * SOFTWARE.
  */
 
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wall"
-#pragma GCC diagnostic ignored "-Wpragmas"
-#pragma GCC diagnostic ignored "-Wunused-parameter"
-#pragma GCC diagnostic ignored "-Wunused-variable"
-#include <boost/units/systems/si/frequency.hpp>
-#include <boost/units/quantity.hpp>
-#include <boost/units/make_scaled_unit.hpp>
-#pragma GCC diagnostic pop
+#include <gtest/gtest.h>
+#include "pss/astrotypes/units/Time.h"
 
-#ifndef ASTROTYPES_UNITS_FREQUENCY_H
-#define ASTROTYPES_UNITS_FREQUENCY_H
+#ifndef ASTROTYPES_UNITS_TIMETEST_H
+#define ASTROTYPES_UNITS_TIMETEST_H
 
 namespace pss {
 namespace astrotypes {
+namespace test {
 
-// Units
-using MegaHertz = boost::units::make_scaled_unit<boost::units::si::frequency, boost::units::scale<10, boost::units::static_rational<6>>>::type;
+class TimeTest : public ::testing::Test
+{
+protected:
+    void SetUp() override;
+    void TearDown() override;
+public:
+    TimeTest();
+    ~TimeTest();
+};
 
-static boost::units::si::frequency const hertz = boost::units::si::hertz;
-static boost::units::si::frequency const hz = boost::units::si::hertz;
-
-/**
- * @brief Frequency dimension type.
- */
-using Frequency = boost::units::quantity<MegaHertz, double>;
-/**
- * @brief Fourier frequency type.
- */
-using FourierFrequency = boost::units::quantity<boost::units::si::frequency, double>;
-
+} // test
 } // namespace astrotypes
 } // namespace pss
 
-#endif // ASTROTYPES_UNITS_FREQUENCY_H
+#endif // ASTROTYPES_UNITS_TIMETEST_H
