@@ -1,9 +1,63 @@
 # Installation
+## cmake
+Cmake is a widely used, platform and toolchain agnostic build tool.
+One of the features of cmake is that it provides out of source builds
+so you don't mix up build products (libraries, binaries, etc) from the source code.
+This is very powerful in other ways, you may want to build the same source using
+different compilers and compare the results.
 
+Configuring your build with cmake:
+  - create a directory for your build products
+    ```bash
+    mkdir build
+    ```
+  - point cmake to the top of the astrotypes repository (along with any flags)
+    and it will generate the appropriate build files for your host system 
+    (gnu make files on linux, nmake or .proj files for windows, etc)
+
+    e.g to build a debug debug 
+    ```bash
+    cmake -DCMAKE_BUILD_TYPE=debug <path_to_astrotypes_repository>
+    ```
+    e.g to build a fully optimised version
+    ```bash
+    cmake -DCMAKE_BUILD_TYPE=release <path_to_astrotypes_repository>
+    ```
+
+    Note that cmake will do its best to determine where dependencies are
+    on your system. You can override this behaviour with special flags.
+    See the dependencies section for more details and options.
+    ```
+  - run make
+    what you actually run will depend on your platform, but on linux this
+    will be, by default, make.
+    ```bash
+    make
+    ```
+    If you want to see whats going on under the hood you can run
+    ```bash
+    make VERBOSE=1
+    ```
+
+#Dependencies 
 ## Boost
+This project requires the boost_units library.
+You can use your local, or system installation of boost libs for this, however for convenience we also provide a
+packaged version of boost_units (and its dependencies) in the thirdparty directory of this repository.
 
-This project requires boost_units. If you have a local install of boost, that can be used, otherwise a packaged version of units (and its dependencies) are provided in this repository.
+By default cmake will look for boost in the following order:
+    - User defined variables: 
+        ```
+        -DBoost_ROOT=<path_to_boost_root> 
+        ```
+        or
+        ```
+        -DBoost_INCLUDE_DIRS=<path_to_boost_includes> & Boost_LIBRARY_DIRS=<path_to_boost_libs>
+        ```
+    - The usual system paths (/usr/local/lib, /usr/lib etc.)
+    - Use the the thirdparty version
 
-cmake will first look for an installed version of boost. If cmake is unable to find boost, it will default to using the version provided in this repo. If you have boost, but want to use the packaged version instead, there is a cmake flag (USE_THIRDPARTY_BOOST) which can be set which will cause cmake to ignore any boost versions installed on the system. Note that units is a header-only library and does not need to be built.
+If you wish to force the use of the thridparty packaged version add the flag -DUSE_THIRDPARTY_BOOST=true to ignore any boost versions installed on the system.
+Note that boost units is a header-only library and does not need to be built.
 
 USE_THIRDPARTY_BOOST		Force the use of the packaged boost version, ignoring any installed boost versions (default: false)
