@@ -1,17 +1,17 @@
 var searchData=
 [
-  ['setup',['SetUp',['../classpss_1_1astrotypes_1_1test_1_1MultiArrayTest.html#a592f593f49b4a30049dc025037c7cde1',1,'pss::astrotypes::test::MultiArrayTest::SetUp()'],['../classpss_1_1astrotypes_1_1test_1_1SliceTest.html#a8412b1dd48d92f334f44e999a1a91034',1,'pss::astrotypes::test::SliceTest::SetUp()'],['../classpss_1_1astrotypes_1_1test_1_1NumericalRepresentationTest.html#aa4270e4a6fcae3e7ec6fd821152e0a42',1,'pss::astrotypes::test::NumericalRepresentationTest::SetUp()'],['../classpss_1_1astrotypes_1_1test_1_1PointerAllocatorTest.html#a6a747a87c418b57a32be07d417c53271',1,'pss::astrotypes::test::PointerAllocatorTest::SetUp()'],['../classpss_1_1astrotypes_1_1test_1_1StandardAllocatorTest.html#a5edb5547a26fab88369bd4c26c4dd153',1,'pss::astrotypes::test::StandardAllocatorTest::SetUp()']]],
-  ['size',['size',['../classpss_1_1astrotypes_1_1MultiArray_3_01T_00_01FirstDimension_00_01SecondDimension_00_01OtherDimensions_8_8_8_01_4.html#ab4ae355ebc994363b4ffe7ebf1faf33f',1,'pss::astrotypes::MultiArray&lt; T, FirstDimension, SecondDimension, OtherDimensions... &gt;::size()'],['../classpss_1_1astrotypes_1_1Slice_3_01Parent_00_01Dimension_01_4.html#a02364795b4d3899d26836d19d3b2fe5b',1,'pss::astrotypes::Slice&lt; Parent, Dimension &gt;::size() const'],['../classpss_1_1astrotypes_1_1Slice_3_01Parent_00_01Dimension_01_4.html#a2409318b930533bdffcfc91a5e46bef6',1,'pss::astrotypes::Slice&lt; Parent, Dimension &gt;::size() const']]],
-  ['slice',['Slice',['../classpss_1_1astrotypes_1_1Slice.html',1,'pss::astrotypes::Slice&lt; Parent, Dimension, Dimensions &gt;'],['../classpss_1_1astrotypes_1_1Slice.html#af9f801bd9b63fcedc989ace6d79a61be',1,'pss::astrotypes::Slice::Slice()'],['../classpss_1_1astrotypes_1_1Slice_3_01Parent_00_01Dimension_01_4.html#afe7afd0fa20ef37e08799fb21f2da594',1,'pss::astrotypes::Slice&lt; Parent, Dimension &gt;::Slice()']]],
-  ['slice_2ecpp',['Slice.cpp',['../Slice_8cpp.html',1,'']]],
-  ['slice_2eh',['Slice.h',['../Slice_8h.html',1,'']]],
-  ['slice_3c_20parent_2c_20dimension_20_3e',['Slice&lt; Parent, Dimension &gt;',['../classpss_1_1astrotypes_1_1Slice_3_01Parent_00_01Dimension_01_4.html',1,'pss::astrotypes']]],
-  ['slicetest',['SliceTest',['../classpss_1_1astrotypes_1_1test_1_1SliceTest.html',1,'pss::astrotypes::test::SliceTest'],['../classpss_1_1astrotypes_1_1test_1_1SliceTest.html#adda47b6c94b3bee68acbf8c2194d0ac3',1,'pss::astrotypes::test::SliceTest::SliceTest()']]],
-  ['slicetest_2ecpp',['SliceTest.cpp',['../SliceTest_8cpp.html',1,'']]],
-  ['slicetest_2eh',['SliceTest.h',['../SliceTest_8h.html',1,'']]],
-  ['standardallocator',['StandardAllocator',['../classpss_1_1astrotypes_1_1StandardAllocator.html',1,'pss::astrotypes::StandardAllocator&lt; LocalType &gt;'],['../classpss_1_1astrotypes_1_1StandardAllocator.html#a6251a66f1ab6d9f08f4b7a9418c0700e',1,'pss::astrotypes::StandardAllocator::StandardAllocator() noexcept=default'],['../classpss_1_1astrotypes_1_1StandardAllocator.html#ac87ec27e47ea6f9fb6052de25fc38845',1,'pss::astrotypes::StandardAllocator::StandardAllocator(StandardAllocator&lt; OtherType &gt; const &amp;) noexcept']]],
-  ['standardallocator_2eh',['StandardAllocator.h',['../StandardAllocator_8h.html',1,'']]],
-  ['standardallocatortest',['StandardAllocatorTest',['../classpss_1_1astrotypes_1_1test_1_1StandardAllocatorTest.html',1,'pss::astrotypes::test::StandardAllocatorTest'],['../classpss_1_1astrotypes_1_1test_1_1StandardAllocatorTest.html#a5d30d3d5dad691766e7b1a7c4dd27c85',1,'pss::astrotypes::test::StandardAllocatorTest::StandardAllocatorTest()']]],
-  ['standardallocatortest_2ecpp',['StandardAllocatorTest.cpp',['../StandardAllocatorTest_8cpp.html',1,'']]],
-  ['standardallocatortest_2eh',['StandardAllocatorTest.h',['../StandardAllocatorTest_8h.html',1,'']]]
+  ['astrotypes',['astrotypes',['../namespacepss_1_1astrotypes.html',1,'pss']]],
+  ['multiarray',['multiarray',['../namespacepss_1_1astrotypes_1_1multiarray.html',1,'pss::astrotypes']]],
+  ['parent_5fspan',['parent_span',['../classpss_1_1astrotypes_1_1Slice.html#a5d22e2f609e3f650456f122d5f7a9498',1,'pss::astrotypes::Slice::parent_span()'],['../classpss_1_1astrotypes_1_1Slice_3_01Parent_00_01Dimension_01_4.html#a59734f1f8d48293bff97bbc73aeafb2f',1,'pss::astrotypes::Slice&lt; Parent, Dimension &gt;::parent_span()']]],
+  ['parenttype',['ParentType',['../structpss_1_1astrotypes_1_1test_1_1ParentType.html',1,'pss::astrotypes::test']]],
+  ['parenttype',['ParentType',['../structpss_1_1astrotypes_1_1test_1_1ParentType.html#abdae407e7be46df75ef5471dd7d9d0b1',1,'pss::astrotypes::test::ParentType']]],
+  ['pointerallocator',['PointerAllocator',['../classpss_1_1astrotypes_1_1PointerAllocator.html',1,'pss::astrotypes']]],
+  ['pointerallocator',['PointerAllocator',['../classpss_1_1astrotypes_1_1PointerAllocator.html#a3f86bc2cf2054275bb4b9108d420e53d',1,'pss::astrotypes::PointerAllocator']]],
+  ['pointerallocator_2eh',['PointerAllocator.h',['../PointerAllocator_8h.html',1,'']]],
+  ['pointerallocatortest',['PointerAllocatorTest',['../classpss_1_1astrotypes_1_1test_1_1PointerAllocatorTest.html',1,'pss::astrotypes::test']]],
+  ['pointerallocatortest',['PointerAllocatorTest',['../classpss_1_1astrotypes_1_1test_1_1PointerAllocatorTest.html#a0b34b0d63eac06bb2f83c70ab6821a97',1,'pss::astrotypes::test::PointerAllocatorTest']]],
+  ['pointerallocatortest_2ecpp',['PointerAllocatorTest.cpp',['../PointerAllocatorTest_8cpp.html',1,'']]],
+  ['pointerallocatortest_2eh',['PointerAllocatorTest.h',['../PointerAllocatorTest_8h.html',1,'']]],
+  ['pss',['pss',['../namespacepss.html',1,'']]],
+  ['test',['test',['../namespacepss_1_1astrotypes_1_1test.html',1,'pss::astrotypes']]]
 ];

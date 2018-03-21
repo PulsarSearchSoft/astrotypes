@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classpss_1_1astrotypes_1_1MultiArray.html" title="template classes to specify multiple dimesion arrays with explicit dimension types ..." alt="" coords="5,5,201,47"/>
+<area shape="rect" id="node2" href="$structpss_1_1astrotypes_1_1Frequency.html" title="Frequency dimension type. " alt="" coords="122,5,309,44"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1Seconds.html" title="Second data type. " alt="" coords="131,68,301,107"/>
+<area shape="rect" id="node4" href="$structpss_1_1astrotypes_1_1Time.html" title="Time dimension type. " alt="" coords="121,131,310,169"/>
 </map>

@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structpss_1_1astrotypes_1_1NumericalRepresentation.html" title="meta programming struct to determine the internal type of a container " alt="" coords="5,5,220,47"/>
+<area shape="rect" id="node1" href="$classpss_1_1astrotypes_1_1MultiArray.html" title="pss::astrotypes::MultiArray\l\&lt; T, DerivedTypeTraits,\l OtherDimensions...\&gt;" alt="" coords="5,5,184,57"/>
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1MultiArray_3_01T_00_01DerivedTypeTraits_00_01FirstDimension_00_01OtherDimensions_8_8_8_4.html" title="pss::astrotypes::MultiArray\l\&lt; T, DerivedTypeTraits,\l FirstDimension, OtherDimensions...\&gt;" alt="" coords="232,5,475,57"/>
 </map>

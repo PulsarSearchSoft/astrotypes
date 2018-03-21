@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['pointerallocator_2eh',['PointerAllocator.h',['../PointerAllocator_8h.html',1,'']]],
-  ['pointerallocatortest_2ecpp',['PointerAllocatorTest.cpp',['../PointerAllocatorTest_8cpp.html',1,'']]],
-  ['pointerallocatortest_2eh',['PointerAllocatorTest.h',['../PointerAllocatorTest_8h.html',1,'']]]
+  ['numericalrepresentation_2eh',['NumericalRepresentation.h',['../NumericalRepresentation_8h.html',1,'']]],
+  ['numericalrepresentationtest_2ecpp',['NumericalRepresentationTest.cpp',['../NumericalRepresentationTest_8cpp.html',1,'']]],
+  ['numericalrepresentationtest_2eh',['NumericalRepresentationTest.h',['../NumericalRepresentationTest_8h.html',1,'']]]
 ];

@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['type',['type',['../structpss_1_1astrotypes_1_1NumericalRepresentation.html#a66912a72fb3b3743af1608da46ab4bdc',1,'pss::astrotypes::NumericalRepresentation::type()'],['../structpss_1_1astrotypes_1_1NumericalRepresentation_3_01T[]_4.html#aaa5a837520f00c76945bc44903f19519',1,'pss::astrotypes::NumericalRepresentation&lt; T[]&gt;::type()'],['../structpss_1_1astrotypes_1_1NumericalRepresentation_3_01std_1_1vector_3_01T_00_01Allocator_01_4_01_4.html#a38906c2cddaa61d18120b734494dd525',1,'pss::astrotypes::NumericalRepresentation&lt; std::vector&lt; T, Allocator &gt; &gt;::type()'],['../structpss_1_1astrotypes_1_1NumericalRepresentation_3_01std_1_1list_3_01T_00_01Allocator_01_4_01_4.html#aba45b047ae9a4b76268fbe9f9538a3a3',1,'pss::astrotypes::NumericalRepresentation&lt; std::list&lt; T, Allocator &gt; &gt;::type()'],['../structpss_1_1astrotypes_1_1NumericalRepresentation_3_01std_1_1array_3_01T_00_01S_01_4_01_4.html#ae9215f967c8f872be7836d0ff16d9499',1,'pss::astrotypes::NumericalRepresentation&lt; std::array&lt; T, S &gt; &gt;::type()'],['../structpss_1_1astrotypes_1_1NumericalRepresentation_3_01std_1_1map_3_01Ts_8_8_8_01_4_01_4.html#a7479d8ff5089f78a575d1cdbd32a13f6',1,'pss::astrotypes::NumericalRepresentation&lt; std::map&lt; Ts... &gt; &gt;::type()']]]
+  ['megahertz',['MegaHertz',['../namespacepss_1_1astrotypes.html#a9369acc9e0fc757d6338bbe3a05c6394',1,'pss::astrotypes']]],
+  ['microsecond',['MicroSecond',['../namespacepss_1_1astrotypes.html#a46e26919694720979b94d0dcfe87d869',1,'pss::astrotypes']]],
+  ['microseconds',['MicroSeconds',['../namespacepss_1_1astrotypes.html#a3d16833374d0524989ea443b7792a6da',1,'pss::astrotypes']]],
+  ['millisecond',['MilliSecond',['../namespacepss_1_1astrotypes.html#af420daae44c139b6db526a1c4a3ee103',1,'pss::astrotypes']]],
+  ['milliseconds',['MilliSeconds',['../namespacepss_1_1astrotypes.html#a2da380f0777c9f0c53a7d6051b41e0ae',1,'pss::astrotypes']]]
 ];

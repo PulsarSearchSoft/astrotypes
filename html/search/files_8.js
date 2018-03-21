@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['numericalrepresentation_2eh',['NumericalRepresentation.h',['../NumericalRepresentation_8h.html',1,'']]],
-  ['numericalrepresentationtest_2ecpp',['NumericalRepresentationTest.cpp',['../NumericalRepresentationTest_8cpp.html',1,'']]],
-  ['numericalrepresentationtest_2eh',['NumericalRepresentationTest.h',['../NumericalRepresentationTest_8h.html',1,'']]]
+  ['time_2eh',['Time.h',['../Time_8h.html',1,'']]],
+  ['timetest_2ecpp',['TimeTest.cpp',['../TimeTest_8cpp.html',1,'']]],
+  ['timetest_2eh',['TimeTest.h',['../TimeTest_8h.html',1,'']]]
 ];

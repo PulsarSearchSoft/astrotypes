@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['indexmapper_2ecpp',['IndexMapper.cpp',['../IndexMapper_8cpp.html',1,'']]],
-  ['indexmapper_2eh',['IndexMapper.h',['../IndexMapper_8h.html',1,'']]]
+  ['frequency_2eh',['Frequency.h',['../Frequency_8h.html',1,'']]]
 ];
