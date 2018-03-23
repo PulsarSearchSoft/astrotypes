@@ -35,8 +35,7 @@ Slice<Parent, Dimension, Dimensions...>::Slice(Parent& parent
                                               , std::pair<DimensionIndex<Dimensions>, DimensionIndex<Dimensions>> const&... spans
                                               )
     : BaseT(spans..., parent)
-    , _span(d.second - d.first)
-    , _start_index(d.first)
+    , _span(d.first, d.second)
     , _base_span(0)
     , _ptr(parent.begin() + static_cast<const std::size_t>(d.first) * BaseT::_base_span)
 {
@@ -49,8 +48,7 @@ Slice<Parent, Dimension, Dimensions...>::Slice(Parent& parent
                                               , std::pair<DimensionIndex<Dimensions>, DimensionSize<Dimensions>> const&... spans
                                               )
     : BaseT(spans..., parent)
-    , _span(d.second)
-    , _start_index(d.first)
+    , _span(d.first, d.second)
     , _base_span(0)
     , _ptr(parent.begin() + static_cast<const std::size_t>(d.first) * BaseT::_base_span)
 {
@@ -63,8 +61,7 @@ Slice<Parent, Dimension, Dimensions...>::Slice( std::pair<DimensionIndex<Dimensi
                                               , Parent const& parent
                                               )
     : BaseT(spans..., parent)
-    , _span(d.second - d.first)
-    , _start_index(d.first)
+    , _span(d.first, d.second)
     , _base_span(parent.template size<Dimension>() * BaseT::_base_span)
 {
 }
@@ -75,8 +72,7 @@ Slice<Parent, Dimension, Dimensions...>::Slice( std::pair<DimensionIndex<Dimensi
                                               , Parent const& parent
                                               )
     : BaseT(spans...)
-    , _span(d.second)
-    , _start_index(d.first)
+    , _span(d.first, d.second)
     , _base_span(parent.template size<Dimension>() * BaseT::_base_span)
 {
 }
@@ -84,14 +80,14 @@ Slice<Parent, Dimension, Dimensions...>::Slice( std::pair<DimensionIndex<Dimensi
 template<typename Parent, typename Dimension, typename... Dimensions>
 void Slice<Parent, Dimension, Dimensions...>::offset(iterator const& it) 
 {
-    _ptr=it + static_cast<const std::size_t>(_start_index) * BaseT::_base_span;
+    _ptr=it + static_cast<const std::size_t>(_span.start()) * BaseT::_base_span;
     BaseT::offset(_ptr);
 }
 
 template<typename Parent, typename Dimension, typename... Dimensions>
 std::size_t Slice<Parent, Dimension, Dimensions...>::span() const
 {
-    return static_cast<const std::size_t>(_span) * BaseT::span();
+    return static_cast<const std::size_t>(_span.span()) * BaseT::span();
 }
 
 template<typename Parent, typename Dimension, typename... Dimensions>
@@ -99,7 +95,7 @@ template<typename Dim>
 typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimension>>::type 
 Slice<Parent, Dimension, Dimensions...>::size() const
 {
-    return _span;
+    return _span.span();
 }
 
 template<typename Parent, typename Dimension, typename... Dimensions>
@@ -127,8 +123,7 @@ Slice<Parent, Dimension, Dimensions...>& Slice<Parent, Dimension, Dimensions...>
 // -------------------- single dimension specialisation -------------------
 template<typename Parent, typename Dimension>
 Slice<Parent, Dimension>::Slice(Parent& parent, std::pair<DimensionIndex<Dimension>, DimensionIndex<Dimension>> const& d)
-    : _span(d.second - d.first)
-    , _start_index(d.first)
+    : _span(d.first, d.second)
     , _base_span(parent.template size<Dimension>())
     , _ptr(parent.begin() + static_cast<const std::size_t>(d.first))
 {
@@ -136,16 +131,14 @@ Slice<Parent, Dimension>::Slice(Parent& parent, std::pair<DimensionIndex<Dimensi
 
 template<typename Parent, typename Dimension>
 Slice<Parent, Dimension>::Slice(std::pair<DimensionIndex<Dimension>, DimensionIndex<Dimension>> const& d, Parent const& p)
-    : _span(d.second - d.first)
-    , _start_index(d.first)
+    : _span(d.first, d.second)
     , _base_span(p.template size<Dimension>())
 {
 }
 
 template<typename Parent, typename Dimension>
 Slice<Parent, Dimension>::Slice(std::pair<DimensionIndex<Dimension>, DimensionSize<Dimension>> const& d, Parent const& p)
-    : _span(d.second)
-    , _start_index(d.first)
+    : _span(d.first, d.second)
     , _base_span(p.template size<Dimension>())
 {
 }
@@ -153,7 +146,7 @@ Slice<Parent, Dimension>::Slice(std::pair<DimensionIndex<Dimension>, DimensionSi
 template<typename Parent, typename Dimension>
 void Slice<Parent, Dimension>::offset(iterator const& it)
 {
-    _ptr = it + static_cast<const std::size_t>(_start_index);
+    _ptr = it + static_cast<const std::size_t>(_span.start());
 }
 
 template<typename Parent, typename Dimension>
@@ -165,7 +158,7 @@ template<typename Parent, typename Dimension>
 template<typename Dim>
 typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimension>>::type Slice<Parent, Dimension>::size() const
 {
-    return _span;
+    return _span.span();
 }
 
 template<typename Parent, typename Dimension>
@@ -190,7 +183,7 @@ typename Slice<Parent, Dimension>::reference_type Slice<Parent, Dimension>::oper
 template<typename Parent, typename Dimension>
 std::size_t Slice<Parent, Dimension>::span() const
 {
-    return static_cast<const std::size_t>(_span);
+    return static_cast<const std::size_t>(_span.span());
 }
 
 template<typename Parent, typename Dimension>

@@ -23,7 +23,7 @@
  */
 #ifndef PSS_ASTROTYPES_MULTIARRAY_SLICE_H
 #define PSS_ASTROTYPES_MULTIARRAY_SLICE_H
-#include "DimensionIndex.h"
+#include "DimensionSpan.h"
 #include <utility>
 
 namespace pss {
@@ -113,8 +113,7 @@ class Slice : private Slice<Parent, Dimensions...>
         DimensionSize<Dimension> parent_span() const;
 
     private:
-        DimensionSize<Dimension> _span;
-        DimensionIndex<Dimension> _start_index;
+        DimensionSpan<Dimension> _span;
         DimensionSize<Dimension> _base_span;
         iterator _ptr;  // start of block
 };
@@ -132,6 +131,7 @@ class Slice<Parent, Dimension>
 
     public:
         Slice(Parent& parent, std::pair<DimensionIndex<Dimension>, DimensionIndex<Dimension>> const&);
+        Slice(Parent& parent, std::pair<DimensionIndex<Dimension>, DimensionSize<Dimension>> const&);
         ~Slice();
 
         /**
@@ -168,8 +168,7 @@ class Slice<Parent, Dimension>
         DimensionSize<Dimension> parent_span() const;
 
     private:
-        DimensionSize<Dimension> _span;
-        DimensionIndex<Dimension> _start_index;
+        DimensionSpan<Dimension> _span;
         DimensionSize<Dimension> _base_span;
         typename Parent::iterator _ptr;   // start, to extent _ptr + _span
 };
