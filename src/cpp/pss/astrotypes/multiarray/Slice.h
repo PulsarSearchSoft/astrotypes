@@ -47,13 +47,8 @@ class Slice : private Slice<Parent, Dimensions...>
 
     public:
         Slice( Parent& parent
-             , std::pair<DimensionIndex<Dimension>, DimensionIndex<Dimension>> const&
-             , std::pair<DimensionIndex<Dimensions>, DimensionIndex<Dimensions>> const&...
-        );
-
-        Slice( Parent& parent
-             , std::pair<DimensionIndex<Dimension>, DimensionSize<Dimension>> const&
-             , std::pair<DimensionIndex<Dimensions>, DimensionSize<Dimensions>> const&...
+             , DimensionSpan<Dimension> const&
+             , DimensionSpan<Dimensions> const&...
         );
 
         /**
@@ -96,13 +91,8 @@ class Slice : private Slice<Parent, Dimensions...>
         void offset(iterator const&); // init the offset relative to the top parent
 
         // init for inheriting classes only
-        Slice( std::pair<DimensionIndex<Dimension>, DimensionIndex<Dimension>> const&
-             , std::pair<DimensionIndex<Dimensions>, DimensionIndex<Dimensions>> const&...
-             , Parent const& parent
-        );
-
-        Slice( std::pair<DimensionIndex<Dimension>, DimensionSize<Dimension>> const&
-             , std::pair<DimensionIndex<Dimensions>, DimensionSize<Dimensions>> const&...
+        Slice( DimensionSpan<Dimension> const&
+             , DimensionSpan<Dimensions> const&...
              , Parent const& parent
         );
 
@@ -130,8 +120,7 @@ class Slice<Parent, Dimension>
         typedef typename Parent::iterator iterator;
 
     public:
-        Slice(Parent& parent, std::pair<DimensionIndex<Dimension>, DimensionIndex<Dimension>> const&);
-        Slice(Parent& parent, std::pair<DimensionIndex<Dimension>, DimensionSize<Dimension>> const&);
+        Slice(Parent& parent, DimensionSpan<Dimension> const&);
         ~Slice();
 
         /**
@@ -160,8 +149,7 @@ class Slice<Parent, Dimension>
         // return the span of memory to add on to the outer dimension index
         std::size_t span() const;
         void offset(iterator const&); // init the offset relative to the top parent
-        Slice(std::pair<DimensionIndex<Dimension>, DimensionIndex<Dimension>> const&, Parent const&);
-        Slice(std::pair<DimensionIndex<Dimension>, DimensionSize<Dimension>> const&, Parent const&);
+        Slice(DimensionSpan<Dimension> const&, Parent const&);
         SelfType& operator+=(DimensionSize<Dimension> const&);
 
     protected:

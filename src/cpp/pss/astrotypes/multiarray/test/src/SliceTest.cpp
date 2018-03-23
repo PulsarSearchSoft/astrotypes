@@ -90,7 +90,7 @@ struct ParentType {
 TEST_F(SliceTest, test_single_dimension)
 {
     ParentType<1> p(50);
-    Slice<ParentType<1>, DimensionA> slice(p, std::make_pair(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
+    Slice<ParentType<1>, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
     // test size
     ASSERT_EQ(10U, static_cast<std::size_t>(slice.size<DimensionA>()));
     ASSERT_EQ(0U, static_cast<std::size_t>(slice.size<DimensionB>()));
@@ -106,8 +106,8 @@ TEST_F(SliceTest, test_two_dimensions)
 {
     ParentType<2> p(50);
     Slice<ParentType<2>, DimensionA, DimensionB> slice(p
-                                              , std::make_pair(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
-                                              , std::make_pair(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
                                               );
     // test size
     ASSERT_EQ(10U, static_cast<std::size_t>(slice.size<DimensionA>()));
@@ -128,9 +128,9 @@ TEST_F(SliceTest, test_three_dimensions)
 {
     ParentType<3> p(50);
     Slice<ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
-                                              , std::make_pair(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
-                                              , std::make_pair(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
-                                              , std::make_pair(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
                                               );
     // test size
     ASSERT_EQ(10U, static_cast<std::size_t>(slice.size<DimensionA>()));

@@ -1,3 +1,4 @@
+@anchor installation
 # Installation
 ## cmake
 Cmake is a widely used, platform and toolchain agnostic build tool.

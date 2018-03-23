@@ -31,48 +31,24 @@ namespace astrotypes {
 // ------------------- multi dimension ----------------------- -------------
 template<typename Parent, typename Dimension, typename... Dimensions>
 Slice<Parent, Dimension, Dimensions...>::Slice(Parent& parent
-                                              , std::pair<DimensionIndex<Dimension>, DimensionIndex<Dimension>> const& d
-                                              , std::pair<DimensionIndex<Dimensions>, DimensionIndex<Dimensions>> const&... spans
+                                              , DimensionSpan<Dimension> const& d
+                                              , DimensionSpan<Dimensions> const&... spans
                                               )
     : BaseT(spans..., parent)
-    , _span(d.first, d.second)
+    , _span(d)
     , _base_span(0)
-    , _ptr(parent.begin() + static_cast<const std::size_t>(d.first) * BaseT::_base_span)
+    , _ptr(parent.begin() + static_cast<const std::size_t>(_span.start()) * BaseT::_base_span)
 {
     BaseT::offset(_ptr);
 }
 
 template<typename Parent, typename Dimension, typename... Dimensions>
-Slice<Parent, Dimension, Dimensions...>::Slice(Parent& parent
-                                              , std::pair<DimensionIndex<Dimension>, DimensionSize<Dimension>> const& d
-                                              , std::pair<DimensionIndex<Dimensions>, DimensionSize<Dimensions>> const&... spans
-                                              )
-    : BaseT(spans..., parent)
-    , _span(d.first, d.second)
-    , _base_span(0)
-    , _ptr(parent.begin() + static_cast<const std::size_t>(d.first) * BaseT::_base_span)
-{
-    BaseT::offset(_ptr);
-}
-
-template<typename Parent, typename Dimension, typename... Dimensions>
-Slice<Parent, Dimension, Dimensions...>::Slice( std::pair<DimensionIndex<Dimension>, DimensionIndex<Dimension>> const& d
-                                              , std::pair<DimensionIndex<Dimensions>, DimensionIndex<Dimensions>> const&... spans
+Slice<Parent, Dimension, Dimensions...>::Slice( DimensionSpan<Dimension> const& d
+                                              , DimensionSpan<Dimensions> const&... spans
                                               , Parent const& parent
                                               )
     : BaseT(spans..., parent)
-    , _span(d.first, d.second)
-    , _base_span(parent.template size<Dimension>() * BaseT::_base_span)
-{
-}
-
-template<typename Parent, typename Dimension, typename... Dimensions>
-Slice<Parent, Dimension, Dimensions...>::Slice( std::pair<DimensionIndex<Dimension>, DimensionSize<Dimension>> const& d
-                                              , std::pair<DimensionIndex<Dimensions>, DimensionSize<Dimensions>> const&... spans
-                                              , Parent const& parent
-                                              )
-    : BaseT(spans...)
-    , _span(d.first, d.second)
+    , _span(d)
     , _base_span(parent.template size<Dimension>() * BaseT::_base_span)
 {
 }
@@ -122,23 +98,16 @@ Slice<Parent, Dimension, Dimensions...>& Slice<Parent, Dimension, Dimensions...>
 }
 // -------------------- single dimension specialisation -------------------
 template<typename Parent, typename Dimension>
-Slice<Parent, Dimension>::Slice(Parent& parent, std::pair<DimensionIndex<Dimension>, DimensionIndex<Dimension>> const& d)
-    : _span(d.first, d.second)
+Slice<Parent, Dimension>::Slice(Parent& parent, DimensionSpan<Dimension> const& d)
+    : _span(d)
     , _base_span(parent.template size<Dimension>())
-    , _ptr(parent.begin() + static_cast<const std::size_t>(d.first))
+    , _ptr(parent.begin() + static_cast<const std::size_t>(_span.start()))
 {
 }
 
 template<typename Parent, typename Dimension>
-Slice<Parent, Dimension>::Slice(std::pair<DimensionIndex<Dimension>, DimensionIndex<Dimension>> const& d, Parent const& p)
-    : _span(d.first, d.second)
-    , _base_span(p.template size<Dimension>())
-{
-}
-
-template<typename Parent, typename Dimension>
-Slice<Parent, Dimension>::Slice(std::pair<DimensionIndex<Dimension>, DimensionSize<Dimension>> const& d, Parent const& p)
-    : _span(d.first, d.second)
+Slice<Parent, Dimension>::Slice(DimensionSpan<Dimension> const& d, Parent const& p)
+    : _span(d)
     , _base_span(p.template size<Dimension>())
 {
 }
