@@ -50,7 +50,7 @@ class MultiArray : MultiArray<T, OtherDimensions...>
         typedef std::vector<T> Container;
         typedef typename Container::iterator iterator;
         typedef typename Container::const_iterator const_iterator;
-        typedef T value_type;
+        typedef typename Container::value_type value_type;
         typedef T& reference_type;
         typedef T const& const_reference_type;
 

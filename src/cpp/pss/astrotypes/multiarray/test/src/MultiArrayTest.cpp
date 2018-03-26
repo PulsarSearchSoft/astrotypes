@@ -53,14 +53,6 @@ struct DimensionB {};
 struct DimensionC {};
 
 template<typename T, typename... Dimensions>
-struct TestMultiArrayTraits
-{
-    typedef T* iterator;
-    typedef T const* const_iterator;
-};
-
-template<typename T, typename... Dimensions>
-//class TestMultiArray : public MultiArray<T, MultiArrayTraits<TestMultiArray<T, Dimensions...>>, Dimensions...>
 class TestMultiArray : public MultiArray<T, Dimensions...>
 {
         typedef MultiArray<T,  Dimensions...> BaseT;
@@ -77,6 +69,7 @@ TEST_F(MultiArrayTest, test_single_dimension_size)
     ASSERT_EQ(ma.size<DimensionA>(), size);
     ASSERT_EQ(ma.size<DimensionB>(), DimensionSize<DimensionB>(0U));
     ASSERT_EQ(ma.size<DimensionC>(), DimensionSize<DimensionC>(0U));
+    ASSERT_EQ(std::distance(ma.begin(), ma.end()), size);
 }
 
 TEST_F(MultiArrayTest, test_single_dimension_slice)
@@ -163,6 +156,48 @@ TEST_F(MultiArrayTest, test_three_dimension_std_copy)
     dst.clear();
     std::copy(ma.cbegin(), ma.cend(), std::back_inserter(dst)); //copy our
     ASSERT_EQ(data, dst);
+}
+
+TEST_F(MultiArrayTest, test_one_dimension_resize)
+{
+    DimensionSize<DimensionA> size_a(10);
+
+    TestMultiArray<unsigned, DimensionA> ma( size_a);
+    
+    size_a = DimensionSize<DimensionA>(5);
+    ma.resize(size_a);
+    ASSERT_EQ(ma.size<DimensionA>(), size_a);
+    ASSERT_EQ(std::distance(ma.begin(), ma.end()), size_a);
+}
+
+TEST_F(MultiArrayTest, test_three_dimension_resize)
+{
+    DimensionSize<DimensionA> size_a(10);
+    DimensionSize<DimensionB> size_b(20);
+    DimensionSize<DimensionC> size_c(30);
+
+    TestMultiArray<unsigned, DimensionA, DimensionB, DimensionC> ma( size_a, size_b, size_c);
+    
+    size_a = DimensionSize<DimensionA>(5);
+    ma.resize(size_a);
+    ASSERT_EQ(ma.size<DimensionA>(), size_a);
+    ASSERT_EQ(ma.size<DimensionB>(), size_b);
+    ASSERT_EQ(ma.size<DimensionC>(), size_c);
+    ASSERT_EQ(std::distance(ma.begin(), ma.end()), size_a * size_b * size_c);
+
+    size_b = DimensionSize<DimensionB>(15);
+    ma.resize(size_b);
+    ASSERT_EQ(ma.size<DimensionA>(), size_a);
+    ASSERT_EQ(ma.size<DimensionB>(), size_b);
+    ASSERT_EQ(ma.size<DimensionC>(), size_c);
+    ASSERT_EQ(std::distance(ma.begin(), ma.end()), size_a * size_b * size_c);
+
+    size_c = DimensionSize<DimensionC>(25);
+    ma.resize(size_c);
+    ASSERT_EQ(ma.size<DimensionA>(), size_a);
+    ASSERT_EQ(ma.size<DimensionB>(), size_b);
+    ASSERT_EQ(ma.size<DimensionC>(), size_c);
+    ASSERT_EQ(std::distance(ma.begin(), ma.end()), size_a * size_b * size_c);
 }
 
 } // namespace test
