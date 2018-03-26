@@ -83,6 +83,11 @@ class Slice : private Slice<Parent, Dimensions...>
          */
         Slice<Parent, Dimensions...> operator[](std::size_t) const;
 
+        /**
+         * @brief Take a slice from this slice
+         */
+        Slice<Parent, Dimension, Dimensions...> slice(DimensionSpan<Dimension> const& span) const;
+
     protected:
         template<typename P, typename D, typename... Ds> friend class Slice;
 
@@ -98,6 +103,9 @@ class Slice : private Slice<Parent, Dimensions...>
 
         // increment pointer by a n * span length
         SelfType& operator+=(std::size_t n);
+
+        // increment pointer by a n * base span length
+        SelfType& operator+=(DimensionSize<Dimension> n);
 
         // return the span of the underlying parent in the Dimension
         DimensionSize<Dimension> parent_span() const;

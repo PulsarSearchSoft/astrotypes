@@ -46,8 +46,10 @@ class DimensionSpan
 
         inline DimensionIndex<Dimension>&         start() { return _start_index; }
         inline DimensionIndex<Dimension> const&   start() const { return _start_index; };
-        inline DimensionSize<Dimension>&           span() { return _span; };
-        inline DimensionSize<Dimension> const&     span() const { return _span; };
+        inline void                               start(DimensionIndex<Dimension> s) { _start_index = s; }
+        inline DimensionSize<Dimension>&          span() { return _span; };
+        inline DimensionSize<Dimension> const&    span() const { return _span; };
+        inline void                               span(DimensionSize<Dimension> s) { _span = s; }
 
     private:
         DimensionIndex<Dimension> _start_index;

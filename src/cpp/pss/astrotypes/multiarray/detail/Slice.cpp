@@ -36,7 +36,7 @@ Slice<Parent, Dimension, Dimensions...>::Slice(Parent& parent
                                               )
     : BaseT(spans..., parent)
     , _span(d)
-    , _base_span(0)
+    , _base_span(0U) // not used (yet) so don't bother calculating it
     , _ptr(parent.begin() + static_cast<const std::size_t>(_span.start()) * BaseT::_base_span)
 {
     BaseT::offset(_ptr);
@@ -89,6 +89,7 @@ Slice<Parent, Dimension, Dimensions...>::operator[](std::size_t offset) const
     return BaseT(*this) += offset;
 }
 
+// n.b offset refers to the dimension in the level above (i.e a full _base_span)
 template<typename Parent, typename Dimension, typename... Dimensions>
 Slice<Parent, Dimension, Dimensions...>& Slice<Parent, Dimension, Dimensions...>::operator+=(std::size_t offset)
 {
@@ -96,6 +97,27 @@ Slice<Parent, Dimension, Dimensions...>& Slice<Parent, Dimension, Dimensions...>
     BaseT::offset(_ptr);
     return *this;
 }
+
+template<typename Parent, typename Dimension, typename... Dimensions>
+Slice<Parent, Dimension, Dimensions...>& Slice<Parent, Dimension, Dimensions...>::operator+=(DimensionSize<Dimension> offset)
+{
+    _ptr += (offset * BaseT::_base_span);
+    BaseT::offset(_ptr);
+    return *this;
+}
+
+template<typename Parent, typename Dimension, typename... Dimensions>
+Slice<Parent, Dimension, Dimensions...>
+Slice<Parent, Dimension, Dimensions...>::slice(DimensionSpan<Dimension> const& span) const
+{
+    assert(span.span() <= _span.span());
+    SelfType s(*this);
+    s += DimensionSize<Dimension>(span.start());
+    s._span.start(_span.start() + DimensionSize<Dimension>(span.start()));
+    s._span.span(span.span());
+    return s;
+}
+
 // -------------------- single dimension specialisation -------------------
 template<typename Parent, typename Dimension>
 Slice<Parent, Dimension>::Slice(Parent& parent, DimensionSpan<Dimension> const& d)

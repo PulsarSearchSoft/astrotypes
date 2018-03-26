@@ -152,6 +152,35 @@ TEST_F(SliceTest, test_three_dimensions)
             }
         }
     }
+
+}
+
+TEST_F(SliceTest, test_three_dimensions_same_dim_sub_slice)
+{
+    ParentType<3> p(50);
+    Slice<ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
+                                              );
+    // cut a sub slice (should be of the same type - hence no auto
+    Slice<ParentType<3>, DimensionA,DimensionB, DimensionC> sub_slice =  
+                    slice.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(2), DimensionIndex<DimensionA>(6)));
+
+    ASSERT_EQ(4U, static_cast<std::size_t>(sub_slice.size<DimensionA>()));
+    ASSERT_EQ(3U, static_cast<std::size_t>(sub_slice.size<DimensionB>()));
+    ASSERT_EQ(5U, static_cast<std::size_t>(sub_slice.size<DimensionC>()));
+    
+    for(std::size_t i = 0; i < sub_slice.size<DimensionA>(); ++i) {
+        for(std::size_t j = 0; j < sub_slice.size<DimensionB>(); ++j) {
+            for(std::size_t k = 0; k < sub_slice.size<DimensionC>(); ++k) {
+            ASSERT_EQ(sub_slice[i][j][k], 
+                          (i + 1U + 2U) * static_cast<std::size_t>(p.size<DimensionB>()) * static_cast<std::size_t>(p.size<DimensionC>())
+                        + (j + 20U) * static_cast<std::size_t>(p.size<DimensionC>())
+                        + k + 2U) << "i=" << i << " j=" << j << " k=" << k; // check we can read
+            }
+        }
+    }
 }
 
 } // namespace test

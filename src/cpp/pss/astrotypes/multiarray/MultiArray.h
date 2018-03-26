@@ -38,37 +38,65 @@ namespace astrotypes {
  *
  * @details
  */
-template<typename T, typename... Dimensions>
-class MultiArray
-{
-};
-
 template<typename T, typename FirstDimension, typename... OtherDimensions>
-class MultiArray<T, FirstDimension, OtherDimensions...> : MultiArray<T, OtherDimensions...>
+class MultiArray : MultiArray<T, OtherDimensions...>
 {
         typedef MultiArray<T, OtherDimensions...> BaseT;
-        typedef MultiArray<T> SelfType;
-        typedef Slice<SelfType, OtherDimensions...> SliceType;
+        typedef MultiArray<T, FirstDimension, OtherDimensions...> SelfType;
+        typedef Slice<SelfType, FirstDimension, OtherDimensions...> SliceType;
+        typedef Slice<SelfType, OtherDimensions...> ReducedDimensionSliceType;
 
     public:
+        typedef std::vector<T> Container;
+        typedef typename Container::iterator iterator;
+        typedef typename Container::const_iterator const_iterator;
         typedef T value_type;
         typedef T& reference_type;
         typedef T const& const_reference_type;
 
     public:
         MultiArray(DimensionSize<FirstDimension> const&, DimensionSize<OtherDimensions> const& ... sizes);
-        ~MultiArray();
 
         /**
-         * @brief take a slice of data at the specified index of the first dimension
+         * @brief iterators acting over he entire data structure
+         * @detilas useful for e.g std::copy of the entire structure
+         *          without inspection
          */
-        SliceType operator[](DimensionIndex<FirstDimension> index);
+        iterator begin();
+        iterator end();
+        const_iterator begin() const;
+        const_iterator end() const;
+        const_iterator cbegin() const;
+        const_iterator cend() const;
+
+        /**
+         * @brief take a slice of width 1 data at the specified index of the first dimension
+         * @details
+         *    This can be used to access elements in a similar way to c style arrays.
+         *
+         * @code
+         * MultiArray<int, DimA, DimB> my_ulti_array(...);
+         * for(DimensionIndex<DimA> i(0); i < my_multi_array.size<DimA>(); ++i)
+         * {
+         *     for(DjmensjonIndex<DjmB> j(0); j < my_multj_array.sjze<DimB>(); ++j) 
+         *     {
+         *          my_multi_array[i][j] = 10;
+         *     }
+         * }
+         * @endcode
+         */
+        ReducedDimensionSliceType operator[](DimensionIndex<FirstDimension> index);
+
+        /**
+         * @brief return a slice of the specified dimension spanning the index_range provided
+         */
+        SliceType slice(DimensionSpan<FirstDimension> const& index_range);
 
         /**
          * @brief resize the array in the specified dimension
          */
-        template<typename Dimension>
-        void resize(std::size_t size);
+        template<typename Dim>
+        void resize(DimensionSize<Dim>);
 
         /**
          * @brief resize the array in the specified dimension
@@ -84,6 +112,17 @@ class MultiArray<T, FirstDimension, OtherDimensions...> : MultiArray<T, OtherDim
         typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
         size() const;
 
+    protected:
+        MultiArray(bool disable_resize_tag, DimensionSize<FirstDimension> const&, DimensionSize<OtherDimensions> const& ... sizes);
+
+        template<typename Dimension>
+        typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type 
+        do_resize(std::size_t total, DimensionSize<Dimension> size);
+
+        template<typename Dimension>
+        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type 
+        do_resize(std::size_t total, DimensionSize<Dimension> size);
+
     private:
         DimensionSize<FirstDimension>     _size;
 };
@@ -95,7 +134,12 @@ class MultiArray<T, FirstDimension>
         typedef MultiArray<T, FirstDimension> SelfType;
         typedef Slice<SelfType, FirstDimension> SliceType;
 
+        typedef std::vector<T> Container;
+
     public:
+        typedef typename Container::iterator iterator;
+        typedef typename Container::const_iterator const_iterator;
+
         typedef T& reference_type;
         typedef T const& const_reference_type;
         typedef T value_type;
@@ -107,8 +151,9 @@ class MultiArray<T, FirstDimension>
         /**
          * @brief 
          */
-        SliceType operator[](DimensionIndex<FirstDimension> index);
+        reference_type operator[](DimensionIndex<FirstDimension> index);
 
+        /// size
         template<typename Dim>
         typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type 
         size() const;
@@ -117,9 +162,32 @@ class MultiArray<T, FirstDimension>
         typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
         size() const;
 
+        template<typename Dimension>
+        void resize(DimensionSize<Dimension> size);
+
+        /// bulk iterators
+        iterator begin();
+        const_iterator begin() const;
+        const_iterator cbegin() const;
+        iterator end();
+        const_iterator end() const;
+        const_iterator cend() const;
+
+    protected:
+        MultiArray(bool disable_resize_tag, DimensionSize<FirstDimension> const&);
+
+        /// resize
+        template<typename Dimension>
+        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type 
+        do_resize(std::size_t total_size, DimensionSize<Dimension> size);
+
+        template<typename Dimension>
+        typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type 
+        do_resize(std::size_t total_size, DimensionSize<Dimension> size);
+
     private:
         DimensionSize<FirstDimension> _size;
-        
+        std::vector<T> _data;
 };
 
 } // namespace astrotypes
