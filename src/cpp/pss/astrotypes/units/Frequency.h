@@ -39,6 +39,9 @@
 namespace pss {
 namespace astrotypes {
 
+// Dimension
+typedef boost::units::si::frequency Frequency;
+
 // Units
 using MegaHertz = boost::units::make_scaled_unit<boost::units::si::frequency, boost::units::scale<10, boost::units::static_rational<6>>>::type;
 
@@ -49,7 +52,7 @@ static boost::units::si::frequency const hz = boost::units::si::hertz;
  * @brief Frequency dimension type.
  */
 template<typename FreqUnit, typename NumericalRep>
-struct Frequency : public boost::units::quantity<typename std::enable_if<std::is_same<boost::units::si::frequency, typename FreqUnit::type>::value, FreqUnit>::type, NumericalRep>
+struct FrequencyQuantity : public boost::units::quantity<typename std::enable_if<std::is_same<boost::units::si::frequency, typename FreqUnit::type>::value, FreqUnit>::type, NumericalRep>
 {
 };
 

@@ -38,16 +38,16 @@ namespace astrotypes {
  *
  * @details
  */
-template<typename T, typename FirstDimension, typename... OtherDimensions>
-class MultiArray : MultiArray<T, OtherDimensions...>
+template<typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions>
+class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
 {
-        typedef MultiArray<T, OtherDimensions...> BaseT;
-        typedef MultiArray<T, FirstDimension, OtherDimensions...> SelfType;
+        typedef MultiArray<Alloc, T, OtherDimensions...> BaseT;
+        typedef MultiArray<Alloc, T, FirstDimension, OtherDimensions...> SelfType;
         typedef Slice<SelfType, FirstDimension, OtherDimensions...> SliceType;
         typedef Slice<SelfType, OtherDimensions...> ReducedDimensionSliceType;
 
     public:
-        typedef std::vector<T> Container;
+        typedef std::vector<T, Alloc> Container;
         typedef typename Container::iterator iterator;
         typedef typename Container::const_iterator const_iterator;
         typedef typename Container::value_type value_type;
@@ -128,13 +128,13 @@ class MultiArray : MultiArray<T, OtherDimensions...>
 };
 
 // specialisation for single dimension arrays
-template<typename T, typename FirstDimension>
-class MultiArray<T, FirstDimension>
+template<typename Alloc, typename T, typename FirstDimension>
+class MultiArray<Alloc, T, FirstDimension>
 {
-        typedef MultiArray<T, FirstDimension> SelfType;
+        typedef MultiArray<Alloc, T, FirstDimension> SelfType;
         typedef Slice<SelfType, FirstDimension> SliceType;
 
-        typedef std::vector<T> Container;
+        typedef std::vector<T, Alloc> Container;
 
     public:
         typedef typename Container::iterator iterator;

@@ -23,6 +23,7 @@
  */
 
 #include "pss/astrotypes/units/Time.h"
+#include "pss/astrotypes/units/Utilities.h"
 #include "../UtilitiesTest.h"
 
 namespace pss {
@@ -40,8 +41,8 @@ UtilitiesTest::~UtilitiesTest() {}
 TEST(UtilitiesTest, test_hash)
 {
     double value = 12345.6;
-    pss::astrotypes::Time quantity(value * pss::astrotypes::seconds);
-    ASSERT_EQ(std::hash<double>()(value), std::hash<pss::astrotypes::Time>()(quantity));
+    pss::astrotypes::Seconds<double> quantity(value * pss::astrotypes::seconds);
+    ASSERT_EQ(std::hash<double>()(value), std::hash<pss::astrotypes::Seconds<double>>()(quantity));
 }
 
 } // namespace test

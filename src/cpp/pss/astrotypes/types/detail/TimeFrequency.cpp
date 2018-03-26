@@ -21,32 +21,41 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "astrotypes/types/TimeFrequency.h"
-
 
 namespace pss {
 namespace astrotypes {
 
-
 template<typename T, typename Alloc>
-TimeFrequency<T. Alloc>::TimeFrequency(DimensionSize<Time> time_size, DimensionSize<Frequency> freq_size)
+TimeFrequency<T, Alloc>::TimeFrequency(DimensionSize<Time> time_size, DimensionSize<Frequency> freq_size)
     : BaseT(time_size, freq_size)
 {
 }
 
 template<typename T, typename Alloc>
-TimeFrequency<T. Alloc>::~TimeFrequency()
+TimeFrequency<T, Alloc>::TimeFrequency(DimensionSize<Frequency> freq_size, DimensionSize<Time> time_size)
+    : BaseT(time_size, freq_size)
 {
 }
 
 template<typename T, typename Alloc>
-FrequencyTime<T. Alloc>::FrequencyTime(DimensionSize<Frequency> freq_size, DimensionSize<Time> time_size)
+TimeFrequency<T, Alloc>::~TimeFrequency()
+{
+}
+
+template<typename T, typename Alloc>
+FrequencyTime<T, Alloc>::FrequencyTime(DimensionSize<Frequency> freq_size, DimensionSize<Time> time_size)
     : BaseT(freq_size, time_size)
 {
 }
 
 template<typename T, typename Alloc>
-FrequencyTime<T. Alloc>::~FrequencyTime()
+FrequencyTime<T, Alloc>::FrequencyTime(DimensionSize<Time> time_size, DimensionSize<Frequency> freq_size)
+    : BaseT(freq_size, time_size)
+{
+}
+
+template<typename T, typename Alloc>
+FrequencyTime<T, Alloc>::~FrequencyTime()
 {
 }
 

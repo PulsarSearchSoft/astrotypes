@@ -31,8 +31,8 @@
 #pragma GCC diagnostic pop
 #include <functional>
 
-#ifndef ASTROTYPES_UNITS_UTILITIES_H
-#define ASTROTYPES_UNITS_UTILITIES_H
+#ifndef PSS_ASTROTYPES_UNITS_UTILITIES_H
+#define PSS_ASTROTYPES_UNITS_UTILITIES_H
 
 namespace std {
 
@@ -50,4 +50,4 @@ struct hash<boost::units::quantity<UnitsType, DataType>>
 
 } // namespace std
 
-#endif // ASTROTYPES_UNITS_UTILITIES_H
+#endif // PSS_ASTROTYPES_UNITS_UTILITIES_H

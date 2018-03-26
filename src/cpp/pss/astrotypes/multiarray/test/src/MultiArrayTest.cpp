@@ -53,9 +53,9 @@ struct DimensionB {};
 struct DimensionC {};
 
 template<typename T, typename... Dimensions>
-class TestMultiArray : public MultiArray<T, Dimensions...>
+class TestMultiArray : public MultiArray<std::allocator<T>, T, Dimensions...>
 {
-        typedef MultiArray<T,  Dimensions...> BaseT;
+        typedef MultiArray<std::allocator<T>, T,  Dimensions...> BaseT;
 
     public:
         template<typename... Args>

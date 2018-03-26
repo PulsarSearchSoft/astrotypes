@@ -27,6 +27,7 @@
 #include "pss/astrotypes/units/Time.h"
 #include "pss/astrotypes/units/Frequency.h"
 #include "pss/astrotypes/multiarray/MultiArray.h"
+#include <memory>
 
 namespace pss {
 namespace astrotypes {
@@ -40,7 +41,7 @@ namespace astrotypes {
  *       Stored as a contiguous block af complete spectra.
  */
 
-template<typename T, typename Alloc>
+template<typename T, typename Alloc=std::allocator<T>>
 class TimeFrequency : public MultiArray<Alloc, T, Time, Frequency>
 {
     private:
@@ -48,6 +49,7 @@ class TimeFrequency : public MultiArray<Alloc, T, Time, Frequency>
 
     public:
         TimeFrequency(DimensionSize<Time>, DimensionSize<Frequency>);
+        TimeFrequency(DimensionSize<Frequency>, DimensionSize<Time>);
         ~TimeFrequency();
 };
 
@@ -60,7 +62,7 @@ class TimeFrequency : public MultiArray<Alloc, T, Time, Frequency>
  *       Stored as a contiguous channels in time
  */
 
-template<typename T, typename Alloc>
+template<typename T, typename Alloc=std::allocator<T>>
 class FrequencyTime : public MultiArray<Alloc, T, Frequency, Time>
 {
     private:
@@ -68,6 +70,7 @@ class FrequencyTime : public MultiArray<Alloc, T, Frequency, Time>
 
     public:
         FrequencyTime(DimensionSize<Frequency>, DimensionSize<Time>);
+        FrequencyTime(DimensionSize<Time>, DimensionSize<Frequency>);
         ~FrequencyTime();
 };
 
