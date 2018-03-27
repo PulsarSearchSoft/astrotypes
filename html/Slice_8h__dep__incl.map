@@ -1,6 +1,10 @@
 <map id="src/cpp/pss/astrotypes/multiarray/Slice.h" name="src/cpp/pss/astrotypes/multiarray/Slice.h">
-<area shape="rect" id="node2" href="$Slice_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/detail/Slice.cpp" alt="" coords="5,92,182,131"/>
-<area shape="rect" id="node3" href="$MultiArray_8h.html" title="src/cpp/pss/astrotypes\l/multiarray/MultiArray.h" alt="" coords="206,92,363,131"/>
-<area shape="rect" id="node5" href="$SliceTest_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/test/src/SliceTest.cpp" alt="" coords="388,92,600,131"/>
-<area shape="rect" id="node4" href="$MultiArrayTest_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/test/src/MultiArray\lTest.cpp" alt="" coords="188,179,381,231"/>
+<area shape="rect" id="node2" href="$Slice_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/detail/Slice.cpp" alt="" coords="26,92,203,131"/>
+<area shape="rect" id="node3" href="$MultiArray_8h.html" title="src/cpp/pss/astrotypes\l/multiarray/MultiArray.h" alt="" coords="226,92,384,131"/>
+<area shape="rect" id="node7" href="$SliceIterator_8h.html" title="src/cpp/pss/astrotypes\l/multiarray/SliceIterator.h" alt="" coords="407,92,576,131"/>
+<area shape="rect" id="node9" href="$SliceTest_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/test/src/SliceTest.cpp" alt="" coords="600,92,813,131"/>
+<area shape="rect" id="node4" href="$MultiArrayTest_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/test/src/MultiArray\lTest.cpp" alt="" coords="5,179,199,231"/>
+<area shape="rect" id="node5" href="$TimeFrequency_8h.html" title="src/cpp/pss/astrotypes\l/types/TimeFrequency.h" alt="" coords="224,185,386,224"/>
+<area shape="rect" id="node6" href="$TimeFrequencyTest_8cpp.html" title="src/cpp/pss/astrotypes\l/types/test/src/TimeFrequency\lTest.cpp" alt="" coords="205,279,405,331"/>
+<area shape="rect" id="node8" href="$SliceIterator_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/SliceIterator.cpp" alt="" coords="411,185,594,224"/>
 </map>

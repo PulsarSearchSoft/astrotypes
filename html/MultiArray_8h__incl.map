@@ -1,9 +1,11 @@
 <map id="src/cpp/pss/astrotypes/multiarray/MultiArray.h" name="src/cpp/pss/astrotypes/multiarray/MultiArray.h">
-<area shape="rect" id="node2" href="$Slice_8h.html" title="Slice.h" alt="" coords="264,92,326,117"/>
-<area shape="rect" id="node3" href="$DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="129,165,258,191"/>
-<area shape="rect" id="node4" href="$DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="30,239,152,264"/>
-<area shape="rect" id="node10" href="$MultiArray_8cpp.html" title="detail/MultiArray.cpp" alt="" coords="350,92,491,117"/>
-<area shape="rect" id="node8" href="$Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="357,165,468,191"/>
-<area shape="rect" id="node6" href="$DimensionIndex_8cpp.html" title="detail/DimensionIndex.cpp" alt="" coords="175,239,353,264"/>
-<area shape="rect" id="node5" href="$DimensionSize_8cpp.html" title="detail/DimensionSize.cpp" alt="" coords="5,312,176,337"/>
+<area shape="rect" id="node2" href="$Slice_8h.html" title="Slice.h" alt="" coords="184,92,245,117"/>
+<area shape="rect" id="node4" href="$DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="248,312,370,337"/>
+<area shape="rect" id="node6" href="$DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="382,239,510,264"/>
+<area shape="rect" id="node12" href="$MultiArray_8cpp.html" title="detail/MultiArray.cpp" alt="" coords="465,92,606,117"/>
+<area shape="rect" id="node3" href="$DimensionSpan_8h.html" title="DimensionSpan.h" alt="" coords="264,165,391,191"/>
+<area shape="rect" id="node10" href="$Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="53,165,164,191"/>
+<area shape="rect" id="node8" href="$DimensionSpan_8cpp.html" title="detail/DimensionSpan.cpp" alt="" coords="131,239,308,264"/>
+<area shape="rect" id="node5" href="$DimensionSize_8cpp.html" title="detail/DimensionSize.cpp" alt="" coords="223,385,394,411"/>
+<area shape="rect" id="node7" href="$DimensionIndex_8cpp.html" title="detail/DimensionIndex.cpp" alt="" coords="393,312,571,337"/>
 </map>

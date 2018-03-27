@@ -132,31 +132,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacepss.html">pss</a> {</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">namespace </span>astrotypes {</div>
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">// Units</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="namespacepss_1_1astrotypes.html#a9369acc9e0fc757d6338bbe3a05c6394">   43</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespacepss_1_1astrotypes.html#a9369acc9e0fc757d6338bbe3a05c6394">MegaHertz</a> = boost::units::make_scaled_unit&lt;boost::units::si::frequency, boost::units::scale&lt;10, boost::units::static_rational&lt;6&gt;&gt;&gt;::type;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">// Dimension</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="namespacepss_1_1astrotypes.html#a5e1868e9184f18f029a379c82ace3b63">   43</a></span>&#160;<span class="keyword">typedef</span> boost::units::frequency_dimension <a class="code" href="namespacepss_1_1astrotypes.html#a5e1868e9184f18f029a379c82ace3b63">Frequency</a>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">static</span> boost::units::si::frequency <span class="keyword">const</span> hertz = boost::units::si::hertz;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">static</span> boost::units::si::frequency <span class="keyword">const</span> hz = boost::units::si::hertz;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> FreqUnit, <span class="keyword">typename</span> NumericalRep&gt;</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1Frequency.html">   52</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structpss_1_1astrotypes_1_1Frequency.html">Frequency</a> : <span class="keyword">public</span> boost::units::quantity&lt;typename std::enable_if&lt;std::is_same&lt;boost::units::si::frequency, typename FreqUnit::type&gt;::value, FreqUnit&gt;::type, NumericalRep&gt;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;};</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno"><a class="line" href="namespacepss_1_1astrotypes.html#a9cc37f7d2410c223436f6f145c38d9eb">   59</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespacepss_1_1astrotypes.html#a9cc37f7d2410c223436f6f145c38d9eb">FourierFrequency</a> = boost::units::quantity&lt;boost::units::si::frequency, double&gt;;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;} <span class="comment">// namespace astrotypes</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;} <span class="comment">// namespace pss</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif // ASTROTYPES_UNITS_FREQUENCY_H</span></div>
-<div class="ttc" id="structpss_1_1astrotypes_1_1Frequency_html"><div class="ttname"><a href="structpss_1_1astrotypes_1_1Frequency.html">pss::astrotypes::Frequency</a></div><div class="ttdoc">Frequency dimension type. </div><div class="ttdef"><b>Definition:</b> Frequency.h:52</div></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">// Units</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="namespacepss_1_1astrotypes.html#aacb2218e405ec2ec4b5b6a7a46ccaabb">   46</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespacepss_1_1astrotypes.html#aacb2218e405ec2ec4b5b6a7a46ccaabb">Hertz</a> = boost::units::si::frequency;</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="namespacepss_1_1astrotypes.html#a9369acc9e0fc757d6338bbe3a05c6394">   47</a></span>&#160;<span class="keyword">using</span> <a class="code" href="namespacepss_1_1astrotypes.html#a9369acc9e0fc757d6338bbe3a05c6394">MegaHertz</a> = boost::units::make_scaled_unit&lt;boost::units::si::frequency, boost::units::scale&lt;10, boost::units::static_rational&lt;6&gt;&gt;&gt;::type;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">static</span> boost::units::si::frequency <span class="keyword">const</span> hertz = boost::units::si::hertz;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">static</span> boost::units::si::frequency <span class="keyword">const</span> hz = boost::units::si::hertz;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> NumericalRep, <span class="keyword">typename</span> FreqUnit=Hertz&gt;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1FreqQuantity.html">   56</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structpss_1_1astrotypes_1_1FreqQuantity.html">FreqQuantity</a> : <span class="keyword">public</span> boost::units::quantity&lt;typename std::enable_if&lt;std::is_same&lt;Frequency, typename FreqUnit::dimension_type&gt;::value, FreqUnit&gt;::type, NumericalRep&gt;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;{</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;} <span class="comment">// namespace astrotypes</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;} <span class="comment">// namespace pss</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif // ASTROTYPES_UNITS_FREQUENCY_H</span></div>
 <div class="ttc" id="namespacepss_html"><div class="ttname"><a href="namespacepss.html">pss</a></div><div class="ttdef"><b>Definition:</b> DataBuffer.cpp:26</div></div>
-<div class="ttc" id="namespacepss_1_1astrotypes_html_a9cc37f7d2410c223436f6f145c38d9eb"><div class="ttname"><a href="namespacepss_1_1astrotypes.html#a9cc37f7d2410c223436f6f145c38d9eb">pss::astrotypes::FourierFrequency</a></div><div class="ttdeci">boost::units::quantity&lt; boost::units::si::frequency, double &gt; FourierFrequency</div><div class="ttdoc">Fourier frequency type. </div><div class="ttdef"><b>Definition:</b> Frequency.h:59</div></div>
-<div class="ttc" id="namespacepss_1_1astrotypes_html_a9369acc9e0fc757d6338bbe3a05c6394"><div class="ttname"><a href="namespacepss_1_1astrotypes.html#a9369acc9e0fc757d6338bbe3a05c6394">pss::astrotypes::MegaHertz</a></div><div class="ttdeci">boost::units::make_scaled_unit&lt; boost::units::si::frequency, boost::units::scale&lt; 10, boost::units::static_rational&lt; 6 &gt;&gt;&gt;::type MegaHertz</div><div class="ttdef"><b>Definition:</b> Frequency.h:43</div></div>
+<div class="ttc" id="namespacepss_1_1astrotypes_html_a5e1868e9184f18f029a379c82ace3b63"><div class="ttname"><a href="namespacepss_1_1astrotypes.html#a5e1868e9184f18f029a379c82ace3b63">pss::astrotypes::Frequency</a></div><div class="ttdeci">boost::units::frequency_dimension Frequency</div><div class="ttdef"><b>Definition:</b> Frequency.h:43</div></div>
+<div class="ttc" id="namespacepss_1_1astrotypes_html_aacb2218e405ec2ec4b5b6a7a46ccaabb"><div class="ttname"><a href="namespacepss_1_1astrotypes.html#aacb2218e405ec2ec4b5b6a7a46ccaabb">pss::astrotypes::Hertz</a></div><div class="ttdeci">boost::units::si::frequency Hertz</div><div class="ttdef"><b>Definition:</b> Frequency.h:46</div></div>
+<div class="ttc" id="structpss_1_1astrotypes_1_1FreqQuantity_html"><div class="ttname"><a href="structpss_1_1astrotypes_1_1FreqQuantity.html">pss::astrotypes::FreqQuantity</a></div><div class="ttdoc">Frequency Quantity. </div><div class="ttdef"><b>Definition:</b> Frequency.h:56</div></div>
+<div class="ttc" id="namespacepss_1_1astrotypes_html_a9369acc9e0fc757d6338bbe3a05c6394"><div class="ttname"><a href="namespacepss_1_1astrotypes.html#a9369acc9e0fc757d6338bbe3a05c6394">pss::astrotypes::MegaHertz</a></div><div class="ttdeci">boost::units::make_scaled_unit&lt; boost::units::si::frequency, boost::units::scale&lt; 10, boost::units::static_rational&lt; 6 &gt;&gt;&gt;::type MegaHertz</div><div class="ttdef"><b>Definition:</b> Frequency.h:47</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 21 2018 10:42:01 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Mar 27 2018 18:18:01 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

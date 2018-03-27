@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structpss_1_1astrotypes_1_1NumericalRepresentation_3_01std_1_1array_3_01T_00_01S_01_4_01_4.html" title="pss::astrotypes::Numerical\lRepresentation\&lt; std::array\l\&lt; T, S \&gt; \&gt;" alt="" coords="5,5,184,57"/>
+<area shape="rect" id="node1" href="$classpss_1_1astrotypes_1_1MultiArray.html" title="pss::astrotypes::MultiArray\l\&lt; Alloc, T, Frequency, Time \&gt;" alt="" coords="5,5,197,44"/>
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1FrequencyTime.html" title="A template class representing values associated with a time and frequecny such as Stokes values or vo..." alt="" coords="245,5,427,44"/>
 </map>

@@ -1,4 +1,6 @@
 <map id="src/cpp/pss/astrotypes/multiarray/detail/MultiArray.cpp" name="src/cpp/pss/astrotypes/multiarray/detail/MultiArray.cpp">
-<area shape="rect" id="node2" href="$MultiArray_8h.html" title="src/cpp/pss/astrotypes\l/multiarray/MultiArray.h" alt="" coords="30,92,188,131"/>
-<area shape="rect" id="node3" href="$MultiArrayTest_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/test/src/MultiArray\lTest.cpp" alt="" coords="12,179,206,231"/>
+<area shape="rect" id="node2" href="$MultiArray_8h.html" title="src/cpp/pss/astrotypes\l/multiarray/MultiArray.h" alt="" coords="125,92,282,131"/>
+<area shape="rect" id="node3" href="$MultiArrayTest_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/test/src/MultiArray\lTest.cpp" alt="" coords="5,179,199,231"/>
+<area shape="rect" id="node4" href="$TimeFrequency_8h.html" title="src/cpp/pss/astrotypes\l/types/TimeFrequency.h" alt="" coords="224,185,386,224"/>
+<area shape="rect" id="node5" href="$TimeFrequencyTest_8cpp.html" title="src/cpp/pss/astrotypes\l/types/test/src/TimeFrequency\lTest.cpp" alt="" coords="205,279,405,331"/>
 </map>

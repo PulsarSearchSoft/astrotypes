@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['value_5ftype',['value_type',['../classpss_1_1astrotypes_1_1MultiArray_3_01T_00_01DerivedTypeTraits_00_01FirstDimension_00_01OtherDimensions_8_8_8_4.html#a9193ce6593a7cd58645b14c38ffef8f6',1,'pss::astrotypes::MultiArray&lt; T, DerivedTypeTraits, FirstDimension, OtherDimensions...&gt;::value_type()'],['../classpss_1_1astrotypes_1_1MultiArray_3_01T_00_01DerivedTypeTraits_00_01FirstDimension_01_4.html#ad2880f571f1da6766f7967319010ba30',1,'pss::astrotypes::MultiArray&lt; T, DerivedTypeTraits, FirstDimension &gt;::value_type()'],['../classpss_1_1astrotypes_1_1PointerAllocator.html#a7e7cc3c5c51d2a077a74f0037c2a3a7b',1,'pss::astrotypes::PointerAllocator::value_type()'],['../classpss_1_1astrotypes_1_1StandardAllocator.html#a008fca6cf67926994d96945a72fdb10b',1,'pss::astrotypes::StandardAllocator::value_type()'],['../structpss_1_1astrotypes_1_1test_1_1ParentType.html#a7a9f26de74c3922903a96a9869bf7fe8',1,'pss::astrotypes::test::ParentType::value_type()']]]
+  ['second',['Second',['../namespacepss_1_1astrotypes.html#a1dfdca44c829f9049ec3bcfd0dba3e7e',1,'pss::astrotypes']]],
+  ['seconds',['Seconds',['../namespacepss_1_1astrotypes.html#ae159cf12602a5dc1dedfcf6310765688',1,'pss::astrotypes']]]
 ];

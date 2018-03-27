@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['implementationclass',['ImplementationClass',['../structpss_1_1astrotypes_1_1MultiArrayTraits.html#ac520b0e9a9153756993c2dfa14edfc69',1,'pss::astrotypes::MultiArrayTraits']]],
-  ['iterator',['iterator',['../classpss_1_1astrotypes_1_1MultiArray_3_01T_00_01DerivedTypeTraits_00_01FirstDimension_00_01OtherDimensions_8_8_8_4.html#aa07f2bec687de549bd3916b1f46b4d70',1,'pss::astrotypes::MultiArray&lt; T, DerivedTypeTraits, FirstDimension, OtherDimensions...&gt;::iterator()'],['../classpss_1_1astrotypes_1_1MultiArray_3_01T_00_01DerivedTypeTraits_00_01FirstDimension_01_4.html#a85938aa3949b292a69fe8a8551e23a44',1,'pss::astrotypes::MultiArray&lt; T, DerivedTypeTraits, FirstDimension &gt;::iterator()'],['../structpss_1_1astrotypes_1_1test_1_1TestMultiArrayTraits.html#a12ce470a8567161f39e54e129820610e',1,'pss::astrotypes::test::TestMultiArrayTraits::iterator()'],['../structpss_1_1astrotypes_1_1test_1_1ParentType.html#a184f4439eb603ea9a0f820d6c31b5c42',1,'pss::astrotypes::test::ParentType::iterator()'],['../classpss_1_1astrotypes_1_1View.html#a31f01b3178d865b54f9cfb964ba309b5',1,'pss::astrotypes::View::Iterator()']]]
+  ['hertz',['Hertz',['../namespacepss_1_1astrotypes.html#aacb2218e405ec2ec4b5b6a7a46ccaabb',1,'pss::astrotypes']]]
 ];

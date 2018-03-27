@@ -97,12 +97,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="MultiArrayTest_8h_source.html">../MultiArrayTest.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="MultiArray_8h_source.html">pss/astrotypes/multiarray/MultiArray.h</a>&quot;</code><br />
+<code>#include &lt;algorithm&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for MultiArrayTest.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="MultiArrayTest_8cpp__incl.png" border="0" usemap="#src_2cpp_2pss_2astrotypes_2multiarray_2test_2src_2MultiArrayTest_8cpp" alt=""/></div>
 <map name="src_2cpp_2pss_2astrotypes_2multiarray_2test_2src_2MultiArrayTest_8cpp" id="src_2cpp_2pss_2astrotypes_2multiarray_2test_2src_2MultiArrayTest_8cpp">
-<area shape="rect" id="node2" href="MultiArrayTest_8h.html" title="../MultiArrayTest.h" alt="" coords="5,112,133,137"/><area shape="rect" id="node4" href="MultiArray_8h.html" title="pss/astrotypes/multiarray\l/MultiArray.h" alt="" coords="163,105,333,144"/><area shape="rect" id="node5" href="Slice_8h.html" title="Slice.h" alt="" coords="308,192,369,217"/><area shape="rect" id="node6" href="DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="184,265,312,291"/><area shape="rect" id="node7" href="DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="85,339,206,364"/><area shape="rect" id="node13" href="MultiArray_8cpp.html" title="detail/MultiArray.cpp" alt="" coords="393,192,535,217"/><area shape="rect" id="node11" href="Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="411,265,522,291"/><area shape="rect" id="node9" href="DimensionIndex_8cpp.html" title="detail/DimensionIndex.cpp" alt="" coords="230,339,408,364"/><area shape="rect" id="node8" href="DimensionSize_8cpp.html" title="detail/DimensionSize.cpp" alt="" coords="60,412,231,437"/></map>
+<area shape="rect" id="node2" href="MultiArrayTest_8h.html" title="../MultiArrayTest.h" alt="" coords="5,112,133,137"/><area shape="rect" id="node4" href="MultiArray_8h.html" title="pss/astrotypes/multiarray\l/MultiArray.h" alt="" coords="159,105,329,144"/><area shape="rect" id="node5" href="Slice_8h.html" title="Slice.h" alt="" coords="213,192,275,217"/><area shape="rect" id="node7" href="DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="237,412,358,437"/><area shape="rect" id="node9" href="DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="535,339,663,364"/><area shape="rect" id="node15" href="MultiArray_8cpp.html" title="detail/MultiArray.cpp" alt="" coords="299,192,440,217"/><area shape="rect" id="node6" href="DimensionSpan_8h.html" title="DimensionSpan.h" alt="" coords="323,265,450,291"/><area shape="rect" id="node13" href="Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="189,265,300,291"/><area shape="rect" id="node11" href="DimensionSpan_8cpp.html" title="detail/DimensionSpan.cpp" alt="" coords="335,339,511,364"/><area shape="rect" id="node8" href="DimensionSize_8cpp.html" title="detail/DimensionSize.cpp" alt="" coords="212,485,383,511"/><area shape="rect" id="node10" href="DimensionIndex_8cpp.html" title="detail/DimensionIndex.cpp" alt="" coords="510,412,688,437"/></map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -112,8 +113,6 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1test_1_1DimensionB.html">pss::astrotypes::test::DimensionB</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1test_1_1DimensionC.html">pss::astrotypes::test::DimensionC</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1test_1_1TestMultiArrayTraits.html">pss::astrotypes::test::TestMultiArrayTraits&lt; T, Dimensions &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1test_1_1TestMultiArray.html">pss::astrotypes::test::TestMultiArray&lt; T, Dimensions &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -135,13 +134,21 @@ Functions</h2></td></tr>
 <tr class="separator:a243b25fd5634bcaa9c6e64ed9b158cbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7663520821084c0cbf11b8fb02c3239"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1test.html#ad7663520821084c0cbf11b8fb02c3239">pss::astrotypes::test::TEST_F</a> (MultiArrayTest, test_three_dimension_size)</td></tr>
 <tr class="separator:ad7663520821084c0cbf11b8fb02c3239"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe52cab12fd9a0c8dc32f9df6b4978d4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1test.html#afe52cab12fd9a0c8dc32f9df6b4978d4">pss::astrotypes::test::TEST_F</a> (MultiArrayTest, test_three_dimension_square_bracket_operator)</td></tr>
+<tr class="separator:afe52cab12fd9a0c8dc32f9df6b4978d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a132ee9743043d35bf571ce292083ac32"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1test.html#a132ee9743043d35bf571ce292083ac32">pss::astrotypes::test::TEST_F</a> (MultiArrayTest, test_three_dimension_slice_operator)</td></tr>
 <tr class="separator:a132ee9743043d35bf571ce292083ac32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1ed27030e867e69222ab6d1ed56e218"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1test.html#ad1ed27030e867e69222ab6d1ed56e218">pss::astrotypes::test::TEST_F</a> (MultiArrayTest, test_three_dimension_std_copy)</td></tr>
+<tr class="separator:ad1ed27030e867e69222ab6d1ed56e218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa1acc025f785ac6b767d6c9e9e35b31"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1test.html#aaa1acc025f785ac6b767d6c9e9e35b31">pss::astrotypes::test::TEST_F</a> (MultiArrayTest, test_one_dimension_resize)</td></tr>
+<tr class="separator:aaa1acc025f785ac6b767d6c9e9e35b31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a982755b443355d54727ae137c5bd7b9c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1test.html#a982755b443355d54727ae137c5bd7b9c">pss::astrotypes::test::TEST_F</a> (MultiArrayTest, test_three_dimension_resize)</td></tr>
+<tr class="separator:a982755b443355d54727ae137c5bd7b9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 21 2018 10:42:01 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Mar 27 2018 18:18:02 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

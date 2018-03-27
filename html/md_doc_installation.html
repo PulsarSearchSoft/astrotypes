@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>astrotypes: Installation</title>
+<title>astrotypes: installation</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -78,32 +78,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">Installation </div>  </div>
+<div class="title">installation </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h2>cmake</h2>
+<div class="textblock"><h1><a class="anchor" id="Installation"></a>
+Installation</h1>
+<h2>cmake</h2>
 <p>Cmake is a widely used, platform and toolchain agnostic build tool. One of the features of cmake is that it provides out of source builds so you don't mix up build products (libraries, binaries, etc) from the source code. This is very powerful in other ways, you may want to build the same source using different compilers and compare the results.</p>
 <p>Configuring your build with cmake:</p><ul>
-<li>create a directory for your build products ```bash mkdir build ```</li>
+<li>create a directory for your build products <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;mkdir build</div>
+</div><!-- fragment --></li>
 <li><p class="startli">point cmake to the top of the astrotypes repository (along with any flags) and it will generate the appropriate build files for your host system (gnu make files on linux, nmake or .proj files for windows, etc)</p>
-<p class="startli">e.g to build a debug debug ```bash cmake -DCMAKE_BUILD_TYPE=debug &lt;path_to_astrotypes_repository&gt; ``` e.g to build a fully optimised version ```bash cmake -DCMAKE_BUILD_TYPE=release &lt;path_to_astrotypes_repository&gt; ```</p>
-<p class="startli">Note that cmake will do its best to determine where dependencies are on your system. You can override this behaviour with special flags. See the dependencies section for more details and options. ```</p>
+<p class="startli">e.g to build a debug debug </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;cmake -DCMAKE_BUILD_TYPE=debug &lt;path_to_astrotypes_repository&gt;</div>
+</div><!-- fragment --><p> e.g to build a fully optimised version </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;cmake -DCMAKE_BUILD_TYPE=release &lt;path_to_astrotypes_repository&gt;</div>
+</div><!-- fragment --><p class="startli">Note that cmake will do its best to determine where dependencies are on your system. You can override this behaviour with special flags. See the dependencies section for more details and options.</p>
 </li>
-<li>run make what you actually run will depend on your platform, but on linux this will be, by default, make. ```bash make ``` If you want to see whats going on under the hood you can run ```bash make VERBOSE=1 ```</li>
+<li>run make what you actually run will depend on your platform, but on linux this will be, by default, make.</li>
 </ul>
-<p>#Dependencies </p><h2>Boost</h2>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;make</div>
+</div><!-- fragment --><p>If you want to see whats going on under the hood you can run</p>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;make VERBOSE=1</div>
+</div><!-- fragment --><h2>Dependencies</h2>
+<h3>Boost</h3>
 <p>This project requires the boost_units library. You can use your local, or system installation of boost libs for this, however for convenience we also provide a packaged version of boost_units (and its dependencies) in the thirdparty directory of this repository.</p>
 <p>By default cmake will look for boost in the following order:</p><ul>
-<li>User defined variables: ``` -DBoost_ROOT=&lt;path_to_boost_root&gt; ``` or ``` -DBoost_INCLUDE_DIRS=&lt;path_to_boost_includes&gt; &amp; Boost_LIBRARY_DIRS=&lt;path_to_boost_libs&gt; ```</li>
+<li>User defined variables: <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;-DBoost_ROOT=&lt;path_to_boost_root&gt; </div>
+</div><!-- fragment --> or <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;-DBoost_INCLUDE_DIRS=&lt;path_to_boost_includes&gt; &amp; Boost_LIBRARY_DIRS=&lt;path_to_boost_libs&gt;</div>
+</div><!-- fragment --></li>
 <li>The usual system paths (/usr/local/lib, /usr/lib etc.)</li>
 <li>Use the the thirdparty version</li>
 </ul>
 <p>If you wish to force the use of the thridparty packaged version add the flag -DUSE_THIRDPARTY_BOOST=true to ignore any boost versions installed on the system. Note that boost units is a header-only library and does not need to be built.</p>
-<p>USE_THIRDPARTY_BOOST Force the use of the packaged boost version, ignoring any installed boost versions (default: false) </p>
+<table class="doxtable">
+<tr>
+<th>Cmake Variable </th><th>Description  </th></tr>
+<tr>
+<td>USE_THIRDPARTY_BOOST </td><td>Force the use of the packaged boost version, ignoring any installed boost versions (default: false) </td></tr>
+<tr>
+<td>Boost_LIBRARY_DIRS </td><td>Explicitly specify a directory where the boost libraries reside </td></tr>
+<tr>
+<td>Boost_INCLUDE_DIRS </td><td>Explicitly specify a directory where the boost header files reside </td></tr>
+<tr>
+<td>Boost_ROOT </td><td>Explicitly specify a directory where the boost distiburion resides </td></tr>
+</table>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 21 2018 10:42:01 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Mar 27 2018 18:18:02 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

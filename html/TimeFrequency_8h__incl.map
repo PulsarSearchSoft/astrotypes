@@ -1,0 +1,15 @@
+<map id="src/cpp/pss/astrotypes/types/TimeFrequency.h" name="src/cpp/pss/astrotypes/types/TimeFrequency.h">
+<area shape="rect" id="node2" href="$Time_8h.html" title="pss/astrotypes/units\l/Time.h" alt="" coords="268,92,407,131"/>
+<area shape="rect" id="node7" href="$Frequency_8h.html" title="pss/astrotypes/units\l/Frequency.h" alt="" coords="629,92,768,131"/>
+<area shape="rect" id="node10" href="$MultiArray_8h.html" title="pss/astrotypes/multiarray\l/MultiArray.h" alt="" coords="880,92,1050,131"/>
+<area shape="rect" id="node23" href="$TimeFrequency_8cpp.html" title="detail/TimeFrequency.cpp" alt="" coords="1168,99,1341,124"/>
+<area shape="rect" id="node11" href="$Slice_8h.html" title="Slice.h" alt="" coords="1115,185,1176,211"/>
+<area shape="rect" id="node13" href="$DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="975,412,1097,437"/>
+<area shape="rect" id="node15" href="$DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="835,339,963,364"/>
+<area shape="rect" id="node21" href="$MultiArray_8cpp.html" title="detail/MultiArray.cpp" alt="" coords="949,185,1090,211"/>
+<area shape="rect" id="node12" href="$DimensionSpan_8h.html" title="DimensionSpan.h" alt="" coords="949,265,1075,291"/>
+<area shape="rect" id="node19" href="$Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="1184,265,1295,291"/>
+<area shape="rect" id="node17" href="$DimensionSpan_8cpp.html" title="detail/DimensionSpan.cpp" alt="" coords="1037,339,1213,364"/>
+<area shape="rect" id="node14" href="$DimensionSize_8cpp.html" title="detail/DimensionSize.cpp" alt="" coords="950,485,1121,511"/>
+<area shape="rect" id="node16" href="$DimensionIndex_8cpp.html" title="detail/DimensionIndex.cpp" alt="" coords="774,412,951,437"/>
+</map>

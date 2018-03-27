@@ -1,0 +1,4 @@
+<map id="pss::astrotypes::TimeFrequency&lt; T, Alloc &gt;" name="pss::astrotypes::TimeFrequency&lt; T, Alloc &gt;">
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1MultiArray.html" title="{pss::astrotypes::MultiArray\l\&lt; Alloc, T, Time, Frequency \&gt;\n||+ MultiArray()\l+ begin()\l+ begin()\l+ end()\l+ end()\l+ cbegin()\l+ cend()\l+ operator[]()\l+ slice()\l+ resize()\l+ size()\l+ size()\l# MultiArray()\l# do_resize()\l# do_resize()\l}" alt="" coords="14,340,207,613"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1MultiArray.html" title="template classes to specify multiple dimesion arrays with explicit dimension types ..." alt="" coords="21,5,200,279"/>
+</map>

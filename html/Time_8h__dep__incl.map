@@ -1,6 +1,8 @@
 <map id="src/cpp/pss/astrotypes/units/Time.h" name="src/cpp/pss/astrotypes/units/Time.h">
-<area shape="rect" id="node2" href="$DataRate_8h.html" title="src/cpp/pss/astrotypes\l/units/DataRate.h" alt="" coords="5,92,159,131"/>
-<area shape="rect" id="node3" href="$TimeTest_8h.html" title="src/cpp/pss/astrotypes\l/units/test/TimeTest.h" alt="" coords="183,92,337,131"/>
-<area shape="rect" id="node5" href="$UtilitiesTest_8cpp.html" title="src/cpp/pss/astrotypes\l/units/test/src/UtilitiesTest.cpp" alt="" coords="360,92,556,131"/>
-<area shape="rect" id="node4" href="$TimeTest_8cpp.html" title="src/cpp/pss/astrotypes\l/units/test/src/TimeTest.cpp" alt="" coords="168,179,351,217"/>
+<area shape="rect" id="node2" href="$TimeFrequency_8h.html" title="src/cpp/pss/astrotypes\l/types/TimeFrequency.h" alt="" coords="24,92,186,131"/>
+<area shape="rect" id="node4" href="$DataRate_8h.html" title="src/cpp/pss/astrotypes\l/units/DataRate.h" alt="" coords="211,92,365,131"/>
+<area shape="rect" id="node5" href="$TimeTest_8h.html" title="src/cpp/pss/astrotypes\l/units/test/TimeTest.h" alt="" coords="388,92,542,131"/>
+<area shape="rect" id="node7" href="$UtilitiesTest_8cpp.html" title="src/cpp/pss/astrotypes\l/units/test/src/UtilitiesTest.cpp" alt="" coords="566,92,762,131"/>
+<area shape="rect" id="node3" href="$TimeFrequencyTest_8cpp.html" title="src/cpp/pss/astrotypes\l/types/test/src/TimeFrequency\lTest.cpp" alt="" coords="5,179,205,231"/>
+<area shape="rect" id="node6" href="$TimeTest_8cpp.html" title="src/cpp/pss/astrotypes\l/units/test/src/TimeTest.cpp" alt="" coords="374,185,556,224"/>
 </map>

@@ -1,7 +1,9 @@
 <map id="src/cpp/pss/astrotypes/multiarray/Slice.h" name="src/cpp/pss/astrotypes/multiarray/Slice.h">
-<area shape="rect" id="node2" href="$DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="165,92,294,117"/>
-<area shape="rect" id="node7" href="$Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="393,92,504,117"/>
-<area shape="rect" id="node3" href="$DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="30,165,152,191"/>
-<area shape="rect" id="node5" href="$DimensionIndex_8cpp.html" title="detail/DimensionIndex.cpp" alt="" coords="175,165,353,191"/>
-<area shape="rect" id="node4" href="$DimensionSize_8cpp.html" title="detail/DimensionSize.cpp" alt="" coords="5,239,176,264"/>
+<area shape="rect" id="node2" href="$DimensionSpan_8h.html" title="DimensionSpan.h" alt="" coords="156,92,282,117"/>
+<area shape="rect" id="node9" href="$Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="434,92,545,117"/>
+<area shape="rect" id="node3" href="$DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="30,239,152,264"/>
+<area shape="rect" id="node5" href="$DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="128,165,256,191"/>
+<area shape="rect" id="node7" href="$DimensionSpan_8cpp.html" title="detail/DimensionSpan.cpp" alt="" coords="280,165,456,191"/>
+<area shape="rect" id="node4" href="$DimensionSize_8cpp.html" title="detail/DimensionSize.cpp" alt="" coords="5,312,176,337"/>
+<area shape="rect" id="node6" href="$DimensionIndex_8cpp.html" title="detail/DimensionIndex.cpp" alt="" coords="175,239,353,264"/>
 </map>
