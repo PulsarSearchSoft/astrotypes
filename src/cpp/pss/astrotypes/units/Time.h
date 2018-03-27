@@ -40,11 +40,11 @@ namespace pss {
 namespace astrotypes {
 
 // Dimension
-class Time : public boost::units::si::time
-{
-};
+typedef boost::units::time_dimension Time;
 
 // Units
+using Second = boost::units::si::time;
+using Seconds =  Second;
 using MilliSecond = boost::units::make_scaled_unit<boost::units::si::time, 
     boost::units::scale<10, boost::units::static_rational<-3>>>::type;
 using MilliSeconds = MilliSecond;
@@ -61,29 +61,29 @@ static boost::units::si::time const seconds = boost::units::si::second;
 /**
  * @brief Second data type.
  */
-template<typename DataType>
-class Seconds : public boost::units::quantity<boost::units::si::time, DataType>
+template<typename NumericalRep, typename TimeUnit=Seconds>
+class TimeQuantity : public boost::units::quantity<TimeUnit, NumericalRep>
 {
-        using BaseType = boost::units::quantity<boost::units::si::time, DataType>;
+        using BaseType = boost::units::quantity<TimeUnit, NumericalRep>;
 
     public:
         /**
          * @brief Default empty constructor.
          */
-        Seconds() {}
+        TimeQuantity() {}
         /**
          * @brief Conversion from other boost::units::quantity types.
          * @param quantity boost::units::quantity object from which to convert
          */
         template<typename UnitType, typename OtherDataType>
-        explicit Seconds(boost::units::quantity<UnitType, OtherDataType> const & quantity) : BaseType(quantity) {}
+        explicit TimeQuantity(boost::units::quantity<UnitType, OtherDataType> const & quantity) : BaseType(quantity) {}
 
         /**
          * @brief Conversion from std::chrono::duration types
          * @param duration std::chrono::duration from which to convert
          */
         template<typename DurationType, typename PeriodType>
-        explicit Seconds(std::chrono::duration<DurationType, PeriodType> const & duration)
+        explicit TimeQuantity(std::chrono::duration<DurationType, PeriodType> const & duration)
             : BaseType(std::chrono::duration_cast<std::chrono::duration<DurationType, std::ratio<1, 1>>>(duration).count()
                    * seconds) {}
 

@@ -24,15 +24,15 @@ float doubled_freq = double_frequency(t); // bug not caught by the compiler
 
 If instead we use define some type to represent frequency, then 
 ```c++
-Frequency<float> double_frequency(Frequency<float> frequency);
+FreqQuantity<float> double_frequency(FreqQuantity<float> frequency);
 ```
 Now our user will have the help of the compiler, as their code will not compile with the bug.
 
 ```c++
 float t = 0.7678;
-Frequency<float> f(1800 * hertz);
+FreqQuantity<float> f(1800 * hertz);
 
-Frequency<float> doubled_freq = double_frequency(t); // bug caught by the compiler
+FreqQuantity<float> doubled_freq = double_frequency(t); // bug caught by the compiler
 ```
 
 So strong typing can save you and your users hours of debugging frustrating runtime errors.

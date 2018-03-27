@@ -40,10 +40,10 @@ TEST(TimeTest, test_seconds)
 {
     std::chrono::seconds chrono_seconds(10);
     std::chrono::milliseconds chrono_milliseconds(1000);
-    pss::astrotypes::Seconds<int> local_seconds(chrono_seconds);
+    pss::astrotypes::TimeQuantity<int> local_seconds(chrono_seconds);
 
     ASSERT_EQ(chrono_seconds.count(), local_seconds.value());
-    local_seconds = pss::astrotypes::Seconds<int>(chrono_milliseconds);
+    local_seconds = pss::astrotypes::TimeQuantity<int>(chrono_milliseconds);
     ASSERT_EQ(1, local_seconds.value());
 }
 
