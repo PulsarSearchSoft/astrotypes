@@ -35,7 +35,7 @@ void transpose(TimeFrequency<T> & source, FrequencyTime<T> & destination)
     }
 }
 
-template<Typename T>
+template<typename T>
 void transpose(FrequencyTime<T> & source, TimeFrequency<T> & destination)
 {
     for ( DimensionIndex<Frequency> index_frequency = 0; index_frequency < source.size<Frequency>(); index_frequency++ ) {
