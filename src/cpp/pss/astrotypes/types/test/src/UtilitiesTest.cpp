@@ -29,6 +29,23 @@ namespace pss {
 namespace astrotypes {
 namespace test {
 
+UtilitiesTest::UtilitiesTest()
+    : ::testing::Test()
+{
+}
+
+UtilitiesTest::~UtilitiesTest()
+{
+}
+
+void UtilitiesTest::SetUp()
+{
+}
+
+void UtilitiesTest::TearDown()
+{
+}
+
 } // namespace test
 } // namespace astrotypes
 } // namespace pss

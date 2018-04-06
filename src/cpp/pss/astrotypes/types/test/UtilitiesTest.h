@@ -22,7 +22,30 @@
  * SOFTWARE.
  */
 
+#include <gtest/gtest.h>
+
 #ifndef PSS_ASTROTYPES_TYPES_TEST_UTILITIESTEST_H
 #define PSS_ASTROTYPES_TYPES_TEST_UTILITIESTEST_H
+
+namespace pss {
+namespace astrotypes {
+namespace test {
+
+class UtilitiesTest : public ::testing::Test
+{
+protected:
+    void SetUp() override;
+    void TearDown() override;
+
+public:
+    UtilitiesTest();
+    ~UtilitiesTest();
+
+private:
+};
+
+} // namespace test
+} // namespace astrotypes
+} // namespace pss
 
 #endif // PSS_ASTROTYPES_TYPES_TEST_UTILITIESTEST_H

@@ -4,6 +4,7 @@ link_directories(${GTEST_LIBRARY_DIR})
 set(
    gtest_types_src
    src/TimeFrequencyTest.cpp
+   src/UtilitiesTest.cpp
 )
 
 add_executable(gtest_types ${gtest_types_src} )
