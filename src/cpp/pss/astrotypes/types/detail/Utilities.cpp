@@ -22,22 +22,20 @@
  * SOFTWARE.
  */
 
-#include "pss/astrotypes/types/TimeFrequency.h"
-
-#ifndef PSS_ASTROTYPES_TYPES_UTILITIES_H
-#define PSS_ASTROTYPES_TYPES_UTILITIES_H
-
 namespace pss {
 namespace astrotypes {
 
 template<typename T>
-void transpose(TimeFrequency<T> & source, FrequencyTime<T> & destination);
+void transpose(TimeFrequency<T> & source, FrequencyTime<T> & destination)
+{
+
+}
 
 template<Typename T>
-void transpose(FrequencyTime<T> & source, TimeFrequency<T> & destination);
+void transpose(FrequencyTime<T> & source, TimeFrequency<T> & destination)
+{
 
-} // astrotypes
-} // pss
-#include "detail/Utilities.cpp"
+}
 
-#endif // PSS_ASTROTYPES_TYPES_UTILITIES_H
+} // namespace astrotypes
+} // namespace pss
