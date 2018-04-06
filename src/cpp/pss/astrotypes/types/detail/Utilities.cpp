@@ -28,13 +28,21 @@ namespace astrotypes {
 template<typename T>
 void transpose(TimeFrequency<T> & source, FrequencyTime<T> & destination)
 {
-
+    for ( DimensionIndex<Time> index_time = 0; index_time < source.size<Time>(); index_time++ ) {
+        for ( DimensionIndex<Frequency> index_frequency = 0; index_frequency < source.size<Frequency>(); index_frequency++ ) {
+            destination[index_frequency][index_time] = source[index_time][index_frequency];
+        }
+    }
 }
 
 template<Typename T>
 void transpose(FrequencyTime<T> & source, TimeFrequency<T> & destination)
 {
-
+    for ( DimensionIndex<Frequency> index_frequency = 0; index_frequency < source.size<Frequency>(); index_frequency++ ) {
+        for ( DimensionIndex<Time> index_time = 0; index_time < source.size<Time>(); index_time++ ) {
+            destination[index_time][index_frequency] = source[index_frequency][index_time];
+        }
+    }
 }
 
 } // namespace astrotypes

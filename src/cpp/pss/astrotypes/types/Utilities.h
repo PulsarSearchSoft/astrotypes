@@ -23,6 +23,7 @@
  */
 
 #include "pss/astrotypes/types/TimeFrequency.h"
+#include <algorithm>
 
 #ifndef PSS_ASTROTYPES_TYPES_UTILITIES_H
 #define PSS_ASTROTYPES_TYPES_UTILITIES_H
@@ -30,9 +31,23 @@
 namespace pss {
 namespace astrotypes {
 
+/**
+ * @brief Transpose a TimeFrequency object into a FrequencyTime object.
+ *
+ * @tparam T Data type.
+ * @param source Object to copy data from.
+ * @param destination Object to copy data to.
+ */
 template<typename T>
 void transpose(TimeFrequency<T> & source, FrequencyTime<T> & destination);
 
+/**
+ * @brief Transpose a FrequencyTime object into a TimeFrequency object.
+ *
+ * @tparam T Data type.
+ * @param source Object to copy data from.
+ * @param destination Object to copy data to.
+ */
 template<Typename T>
 void transpose(FrequencyTime<T> & source, TimeFrequency<T> & destination);
 
