@@ -48,7 +48,7 @@ void transpose(TimeFrequency<T> & source, FrequencyTime<T> & destination);
  * @param source Object to copy data from.
  * @param destination Object to copy data to.
  */
-template<Typename T>
+template<typename T>
 void transpose(FrequencyTime<T> & source, TimeFrequency<T> & destination);
 
 } // astrotypes
