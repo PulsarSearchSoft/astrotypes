@@ -5,7 +5,7 @@ if(NOT USE_THIRDPARTY_BOOST)
     message(STATUS "Checking for an installed boost...")
     find_package(Boost QUIET) # Check for an existing boost install. NB we fail quietly here, as we can default to using the included boost.
     if(Boost_FOUND)
-        message(STATUS "Boost found!")
+        message(STATUS "Boost found (version ${Boost_MAJOR_VERSION}.${Boost_MINOR_VERSION})")
     else()
         message(STATUS "Boost not found! Defaulting to thirdparty boost/units...")
     endif()
