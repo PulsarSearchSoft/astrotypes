@@ -6,7 +6,8 @@ if(CMAKE_BUILD_TYPE MATCHES profile)
     macro(COVERAGE_TARGET _targetname )
         set(_outputname coverage_${_targetname})
         set(_outputdir coverage)
-        set(coverage_target coverage_report_${_targetname})
+        set(coverage_target_general coverage_report_${_targetname}) # generic target name (collect form this and all subprojects)
+        set(coverage_target coverage_report_${_targetname}_${PROJECT_NAME})  # specific to this project
         ADD_CUSTOM_TARGET(${coverage_target}
 
             # Cleanup lcov
@@ -24,10 +25,17 @@ if(CMAKE_BUILD_TYPE MATCHES profile)
         )
 
         # Show info where to find the report
-        ADD_CUSTOM_COMMAND(TARGET coverage_report_${_targetname} POST_BUILD
+        ADD_CUSTOM_COMMAND(TARGET ${coverage_target} POST_BUILD
             COMMAND ;
             COMMENT "see ${_outputdir}/${_outputname}/index.html for the coverage report."
         )
+
+        if(NOT _coverage_target_defined_${coverage_target_general})
+            # -- define the general target
+            set(_coverage_target_defined_${coverage_target_general} true)
+            ADD_CUSTOM_TARGET(${coverage_target_general})
+        endif()
+        ADD_DEPENDENCIES(${coverage_target_general} ${coverage_target})
 
     endmacro(COVERAGE_TARGET)
 
@@ -56,9 +64,12 @@ else(CMAKE_BUILD_TYPE MATCHES profile)
     # -- if coverage is not available, output a suitable message if someone tries to build the target 
     macro(COVERAGE_TARGET _targetname )
         set(coverage_target coverage_report_${_targetname})
-        ADD_CUSTOM_TARGET(${coverage_target}
-            COMMENT "target ${coverage_target} requires a profile build. Did you forget to set CMAKE_BUILD_TYPE=profile?"
-        )
+        if(NOT _coverage_target_defined_${coverage_target})
+            set(_coverage_target_defined_${coverage_target} true)
+            ADD_CUSTOM_TARGET(${coverage_target}
+                COMMENT "target ${coverage_target} requires a profile build. Did you forget to set CMAKE_BUILD_TYPE=profile?"
+            )
+        endif()
     endmacro(COVERAGE_TARGET)
 
 endif()
