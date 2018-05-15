@@ -58,7 +58,7 @@ if(NOT DOC_INSTALL_DIR)
 endif(NOT DOC_INSTALL_DIR)
 
 if(NOT BINARY_INSTALL_DIR)
-    set(BINARY_INSTALL_DIR "bin/")
+    set(BINARY_INSTALL_DIR "bin")
 endif(NOT BINARY_INSTALL_DIR)
 
 # get project dependencies and compiler settings.
