@@ -96,10 +96,10 @@ typename MultiArray<Alloc, T, FirstDimension, Dimensions...>::SliceType MultiArr
 }
 
 template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
-template<typename Dim>
-void MultiArray<Alloc, T, FirstDimension, Dimensions...>::resize(DimensionSize<Dim> size)
+template<typename... Dims>
+void MultiArray<Alloc, T, FirstDimension, Dimensions...>::resize(DimensionSize<Dims>... size)
 {
-    this->do_resize(1,  size);
+    this->do_resize(1,  std::forward<DimensionSize<Dims>>(size)...);
 }
 
 template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
@@ -119,20 +119,26 @@ MultiArray<Alloc, T, FirstDimension, Dimensions...>::size() const
 }
 
 template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
-template<typename Dim>
+template<typename Dim, typename... Dims>
 typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, void>::type 
-MultiArray<Alloc, T, FirstDimension, Dimensions...>::do_resize(std::size_t total, DimensionSize<Dim> size)
+MultiArray<Alloc, T, FirstDimension, Dimensions...>::do_resize(std::size_t total, DimensionSize<Dim> size, DimensionSize<Dims>&&... sizes)
 {
-    BaseT::do_resize(total * static_cast<std::size_t>(_size), size);
+    BaseT::do_resize(total * static_cast<std::size_t>(_size), size, std::forward<DimensionSize<Dims>>(sizes)...);
 }
 
 template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
-template<typename Dim>
+template<typename Dim, typename... Dims>
 typename std::enable_if<std::is_same<Dim, FirstDimension>::value, void>::type 
-MultiArray<Alloc, T, FirstDimension, Dimensions...>::do_resize(std::size_t total, DimensionSize<Dim> size)
+MultiArray<Alloc, T, FirstDimension, Dimensions...>::do_resize(std::size_t total, DimensionSize<Dim> size, DimensionSize<Dims>&&... sizes)
 {
     _size = size;
-    BaseT::do_resize(total * static_cast<std::size_t>(_size), size);
+    BaseT::do_resize(total * static_cast<std::size_t>(_size), std::forward<DimensionSize<Dims>>(sizes)...);
+}
+
+template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
+void MultiArray<Alloc, T, FirstDimension, Dimensions...>::do_resize(std::size_t total)
+{
+    BaseT::do_resize(total * static_cast<std::size_t>(_size));
 }
 
 /////////////////////////////////////////////////////////////
@@ -180,9 +186,9 @@ void MultiArray<Alloc, T, FirstDimension>::resize(DimensionSize<Dim> size)
 }
 
 template<typename Alloc, typename T, typename FirstDimension>
-template<typename Dim>
-typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, void>::type 
-MultiArray<Alloc, T, FirstDimension>::do_resize(std::size_t total, DimensionSize<Dim>)
+//template<typename Dim>
+//typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, void>::type 
+void MultiArray<Alloc, T, FirstDimension>::do_resize(std::size_t total)
 {
     _data.resize(total * static_cast<std::size_t>(_size));
 }

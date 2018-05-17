@@ -27,6 +27,7 @@
 #include "Slice.h"
 #include "DimensionSize.h"
 #include "DimensionIndex.h"
+#include <vector>
 
 namespace pss {
 namespace astrotypes {
@@ -95,8 +96,8 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
         /**
          * @brief resize the array in the specified dimension
          */
-        template<typename Dim>
-        void resize(DimensionSize<Dim>);
+        template<typename... Dimensions>
+        void resize(DimensionSize<Dimensions>... size);
 
         /**
          * @brief resize the array in the specified dimension
@@ -115,13 +116,15 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
     protected:
         MultiArray(bool disable_resize_tag, DimensionSize<FirstDimension> const&, DimensionSize<OtherDimensions> const& ... sizes);
 
-        template<typename Dimension>
+        template<typename Dimension, typename... Dims>
         typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type 
-        do_resize(std::size_t total, DimensionSize<Dimension> size);
+        do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>&&... sizes);
 
-        template<typename Dimension>
+        template<typename Dimension, typename... Dims>
         typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type 
-        do_resize(std::size_t total, DimensionSize<Dimension> size);
+        do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>&&... sizes);
+
+        void do_resize(std::size_t total);
 
     private:
         DimensionSize<FirstDimension>     _size;
@@ -181,9 +184,9 @@ class MultiArray<Alloc, T, FirstDimension>
         typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type 
         do_resize(std::size_t total_size, DimensionSize<Dimension> size);
 
-        template<typename Dimension>
-        typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type 
-        do_resize(std::size_t total_size, DimensionSize<Dimension> size);
+        //template<typename Dimension>
+        //typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type 
+        void do_resize(std::size_t total_size);
 
     private:
         DimensionSize<FirstDimension> _size;

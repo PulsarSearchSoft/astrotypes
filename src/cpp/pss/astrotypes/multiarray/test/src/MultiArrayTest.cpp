@@ -200,6 +200,24 @@ TEST_F(MultiArrayTest, test_three_dimension_resize)
     ASSERT_EQ(std::distance(ma.begin(), ma.end()), size_a * size_b * size_c);
 }
 
+TEST_F(MultiArrayTest, test_three_dimension_resize_multiple_args)
+{
+    DimensionSize<DimensionA> size_a(10);
+    DimensionSize<DimensionB> size_b(20);
+    DimensionSize<DimensionC> size_c(30);
+
+    TestMultiArray<unsigned, DimensionA, DimensionB, DimensionC> ma( size_a, size_b, size_c);
+    size_a = DimensionSize<DimensionA>(5);
+    size_b = DimensionSize<DimensionB>(15);
+    ma.resize(size_a, size_b);
+    ASSERT_EQ(std::distance(ma.begin(), ma.end()), size_a * size_b * size_c);
+
+    size_b = DimensionSize<DimensionB>(20);
+    size_c = DimensionSize<DimensionC>(5);
+    ma.resize(size_b, size_c);
+    ASSERT_EQ(std::distance(ma.begin(), ma.end()), size_a * size_b * size_c);
+}
+
 } // namespace test
 } // namespace astrotypes
 } // namespace pss
