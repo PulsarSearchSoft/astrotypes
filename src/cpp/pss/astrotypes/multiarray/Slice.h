@@ -24,6 +24,7 @@
 #ifndef PSS_ASTROTYPES_MULTIARRAY_SLICE_H
 #define PSS_ASTROTYPES_MULTIARRAY_SLICE_H
 #include "DimensionSpan.h"
+#include "SliceIterator.h"
 #include <utility>
 
 namespace pss {
@@ -35,15 +36,21 @@ namespace astrotypes {
  * @details
  */
 
-template<typename Parent, typename Dimension, typename... Dimensions>
-class Slice : private Slice<Parent, Dimensions...>
+template<typename ParentT, typename Dimension, typename... Dimensions>
+class Slice : private Slice<ParentT, Dimensions...>
 {
-        typedef Slice<Parent, Dimensions...> BaseT;
-        typedef Slice<Parent, Dimension, Dimensions...> SelfType;
-        typedef typename Parent::value_type value_type;
-        typedef typename Parent::reference_type reference_type;
+        typedef Slice<ParentT, Dimensions...> BaseT;
+        typedef Slice<ParentT, Dimension, Dimensions...> SelfType;
+        typedef typename ParentT::value_type value_type;
+        typedef typename ParentT::reference_type reference_type;
 
-        typedef typename Parent::iterator iterator;
+        typedef typename ParentT::iterator parent_iterator;
+        typedef typename ParentT::const_iterator parent_const_iterator;
+
+    public:
+        typedef ParentT Parent;
+        typedef SliceIterator<SelfType> iterator;
+        typedef SliceIterator<const SelfType> const_iterator;
 
     public:
         Slice( Parent& parent
@@ -81,19 +88,46 @@ class Slice : private Slice<Parent, Dimensions...>
         /**
          * @brief Take a slice in the specified dimension one channel thick
          */
-        Slice<Parent, Dimensions...> operator[](std::size_t) const;
+        Slice<Parent, Dimensions...> operator[](DimensionIndex<Dimension>) const;
+        Slice<Parent, Dimensions...> operator[](std::size_t) const; // TODO remove
 
         /**
          * @brief Take a slice from this slice
          */
         Slice<Parent, Dimension, Dimensions...> slice(DimensionSpan<Dimension> const& span) const;
 
+        /**
+         * @brief iterator pointing to the first element in the slice
+         */
+        iterator begin();
+        const_iterator begin() const;
+        const_iterator cbegin() const;
+
+        /**
+         * @brief iterator pointing to just after the last element
+         */
+        iterator end();
+        const_iterator end() const;
+        const_iterator cend() const;
+
     protected:
         template<typename P, typename D, typename... Ds> friend class Slice;
 
+
         // return the span of memory to add on to the outer dimension index
         std::size_t span() const;
-        void offset(iterator const&); // init the offset relative to the top parent
+
+        // return the size of memory occupied by the lowest dimension
+        std::size_t contiguous_span() const;
+
+        // reeturn the span of all lower dimensions than this one (i.e an index of +1 in this dimension)
+        std::size_t base_span() const;
+
+        // ptr to the start of the block
+        parent_iterator const& base_ptr() const;
+        parent_iterator& base_ptr();
+
+        void offset(parent_iterator const&); // init the offset relative to the top parent
 
         // init for inheriting classes only
         Slice( DimensionSpan<Dimension> const&
@@ -107,25 +141,31 @@ class Slice : private Slice<Parent, Dimensions...>
         // increment pointer by a n * base span length
         SelfType& operator+=(DimensionSize<Dimension> n);
 
-        // return the span of the underlying parent in the Dimension
-        DimensionSize<Dimension> parent_span() const;
+    private:
+        friend typename iterator::BaseT;
+        friend typename const_iterator::BaseT;
 
     private:
         DimensionSpan<Dimension> _span;
         DimensionSize<Dimension> _base_span;
-        iterator _ptr;  // start of block
+        parent_iterator _ptr;  // start of block
 };
 
 // specialisation for 0 dimensional slice
 // which should return a single element
-template<typename Parent, typename Dimension>
-class Slice<Parent, Dimension>
+template<typename ParentT, typename Dimension>
+class Slice<ParentT, Dimension>
 {
-        typedef Slice<Parent, Dimension> SelfType;
+        typedef Slice<ParentT, Dimension> SelfType;
+        typedef typename ParentT::reference_type reference_type;
+        typedef typename ParentT::iterator parent_iterator;
+        typedef typename ParentT::const_iterator parent_const_iterator;
 
+    public:
+        typedef ParentT Parent;
+        typedef SliceIterator<SelfType> iterator;
+        typedef SliceIterator<const SelfType> const_iterator;
 
-        typedef typename Parent::reference_type reference_type;
-        typedef typename Parent::iterator iterator;
 
     public:
         Slice(Parent& parent, DimensionSpan<Dimension> const&);
@@ -151,22 +191,49 @@ class Slice<Parent, Dimension>
         reference_type operator[](std::size_t index) const;
         reference_type operator[](DimensionIndex<Dimension> const& index) const;
 
+        /**
+         * @brief iterator pointing to the first element in the slice
+         */
+        iterator begin();
+        const_iterator begin() const;
+        const_iterator cbegin() const;
+
+        /**
+         * @brief iterator pointing to just after the last element
+         */
+        iterator end();
+        const_iterator end() const;
+        const_iterator cend() const;
+
+
     protected:
         template<typename P, typename D, typename... Ds> friend class Slice;
 
-        // return the span of memory to add on to the outer dimension index
+        /// return the span of memory to add on to the outer dimension index for the next index
         std::size_t span() const;
-        void offset(iterator const&); // init the offset relative to the top parent
+
+        // return the size of memory occupied by the lowest dimension
+        std::size_t contiguous_span() const;
+
+        // same as size() - to support base_span calls from higher dimensions
+        std::size_t base_span() const;
+
+        // ptr to the start of the block
+        parent_iterator const& base_ptr() const;
+        parent_iterator& base_ptr();
+
+        void offset(parent_iterator const&); // init the offset relative to the top parent
         Slice(DimensionSpan<Dimension> const&, Parent const&);
         SelfType& operator+=(DimensionSize<Dimension> const&);
 
-    protected:
-        DimensionSize<Dimension> parent_span() const;
+    private:
+        friend typename iterator::BaseT;
+        friend typename const_iterator::BaseT;
 
     private:
         DimensionSpan<Dimension> _span;
         DimensionSize<Dimension> _base_span;
-        typename Parent::iterator _ptr;   // start, to extent _ptr + _span
+        parent_iterator _ptr;   // start, to extent _ptr + _span
 };
 
 } // namespace astrotypes

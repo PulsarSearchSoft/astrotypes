@@ -54,7 +54,7 @@ Slice<Parent, Dimension, Dimensions...>::Slice( DimensionSpan<Dimension> const& 
 }
 
 template<typename Parent, typename Dimension, typename... Dimensions>
-void Slice<Parent, Dimension, Dimensions...>::offset(iterator const& it) 
+void Slice<Parent, Dimension, Dimensions...>::offset(parent_iterator const& it) 
 {
     _ptr=it + static_cast<const std::size_t>(_span.start()) * BaseT::_base_span;
     BaseT::offset(_ptr);
@@ -64,6 +64,30 @@ template<typename Parent, typename Dimension, typename... Dimensions>
 std::size_t Slice<Parent, Dimension, Dimensions...>::span() const
 {
     return static_cast<const std::size_t>(_span.span()) * BaseT::span();
+}
+
+template<typename Parent, typename Dimension, typename... Dimensions>
+std::size_t Slice<Parent, Dimension, Dimensions...>::base_span() const
+{
+    return static_cast<const std::size_t>(BaseT::base_span());
+}
+
+template<typename Parent, typename Dimension, typename... Dimensions>
+std::size_t Slice<Parent, Dimension, Dimensions...>::contiguous_span() const
+{
+    return BaseT::contiguous_span();
+}
+
+template<typename Parent, typename Dimension, typename... Dimensions>
+typename Slice<Parent, Dimension, Dimensions...>::parent_iterator& Slice<Parent, Dimension, Dimensions...>::base_ptr()
+{
+    return BaseT::base_ptr();
+}
+
+template<typename Parent, typename Dimension, typename... Dimensions>
+typename Slice<Parent, Dimension, Dimensions...>::parent_iterator const& Slice<Parent, Dimension, Dimensions...>::base_ptr() const
+{
+    return BaseT::base_ptr();
 }
 
 template<typename Parent, typename Dimension, typename... Dimensions>
@@ -84,10 +108,18 @@ Slice<Parent, Dimension, Dimensions...>::size() const
 
 template<typename Parent, typename Dimension, typename... Dimensions>
 Slice<Parent, Dimensions...>
+Slice<Parent, Dimension, Dimensions...>::operator[](DimensionIndex<Dimension> offset) const
+{
+    return BaseT(*this) += static_cast<std::size_t>(offset);
+}
+
+template<typename Parent, typename Dimension, typename... Dimensions>
+Slice<Parent, Dimensions...>
 Slice<Parent, Dimension, Dimensions...>::operator[](std::size_t offset) const
 {
     return BaseT(*this) += offset;
 }
+
 
 // n.b offset refers to the dimension in the level above (i.e a full _base_span)
 template<typename Parent, typename Dimension, typename... Dimensions>
@@ -118,6 +150,42 @@ Slice<Parent, Dimension, Dimensions...>::slice(DimensionSpan<Dimension> const& s
     return s;
 }
 
+
+template<typename Parent, typename Dimension, typename... Dimensions>
+typename Slice<Parent, Dimension, Dimensions...>::iterator Slice<Parent, Dimension, Dimensions...>::begin()
+{
+    return make_slice_iterator(*this);
+}
+
+template<typename Parent, typename Dimension, typename... Dimensions>
+typename Slice<Parent, Dimension, Dimensions...>::const_iterator Slice<Parent, Dimension, Dimensions...>::begin() const
+{
+    return make_slice_iterator(*this);
+}
+
+template<typename Parent, typename Dimension, typename... Dimensions>
+typename Slice<Parent, Dimension, Dimensions...>::const_iterator Slice<Parent, Dimension, Dimensions...>::cbegin() const
+{
+    return make_slice_iterator(*this);
+}
+
+template<typename Parent, typename Dimension, typename... Dimensions>
+typename Slice<Parent, Dimension, Dimensions...>::iterator Slice<Parent, Dimension, Dimensions...>::end()
+{
+    return make_end_slice_iterator(*this);
+}
+
+template<typename Parent, typename Dimension, typename... Dimensions>
+typename Slice<Parent, Dimension, Dimensions...>::const_iterator Slice<Parent, Dimension, Dimensions...>::end() const
+{
+    return make_end_slice_iterator(*this);
+}
+
+template<typename Parent, typename Dimension, typename... Dimensions>
+typename Slice<Parent, Dimension, Dimensions...>::const_iterator Slice<Parent, Dimension, Dimensions...>::cend() const
+{
+    return make_end_slice_iterator(*this);
+}
 // -------------------- single dimension specialisation -------------------
 template<typename Parent, typename Dimension>
 Slice<Parent, Dimension>::Slice(Parent& parent, DimensionSpan<Dimension> const& d)
@@ -135,7 +203,7 @@ Slice<Parent, Dimension>::Slice(DimensionSpan<Dimension> const& d, Parent const&
 }
 
 template<typename Parent, typename Dimension>
-void Slice<Parent, Dimension>::offset(iterator const& it)
+void Slice<Parent, Dimension>::offset(parent_iterator const& it)
 {
     _ptr = it + static_cast<const std::size_t>(_span.start());
 }
@@ -178,9 +246,27 @@ std::size_t Slice<Parent, Dimension>::span() const
 }
 
 template<typename Parent, typename Dimension>
-DimensionSize<Dimension> Slice<Parent, Dimension>::parent_span() const
+std::size_t Slice<Parent, Dimension>::base_span() const
 {
-    return _base_span;
+    return static_cast<const std::size_t>(_span.span());
+}
+
+template<typename Parent, typename Dimension>
+std::size_t Slice<Parent, Dimension>::contiguous_span() const
+{
+    return static_cast<const std::size_t>(_span.span());
+}
+
+template<typename Parent, typename Dimension>
+typename Slice<Parent, Dimension>::parent_iterator const& Slice<Parent, Dimension>::base_ptr() const
+{
+    return _ptr;
+}
+
+template<typename Parent, typename Dimension>
+typename Slice<Parent, Dimension>::parent_iterator& Slice<Parent, Dimension>::base_ptr()
+{
+    return _ptr;
 }
 
 template<typename Parent, typename Dimension>
@@ -188,6 +274,42 @@ Slice<Parent, Dimension>& Slice<Parent, Dimension>::operator+=(DimensionSize<Dim
 {
     _ptr += static_cast<const std::size_t&>(offset) * _base_span;
     return *this;
+}
+
+template<typename Parent, typename Dimension>
+typename Slice<Parent, Dimension>::iterator Slice<Parent, Dimension>::begin()
+{
+    return make_slice_iterator(*this);
+}
+
+template<typename Parent, typename Dimension>
+typename Slice<Parent, Dimension>::const_iterator Slice<Parent, Dimension>::begin() const
+{
+    return make_slice_iterator(*this);
+}
+
+template<typename Parent, typename Dimension>
+typename Slice<Parent, Dimension>::const_iterator Slice<Parent, Dimension>::cbegin() const
+{
+    return make_slice_iterator(*this);
+}
+
+template<typename Parent, typename Dimension>
+typename Slice<Parent, Dimension>::iterator Slice<Parent, Dimension>::end()
+{
+    return make_end_slice_iterator(*this);
+}
+
+template<typename Parent, typename Dimension>
+typename Slice<Parent, Dimension>::const_iterator Slice<Parent, Dimension>::end() const
+{
+    return make_end_slice_iterator(*this);
+}
+
+template<typename Parent, typename Dimension>
+typename Slice<Parent, Dimension>::const_iterator Slice<Parent, Dimension>::cend() const
+{
+    return make_end_slice_iterator(*this);
 }
 
 } // namespace astrotypes
