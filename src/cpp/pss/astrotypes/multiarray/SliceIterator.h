@@ -99,6 +99,7 @@ class SliceIteratorBase
         SliceType& _slice;
         parent_iterator _current;
         parent_iterator _end;
+        parent_iterator _offset;
 };
 
 template<typename SliceType>
@@ -112,7 +113,6 @@ class SliceIterator : public SliceIteratorBase<SliceIterator<SliceType>, SliceTy
 
     public:
         SliceIterator(SliceType&);
-
 
         /// dereference operators
         reference operator*();

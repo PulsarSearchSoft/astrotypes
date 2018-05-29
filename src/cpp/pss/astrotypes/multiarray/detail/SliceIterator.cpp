@@ -42,6 +42,7 @@ SliceIteratorBase<DerivedType, SliceType>::SliceIteratorBase(SliceType& slice)
     : _slice(slice)
     , _current(slice.base_ptr())
     , _end(_current + slice.contiguous_span())
+    , _offset(_current)
 {
 }
 
@@ -54,7 +55,7 @@ template<typename DerivedType, typename SliceType>
 DerivedType SliceIteratorBase<DerivedType, SliceType>::create_end(SliceType& slice)
 {
     DerivedType it(slice);
-    it._current += static_cast<std::size_t>(slice.span());
+    it._current += static_cast<std::size_t>(slice.base_span() * slice._span.span());
     it._end = it._current;
     return it;
 }
@@ -82,12 +83,7 @@ bool SliceIteratorBase<DerivedType, SliceType>::operator!=(SliceIteratorBase<D, 
 template<typename DerivedType, typename SliceType>
 DerivedType& SliceIteratorBase<DerivedType, SliceType>::operator++()
 {
-    ++_current;
-    if(_current >= _end)
-    {
-        _current += _slice.base_span();
-        _end = _current + _slice.contiguous_span();
-    }
+    _slice.increment_it(_current, _end, _offset);
     return static_cast<DerivedType&>(*this);
 }
 

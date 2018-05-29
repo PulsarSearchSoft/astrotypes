@@ -59,6 +59,7 @@ struct ParentType {
     typedef int value_type;
     typedef int& reference_type;
     typedef typename std::vector<value_type>::iterator iterator;
+    typedef typename std::vector<value_type>::const_iterator const_iterator;
 
     ParentType(std::size_t size)
         : _vec(std::pow(size, NDim))
@@ -164,7 +165,7 @@ TEST_F(SliceTest, test_three_dimensions_same_dim_sub_slice)
                                               , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
                                               );
     // cut a sub slice (should be of the same type - hence no auto
-    Slice<ParentType<3>, DimensionA,DimensionB, DimensionC> sub_slice =  
+    Slice<ParentType<3>, DimensionA, DimensionB, DimensionC> sub_slice =  
                     slice.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(2), DimensionIndex<DimensionA>(6)));
 
     ASSERT_EQ(4U, static_cast<std::size_t>(sub_slice.size<DimensionA>()));
@@ -181,6 +182,31 @@ TEST_F(SliceTest, test_three_dimensions_same_dim_sub_slice)
             }
         }
     }
+}
+
+TEST_F(SliceTest, test_three_dimensions_slice_iterators)
+{
+    ParentType<3> p(50);
+    Slice<ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
+    );
+    Slice<ParentType<3>, DimensionA, DimensionB, DimensionC> sub_slice =  
+                    slice.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(2), DimensionIndex<DimensionA>(4)));
+
+    auto it = sub_slice.begin();
+    for(std::size_t i = 0; i < sub_slice.size<DimensionA>(); ++i) {
+        for(std::size_t j = 0; j < sub_slice.size<DimensionB>(); ++j) {
+            for(std::size_t k = 0; k < sub_slice.size<DimensionC>(); ++k) {
+                unsigned val = *it;
+                ASSERT_EQ( val, sub_slice[i][j][k]) << "i=" << i << " j=" << j << " k=" << k; // check we can read
+                ASSERT_FALSE(it == sub_slice.end()) << "i=" << i << " j=" << j << " k=" << k << " end=" << *sub_slice.end() << " it=" << *it;
+                ++it;
+            }
+        }
+    }
+    ASSERT_TRUE(it == sub_slice.end()) << "end=" << *sub_slice.end() << " it=" << *it; 
 }
 
 } // namespace test

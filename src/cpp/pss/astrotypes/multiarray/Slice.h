@@ -113,9 +113,7 @@ class Slice : private Slice<ParentT, Dimensions...>
     protected:
         template<typename P, typename D, typename... Ds> friend class Slice;
 
-
-        // return the span of memory to add on to the outer dimension index
-        std::size_t span() const;
+        template<typename IteratorT> bool increment_it(IteratorT& current, IteratorT& end, IteratorT& max_end);
 
         // return the size of memory occupied by the lowest dimension
         std::size_t contiguous_span() const;
@@ -209,8 +207,7 @@ class Slice<ParentT, Dimension>
     protected:
         template<typename P, typename D, typename... Ds> friend class Slice;
 
-        /// return the span of memory to add on to the outer dimension index for the next index
-        std::size_t span() const;
+        template<typename IteratorT> bool increment_it(IteratorT& current, IteratorT& end, IteratorT& max_end);
 
         // return the size of memory occupied by the lowest dimension
         std::size_t contiguous_span() const;

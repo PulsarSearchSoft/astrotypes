@@ -61,15 +61,9 @@ void Slice<Parent, Dimension, Dimensions...>::offset(parent_iterator const& it)
 }
 
 template<typename Parent, typename Dimension, typename... Dimensions>
-std::size_t Slice<Parent, Dimension, Dimensions...>::span() const
-{
-    return static_cast<const std::size_t>(_span.span()) * BaseT::span();
-}
-
-template<typename Parent, typename Dimension, typename... Dimensions>
 std::size_t Slice<Parent, Dimension, Dimensions...>::base_span() const
 {
-    return static_cast<const std::size_t>(BaseT::base_span());
+    return static_cast<const std::size_t>(BaseT::_base_span);
 }
 
 template<typename Parent, typename Dimension, typename... Dimensions>
@@ -150,7 +144,6 @@ Slice<Parent, Dimension, Dimensions...>::slice(DimensionSpan<Dimension> const& s
     return s;
 }
 
-
 template<typename Parent, typename Dimension, typename... Dimensions>
 typename Slice<Parent, Dimension, Dimensions...>::iterator Slice<Parent, Dimension, Dimensions...>::begin()
 {
@@ -185,6 +178,25 @@ template<typename Parent, typename Dimension, typename... Dimensions>
 typename Slice<Parent, Dimension, Dimensions...>::const_iterator Slice<Parent, Dimension, Dimensions...>::cend() const
 {
     return make_end_slice_iterator(*this);
+}
+
+template<typename Parent, typename Dimension, typename... Dimensions>
+template<typename IteratorT>
+bool Slice<Parent, Dimension, Dimensions...>::increment_it(IteratorT& current, IteratorT& end, IteratorT& offset)
+{
+    if(!BaseT::increment_it(current, end, offset)) {
+        if(current < offset + (_span.span()  - 1 ) * BaseT::_base_span)
+        {
+            end += BaseT::_base_span;
+            current = end - contiguous_span();
+            return true;
+        }
+        // reset end to the end of a first chunk
+        offset += _base_span;
+        end -= (_span.span() -1) * BaseT::_base_span;
+        return false;
+    }
+    return true;
 }
 // -------------------- single dimension specialisation -------------------
 template<typename Parent, typename Dimension>
@@ -237,12 +249,6 @@ template<typename Parent, typename Dimension>
 typename Slice<Parent, Dimension>::reference_type Slice<Parent, Dimension>::operator[](DimensionIndex<Dimension> const& p) const
 {
     return *(_ptr + static_cast<std::size_t const&>(p));
-}
-
-template<typename Parent, typename Dimension>
-std::size_t Slice<Parent, Dimension>::span() const
-{
-    return static_cast<const std::size_t>(_span.span());
 }
 
 template<typename Parent, typename Dimension>
@@ -310,6 +316,18 @@ template<typename Parent, typename Dimension>
 typename Slice<Parent, Dimension>::const_iterator Slice<Parent, Dimension>::cend() const
 {
     return make_end_slice_iterator(*this);
+}
+
+template<typename Parent, typename Dimension>
+template<typename IteratorT>
+bool Slice<Parent, Dimension>::increment_it(IteratorT& current, IteratorT& end, IteratorT&)
+{
+    ++current;
+    if(current < end)
+    {
+        return true;
+    }
+    return false;
 }
 
 } // namespace astrotypes
