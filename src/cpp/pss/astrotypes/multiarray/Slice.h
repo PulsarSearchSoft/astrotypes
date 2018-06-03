@@ -36,21 +36,20 @@ namespace astrotypes {
  * @details
  */
 
-template<typename ParentT, typename Dimension, typename... Dimensions>
-class Slice : private Slice<ParentT, Dimensions...>
+template<bool is_const, typename ParentT, typename Dimension, typename... Dimensions>
+class Slice : private Slice<is_const, ParentT, Dimensions...>
 {
-        typedef Slice<ParentT, Dimensions...> BaseT;
-        typedef Slice<ParentT, Dimension, Dimensions...> SelfType;
+        typedef Slice<is_const, ParentT, Dimensions...> BaseT;
+        typedef Slice<is_const, ParentT, Dimension, Dimensions...> SelfType;
         typedef typename ParentT::value_type value_type;
-        typedef typename ParentT::reference_type reference_type;
 
-        typedef typename ParentT::iterator parent_iterator;
         typedef typename ParentT::const_iterator parent_const_iterator;
+        typedef typename std::conditional<is_const, parent_const_iterator, typename ParentT::iterator>::type parent_iterator;
 
     public:
-        typedef ParentT Parent;
-        typedef SliceIterator<SelfType> iterator;
-        typedef SliceIterator<const SelfType> const_iterator;
+        typedef typename std::conditional<is_const, const ParentT, ParentT>::type Parent;
+        typedef SliceIterator<SelfType, is_const> iterator;
+        typedef SliceIterator<SelfType, true> const_iterator;
 
     public:
         Slice( Parent& parent
@@ -88,13 +87,13 @@ class Slice : private Slice<ParentT, Dimensions...>
         /**
          * @brief Take a slice in the specified dimension one channel thick
          */
-        Slice<Parent, Dimensions...> operator[](DimensionIndex<Dimension>) const;
-        Slice<Parent, Dimensions...> operator[](std::size_t) const; // TODO remove
+        Slice<is_const, ParentT, Dimensions...> operator[](DimensionIndex<Dimension>) const;
+        Slice<is_const, ParentT, Dimensions...> operator[](std::size_t) const; // TODO remove
 
         /**
          * @brief Take a slice from this slice
          */
-        Slice<Parent, Dimension, Dimensions...> slice(DimensionSpan<Dimension> const& span) const;
+        Slice<is_const, ParentT, Dimension, Dimensions...> slice(DimensionSpan<Dimension> const& span) const;
 
         /**
          * @brief iterator pointing to the first element in the slice
@@ -111,7 +110,7 @@ class Slice : private Slice<ParentT, Dimensions...>
         const_iterator cend() const;
 
     protected:
-        template<typename P, typename D, typename... Ds> friend class Slice;
+        template<bool, typename P, typename D, typename... Ds> friend class Slice;
 
         template<typename IteratorT> bool increment_it(IteratorT& current, IteratorT& end, IteratorT& max_end);
 
@@ -151,19 +150,18 @@ class Slice : private Slice<ParentT, Dimensions...>
 
 // specialisation for 0 dimensional slice
 // which should return a single element
-template<typename ParentT, typename Dimension>
-class Slice<ParentT, Dimension>
+template<bool is_const, typename ParentT, typename Dimension>
+class Slice<is_const, ParentT, Dimension>
 {
-        typedef Slice<ParentT, Dimension> SelfType;
-        typedef typename ParentT::reference_type reference_type;
-        typedef typename ParentT::iterator parent_iterator;
+        typedef Slice<is_const, ParentT, Dimension> SelfType;
         typedef typename ParentT::const_iterator parent_const_iterator;
+        typedef typename std::conditional<is_const, parent_const_iterator, typename ParentT::iterator>::type parent_iterator;
+        typedef typename std::iterator_traits<parent_iterator>::reference reference_type;
 
     public:
-        typedef ParentT Parent;
-        typedef SliceIterator<SelfType> iterator;
-        typedef SliceIterator<const SelfType> const_iterator;
-
+        typedef typename std::conditional<is_const, const ParentT, ParentT>::type Parent;
+        typedef SliceIterator<SelfType, is_const> iterator;
+        typedef SliceIterator<SelfType, true> const_iterator;
 
     public:
         Slice(Parent& parent, DimensionSpan<Dimension> const&);
@@ -205,7 +203,7 @@ class Slice<ParentT, Dimension>
 
 
     protected:
-        template<typename P, typename D, typename... Ds> friend class Slice;
+        template<bool, typename P, typename D, typename... Ds> friend class Slice;
 
         template<typename IteratorT> bool increment_it(IteratorT& current, IteratorT& end, IteratorT& max_end);
 

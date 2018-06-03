@@ -107,12 +107,46 @@ TEST_F(MultiArrayTest, test_three_dimension_square_bracket_operator)
     }
 }
 
+TEST_F(MultiArrayTest, test_const_three_dimension_square_bracket_operator)
+{
+    DimensionSize<DimensionA> size_a(10);
+    DimensionSize<DimensionB> size_b(20);
+    DimensionSize<DimensionC> size_c(30);
+    TestMultiArray<unsigned, DimensionA, DimensionB, DimensionC> const ma( size_a, size_b, size_c);
+    for(DimensionIndex<DimensionA> index(0); index < size_a; ++index)
+    {
+        auto slice = ma[index];
+        //ASSERT_EQ(slice.size<DimensionA>(), DimensionIndex<DimensionA>(9) - index);
+        ASSERT_EQ(slice.size<DimensionA>(), DimensionSize<DimensionA>(0));
+        ASSERT_EQ(slice.size<DimensionB>(), size_b);
+        ASSERT_EQ(slice.size<DimensionC>(), size_c);
+    }
+}
+
 TEST_F(MultiArrayTest, test_three_dimension_slice_operator)
 {
     DimensionSize<DimensionA> size_a(10);
     DimensionSize<DimensionB> size_b(20);
     DimensionSize<DimensionC> size_c(30);
     TestMultiArray<unsigned, DimensionA, DimensionB, DimensionC> ma( size_a, size_b, size_c);
+    for(DimensionIndex<DimensionA> index(0); index < size_a; ++index)
+    {
+        for(DimensionIndex<DimensionA> index_2(index + DimensionSize<DimensionA>(1)); index_2 <= size_a; ++index_2)
+        {
+            auto slice = ma.slice(DimensionSpan<DimensionA>(index, index_2 ));
+            ASSERT_EQ(slice.size<DimensionA>(), index_2 - index);
+            ASSERT_EQ(slice.size<DimensionB>(), size_b);
+            ASSERT_EQ(slice.size<DimensionC>(), size_c);
+        }
+    }
+}
+
+TEST_F(MultiArrayTest, test_const_three_dimension_slice_operator)
+{
+    DimensionSize<DimensionA> size_a(10);
+    DimensionSize<DimensionB> size_b(20);
+    DimensionSize<DimensionC> size_c(30);
+    TestMultiArray<unsigned, DimensionA, DimensionB, DimensionC> const ma( size_a, size_b, size_c);
     for(DimensionIndex<DimensionA> index(0); index < size_a; ++index)
     {
         for(DimensionIndex<DimensionA> index_2(index + DimensionSize<DimensionA>(1)); index_2 <= size_a; ++index_2)

@@ -44,8 +44,10 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
 {
         typedef MultiArray<Alloc, T, OtherDimensions...> BaseT;
         typedef MultiArray<Alloc, T, FirstDimension, OtherDimensions...> SelfType;
-        typedef Slice<SelfType, FirstDimension, OtherDimensions...> SliceType;
-        typedef Slice<SelfType, OtherDimensions...> ReducedDimensionSliceType;
+        typedef Slice<false, SelfType, FirstDimension, OtherDimensions...> SliceType;
+        typedef Slice<true, SelfType, FirstDimension, OtherDimensions...> ConstSliceType;
+        typedef Slice<false, SelfType, OtherDimensions...> ReducedDimensionSliceType;
+        typedef Slice<true, SelfType, OtherDimensions...> ConstReducedDimensionSliceType;
 
     public:
         typedef std::vector<T, Alloc> Container;
@@ -87,11 +89,13 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
          * @endcode
          */
         ReducedDimensionSliceType operator[](DimensionIndex<FirstDimension> index);
+        ConstReducedDimensionSliceType operator[](DimensionIndex<FirstDimension> index) const;
 
         /**
          * @brief return a slice of the specified dimension spanning the index_range provided
          */
         SliceType slice(DimensionSpan<FirstDimension> const& index_range);
+        ConstSliceType slice(DimensionSpan<FirstDimension> const& index_range) const;
 
         /**
          * @brief resize the array in the specified dimension
@@ -135,7 +139,8 @@ template<typename Alloc, typename T, typename FirstDimension>
 class MultiArray<Alloc, T, FirstDimension>
 {
         typedef MultiArray<Alloc, T, FirstDimension> SelfType;
-        typedef Slice<SelfType, FirstDimension> SliceType;
+        typedef Slice<false, SelfType, FirstDimension> SliceType;
+        typedef Slice<true, SelfType, FirstDimension> ConstSliceType;
 
         typedef std::vector<T, Alloc> Container;
 
@@ -155,6 +160,7 @@ class MultiArray<Alloc, T, FirstDimension>
          * @brief 
          */
         reference_type operator[](DimensionIndex<FirstDimension> index);
+        const_reference_type operator[](DimensionIndex<FirstDimension> index) const;
 
         /// size
         template<typename Dim>

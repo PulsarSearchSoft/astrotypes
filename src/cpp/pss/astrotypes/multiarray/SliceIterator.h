@@ -31,7 +31,7 @@
 namespace pss {
 namespace astrotypes {
     // pre declarations
-    template<typename SliceType> class SliceIterator;
+    template<typename SliceType, bool is_const> class SliceIterator;
 
 } // namespace pss
 } // namespace astrotypes
@@ -39,7 +39,7 @@ namespace astrotypes {
 namespace std {
     // spceilisations for iterator_traits
 template<typename SliceType>
-struct iterator_traits<pss::astrotypes::SliceIterator<SliceType>>
+struct iterator_traits<pss::astrotypes::SliceIterator<SliceType, false>>
 {
     typedef typename SliceType::Parent::iterator iterator;
     typedef typename iterator::reference reference;
@@ -49,7 +49,7 @@ struct iterator_traits<pss::astrotypes::SliceIterator<SliceType>>
 };
 
 template<typename SliceType>
-struct iterator_traits<pss::astrotypes::SliceIterator<const SliceType>>
+struct iterator_traits<pss::astrotypes::SliceIterator<SliceType, true>>
 {
     typedef typename SliceType::Parent::const_iterator iterator;
     typedef typename iterator::reference reference;
@@ -61,20 +61,20 @@ struct iterator_traits<pss::astrotypes::SliceIterator<const SliceType>>
 
 namespace pss {
 namespace astrotypes {
-template<typename ParentT, typename Dimension, typename... Dimensions>
-class Slice;
+//template<typename ParentT, typename Dimension, typename... Dimensions>
+//class Slice;
 
 /**
  * @brief Class to Iterate over a Slice
  * @details
  */
 
-template<typename DerivedType, typename SliceType>
-class SliceIteratorBase
+template<typename DerivedType, typename SliceType, bool is_const>
+class SliceIteratorBase : public std::iterator_traits<std::forward_iterator_tag>
 {
-        typedef SliceIteratorBase<DerivedType, SliceType> SelfType;
-        typedef typename std::iterator_traits<DerivedType>::reference reference;
+        typedef SliceIteratorBase<DerivedType, SliceType, is_const> SelfType;
         typedef typename std::iterator_traits<DerivedType>::iterator parent_iterator;
+        typedef typename std::iterator_traits<parent_iterator>::reference reference;
 
     public:
         SliceIteratorBase(SliceType&);
@@ -84,10 +84,10 @@ class SliceIteratorBase
         DerivedType& operator++(int);
 
         template<typename D>
-        bool operator==(SliceIteratorBase<D, SliceType> const&) const;
+        bool operator==(SliceIteratorBase<D, SliceType, is_const> const&) const;
 
         template<typename D>
-        bool operator!=(SliceIteratorBase<D, SliceType> const&) const;
+        bool operator!=(SliceIteratorBase<D, SliceType, is_const> const&) const;
 
         /// dereference operator
         const reference operator*() const;
@@ -102,49 +102,15 @@ class SliceIteratorBase
         parent_iterator _offset;
 };
 
-template<typename SliceType>
-class SliceIterator : public SliceIteratorBase<SliceIterator<SliceType>, SliceType>
+template<typename SliceType, bool is_const>
+class SliceIterator : public SliceIteratorBase<SliceIterator<SliceType, is_const>, SliceType, is_const>
 {
-        typedef SliceIteratorBase<SliceIterator<SliceType>, SliceType> BaseT;
+        typedef SliceIteratorBase<SliceIterator<SliceType, is_const>, SliceType, is_const> BaseT;
         friend SliceType;
-
-    public:
-        typedef typename std::iterator_traits<SliceIterator<SliceType>>::reference reference;
-
-    public:
-        SliceIterator(SliceType&);
-
-        /// dereference operators
-        reference operator*();
-};
-
-/**
- * @brief SliceIterator specialisation for cont types
- */
-template<typename SliceType>
-class SliceIterator<const SliceType> : public SliceIteratorBase<SliceIterator<const SliceType>, SliceType>
-{
-        typedef SliceIteratorBase<SliceIterator<const SliceType>, SliceType> BaseT;
-        friend SliceType;
-
-    public:
-        typedef typename std::iterator_traits<SliceIterator<SliceType>>::reference reference;
 
     public:
         SliceIterator(SliceType&);
 };
-
-/**
- * @brief construct a SliceIterator of the correct type for a provided slice object
- */
-template<typename ParentT, typename... Dimensions>
-SliceIterator<Slice<ParentT, Dimensions...>> make_slice_iterator(Slice<ParentT, Dimensions...>& slice);
-
-/**
- * @brief construct a SliceIterator of the correct type for a provided slice object positioned at the ned of the slice
- */
-template<typename ParentT, typename... Dimensions>
-SliceIterator<Slice<ParentT, Dimensions...>> make_end_slice_iterator(Slice<ParentT, Dimensions...>& slice);
 
 } // namespace astrotypes
 } // namespace pss

@@ -25,20 +25,8 @@
 namespace pss {
 namespace astrotypes {
 
-template<typename ParentT, typename... Dimensions>
-SliceIterator<Slice<ParentT, Dimensions...>> make_slice_iterator(Slice<ParentT, Dimensions...>& slice)
-{
-    return SliceIterator<Slice<ParentT, Dimensions...>>(slice);
-}
-
-template<typename ParentT, typename... Dimensions>
-SliceIterator<Slice<ParentT, Dimensions...>> make_end_slice_iterator(Slice<ParentT, Dimensions...>& slice)
-{
-    return SliceIterator<Slice<ParentT, Dimensions...>>::create_end(slice);
-}
-
-template<typename DerivedType, typename SliceType>
-SliceIteratorBase<DerivedType, SliceType>::SliceIteratorBase(SliceType& slice)
+template<typename DerivedType, typename SliceType, bool is_const>
+SliceIteratorBase<DerivedType, SliceType, is_const>::SliceIteratorBase(SliceType& slice)
     : _slice(slice)
     , _current(slice.base_ptr())
     , _end(_current + slice.contiguous_span())
@@ -46,13 +34,13 @@ SliceIteratorBase<DerivedType, SliceType>::SliceIteratorBase(SliceType& slice)
 {
 }
 
-template<typename DerivedType, typename SliceType>
-SliceIteratorBase<DerivedType, SliceType>::~SliceIteratorBase()
+template<typename DerivedType, typename SliceType, bool is_const>
+SliceIteratorBase<DerivedType, SliceType, is_const>::~SliceIteratorBase()
 {
 }
 
-template<typename DerivedType, typename SliceType>
-DerivedType SliceIteratorBase<DerivedType, SliceType>::create_end(SliceType& slice)
+template<typename DerivedType, typename SliceType, bool is_const>
+DerivedType SliceIteratorBase<DerivedType, SliceType, is_const>::create_end(SliceType& slice)
 {
     DerivedType it(slice);
     it._current += static_cast<std::size_t>(slice.base_span() * slice._span.span());
@@ -60,52 +48,54 @@ DerivedType SliceIteratorBase<DerivedType, SliceType>::create_end(SliceType& sli
     return it;
 }
 
-template<typename DerivedType, typename SliceType>
-const typename SliceIteratorBase<DerivedType, SliceType>::reference SliceIteratorBase<DerivedType, SliceType>::operator*() const
+template<typename DerivedType, typename SliceType, bool is_const>
+const typename SliceIteratorBase<DerivedType, SliceType, is_const>::reference SliceIteratorBase<DerivedType, SliceType, is_const>::operator*() const
 {
     return *_current;
 }
 
-template<typename DerivedType, typename SliceType>
+template<typename DerivedType, typename SliceType, bool is_const>
 template<typename D>
-bool SliceIteratorBase<DerivedType, SliceType>::operator==(SliceIteratorBase<D, SliceType> const& o) const
+bool SliceIteratorBase<DerivedType, SliceType, is_const>::operator==(SliceIteratorBase<D, SliceType, is_const> const& o) const
 {
     return _current == o._current;
 }
 
-template<typename DerivedType, typename SliceType>
+template<typename DerivedType, typename SliceType, bool is_const>
 template<typename D>
-bool SliceIteratorBase<DerivedType, SliceType>::operator!=(SliceIteratorBase<D, SliceType> const& o) const
+bool SliceIteratorBase<DerivedType, SliceType, is_const>::operator!=(SliceIteratorBase<D, SliceType, is_const> const& o) const
 {
     return _current != o._current;
 }
 
-template<typename DerivedType, typename SliceType>
-DerivedType& SliceIteratorBase<DerivedType, SliceType>::operator++()
+template<typename DerivedType, typename SliceType, bool is_const>
+DerivedType& SliceIteratorBase<DerivedType, SliceType, is_const>::operator++()
 {
     _slice.increment_it(_current, _end, _offset);
     return static_cast<DerivedType&>(*this);
 }
 
-template<typename DerivedType, typename SliceType>
-DerivedType& SliceIteratorBase<DerivedType, SliceType>::operator++(int)
+template<typename DerivedType, typename SliceType, bool is_const>
+DerivedType& SliceIteratorBase<DerivedType, SliceType, is_const>::operator++(int)
 {
     DerivedType copy(static_cast<DerivedType&>(*this));
     ++(*this);
     return copy;
 }
 
-template<typename SliceType>
-SliceIterator<SliceType>::SliceIterator(SliceType& slice)
+template<typename SliceType, bool is_const>
+SliceIterator<SliceType, is_const>::SliceIterator(SliceType& slice)
     : BaseT(slice)
 {
 }
 
-template<typename SliceType>
-typename SliceIterator<SliceType>::reference SliceIterator<SliceType>::operator*()
+/*
+template<typename SliceType, bool is_const>
+typename SliceIterator<SliceType, is_const>::reference SliceIterator<SliceType, is_const>::operator*()
 {
     return *this->_current;  
 }
+*/
 
 } // namespace astrotypes
 } // namespace pss

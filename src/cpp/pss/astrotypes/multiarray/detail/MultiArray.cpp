@@ -89,12 +89,25 @@ typename MultiArray<Alloc, T, FirstDimension, Dimensions...>::ReducedDimensionSl
 }
 
 template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
+typename MultiArray<Alloc, T, FirstDimension, Dimensions...>::ConstReducedDimensionSliceType MultiArray<Alloc, T, FirstDimension, Dimensions...>::operator[](DimensionIndex<FirstDimension> index) const
+{
+    return ConstSliceType(*this, DimensionSpan<FirstDimension>(index, DimensionSize<FirstDimension>(1))
+                          , DimensionSpan<Dimensions>(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template size<Dimensions>()))...)[0];
+}
+
+template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
 typename MultiArray<Alloc, T, FirstDimension, Dimensions...>::SliceType MultiArray<Alloc, T, FirstDimension, Dimensions...>::slice(DimensionSpan<FirstDimension> const& index_range)
 {
     return SliceType(*this, index_range
                           , DimensionSpan<Dimensions>(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template size<Dimensions>()))...);
 }
 
+template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
+typename MultiArray<Alloc, T, FirstDimension, Dimensions...>::ConstSliceType MultiArray<Alloc, T, FirstDimension, Dimensions...>::slice(DimensionSpan<FirstDimension> const& index_range) const
+{
+    return ConstSliceType(*this, index_range
+                          , DimensionSpan<Dimensions>(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template size<Dimensions>()))...);
+}
 template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
 template<typename... Dims>
 void MultiArray<Alloc, T, FirstDimension, Dimensions...>::resize(DimensionSize<Dims>... size)
