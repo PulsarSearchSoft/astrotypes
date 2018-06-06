@@ -44,6 +44,8 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
 {
         typedef MultiArray<Alloc, T, OtherDimensions...> BaseT;
         typedef MultiArray<Alloc, T, FirstDimension, OtherDimensions...> SelfType;
+
+    protected:
         typedef Slice<false, SelfType, FirstDimension, OtherDimensions...> SliceType;
         typedef Slice<true, SelfType, FirstDimension, OtherDimensions...> ConstSliceType;
         typedef Slice<false, SelfType, OtherDimensions...> ReducedDimensionSliceType;
