@@ -60,6 +60,18 @@ TEST_F(TimeFrequencyTest, test_time_freq_instantiation)
     ASSERT_EQ(freq_size, tf2.size<Frequency>());
 }
 
+TEST_F(TimeFrequencyTest, test_time_freq_spectra)
+{
+    DimensionSize<Time> time_size(50);
+    DimensionSize<Frequency> freq_size(10);
+    TimeFrequency<uint8_t> tf1(time_size, freq_size);
+    
+    typename TimeFrequency<uint8_t>::Spectra s = tf1.spectra(0);
+
+    TimeFrequency<uint8_t> const& tf2 = tf1;
+    typename TimeFrequency<uint8_t>::ConstSpectra s2 = tf2.spectra(3);
+}
+
 TEST_F(TimeFrequencyTest, test_freq_time_instantiation)
 {
     DimensionSize<Time> time_size(50);

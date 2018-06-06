@@ -48,9 +48,18 @@ class TimeFrequency : public MultiArray<Alloc, T, Time, Frequency>
         typedef MultiArray<Alloc, T, Time, Frequency> BaseT;
 
     public:
+        typedef typename BaseT::ReducedDimensionSliceType Spectra;
+        typedef typename BaseT::ConstReducedDimensionSliceType ConstSpectra;
+
+    public:
         TimeFrequency(DimensionSize<Time>, DimensionSize<Frequency>);
         TimeFrequency(DimensionSize<Frequency>, DimensionSize<Time>);
         ~TimeFrequency();
+
+        /// @brief return a single spectra from the specified offset
+        Spectra spectra(std::size_t offset);
+        ConstSpectra spectra(std::size_t offset) const;
+
 };
 
 /**

@@ -43,6 +43,18 @@ TimeFrequency<T, Alloc>::~TimeFrequency()
 }
 
 template<typename T, typename Alloc>
+typename TimeFrequency<T, Alloc>::Spectra TimeFrequency<T, Alloc>::spectra(std::size_t offset)
+{
+    return (*this)[DimensionIndex<Time>(offset)];
+}
+
+template<typename T, typename Alloc>
+typename TimeFrequency<T, Alloc>::ConstSpectra TimeFrequency<T, Alloc>::spectra(std::size_t offset) const
+{
+    return (*this)[DimensionIndex<Time>(offset)];
+}
+
+template<typename T, typename Alloc>
 FrequencyTime<T, Alloc>::FrequencyTime(DimensionSize<Frequency> freq_size, DimensionSize<Time> time_size)
     : BaseT(freq_size, time_size)
 {
