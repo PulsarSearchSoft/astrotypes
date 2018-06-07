@@ -225,17 +225,21 @@ TEST_F(SliceTest, const_test_three_dimensions_slice_iterators)
                     slice.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(2), DimensionIndex<DimensionA>(4)));
 
     auto it = sub_slice.begin();
+    auto it2 = sub_slice.cbegin();
     for(std::size_t i = 0; i < sub_slice.size<DimensionA>(); ++i) {
         for(std::size_t j = 0; j < sub_slice.size<DimensionB>(); ++j) {
             for(std::size_t k = 0; k < sub_slice.size<DimensionC>(); ++k) {
                 unsigned val = *it;
                 ASSERT_EQ( val, sub_slice[i][j][k]) << "i=" << i << " j=" << j << " k=" << k; // check we can read
                 ASSERT_FALSE(it == sub_slice.end()) << "i=" << i << " j=" << j << " k=" << k << " end=" << *sub_slice.end() << " it=" << *it;
+                ASSERT_FALSE(it2 == sub_slice.cend()) << "i=" << i << " j=" << j << " k=" << k << " end=" << *sub_slice.cend() << " it=" << *it2;
                 ++it;
+                ++it2;
             }
         }
     }
     ASSERT_TRUE(it == sub_slice.end()) << "end=" << *sub_slice.end() << " it=" << *it; 
+    ASSERT_TRUE(it2 == sub_slice.cend()) << "end=" << *sub_slice.cend() << " it2=" << *it2; 
 }
 
 } // namespace test

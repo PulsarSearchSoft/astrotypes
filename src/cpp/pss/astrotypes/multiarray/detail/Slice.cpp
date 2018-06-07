@@ -159,7 +159,7 @@ typename Slice<is_const, Parent, Dimension, Dimensions...>::const_iterator Slice
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
 typename Slice<is_const, Parent, Dimension, Dimensions...>::const_iterator Slice<is_const, Parent, Dimension, Dimensions...>::cbegin() const
 {
-    return SliceIterator<SelfType, is_const>(*this);
+    return SliceIterator<SelfType, true>(*this);
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
@@ -177,12 +177,12 @@ typename Slice<is_const, Parent, Dimension, Dimensions...>::const_iterator Slice
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
 typename Slice<is_const, Parent, Dimension, Dimensions...>::const_iterator Slice<is_const, Parent, Dimension, Dimensions...>::cend() const
 {
-    return SliceIterator<SelfType, is_const>::create_end(*this);
+    return SliceIterator<SelfType, true>::create_end(*this);
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
 template<typename IteratorT>
-bool Slice<is_const, Parent, Dimension, Dimensions...>::increment_it(IteratorT& current, IteratorT& end, IteratorT& offset)
+bool Slice<is_const, Parent, Dimension, Dimensions...>::increment_it(IteratorT& current, IteratorT& end, IteratorT& offset) const
 {
     if(!BaseT::increment_it(current, end, offset)) {
         if(current < offset + (_span.span()  - 1 ) * BaseT::_base_span)

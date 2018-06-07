@@ -75,9 +75,10 @@ class SliceIteratorBase : public std::iterator_traits<std::forward_iterator_tag>
         typedef SliceIteratorBase<DerivedType, SliceType, is_const> SelfType;
         typedef typename std::iterator_traits<DerivedType>::iterator parent_iterator;
         typedef typename std::iterator_traits<parent_iterator>::reference reference;
+        typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
 
     public:
-        SliceIteratorBase(SliceType&);
+        SliceIteratorBase(SliceT&);
         ~SliceIteratorBase();
 
         DerivedType& operator++();
@@ -93,10 +94,10 @@ class SliceIteratorBase : public std::iterator_traits<std::forward_iterator_tag>
         const reference operator*() const;
 
         /// create an end iterator for the givn slice
-        static DerivedType create_end(SliceType& slice);
+        static DerivedType create_end(SliceT& slice);
 
     protected:
-        SliceType& _slice;
+        SliceT& _slice;
         parent_iterator _current;
         parent_iterator _end;
         parent_iterator _offset;
@@ -106,10 +107,11 @@ template<typename SliceType, bool is_const>
 class SliceIterator : public SliceIteratorBase<SliceIterator<SliceType, is_const>, SliceType, is_const>
 {
         typedef SliceIteratorBase<SliceIterator<SliceType, is_const>, SliceType, is_const> BaseT;
+        typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
         friend SliceType;
 
     public:
-        SliceIterator(SliceType&);
+        SliceIterator(SliceT&);
 };
 
 } // namespace astrotypes

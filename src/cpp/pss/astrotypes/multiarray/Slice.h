@@ -112,7 +112,7 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
     protected:
         template<bool, typename P, typename D, typename... Ds> friend class Slice;
 
-        template<typename IteratorT> bool increment_it(IteratorT& current, IteratorT& end, IteratorT& max_end);
+        template<typename IteratorT> bool increment_it(IteratorT& current, IteratorT& end, IteratorT& max_end) const;
 
         // return the size of memory occupied by the lowest dimension
         std::size_t contiguous_span() const;
@@ -205,7 +205,7 @@ class Slice<is_const, ParentT, Dimension>
     protected:
         template<bool, typename P, typename D, typename... Ds> friend class Slice;
 
-        template<typename IteratorT> bool increment_it(IteratorT& current, IteratorT& end, IteratorT& max_end);
+        template<typename IteratorT> static bool increment_it(IteratorT& current, IteratorT& end, IteratorT& max_end);
 
         // return the size of memory occupied by the lowest dimension
         std::size_t contiguous_span() const;
