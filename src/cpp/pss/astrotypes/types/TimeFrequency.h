@@ -38,7 +38,7 @@ namespace astrotypes {
  *       such as Stokes values or voltages.
  *
  * @details
- *       Stored as a contiguous block af complete spectra.
+ *       Stored as a contiguous block af complete spectrum.
  */
 
 template<typename T, typename Alloc=std::allocator<T>>
@@ -50,16 +50,21 @@ class TimeFrequency : public MultiArray<Alloc, T, Time, Frequency>
     public:
         typedef typename BaseT::ReducedDimensionSliceType Spectra;
         typedef typename BaseT::ConstReducedDimensionSliceType ConstSpectra;
+        typedef Slice<false, BaseT, Time, Frequency> Channel;
+        typedef Slice<true, BaseT, Time, Frequency> ConstChannel;
 
     public:
         TimeFrequency(DimensionSize<Time>, DimensionSize<Frequency>);
         TimeFrequency(DimensionSize<Frequency>, DimensionSize<Time>);
         ~TimeFrequency();
 
-        /// @brief return a single spectra from the specified offset
-        Spectra spectra(std::size_t offset);
-        ConstSpectra spectra(std::size_t offset) const;
+        /// @brief return a single spectrum from the specified offset
+        Spectra spectrum(std::size_t offset);
+        ConstSpectra spectrum(std::size_t offset) const;
 
+        /// retrun a single channel across all time samples
+        Channel channel(std::size_t channel_number);
+        ConstChannel channel(std::size_t channel_number) const;
 };
 
 /**
@@ -78,9 +83,23 @@ class FrequencyTime : public MultiArray<Alloc, T, Frequency, Time>
         typedef MultiArray<Alloc, T, Frequency, Time> BaseT;
 
     public:
+        typedef typename BaseT::ReducedDimensionSliceType Channel;
+        typedef typename BaseT::ConstReducedDimensionSliceType ConstChannel;
+        typedef Slice<false, BaseT, Frequency, Time> Spectra;
+        typedef Slice<true, BaseT, Frequency, Time> ConstSpectra;
+
+    public:
         FrequencyTime(DimensionSize<Frequency>, DimensionSize<Time>);
         FrequencyTime(DimensionSize<Time>, DimensionSize<Frequency>);
         ~FrequencyTime();
+
+        /// retrun a single channel across all time samples
+        Channel channel(std::size_t channel_number);
+        ConstChannel channel(std::size_t channel_number) const;
+
+        /// @brief return a single spectrum from the specified offset
+        Spectra spectrum(std::size_t offset);
+        ConstSpectra spectrum(std::size_t offset) const;
 };
 
 } // namespace astrotypes
