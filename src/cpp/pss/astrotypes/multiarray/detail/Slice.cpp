@@ -309,39 +309,39 @@ Slice<is_const, Parent, Dimension>& Slice<is_const, Parent, Dimension>::operator
 }
 
 template<bool is_const, typename Parent, typename Dimension>
-typename Slice<is_const, Parent, Dimension>::iterator Slice<is_const, Parent, Dimension>::begin()
+typename Slice<is_const, Parent, Dimension>::parent_iterator Slice<is_const, Parent, Dimension>::begin()
 {
-    return SliceIterator<SelfType, is_const>(*this);
+    return _ptr;
 }
 
 template<bool is_const, typename Parent, typename Dimension>
-typename Slice<is_const, Parent, Dimension>::const_iterator Slice<is_const, Parent, Dimension>::begin() const
+typename Slice<is_const, Parent, Dimension>::parent_const_iterator Slice<is_const, Parent, Dimension>::begin() const
 {
-    return SliceIterator<SelfType, true>(*this);
+    return _ptr;
 }
 
 template<bool is_const, typename Parent, typename Dimension>
-typename Slice<is_const, Parent, Dimension>::const_iterator Slice<is_const, Parent, Dimension>::cbegin() const
+typename Slice<is_const, Parent, Dimension>::parent_const_iterator Slice<is_const, Parent, Dimension>::cbegin() const
 {
-    return SliceIterator<SelfType, true>(*this);
+    return _ptr;
 }
 
 template<bool is_const, typename Parent, typename Dimension>
-typename Slice<is_const, Parent, Dimension>::iterator Slice<is_const, Parent, Dimension>::end()
+typename Slice<is_const, Parent, Dimension>::parent_iterator Slice<is_const, Parent, Dimension>::end()
 {
-    return iterator::create_end(*this);
+    return _ptr + static_cast<std::size_t>(_span.span());
 }
 
 template<bool is_const, typename Parent, typename Dimension>
-typename Slice<is_const, Parent, Dimension>::const_iterator Slice<is_const, Parent, Dimension>::end() const
+typename Slice<is_const, Parent, Dimension>::parent_const_iterator Slice<is_const, Parent, Dimension>::end() const
 {
-    return const_iterator::create_end(*this);
+    return _ptr + static_cast<std::size_t>(_span.span());
 }
 
 template<bool is_const, typename Parent, typename Dimension>
-typename Slice<is_const, Parent, Dimension>::const_iterator Slice<is_const, Parent, Dimension>::cend() const
+typename Slice<is_const, Parent, Dimension>::parent_const_iterator Slice<is_const, Parent, Dimension>::cend() const
 {
-    return const_iterator::create_end(*this);
+    return _ptr + static_cast<std::size_t>(_span.span());
 }
 
 template<bool is_const, typename Parent, typename Dimension>

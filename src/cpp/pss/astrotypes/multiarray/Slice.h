@@ -206,16 +206,16 @@ class Slice<is_const, ParentT, Dimension>
         /**
          * @brief iterator pointing to the first element in the slice
          */
-        iterator begin();
-        const_iterator begin() const;
-        const_iterator cbegin() const;
+        parent_iterator begin();
+        parent_const_iterator begin() const;
+        parent_const_iterator cbegin() const;
 
         /**
          * @brief iterator pointing to just after the last element
          */
-        iterator end();
-        const_iterator end() const;
-        const_iterator cend() const;
+        parent_iterator end();
+        parent_const_iterator end() const;
+        parent_const_iterator cend() const;
 
 
     protected:
