@@ -85,6 +85,12 @@ typename Slice<is_const, Parent, Dimension, Dimensions...>::parent_iterator cons
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+std::size_t Slice<is_const, Parent, Dimension, Dimensions...>::data_size() const
+{
+    return _span.span() * BaseT::data_size();;
+}
+
+template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimension>>::type 
 Slice<is_const, Parent, Dimension, Dimensions...>::size() const
@@ -198,6 +204,19 @@ bool Slice<is_const, Parent, Dimension, Dimensions...>::increment_it(IteratorT& 
     }
     return true;
 }
+
+template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+template<typename IteratorDifferenceT>
+IteratorDifferenceT Slice<is_const, Parent, Dimension, Dimensions...>::diff_it(IteratorDifferenceT const& diff) const
+{
+    if(diff < (IteratorDifferenceT)BaseT::_base_span) {
+        return BaseT::diff_it(diff);
+    }
+    else {
+        return IteratorDifferenceT(diff/BaseT::_base_span) * BaseT::data_size() + BaseT::diff_it(diff%BaseT::_base_span);
+    }
+}
+
 // -------------------- single dimension specialisation -------------------
 template<bool is_const, typename Parent, typename Dimension>
 Slice<is_const, Parent, Dimension>::Slice(Parent& parent, DimensionSpan<Dimension> const& d)
@@ -223,6 +242,12 @@ void Slice<is_const, Parent, Dimension>::offset(parent_iterator const& it)
 template<bool is_const, typename Parent, typename Dimension>
 Slice<is_const, Parent, Dimension>::~Slice()
 {
+}
+
+template<bool is_const, typename Parent, typename Dimension>
+std::size_t Slice<is_const, Parent, Dimension>::data_size() const
+{
+    return _span.span();
 }
 
 template<bool is_const, typename Parent, typename Dimension>
@@ -329,6 +354,13 @@ bool Slice<is_const, Parent, Dimension>::increment_it(IteratorT& current, Iterat
         return true;
     }
     return false;
+}
+
+template<bool is_const, typename Parent, typename Dimension>
+template<typename IteratorDifferenceT>
+IteratorDifferenceT Slice<is_const, Parent, Dimension>::diff_it(IteratorDifferenceT const& diff)
+{
+    return diff;
 }
 
 } // namespace astrotypes

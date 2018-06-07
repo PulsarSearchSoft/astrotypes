@@ -60,6 +60,11 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         static constexpr std::size_t rank = 1 + sizeof...(Dimensions);
 
         /**
+         * @brief the total number of data memebers in this slice
+         */
+        std::size_t data_size() const;
+
+        /**
          * @ brief return the size of the slice in the specified dimension
          * @code
          *      Slice<DimesionA, DimensionB> slice(...some initialisers...);
@@ -115,6 +120,7 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         template<bool, typename P, typename D, typename... Ds> friend class Slice;
 
         template<typename IteratorT> bool increment_it(IteratorT& current, IteratorT& end, IteratorT& max_end) const;
+        template<typename IteratorDifferenceT> IteratorDifferenceT diff_it(IteratorDifferenceT const& diff) const;
 
         // return the size of memory occupied by the lowest dimension
         std::size_t contiguous_span() const;
@@ -142,6 +148,7 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
 
     private:
         friend typename iterator::BaseT;
+        friend typename iterator::ImplT;
         friend typename const_iterator::BaseT;
 
     private:
@@ -170,6 +177,11 @@ class Slice<is_const, ParentT, Dimension>
         ~Slice();
 
         static constexpr std::size_t rank = 1;
+
+        /**
+         * @brief the total number of data memebers in this slice
+         */
+        std::size_t data_size() const;
 
         /**
          * @ brief return the size of the slice in the specified dimension
@@ -210,6 +222,7 @@ class Slice<is_const, ParentT, Dimension>
         template<bool, typename P, typename D, typename... Ds> friend class Slice;
 
         template<typename IteratorT> static bool increment_it(IteratorT& current, IteratorT& end, IteratorT& max_end);
+        template<typename IteratorDifferenceT> static IteratorDifferenceT diff_it(IteratorDifferenceT const& diff);
 
         // return the size of memory occupied by the lowest dimension
         std::size_t contiguous_span() const;

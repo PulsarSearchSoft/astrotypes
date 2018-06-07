@@ -114,9 +114,16 @@ TEST_F(SliceTest, test_single_dimension_iterators)
 
     // test operator[]
     auto it = slice.begin();
+    typedef typename std::iterator_traits<typename decltype(p)::iterator>::iterator_category expected_iterator_category;
+    static_assert(std::is_same<std::iterator_traits<decltype(it)>::iterator_category, expected_iterator_category>::value,
+                                 "expecting a vector iterator category");
     auto const& const_slice = slice;   
     auto it2 = const_slice.begin();
+    static_assert(std::is_same<std::iterator_traits<decltype(it2)>::iterator_category, expected_iterator_category>::value,
+                                 "expecting a vector iterator category");
     auto it3 = const_slice.cbegin();
+    static_assert(std::is_same<std::iterator_traits<decltype(it3)>::iterator_category, expected_iterator_category>::value,
+                                 "expecting a vector iterator category");
 
     for(std::size_t i = 0; i < slice.size<DimensionA>(); ++i) {
         ASSERT_FALSE(it == slice.end()) << "i=" << i << " end=" << *slice.end() << " it=" << *it;
@@ -135,6 +142,19 @@ TEST_F(SliceTest, test_single_dimension_iterators)
     ASSERT_TRUE(it == slice.end()) << "end=" << *slice.end() << " it=" << *it; 
     ASSERT_TRUE(it2 == slice.end()) << "end=" << *slice.cend() << " it2=" << *it2; 
     ASSERT_TRUE(it3 == slice.cend()) << "end=" << *slice.cend() << " it3=" << *it3; 
+}
+
+TEST_F(SliceTest, test_single_dimension_iterators_diff)
+{
+    ParentType<1> const p(50);
+    Slice<true, ParentType<1>, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
+
+    auto it = slice.begin();
+    auto it2 = slice.begin();
+    for(unsigned i=0; i < slice.size<DimensionA>(); ++i) {
+        ASSERT_EQ(i, it2 - it) << i;
+        ++it2;
+    }
 }
 
 TEST_F(SliceTest, test_two_dimensions)
@@ -158,6 +178,23 @@ TEST_F(SliceTest, test_two_dimensions)
     }
 }
 
+TEST_F(SliceTest, test_two_dimensions_iterators_diff)
+{
+    ParentType<2> p(50);
+    Slice<false, ParentType<2>, DimensionA, DimensionB> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              );
+    auto it = slice.begin();
+    auto it2 = slice.begin();
+    // check inner loop
+    std::size_t count = 0;
+    while(it2 != slice.end()) {
+        ASSERT_EQ(count, it2 - it) << count;
+        ++count;
+        ++it2;
+    }
+}
 
 TEST_F(SliceTest, test_three_dimensions)
 {
@@ -255,9 +292,9 @@ TEST_F(SliceTest, const_test_three_dimensions_slice_iterators)
                     slice.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(2), DimensionIndex<DimensionA>(4)));
 
     auto it = sub_slice.begin();
+    static_assert(std::is_same<std::iterator_traits<decltype(it)>::iterator_category, std::forward_iterator_tag>::value, "expecting a forward iterator");
     auto it2 = sub_slice.cbegin();
-    auto const& const_sub_slice = sub_slice;
-    auto it3 = const_sub_slice.begin();
+    static_assert(std::is_same<std::iterator_traits<decltype(it2)>::iterator_category, std::forward_iterator_tag>::value, "expecting a forward iterator");
     for(std::size_t i = 0; i < sub_slice.size<DimensionA>(); ++i) {
         for(std::size_t j = 0; j < sub_slice.size<DimensionB>(); ++j) {
             for(std::size_t k = 0; k < sub_slice.size<DimensionC>(); ++k) {
@@ -265,16 +302,32 @@ TEST_F(SliceTest, const_test_three_dimensions_slice_iterators)
                 ASSERT_EQ( val, sub_slice[i][j][k]) << "i=" << i << " j=" << j << " k=" << k; // check we can read
                 ASSERT_FALSE(it == sub_slice.end()) << "i=" << i << " j=" << j << " k=" << k << " end=" << *sub_slice.end() << " it=" << *it;
                 ASSERT_FALSE(it2 == sub_slice.cend()) << "i=" << i << " j=" << j << " k=" << k << " end=" << *sub_slice.cend() << " it2=" << *it2;
-                ASSERT_FALSE(it3 == const_sub_slice.end()) << "i=" << i << " j=" << j << " k=" << k << " end=" << *const_sub_slice.cend() << " it3=" << *it3;
                 ++it;
                 ++it2;
-                ++it3;
             }
         }
     }
     ASSERT_TRUE(it == sub_slice.end()) << "end=" << *sub_slice.end() << " it=" << *it; 
     ASSERT_TRUE(it2 == sub_slice.cend()) << "end=" << *sub_slice.cend() << " it2=" << *it2; 
-    ASSERT_TRUE(it3 == sub_slice.cend()) << "end=" << *sub_slice.cend() << " it2=" << *it2; 
+}
+
+TEST_F(SliceTest, test_three_dimensions_iterators_diff)
+{
+    ParentType<3> p(50);
+    Slice<true, ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
+    );
+    auto it = slice.begin();
+    auto it2 = slice.begin();
+    // check inner loop
+    std::size_t count = 0;
+    while(it2 != slice.end()) {
+        ASSERT_EQ(count, it2 - it) << count;
+        ++count;
+        ++it2;
+    }
 }
 
 } // namespace test
