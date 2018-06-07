@@ -119,6 +119,11 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
         typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
         size() const;
 
+        /**
+         * @brief the total size of data in all dimesions
+         */
+        std::size_t data_size() const;
+
     protected:
         MultiArray(bool disable_resize_tag, DimensionSize<FirstDimension> const&, DimensionSize<OtherDimensions> const& ... sizes);
 
@@ -172,6 +177,11 @@ class MultiArray<Alloc, T, FirstDimension>
         template<typename Dim>
         typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
         size() const;
+
+        /**
+         * @brief the total size of data in all dimesions
+         */
+        std::size_t data_size() const;
 
         template<typename Dimension>
         void resize(DimensionSize<Dimension> size);

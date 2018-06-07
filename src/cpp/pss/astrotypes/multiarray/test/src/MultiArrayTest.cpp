@@ -252,6 +252,16 @@ TEST_F(MultiArrayTest, test_three_dimension_resize_multiple_args)
     ASSERT_EQ(std::distance(ma.begin(), ma.end()), size_a * size_b * size_c);
 }
 
+TEST_F(MultiArrayTest, test_three_dimension_data_size)
+{
+    DimensionSize<DimensionA> size_a(10);
+    DimensionSize<DimensionB> size_b(20);
+    DimensionSize<DimensionC> size_c(30);
+
+    TestMultiArray<unsigned, DimensionA, DimensionB, DimensionC> ma( size_a, size_b, size_c);
+    ASSERT_EQ(ma.data_size(), size_a * size_b * size_c);
+}
+
 } // namespace test
 } // namespace astrotypes
 } // namespace pss

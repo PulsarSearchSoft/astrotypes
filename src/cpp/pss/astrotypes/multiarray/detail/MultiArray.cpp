@@ -154,6 +154,12 @@ void MultiArray<Alloc, T, FirstDimension, Dimensions...>::do_resize(std::size_t 
     BaseT::do_resize(total * static_cast<std::size_t>(_size));
 }
 
+template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
+std::size_t MultiArray<Alloc, T, FirstDimension, Dimensions...>::data_size() const
+{
+    return BaseT::data_size();
+}
+
 /////////////////////////////////////////////////////////////
 // Single Dimension specialisation 
 /////////////////////////////////////////////////////////////
@@ -189,6 +195,12 @@ typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<
 MultiArray<Alloc, T, FirstDimension>::size() const
 {
     return _size;
+}
+
+template<typename Alloc, typename T, typename FirstDimension>
+std::size_t MultiArray<Alloc, T, FirstDimension>::data_size() const
+{
+    return this->_data.size();
 }
 
 template<typename Alloc, typename T, typename FirstDimension>
