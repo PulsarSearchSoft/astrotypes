@@ -63,7 +63,7 @@ void Slice<is_const, Parent, Dimension, Dimensions...>::offset(parent_iterator c
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
 std::size_t Slice<is_const, Parent, Dimension, Dimensions...>::base_span() const
 {
-    return static_cast<const std::size_t>(BaseT::_base_span);
+    return static_cast<const std::size_t>(BaseT::_base_span) * _span.span();
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
@@ -153,7 +153,7 @@ typename Slice<is_const, Parent, Dimension, Dimensions...>::iterator Slice<is_co
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
 typename Slice<is_const, Parent, Dimension, Dimensions...>::const_iterator Slice<is_const, Parent, Dimension, Dimensions...>::begin() const
 {
-    return SliceIterator<SelfType, is_const>(*this);
+    return SliceIterator<SelfType, true>(*this);
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
@@ -171,7 +171,7 @@ typename Slice<is_const, Parent, Dimension, Dimensions...>::iterator Slice<is_co
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
 typename Slice<is_const, Parent, Dimension, Dimensions...>::const_iterator Slice<is_const, Parent, Dimension, Dimensions...>::end() const
 {
-    return SliceIterator<SelfType, is_const>::create_end(*this);
+    return SliceIterator<SelfType, true>::create_end(*this);
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
@@ -286,37 +286,37 @@ Slice<is_const, Parent, Dimension>& Slice<is_const, Parent, Dimension>::operator
 template<bool is_const, typename Parent, typename Dimension>
 typename Slice<is_const, Parent, Dimension>::iterator Slice<is_const, Parent, Dimension>::begin()
 {
-    return make_slice_iterator(*this);
+    return SliceIterator<SelfType, is_const>(*this);
 }
 
 template<bool is_const, typename Parent, typename Dimension>
 typename Slice<is_const, Parent, Dimension>::const_iterator Slice<is_const, Parent, Dimension>::begin() const
 {
-    return make_slice_iterator(*this);
+    return SliceIterator<SelfType, true>(*this);
 }
 
 template<bool is_const, typename Parent, typename Dimension>
 typename Slice<is_const, Parent, Dimension>::const_iterator Slice<is_const, Parent, Dimension>::cbegin() const
 {
-    return make_slice_iterator(*this);
+    return SliceIterator<SelfType, true>(*this);
 }
 
 template<bool is_const, typename Parent, typename Dimension>
 typename Slice<is_const, Parent, Dimension>::iterator Slice<is_const, Parent, Dimension>::end()
 {
-    return make_end_slice_iterator(*this);
+    return iterator::create_end(*this);
 }
 
 template<bool is_const, typename Parent, typename Dimension>
 typename Slice<is_const, Parent, Dimension>::const_iterator Slice<is_const, Parent, Dimension>::end() const
 {
-    return make_end_slice_iterator(*this);
+    return const_iterator::create_end(*this);
 }
 
 template<bool is_const, typename Parent, typename Dimension>
 typename Slice<is_const, Parent, Dimension>::const_iterator Slice<is_const, Parent, Dimension>::cend() const
 {
-    return make_end_slice_iterator(*this);
+    return const_iterator::create_end(*this);
 }
 
 template<bool is_const, typename Parent, typename Dimension>

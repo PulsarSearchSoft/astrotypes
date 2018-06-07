@@ -107,6 +107,36 @@ TEST_F(SliceTest, test_single_dimension)
     }
 }
 
+TEST_F(SliceTest, test_single_dimension_iterators)
+{
+    ParentType<1> p(50);
+    Slice<false, ParentType<1>, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
+
+    // test operator[]
+    auto it = slice.begin();
+    auto const& const_slice = slice;   
+    auto it2 = const_slice.begin();
+    auto it3 = const_slice.cbegin();
+
+    for(std::size_t i = 0; i < slice.size<DimensionA>(); ++i) {
+        ASSERT_FALSE(it == slice.end()) << "i=" << i << " end=" << *slice.end() << " it=" << *it;
+        ASSERT_FALSE(it2 == slice.end()) << "i=" << i << " end=" << *slice.end() << " it=" << *it2;
+        ASSERT_FALSE(it3 == slice.cend()) << "i=" << i << " end=" << *slice.cend() << " it=" << *it3;
+        ASSERT_EQ(*it, i+ 10U); // check we can read
+        ASSERT_EQ(*it2, i+ 10U); // check we can read
+        ASSERT_EQ(*it3, i+ 10U); // check we can read
+        // check non const iterator can write
+        (*it) += 1;
+        ASSERT_EQ(*it, i+ 11U); // check we can write
+        ++it;
+        ++it2;
+        ++it3;
+    }
+    ASSERT_TRUE(it == slice.end()) << "end=" << *slice.end() << " it=" << *it; 
+    ASSERT_TRUE(it2 == slice.end()) << "end=" << *slice.cend() << " it2=" << *it2; 
+    ASSERT_TRUE(it3 == slice.cend()) << "end=" << *slice.cend() << " it3=" << *it3; 
+}
+
 TEST_F(SliceTest, test_two_dimensions)
 {
     ParentType<2> p(50);
@@ -226,20 +256,25 @@ TEST_F(SliceTest, const_test_three_dimensions_slice_iterators)
 
     auto it = sub_slice.begin();
     auto it2 = sub_slice.cbegin();
+    auto const& const_sub_slice = sub_slice;
+    auto it3 = const_sub_slice.begin();
     for(std::size_t i = 0; i < sub_slice.size<DimensionA>(); ++i) {
         for(std::size_t j = 0; j < sub_slice.size<DimensionB>(); ++j) {
             for(std::size_t k = 0; k < sub_slice.size<DimensionC>(); ++k) {
                 unsigned val = *it;
                 ASSERT_EQ( val, sub_slice[i][j][k]) << "i=" << i << " j=" << j << " k=" << k; // check we can read
                 ASSERT_FALSE(it == sub_slice.end()) << "i=" << i << " j=" << j << " k=" << k << " end=" << *sub_slice.end() << " it=" << *it;
-                ASSERT_FALSE(it2 == sub_slice.cend()) << "i=" << i << " j=" << j << " k=" << k << " end=" << *sub_slice.cend() << " it=" << *it2;
+                ASSERT_FALSE(it2 == sub_slice.cend()) << "i=" << i << " j=" << j << " k=" << k << " end=" << *sub_slice.cend() << " it2=" << *it2;
+                ASSERT_FALSE(it3 == const_sub_slice.end()) << "i=" << i << " j=" << j << " k=" << k << " end=" << *const_sub_slice.cend() << " it3=" << *it3;
                 ++it;
                 ++it2;
+                ++it3;
             }
         }
     }
     ASSERT_TRUE(it == sub_slice.end()) << "end=" << *sub_slice.end() << " it=" << *it; 
     ASSERT_TRUE(it2 == sub_slice.cend()) << "end=" << *sub_slice.cend() << " it2=" << *it2; 
+    ASSERT_TRUE(it3 == sub_slice.cend()) << "end=" << *sub_slice.cend() << " it2=" << *it2; 
 }
 
 } // namespace test

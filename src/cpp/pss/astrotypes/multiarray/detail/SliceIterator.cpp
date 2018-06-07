@@ -43,7 +43,7 @@ template<typename DerivedType, typename SliceType, bool is_const>
 DerivedType SliceIteratorBase<DerivedType, SliceType, is_const>::create_end(SliceT& slice)
 {
     DerivedType it(slice);
-    it._current += static_cast<std::size_t>(slice.base_span() * slice._span.span());
+    it._current += static_cast<std::size_t>(slice.base_span());
     it._end = it._current;
     return it;
 }
@@ -55,15 +55,15 @@ const typename SliceIteratorBase<DerivedType, SliceType, is_const>::reference Sl
 }
 
 template<typename DerivedType, typename SliceType, bool is_const>
-template<typename D>
-bool SliceIteratorBase<DerivedType, SliceType, is_const>::operator==(SliceIteratorBase<D, SliceType, is_const> const& o) const
+template<typename D, bool const_val>
+bool SliceIteratorBase<DerivedType, SliceType, is_const>::operator==(SliceIteratorBase<D, SliceType, const_val> const& o) const
 {
     return _current == o._current;
 }
 
 template<typename DerivedType, typename SliceType, bool is_const>
-template<typename D>
-bool SliceIteratorBase<DerivedType, SliceType, is_const>::operator!=(SliceIteratorBase<D, SliceType, is_const> const& o) const
+template<typename D, bool const_val>
+bool SliceIteratorBase<DerivedType, SliceType, is_const>::operator!=(SliceIteratorBase<D, SliceType, const_val> const& o) const
 {
     return _current != o._current;
 }
