@@ -63,7 +63,7 @@ class SliceIteratorBase : public SliceIteratorBase<DerivedType, SliceType, is_co
         typedef typename std::iterator_traits<parent_iterator>::reference reference;
         typedef typename std::iterator_traits<parent_iterator>::pointer pointer;
         typedef typename std::iterator_traits<parent_iterator>::difference_type difference_type;
-        typedef typename std::conditional<(SliceType::rank!=1), std::forward_iterator_tag, typename std::iterator_traits<parent_iterator>::iterator_category>::type iterator_category;
+        typedef typename std::forward_iterator_tag iterator_category;
 
     public:
         SliceIteratorBase(SliceT&);

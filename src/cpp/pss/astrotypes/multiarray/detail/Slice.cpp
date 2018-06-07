@@ -174,21 +174,21 @@ typename Slice<is_const, Parent, Dimension, Dimensions...>::iterator Slice<is_co
     return SliceIterator<SelfType, is_const>::create_end(*this);
 }
 
-template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, Dimension, Dimensions...>::const_iterator Slice<is_const, Parent, Dimension, Dimensions...>::end() const
+template<bool is_const, typename ParentT, typename Dimension, typename... Dimensions>
+typename Slice<is_const, ParentT, Dimension, Dimensions...>::const_iterator Slice<is_const, ParentT, Dimension, Dimensions...>::end() const
 {
     return SliceIterator<SelfType, true>::create_end(*this);
 }
 
-template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, Dimension, Dimensions...>::const_iterator Slice<is_const, Parent, Dimension, Dimensions...>::cend() const
+template<bool is_const, typename ParentT, typename Dimension, typename... Dimensions>
+typename Slice<is_const, ParentT, Dimension, Dimensions...>::const_iterator Slice<is_const, ParentT, Dimension, Dimensions...>::cend() const
 {
     return SliceIterator<SelfType, true>::create_end(*this);
 }
 
-template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+template<bool is_const, typename ParentT, typename Dimension, typename... Dimensions>
 template<typename IteratorT>
-bool Slice<is_const, Parent, Dimension, Dimensions...>::increment_it(IteratorT& current, IteratorT& end, IteratorT& offset) const
+bool Slice<is_const, ParentT, Dimension, Dimensions...>::increment_it(IteratorT& current, IteratorT& end, IteratorT& offset) const
 {
     if(!BaseT::increment_it(current, end, offset)) {
         if(current < offset + (_span.span()  - 1 ) * BaseT::_base_span)
@@ -205,9 +205,9 @@ bool Slice<is_const, Parent, Dimension, Dimensions...>::increment_it(IteratorT& 
     return true;
 }
 
-template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+template<bool is_const, typename ParentT, typename Dimension, typename... Dimensions>
 template<typename IteratorDifferenceT>
-IteratorDifferenceT Slice<is_const, Parent, Dimension, Dimensions...>::diff_it(IteratorDifferenceT const& diff) const
+IteratorDifferenceT Slice<is_const, ParentT, Dimension, Dimensions...>::diff_it(IteratorDifferenceT const& diff) const
 {
     if(diff < (IteratorDifferenceT)BaseT::_base_span) {
         return BaseT::diff_it(diff);
@@ -215,6 +215,14 @@ IteratorDifferenceT Slice<is_const, Parent, Dimension, Dimensions...>::diff_it(I
     else {
         return IteratorDifferenceT(diff/BaseT::_base_span) * BaseT::data_size() + BaseT::diff_it(diff%BaseT::_base_span);
     }
+}
+
+template<bool is_const, typename ParentT, typename Dimension, typename... Dimensions>
+template<bool const_type>
+bool Slice<is_const, ParentT, Dimension, Dimensions...>::operator==(Slice<const_type, ParentT, Dimension, Dimensions...> const& s) const
+{
+    return s.data_size() == data_size()
+         && std::equal(s.cbegin(), s.cend(), cbegin());
 }
 
 // -------------------- single dimension specialisation -------------------
@@ -356,11 +364,19 @@ bool Slice<is_const, Parent, Dimension>::increment_it(IteratorT& current, Iterat
     return false;
 }
 
-template<bool is_const, typename Parent, typename Dimension>
+template<bool is_const, typename ParentT, typename Dimension>
 template<typename IteratorDifferenceT>
-IteratorDifferenceT Slice<is_const, Parent, Dimension>::diff_it(IteratorDifferenceT const& diff)
+IteratorDifferenceT Slice<is_const, ParentT, Dimension>::diff_it(IteratorDifferenceT const& diff)
 {
     return diff;
+}
+
+template<bool is_const, typename ParentT, typename Dimension>
+template<bool is_const_>
+bool Slice<is_const, ParentT, Dimension>::operator==(Slice<is_const_, ParentT, Dimension> const& s) const
+{
+    return s.data_size() == data_size()
+        && std::equal(s.begin(), s.end(), begin());
 }
 
 } // namespace astrotypes

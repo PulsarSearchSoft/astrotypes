@@ -116,6 +116,12 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         const_iterator end() const;
         const_iterator cend() const;
 
+        /**
+         * @brief compare tow arrays
+         */
+        template<bool const_type>
+        bool operator==(Slice<const_type, ParentT, Dimension, Dimensions...> const&) const;
+
     protected:
         template<bool, typename P, typename D, typename... Ds> friend class Slice;
 
@@ -150,6 +156,7 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         friend typename iterator::BaseT;
         friend typename iterator::ImplT;
         friend typename const_iterator::BaseT;
+        friend typename const_iterator::ImplT;
 
     private:
         DimensionSpan<Dimension> _span;
@@ -169,8 +176,10 @@ class Slice<is_const, ParentT, Dimension>
 
     public:
         typedef typename std::conditional<is_const, const ParentT, ParentT>::type Parent;
-        typedef SliceIterator<SelfType, is_const> iterator;
-        typedef SliceIterator<SelfType, true> const_iterator;
+        //typedef SliceIterator<SelfType, is_const> iterator;
+        //typedef SliceIterator<SelfType, true> const_iterator;
+        typedef parent_iterator iterator;
+        typedef parent_const_iterator const_iterator;
 
     public:
         Slice(Parent& parent, DimensionSpan<Dimension> const&);
@@ -217,6 +226,13 @@ class Slice<is_const, ParentT, Dimension>
         parent_const_iterator end() const;
         parent_const_iterator cend() const;
 
+        /**
+         * @brief compare tow arrays
+         */
+        template<bool is_const_>
+        bool operator==(Slice<is_const_, ParentT, Dimension> const&) const;
+        //bool operator==(/*Slice<is_const, ParentT, Dimension> const&*/ SelfType const&) const;
+
 
     protected:
         template<bool, typename P, typename D, typename... Ds> friend class Slice;
@@ -237,10 +253,6 @@ class Slice<is_const, ParentT, Dimension>
         void offset(parent_iterator const&); // init the offset relative to the top parent
         Slice(DimensionSpan<Dimension> const&, Parent const&);
         SelfType& operator+=(DimensionSize<Dimension> const&);
-
-    private:
-        friend typename iterator::BaseT;
-        friend typename const_iterator::BaseT;
 
     private:
         DimensionSpan<Dimension> _span;

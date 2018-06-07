@@ -157,6 +157,17 @@ TEST_F(SliceTest, test_single_dimension_iterators_diff)
     }
 }
 
+TEST_F(SliceTest, test_single_dimension_equals)
+{
+    ParentType<1> const p(50);
+    ParentType<1> p2(50);
+    Slice<true, ParentType<1>, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
+    Slice<false, ParentType<1>, DimensionA> slice_2(p2, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
+    ASSERT_EQ(slice, slice_2);
+    slice_2[1] = 0;
+    ASSERT_FALSE(slice==slice_2);
+}
+
 TEST_F(SliceTest, test_two_dimensions)
 {
     ParentType<2> p(50);
@@ -328,6 +339,26 @@ TEST_F(SliceTest, test_three_dimensions_iterators_diff)
         ++count;
         ++it2;
     }
+}
+
+TEST_F(SliceTest, test_three_dimensions_equals)
+{
+    ParentType<3> const p(50);
+    Slice<true, ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
+    );
+    ParentType<3> p2(50);
+    Slice<false, ParentType<3>, DimensionA, DimensionB, DimensionC> slice_2(p2
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
+    );
+    ASSERT_EQ(slice, slice_2);
+
+    slice_2[0][1][2] = 0;
+    ASSERT_FALSE(slice==slice_2);
 }
 
 } // namespace test
