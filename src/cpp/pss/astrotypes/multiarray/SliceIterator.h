@@ -39,23 +39,13 @@ namespace astrotypes {
 namespace std {
     // spceilisations for iterator_traits
 template<typename SliceType>
-struct iterator_traits<pss::astrotypes::SliceIterator<SliceType, false>>
+struct iterator_traits<pss::astrotypes::SliceIterator<SliceType, false>> : public iterator_traits<typename pss::astrotypes::SliceIterator<SliceType, false>::BaseT>
 {
-    typedef typename SliceType::Parent::iterator iterator;
-    typedef typename iterator::reference reference;
-    typedef typename iterator::value_type value_type;
-    typedef typename iterator::pointer pointer;
-    typedef typename iterator::difference_type difference_type;
 };
 
 template<typename SliceType>
-struct iterator_traits<pss::astrotypes::SliceIterator<SliceType, true>>
+struct iterator_traits<pss::astrotypes::SliceIterator<SliceType, true>> : public iterator_traits<typename pss::astrotypes::SliceIterator<SliceType, true>::BaseT>
 {
-    typedef typename SliceType::Parent::const_iterator iterator;
-    typedef typename iterator::reference reference;
-    typedef typename iterator::value_type value_type;
-    typedef typename iterator::pointer pointer;
-    typedef typename iterator::difference_type difference_type;
 };
 } // namespace std
 
@@ -70,15 +60,20 @@ namespace astrotypes {
  */
 
 template<typename DerivedType, typename SliceType, bool is_const>
-class SliceIteratorBase : public std::iterator_traits<std::forward_iterator_tag>
+class SliceIteratorBase : public std::conditional<(SliceType::rank!=1), std::iterator_traits<std::forward_iterator_tag>, std::iterator_traits<typename SliceType::Parent>>::type
 {
-        typedef SliceIteratorBase<DerivedType, SliceType, is_const> SelfType;
-        typedef typename std::iterator_traits<DerivedType>::iterator parent_iterator;
-        typedef typename std::iterator_traits<parent_iterator>::reference reference;
-        typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
-
         template<typename D, typename S, bool>
         friend class SliceIteratorBase;
+
+        typedef SliceIteratorBase<DerivedType, SliceType, is_const> SelfType;
+        typedef typename std::conditional<is_const, typename SliceType::Parent::const_iterator, typename SliceType::Parent::iterator>::type parent_iterator;
+        typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
+
+    public:
+        typedef typename std::iterator_traits<parent_iterator>::value_type value_type;
+        typedef typename std::iterator_traits<parent_iterator>::reference reference;
+        typedef typename std::iterator_traits<parent_iterator>::pointer pointer;
+        typedef typename std::iterator_traits<parent_iterator>::difference_type difference_type;
 
     public:
         SliceIteratorBase(SliceT&);
@@ -109,9 +104,11 @@ class SliceIteratorBase : public std::iterator_traits<std::forward_iterator_tag>
 template<typename SliceType, bool is_const>
 class SliceIterator : public SliceIteratorBase<SliceIterator<SliceType, is_const>, SliceType, is_const>
 {
-        typedef SliceIteratorBase<SliceIterator<SliceType, is_const>, SliceType, is_const> BaseT;
         typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
         friend SliceType;
+
+    public:
+        typedef SliceIteratorBase<SliceIterator<SliceType, is_const>, SliceType, is_const> BaseT;
 
     public:
         SliceIterator(SliceT&);

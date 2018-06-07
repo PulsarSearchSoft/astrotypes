@@ -57,6 +57,8 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
              , DimensionSpan<Dimensions> const&...
         );
 
+        static constexpr std::size_t rank = 1 + sizeof...(Dimensions);
+
         /**
          * @ brief return the size of the slice in the specified dimension
          * @code
@@ -166,6 +168,8 @@ class Slice<is_const, ParentT, Dimension>
     public:
         Slice(Parent& parent, DimensionSpan<Dimension> const&);
         ~Slice();
+
+        static constexpr std::size_t rank = 1;
 
         /**
          * @ brief return the size of the slice in the specified dimension
