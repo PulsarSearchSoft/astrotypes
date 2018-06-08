@@ -42,7 +42,7 @@ class DimensionSize
         typedef Dimension dimension;
 
     public:
-        explicit DimensionSize(std::size_t size);
+        DimensionSize(std::size_t size);
         ~DimensionSize();
 
         operator std::size_t();
