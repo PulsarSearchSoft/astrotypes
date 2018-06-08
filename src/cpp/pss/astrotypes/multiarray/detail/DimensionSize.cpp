@@ -68,5 +68,22 @@ bool DimensionSize<Dimension>::operator!=(DimensionSize<Dimension> const& b) con
     return _size != b._size;
 }
 
+template<typename Dimension>
+DimensionSize<Dimension>& DimensionSize<Dimension>::operator+=(DimensionSize<Dimension> const& b)
+{
+    return _size += b._size;
+}
+
+template<typename Dimension>
+DimensionSize<Dimension>& DimensionSize<Dimension>::operator++()
+{
+    return ++_size;
+}
+
+template<typename Dimension>
+DimensionSize<Dimension>& DimensionSize<Dimension>::operator++(int)
+{
+    return _size++;
+}
 } // namespace astrotypes
 } // namespace pss
