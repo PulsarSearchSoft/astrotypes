@@ -42,7 +42,7 @@ class DimensionSize
         typedef Dimension dimension;
 
     public:
-        DimensionSize(std::size_t size);
+        explicit DimensionSize(std::size_t size);
         ~DimensionSize();
 
         operator std::size_t();
@@ -51,6 +51,7 @@ class DimensionSize
         bool operator<(DimensionSize<Dimension> const&) const;
         bool operator==(DimensionSize<Dimension> const& s) const;
         bool operator!=(DimensionSize<Dimension> const& s) const;
+        DimensionSize& operator+=(DimensionSize<Dimension> const& s);
 
     private:
         std::size_t _size;

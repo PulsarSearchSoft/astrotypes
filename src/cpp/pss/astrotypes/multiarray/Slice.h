@@ -42,6 +42,7 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         typedef Slice<is_const, ParentT, Dimensions...> BaseT;
         typedef Slice<is_const, ParentT, Dimension, Dimensions...> SelfType;
         typedef typename ParentT::value_type value_type;
+        typedef Dimension SelfDimension;
 
         typedef typename ParentT::const_iterator parent_const_iterator;
         typedef typename std::conditional<is_const, parent_const_iterator, typename ParentT::iterator>::type parent_iterator;
@@ -173,6 +174,7 @@ class Slice<is_const, ParentT, Dimension>
         typedef typename ParentT::const_iterator parent_const_iterator;
         typedef typename std::conditional<is_const, parent_const_iterator, typename ParentT::iterator>::type parent_iterator;
         typedef typename std::iterator_traits<parent_iterator>::reference reference_type;
+        typedef Dimension SelfDimension;
 
     public:
         typedef typename std::conditional<is_const, const ParentT, ParentT>::type Parent;
@@ -253,6 +255,7 @@ class Slice<is_const, ParentT, Dimension>
         void offset(parent_iterator const&); // init the offset relative to the top parent
         Slice(DimensionSpan<Dimension> const&, Parent const&);
         SelfType& operator+=(DimensionSize<Dimension> const&);
+        SelfType& operator+=(std::size_t n);
 
     private:
         DimensionSpan<Dimension> _span;

@@ -84,7 +84,7 @@ struct ParentType {
 
     template<typename Dimension>
     DimensionSize<Dimension> size() const {
-        return _size;
+        return DimensionSize<Dimension>(_size);
     }
 
     std::vector<value_type> _vec;
@@ -180,7 +180,7 @@ TEST_F(SliceTest, test_two_dimensions)
     ASSERT_EQ(3U, static_cast<std::size_t>(slice.size<DimensionB>()));
 
     // test operator[]
-    ASSERT_EQ(3U, static_cast<std::size_t>(slice[0].size<DimensionB>()));
+    ASSERT_EQ(3U, static_cast<std::size_t>(slice[DimensionIndex<DimensionA>(0)].size<DimensionB>()));
 
     for(std::size_t i = 0; i < slice.size<DimensionA>(); ++i) {
         for(std::size_t j = 0; j < slice.size<DimensionB>(); ++j) {

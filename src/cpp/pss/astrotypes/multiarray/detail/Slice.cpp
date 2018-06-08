@@ -222,7 +222,7 @@ template<bool const_type>
 bool Slice<is_const, ParentT, Dimension, Dimensions...>::operator==(Slice<const_type, ParentT, Dimension, Dimensions...> const& s) const
 {
     return s.data_size() == data_size()
-         && std::equal(s.cbegin(), s.cend(), cbegin());
+           && std::equal(s.cbegin(), s.cend(), cbegin());
 }
 
 // -------------------- single dimension specialisation -------------------
@@ -313,6 +313,13 @@ template<bool is_const, typename Parent, typename Dimension>
 Slice<is_const, Parent, Dimension>& Slice<is_const, Parent, Dimension>::operator+=(DimensionSize<Dimension> const& offset)
 {
     _ptr += static_cast<const std::size_t&>(offset) * _base_span;
+    return *this;
+}
+
+template<bool is_const, typename Parent, typename Dimension>
+Slice<is_const, Parent, Dimension>& Slice<is_const, Parent, Dimension>::operator+=(std::size_t offset)
+{
+    _ptr += offset * _base_span;
     return *this;
 }
 
