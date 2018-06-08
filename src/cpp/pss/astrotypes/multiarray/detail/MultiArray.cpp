@@ -108,6 +108,7 @@ typename MultiArray<Alloc, T, FirstDimension, Dimensions...>::ConstSliceType Mul
     return ConstSliceType(*this, index_range
                           , DimensionSpan<Dimensions>(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template size<Dimensions>()))...);
 }
+
 template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
 template<typename... Dims>
 void MultiArray<Alloc, T, FirstDimension, Dimensions...>::resize(DimensionSize<Dims>... size)
@@ -158,6 +159,18 @@ template<typename Alloc, typename T, typename FirstDimension, typename... Dimens
 std::size_t MultiArray<Alloc, T, FirstDimension, Dimensions...>::data_size() const
 {
     return BaseT::data_size();
+}
+
+template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
+bool MultiArray<Alloc, T, FirstDimension, Dimensions...>::equal_size(MultiArray const& o) const
+{
+    return _size == o.size<FirstDimension>() && BaseT::equal_size(static_cast<BaseT const&>(o));
+}
+
+template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
+bool MultiArray<Alloc, T, FirstDimension, Dimensions...>::operator==(MultiArray const& o) const
+{
+    return equal_size(o) && std::equal(o.cbegin(), o.cend(), cbegin());
 }
 
 /////////////////////////////////////////////////////////////
@@ -267,6 +280,19 @@ template<typename Alloc, typename T, typename FirstDimension>
 typename MultiArray<Alloc, T, FirstDimension>::const_iterator MultiArray<Alloc, T, FirstDimension>::cend() const
 {
     return _data.cend();
+}
+
+template<typename Alloc, typename T, typename FirstDimension>
+bool MultiArray<Alloc, T, FirstDimension>::operator==(MultiArray const& o) const
+{
+    return _size == o.size<FirstDimension>() 
+           && std::equal(o.cbegin(), o.cend(), cbegin());
+}
+
+template<typename Alloc, typename T, typename FirstDimension>
+bool MultiArray<Alloc, T, FirstDimension>::equal_size(MultiArray const& o) const
+{
+    return _size == o.size<FirstDimension>();
 }
 
 } // namespace astrotypes

@@ -117,7 +117,7 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         const_iterator cend() const;
 
         /**
-         * @brief compare tow arrays
+         * @brief compare two arrays
          */
         template<bool const_type>
         bool operator==(Slice<const_type, ParentT, Dimension, Dimensions...> const&) const;

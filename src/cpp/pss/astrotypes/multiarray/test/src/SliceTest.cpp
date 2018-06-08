@@ -357,8 +357,11 @@ TEST_F(SliceTest, test_three_dimensions_equals)
     );
     ASSERT_EQ(slice, slice_2);
 
+    // dirrent data
     slice_2[0][1][2] = 0;
+    ASSERT_NE(slice_2[0][1][2], slice[0][1][2]);
     ASSERT_FALSE(slice==slice_2);
+
 }
 
 } // namespace test

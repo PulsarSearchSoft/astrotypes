@@ -59,7 +59,10 @@ class TestMultiArray : public MultiArray<std::allocator<T>, T, Dimensions...>
 
     public:
         template<typename... Args>
-        TestMultiArray(Args&&... args) : BaseT(std::forward<Args>(args)...) {}
+        TestMultiArray(Args&&... args) : BaseT(std::forward<Args>(args)...) {
+            unsigned n=0;
+            std::generate(this->begin(), this->end(), [&] () mutable { return n++; });
+        }
 };
 
 TEST_F(MultiArrayTest, test_single_dimension_size)
@@ -260,6 +263,28 @@ TEST_F(MultiArrayTest, test_three_dimension_data_size)
 
     TestMultiArray<unsigned, DimensionA, DimensionB, DimensionC> ma( size_a, size_b, size_c);
     ASSERT_EQ(ma.data_size(), size_a * size_b * size_c);
+}
+
+TEST_F(MultiArrayTest, test_three_dimension_equal_operator)
+{
+    DimensionSize<DimensionA> size_a(10);
+    DimensionSize<DimensionB> size_b(20);
+    DimensionSize<DimensionB> size_b_2(30);
+    DimensionSize<DimensionC> size_c(30);
+    DimensionSize<DimensionC> size_c_2(20);
+
+    TestMultiArray<unsigned, DimensionA, DimensionB, DimensionC> ma_1( size_a, size_b, size_c);
+    TestMultiArray<unsigned, DimensionA, DimensionB, DimensionC> ma_2( size_a, size_b, size_c);
+    TestMultiArray<unsigned, DimensionA, DimensionB, DimensionC> ma_3( size_a, size_b_2, size_c_2);
+    ASSERT_EQ(ma_1, ma_2);
+
+    // check dirrefent dimensions (but same overall size)
+    ASSERT_EQ(ma_1.data_size(), ma_3.data_size());
+    ASSERT_FALSE(ma_1 == ma_3);
+
+    // change the data
+    ma_1[DimensionIndex<DimensionA>(0)][DimensionIndex<DimensionB>(0)][DimensionIndex<DimensionC>(5)] = 0;
+    ASSERT_FALSE(ma_1 == ma_2);
 }
 
 } // namespace test

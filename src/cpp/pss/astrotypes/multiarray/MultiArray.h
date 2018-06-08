@@ -124,6 +124,17 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
          */
         std::size_t data_size() const;
 
+        /**
+         * @brief compare data in the two arrays
+         */
+        bool operator==(MultiArray const&) const;
+
+        /**
+         * @brief return true if the sizes of each dimension are quivalent
+         */
+        bool equal_size(MultiArray const&) const;
+        
+
     protected:
         MultiArray(bool disable_resize_tag, DimensionSize<FirstDimension> const&, DimensionSize<OtherDimensions> const& ... sizes);
 
@@ -185,6 +196,16 @@ class MultiArray<Alloc, T, FirstDimension>
 
         template<typename Dimension>
         void resize(DimensionSize<Dimension> size);
+
+        /**
+         * @brief compare data in the two arrays
+         */
+        bool operator==(MultiArray const&) const;
+
+        /**
+         * @brief return true if the sizes of each dimension are quivalent
+         */
+        bool equal_size(MultiArray const&) const;
 
         /// bulk iterators
         iterator begin();
