@@ -25,6 +25,7 @@
 #define PSS_ASTROTYPES_MULTIARRAY_SLICE_H
 #include "DimensionSpan.h"
 #include "SliceIterator.h"
+#include "detail/SlicePosition.h"
 #include <utility>
 
 namespace pss {
@@ -126,7 +127,7 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
     protected:
         template<bool, typename P, typename D, typename... Ds> friend class Slice;
 
-        template<typename IteratorT> bool increment_it(IteratorT& current, IteratorT& end, IteratorT& max_end) const;
+        template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
         template<typename IteratorDifferenceT> IteratorDifferenceT diff_it(IteratorDifferenceT const& diff) const;
 
         // return the size of memory occupied by the lowest dimension
@@ -134,6 +135,7 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
 
         // reeturn the span of all lower dimensions than this one (i.e an index of +1 in this dimension)
         std::size_t base_span() const;
+        std::size_t diff_base_span() const;
 
         // ptr to the start of the block
         parent_iterator const& base_ptr() const;
@@ -239,7 +241,7 @@ class Slice<is_const, ParentT, Dimension>
     protected:
         template<bool, typename P, typename D, typename... Ds> friend class Slice;
 
-        template<typename IteratorT> static bool increment_it(IteratorT& current, IteratorT& end, IteratorT& max_end);
+        template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
         template<typename IteratorDifferenceT> static IteratorDifferenceT diff_it(IteratorDifferenceT const& diff);
 
         // return the size of memory occupied by the lowest dimension
@@ -247,6 +249,10 @@ class Slice<is_const, ParentT, Dimension>
 
         // same as size() - to support base_span calls from higher dimensions
         std::size_t base_span() const;
+
+        // number of elements between the blocks end and its beginning
+        // 1 Base_ptr less than base_span
+        std::size_t diff_base_span() const;
 
         // ptr to the start of the block
         parent_iterator const& base_ptr() const;

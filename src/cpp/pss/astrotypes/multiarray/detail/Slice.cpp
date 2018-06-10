@@ -67,6 +67,12 @@ std::size_t Slice<is_const, Parent, Dimension, Dimensions...>::base_span() const
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+std::size_t Slice<is_const, Parent, Dimension, Dimensions...>::diff_base_span() const
+{
+    return static_cast<const std::size_t>(BaseT::_base_span) * (_span.span() - 1);
+}
+
+template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
 std::size_t Slice<is_const, Parent, Dimension, Dimensions...>::contiguous_span() const
 {
     return BaseT::contiguous_span();
@@ -188,18 +194,17 @@ typename Slice<is_const, ParentT, Dimension, Dimensions...>::const_iterator Slic
 
 template<bool is_const, typename ParentT, typename Dimension, typename... Dimensions>
 template<typename IteratorT>
-bool Slice<is_const, ParentT, Dimension, Dimensions...>::increment_it(IteratorT& current, IteratorT& end, IteratorT& offset) const
+bool Slice<is_const, ParentT, Dimension, Dimensions...>::increment_it(IteratorT& current, SlicePosition<rank>& pos) const
 {
-    if(!BaseT::increment_it(current, end, offset)) {
-        if(current < offset + (_span.span()  - 1 ) * BaseT::_base_span)
+    if(!BaseT::increment_it(current, pos)) {
+        current -= BaseT::diff_base_span(); // return pointer to beginning of BaseT block
+        if(++pos.index < _span.span())
         {
-            end += BaseT::_base_span;
-            current = end - contiguous_span();
+            current += BaseT::_base_span; // move up to next block
             return true;
         }
         // reset end to the end of a first chunk
-        offset += _base_span;
-        end -= (_span.span() -1) * BaseT::_base_span;
+        pos.index=0;
         return false;
     }
     return true;
@@ -292,6 +297,12 @@ std::size_t Slice<is_const, Parent, Dimension>::base_span() const
 }
 
 template<bool is_const, typename Parent, typename Dimension>
+std::size_t Slice<is_const, Parent, Dimension>::diff_base_span() const
+{
+    return static_cast<const std::size_t>(_span.span());
+}
+
+template<bool is_const, typename Parent, typename Dimension>
 std::size_t Slice<is_const, Parent, Dimension>::contiguous_span() const
 {
     return static_cast<const std::size_t>(_span.span());
@@ -361,13 +372,14 @@ typename Slice<is_const, Parent, Dimension>::parent_const_iterator Slice<is_cons
 
 template<bool is_const, typename Parent, typename Dimension>
 template<typename IteratorT>
-bool Slice<is_const, Parent, Dimension>::increment_it(IteratorT& current, IteratorT& end, IteratorT&)
+bool Slice<is_const, Parent, Dimension>::increment_it(IteratorT& current, SlicePosition<rank>& pos) const
 {
     ++current;
-    if(current < end)
+    if(++pos.index < _span.span())
     {
         return true;
     }
+    pos.index=0;
     return false;
 }
 

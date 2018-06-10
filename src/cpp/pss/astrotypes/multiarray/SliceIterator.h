@@ -25,6 +25,7 @@
 #define PSS_ASTROTYPES_MULTIARRAY_SLICEITERATOR_H
 
 #include "Slice.h"
+#include "detail/SlicePosition.h"
 #include <utility>
 #include <iterator>
 
@@ -47,6 +48,7 @@ namespace astrotypes {
 template<typename DerivedType, typename SliceType, bool is_const, int Rank>
 class SliceIteratorBase : public SliceIteratorBase<DerivedType, SliceType, is_const, 1>
 {
+    private:
         template<typename D, typename S, bool, int>
         friend class SliceIteratorBase;
 
@@ -75,7 +77,7 @@ class SliceIteratorBase : public SliceIteratorBase<DerivedType, SliceType, is_co
 
     protected:
         SliceT& _slice;
-        parent_iterator _offset;
+        SlicePosition<SliceT::rank>  _pos;
 };
 
 template<typename DerivedType, typename SliceType, bool is_const>
@@ -121,7 +123,6 @@ class SliceIteratorBase<DerivedType, SliceType, is_const, 1>
 
     protected:
         parent_iterator _current;
-        parent_iterator _end;
 };
 
 template<typename SliceType, bool is_const>

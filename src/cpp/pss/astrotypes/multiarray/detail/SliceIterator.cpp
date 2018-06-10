@@ -29,7 +29,7 @@ template<typename DerivedType, typename SliceType, bool is_const, int rank>
 SliceIteratorBase<DerivedType, SliceType, is_const, rank>::SliceIteratorBase(SliceT& slice)
     : BaseT(slice)
     , _slice(slice)
-    , _offset(BaseT::_current)
+    , _pos()
 {
 }
 
@@ -41,7 +41,9 @@ SliceIteratorBase<DerivedType, SliceType, is_const, rank>::~SliceIteratorBase()
 template<typename DerivedType, typename SliceType, bool is_const, int rank>
 DerivedType& SliceIteratorBase<DerivedType, SliceType, is_const, rank>::operator++()
 {
-    _slice.increment_it(this->_current, this->_end, _offset);
+    if(!_slice.increment_it(this->_current, _pos)) {
+        this->_current = this->_slice.end()._current;
+    }
     return static_cast<DerivedType&>(*this);
 }
 
@@ -56,14 +58,12 @@ DerivedType SliceIteratorBase<DerivedType, SliceType, is_const, 1>::create_end(S
 {
     DerivedType it(slice);
     it._current += static_cast<std::size_t>(slice.base_span());
-    it._end = it._current;
     return it;
 }
 
 template<typename DerivedType, typename SliceType, bool is_const>
 SliceIteratorBase<DerivedType, SliceType, is_const, 1>::SliceIteratorBase(SliceT& slice)
     : _current(slice.base_ptr())
-    , _end(_current + slice.contiguous_span())
 {
 }
 

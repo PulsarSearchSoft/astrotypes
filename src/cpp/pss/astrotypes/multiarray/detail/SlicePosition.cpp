@@ -25,18 +25,37 @@
 namespace pss {
 namespace astrotypes {
 
-template<typename Dimension>
-DimensionSpan<Dimension>::DimensionSpan(DimensionIndex<Dimension> start_index, DimensionIndex<Dimension> end_index)
-    : _start_index(start_index)
-    , _span(end_index - start_index + 1)
+// terminator of inheritance
+template<>
+struct SlicePosition<1>
+{
+    public:
+        SlicePosition()
+            : index(0)
+        {
+        }
+
+    public:
+        void out(std::ostream& os) const
+        {
+            os << "[" << index << "]";
+        }
+
+    public:
+        std::size_t index; 
+};
+
+template<unsigned Rank>
+SlicePosition<Rank>::SlicePosition()
+    : index(0)
 {
 }
 
-template<typename Dimension>
-DimensionSpan<Dimension>::DimensionSpan(DimensionIndex<Dimension> start_index, DimensionSize<Dimension> size)
-    : _start_index(start_index)
-    , _span(size)
+template<unsigned Rank>
+void SlicePosition<Rank>::out(std::ostream& os) const
 {
+    os << "[" << index << "]";
+    os << static_cast<BaseT const&>(*this);
 }
 
 } // namespace astrotypes

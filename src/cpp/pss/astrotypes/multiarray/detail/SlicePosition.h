@@ -21,23 +21,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+#ifndef PSS_ASTROTYPES_MULTIARRAY_SLICEPOSITION_H
+#define PSS_ASTROTYPES_MULTIARRAY_SLICEPOSITION_H
+
+#include <ostream>
 
 namespace pss {
 namespace astrotypes {
 
-template<typename Dimension>
-DimensionSpan<Dimension>::DimensionSpan(DimensionIndex<Dimension> start_index, DimensionIndex<Dimension> end_index)
-    : _start_index(start_index)
-    , _span(end_index - start_index + 1)
+/**
+ * @brief represents a point in an 
+ * @details a series of indexes for each dimension in the array
+ */
+template<unsigned Rank>
+struct SlicePosition : public SlicePosition<Rank-1>
 {
+        typedef SlicePosition<Rank-1> BaseT;
+
+    public:
+        SlicePosition();
+
+    public:
+        // write indices as [x][y][z]... to the ostream
+        void out(std::ostream&) const;
+
+    public:
+        std::size_t index; 
+};
+
+template<unsigned Rank>
+std::ostream& operator<<(std::ostream& os, SlicePosition<Rank> const& pos) {
+    pos.out(os);
+    return os;
 }
 
-template<typename Dimension>
-DimensionSpan<Dimension>::DimensionSpan(DimensionIndex<Dimension> start_index, DimensionSize<Dimension> size)
-    : _start_index(start_index)
-    , _span(size)
-{
-}
 
 } // namespace astrotypes
 } // namespace pss
+#include "detail/SlicePosition.cpp"
+
+#endif // PSS_ASTROTYPES_MULTIARRAY_SLICEPOSITION_H

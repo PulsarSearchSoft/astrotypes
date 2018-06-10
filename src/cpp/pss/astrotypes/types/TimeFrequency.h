@@ -50,8 +50,8 @@ class TimeFrequency : public MultiArray<Alloc, T, Time, Frequency>
     public:
         typedef typename BaseT::ReducedDimensionSliceType Spectra;
         typedef typename BaseT::ConstReducedDimensionSliceType ConstSpectra;
-        typedef Slice<false, BaseT, Time, Frequency> Channel;
-        typedef Slice<true, BaseT, Time, Frequency> ConstChannel;
+        typedef typename BaseT::SliceType Channel;
+        typedef typename BaseT::ConstSliceType ConstChannel;
 
     public:
         TimeFrequency(DimensionSize<Time>, DimensionSize<Frequency>);
