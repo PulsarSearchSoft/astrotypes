@@ -58,6 +58,6 @@ std::ostream& operator<<(std::ostream& os, SlicePosition<Rank> const& pos) {
 
 } // namespace astrotypes
 } // namespace pss
-#include "detail/SlicePosition.cpp"
+#include "SlicePosition.cpp"
 
 #endif // PSS_ASTROTYPES_MULTIARRAY_SLICEPOSITION_H
