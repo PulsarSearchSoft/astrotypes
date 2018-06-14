@@ -287,7 +287,7 @@ typename Slice<is_const, Parent, Dimension>::reference_type Slice<is_const, Pare
 template<bool is_const, typename Parent, typename Dimension>
 typename Slice<is_const, Parent, Dimension>::reference_type Slice<is_const, Parent, Dimension>::operator[](DimensionIndex<Dimension> const& p) const
 {
-    return *(_ptr + static_cast<std::size_t const&>(p));
+    return *(_ptr + static_cast<std::size_t const>(p));
 }
 
 template<bool is_const, typename Parent, typename Dimension>
