@@ -21,72 +21,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+#include "pss/astrotypes/multiarray/test/DimensionSizeTest.h"
+#include "pss/astrotypes/multiarray/DimensionSize.h"
+
 
 namespace pss {
 namespace astrotypes {
+namespace multiarray {
+namespace test {
 
 
-template<typename Dimension>
-DimensionSize<Dimension>::DimensionSize(std::size_t size)
-    : _size(size)
+DimensionSizeTest::DimensionSizeTest()
+    : ::testing::Test()
 {
 }
 
-template<typename Dimension>
-DimensionSize<Dimension>::~DimensionSize()
+DimensionSizeTest::~DimensionSizeTest()
 {
 }
 
-template<typename Dimension>
-DimensionSize<Dimension>::operator std::size_t()
+void DimensionSizeTest::SetUp()
 {
-    return _size;
 }
 
-template<typename Dimension>
-DimensionSize<Dimension>::operator std::size_t() const
+void DimensionSizeTest::TearDown()
 {
-    return _size;
 }
 
+struct DimensionA;
 
-template<typename Dimension>
-bool DimensionSize<Dimension>::operator<(DimensionSize<Dimension> const& b) const
+TEST_F(DimensionSizeTest, test_operator_plus_plus)
 {
-    return _size < b._size;
+    DimensionSize<DimensionA> d(100);
+    // pre increment op
+    ASSERT_EQ(DimensionSize<DimensionA>(101), ++d);
+
+    // post increment op
+    ASSERT_EQ(DimensionSize<DimensionA>(101), d++);
+    ASSERT_EQ(DimensionSize<DimensionA>(102), d);
 }
 
-template<typename Dimension>
-bool DimensionSize<Dimension>::operator==(DimensionSize<Dimension> const& b) const
-{
-    return _size == b._size;
-}
-
-template<typename Dimension>
-bool DimensionSize<Dimension>::operator!=(DimensionSize<Dimension> const& b) const
-{
-    return _size != b._size;
-}
-
-template<typename Dimension>
-DimensionSize<Dimension>& DimensionSize<Dimension>::operator+=(DimensionSize<Dimension> const& b)
-{
-    _size += b._size;
-    return *this;
-}
-
-template<typename Dimension>
-DimensionSize<Dimension>& DimensionSize<Dimension>::operator++()
-{
-    ++_size;
-    return *this;
-}
-
-template<typename Dimension>
-DimensionSize<Dimension> DimensionSize<Dimension>::operator++(int)
-{
-    DimensionSize tmp(_size++);
-    return tmp;
-}
+} // namespace test
+} // namespace multiarray
 } // namespace astrotypes
 } // namespace pss

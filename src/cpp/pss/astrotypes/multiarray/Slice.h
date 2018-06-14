@@ -24,6 +24,8 @@
 #ifndef PSS_ASTROTYPES_MULTIARRAY_SLICE_H
 #define PSS_ASTROTYPES_MULTIARRAY_SLICE_H
 #include "DimensionSpan.h"
+#include "SliceIterator.h"
+#include "detail/SlicePosition.h"
 #include <utility>
 
 namespace pss {
@@ -35,21 +37,34 @@ namespace astrotypes {
  * @details
  */
 
-template<typename Parent, typename Dimension, typename... Dimensions>
-class Slice : private Slice<Parent, Dimensions...>
+template<bool is_const, typename ParentT, typename Dimension, typename... Dimensions>
+class Slice : private Slice<is_const, ParentT, Dimensions...>
 {
-        typedef Slice<Parent, Dimensions...> BaseT;
-        typedef Slice<Parent, Dimension, Dimensions...> SelfType;
-        typedef typename Parent::value_type value_type;
-        typedef typename Parent::reference_type reference_type;
+        typedef Slice<is_const, ParentT, Dimensions...> BaseT;
+        typedef Slice<is_const, ParentT, Dimension, Dimensions...> SelfType;
+        typedef typename ParentT::value_type value_type;
+        typedef Dimension SelfDimension;
 
-        typedef typename Parent::iterator iterator;
+        typedef typename ParentT::const_iterator parent_const_iterator;
+        typedef typename std::conditional<is_const, parent_const_iterator, typename ParentT::iterator>::type parent_iterator;
+
+    public:
+        typedef typename std::conditional<is_const, const ParentT, ParentT>::type Parent;
+        typedef SliceIterator<SelfType, is_const> iterator;
+        typedef SliceIterator<SelfType, true> const_iterator;
 
     public:
         Slice( Parent& parent
              , DimensionSpan<Dimension> const&
              , DimensionSpan<Dimensions> const&...
         );
+
+        static constexpr std::size_t rank = 1 + sizeof...(Dimensions);
+
+        /**
+         * @brief the total number of data memebers in this slice
+         */
+        std::size_t data_size() const;
 
         /**
          * @ brief return the size of the slice in the specified dimension
@@ -81,19 +96,52 @@ class Slice : private Slice<Parent, Dimensions...>
         /**
          * @brief Take a slice in the specified dimension one channel thick
          */
-        Slice<Parent, Dimensions...> operator[](std::size_t) const;
+        Slice<is_const, ParentT, Dimensions...> operator[](DimensionIndex<Dimension>) const;
+        Slice<is_const, ParentT, Dimensions...> operator[](std::size_t) const; // TODO remove
 
         /**
          * @brief Take a slice from this slice
          */
-        Slice<Parent, Dimension, Dimensions...> slice(DimensionSpan<Dimension> const& span) const;
+        Slice<is_const, ParentT, Dimension, Dimensions...> slice(DimensionSpan<Dimension> const& span) const;
+
+        /**
+         * @brief iterator pointing to the first element in the slice
+         */
+        iterator begin();
+        const_iterator begin() const;
+        const_iterator cbegin() const;
+
+        /**
+         * @brief iterator pointing to just after the last element
+         */
+        iterator end();
+        const_iterator end() const;
+        const_iterator cend() const;
+
+        /**
+         * @brief compare two arrays
+         */
+        template<bool const_type>
+        bool operator==(Slice<const_type, ParentT, Dimension, Dimensions...> const&) const;
 
     protected:
-        template<typename P, typename D, typename... Ds> friend class Slice;
+        template<bool, typename P, typename D, typename... Ds> friend class Slice;
 
-        // return the span of memory to add on to the outer dimension index
-        std::size_t span() const;
-        void offset(iterator const&); // init the offset relative to the top parent
+        template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
+        template<typename IteratorDifferenceT> IteratorDifferenceT diff_it(IteratorDifferenceT const& diff) const;
+
+        // return the size of memory occupied by the lowest dimension
+        std::size_t contiguous_span() const;
+
+        // reeturn the span of all lower dimensions than this one (i.e an index of +1 in this dimension)
+        std::size_t base_span() const;
+        std::size_t diff_base_span() const;
+
+        // ptr to the start of the block
+        parent_iterator const& base_ptr() const;
+        parent_iterator& base_ptr();
+
+        void offset(parent_iterator const&); // init the offset relative to the top parent
 
         // init for inheriting classes only
         Slice( DimensionSpan<Dimension> const&
@@ -107,29 +155,46 @@ class Slice : private Slice<Parent, Dimensions...>
         // increment pointer by a n * base span length
         SelfType& operator+=(DimensionSize<Dimension> n);
 
-        // return the span of the underlying parent in the Dimension
-        DimensionSize<Dimension> parent_span() const;
+    private:
+        friend typename iterator::BaseT;
+        friend typename iterator::ImplT;
+        friend typename const_iterator::BaseT;
+        friend typename const_iterator::ImplT;
 
     private:
         DimensionSpan<Dimension> _span;
         DimensionSize<Dimension> _base_span;
-        iterator _ptr;  // start of block
+        parent_iterator _ptr;  // start of block
 };
 
 // specialisation for 0 dimensional slice
 // which should return a single element
-template<typename Parent, typename Dimension>
-class Slice<Parent, Dimension>
+template<bool is_const, typename ParentT, typename Dimension>
+class Slice<is_const, ParentT, Dimension>
 {
-        typedef Slice<Parent, Dimension> SelfType;
+        typedef Slice<is_const, ParentT, Dimension> SelfType;
+        typedef typename ParentT::const_iterator parent_const_iterator;
+        typedef typename std::conditional<is_const, parent_const_iterator, typename ParentT::iterator>::type parent_iterator;
+        typedef typename std::iterator_traits<parent_iterator>::reference reference_type;
+        typedef Dimension SelfDimension;
 
-
-        typedef typename Parent::reference_type reference_type;
-        typedef typename Parent::iterator iterator;
+    public:
+        typedef typename std::conditional<is_const, const ParentT, ParentT>::type Parent;
+        //typedef SliceIterator<SelfType, is_const> iterator;
+        //typedef SliceIterator<SelfType, true> const_iterator;
+        typedef parent_iterator iterator;
+        typedef parent_const_iterator const_iterator;
 
     public:
         Slice(Parent& parent, DimensionSpan<Dimension> const&);
         ~Slice();
+
+        static constexpr std::size_t rank = 1;
+
+        /**
+         * @brief the total number of data memebers in this slice
+         */
+        std::size_t data_size() const;
 
         /**
          * @ brief return the size of the slice in the specified dimension
@@ -151,22 +216,57 @@ class Slice<Parent, Dimension>
         reference_type operator[](std::size_t index) const;
         reference_type operator[](DimensionIndex<Dimension> const& index) const;
 
-    protected:
-        template<typename P, typename D, typename... Ds> friend class Slice;
+        /**
+         * @brief iterator pointing to the first element in the slice
+         */
+        parent_iterator begin();
+        parent_const_iterator begin() const;
+        parent_const_iterator cbegin() const;
 
-        // return the span of memory to add on to the outer dimension index
-        std::size_t span() const;
-        void offset(iterator const&); // init the offset relative to the top parent
+        /**
+         * @brief iterator pointing to just after the last element
+         */
+        parent_iterator end();
+        parent_const_iterator end() const;
+        parent_const_iterator cend() const;
+
+        /**
+         * @brief compare tow arrays
+         */
+        template<bool is_const_>
+        bool operator==(Slice<is_const_, ParentT, Dimension> const&) const;
+        //bool operator==(/*Slice<is_const, ParentT, Dimension> const&*/ SelfType const&) const;
+
+
+    protected:
+        template<bool, typename P, typename D, typename... Ds> friend class Slice;
+
+        template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
+        template<typename IteratorDifferenceT> static IteratorDifferenceT diff_it(IteratorDifferenceT const& diff);
+
+        // return the size of memory occupied by the lowest dimension
+        std::size_t contiguous_span() const;
+
+        // same as size() - to support base_span calls from higher dimensions
+        std::size_t base_span() const;
+
+        // number of elements between the blocks end and its beginning
+        // 1 Base_ptr less than base_span
+        std::size_t diff_base_span() const;
+
+        // ptr to the start of the block
+        parent_iterator const& base_ptr() const;
+        parent_iterator& base_ptr();
+
+        void offset(parent_iterator const&); // init the offset relative to the top parent
         Slice(DimensionSpan<Dimension> const&, Parent const&);
         SelfType& operator+=(DimensionSize<Dimension> const&);
-
-    protected:
-        DimensionSize<Dimension> parent_span() const;
+        SelfType& operator+=(std::size_t n);
 
     private:
         DimensionSpan<Dimension> _span;
         DimensionSize<Dimension> _base_span;
-        typename Parent::iterator _ptr;   // start, to extent _ptr + _span
+        parent_iterator _ptr;   // start, to extent _ptr + _span
 };
 
 } // namespace astrotypes

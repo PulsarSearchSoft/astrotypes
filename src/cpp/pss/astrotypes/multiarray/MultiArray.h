@@ -27,6 +27,7 @@
 #include "Slice.h"
 #include "DimensionSize.h"
 #include "DimensionIndex.h"
+#include <vector>
 
 namespace pss {
 namespace astrotypes {
@@ -43,8 +44,12 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
 {
         typedef MultiArray<Alloc, T, OtherDimensions...> BaseT;
         typedef MultiArray<Alloc, T, FirstDimension, OtherDimensions...> SelfType;
-        typedef Slice<SelfType, FirstDimension, OtherDimensions...> SliceType;
-        typedef Slice<SelfType, OtherDimensions...> ReducedDimensionSliceType;
+
+    protected:
+        typedef Slice<false, SelfType, FirstDimension, OtherDimensions...> SliceType;
+        typedef Slice<true, SelfType, FirstDimension, OtherDimensions...> ConstSliceType;
+        typedef Slice<false, SelfType, OtherDimensions...> ReducedDimensionSliceType;
+        typedef Slice<true, SelfType, OtherDimensions...> ConstReducedDimensionSliceType;
 
     public:
         typedef std::vector<T, Alloc> Container;
@@ -86,17 +91,19 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
          * @endcode
          */
         ReducedDimensionSliceType operator[](DimensionIndex<FirstDimension> index);
+        ConstReducedDimensionSliceType operator[](DimensionIndex<FirstDimension> index) const;
 
         /**
          * @brief return a slice of the specified dimension spanning the index_range provided
          */
         SliceType slice(DimensionSpan<FirstDimension> const& index_range);
+        ConstSliceType slice(DimensionSpan<FirstDimension> const& index_range) const;
 
         /**
          * @brief resize the array in the specified dimension
          */
-        template<typename Dim>
-        void resize(DimensionSize<Dim>);
+        template<typename... Dimensions>
+        void resize(DimensionSize<Dimensions>... size);
 
         /**
          * @brief resize the array in the specified dimension
@@ -112,16 +119,34 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
         typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
         size() const;
 
+        /**
+         * @brief the total size of data in all dimesions
+         */
+        std::size_t data_size() const;
+
+        /**
+         * @brief compare data in the two arrays
+         */
+        bool operator==(MultiArray const&) const;
+
+        /**
+         * @brief return true if the sizes of each dimension are quivalent
+         */
+        bool equal_size(MultiArray const&) const;
+        
+
     protected:
         MultiArray(bool disable_resize_tag, DimensionSize<FirstDimension> const&, DimensionSize<OtherDimensions> const& ... sizes);
 
-        template<typename Dimension>
+        template<typename Dimension, typename... Dims>
         typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type 
-        do_resize(std::size_t total, DimensionSize<Dimension> size);
+        do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>&&... sizes);
 
-        template<typename Dimension>
+        template<typename Dimension, typename... Dims>
         typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type 
-        do_resize(std::size_t total, DimensionSize<Dimension> size);
+        do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>&&... sizes);
+
+        void do_resize(std::size_t total);
 
     private:
         DimensionSize<FirstDimension>     _size;
@@ -132,7 +157,8 @@ template<typename Alloc, typename T, typename FirstDimension>
 class MultiArray<Alloc, T, FirstDimension>
 {
         typedef MultiArray<Alloc, T, FirstDimension> SelfType;
-        typedef Slice<SelfType, FirstDimension> SliceType;
+        typedef Slice<false, SelfType, FirstDimension> SliceType;
+        typedef Slice<true, SelfType, FirstDimension> ConstSliceType;
 
         typedef std::vector<T, Alloc> Container;
 
@@ -152,6 +178,7 @@ class MultiArray<Alloc, T, FirstDimension>
          * @brief 
          */
         reference_type operator[](DimensionIndex<FirstDimension> index);
+        const_reference_type operator[](DimensionIndex<FirstDimension> index) const;
 
         /// size
         template<typename Dim>
@@ -162,8 +189,23 @@ class MultiArray<Alloc, T, FirstDimension>
         typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
         size() const;
 
+        /**
+         * @brief the total size of data in all dimesions
+         */
+        std::size_t data_size() const;
+
         template<typename Dimension>
         void resize(DimensionSize<Dimension> size);
+
+        /**
+         * @brief compare data in the two arrays
+         */
+        bool operator==(MultiArray const&) const;
+
+        /**
+         * @brief return true if the sizes of each dimension are quivalent
+         */
+        bool equal_size(MultiArray const&) const;
 
         /// bulk iterators
         iterator begin();
@@ -181,9 +223,9 @@ class MultiArray<Alloc, T, FirstDimension>
         typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type 
         do_resize(std::size_t total_size, DimensionSize<Dimension> size);
 
-        template<typename Dimension>
-        typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type 
-        do_resize(std::size_t total_size, DimensionSize<Dimension> size);
+        //template<typename Dimension>
+        //typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type 
+        void do_resize(std::size_t total_size);
 
     private:
         DimensionSize<FirstDimension> _size;

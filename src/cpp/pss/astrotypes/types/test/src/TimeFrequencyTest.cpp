@@ -60,6 +60,64 @@ TEST_F(TimeFrequencyTest, test_time_freq_instantiation)
     ASSERT_EQ(freq_size, tf2.size<Frequency>());
 }
 
+TEST_F(TimeFrequencyTest, test_time_freq_spectrum)
+{
+    DimensionSize<Time> time_size(50);
+    DimensionSize<Frequency> freq_size(10);
+    TimeFrequency<uint8_t> tf1(time_size, freq_size);
+    
+    for(unsigned spectrum_num =0; spectrum_num < (std::size_t)time_size; ++spectrum_num)
+    {
+        unsigned n=0;
+        typename TimeFrequency<uint8_t>::Spectra s = tf1.spectrum(spectrum_num);
+        std::for_each(s.cbegin(), s.cend(), [&](uint8_t) { ++n; } );
+        ASSERT_EQ(n, (unsigned)(freq_size));
+    }
+
+    TimeFrequency<uint8_t> const& tf2 = tf1;
+    typename TimeFrequency<uint8_t>::ConstSpectra s2 = tf2.spectrum(3);
+}
+
+TEST_F(TimeFrequencyTest, test_time_freq_channel)
+{
+    DimensionSize<Time> time_size(2);
+    DimensionSize<Frequency> freq_size(10);
+    TimeFrequency<int> tf1(time_size, freq_size);
+    unsigned val=0;
+    std::generate(tf1.begin(), tf1.end(), [&]() { return val++; });
+    
+    typedef typename TimeFrequency<int>::Channel Channel; 
+    for(unsigned channel_num=0; channel_num < (std::size_t)freq_size; ++ channel_num) {
+        SCOPED_TRACE(channel_num);
+        SCOPED_TRACE("channel_num:");
+        Channel c = tf1.channel(channel_num);
+        ASSERT_EQ(c.size<Frequency>(), DimensionSize<Frequency>(1));
+        ASSERT_EQ(c.size<Time>(), time_size);
+        SliceIterator<Channel, false> it=c.begin();
+        SliceIterator<Channel, true> it_const=c.cbegin();
+        ASSERT_EQ(it, it_const);
+        unsigned count=0;
+        while(it != c.end()) {
+            ASSERT_EQ(count * (std::size_t)freq_size + channel_num, *it) << " count=" << count;
+            ++count;
+            ++it;
+        }
+        ASSERT_EQ(count, (unsigned)(time_size));
+        unsigned count2=0;
+        std::for_each(c.cbegin(), c.cend(), [&](int const& val)
+                                            { 
+                                                ASSERT_EQ(count2 * (std::size_t)freq_size + channel_num, val) << " count=" << count2;
+                                                ++count2;
+                                            } );
+        ASSERT_EQ(count, (unsigned)(time_size));
+    }
+
+    TimeFrequency<int> const& tf2 = tf1;
+    typename TimeFrequency<int>::ConstChannel c2 = tf2.channel(5);
+    ASSERT_EQ(c2.size<Frequency>(), DimensionSize<Frequency>(1));
+    ASSERT_EQ(c2.size<Time>(), time_size);
+}
+
 TEST_F(TimeFrequencyTest, test_freq_time_instantiation)
 {
     DimensionSize<Time> time_size(50);
@@ -71,6 +129,37 @@ TEST_F(TimeFrequencyTest, test_freq_time_instantiation)
     FrequencyTime<uint16_t> tf2(freq_size, time_size);
     ASSERT_EQ(time_size, tf2.size<Time>());
     ASSERT_EQ(freq_size, tf2.size<Frequency>());
+}
+
+TEST_F(TimeFrequencyTest, test_freq_time_spectrum)
+{
+    DimensionSize<Time> time_size(50);
+    DimensionSize<Frequency> freq_size(10);
+    FrequencyTime<uint8_t> tf1(time_size, freq_size);
+    
+    typename FrequencyTime<uint8_t>::Spectra s = tf1.spectrum(0);
+    unsigned n=0;
+    std::for_each(s.cbegin(), s.cend(), [&](uint8_t) { ++n; } );
+    ASSERT_EQ(n, (unsigned)(freq_size));
+
+    FrequencyTime<uint8_t> const& tf2 = tf1;
+    typename FrequencyTime<uint8_t>::ConstSpectra s2 = tf2.spectrum(3);
+}
+
+TEST_F(TimeFrequencyTest, test_freq_time_channel)
+{
+    DimensionSize<Time> time_size(50);
+    DimensionSize<Frequency> freq_size(10);
+    FrequencyTime<uint8_t> tf1(time_size, freq_size);
+    
+    typename FrequencyTime<uint8_t>::Channel c = tf1.channel(0);
+    ASSERT_EQ(c.size<Frequency>(), DimensionSize<Frequency>(0));
+    ASSERT_EQ(c.size<Time>(), time_size);
+
+    FrequencyTime<uint8_t> const& tf2 = tf1;
+    typename FrequencyTime<uint8_t>::ConstChannel c2 = tf2.channel(5);
+    ASSERT_EQ(c2.size<Frequency>(), DimensionSize<Frequency>(0));
+    ASSERT_EQ(c2.size<Time>(), time_size);
 }
 
 } // namespace test

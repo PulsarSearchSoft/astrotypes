@@ -21,47 +21,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
-#define PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
-
 
 namespace pss {
 namespace astrotypes {
 
-/**
- * @brief
- *      A compile time dimesion tagging of size_t
- *
- * @details
- */
-
-template<typename Dimension>
-class DimensionSize
+// terminator of inheritance
+template<>
+struct SlicePosition<1>
 {
     public:
-        typedef Dimension dimension;
+        SlicePosition()
+            : index(0)
+        {
+        }
 
     public:
-        DimensionSize(std::size_t size);
-        ~DimensionSize();
+        void out(std::ostream& os) const
+        {
+            os << "[" << index << "]";
+        }
 
-        operator std::size_t();
-        operator std::size_t() const;
-
-        bool operator<(DimensionSize<Dimension> const&) const;
-        bool operator==(DimensionSize<Dimension> const& s) const;
-        bool operator!=(DimensionSize<Dimension> const& s) const;
-        DimensionSize& operator+=(DimensionSize<Dimension> const& s);
-        DimensionSize& operator++();
-        DimensionSize operator++(int);
-
-    private:
-        std::size_t _size;
+    public:
+        std::size_t index; 
 };
 
+template<unsigned Rank>
+SlicePosition<Rank>::SlicePosition()
+    : index(0)
+{
+}
+
+template<unsigned Rank>
+void SlicePosition<Rank>::out(std::ostream& os) const
+{
+    os << "[" << index << "]";
+    os << static_cast<BaseT const&>(*this);
+}
 
 } // namespace astrotypes
 } // namespace pss
-#include "detail/DimensionSize.cpp"
-
-#endif // PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H

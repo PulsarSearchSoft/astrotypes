@@ -3,6 +3,7 @@ link_directories(${GTEST_LIBRARY_DIR})
 
 set(
    gtest_multiarray_src
+   src/DimensionSizeTest.cpp
    src/MultiArrayTest.cpp
    src/NumericalRepresentationTest.cpp
    src/PointerAllocatorTest.cpp

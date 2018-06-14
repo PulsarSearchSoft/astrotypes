@@ -59,13 +59,13 @@ struct ParentType {
     typedef int value_type;
     typedef int& reference_type;
     typedef typename std::vector<value_type>::iterator iterator;
+    typedef typename std::vector<value_type>::const_iterator const_iterator;
 
     ParentType(std::size_t size)
         : _vec(std::pow(size, NDim))
         , _size(size)
     {
         unsigned index=0;
-        //int offset=0;
         
         while(index<_vec.size()) {
             _vec[index]=index;
@@ -77,9 +77,13 @@ struct ParentType {
         return _vec.begin();
     }
 
+    const_iterator begin() const {
+        return _vec.begin();
+    }
+
     template<typename Dimension>
     DimensionSize<Dimension> size() const {
-        return _size;
+        return DimensionSize<Dimension>(_size);
     }
 
     std::vector<value_type> _vec;
@@ -90,9 +94,9 @@ struct ParentType {
 TEST_F(SliceTest, test_single_dimension)
 {
     ParentType<1> p(50);
-    Slice<ParentType<1>, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
+    Slice<false, ParentType<1>, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
     // test size
-    ASSERT_EQ(10U, static_cast<std::size_t>(slice.size<DimensionA>()));
+    ASSERT_EQ(11U, static_cast<std::size_t>(slice.size<DimensionA>()));
     ASSERT_EQ(0U, static_cast<std::size_t>(slice.size<DimensionB>()));
 
     // test operator[]
@@ -102,19 +106,80 @@ TEST_F(SliceTest, test_single_dimension)
     }
 }
 
+TEST_F(SliceTest, test_single_dimension_iterators)
+{
+    ParentType<1> p(50);
+    Slice<false, ParentType<1>, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(19)));
+
+    // test operator[]
+    auto it = slice.begin();
+    typedef typename std::iterator_traits<typename decltype(p)::iterator>::iterator_category expected_iterator_category;
+    static_assert(std::is_same<std::iterator_traits<decltype(it)>::iterator_category, expected_iterator_category>::value,
+                                 "expecting a vector iterator category");
+    auto const& const_slice = slice;   
+    auto it2 = const_slice.begin();
+    static_assert(std::is_same<std::iterator_traits<decltype(it2)>::iterator_category, expected_iterator_category>::value,
+                                 "expecting a vector iterator category");
+    auto it3 = const_slice.cbegin();
+    static_assert(std::is_same<std::iterator_traits<decltype(it3)>::iterator_category, expected_iterator_category>::value,
+                                 "expecting a vector iterator category");
+
+    for(std::size_t i = 0; i < slice.size<DimensionA>(); ++i) {
+        ASSERT_FALSE(it == slice.end()) << "i=" << i << " end=" << *slice.end() << " it=" << *it;
+        ASSERT_FALSE(it2 == slice.end()) << "i=" << i << " end=" << *slice.end() << " it=" << *it2;
+        ASSERT_FALSE(it3 == slice.cend()) << "i=" << i << " end=" << *slice.cend() << " it=" << *it3;
+        ASSERT_EQ(*it, i+ 10U); // check we can read
+        ASSERT_EQ(*it2, i+ 10U); // check we can read
+        ASSERT_EQ(*it3, i+ 10U); // check we can read
+        // check non const iterator can write
+        (*it) += 1;
+        ASSERT_EQ(*it, i+ 11U); // check we can write
+        ++it;
+        ++it2;
+        ++it3;
+    }
+    ASSERT_TRUE(it == slice.end()) << "end=" << *slice.end() << " it=" << *it; 
+    ASSERT_TRUE(it2 == slice.end()) << "end=" << *slice.cend() << " it2=" << *it2; 
+    ASSERT_TRUE(it3 == slice.cend()) << "end=" << *slice.cend() << " it3=" << *it3; 
+}
+
+TEST_F(SliceTest, test_single_dimension_iterators_diff)
+{
+    ParentType<1> const p(50);
+    Slice<true, ParentType<1>, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
+
+    auto it = slice.begin();
+    auto it2 = slice.begin();
+    for(unsigned i=0; i < slice.size<DimensionA>(); ++i) {
+        ASSERT_EQ(i, it2 - it) << i;
+        ++it2;
+    }
+}
+
+TEST_F(SliceTest, test_single_dimension_equals)
+{
+    ParentType<1> const p(50);
+    ParentType<1> p2(50);
+    Slice<true, ParentType<1>, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
+    Slice<false, ParentType<1>, DimensionA> slice_2(p2, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
+    ASSERT_EQ(slice, slice_2);
+    slice_2[1] = 0;
+    ASSERT_FALSE(slice==slice_2);
+}
+
 TEST_F(SliceTest, test_two_dimensions)
 {
     ParentType<2> p(50);
-    Slice<ParentType<2>, DimensionA, DimensionB> slice(p
-                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
-                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+    Slice<false, ParentType<2>, DimensionA, DimensionB> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(19))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(22))
                                               );
     // test size
     ASSERT_EQ(10U, static_cast<std::size_t>(slice.size<DimensionA>()));
     ASSERT_EQ(3U, static_cast<std::size_t>(slice.size<DimensionB>()));
 
     // test operator[]
-    ASSERT_EQ(3U, static_cast<std::size_t>(slice[0].size<DimensionB>()));
+    ASSERT_EQ(3U, static_cast<std::size_t>(slice[DimensionIndex<DimensionA>(0)].size<DimensionB>()));
 
     for(std::size_t i = 0; i < slice.size<DimensionA>(); ++i) {
         for(std::size_t j = 0; j < slice.size<DimensionB>(); ++j) {
@@ -123,14 +188,31 @@ TEST_F(SliceTest, test_two_dimensions)
     }
 }
 
+TEST_F(SliceTest, test_two_dimensions_iterators_diff)
+{
+    ParentType<2> p(50);
+    Slice<false, ParentType<2>, DimensionA, DimensionB> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              );
+    auto it = slice.begin();
+    auto it2 = slice.begin();
+    // check inner loop
+    std::size_t count = 0;
+    while(it2 != slice.end()) {
+        ASSERT_EQ(count, it2 - it) << count;
+        ++count;
+        ++it2;
+    }
+}
 
 TEST_F(SliceTest, test_three_dimensions)
 {
     ParentType<3> p(50);
-    Slice<ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
-                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
-                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
-                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
+    Slice<false, ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(10))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(22))
+                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(6))
                                               );
     // test size
     ASSERT_EQ(10U, static_cast<std::size_t>(slice.size<DimensionA>()));
@@ -158,16 +240,16 @@ TEST_F(SliceTest, test_three_dimensions)
 TEST_F(SliceTest, test_three_dimensions_same_dim_sub_slice)
 {
     ParentType<3> p(50);
-    Slice<ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
-                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
-                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
-                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
+    Slice<false, ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionSize<DimensionA>(10))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionSize<DimensionB>(3))
+                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionSize<DimensionC>(5))
                                               );
     // cut a sub slice (should be of the same type - hence no auto
-    Slice<ParentType<3>, DimensionA,DimensionB, DimensionC> sub_slice =  
+    Slice<false, ParentType<3>, DimensionA, DimensionB, DimensionC> sub_slice =  
                     slice.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(2), DimensionIndex<DimensionA>(6)));
 
-    ASSERT_EQ(4U, static_cast<std::size_t>(sub_slice.size<DimensionA>()));
+    ASSERT_EQ(5U, static_cast<std::size_t>(sub_slice.size<DimensionA>()));
     ASSERT_EQ(3U, static_cast<std::size_t>(sub_slice.size<DimensionB>()));
     ASSERT_EQ(5U, static_cast<std::size_t>(sub_slice.size<DimensionC>()));
     
@@ -181,6 +263,105 @@ TEST_F(SliceTest, test_three_dimensions_same_dim_sub_slice)
             }
         }
     }
+}
+
+TEST_F(SliceTest, test_three_dimensions_slice_iterators)
+{
+    ParentType<3> p(50);
+    Slice<false, ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
+    );
+    Slice<false, ParentType<3>, DimensionA, DimensionB, DimensionC> sub_slice =  
+                    slice.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(2), DimensionIndex<DimensionA>(4)));
+
+    auto it = sub_slice.begin();
+    auto end = sub_slice.end();
+    for(std::size_t i = 0; i < sub_slice.size<DimensionA>(); ++i) {
+        for(std::size_t j = 0; j < sub_slice.size<DimensionB>(); ++j) {
+            for(std::size_t k = 0; k < sub_slice.size<DimensionC>(); ++k) {
+                unsigned val = *it;
+                ASSERT_EQ( val, sub_slice[i][j][k]) << "i=" << i << " j=" << j << " k=" << k; // check we can read
+                ASSERT_FALSE(it == end) << "i=" << i << " j=" << j << " k=" << k << " end=" << *end << " it=" << *it;
+                ++it;
+            }
+        }
+    }
+    ASSERT_TRUE(it == sub_slice.end()) << "end=" << *sub_slice.end() << " it=" << *it; 
+}
+
+TEST_F(SliceTest, const_test_three_dimensions_slice_iterators)
+{
+    ParentType<3> const p(50);
+    Slice<true, ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
+    );
+    Slice<true, ParentType<3>, DimensionA, DimensionB, DimensionC> sub_slice =  
+                    slice.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(2), DimensionIndex<DimensionA>(4)));
+
+    auto it = sub_slice.begin();
+    static_assert(std::is_same<std::iterator_traits<decltype(it)>::iterator_category, std::forward_iterator_tag>::value, "expecting a forward iterator");
+    auto it2 = sub_slice.cbegin();
+    static_assert(std::is_same<std::iterator_traits<decltype(it2)>::iterator_category, std::forward_iterator_tag>::value, "expecting a forward iterator");
+    for(std::size_t i = 0; i < sub_slice.size<DimensionA>(); ++i) {
+        for(std::size_t j = 0; j < sub_slice.size<DimensionB>(); ++j) {
+            for(std::size_t k = 0; k < sub_slice.size<DimensionC>(); ++k) {
+                unsigned val = *it;
+                ASSERT_EQ( val, sub_slice[i][j][k]) << "i=" << i << " j=" << j << " k=" << k; // check we can read
+                ASSERT_FALSE(it == sub_slice.end()) << "i=" << i << " j=" << j << " k=" << k << " end=" << *sub_slice.end() << " it=" << *it;
+                ASSERT_FALSE(it2 == sub_slice.cend()) << "i=" << i << " j=" << j << " k=" << k << " end=" << *sub_slice.cend() << " it2=" << *it2;
+                ++it;
+                ++it2;
+            }
+        }
+    }
+    ASSERT_TRUE(it == sub_slice.end()) << "end=" << *sub_slice.end() << " it=" << *it; 
+    ASSERT_TRUE(it2 == sub_slice.cend()) << "end=" << *sub_slice.cend() << " it2=" << *it2; 
+}
+
+TEST_F(SliceTest, test_three_dimensions_iterators_diff)
+{
+    ParentType<3> p(50);
+    Slice<true, ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
+    );
+    auto it = slice.begin();
+    auto it2 = slice.begin();
+    // check inner loop
+    std::size_t count = 0;
+    while(it2 != slice.end()) {
+        ASSERT_EQ(count, it2 - it) << count;
+        ++count;
+        ++it2;
+    }
+}
+
+TEST_F(SliceTest, test_three_dimensions_equals)
+{
+    ParentType<3> const p(50);
+    Slice<true, ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
+    );
+    ParentType<3> p2(50);
+    Slice<false, ParentType<3>, DimensionA, DimensionB, DimensionC> slice_2(p2
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
+    );
+    ASSERT_EQ(slice, slice_2);
+
+    // dirrent data
+    slice_2[0][1][2] = 0;
+    ASSERT_NE(slice_2[0][1][2], slice[0][1][2]);
+    ASSERT_FALSE(slice==slice_2);
+
 }
 
 } // namespace test
