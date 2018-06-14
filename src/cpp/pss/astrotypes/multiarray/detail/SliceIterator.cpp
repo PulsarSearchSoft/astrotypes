@@ -100,15 +100,15 @@ const typename SliceIteratorBase<DerivedType, SliceType, is_const, 1>::reference
 }
 
 template<typename DerivedType, typename SliceType, bool is_const>
-template<typename D, bool const_val, int rank>
-bool SliceIteratorBase<DerivedType, SliceType, is_const, 1>::operator==(SliceIteratorBase<D, SliceType, const_val, rank> const& o) const
+template<typename D, bool const_val>
+bool SliceIteratorBase<DerivedType, SliceType, is_const, 1>::operator==(SliceIteratorBase<D, SliceType, const_val, 1> const& o) const
 {
     return _current == o._current;
 }
 
 template<typename DerivedType, typename SliceType, bool is_const>
-template<typename D, bool const_val, int rank>
-bool SliceIteratorBase<DerivedType, SliceType, is_const, 1>::operator!=(SliceIteratorBase<D, SliceType, const_val, rank> const& o) const
+template<typename D, bool const_val>
+bool SliceIteratorBase<DerivedType, SliceType, is_const, 1>::operator!=(SliceIteratorBase<D, SliceType, const_val, 1> const& o) const
 {
     return _current != o._current;
 }

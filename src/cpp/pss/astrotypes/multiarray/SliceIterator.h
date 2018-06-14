@@ -98,7 +98,7 @@ class SliceIteratorBase<DerivedType, SliceType, is_const, 1>
         typedef typename std::iterator_traits<parent_iterator>::reference reference;
         typedef typename std::iterator_traits<parent_iterator>::pointer pointer;
         typedef typename std::iterator_traits<parent_iterator>::difference_type difference_type;
-        typedef typename std::conditional<(SliceType::rank!=1), std::forward_iterator_tag, typename std::iterator_traits<parent_iterator>::iterator_category>::type iterator_category;
+        typedef typename std::iterator_traits<parent_iterator>::iterator_category iterator_category;
 
     public:
         SliceIteratorBase(SliceT&);
@@ -107,11 +107,11 @@ class SliceIteratorBase<DerivedType, SliceType, is_const, 1>
         DerivedType& operator++();
         DerivedType& operator++(int);
 
-        template<typename D, bool const_val, int rank>
-        bool operator==(SliceIteratorBase<D, SliceType, const_val, rank> const&) const;
+        template<typename D, bool const_val>
+        bool operator==(SliceIteratorBase<D, SliceType, const_val, 1> const&) const;
 
-        template<typename D, bool const_val, int rank>
-        bool operator!=(SliceIteratorBase<D, SliceType, const_val, rank> const&) const;
+        template<typename D, bool const_val>
+        bool operator!=(SliceIteratorBase<D, SliceType, const_val, 1> const&) const;
 
         /// dereference operator
         const reference operator*() const;
