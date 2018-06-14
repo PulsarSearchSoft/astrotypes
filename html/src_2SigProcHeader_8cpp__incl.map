@@ -1,0 +1,26 @@
+<map id="src/cpp/pss/astrotypes/sigproc/src/SigProcHeader.cpp" name="src/cpp/pss/astrotypes/sigproc/src/SigProcHeader.cpp">
+<area shape="rect" id="node2" href="$SigProcHeader_8h.html" title="pss/astrotypes/sigproc\l/SigProcHeader.h" alt="" coords="888,92,1042,131"/>
+<area shape="rect" id="node8" href="$SigProcVariable_8h.html" title="pss/astrotypes/sigproc\l/SigProcVariable.h" alt="" coords="825,352,979,391"/>
+<area shape="rect" id="node3" href="$HeaderItem_8h.html" title="HeaderItem.h" alt="" coords="1479,185,1581,211"/>
+<area shape="rect" id="node12" href="$TimeFrequency_8h.html" title="pss/astrotypes/types\l/TimeFrequency.h" alt="" coords="549,179,692,217"/>
+<area shape="rect" id="node41" href="$detail_2SigProcHeader_8cpp.html" title="detail/SigProcHeader.cpp" alt="" coords="1012,185,1184,211"/>
+<area shape="rect" id="node7" href="$detail_2HeaderItem_8cpp.html" title="detail/HeaderItem.cpp" alt="" coords="1294,272,1446,297"/>
+<area shape="rect" id="node11" href="$detail_2SigProcVariable_8cpp.html" title="detail/SigProcVariable.cpp" alt="" coords="939,439,1116,464"/>
+<area shape="rect" id="node13" href="$Time_8h.html" title="pss/astrotypes/units\l/Time.h" alt="" coords="153,265,292,304"/>
+<area shape="rect" id="node17" href="$Frequency_8h.html" title="pss/astrotypes/units\l/Frequency.h" alt="" coords="353,265,492,304"/>
+<area shape="rect" id="node20" href="$MultiArray_8h.html" title="pss/astrotypes/multiarray\l/MultiArray.h" alt="" coords="1469,265,1639,304"/>
+<area shape="rect" id="node38" href="$TimeFrequency_8cpp.html" title="detail/TimeFrequency.cpp" alt="" coords="609,272,782,297"/>
+<area shape="rect" id="node21" href="$Slice_8h.html" title="Slice.h" alt="" coords="1393,359,1454,384"/>
+<area shape="rect" id="node23" href="$DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="1688,585,1809,611"/>
+<area shape="rect" id="node25" href="$DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="1811,512,1939,537"/>
+<area shape="rect" id="node36" href="$MultiArray_8cpp.html" title="detail/MultiArray.cpp" alt="" coords="1484,359,1625,384"/>
+<area shape="rect" id="node22" href="$DimensionSpan_8h.html" title="DimensionSpan.h" alt="" coords="1604,439,1731,464"/>
+<area shape="rect" id="node28" href="$SliceIterator_8h.html" title="SliceIterator.h" alt="" coords="1328,439,1431,464"/>
+<area shape="rect" id="node29" href="$SlicePosition_8h.html" title="detail/SlicePosition.h" alt="" coords="1266,512,1410,537"/>
+<area shape="rect" id="node35" href="$Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="1193,439,1304,464"/>
+<area shape="rect" id="node27" href="$DimensionSpan_8cpp.html" title="detail/DimensionSpan.cpp" alt="" coords="1510,512,1686,537"/>
+<area shape="rect" id="node24" href="$DimensionSize_8cpp.html" title="detail/DimensionSize.cpp" alt="" coords="1663,659,1834,684"/>
+<area shape="rect" id="node26" href="$DimensionIndex_8cpp.html" title="detail/DimensionIndex.cpp" alt="" coords="1833,585,2011,611"/>
+<area shape="rect" id="node34" href="$SliceIterator_8cpp.html" title="detail/SliceIterator.cpp" alt="" coords="1002,512,1154,537"/>
+<area shape="rect" id="node31" href="$SlicePosition_8cpp.html" title="SlicePosition.cpp" alt="" coords="1337,585,1460,611"/>
+</map>

@@ -10,5 +10,6 @@ var searchData=
   ['dimensionsize_3c_20firstdimension_20_3e',['DimensionSize&lt; FirstDimension &gt;',['../classpss_1_1astrotypes_1_1DimensionSize.html',1,'pss::astrotypes']]],
   ['dimensionsize_3c_20frequency_20_3e',['DimensionSize&lt; Frequency &gt;',['../classpss_1_1astrotypes_1_1DimensionSize.html',1,'pss::astrotypes']]],
   ['dimensionsize_3c_20time_20_3e',['DimensionSize&lt; Time &gt;',['../classpss_1_1astrotypes_1_1DimensionSize.html',1,'pss::astrotypes']]],
+  ['dimensionsizetest',['DimensionSizeTest',['../classpss_1_1astrotypes_1_1multiarray_1_1test_1_1DimensionSizeTest.html',1,'pss::astrotypes::multiarray::test']]],
   ['dimensionspan',['DimensionSpan',['../classpss_1_1astrotypes_1_1DimensionSpan.html',1,'pss::astrotypes']]]
 ];

@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classpss_1_1astrotypes_1_1MultiIterator.html" title="pss::astrotypes::MultiIterator" alt="" coords="5,5,194,31"/>
+<area shape="rect" id="node1" href="$classpss_1_1astrotypes_1_1MultiArray.html" title="pss::astrotypes::MultiArray\l\&lt; std::allocator\&lt; T \&gt;, T,\l Dimensions...\&gt;" alt="" coords="5,5,184,57"/>
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1test_1_1TestMultiArray.html" title="pss::astrotypes::test\l::TestMultiArray\&lt; T,\l Dimensions \&gt;" alt="" coords="232,5,372,57"/>
 </map>

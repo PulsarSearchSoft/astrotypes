@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['const_5fiterator',['const_iterator',['../structpss_1_1astrotypes_1_1MultiArrayTraits.html#a79b4230d677bc672b6f24bcd05c44e77',1,'pss::astrotypes::MultiArrayTraits']]]
+  ['index',['index',['../structpss_1_1astrotypes_1_1SlicePosition_3_011_01_4.html#a348751acc6568c4feb1cb1428e42854f',1,'pss::astrotypes::SlicePosition&lt; 1 &gt;::index()'],['../structpss_1_1astrotypes_1_1SlicePosition.html#a817e74116185a4c45dc57ae9b41d1457',1,'pss::astrotypes::SlicePosition::index()']]]
 ];

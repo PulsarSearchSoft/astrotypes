@@ -8,6 +8,8 @@ var searchData=
   ['dimensionindex_2eh',['DimensionIndex.h',['../DimensionIndex_8h.html',1,'']]],
   ['dimensionsize_2ecpp',['DimensionSize.cpp',['../DimensionSize_8cpp.html',1,'']]],
   ['dimensionsize_2eh',['DimensionSize.h',['../DimensionSize_8h.html',1,'']]],
+  ['dimensionsizetest_2ecpp',['DimensionSizeTest.cpp',['../DimensionSizeTest_8cpp.html',1,'']]],
+  ['dimensionsizetest_2eh',['DimensionSizeTest.h',['../DimensionSizeTest_8h.html',1,'']]],
   ['dimensionspan_2ecpp',['DimensionSpan.cpp',['../DimensionSpan_8cpp.html',1,'']]],
   ['dimensionspan_2eh',['DimensionSpan.h',['../DimensionSpan_8h.html',1,'']]]
 ];

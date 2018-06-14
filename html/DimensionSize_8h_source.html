@@ -137,29 +137,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keywordtype">bool</span> operator&lt;(DimensionSize&lt;Dimension&gt; <span class="keyword">const</span>&amp;) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpss_1_1astrotypes_1_1DimensionSize.html#a185cc6f86f4e21bf1959099c696786a2">operator==</a>(<a class="code" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize&lt;Dimension&gt;</a> <span class="keyword">const</span>&amp; s) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="classpss_1_1astrotypes_1_1DimensionSize.html#abb9d37fe807e3f0969c928fb2dba4543">operator!=</a>(<a class="code" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize&lt;Dimension&gt;</a> <span class="keyword">const</span>&amp; s) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        std::size_t _size;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;};</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;} <span class="comment">// namespace astrotypes</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;} <span class="comment">// namespace pss</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="DimensionSize_8cpp.html">detail/DimensionSize.cpp</a>&quot;</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif // PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <a class="code" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&amp; <a class="code" href="classpss_1_1astrotypes_1_1DimensionSize.html#acbfc2147b401df64708b726063ba1bc1">operator+=</a>(<a class="code" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize&lt;Dimension&gt;</a> <span class="keyword">const</span>&amp; s);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <a class="code" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&amp; <a class="code" href="classpss_1_1astrotypes_1_1DimensionSize.html#a0812881643254e99efc03d6d1124cc1c">operator++</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a> <a class="code" href="classpss_1_1astrotypes_1_1DimensionSize.html#a0812881643254e99efc03d6d1124cc1c">operator++</a>(<span class="keywordtype">int</span>);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        std::size_t _size;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;};</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;} <span class="comment">// namespace astrotypes</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;} <span class="comment">// namespace pss</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="DimensionSize_8cpp.html">detail/DimensionSize.cpp</a>&quot;</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#endif // PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H</span></div>
 <div class="ttc" id="namespacepss_html"><div class="ttname"><a href="namespacepss.html">pss</a></div><div class="ttdef"><b>Definition:</b> DataBuffer.cpp:26</div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1DimensionSize_html_a0812881643254e99efc03d6d1124cc1c"><div class="ttname"><a href="classpss_1_1astrotypes_1_1DimensionSize.html#a0812881643254e99efc03d6d1124cc1c">pss::astrotypes::DimensionSize::operator++</a></div><div class="ttdeci">DimensionSize &amp; operator++()</div><div class="ttdef"><b>Definition:</b> DimensionSize.cpp:79</div></div>
 <div class="ttc" id="classpss_1_1astrotypes_1_1DimensionSize_html_afed473331697b92322bf13663fd57c63"><div class="ttname"><a href="classpss_1_1astrotypes_1_1DimensionSize.html#afed473331697b92322bf13663fd57c63">pss::astrotypes::DimensionSize::DimensionSize</a></div><div class="ttdeci">DimensionSize(std::size_t size)</div><div class="ttdef"><b>Definition:</b> DimensionSize.cpp:30</div></div>
 <div class="ttc" id="DimensionSize_8cpp_html"><div class="ttname"><a href="DimensionSize_8cpp.html">DimensionSize.cpp</a></div></div>
 <div class="ttc" id="classpss_1_1astrotypes_1_1DimensionSize_html_a185cc6f86f4e21bf1959099c696786a2"><div class="ttname"><a href="classpss_1_1astrotypes_1_1DimensionSize.html#a185cc6f86f4e21bf1959099c696786a2">pss::astrotypes::DimensionSize::operator==</a></div><div class="ttdeci">bool operator==(DimensionSize&lt; Dimension &gt; const &amp;s) const </div><div class="ttdef"><b>Definition:</b> DimensionSize.cpp:60</div></div>
 <div class="ttc" id="classpss_1_1astrotypes_1_1DimensionSize_html"><div class="ttname"><a href="classpss_1_1astrotypes_1_1DimensionSize.html">pss::astrotypes::DimensionSize</a></div><div class="ttdoc">A compile time dimesion tagging of size_t. </div><div class="ttdef"><b>Definition:</b> DimensionSize.h:39</div></div>
 <div class="ttc" id="classpss_1_1astrotypes_1_1DimensionSize_html_a89c7c0e2349b17a927d5b46fe454d511"><div class="ttname"><a href="classpss_1_1astrotypes_1_1DimensionSize.html#a89c7c0e2349b17a927d5b46fe454d511">pss::astrotypes::DimensionSize::~DimensionSize</a></div><div class="ttdeci">~DimensionSize()</div><div class="ttdef"><b>Definition:</b> DimensionSize.cpp:36</div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1DimensionSize_html_acbfc2147b401df64708b726063ba1bc1"><div class="ttname"><a href="classpss_1_1astrotypes_1_1DimensionSize.html#acbfc2147b401df64708b726063ba1bc1">pss::astrotypes::DimensionSize::operator+=</a></div><div class="ttdeci">DimensionSize &amp; operator+=(DimensionSize&lt; Dimension &gt; const &amp;s)</div><div class="ttdef"><b>Definition:</b> DimensionSize.cpp:72</div></div>
 <div class="ttc" id="classpss_1_1astrotypes_1_1DimensionSize_html_ae74711d4460f1fbd5a8f34626d47cffc"><div class="ttname"><a href="classpss_1_1astrotypes_1_1DimensionSize.html#ae74711d4460f1fbd5a8f34626d47cffc">pss::astrotypes::DimensionSize::dimension</a></div><div class="ttdeci">Dimension dimension</div><div class="ttdef"><b>Definition:</b> DimensionSize.h:42</div></div>
 <div class="ttc" id="classpss_1_1astrotypes_1_1DimensionSize_html_abb9d37fe807e3f0969c928fb2dba4543"><div class="ttname"><a href="classpss_1_1astrotypes_1_1DimensionSize.html#abb9d37fe807e3f0969c928fb2dba4543">pss::astrotypes::DimensionSize::operator!=</a></div><div class="ttdeci">bool operator!=(DimensionSize&lt; Dimension &gt; const &amp;s) const </div><div class="ttdef"><b>Definition:</b> DimensionSize.cpp:66</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Mar 27 2018 18:18:01 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 14 2018 14:24:12 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -1,0 +1,4 @@
+<map id="pss::astrotypes::test::TestMultiArray::TestMultiArray" name="pss::astrotypes::test::TestMultiArray::TestMultiArray">
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1MultiArray.html#ac0b6a823ee5227e9bd06f545e7ba88f9" title="iterators acting over he entire data structure &#160;useful for e.g std::copy of the entire structure with..." alt="" coords="227,5,405,57"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1MultiArray.html#ae5958ebb453db55a086ef95034eb42d0" title="pss::astrotypes::MultiArray\l\&lt; std::allocator\&lt; T \&gt;, T,\l Dimensions...\&gt;::end" alt="" coords="227,81,405,133"/>
+</map>

@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structpss_1_1astrotypes_1_1test_1_1DimensionA.html" title="pss::astrotypes::test\l::DimensionA" alt="" coords="5,5,145,44"/>
+<area shape="rect" id="node1" title="STL class. " alt="" coords="5,5,131,44"/>
+<area shape="rect" id="node2" title="STL class. " alt="" coords="179,12,258,37"/>
+<area shape="rect" id="node3" href="$structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html" title="pss::astrotypes::sigproc\l::SigProcLabel" alt="" coords="306,5,467,44"/>
 </map>

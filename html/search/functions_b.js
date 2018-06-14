@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['resize',['resize',['../classpss_1_1astrotypes_1_1MultiArray.html#ac1a61ddf0c2e1b6c983a6f45a1583c21',1,'pss::astrotypes::MultiArray::resize()'],['../classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01FirstDimension_01_4.html#aa4d14b6abde8a4bdaf5803f88850d049',1,'pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension &gt;::resize(DimensionSize&lt; Dimension &gt; size)'],['../classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01FirstDimension_01_4.html#a8c63e8f61cca00b5b83e4840efd6fbf8',1,'pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension &gt;::resize(DimensionSize&lt; Dim &gt; size)']]]
+  ['parenttype',['ParentType',['../structpss_1_1astrotypes_1_1test_1_1ParentType.html#abdae407e7be46df75ef5471dd7d9d0b1',1,'pss::astrotypes::test::ParentType']]],
+  ['parse_5ferror',['parse_error',['../classpss_1_1astrotypes_1_1sigproc_1_1SigProcHeader.html#aad49e80a895fb9932418937700265c6b',1,'pss::astrotypes::sigproc::SigProcHeader']]],
+  ['pointerallocator',['PointerAllocator',['../classpss_1_1astrotypes_1_1PointerAllocator.html#a3f86bc2cf2054275bb4b9108d420e53d',1,'pss::astrotypes::PointerAllocator']]],
+  ['pointerallocatortest',['PointerAllocatorTest',['../classpss_1_1astrotypes_1_1test_1_1PointerAllocatorTest.html#a0b34b0d63eac06bb2f83c70ab6821a97',1,'pss::astrotypes::test::PointerAllocatorTest']]]
 ];

@@ -96,16 +96,16 @@ Time Frequency Data</h1>
 <div class="line"></div>
 <div class="line"><span class="comment">// Iterate over each spectrum using the [] bracket style interface</span></div>
 <div class="line"><span class="keywordtype">unsigned</span> total_pow=0;</div>
-<div class="line"><span class="keywordflow">for</span>(DimensionIndex&lt;Time&gt; i(0); i &lt; time_frequency.size&lt;<a class="code" href="namespacepss_1_1astrotypes.html#a4d42a70baae22926695ecfb33fd7975b">Time</a>&gt;(); ++i) {</div>
+<div class="line"><span class="keywordflow">for</span>(DimensionIndex&lt;Time&gt; i(0); i &lt; time_frequency.template size&lt;Time&gt;(); ++i) {</div>
 <div class="line">    <span class="keyword">auto</span> spectrum = time_frequency[i];</div>
-<div class="line">    <span class="keywordflow">for</span>(DimensionIndex&lt;Frequency&gt; j(0); j &lt; spectrum.size&lt;<a class="code" href="namespacepss_1_1astrotypes.html#a5e1868e9184f18f029a379c82ace3b63">Frequency</a>&gt;(); ++j) {</div>
+<div class="line">    <span class="keywordflow">for</span>(DimensionIndex&lt;Frequency&gt; j(0); j &lt; spectrum.template size&lt;Frequency&gt;(); ++j) {</div>
 <div class="line">        total_pow += spectrum[j];</div>
 <div class="line">    }</div>
 <div class="line">}</div>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Mar 27 2018 18:18:02 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jun 14 2018 14:24:14 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

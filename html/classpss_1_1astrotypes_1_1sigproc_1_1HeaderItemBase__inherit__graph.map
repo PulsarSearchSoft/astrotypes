@@ -1,0 +1,4 @@
+<map id="pss::astrotypes::sigproc::HeaderItemBase" name="pss::astrotypes::sigproc::HeaderItemBase">
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderItem.html" title="{pss::astrotypes::sigproc\l::HeaderItem\&lt; T \&gt;\n||+ HeaderItem()\l+ HeaderItem()\l+ ~HeaderItem()\l+ read()\l+ write()\l}" alt="" coords="5,193,167,333"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderItem_3_01std_1_1vector_3_01T_01_4_01_4.html" title="{pss::astrotypes::sigproc\l::HeaderItem\&lt; std::vector\&lt; T \&gt; \&gt;\n||+ HeaderItem()\l+ read()\l+ write()\l}" alt="" coords="191,207,405,320"/>
+</map>
