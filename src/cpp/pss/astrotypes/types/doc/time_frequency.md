@@ -17,9 +17,9 @@ std::fill(time_frequency.begin(), time_frequency.end(), 0);
 
 // Iterate over each spectrum using the [] bracket style interface
 unsigned total_pow=0;
-for(DimensionIndex<Time> i(0); i < time_frequency.size<Time>(); ++i) {
+for(DimensionIndex<Time> i(0); i < time_frequency.template size<Time>(); ++i) {
     auto spectrum = time_frequency[i];
-    for(DimensionIndex<Frequency> j(0); j < spectrum.size<Frequency>(); ++j) {
+    for(DimensionIndex<Frequency> j(0); j < spectrum.template size<Frequency>(); ++j) {
         total_pow += spectrum[j];
     }
 }
