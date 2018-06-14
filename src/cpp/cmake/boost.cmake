@@ -2,12 +2,14 @@ option(USE_THIRDPARTY_BOOST "Force the use of the included boost, even if a syst
 
 # Check if the user wants to use the included boost, regardless of if they have a existing install
 if(NOT USE_THIRDPARTY_BOOST)
-    message(STATUS "Checking for an installed boost...")
-    find_package(Boost QUIET) # Check for an existing boost install. NB we fail quietly here, as we can default to using the included boost.
-    if(Boost_FOUND)
-        message(STATUS "Boost found (version ${Boost_MAJOR_VERSION}.${Boost_MINOR_VERSION})")
-    else()
-        message(STATUS "Boost not found! Defaulting to thirdparty boost/units...")
+    if(NOT Boost_FOUND)
+        message(STATUS "Checking for an installed boost...")
+        find_package(Boost QUIET) # Check for an existing boost install. NB we fail quietly here, as we can default to using the included boost.
+        if(Boost_FOUND)
+            message(STATUS "Boost found (version ${Boost_MAJOR_VERSION}.${Boost_MINOR_VERSION})")
+        else()
+            message(STATUS "Boost not found! Defaulting to thirdparty boost/units...")
+        endif()
     endif()
 endif()
 if(NOT Boost_FOUND) # If no boost install is found, use the included third-party boost/units
