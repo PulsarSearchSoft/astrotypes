@@ -129,7 +129,6 @@ template<typename SliceType, bool is_const>
 class SliceIterator : public SliceIteratorBase<SliceIterator<SliceType, is_const>, SliceType, is_const, SliceType::rank>
 {
         typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
-        friend SliceType;
 
     public:
         // made availabel for Fried definitions in Slice class
