@@ -59,10 +59,44 @@ class TimeFrequency : public MultiArray<Alloc, T, Time, Frequency>
         ~TimeFrequency();
 
         /// @brief return a single spectrum from the specified offset
+        //  @detials the type returned is a MultiArray @class Slice with all
+        //           the features of that available;
+        //  @example
+        //  @code
+        //  // create a TimeFrequency block
+        //  TimeFrequency<uint16_t> tf(DimensionSize<Time>(100), DimensionSize<Frequency>(4096));
+        //
+        //  // get the first spectrum
+        //  typename TimeFrequency<uint16_t>::Spectra spectrum = tf.spectrum(0);
+        //
+        //  // use the Spectra's iterator interface tp generate an increasing sequence
+        //  std::fill(spectrum.begin(), spectra.end(), 100U);
+        //
+        //  // use the  [] interface to access a particular element
+        //  spectrum[DimensionIndex<Frequency>(7)] += 1; // modify the 8th channel value in thie specturm
+        //
+        //  @endcode
+        //
         Spectra spectrum(std::size_t offset);
         ConstSpectra spectrum(std::size_t offset) const;
 
         /// retrun a single channel across all time samples
+        //  @detials the type returned is a MultiArray @class Slice with all
+        //           the features of that available;
+        //  @example
+        //  @code
+        //  // create a TimeFrequency block
+        //  TimeFrequency<uint16_t> tf(DimensionSize<Time>(100), DimensionSize<Frequency>(4096));
+        //
+        //  // get the first channel
+        //  typename TimeFrequency<uint16_t>::Channel chanel = tf.channel(0);
+        //
+        //  // use the Chanel's iterator interface tp generate an increasing sequence
+        //  // 
+        //  uint16_t n = 0;
+        //  std::generate(channel.begin(), channel.end(), [&]() { return ++n; });
+        //  @endcode
+        //
         Channel channel(std::size_t channel_number);
         ConstChannel channel(std::size_t channel_number) const;
 };
@@ -73,7 +107,9 @@ class TimeFrequency : public MultiArray<Alloc, T, Time, Frequency>
  *       such as Stokes values or voltages.
  *
  * @details
- *       Stored as a contiguous channels in time
+ *       Stored as a contiguous channels in time. This can be used in exactly the same
+ *       calls as the TimeFrequency object. They are designed to be interchangable
+ *       without having to rewrite any code that uses this interface.
  */
 
 template<typename T, typename Alloc=std::allocator<T>>
