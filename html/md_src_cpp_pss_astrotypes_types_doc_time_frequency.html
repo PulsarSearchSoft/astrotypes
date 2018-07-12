@@ -102,10 +102,42 @@ Time Frequency Data</h1>
 <div class="line">        total_pow += spectrum[j];</div>
 <div class="line">    }</div>
 <div class="line">}</div>
+</div><!-- fragment --><h2>Would you care for a slice?</h2>
+<p>You can extract prats of a TimeFrequency chunk as a slice.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="TimeFrequency_8h.html">pss/astrotypes/types/TimeFrequency.h</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"></div>
+<div class="line"><span class="comment">// construct a suitable object</span></div>
+<div class="line">TimeFrequency&lt;uint16_t&gt; time_frequency(DimensionSize&lt;Time&gt;(10000), DimensionSize&lt;Frequency&gt;(100));</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// take a slice of data for all frequencies from the  10th to the 20th spectra</span></div>
+<div class="line"><span class="keyword">auto</span> slice = time_frequency.slice(DimesionSpan&lt;Time&gt;(DimensionIndex&lt;Time&gt;(10), DimensionIndex&lt;Time&gt;(20));</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// slices have their own iterator interface</span></div>
+<div class="line"><span class="comment">// e.g. fill the slice with zeros</span></div>
+<div class="line">std::fill(slice.begin(), slice.end(), 0);</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// you can also specify a slice of data using an index and a width, instead of two indicies</span></div>
+<div class="line"><span class="keyword">auto</span> slice_2 = time_frequency.slice(DimesionSpan&lt;Time&gt;(DimensionIndex&lt;Time&gt;(0), DimensionSize&lt;Time&gt;(10));</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// you can further slice of spectra in Frequency to select a subset of the channels</span></div>
+<div class="line"><span class="keyword">auto</span> reduced_channels_slice = slice_2.slice(DimensionIndex&lt;Frequency&gt;(10), DimensionSize&lt;Frequency&gt;(2));</div>
+</div><!-- fragment --><h2>TimeFrequency or FrequencyTime?</h2>
+<p>The difference between the two classes is in the way the data is stored. The patterns of memory access are often a major factor in the speed of any algorithm you may write and so your choice of class will also be algorithm dependendent for maximal efficiency.</p>
+<p>But you don't have to commit to a specific type. By design the two classes have identical interfaces and so any code you write for one should work for the other seamlessly (if perhaps not at optimal efficiency).</p>
+<p>A simple way to write a function that can work with either type is to use a template.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="TimeFrequency_8h.html">pss/astrotypes/types/TimeFrequency.h</a>&quot;</span></div>
+<div class="line"></div>
+<div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> TimeFrequencyType&gt;</div>
+<div class="line"><span class="keywordtype">void</span> fill_with_one(TimeFrequencyType <span class="keyword">const</span>&amp; data)</div>
+<div class="line">{</div>
+<div class="line">    <span class="comment">// use any of the common TimeFrequency/FrequencyTime interface methods here</span></div>
+<div class="line">   std::fill(data.begin(), data.end(), 1U);</div>
+<div class="line">}</div>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jun 14 2018 14:24:14 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Jul 12 2018 09:43:20 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
