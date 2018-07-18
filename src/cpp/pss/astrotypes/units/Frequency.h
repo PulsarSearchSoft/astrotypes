@@ -48,6 +48,7 @@ using MegaHertz = boost::units::make_scaled_unit<boost::units::si::frequency, bo
 
 static boost::units::si::frequency const hertz = boost::units::si::hertz;
 static boost::units::si::frequency const hz = boost::units::si::hertz;
+BOOST_UNITS_STATIC_CONSTANT(megahertz, MegaHertz);
 
 /**
  * @brief Frequency Quantity

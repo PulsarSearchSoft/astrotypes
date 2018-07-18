@@ -56,6 +56,8 @@ SigProcHeader::SigProcHeader()
     , _tsamp("tsamp", *this)
     , _n_bits("nbits", *this)
     , _nsamples("nsamples", *this)
+    , _fch1("fch1", *this)
+    , _foff("foff", *this)
     , _freq_channels("FREQUENCY_START", "fchannel", "FREQUENCY_END", *this)
     , _n_chans("nchans", *this)
     , _nifs("nifs", *this)
@@ -303,7 +305,17 @@ void SigProcHeader::number_of_ifs(unsigned n)
     _nifs = n;
 }
 
-boost::optional<boost::units::quantity<Seconds, double>> SigProcHeader::period() const
+boost::optional<DispersionMeasure<double>> const& SigProcHeader::ref_dm() const
+{
+    return _refdm;
+}
+
+void SigProcHeader::ref_dm(DispersionMeasure<double> dm)
+{
+    _refdm = dm;
+}
+
+boost::optional<boost::units::quantity<Seconds, double>> const& SigProcHeader::period() const
 {
     return _period;
 }

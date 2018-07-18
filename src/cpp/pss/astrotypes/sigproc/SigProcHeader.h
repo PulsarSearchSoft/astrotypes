@@ -26,6 +26,8 @@
 
 #include "HeaderField.h"
 #include "pss/astrotypes/units/Time.h"
+#include "pss/astrotypes/units/Frequency.h"
+#include "pss/astrotypes/units/DispersionMeasure.h"
 #include "pss/astrotypes/types/TimeFrequency.h"
 #include <boost/optional.hpp>
 #include <iostream>
@@ -165,6 +167,7 @@ class SigProcHeader
          * @brief return the number of frequency channels
          */
         std::size_t number_of_channels() const;
+        /// set the number of channels
         void number_of_channels(std::size_t);
 
         /**
@@ -180,9 +183,21 @@ class SigProcHeader
         void number_of_ifs(unsigned);
 
         /**
+         * @brief return the reference Dispersion Measure
+         * @details optional
+         */
+        boost::optional<DispersionMeasure<double>> const& ref_dm() const;
+
+        /**
+         * @brief set the reference Dispersion Measure
+         * @details optional
+         */
+        void ref_dm(DispersionMeasure<double>);
+
+        /**
          * @brief return the folding period (if defined)
          */
-        boost::optional<boost::units::quantity<Seconds, double>> period() const;
+        boost::optional<boost::units::quantity<Seconds, double>> const& period() const;
 
         /**
          * @brief set folding period period
@@ -283,12 +298,14 @@ class SigProcHeader
         HeaderField<double>             _src_dej;
         HeaderField<double>             _tstart;    // Modified Julian Date format
         HeaderField<boost::units::quantity<Seconds, double>>      _tsamp;     // sample time (in seconds)
-        HeaderField<unsigned>                       _n_bits;
-        HeaderField<unsigned>                       _nsamples;
-        HeaderField<std::vector<double>>            _freq_channels; // each bin assigned its own value
-        HeaderField<unsigned>                       _n_chans;
-        HeaderField<unsigned>                       _nifs;        // number of seperate IF channels
-        HeaderField<double>                         _refdm;
+        HeaderField<unsigned>                                     _n_bits;
+        HeaderField<unsigned>                                     _nsamples;
+        HeaderField<boost::units::quantity<MegaHertz, double>>    _fch1;
+        HeaderField<boost::units::quantity<MegaHertz, double>>    _foff;
+        HeaderField<std::vector<boost::units::quantity<MegaHertz, double>>>   _freq_channels; // each bin assigned its own value
+        HeaderField<unsigned>                                     _n_chans;
+        HeaderField<unsigned>                                     _nifs;        // number of seperate IF channels
+        HeaderField<DispersionMeasure<double>>                    _refdm;       // parsecs_per_cm_cubed
         HeaderField<boost::units::quantity<Seconds, double>>      _period;      // folding period seconds
 };
 
