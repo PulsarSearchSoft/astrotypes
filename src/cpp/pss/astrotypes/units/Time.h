@@ -29,6 +29,9 @@
 #pragma GCC diagnostic ignored "-Wunused-variable"
 #include <boost/units/systems/si/time.hpp>
 #include <boost/units/quantity.hpp>
+#include <boost/units/is_quantity.hpp>
+#include <boost/units/is_unit_of_dimension.hpp>
+#include <boost/units/get_system.hpp>
 #include <boost/units/make_scaled_unit.hpp>
 #pragma GCC diagnostic pop
 #include <chrono>
@@ -42,7 +45,7 @@ namespace astrotypes {
 // Dimension
 typedef boost::units::time_dimension Time;
 
-// Units
+// Units (These are Types, not variables)
 using Second = boost::units::si::time;
 using Seconds =  Second;
 using MilliSecond = boost::units::make_scaled_unit<boost::units::si::time, 
@@ -55,8 +58,15 @@ using NanoSecond = boost::units::make_scaled_unit<boost::units::si::time, boost:
     boost::units::static_rational<-9>>>::type;
 using NanoSeconds = NanoSecond;
 
+// constants
 static boost::units::si::time const second = boost::units::si::second;
 static boost::units::si::time const seconds = boost::units::si::second;
+BOOST_UNITS_STATIC_CONSTANT(millisecond, MilliSecond);
+BOOST_UNITS_STATIC_CONSTANT(milliseconds, MilliSecond);
+BOOST_UNITS_STATIC_CONSTANT(microsecond, MicroSecond);
+BOOST_UNITS_STATIC_CONSTANT(microseconds, MicroSecond);
+BOOST_UNITS_STATIC_CONSTANT(nanosecond, NanoSecond);
+BOOST_UNITS_STATIC_CONSTANT(nanoseconds, NanoSecond);
 
 /**
  * @brief Second data type.
@@ -90,13 +100,21 @@ class TimeQuantity : public boost::units::quantity<TimeUnit, NumericalRep>
 };
 
 /**
- * @brief Mimic the std::duration_cast for boost::units::quantity
+ * @brief Mimic the std::duration_cast to convert to  boost::units::quantity<time, X> tyeps
+ * @details template overload to convert from a std::chrono::duration where the Unit is a time_dimesion
  */
-template<typename DataType, typename DurationType, typename PeriodType>
-constexpr boost::units::quantity<boost::units::si::time, DataType> duration_cast(const std::chrono::duration<DurationType, PeriodType> &
-    duration) {
-    return boost::units::quantity<boost::units::si::time, DataType>(std::chrono::duration_cast<std::chrono::duration<DataType,
-        std::ratio<1, 1>>>(duration).count() * seconds);
+template<typename BoostQuantity, typename ChronoNumericalRep, typename PeriodType>
+constexpr 
+typename std::enable_if<boost::units::is_quantity<BoostQuantity>::value 
+                        && boost::units::is_unit_of_dimension<typename BoostQuantity::unit_type, boost::units::time_dimension>::value
+                       , BoostQuantity // this is the type to convert to
+         >::type 
+duration_cast(const std::chrono::duration<ChronoNumericalRep, PeriodType>& duration)
+{
+    return BoostQuantity(
+                std::chrono::duration_cast<std::chrono::duration<typename BoostQuantity::value_type, std::ratio<1, 1>>
+                                          >(duration).count() 
+                * seconds);
 }
 
 } // namespace astrotypes

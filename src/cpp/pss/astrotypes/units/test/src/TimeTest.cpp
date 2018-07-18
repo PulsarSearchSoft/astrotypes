@@ -47,6 +47,46 @@ TEST(TimeTest, test_seconds)
     ASSERT_EQ(1, local_seconds.value());
 }
 
+TEST(TimeTest, duration_cast_to_seconds)
+{
+    typedef boost::units::quantity<Seconds, double> BoostType;
+    std::chrono::duration<double, std::ratio<1,1000>> d(100);
+    auto conversion = duration_cast<BoostType>(d);
+    static_assert(std::is_same<decltype(conversion), BoostType>::value, "wrong type returned by cast");
+    BoostType bs(100 * milliseconds);
+    ASSERT_EQ(conversion.value(), bs.value());
+}
+
+TEST(TimeTest, duration_cast_from_seconds)
+{
+    typedef boost::units::quantity<Seconds, double> BoostType;
+    std::chrono::duration<double, std::ratio<1,1>> d(100);
+    auto conversion = duration_cast<BoostType>(d);
+    static_assert(std::is_same<decltype(conversion), BoostType>::value, "wrong type returned by cast");
+    BoostType bs(100 * seconds);
+    ASSERT_EQ(conversion.value(), bs.value());
+}
+
+TEST(TimeTest, duration_cast_to_millseconds)
+{
+    typedef boost::units::quantity<MilliSeconds, double> BoostType;
+    std::chrono::duration<double, std::ratio<1,1>> d(100);
+    auto conversion = duration_cast<BoostType>(d);
+    static_assert(std::is_same<decltype(conversion), BoostType>::value, "wrong type returned by cast");
+    BoostType bs(100 * seconds);
+    ASSERT_EQ(conversion.value(), bs.value());
+}
+
+TEST(TimeTest, duration_cast_from_millseconds)
+{
+    typedef boost::units::quantity<MilliSeconds, double> BoostType;
+    std::chrono::duration<double, std::milli> d(100);
+    auto conversion = duration_cast<BoostType>(d);
+    static_assert(std::is_same<decltype(conversion), BoostType>::value, "wrong type returned by cast");
+    BoostType bs(100 * milliseconds);
+    ASSERT_EQ(conversion.value(), bs.value());
+}
+
 } // namespace test
 } // namespace astrotypes
 } // namespace pss
