@@ -62,6 +62,30 @@ unsigned SigProcVariable<std::string>::read(std::istream& stream, std::string& v
     return s;
 }
 
+void SigProcLabel::write(std::ostream& stream) const
+{
+    SigProcVariable<std::string>::write(stream, _string);
+}
+
+void SigProcLabel::read(std::istream& stream)
+{
+    SigProcVariable<std::string>::read(stream, _string);
+}
+
+std::istream& operator>>(std::istream& stream, SigProcLabel& var)
+{
+    var.read(stream);
+    return stream;
+}
+
+std::ostream& operator<<(std::ostream& stream, SigProcLabel const& var)
+{
+    var.write(stream);
+    return stream;
+}
+
 } // namespace sigproc
 } // namespace astrotypes
 } // namespace pss
+
+

@@ -79,20 +79,39 @@ struct SigProcVariable<boost::units::quantity<Unit, T>>
 };
 
 // strong typing for the Header labels
-struct SigProcLabel : public std::string
+struct SigProcLabel
 {
     SigProcLabel() {}
-    SigProcLabel(std::string const& s) : std::string(s) {}
-    SigProcLabel(const char * s) : std::string(s) {}
+    explicit SigProcLabel(std::string const& s) : _string(s) {}
+    explicit SigProcLabel(const char * s) : _string(s) {}
+    //explicit operator std::string const&() const { return _string; }
     std::size_t size() const {
-        return std::string::size() + sizeof(int32_t);
+        return _string.size() + sizeof(int32_t);
     }
+
+    inline bool operator!=(const char* txt) const {
+        return std::strcmp(_string.c_str(), txt) != 0;
+    }
+
+    // allows to be stroed in std::map 
+    inline bool operator<(SigProcLabel const& v) const { return _string < v._string; }
+
+    std::string const& string() const { return _string; }
+
+    void write(std::ostream& os) const;
+    void read(std::istream& is);
+
+    private:
+        std::string _string;
 };
 
+std::istream& operator>>(std::istream& stream, SigProcLabel& var);
+std::ostream& operator<<(std::ostream& stream, SigProcLabel const& var);
 
 } // namespace sigproc
 } // namespace astrotypes
 } // namespace pss
+
 #include "detail/SigProcVariable.cpp"
 
 #endif // PSS_ASTROTYPES_SIGPROC_SIGPROCVARIABLE_H

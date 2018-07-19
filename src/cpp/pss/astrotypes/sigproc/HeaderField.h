@@ -62,6 +62,9 @@ class HeaderFieldBase
         // @return the number of bytes written
         virtual unsigned write(std::ostream &) { return 0; };
 
+        /// reset the variable to undefined state
+        virtual void reset() = 0;
+
         /// return true if the variable has been set, false otherwise
         virtual bool is_set() const = 0;
 };
@@ -87,6 +90,7 @@ class HeaderField : public HeaderFieldBase
 
         unsigned read(std::istream &) override;
         unsigned write(std::ostream &) override;
+        void reset() override;
         bool is_set() const override;
 
     private:
@@ -110,6 +114,7 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
                 NullField() {}
                 // do content other than the label
                 bool is_set() const override { return false; }
+                void reset() override {};
         };
 
         class ItemField : public HeaderField<T> {
@@ -118,6 +123,7 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
                 ItemField(std::vector<T>& vec) : _vec(vec) {}
                 bool is_set() const override { return false; }
                 unsigned read(std::istream &) override;
+                void reset() override {};
 
             private:
                 std::vector<T>& _vec;
@@ -134,6 +140,7 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
         unsigned read(std::istream &) override;
         unsigned write(std::ostream &) override;
         bool is_set() const override;
+        void reset() override;
 
     private:
         std::vector<T>  _var;

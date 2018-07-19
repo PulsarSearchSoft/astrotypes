@@ -28,18 +28,6 @@ namespace pss {
 namespace astrotypes {
 namespace sigproc {
 
-std::istream& operator>>(std::istream& stream, SigProcLabel& var)
-{
-    SigProcVariable<std::string>::read(stream, static_cast<std::string&>(var));
-    return stream;
-}
-
-std::ostream& operator<<(std::ostream& stream, SigProcLabel const& var)
-{
-    SigProcVariable<std::string>::write(stream, static_cast<std::string const&>(var));
-    return stream;
-}
-
 SigProcHeader::SigProcHeader()
     : _telescope_id("telescope_id", *this)
     , _machine_id("machine_id", *this)
@@ -47,7 +35,7 @@ SigProcHeader::SigProcHeader()
     , _raw_data_file("raw_data_file", *this)
     , _source_name("source_name", *this)
     , _barycentric("barycentric", *this)
-    , _pulsarcentric("barycentric", *this)
+    , _pulsarcentric("pulsarcentric", *this)
     , _az_start("az_start", *this)
     , _za_start("za_start", *this)
     , _src_raj("src_raj", *this)
@@ -68,8 +56,9 @@ SigProcHeader::SigProcHeader()
 
 void SigProcHeader::reset()
 {
-    _n_chans = 0;
-    _n_bits = 0;
+    for(auto const& header : _headers) {
+        header.second->reset();
+    }
 }
 
 void SigProcHeader::read(std::istream & stream)
@@ -78,10 +67,12 @@ void SigProcHeader::read(std::istream & stream)
 
     // try to read in the first line of the header
     SigProcLabel str;
-    stream >> str;
+    //stream >> str;
+    str.read(stream);
     _size = str.size();
 
-    if (std::strcmp(str.c_str(),"HEADER_START") !=0) {
+    //if (std::strcmp(str.c_str(),"HEADER_START") !=0) {
+    if (str != "HEADER_START"){
         throw parse_error("expecting HEADER_START got ", str);
     }
     /* loop over and read remaining header lines until HEADER_END reached */
@@ -89,13 +80,13 @@ void SigProcHeader::read(std::istream & stream)
         stream >> str;
         _size += str.size();
 
-        if( str.find(std::string("HEADER_END") ) != std::string::npos) {
+        if( str.string().find(std::string("HEADER_END") ) != std::string::npos) {
             break;
         }
 
         // look for a matching known header
         auto it = _read_only_headers.find(str);
-        if( it == _headers.end()) {
+        if( it == _read_only_headers.end()) {
             // look for a matching known header
             it = _headers.find(str);
             if( it == _headers.end()) {
@@ -118,9 +109,11 @@ void SigProcHeader::write(std::ostream& stream) const {
     // write out header data
     for(auto const& header : _headers) {
         if(header.second->is_set())
+        {
             stream << header.first;
             _size += header.first.size();
             _size += header.second->write(stream);
+        }
     }
 
     const static SigProcLabel end("HEADER_END");
@@ -176,12 +169,12 @@ std::size_t SigProcHeader::size() const {
 
 void SigProcHeader::add(std::string const& name, HeaderFieldBase& field)
 {
-    _headers.insert(std::make_pair(name, &field));
+    _headers.insert(std::make_pair(SigProcLabel(name), &field));
 }
 
 void SigProcHeader::add_read(std::string const& name, HeaderFieldBase& field)
 {
-    _read_only_headers.insert(std::make_pair(name, &field));
+    _read_only_headers.insert(std::make_pair(SigProcLabel(name), &field));
 }
 
 // --------- getters and setters --------------------------
@@ -265,9 +258,10 @@ void SigProcHeader::za_start(double v)
     _za_start = v;
 }
 
-boost::optional<boost::units::quantity<Seconds, double>> SigProcHeader::sample_interval() const
+boost::units::quantity<Seconds, double> SigProcHeader::sample_interval() const
 {
-    return _tsamp;
+    if(_tsamp.is_set()) return _tsamp;
+    return boost::units::quantity<Seconds, double>(0.0 * seconds);
 }
 
 void SigProcHeader::sample_interval(boost::units::quantity<Seconds, double> tsamp)
@@ -277,7 +271,8 @@ void SigProcHeader::sample_interval(boost::units::quantity<Seconds, double> tsam
 
 unsigned SigProcHeader::number_of_bits() const
 {
-    return _n_bits;
+    if(_n_bits.is_set()) return _n_bits;
+    return 0;
 }
 
 void SigProcHeader::number_of_bits(unsigned n)
@@ -287,7 +282,8 @@ void SigProcHeader::number_of_bits(unsigned n)
 
 std::size_t SigProcHeader::number_of_channels() const
 {
-    return _n_chans;
+    if(_n_chans.is_set()) return _n_chans;
+    return 0;
 }
 
 void SigProcHeader::number_of_channels(std::size_t n)
@@ -297,7 +293,8 @@ void SigProcHeader::number_of_channels(std::size_t n)
 
 unsigned SigProcHeader::number_of_ifs() const
 {
-    return _nifs;
+    if(_nifs.is_set()) return _nifs;
+    return 0;
 }
 
 void SigProcHeader::number_of_ifs(unsigned n)

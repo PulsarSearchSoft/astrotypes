@@ -54,13 +54,22 @@ HeaderField<T>& HeaderField<T>::operator=(T const& var )
 template<typename T>
 unsigned HeaderField<T>::read(std::istream& stream)
 {
-    return SigProcVariable<T>::read(stream, *_var);
+    T v;
+    auto count = SigProcVariable<T>::read(stream, v);
+    _var=v;
+    return count;
 }
 
 template<typename T>
 unsigned HeaderField<T>::write(std::ostream& stream)
 {
     return SigProcVariable<T>::write(stream, *_var);
+}
+
+template<typename T>
+void HeaderField<T>::reset()
+{
+    _var.reset();
 }
 
 template<typename T>
@@ -84,6 +93,12 @@ HeaderField<std::vector<T>>::HeaderField( std::string const& start_label
     // register the read handlers
     BaseT::add_read(end_label, _end_label_handler, header);
     BaseT::add_read(item_label, _item_label_handler, header);
+}
+
+template<typename T>
+void HeaderField<std::vector<T>>::reset()
+{
+    _var.clear();
 }
 
 template<typename T>
@@ -118,7 +133,7 @@ unsigned HeaderField<std::vector<T>>::write(std::ostream& stream)
         size += SigProcVariable<T>::write(stream, var);
     }
     // write out the end marker
-    stream << SigProcLabel(_end_label);
+    stream << _end_label;
     size += _end_label.size();
 
     return size;

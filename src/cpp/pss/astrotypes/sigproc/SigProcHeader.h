@@ -25,6 +25,7 @@
 #define PSS_ASTROTYPES_SIGPROC_SIGPROCHEADER_H
 
 #include "HeaderField.h"
+#include "SigProcVariable.h"
 #include "pss/astrotypes/units/Time.h"
 #include "pss/astrotypes/units/Frequency.h"
 #include "pss/astrotypes/units/DispersionMeasure.h"
@@ -51,19 +52,20 @@ namespace sigproc {
  *    or not.
  *    e.g.
  * @code
- *      if(!header.sample_interval()) {
- *          // oh oh no sample interval better deal with it
+ *      if(!header.source_name()) {
+ *          // oh oh no source name,  better deal with it
  *          ...
  *      }
  *      // once tested you can get the underlying vaiable with the dereference operator *
- *      auto tsamp = *header.sample_interval();
+ *      std::string const& source = *header.source_name();
  * @endcode
  *
  *    note also that many of the types returned as types with specific units. If your writting new code
  *    its a good idea to keep this type information when you pass this value around, but for compatibility
  *    with less type safe codes and you need just the numerical valuem you can call the value() mehtod
  * @code
- *    double tsamp_in_secs = tsamp.value();
+ *    // n.b. this loses type information.
+ *    double tsamp_in_secs = header.sample_interval().value();
  * @endcode
  */
 
@@ -156,7 +158,7 @@ class SigProcHeader
         /**
          * @brief return the sample_interval (if defined)
          */
-        boost::optional<boost::units::quantity<Seconds, double>> sample_interval() const;
+        boost::units::quantity<Seconds, double> sample_interval() const;
 
         /**
          * @brief set sample_interval , the amount of time between two adjacent spectra
@@ -261,6 +263,11 @@ class SigProcHeader
          */
         std::size_t size() const;
 
+        /**
+         * @brief reset all header variables to an undefined state
+         */
+        void reset();
+
     protected:
         template<typename T>
         std::runtime_error parse_error(std::string const& msg, T const& msg2);
@@ -275,8 +282,6 @@ class SigProcHeader
          */
         void add_read(std::string const& label, HeaderFieldBase& field);
 
-    private:
-        void reset();
 
     private:
         mutable unsigned _size; // byte size of the header

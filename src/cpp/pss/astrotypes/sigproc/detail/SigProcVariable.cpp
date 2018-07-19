@@ -59,3 +59,15 @@ unsigned SigProcVariable<boost::units::quantity<Unit, NumericalRep>>::read(std::
 } // namespace sigproc
 } // namespace astrotypes
 } // namespace pss
+
+namespace std {
+    template<>
+    struct hash<pss::astrotypes::sigproc::SigProcLabel>
+    {
+        std::size_t operator()(const pss::astrotypes::sigproc::SigProcLabel& quantity) const
+        {
+            return std::hash<std::string>()(quantity.string());
+        }
+    };
+} // namespace std
+
