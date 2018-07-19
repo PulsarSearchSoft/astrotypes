@@ -28,6 +28,7 @@
 #include "SigProcVariable.h"
 #include "pss/astrotypes/units/Time.h"
 #include "pss/astrotypes/units/Frequency.h"
+#include "pss/astrotypes/units/Angle.h"
 #include "pss/astrotypes/units/DispersionMeasure.h"
 #include "pss/astrotypes/types/TimeFrequency.h"
 #include <boost/optional.hpp>
@@ -146,14 +147,14 @@ class SigProcHeader
         /**
          * @brief getters/setters for the telscope azimuth at start of scan (in degrees)
          */
-        boost::optional<double> az_start() const;
-        void az_start(double);
+        boost::optional<boost::units::quantity<units::Degree, double>> az_start() const;
+        void az_start(boost::units::quantity<units::Degree, double> const&);
 
         /**
          * @brief getters/setters for the telscope zenith at start of scan (in degrees)
          */
-        boost::optional<double> za_start() const;
-        void za_start(double);
+        boost::optional<boost::units::quantity<units::Degree, double>> za_start() const;
+        void za_start(boost::units::quantity<units::Degree, double> const&);
 
         /**
          * @brief return the sample_interval (if defined)
@@ -166,9 +167,49 @@ class SigProcHeader
         void sample_interval(boost::units::quantity<Seconds, double>);
 
         /**
+         * @brief get the frequency of the first channel
+         * @detials optional
+         */
+        boost::optional<boost::units::quantity<MegaHertz, double>> const& fch1() const;
+
+        /**
+         * @brief set the frequency of the first channel
+         * @details optional
+         *          if you set this you should also set foff
+         */
+        void fch1(boost::units::quantity<MegaHertz, double> const&);
+
+        /**
+         * @brief get the band width of a channel (assumes homogenous badwidth for each channel)
+         * @detials optional
+         */
+        boost::optional<boost::units::quantity<MegaHertz, double>> const& foff() const;
+
+        /**
+         * @brief set the frequency width of the channel (for fixed band width channels)
+         * @details optional
+         *          if you set this you should also set fch1
+         */
+        void foff(boost::units::quantity<MegaHertz, double> const&);
+
+        /**
+         * @brief return a list of frequency channels (if set)
+         * @details optional (alternative if foff() and fch1())
+         *          test size() of vector to see if empty
+         */
+        std::vector<boost::units::quantity<MegaHertz, double>> const& frequency_channels() const;
+
+        /**
+         * @brief set a list of frequency channels (optional)
+         * @details set this OR fch1() and foff()
+         */
+        void frequency_channels(std::vector<boost::units::quantity<MegaHertz, double>> const& frequency_channels);
+
+        /**
          * @brief return the number of frequency channels
          */
         std::size_t number_of_channels() const;
+
         /// set the number of channels
         void number_of_channels(std::size_t);
 
@@ -297,21 +338,21 @@ class SigProcHeader
         HeaderField<std::string>        _source_name;
         HeaderField<unsigned>           _barycentric;
         HeaderField<unsigned>           _pulsarcentric;
-        HeaderField<double>             _az_start;  // in degrees
-        HeaderField<double>             _za_start;  // in degrees
+        HeaderField<boost::units::quantity<units::Degree, double>>  _az_start;  // in degrees
+        HeaderField<boost::units::quantity<units::Degree, double>>  _za_start;  // in degrees
         HeaderField<double>             _src_raj;
         HeaderField<double>             _src_dej;
         HeaderField<double>             _tstart;    // Modified Julian Date format
-        HeaderField<boost::units::quantity<Seconds, double>>      _tsamp;     // sample time (in seconds)
-        HeaderField<unsigned>                                     _n_bits;
-        HeaderField<unsigned>                                     _nsamples;
-        HeaderField<boost::units::quantity<MegaHertz, double>>    _fch1;
-        HeaderField<boost::units::quantity<MegaHertz, double>>    _foff;
+        HeaderField<boost::units::quantity<Seconds, double>>        _tsamp;     // sample time (in seconds)
+        HeaderField<unsigned>                                       _n_bits;
+        HeaderField<unsigned>                                       _nsamples;
+        HeaderField<boost::units::quantity<MegaHertz, double>>      _fch1;
+        HeaderField<boost::units::quantity<MegaHertz, double>>      _foff;
         HeaderField<std::vector<boost::units::quantity<MegaHertz, double>>>   _freq_channels; // each bin assigned its own value
-        HeaderField<unsigned>                                     _n_chans;
-        HeaderField<unsigned>                                     _nifs;        // number of seperate IF channels
-        HeaderField<DispersionMeasure<double>>                    _refdm;       // parsecs_per_cm_cubed
-        HeaderField<boost::units::quantity<Seconds, double>>      _period;      // folding period seconds
+        HeaderField<unsigned>                                       _n_chans;
+        HeaderField<unsigned>                                       _nifs;        // number of seperate IF channels
+        HeaderField<DispersionMeasure<double>>                      _refdm;       // parsecs_per_cm_cubed
+        HeaderField<boost::units::quantity<Seconds, double>>        _period;      // folding period seconds
 };
 
 std::ostream& operator<<(std::ostream& os, SigProcHeader const&);

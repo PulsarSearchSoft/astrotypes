@@ -165,6 +165,36 @@ TEST_F(SigProcHeaderTest, test_source_name)
     ASSERT_FALSE(h.source_name());
 }
 
+TEST_F(SigProcHeaderTest, test_az_start)
+{
+    boost::units::quantity<units::Degree, double> angle(150 * units::degrees);
+
+    SigProcHeader h;
+    ASSERT_FALSE(h.az_start());
+    h.az_start(angle);
+    ASSERT_TRUE(h.az_start());
+    ASSERT_EQ(h.az_start(), angle);
+    SigProcHeader h2 = save_restore(h);
+    ASSERT_EQ(h2.az_start(), h.az_start());
+    h.reset();
+    ASSERT_FALSE(h.az_start());
+}
+
+TEST_F(SigProcHeaderTest, test_za_start)
+{
+    boost::units::quantity<units::Degree, double> angle(150 * units::degrees);
+
+    SigProcHeader h;
+    ASSERT_FALSE(h.za_start());
+    h.za_start(angle);
+    ASSERT_TRUE(h.za_start());
+    ASSERT_EQ(h.za_start(), angle);
+    SigProcHeader h2 = save_restore(h);
+    ASSERT_EQ(h2.za_start(), h.za_start());
+    h.reset();
+    ASSERT_FALSE(h.za_start());
+}
+
 TEST_F(SigProcHeaderTest, number_of_channels)
 {
     SigProcHeader h;
@@ -220,6 +250,50 @@ TEST_F(SigProcHeaderTest, test_sample_interval)
     ASSERT_EQ(zero, h.sample_interval());
 }
 
+TEST_F(SigProcHeaderTest, test_fch1)
+{
+    boost::units::quantity<MegaHertz, double> freq(150 * megahertz);
+
+    SigProcHeader h;
+    ASSERT_FALSE(h.fch1());
+    h.fch1(freq);
+    ASSERT_TRUE(h.fch1());
+    ASSERT_EQ(h.fch1(), freq);
+    SigProcHeader h2 = save_restore(h);
+    ASSERT_EQ(h2.fch1(), h.fch1());
+    h.reset();
+    ASSERT_FALSE(h.fch1());
+}
+
+TEST_F(SigProcHeaderTest, test_foff)
+{
+    boost::units::quantity<MegaHertz, double> freq(150 * megahertz);
+
+    SigProcHeader h;
+    ASSERT_FALSE(h.foff());
+    h.foff(freq);
+    ASSERT_TRUE(h.foff());
+    ASSERT_EQ(h.foff(), freq);
+    SigProcHeader h2 = save_restore(h);
+    ASSERT_EQ(h2.foff(), h.foff());
+    h.reset();
+    ASSERT_FALSE(h.foff());
+}
+
+TEST_F(SigProcHeaderTest, test_frequency_channels)
+{
+    std::vector<boost::units::quantity<MegaHertz, double>> channels;
+    for(double i=100.0; i < 500.0; ++i) { 
+        channels.push_back( boost::units::quantity<MegaHertz, double>(i * megahertz) );
+    }
+    SigProcHeader h;
+    ASSERT_EQ(h.frequency_channels().size(), 0U);
+    h.frequency_channels(channels);
+    SigProcHeader h2 = save_restore(h);
+    ASSERT_EQ(h2.frequency_channels(), h.frequency_channels());
+    h.reset();
+    ASSERT_EQ(h.frequency_channels().size(), 0U);
+}
 
 TEST_F(SigProcHeaderTest, test_extract_info_from_time_frequency)
 {

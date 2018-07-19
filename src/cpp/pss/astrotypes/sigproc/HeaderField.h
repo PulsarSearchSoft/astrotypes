@@ -117,7 +117,7 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
                 void reset() override {};
         };
 
-        class ItemField : public HeaderField<T> {
+        class ItemField : public HeaderFieldBase {
             // only needs to read
             public:
                 ItemField(std::vector<T>& vec) : _vec(vec) {}
@@ -141,6 +141,9 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
         unsigned write(std::ostream &) override;
         bool is_set() const override;
         void reset() override;
+
+        std::vector<T> const& operator*() const { return _var; };
+        std::vector<T>& operator*() { return _var; };
 
     private:
         std::vector<T>  _var;

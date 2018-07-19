@@ -87,7 +87,7 @@ HeaderField<std::vector<T>>::HeaderField( std::string const& start_label
                                         , SigProcHeader& header)
     : BaseT(start_label, header)
     , _item_label_handler(_var)
-    , _end_label(item_label)
+    , _end_label(end_label)
     , _item_label(item_label)
 {
     // register the read handlers

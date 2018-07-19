@@ -238,22 +238,22 @@ void SigProcHeader::pulsarcentric(bool b)
     _pulsarcentric = b;
 }
 
-boost::optional<double> SigProcHeader::az_start() const
+boost::optional<boost::units::quantity<units::Degree, double>> SigProcHeader::az_start() const
 {
     return _az_start;
 }
 
-void SigProcHeader::az_start(double v)
+void SigProcHeader::az_start(boost::units::quantity<units::Degree, double> const& v)
 {
     _az_start = v;
 }
 
-boost::optional<double> SigProcHeader::za_start() const
+boost::optional<boost::units::quantity<units::Degree, double>> SigProcHeader::za_start() const
 {
     return _za_start;
 }
 
-void SigProcHeader::za_start(double v)
+void SigProcHeader::za_start(boost::units::quantity<units::Degree, double> const& v)
 {
     _za_start = v;
 }
@@ -267,6 +267,36 @@ boost::units::quantity<Seconds, double> SigProcHeader::sample_interval() const
 void SigProcHeader::sample_interval(boost::units::quantity<Seconds, double> tsamp)
 {
     _tsamp = tsamp;
+}
+
+boost::optional<boost::units::quantity<MegaHertz, double>> const& SigProcHeader::fch1() const
+{
+    return _fch1;
+}
+
+void SigProcHeader::fch1(boost::units::quantity<MegaHertz, double> const& f)
+{
+    _fch1 = f;
+}
+
+boost::optional<boost::units::quantity<MegaHertz, double>> const& SigProcHeader::foff() const
+{
+    return _foff;
+}
+
+void SigProcHeader::foff(boost::units::quantity<MegaHertz, double> const& f)
+{
+    _foff = f;
+}
+
+std::vector<boost::units::quantity<MegaHertz, double>> const& SigProcHeader::frequency_channels() const
+{
+    return *_freq_channels;
+}
+
+void SigProcHeader::frequency_channels(std::vector<boost::units::quantity<MegaHertz, double>> const& frequency_channels)
+{
+    *_freq_channels = frequency_channels;
 }
 
 unsigned SigProcHeader::number_of_bits() const
