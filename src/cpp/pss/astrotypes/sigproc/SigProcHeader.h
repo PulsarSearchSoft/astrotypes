@@ -159,51 +159,51 @@ class SigProcHeader
         /**
          * @brief return the sample_interval (if defined)
          */
-        boost::units::quantity<Seconds, double> sample_interval() const;
+        boost::units::quantity<units::Seconds, double> sample_interval() const;
 
         /**
          * @brief set sample_interval , the amount of time between two adjacent spectra
          */
-        void sample_interval(boost::units::quantity<Seconds, double>);
+        void sample_interval(boost::units::quantity<units::Seconds, double>);
 
         /**
          * @brief get the frequency of the first channel
          * @detials optional
          */
-        boost::optional<boost::units::quantity<MegaHertz, double>> const& fch1() const;
+        boost::optional<boost::units::quantity<units::MegaHertz, double>> const& fch1() const;
 
         /**
          * @brief set the frequency of the first channel
          * @details optional
          *          if you set this you should also set foff
          */
-        void fch1(boost::units::quantity<MegaHertz, double> const&);
+        void fch1(boost::units::quantity<units::MegaHertz, double> const&);
 
         /**
          * @brief get the band width of a channel (assumes homogenous badwidth for each channel)
          * @detials optional
          */
-        boost::optional<boost::units::quantity<MegaHertz, double>> const& foff() const;
+        boost::optional<boost::units::quantity<units::MegaHertz, double>> const& foff() const;
 
         /**
          * @brief set the frequency width of the channel (for fixed band width channels)
          * @details optional
          *          if you set this you should also set fch1
          */
-        void foff(boost::units::quantity<MegaHertz, double> const&);
+        void foff(boost::units::quantity<units::MegaHertz, double> const&);
 
         /**
          * @brief return a list of frequency channels (if set)
          * @details optional (alternative if foff() and fch1())
          *          test size() of vector to see if empty
          */
-        std::vector<boost::units::quantity<MegaHertz, double>> const& frequency_channels() const;
+        std::vector<boost::units::quantity<units::MegaHertz, double>> const& frequency_channels() const;
 
         /**
          * @brief set a list of frequency channels (optional)
          * @details set this OR fch1() and foff()
          */
-        void frequency_channels(std::vector<boost::units::quantity<MegaHertz, double>> const& frequency_channels);
+        void frequency_channels(std::vector<boost::units::quantity<units::MegaHertz, double>> const& frequency_channels);
 
         /**
          * @brief return the number of frequency channels
@@ -229,24 +229,24 @@ class SigProcHeader
          * @brief return the reference Dispersion Measure
          * @details optional
          */
-        boost::optional<DispersionMeasure<double>> const& ref_dm() const;
+        boost::optional<units::DispersionMeasure<double>> const& ref_dm() const;
 
         /**
          * @brief set the reference Dispersion Measure
          * @details optional
          */
-        void ref_dm(DispersionMeasure<double>);
+        void ref_dm(units::DispersionMeasure<double>);
 
         /**
          * @brief return the folding period (if defined)
          */
-        boost::optional<boost::units::quantity<Seconds, double>> const& period() const;
+        boost::optional<boost::units::quantity<units::Seconds, double>> const& period() const;
 
         /**
          * @brief set folding period period
          * @details optional
          */
-        void period(boost::units::quantity<Seconds, double>);
+        void period(boost::units::quantity<units::Seconds, double>);
 
         /**
          * @brief read in header data from the provided stream
@@ -343,16 +343,16 @@ class SigProcHeader
         HeaderField<double>             _src_raj;
         HeaderField<double>             _src_dej;
         HeaderField<double>             _tstart;    // Modified Julian Date format
-        HeaderField<boost::units::quantity<Seconds, double>>        _tsamp;     // sample time (in seconds)
-        HeaderField<unsigned>                                       _n_bits;
-        HeaderField<unsigned>                                       _nsamples;
-        HeaderField<boost::units::quantity<MegaHertz, double>>      _fch1;
-        HeaderField<boost::units::quantity<MegaHertz, double>>      _foff;
-        HeaderField<std::vector<boost::units::quantity<MegaHertz, double>>>   _freq_channels; // each bin assigned its own value
-        HeaderField<unsigned>                                       _n_chans;
-        HeaderField<unsigned>                                       _nifs;        // number of seperate IF channels
-        HeaderField<DispersionMeasure<double>>                      _refdm;       // parsecs_per_cm_cubed
-        HeaderField<boost::units::quantity<Seconds, double>>        _period;      // folding period seconds
+        HeaderField<boost::units::quantity<units::Seconds, double>>        _tsamp;     // sample time (in seconds)
+        HeaderField<unsigned>                                              _n_bits;
+        HeaderField<unsigned>                                              _nsamples;
+        HeaderField<boost::units::quantity<units::MegaHertz, double>>      _fch1;
+        HeaderField<boost::units::quantity<units::MegaHertz, double>>      _foff;
+        HeaderField<std::vector<boost::units::quantity<units::MegaHertz, double>>>   _freq_channels; // each bin assigned its own value
+        HeaderField<unsigned>                                              _n_chans;
+        HeaderField<unsigned>                                              _nifs;        // number of seperate IF channels
+        HeaderField<units::DispersionMeasure<double>>                      _refdm;       // parsecs_per_cm_cubed
+        HeaderField<boost::units::quantity<units::Seconds, double>>        _period;      // folding period seconds
 };
 
 std::ostream& operator<<(std::ostream& os, SigProcHeader const&);

@@ -30,6 +30,7 @@
 
 namespace pss {
 namespace astrotypes {
+namespace units {
 namespace test {
 
 class UtilitiesTest : public ::testing::Test
@@ -43,6 +44,7 @@ public:
 };
 
 } // test
+} // units
 } // namespace astrotypes
 } // namespace pss
 

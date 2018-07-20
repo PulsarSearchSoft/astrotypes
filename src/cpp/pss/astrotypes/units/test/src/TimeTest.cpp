@@ -26,6 +26,7 @@
 
 namespace pss {
 namespace astrotypes {
+namespace units {
 namespace test {
 
 void TimeTest::SetUp() {}
@@ -40,10 +41,10 @@ TEST(TimeTest, test_seconds)
 {
     std::chrono::seconds chrono_seconds(10);
     std::chrono::milliseconds chrono_milliseconds(1000);
-    pss::astrotypes::TimeQuantity<Seconds, int> local_seconds(chrono_seconds);
+    Quantity<Seconds, int> local_seconds(chrono_seconds);
 
     ASSERT_EQ(chrono_seconds.count(), local_seconds.value());
-    local_seconds = pss::astrotypes::TimeQuantity<Seconds, int>(chrono_milliseconds);
+    local_seconds = Quantity<Seconds, int>(chrono_milliseconds);
     ASSERT_EQ(1, local_seconds.value());
 }
 
@@ -138,6 +139,7 @@ TEST(TimeTest, duration_cast_milliseconds_to_milliseconds)
 }
 
 } // namespace test
+} // namespace units
 } // namespace astrotypes
 } // namespace pss
 

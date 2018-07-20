@@ -1,18 +1,18 @@
 /*
  * MIT License
- *
+ * 
  * Copyright (c) 2018 PulsarSearchSoft
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,36 +21,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+#ifndef PSS_ASTROTYPES_UNITS_QUANTITY_H
+#define PSS_ASTROTYPES_UNITS_QUANTITY_H
 
-#include "pss/astrotypes/units/Time.h"
-#include "pss/astrotypes/units/Utilities.h"
-#include "../UtilitiesTest.h"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wall"
+#pragma GCC diagnostic ignored "-Wpragmas"
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+#pragma GCC diagnostic ignored "-Wunused-variable"
+#include <boost/units/quantity.hpp>
+#pragma GCC diagnostic pop
 
 namespace pss {
 namespace astrotypes {
 namespace units {
-namespace test {
 
-void UtilitiesTest::SetUp() {}
+/**
+ * @brief
+ * @details
+ */
 
-void UtilitiesTest::TearDown() {}
-
-UtilitiesTest::UtilitiesTest() {}
-
-UtilitiesTest::~UtilitiesTest() {}
-
-TEST(UtilitiesTest, test_hash)
+template<typename Unit, typename NumericalRep, class Enabled = void>
+class Quantity : public boost::units::quantity<Unit, NumericalRep>
 {
-    double value = 12345.6;
-    Quantity<Seconds, double> quantity(value * seconds);
-    typedef boost::units::quantity<boost::units::si::time, double> QuantityType;
-    ASSERT_EQ(std::hash<double>()(value), std::hash<QuantityType>()(quantity));
-    // TODO
-    //ASSERT_EQ(std::hash<double>()(value), std::hash<pss::astrotypes::units::Seconds<double>>()(quantity));
-}
+        typedef boost::units::quantity<Unit, NumericalRep> BaseT;
 
-} // namespace test
+    public:
+        // export base class constructors
+        using boost::units::quantity<Unit, NumericalRep>::quantity;
+
+        /**
+         * @brief Default empty constructor.
+         */
+        Quantity(BaseT const& b) : BaseT(b) {}
+};
+
 } // namespace units
 } // namespace astrotypes
 } // namespace pss
 
+#endif // PSS_ASTROTYPES_UNITS_QUANTITY_H

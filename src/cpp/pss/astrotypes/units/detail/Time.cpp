@@ -1,5 +1,6 @@
 namespace pss {
 namespace astrotypes {
+namespace units {
 
 template<class BoostUnit>
 struct boost_unit_to_std_ratio {
@@ -55,5 +56,6 @@ struct is_equivalent : public std::conditional<has_equivalent_unit<BoostType, Ch
 {
 };
 
+} // namespace units
 } // namespace astrotypes
 } // namespace pss

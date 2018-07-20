@@ -258,43 +258,43 @@ void SigProcHeader::za_start(boost::units::quantity<units::Degree, double> const
     _za_start = v;
 }
 
-boost::units::quantity<Seconds, double> SigProcHeader::sample_interval() const
+boost::units::quantity<units::Seconds, double> SigProcHeader::sample_interval() const
 {
     if(_tsamp.is_set()) return _tsamp;
-    return boost::units::quantity<Seconds, double>(0.0 * seconds);
+    return boost::units::quantity<units::Seconds, double>(0.0 * units::seconds);
 }
 
-void SigProcHeader::sample_interval(boost::units::quantity<Seconds, double> tsamp)
+void SigProcHeader::sample_interval(boost::units::quantity<units::Seconds, double> tsamp)
 {
     _tsamp = tsamp;
 }
 
-boost::optional<boost::units::quantity<MegaHertz, double>> const& SigProcHeader::fch1() const
+boost::optional<boost::units::quantity<units::MegaHertz, double>> const& SigProcHeader::fch1() const
 {
     return _fch1;
 }
 
-void SigProcHeader::fch1(boost::units::quantity<MegaHertz, double> const& f)
+void SigProcHeader::fch1(boost::units::quantity<units::MegaHertz, double> const& f)
 {
     _fch1 = f;
 }
 
-boost::optional<boost::units::quantity<MegaHertz, double>> const& SigProcHeader::foff() const
+boost::optional<boost::units::quantity<units::MegaHertz, double>> const& SigProcHeader::foff() const
 {
     return _foff;
 }
 
-void SigProcHeader::foff(boost::units::quantity<MegaHertz, double> const& f)
+void SigProcHeader::foff(boost::units::quantity<units::MegaHertz, double> const& f)
 {
     _foff = f;
 }
 
-std::vector<boost::units::quantity<MegaHertz, double>> const& SigProcHeader::frequency_channels() const
+std::vector<boost::units::quantity<units::MegaHertz, double>> const& SigProcHeader::frequency_channels() const
 {
     return *_freq_channels;
 }
 
-void SigProcHeader::frequency_channels(std::vector<boost::units::quantity<MegaHertz, double>> const& frequency_channels)
+void SigProcHeader::frequency_channels(std::vector<boost::units::quantity<units::MegaHertz, double>> const& frequency_channels)
 {
     *_freq_channels = frequency_channels;
 }
@@ -332,22 +332,22 @@ void SigProcHeader::number_of_ifs(unsigned n)
     _nifs = n;
 }
 
-boost::optional<DispersionMeasure<double>> const& SigProcHeader::ref_dm() const
+boost::optional<units::DispersionMeasure<double>> const& SigProcHeader::ref_dm() const
 {
     return _refdm;
 }
 
-void SigProcHeader::ref_dm(DispersionMeasure<double> dm)
+void SigProcHeader::ref_dm(units::DispersionMeasure<double> dm)
 {
     _refdm = dm;
 }
 
-boost::optional<boost::units::quantity<Seconds, double>> const& SigProcHeader::period() const
+boost::optional<boost::units::quantity<units::Seconds, double>> const& SigProcHeader::period() const
 {
     return _period;
 }
 
-void SigProcHeader::period(boost::units::quantity<Seconds, double> p)
+void SigProcHeader::period(boost::units::quantity<units::Seconds, double> p)
 {
     _period = p;
 }

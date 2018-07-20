@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 
+#include "Quantity.h"
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wall"
 #pragma GCC diagnostic ignored "-Wpragmas"
@@ -41,6 +42,7 @@
 
 namespace pss {
 namespace astrotypes {
+namespace units {
 
 // Dimension
 typedef boost::units::time_dimension Time;
@@ -123,10 +125,15 @@ template<typename BoostType, typename ChronoType>
 struct is_equivalent;
 
 /**
- * @brief Second data type.
+ * @brief Specialisation of Quantity unit for time dimension types
+ * @details all the functionality of the normal Quantity object plus extra functions
+ *          to ensure interoperability with std::chrono types
  */
 template<typename TimeUnit, typename NumericalRep>
-class TimeQuantity : public boost::units::quantity<TimeUnit, NumericalRep>
+class Quantity<TimeUnit
+                 , NumericalRep
+                 , typename std::enable_if<boost::units::is_unit_of_dimension<TimeUnit, boost::units::time_dimension>::value>::type>
+    : public boost::units::quantity<TimeUnit, NumericalRep>
 {
         typedef boost::units::quantity<TimeUnit, NumericalRep> BaseT;
         typedef std::chrono::duration<NumericalRep, typename boost_unit_to_std_ratio<TimeUnit>::type> chrono_duration;
@@ -138,8 +145,8 @@ class TimeQuantity : public boost::units::quantity<TimeUnit, NumericalRep>
         /**
          * @brief Default empty constructor.
          */
-        TimeQuantity(BaseT const& b) : BaseT(b) {}
-        TimeQuantity(chrono_duration const& d) : BaseT(d.count()) {}
+        Quantity(BaseT const& b) : BaseT(b) {}
+        Quantity(chrono_duration const& d) : BaseT(d.count()) {}
 
         /**
          * @brief auto convert to the std::chrono::duration type
@@ -152,14 +159,14 @@ class TimeQuantity : public boost::units::quantity<TimeUnit, NumericalRep>
          * @param quantity boost::units::quantity object from which to convert
          */
         template<typename UnitType, typename OtherDataType>
-        explicit TimeQuantity(boost::units::quantity<UnitType, OtherDataType> const & quantity) : BaseT(quantity) {}
+        explicit Quantity(boost::units::quantity<UnitType, OtherDataType> const & quantity) : BaseT(quantity) {}
 
         /**
          * @brief Conversion from std::chrono::duration types
          * @param duration std::chrono::duration from which to convert
          */
         template<typename DurationType, typename PeriodType>
-        explicit TimeQuantity(std::chrono::duration<DurationType, PeriodType> const & duration)
+        explicit Quantity(std::chrono::duration<DurationType, PeriodType> const & duration)
             : BaseT(std::chrono::duration_cast<std::chrono::duration<DurationType, std::ratio<1, 1>>>(duration).count()
                    * seconds) {}
 
@@ -256,6 +263,7 @@ duration_cast(const boost::units::quantity<BoostUnit, BoostNumericalRep>& durati
     return reinterpret_cast<const ChronoDuration&>(duration);
 }
 
+} // namespace units
 } // namespace astrotypes
 } // namespace pss
 #include "detail/Time.cpp"

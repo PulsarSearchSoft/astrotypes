@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 
+#include "Quantity.h"
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wall"
 #pragma GCC diagnostic ignored "-Wpragmas"
@@ -38,6 +39,7 @@
 
 namespace pss {
 namespace astrotypes {
+namespace units {
 
 // Dimension
 typedef boost::units::frequency_dimension Frequency;
@@ -58,6 +60,7 @@ struct FreqQuantity : public boost::units::quantity<typename std::enable_if<std:
 {
 };
 
+} // namespace units
 } // namespace astrotypes
 } // namespace pss
 

@@ -238,8 +238,8 @@ TEST_F(SigProcHeaderTest, test_start_time)
 
 TEST_F(SigProcHeaderTest, test_sample_interval)
 {
-    boost::units::quantity<Seconds, double> zero(0.0 * milliseconds);
-    boost::units::quantity<Seconds, double> t(20.0 * milliseconds);
+    boost::units::quantity<units::Seconds, double> zero(0.0 * units::milliseconds);
+    boost::units::quantity<units::Seconds, double> t(20.0 * units::milliseconds);
     SigProcHeader h;
     ASSERT_EQ(zero, h.sample_interval());
     h.sample_interval(t);
@@ -252,7 +252,7 @@ TEST_F(SigProcHeaderTest, test_sample_interval)
 
 TEST_F(SigProcHeaderTest, test_fch1)
 {
-    boost::units::quantity<MegaHertz, double> freq(150 * megahertz);
+    boost::units::quantity<units::MegaHertz, double> freq(150 * units::megahertz);
 
     SigProcHeader h;
     ASSERT_FALSE(h.fch1());
@@ -267,7 +267,7 @@ TEST_F(SigProcHeaderTest, test_fch1)
 
 TEST_F(SigProcHeaderTest, test_foff)
 {
-    boost::units::quantity<MegaHertz, double> freq(150 * megahertz);
+    boost::units::quantity<units::MegaHertz, double> freq(150 * units::megahertz);
 
     SigProcHeader h;
     ASSERT_FALSE(h.foff());
@@ -282,9 +282,9 @@ TEST_F(SigProcHeaderTest, test_foff)
 
 TEST_F(SigProcHeaderTest, test_frequency_channels)
 {
-    std::vector<boost::units::quantity<MegaHertz, double>> channels;
+    std::vector<boost::units::quantity<units::MegaHertz, double>> channels;
     for(double i=100.0; i < 500.0; ++i) { 
-        channels.push_back( boost::units::quantity<MegaHertz, double>(i * megahertz) );
+        channels.push_back( boost::units::quantity<units::MegaHertz, double>(i * units::megahertz) );
     }
     SigProcHeader h;
     ASSERT_EQ(h.frequency_channels().size(), 0U);
@@ -298,7 +298,7 @@ TEST_F(SigProcHeaderTest, test_frequency_channels)
 TEST_F(SigProcHeaderTest, test_extract_info_from_time_frequency)
 {
     SigProcHeader header;    
-    astrotypes::TimeFrequency<uint16_t> data(astrotypes::DimensionSize<Time>(2), astrotypes::DimensionSize<Frequency>(4));
+    astrotypes::TimeFrequency<uint16_t> data(astrotypes::DimensionSize<units::Time>(2), astrotypes::DimensionSize<units::Frequency>(4));
     header << data;
     ASSERT_EQ(header.number_of_channels(), 4U);
     ASSERT_EQ(header.number_of_bits(), 16U);
@@ -306,7 +306,7 @@ TEST_F(SigProcHeaderTest, test_extract_info_from_time_frequency)
 
 TEST_F(SigProcHeaderTest, test_ref_dm)
 {
-    DispersionMeasure<double> dm(100 * parsecs_per_cube_cm);
+    units::DispersionMeasure<double> dm(100 * units::parsecs_per_cube_cm);
 
     SigProcHeader h;
     ASSERT_FALSE(h.ref_dm());
@@ -321,7 +321,7 @@ TEST_F(SigProcHeaderTest, test_ref_dm)
 
 TEST_F(SigProcHeaderTest, test_period)
 {
-    boost::units::quantity<Seconds, double> p(100 * milliseconds);
+    boost::units::quantity<units::Seconds, double> p(100 * units::milliseconds);
 
     SigProcHeader h;
     ASSERT_FALSE(h.period());

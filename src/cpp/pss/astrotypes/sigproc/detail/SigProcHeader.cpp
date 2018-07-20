@@ -46,7 +46,7 @@ template<typename T, typename Alloc>
 SigProcHeader::OStreamAdapter<astrotypes::TimeFrequency<T, Alloc>> SigProcHeader::operator<<(astrotypes::TimeFrequency<T, Alloc> const& data)
 {
     _n_bits = sizeof(T);
-    _n_chans = data.template size<astrotypes::DimensionSize<astrotypes::Frequency>>();
+    _n_chans = data.template size<astrotypes::DimensionSize<units::Frequency>>();
     return OStreamAdapter<astrotypes::TimeFrequency<T, Alloc>>(*this, data);
 }
 

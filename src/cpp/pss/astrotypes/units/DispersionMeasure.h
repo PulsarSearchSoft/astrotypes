@@ -40,6 +40,7 @@
 
 namespace pss {
 namespace astrotypes {
+namespace units {
 
 /**
  * @brief
@@ -69,6 +70,7 @@ BOOST_UNITS_STATIC_CONSTANT(parsec_per_cube_cm, DispersionMeasureUnit);
 template<typename T>
 using DispersionMeasure = boost::units::quantity<DispersionMeasureUnit, T>;
 
+} // namespace units
 } // namespace astrotypes
 } // namespace pss
 
