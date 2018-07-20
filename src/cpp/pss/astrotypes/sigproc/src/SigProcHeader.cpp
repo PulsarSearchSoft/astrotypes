@@ -258,6 +258,16 @@ void SigProcHeader::za_start(boost::units::quantity<units::Degree, double> const
     _za_start = v;
 }
 
+boost::optional<units::ModifiedJulianDate> const& SigProcHeader::tstart() const
+{
+    return _tstart;
+}
+
+void SigProcHeader::tstart(units::ModifiedJulianDate const& mjd)
+{
+    _tstart = mjd;
+}
+
 boost::units::quantity<units::Seconds, double> SigProcHeader::sample_interval() const
 {
     if(_tsamp.is_set()) return _tsamp;

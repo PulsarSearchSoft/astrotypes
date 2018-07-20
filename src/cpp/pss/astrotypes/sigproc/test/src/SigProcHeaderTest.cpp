@@ -236,6 +236,21 @@ TEST_F(SigProcHeaderTest, test_start_time)
 */
 }
 
+TEST_F(SigProcHeaderTest, test_tstart)
+{
+    units::MJD mjd(100.0 * units::days);
+
+    SigProcHeader h;
+    ASSERT_FALSE(h.tstart());
+    h.tstart(mjd);
+    ASSERT_TRUE(h.tstart());
+    ASSERT_EQ(h.tstart(), mjd);
+    SigProcHeader h2 = save_restore(h);
+    ASSERT_EQ(h2.tstart(), h.tstart());
+    h.reset();
+    ASSERT_FALSE(h.tstart());
+}
+
 TEST_F(SigProcHeaderTest, test_sample_interval)
 {
     boost::units::quantity<units::Seconds, double> zero(0.0 * units::milliseconds);

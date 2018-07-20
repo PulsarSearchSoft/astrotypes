@@ -157,6 +157,16 @@ class SigProcHeader
         void za_start(boost::units::quantity<units::Degree, double> const&);
 
         /**
+         * @brief return the date of the start of the data block
+         */
+        boost::optional<units::ModifiedJulianDate> const& tstart() const;
+        
+        /**
+         * @brief set the date of the start of the data block
+         */
+        void tstart(units::ModifiedJulianDate const&);
+        
+        /**
          * @brief return the sample_interval (if defined)
          */
         boost::units::quantity<units::Seconds, double> sample_interval() const;
@@ -342,7 +352,7 @@ class SigProcHeader
         HeaderField<boost::units::quantity<units::Degree, double>>  _za_start;  // in degrees
         HeaderField<double>             _src_raj;
         HeaderField<double>             _src_dej;
-        HeaderField<double>             _tstart;    // Modified Julian Date format
+        HeaderField<units::ModifiedJulianDate>                             _tstart;    // Modified Julian Date format
         HeaderField<boost::units::quantity<units::Seconds, double>>        _tsamp;     // sample time (in seconds)
         HeaderField<unsigned>                                              _n_bits;
         HeaderField<unsigned>                                              _nsamples;
