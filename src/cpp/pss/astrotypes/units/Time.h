@@ -26,6 +26,7 @@
 #include "BoostDurationCast.h"
 #include "Quantity.h"
 #include "JulianClock.h"
+#include "J2000Clock.h"
 #include "ModifiedJulianClock.h"
 #include <chrono>
 
@@ -43,6 +44,7 @@ typedef boost::units::time_dimension Time;
 typedef JulianClock::time_point JulianDate;
 typedef ModifiedJulianClock::time_point ModifiedJulianDate;
 typedef ModifiedJulianClock::time_point MJD;
+typedef J2000Clock::time_point J2000;
 
 /**
  * @brief Specialisation of Quantity unit for time dimension types

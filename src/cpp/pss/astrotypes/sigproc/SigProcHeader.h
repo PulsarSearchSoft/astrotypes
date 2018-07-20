@@ -68,6 +68,8 @@ namespace sigproc {
  *    // n.b. this loses type information.
  *    double tsamp_in_secs = header.sample_interval().value();
  * @endcode
+ *
+ * @subsection Exteinding for Custom types
  */
 
 class SigProcHeader
@@ -350,8 +352,8 @@ class SigProcHeader
         HeaderField<unsigned>           _pulsarcentric;
         HeaderField<boost::units::quantity<units::Degree, double>>  _az_start;  // in degrees
         HeaderField<boost::units::quantity<units::Degree, double>>  _za_start;  // in degrees
-        HeaderField<double>             _src_raj;
-        HeaderField<double>             _src_dej;
+        HeaderField<double>             _src_raj;                               // right ascension (J2000) of source (hhmmss.s)
+        HeaderField<double>             _src_dej;                               // declination (J2000) of source (ddmmss.s)
         HeaderField<units::ModifiedJulianDate>                             _tstart;    // Modified Julian Date format
         HeaderField<boost::units::quantity<units::Seconds, double>>        _tsamp;     // sample time (in seconds)
         HeaderField<unsigned>                                              _n_bits;
