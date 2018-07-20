@@ -41,7 +41,7 @@ UtilitiesTest::~UtilitiesTest() {}
 TEST(UtilitiesTest, test_hash)
 {
     double value = 12345.6;
-    pss::astrotypes::TimeQuantity<double> quantity(value * pss::astrotypes::seconds);
+    pss::astrotypes::TimeQuantity<Seconds, double> quantity(value * pss::astrotypes::seconds);
     typedef boost::units::quantity<boost::units::si::time, double> QuantityType;
     ASSERT_EQ(std::hash<double>()(value), std::hash<QuantityType>()(quantity));
     // TODO

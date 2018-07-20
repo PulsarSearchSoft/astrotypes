@@ -40,14 +40,14 @@ TEST(TimeTest, test_seconds)
 {
     std::chrono::seconds chrono_seconds(10);
     std::chrono::milliseconds chrono_milliseconds(1000);
-    pss::astrotypes::TimeQuantity<int> local_seconds(chrono_seconds);
+    pss::astrotypes::TimeQuantity<Seconds, int> local_seconds(chrono_seconds);
 
     ASSERT_EQ(chrono_seconds.count(), local_seconds.value());
-    local_seconds = pss::astrotypes::TimeQuantity<int>(chrono_milliseconds);
+    local_seconds = pss::astrotypes::TimeQuantity<Seconds, int>(chrono_milliseconds);
     ASSERT_EQ(1, local_seconds.value());
 }
 
-TEST(TimeTest, duration_cast_to_seconds)
+TEST(TimeTest, duration_cast_milliseconds_to_seconds)
 {
     typedef boost::units::quantity<Seconds, double> BoostType;
     std::chrono::duration<double, std::ratio<1,1000>> d(100);
@@ -57,7 +57,7 @@ TEST(TimeTest, duration_cast_to_seconds)
     ASSERT_EQ(conversion.value(), bs.value());
 }
 
-TEST(TimeTest, duration_cast_from_seconds)
+TEST(TimeTest, duration_cast_seconds_to_seconds)
 {
     typedef boost::units::quantity<Seconds, double> BoostType;
     std::chrono::duration<double, std::ratio<1,1>> d(100);
@@ -67,7 +67,17 @@ TEST(TimeTest, duration_cast_from_seconds)
     ASSERT_EQ(conversion.value(), bs.value());
 }
 
-TEST(TimeTest, duration_cast_to_millseconds)
+TEST(TimeTest, duration_cast_const_seconds_to_seconds)
+{
+    typedef boost::units::quantity<Seconds, double> BoostType;
+    const std::chrono::duration<double, std::ratio<1,1>> d(100);
+    auto conversion = duration_cast<BoostType>(d);
+    static_assert(std::is_same<decltype(conversion), BoostType>::value, "wrong type returned by cast");
+    BoostType bs(100 * seconds);
+    ASSERT_EQ(conversion.value(), bs.value());
+}
+
+TEST(TimeTest, duration_cast_seconds_to_milliseconds)
 {
     typedef boost::units::quantity<MilliSeconds, double> BoostType;
     std::chrono::duration<double, std::ratio<1,1>> d(100);
@@ -77,7 +87,7 @@ TEST(TimeTest, duration_cast_to_millseconds)
     ASSERT_EQ(conversion.value(), bs.value());
 }
 
-TEST(TimeTest, duration_cast_from_millseconds)
+TEST(TimeTest, duration_cast_milliseconds_to_milliseconds)
 {
     typedef boost::units::quantity<MilliSeconds, double> BoostType;
     std::chrono::duration<double, std::milli> d(100);
