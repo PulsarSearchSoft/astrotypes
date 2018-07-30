@@ -45,8 +45,8 @@ std::runtime_error SigProcHeader::parse_error(std::string const& msg, T const& m
 template<typename T, typename Alloc>
 SigProcHeader::OStreamAdapter<astrotypes::TimeFrequency<T, Alloc>> SigProcHeader::operator<<(astrotypes::TimeFrequency<T, Alloc> const& data)
 {
-    _n_bits = sizeof(T);
-    _n_chans = data.template size<astrotypes::DimensionSize<units::Frequency>>();
+    _n_bits = sizeof(T) * 8;
+    _n_chans = data.template size<units::Frequency>();
     return OStreamAdapter<astrotypes::TimeFrequency<T, Alloc>>(*this, data);
 }
 
