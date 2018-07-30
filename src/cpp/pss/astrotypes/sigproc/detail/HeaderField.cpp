@@ -23,9 +23,10 @@
  */
 #include "pss/astrotypes/sigproc/HeaderField.h"
 #include <boost/units/quantity.hpp>
+#include <boost/units/cmath.hpp>
 #include <iostream>
 #include <exception>
-
+#include <cmath>
 
 namespace pss {
 namespace astrotypes {
@@ -79,6 +80,17 @@ bool HeaderField<T>::is_set() const
     return false;
 }
 
+template<typename T>
+bool HeaderField<T>::operator==(const HeaderFieldBase& f) const
+{
+    return *this == reinterpret_cast<HeaderField const&>(f);
+}
+
+template<typename T>
+bool HeaderField<T>::operator==(const HeaderField& f) const
+{
+    return *f._var == *_var;
+}
 // -------------- std::vector specialization
 template<typename T>
 HeaderField<std::vector<T>>::HeaderField( std::string const& start_label
@@ -139,6 +151,76 @@ unsigned HeaderField<std::vector<T>>::write(std::ostream& stream)
     return size;
 }
 
+template<typename T>
+bool HeaderField<std::vector<T>>::operator==(HeaderFieldBase const& h) const
+{
+    return *this == reinterpret_cast<HeaderField<std::vector<T>> const&>(h);
+}
+
+template<typename T>
+bool HeaderField<std::vector<T>>::operator==(const HeaderField& h) const
+{
+    if(h._var.size() != _var.size()) return false;
+    return true;    // only checks if sizes are the same. is this enough?
+}
+
+// ------ HeaderFieldWithTolerance ------
+template<typename T, typename ToleranceType>
+HeaderFieldWithTolerance<T, ToleranceType>::HeaderFieldWithTolerance(std::string const& header_label, SigProcHeader& header, ToleranceType const& t)
+    : BaseT(header_label, header)
+    , _tolerance(t)
+{
+}
+
+template<typename T, typename ToleranceType>
+HeaderFieldWithTolerance<T, ToleranceType>& HeaderFieldWithTolerance<T, ToleranceType>::operator=(T const& h)
+{
+    static_cast<BaseT&>(*this) = h;
+    return *this;
+}
+
+template<typename T, typename ToleranceType>
+bool HeaderFieldWithTolerance<T, ToleranceType>::operator==(HeaderFieldBase const& h) const
+{
+    return *this == reinterpret_cast<HeaderFieldWithTolerance const&>(h);
+}
+
+namespace {
+template<typename T2>
+struct compare_tolerance
+{
+    template<typename T1>
+    static inline
+    bool exec(T1 const& t1, T2 const& t2) {
+        return t1 < t2;
+    }
+};
+
+template<typename T2>
+struct compare_tolerance<HeaderField<T2>>
+{
+    template<typename T1>
+    static inline
+    bool exec(T1 const& t1, HeaderField<T2> const& t2) {
+        if(t2.is_set())
+            return t1 < static_cast<T2 const&>(t2);
+        return true;
+    }
+};
+
+} // namespace
+
+template<typename T, typename ToleranceType>
+bool HeaderFieldWithTolerance<T, ToleranceType>::operator==(HeaderFieldWithTolerance const& h) const
+{
+    // allow for ADL lookups defaulting to std
+    using std::abs;
+    return compare_tolerance<typename std::decay<ToleranceType>::type>::exec(abs(*this->_var - *h._var) , _tolerance); 
+}
+
 } // namespace sigproc
 } // namespace astrotypes
 } // namespace pss
+
+
+

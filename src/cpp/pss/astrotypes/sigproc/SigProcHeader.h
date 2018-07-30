@@ -323,7 +323,7 @@ class SigProcHeader
 
     protected:
         template<typename T>
-        std::runtime_error parse_error(std::string const& msg, T const& msg2);
+        std::runtime_error parse_error(std::string const& msg, T const& msg2) const;
 
         /**
          * @brief add a field to be parsed for read and write
@@ -354,8 +354,8 @@ class SigProcHeader
         HeaderField<boost::units::quantity<units::Degree, double>>  _za_start;  // in degrees
         HeaderField<double>             _src_raj;                               // right ascension (J2000) of source (hhmmss.s)
         HeaderField<double>             _src_dej;                               // declination (J2000) of source (ddmmss.s)
-        HeaderField<units::ModifiedJulianDate>                             _tstart;    // Modified Julian Date format
         HeaderField<boost::units::quantity<units::Seconds, double>>        _tsamp;     // sample time (in seconds)
+        HeaderFieldWithTolerance<units::ModifiedJulianDate, decltype(_tsamp) const&>   _tstart;    // Modified Julian Date format
         HeaderField<unsigned>                                              _n_bits;
         HeaderField<unsigned>                                              _nsamples;
         HeaderField<boost::units::quantity<units::MegaHertz, double>>      _fch1;

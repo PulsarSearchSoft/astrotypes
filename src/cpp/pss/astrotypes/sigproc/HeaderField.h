@@ -67,6 +67,8 @@ class HeaderFieldBase
 
         /// return true if the variable has been set, false otherwise
         virtual bool is_set() const = 0;
+
+        virtual bool operator==(const HeaderFieldBase&) const { return true; };
 };
 
 template<typename T>
@@ -92,10 +94,32 @@ class HeaderField : public HeaderFieldBase
         unsigned write(std::ostream &) override;
         void reset() override;
         bool is_set() const override;
+        bool operator==(const HeaderFieldBase&) const override;
+        bool operator==(const HeaderField&) const;
 
-    private:
+    protected:
         boost::optional<T> _var;
 };
+
+/**
+ * @brief specialisation to allow the == operator to return true if the values are within sepcified tolerance
+ */
+template<typename T, typename ToleranceType>
+class HeaderFieldWithTolerance : public HeaderField<T>
+{
+        typedef HeaderField<T> BaseT;
+
+    public:
+        HeaderFieldWithTolerance(std::string const& header_label, SigProcHeader& header, ToleranceType const&);
+        HeaderFieldWithTolerance& operator=(T const& var);
+        
+        bool operator==(const HeaderFieldBase&) const override;
+        bool operator==(const HeaderFieldWithTolerance&) const;
+
+    private:
+        ToleranceType _tolerance;
+};
+
 
 /**
  * @brief specialisation for writing and reading the sigproc vector type
@@ -144,6 +168,9 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
 
         std::vector<T> const& operator*() const { return _var; };
         std::vector<T>& operator*() { return _var; };
+
+        bool operator==(const HeaderFieldBase&) const override;
+        bool operator==(const HeaderField&) const;
 
     private:
         std::vector<T>  _var;

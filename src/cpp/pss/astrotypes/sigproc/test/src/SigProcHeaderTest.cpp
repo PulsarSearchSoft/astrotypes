@@ -90,6 +90,8 @@ TEST_F(SigProcHeaderTest, test_telescope_id)
     ASSERT_EQ(h.telescope_id(), s);
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.telescope_id(), h.telescope_id());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_FALSE(h.telescope_id());
 }
@@ -105,6 +107,8 @@ TEST_F(SigProcHeaderTest, test_machine_id)
     ASSERT_EQ(h.machine_id(), s);
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.machine_id(), h.machine_id());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_FALSE(h.machine_id());
 }
@@ -120,6 +124,8 @@ TEST_F(SigProcHeaderTest, test_raw_data_file)
     ASSERT_EQ(h.raw_data_file(), s);
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.raw_data_file(), h.raw_data_file());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_FALSE(h.raw_data_file());
 }
@@ -133,6 +139,8 @@ TEST_F(SigProcHeaderTest, test_barycentric)
     ASSERT_EQ(*h.barycentric(), 0U);
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(*h2.barycentric(), *h.barycentric());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_FALSE(h.barycentric());
 }
@@ -146,6 +154,8 @@ TEST_F(SigProcHeaderTest, test_pulsarcentric)
     ASSERT_EQ(*h.pulsarcentric(), 1U);
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(*h2.pulsarcentric(), *h.pulsarcentric());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_FALSE(h.pulsarcentric());
 }
@@ -161,6 +171,8 @@ TEST_F(SigProcHeaderTest, test_source_name)
     ASSERT_EQ(h.source_name(), s);
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.source_name(), h.source_name());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_FALSE(h.source_name());
 }
@@ -176,6 +188,8 @@ TEST_F(SigProcHeaderTest, test_az_start)
     ASSERT_EQ(h.az_start(), angle);
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.az_start(), h.az_start());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_FALSE(h.az_start());
 }
@@ -191,6 +205,8 @@ TEST_F(SigProcHeaderTest, test_za_start)
     ASSERT_EQ(h.za_start(), angle);
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.za_start(), h.za_start());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_FALSE(h.za_start());
 }
@@ -203,6 +219,8 @@ TEST_F(SigProcHeaderTest, number_of_channels)
     ASSERT_EQ(332, h.number_of_channels());
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.number_of_channels(), h.number_of_channels());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
 
     h.reset();
     ASSERT_EQ(0, h.number_of_channels());
@@ -216,24 +234,10 @@ TEST_F(SigProcHeaderTest, number_of_bits)
     ASSERT_EQ(32, h.number_of_bits());
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.number_of_bits(), h.number_of_bits());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_EQ(0, h.number_of_bits());
-}
-
-TEST_F(SigProcHeaderTest, test_start_time)
-{
-/*
-    utils::TimePoint<utils::ModifiedJulianClock> epoch(utils::julian_day(0));
-    utils::TimePoint<utils::ModifiedJulianClock> t(utils::julian_day(12));
-    SigProcHeader h;
-    ASSERT_EQ(epoch, h.start_time());
-    h.set_start_time(t);
-    SigProcHeader h2 = save_restore(h);
-    ASSERT_EQ(h2.start_time(), h.start_time());
-    ASSERT_EQ(t, h.start_time());
-    h.reset();
-    ASSERT_EQ(epoch, h.start_time());
-*/
 }
 
 TEST_F(SigProcHeaderTest, test_tstart)
@@ -247,6 +251,8 @@ TEST_F(SigProcHeaderTest, test_tstart)
     ASSERT_EQ(h.tstart(), mjd);
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.tstart(), h.tstart());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_FALSE(h.tstart());
 }
@@ -261,6 +267,8 @@ TEST_F(SigProcHeaderTest, test_sample_interval)
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.sample_interval(), h.sample_interval());
     ASSERT_EQ(t, h.sample_interval());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_EQ(zero, h.sample_interval());
 }
@@ -276,6 +284,8 @@ TEST_F(SigProcHeaderTest, test_fch1)
     ASSERT_EQ(h.fch1(), freq);
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.fch1(), h.fch1());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_FALSE(h.fch1());
 }
@@ -291,6 +301,8 @@ TEST_F(SigProcHeaderTest, test_foff)
     ASSERT_EQ(h.foff(), freq);
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.foff(), h.foff());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_FALSE(h.foff());
 }
@@ -306,6 +318,8 @@ TEST_F(SigProcHeaderTest, test_frequency_channels)
     h.frequency_channels(channels);
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.frequency_channels(), h.frequency_channels());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_EQ(h.frequency_channels().size(), 0U);
 }
@@ -315,8 +329,8 @@ TEST_F(SigProcHeaderTest, test_extract_info_from_time_frequency)
     SigProcHeader header;    
     astrotypes::TimeFrequency<uint16_t> data(astrotypes::DimensionSize<units::Time>(2), astrotypes::DimensionSize<units::Frequency>(4));
     header << data;
-    ASSERT_EQ(header.number_of_channels(), 4U);
     ASSERT_EQ(header.number_of_bits(), 16U);
+    ASSERT_EQ(header.number_of_channels(), 4U);
 }
 
 TEST_F(SigProcHeaderTest, test_ref_dm)
@@ -330,6 +344,8 @@ TEST_F(SigProcHeaderTest, test_ref_dm)
     ASSERT_EQ(h.ref_dm(), dm);
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.ref_dm(), h.ref_dm());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_FALSE(h.ref_dm());
 }
@@ -345,6 +361,7 @@ TEST_F(SigProcHeaderTest, test_period)
     ASSERT_EQ(h.period(), p);
     SigProcHeader h2 = save_restore(h);
     ASSERT_EQ(h2.period(), h.period());
+    ASSERT_TRUE(h == h2);
     h.reset();
     ASSERT_FALSE(h.period());
 }

@@ -40,8 +40,8 @@ SigProcHeader::SigProcHeader()
     , _za_start("za_start", *this)
     , _src_raj("src_raj", *this)
     , _src_dej("src_dej", *this)
-    , _tstart("tstart", *this)
     , _tsamp("tsamp", *this)
+    , _tstart("tstart", *this, _tsamp)
     , _n_bits("nbits", *this)
     , _nsamples("nsamples", *this)
     , _fch1("fch1", *this)
@@ -143,14 +143,20 @@ bool SigProcHeader::operator==(SigProcHeader const& h) const
                 // one is set, the other not so can't be equal
                 return false;
             }
-/* TODO
-            if(field != &header.second) {
-                // we test the actual values as they are both set
-                return false;
+            try {
+                if(!(field == *header.second)) {
+                    // we test the actual values as they are both set
+                    return false;
+                }
             }
-*/
+            catch(std::exception const& e) {
+                throw parse_error(std::string("exception comparing values for header ") + header.first.string(), e.what());
+            }
+            catch(...) {
+                throw parse_error("exception comparing values for header ", header.first);
+            }
         }
-        if(field.is_set()) {
+        else if(field.is_set()) {
             // one is set, the other not so can't be equal
             return false;
         }

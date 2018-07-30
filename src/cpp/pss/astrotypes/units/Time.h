@@ -28,6 +28,7 @@
 #include "JulianClock.h"
 #include "J2000Clock.h"
 #include "ModifiedJulianClock.h"
+#include "cmath.h"
 #include <chrono>
 
 #ifndef ASTROTYPES_UNITS_TIME_H
@@ -102,5 +103,88 @@ class Quantity<TimeUnit
 } // namespace units
 } // namespace astrotypes
 } // namespace pss
+
+namespace std {
+namespace chrono {
+
+// interchangability between boost units and chrono types for > and < operators
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+inline bool operator<(std::chrono::duration<Rep, Ratio> const& c, boost::units::quantity<Unit, Rep2> const& b)
+{
+    return pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c) > b;
+}
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+inline bool operator>(std::chrono::duration<Rep, Ratio> const& c, boost::units::quantity<Unit, Rep2> const& b)
+{
+    return pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c) > b;
+}
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+inline bool operator<=(std::chrono::duration<Rep, Ratio> const& lhs, boost::units::quantity<Unit, Rep2> const& rhs){ return !(lhs > rhs); }
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+inline bool operator>=(std::chrono::duration<Rep, Ratio> const& lhs, boost::units::quantity<Unit, Rep2> const& rhs){ return !(lhs < rhs); }
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+inline bool operator==(std::chrono::duration<Rep, Ratio> const& c, boost::units::quantity<Unit, Rep2> const& b)
+{
+    return pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c) == b;
+}
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+inline bool operator!=(std::chrono::duration<Rep, Ratio> const& c, boost::units::quantity<Unit, Rep2> const& b)
+{
+    return pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c) != b;
+}
+
+} // namespace chrono 
+} // namespace std
+
+namespace boost {
+namespace units {
+
+// interchangability between boost units and chrono types for > and < operators
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+bool operator<(boost::units::quantity<Unit, Rep2> const& b, std::chrono::duration<Rep, Ratio> const& c)
+{
+    return b < pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c);
+}
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+bool operator>(boost::units::quantity<Unit, Rep2> const& b, std::chrono::duration<Rep, Ratio> const& c)
+{
+    return b > pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c);
+}
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+inline bool operator<=(boost::units::quantity<Unit, Rep2> const& lhs, std::chrono::duration<Rep, Ratio> const& rhs){ return !(lhs > rhs); }
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+inline bool operator>=(boost::units::quantity<Unit, Rep2> const& lhs, std::chrono::duration<Rep, Ratio> const& rhs){ return !(lhs < rhs); }
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+bool operator==(boost::units::quantity<Unit, Rep2> const& b, std::chrono::duration<Rep, Ratio> const& c)
+{
+    return b == pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c);
+}
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+bool operator!=(boost::units::quantity<Unit, Rep2> const& b, std::chrono::duration<Rep, Ratio> const& c)
+{
+    return b == pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c);
+}
+
+} // namespace units
+} // namespace boost
+
+// overloads of some cmath functions to handle boost quantities
+namespace std {
+    template<typename Ratio, typename Rep>
+    std::chrono::duration<Rep, Ratio> abs(std::chrono::duration<Rep, Ratio> const& v) {
+        return std::chrono::duration<Rep, Ratio>(std::abs(v.count()));
+    }
+} // namespace std
+
 
 #endif // ASTROTYPES_UNITS_TIME_H
