@@ -23,6 +23,7 @@
  */
 #include "pss/astrotypes/sigproc/SigProcHeader.h"
 #include "pss/astrotypes/sigproc/SigProcVariable.h"
+#include <iomanip>
 
 namespace pss {
 namespace astrotypes {
@@ -366,6 +367,35 @@ boost::optional<boost::units::quantity<units::Seconds, double>> const& SigProcHe
 void SigProcHeader::period(boost::units::quantity<units::Seconds, double> p)
 {
     _period = p;
+}
+
+SigProcHeader::Info::Info()
+    : _os(&std::cout)
+{
+}
+
+SigProcHeader::Info const& SigProcHeader::Info::operator<<(std::ostream& os) const
+{
+    _os = &os;
+    return *this;
+}
+
+std::ostream& SigProcHeader::Info::operator<<(SigProcHeader& h) const
+{
+    for(auto const& header : h._headers) {
+        if(header.second->is_set()) {
+            *_os << std::left << std::setw(15) << header.second->header_info(header.first.string()) << " : ";
+            header.second->write_info(*_os);
+            *_os << "\n";
+        }
+    }
+    return *_os;
+}
+
+SigProcHeader::Info const& operator<<(std::ostream& stream, SigProcHeader::Info const& adapter)
+{
+    adapter << stream;
+    return adapter;
 }
 
 } // namespace sigproc

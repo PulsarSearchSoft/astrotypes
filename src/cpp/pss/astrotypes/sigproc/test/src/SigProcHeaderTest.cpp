@@ -53,7 +53,8 @@ void SigProcHeaderTest::TearDown()
 SigProcHeader save_restore(SigProcHeader const& h)
 {
     std::stringstream ss;
-    h.write(ss);
+    //h.write(ss);
+    ss << h;
     SigProcHeader r;
     r.read(ss);
     return r;
@@ -79,6 +80,14 @@ TEST_F(SigProcHeaderTest, test_write_read_default)
     ASSERT_EQ(read_header, header);
 }
 
+TEST_F(SigProcHeaderTest, test_operator_eq_empty)
+{
+    SigProcHeader header1;    
+    SigProcHeader header2;    
+    ASSERT_TRUE(header1 == header2);
+    ASSERT_FALSE(header1 != header2);
+}
+
 TEST_F(SigProcHeaderTest, test_telescope_id)
 {
     unsigned s(10);
@@ -93,6 +102,7 @@ TEST_F(SigProcHeaderTest, test_telescope_id)
     ASSERT_TRUE(h == h2);
     ASSERT_FALSE(h != h2);
     h.reset();
+    ASSERT_FALSE(h == h2);
     ASSERT_FALSE(h.telescope_id());
 }
 
@@ -364,6 +374,21 @@ TEST_F(SigProcHeaderTest, test_period)
     ASSERT_TRUE(h == h2);
     h.reset();
     ASSERT_FALSE(h.period());
+}
+
+TEST_F(SigProcHeaderTest, info_adapter_write)
+{
+    SigProcHeader h;
+    h.number_of_bits(16);
+    h.number_of_channels(100);
+    std::vector<boost::units::quantity<units::MegaHertz, double>> channels;
+    for(double i=100.0; i < 140.0; ++i) { 
+        channels.push_back( boost::units::quantity<units::MegaHertz, double>(i * units::megahertz) );
+    }
+    h.frequency_channels(channels);
+    std::stringstream ss1;
+    ss1 << SigProcHeader::Info() << h;
+    std::cout << ss1.str() << "\n";
 }
 
 } // namespace test

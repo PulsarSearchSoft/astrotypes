@@ -60,7 +60,13 @@ class HeaderFieldBase
 
         /// serialise a variable to sigproc header format
         // @return the number of bytes written
-        virtual unsigned write(std::ostream &) { return 0; };
+        virtual unsigned write(std::ostream &) const { return 0; };
+
+        /// an information string about the value in the field (for debugging etc)
+        virtual void write_info(std::ostream &) const { };
+
+        /// return the required header string to be used in info output
+        virtual std::string const& header_info(std::string const& h) const { return h; };
 
         /// reset the variable to undefined state
         virtual void reset() = 0;
@@ -91,7 +97,8 @@ class HeaderField : public HeaderFieldBase
         HeaderField& operator=(T const& var);
 
         unsigned read(std::istream &) override;
-        unsigned write(std::ostream &) override;
+        unsigned write(std::ostream &) const override;
+        void write_info(std::ostream &) const override;
         void reset() override;
         bool is_set() const override;
         bool operator==(const HeaderFieldBase&) const override;
@@ -162,7 +169,9 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
         HeaderField& operator=(std::vector<T> const& var);
 
         unsigned read(std::istream &) override;
-        unsigned write(std::ostream &) override;
+        unsigned write(std::ostream &) const override;
+        std::string const& header_info(std::string const& h) const override;
+        void write_info(std::ostream &) const override;
         bool is_set() const override;
         void reset() override;
 

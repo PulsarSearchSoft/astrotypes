@@ -90,6 +90,18 @@ class SigProcHeader
         friend class HeaderFieldBase;
 
     public:
+        // Adapter for ouputing debug info about the header
+        class Info {
+            public:
+                Info();
+                std::ostream& operator<<(SigProcHeader& os) const;
+                Info const& operator<<(std::ostream& os) const;
+
+            private:
+                mutable std::ostream* _os;
+        };
+
+    public:
         SigProcHeader();
 
         /**
@@ -368,6 +380,7 @@ class SigProcHeader
 };
 
 std::ostream& operator<<(std::ostream& os, SigProcHeader const&);
+SigProcHeader::Info const& operator<<(std::ostream& os, SigProcHeader::Info const&);
 std::istream& operator>>(std::istream& os, SigProcHeader&);
 
 } // namespace sigproc

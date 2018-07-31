@@ -62,9 +62,15 @@ unsigned HeaderField<T>::read(std::istream& stream)
 }
 
 template<typename T>
-unsigned HeaderField<T>::write(std::ostream& stream)
+unsigned HeaderField<T>::write(std::ostream& stream) const
 {
     return SigProcVariable<T>::write(stream, *_var);
+}
+
+template<typename T>
+void HeaderField<T>::write_info(std::ostream& stream) const
+{
+    stream << *_var;
 }
 
 template<typename T>
@@ -136,7 +142,7 @@ unsigned HeaderField<std::vector<T>>::ItemField::read(std::istream& stream)
 }
 
 template<typename T>
-unsigned HeaderField<std::vector<T>>::write(std::ostream& stream)
+unsigned HeaderField<std::vector<T>>::write(std::ostream& stream) const
 {
     unsigned size=0;
     for(auto const& var : _var) {
@@ -149,6 +155,31 @@ unsigned HeaderField<std::vector<T>>::write(std::ostream& stream)
     size += _end_label.size();
 
     return size;
+}
+
+template<typename T>
+std::string const& HeaderField<std::vector<T>>::header_info(std::string const&) const
+{
+    return _item_label.string();
+}
+
+template<typename T>
+void HeaderField<std::vector<T>>::write_info(std::ostream& stream) const
+{
+    // list all the elements if its a reasonable number
+    std::string sep="";
+    stream << "(";
+    if(_var.size() < 4) {
+        for( auto const& var : _var )
+        {
+            stream << sep << var;
+            sep = ", ";
+        }
+    }
+    else {
+        stream << _var[0] << ", " << _var[1] << ", ..., " << _var.back();
+    }
+    stream << ") " << _var.size() << " elements";
 }
 
 template<typename T>
