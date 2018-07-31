@@ -22,7 +22,6 @@
  * SOFTWARE.
  */
 #include "pss/astrotypes/sigproc/SigProcHeader.h"
-#include "pss/astrotypes/sigproc/SigProcVariable.h"
 #include <iomanip>
 
 namespace pss {

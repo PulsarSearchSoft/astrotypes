@@ -25,7 +25,6 @@
 #define PSS_ASTROTYPES_SIGPROC_SIGPROCHEADER_H
 
 #include "HeaderField.h"
-#include "SigProcVariable.h"
 #include "pss/astrotypes/units/Time.h"
 #include "pss/astrotypes/units/Frequency.h"
 #include "pss/astrotypes/units/Angle.h"

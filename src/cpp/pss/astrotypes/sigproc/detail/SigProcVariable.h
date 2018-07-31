@@ -112,6 +112,6 @@ std::ostream& operator<<(std::ostream& stream, SigProcLabel const& var);
 } // namespace astrotypes
 } // namespace pss
 
-#include "detail/SigProcVariable.cpp"
+#include "SigProcVariable.cpp"
 
 #endif // PSS_ASTROTYPES_SIGPROC_SIGPROCVARIABLE_H

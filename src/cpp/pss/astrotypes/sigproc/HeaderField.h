@@ -23,7 +23,7 @@
  */
 #ifndef PSS_ASTROTYPES_SIGPROC_HEADERFIELD_H
 #define PSS_ASTROTYPES_SIGPROC_HEADERFIELD_H
-#include "pss/astrotypes/sigproc/SigProcVariable.h"
+#include "pss/astrotypes/sigproc/detail/SigProcVariable.h"
 #include <boost/optional.hpp>
 #include <string>
 #include <vector>

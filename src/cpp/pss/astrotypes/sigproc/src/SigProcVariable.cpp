@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "pss/astrotypes/sigproc/SigProcVariable.h"
+#include "pss/astrotypes/sigproc/detail/SigProcVariable.h"
 
 
 namespace pss {
