@@ -33,7 +33,7 @@ namespace pss {
 namespace astrotypes {
 namespace sigproc {
 
-class SigProcHeader;
+class Header;
 
 /**
  * @brief class to provide a virtual lookup table for read/write the varoious types
@@ -47,11 +47,11 @@ class HeaderFieldBase
         // allows us to hide HeaderFields from the writer
         HeaderFieldBase() {};
         /// add the provided field as a read_only parameter
-        void add_read(std::string const& header_label, HeaderFieldBase& field, SigProcHeader& header);
+        void add_read(std::string const& header_label, HeaderFieldBase& field, Header& header);
 
     public:
-        // registers the Field to be read/written by the SigProcHeader parser
-        HeaderFieldBase(std::string const& header_name, SigProcHeader& h);
+        // registers the Field to be read/written by the Header parser
+        HeaderFieldBase(std::string const& header_name, Header& h);
         ~HeaderFieldBase() {}; // virtual not needed, we never expect to pass these around
 
         /// read into variable
@@ -88,8 +88,8 @@ class HeaderField : public HeaderFieldBase
 
     public:
         /// add the provided field as a read/write parameters
-        HeaderField(std::string const& header_label, SigProcHeader& header);
-        HeaderField(std::string const& header_label, SigProcHeader& header, T const& to_copy);
+        HeaderField(std::string const& header_label, Header& header);
+        HeaderField(std::string const& header_label, Header& header, T const& to_copy);
 
         operator T const&() const { return *_var; }
         operator T&() { return *_var; }
@@ -117,7 +117,7 @@ class HeaderFieldWithTolerance : public HeaderField<T>
         typedef HeaderField<T> BaseT;
 
     public:
-        HeaderFieldWithTolerance(std::string const& header_label, SigProcHeader& header, ToleranceType const&);
+        HeaderFieldWithTolerance(std::string const& header_label, Header& header, ToleranceType const&);
         HeaderFieldWithTolerance& operator=(T const& var);
         
         bool operator==(const HeaderFieldBase&) const override;
@@ -161,7 +161,7 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
         };
 
     public:
-        HeaderField(std::string const& start_label, std::string const& item_label, std::string const& end_label, SigProcHeader& header);
+        HeaderField(std::string const& start_label, std::string const& item_label, std::string const& end_label, Header& header);
 
         operator std::vector<T> const&() const { return _var; }
         operator std::vector<T>&() { return _var; }

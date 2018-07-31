@@ -36,16 +36,15 @@ namespace test {
  * @details
  */
 
-class SigProcHeaderTest : public ::testing::Test
+class HeaderTest : public ::testing::Test
 {
     protected:
         void SetUp() override;
         void TearDown() override;
 
     public:
-        SigProcHeaderTest();
-
-        ~SigProcHeaderTest();
+        HeaderTest();
+        ~HeaderTest();
 
     private:
 };

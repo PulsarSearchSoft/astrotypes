@@ -21,14 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "pss/astrotypes/sigproc/SigProcHeader.h"
+#include "pss/astrotypes/sigproc/Header.h"
 #include <iomanip>
 
 namespace pss {
 namespace astrotypes {
 namespace sigproc {
 
-SigProcHeader::SigProcHeader()
+Header::Header()
     : _telescope_id("telescope_id", *this)
     , _machine_id("machine_id", *this)
     , _data_type("data_type", *this)
@@ -54,14 +54,14 @@ SigProcHeader::SigProcHeader()
 {
 }
 
-void SigProcHeader::reset()
+void Header::reset()
 {
     for(auto const& header : _headers) {
         header.second->reset();
     }
 }
 
-void SigProcHeader::read(std::istream & stream)
+void Header::read(std::istream & stream)
 {
     reset();
 
@@ -90,7 +90,7 @@ void SigProcHeader::read(std::istream & stream)
             // look for a matching known header
             it = _headers.find(str);
             if( it == _headers.end()) {
-                throw parse_error("SigProcHeader - unknown parameter", str);
+                throw parse_error("Header - unknown parameter", str);
             }
         }
 
@@ -99,7 +99,7 @@ void SigProcHeader::read(std::istream & stream)
     }
 }
 
-void SigProcHeader::write(std::ostream& stream) const {
+void Header::write(std::ostream& stream) const {
 
     // Write header
     const static SigProcLabel start("HEADER_START");
@@ -121,20 +121,20 @@ void SigProcHeader::write(std::ostream& stream) const {
     _size += end.size(); 
 }
 
-std::ostream& operator<<(std::ostream& stream, SigProcHeader const& h)
+std::ostream& operator<<(std::ostream& stream, Header const& h)
 {
     h.write(stream);
     return stream;
 }
 
-std::istream& operator>>(std::istream& stream, SigProcHeader& headers)
+std::istream& operator>>(std::istream& stream, Header& headers)
 {
     headers.read(stream);
     return stream;
 }
 
 
-bool SigProcHeader::operator==(SigProcHeader const& h) const
+bool Header::operator==(Header const& h) const
 {
     for(auto const& header : _headers) {
         auto const& field = *h._headers.at(header.first);
@@ -164,222 +164,222 @@ bool SigProcHeader::operator==(SigProcHeader const& h) const
     return true;
 }
 
-bool SigProcHeader::operator!=(SigProcHeader const& h) const
+bool Header::operator!=(Header const& h) const
 {
     return !(h==*this);
 }
 
-std::size_t SigProcHeader::size() const {
+std::size_t Header::size() const {
     return _size;
 }
 
-void SigProcHeader::add(std::string const& name, HeaderFieldBase& field)
+void Header::add(std::string const& name, HeaderFieldBase& field)
 {
     _headers.insert(std::make_pair(SigProcLabel(name), &field));
 }
 
-void SigProcHeader::add_read(std::string const& name, HeaderFieldBase& field)
+void Header::add_read(std::string const& name, HeaderFieldBase& field)
 {
     _read_only_headers.insert(std::make_pair(SigProcLabel(name), &field));
 }
 
 // --------- getters and setters --------------------------
-boost::optional<unsigned> SigProcHeader::telescope_id() const
+boost::optional<unsigned> Header::telescope_id() const
 {
     return _telescope_id;
 }
 
-void SigProcHeader::telescope_id(unsigned id)
+void Header::telescope_id(unsigned id)
 {
     _telescope_id = id;
 }
 
-boost::optional<unsigned> SigProcHeader::machine_id() const
+boost::optional<unsigned> Header::machine_id() const
 {
     return _machine_id;
 }
 
-void SigProcHeader::machine_id(unsigned id)
+void Header::machine_id(unsigned id)
 {
     _machine_id = id;
 }
 
-boost::optional<std::string> const& SigProcHeader::raw_data_file() const 
+boost::optional<std::string> const& Header::raw_data_file() const 
 {
     return _raw_data_file;
 }
 
-void SigProcHeader::raw_data_file(std::string const& filename)
+void Header::raw_data_file(std::string const& filename)
 {
     _raw_data_file = filename;
 }
 
-boost::optional<std::string> const& SigProcHeader::source_name() const
+boost::optional<std::string> const& Header::source_name() const
 {
     return _source_name;
 }
 
-void SigProcHeader::source_name(std::string const& name)
+void Header::source_name(std::string const& name)
 {
     _source_name = name;
 }
 
-boost::optional<unsigned> const& SigProcHeader::barycentric() const
+boost::optional<unsigned> const& Header::barycentric() const
 {
     return _barycentric;
 }
 
-void SigProcHeader::barycentric(bool b)
+void Header::barycentric(bool b)
 {
     _barycentric = b;
 }
 
-boost::optional<unsigned> const& SigProcHeader::pulsarcentric() const
+boost::optional<unsigned> const& Header::pulsarcentric() const
 {
     return _pulsarcentric;
 }
 
-void SigProcHeader::pulsarcentric(bool b)
+void Header::pulsarcentric(bool b)
 {
     _pulsarcentric = b;
 }
 
-boost::optional<boost::units::quantity<units::Degree, double>> SigProcHeader::az_start() const
+boost::optional<boost::units::quantity<units::Degree, double>> Header::az_start() const
 {
     return _az_start;
 }
 
-void SigProcHeader::az_start(boost::units::quantity<units::Degree, double> const& v)
+void Header::az_start(boost::units::quantity<units::Degree, double> const& v)
 {
     _az_start = v;
 }
 
-boost::optional<boost::units::quantity<units::Degree, double>> SigProcHeader::za_start() const
+boost::optional<boost::units::quantity<units::Degree, double>> Header::za_start() const
 {
     return _za_start;
 }
 
-void SigProcHeader::za_start(boost::units::quantity<units::Degree, double> const& v)
+void Header::za_start(boost::units::quantity<units::Degree, double> const& v)
 {
     _za_start = v;
 }
 
-boost::optional<units::ModifiedJulianDate> const& SigProcHeader::tstart() const
+boost::optional<units::ModifiedJulianDate> const& Header::tstart() const
 {
     return _tstart;
 }
 
-void SigProcHeader::tstart(units::ModifiedJulianDate const& mjd)
+void Header::tstart(units::ModifiedJulianDate const& mjd)
 {
     _tstart = mjd;
 }
 
-boost::units::quantity<units::Seconds, double> SigProcHeader::sample_interval() const
+boost::units::quantity<units::Seconds, double> Header::sample_interval() const
 {
     if(_tsamp.is_set()) return _tsamp;
     return boost::units::quantity<units::Seconds, double>(0.0 * units::seconds);
 }
 
-void SigProcHeader::sample_interval(boost::units::quantity<units::Seconds, double> tsamp)
+void Header::sample_interval(boost::units::quantity<units::Seconds, double> tsamp)
 {
     _tsamp = tsamp;
 }
 
-boost::optional<boost::units::quantity<units::MegaHertz, double>> const& SigProcHeader::fch1() const
+boost::optional<boost::units::quantity<units::MegaHertz, double>> const& Header::fch1() const
 {
     return _fch1;
 }
 
-void SigProcHeader::fch1(boost::units::quantity<units::MegaHertz, double> const& f)
+void Header::fch1(boost::units::quantity<units::MegaHertz, double> const& f)
 {
     _fch1 = f;
 }
 
-boost::optional<boost::units::quantity<units::MegaHertz, double>> const& SigProcHeader::foff() const
+boost::optional<boost::units::quantity<units::MegaHertz, double>> const& Header::foff() const
 {
     return _foff;
 }
 
-void SigProcHeader::foff(boost::units::quantity<units::MegaHertz, double> const& f)
+void Header::foff(boost::units::quantity<units::MegaHertz, double> const& f)
 {
     _foff = f;
 }
 
-std::vector<boost::units::quantity<units::MegaHertz, double>> const& SigProcHeader::frequency_channels() const
+std::vector<boost::units::quantity<units::MegaHertz, double>> const& Header::frequency_channels() const
 {
     return *_freq_channels;
 }
 
-void SigProcHeader::frequency_channels(std::vector<boost::units::quantity<units::MegaHertz, double>> const& frequency_channels)
+void Header::frequency_channels(std::vector<boost::units::quantity<units::MegaHertz, double>> const& frequency_channels)
 {
     *_freq_channels = frequency_channels;
 }
 
-unsigned SigProcHeader::number_of_bits() const
+unsigned Header::number_of_bits() const
 {
     if(_n_bits.is_set()) return _n_bits;
     return 0;
 }
 
-void SigProcHeader::number_of_bits(unsigned n)
+void Header::number_of_bits(unsigned n)
 {
     _n_bits = n;
 }
 
-std::size_t SigProcHeader::number_of_channels() const
+std::size_t Header::number_of_channels() const
 {
     if(_n_chans.is_set()) return _n_chans;
     return 0;
 }
 
-void SigProcHeader::number_of_channels(std::size_t n)
+void Header::number_of_channels(std::size_t n)
 {
     _n_chans = n;
 }
 
-unsigned SigProcHeader::number_of_ifs() const
+unsigned Header::number_of_ifs() const
 {
     if(_nifs.is_set()) return _nifs;
     return 0;
 }
 
-void SigProcHeader::number_of_ifs(unsigned n)
+void Header::number_of_ifs(unsigned n)
 {
     _nifs = n;
 }
 
-boost::optional<units::DispersionMeasure<double>> const& SigProcHeader::ref_dm() const
+boost::optional<units::DispersionMeasure<double>> const& Header::ref_dm() const
 {
     return _refdm;
 }
 
-void SigProcHeader::ref_dm(units::DispersionMeasure<double> dm)
+void Header::ref_dm(units::DispersionMeasure<double> dm)
 {
     _refdm = dm;
 }
 
-boost::optional<boost::units::quantity<units::Seconds, double>> const& SigProcHeader::period() const
+boost::optional<boost::units::quantity<units::Seconds, double>> const& Header::period() const
 {
     return _period;
 }
 
-void SigProcHeader::period(boost::units::quantity<units::Seconds, double> p)
+void Header::period(boost::units::quantity<units::Seconds, double> p)
 {
     _period = p;
 }
 
-SigProcHeader::Info::Info()
+Header::Info::Info()
     : _os(&std::cout)
 {
 }
 
-SigProcHeader::Info const& SigProcHeader::Info::operator<<(std::ostream& os) const
+Header::Info const& Header::Info::operator<<(std::ostream& os) const
 {
     _os = &os;
     return *this;
 }
 
-std::ostream& SigProcHeader::Info::operator<<(SigProcHeader& h) const
+std::ostream& Header::Info::operator<<(Header& h) const
 {
     for(auto const& header : h._headers) {
         if(header.second->is_set()) {
@@ -391,7 +391,7 @@ std::ostream& SigProcHeader::Info::operator<<(SigProcHeader& h) const
     return *_os;
 }
 
-SigProcHeader::Info const& operator<<(std::ostream& stream, SigProcHeader::Info const& adapter)
+Header::Info const& operator<<(std::ostream& stream, Header::Info const& adapter)
 {
     adapter << stream;
     return adapter;

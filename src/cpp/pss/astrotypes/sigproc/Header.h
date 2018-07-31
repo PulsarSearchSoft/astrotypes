@@ -21,8 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef PSS_ASTROTYPES_SIGPROC_SIGPROCHEADER_H
-#define PSS_ASTROTYPES_SIGPROC_SIGPROCHEADER_H
+#ifndef PSS_ASTROTYPES_SIGPROC_HEADER_H
+#define PSS_ASTROTYPES_SIGPROC_HEADER_H
 
 #include "HeaderField.h"
 #include "pss/astrotypes/units/Time.h"
@@ -71,18 +71,18 @@ namespace sigproc {
  * @subsection Exteinding for Custom types
  */
 
-class SigProcHeader
+class Header
 {
     private:
-        typedef SigProcHeader SelfType;
+        typedef Header SelfType;
 
         template<typename T>
         class OStreamAdapter {
             public:
-                OStreamAdapter(SigProcHeader const& h, T const& data);
+                OStreamAdapter(Header const& h, T const& data);
                 std::ostream& operator<<(std::ostream& os) const;
             private:
-                SigProcHeader const& _h;
+                Header const& _h;
                 T const& _d;
         };
 
@@ -93,7 +93,7 @@ class SigProcHeader
         class Info {
             public:
                 Info();
-                std::ostream& operator<<(SigProcHeader& os) const;
+                std::ostream& operator<<(Header& os) const;
                 Info const& operator<<(std::ostream& os) const;
 
             private:
@@ -101,7 +101,7 @@ class SigProcHeader
         };
 
     public:
-        SigProcHeader();
+        Header();
 
         /**
          * @brief return the telescope_id identifier (if any)
@@ -314,13 +314,13 @@ class SigProcHeader
          * @details source names/machine names are ignored
          *          this only matches data formatting types and offsets
          */
-        bool operator==(SigProcHeader const&) const;
+        bool operator==(Header const&) const;
 
         /**
          * @brief returns true if the data format meta data does not match
          * @details see caveats in operator==
          */
-        bool operator!=(SigProcHeader const&) const;
+        bool operator!=(Header const&) const;
 
         /**
          * @brief returns the number of bytes in the header
@@ -378,13 +378,13 @@ class SigProcHeader
         HeaderField<boost::units::quantity<units::Seconds, double>>        _period;      // folding period seconds
 };
 
-std::ostream& operator<<(std::ostream& os, SigProcHeader const&);
-SigProcHeader::Info const& operator<<(std::ostream& os, SigProcHeader::Info const&);
-std::istream& operator>>(std::istream& os, SigProcHeader&);
+std::ostream& operator<<(std::ostream& os, Header const&);
+Header::Info const& operator<<(std::ostream& os, Header::Info const&);
+std::istream& operator>>(std::istream& os, Header&);
 
 } // namespace sigproc
 } // namespace astrotypes
 } // namespace pss
-#include "detail/SigProcHeader.cpp"
+#include "detail/Header.cpp"
 
-#endif // PSS_ASTROTYPES_SIGPROC_SIGPROCHEADER_H
+#endif // PSS_ASTROTYPES_SIGPROC_HEADER_H

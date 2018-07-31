@@ -33,13 +33,13 @@ namespace astrotypes {
 namespace sigproc {
 
 template<typename T>
-HeaderField<T>::HeaderField(std::string const& header_label, SigProcHeader& h)
+HeaderField<T>::HeaderField(std::string const& header_label, Header& h)
     : BaseT(header_label, h)
 {
 }
 
 template<typename T>
-HeaderField<T>::HeaderField(std::string const& header_label, SigProcHeader& h, T const& t)
+HeaderField<T>::HeaderField(std::string const& header_label, Header& h, T const& t)
     : BaseT(header_label, h)
     , _var(t)
 {
@@ -102,7 +102,7 @@ template<typename T>
 HeaderField<std::vector<T>>::HeaderField( std::string const& start_label
                                         , std::string const& item_label
                                         , std::string const& end_label
-                                        , SigProcHeader& header)
+                                        , Header& header)
     : BaseT(start_label, header)
     , _item_label_handler(_var)
     , _end_label(end_label)
@@ -197,7 +197,7 @@ bool HeaderField<std::vector<T>>::operator==(const HeaderField& h) const
 
 // ------ HeaderFieldWithTolerance ------
 template<typename T, typename ToleranceType>
-HeaderFieldWithTolerance<T, ToleranceType>::HeaderFieldWithTolerance(std::string const& header_label, SigProcHeader& header, ToleranceType const& t)
+HeaderFieldWithTolerance<T, ToleranceType>::HeaderFieldWithTolerance(std::string const& header_label, Header& header, ToleranceType const& t)
     : BaseT(header_label, header)
     , _tolerance(t)
 {

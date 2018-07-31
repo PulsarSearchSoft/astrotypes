@@ -22,18 +22,18 @@
  * SOFTWARE.
  */
 #include "pss/astrotypes/sigproc/HeaderField.h"
-#include "pss/astrotypes/sigproc/SigProcHeader.h"
+#include "pss/astrotypes/sigproc/Header.h"
 
 namespace pss {
 namespace astrotypes {
 namespace sigproc {
 
-HeaderFieldBase::HeaderFieldBase(std::string const& header_name, SigProcHeader& h)
+HeaderFieldBase::HeaderFieldBase(std::string const& header_name, Header& h)
 {
     h.add(header_name, *this);
 }
 
-void HeaderFieldBase::add_read(std::string const& header_label, HeaderFieldBase& field, SigProcHeader& header)
+void HeaderFieldBase::add_read(std::string const& header_label, HeaderFieldBase& field, Header& header)
 {
     header.add_read(header_label, field);
 }

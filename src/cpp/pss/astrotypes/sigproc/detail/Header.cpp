@@ -29,7 +29,7 @@ namespace astrotypes {
 namespace sigproc {
 
 template<typename T>
-std::runtime_error SigProcHeader::parse_error(std::string const& msg, T const& msg2) const
+std::runtime_error Header::parse_error(std::string const& msg, T const& msg2) const
 {
     std::stringstream ss(msg);
     try {
@@ -43,7 +43,7 @@ std::runtime_error SigProcHeader::parse_error(std::string const& msg, T const& m
 }
 
 template<typename T, typename Alloc>
-SigProcHeader::OStreamAdapter<astrotypes::TimeFrequency<T, Alloc>> SigProcHeader::operator<<(astrotypes::TimeFrequency<T, Alloc> const& data)
+Header::OStreamAdapter<astrotypes::TimeFrequency<T, Alloc>> Header::operator<<(astrotypes::TimeFrequency<T, Alloc> const& data)
 {
     _n_bits = sizeof(T) * 8;
     _n_chans = data.template size<units::Frequency>();
@@ -51,14 +51,14 @@ SigProcHeader::OStreamAdapter<astrotypes::TimeFrequency<T, Alloc>> SigProcHeader
 }
 
 template<typename T>
-SigProcHeader::OStreamAdapter<T>::OStreamAdapter(SigProcHeader const& h, T const& data)
+Header::OStreamAdapter<T>::OStreamAdapter(Header const& h, T const& data)
     : _h(h)
     , _d(data)
 {
 }
 
 template<typename T>
-std::ostream& SigProcHeader::OStreamAdapter<T>::operator<<(std::ostream& os) const
+std::ostream& Header::OStreamAdapter<T>::operator<<(std::ostream& os) const
 {
     os << _h;
     os << _d;

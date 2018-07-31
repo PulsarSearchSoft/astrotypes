@@ -3,7 +3,7 @@ link_directories(${GTEST_LIBRARY_DIR})
 
 set(
    gtest_sigproc_src
-   src/SigProcHeaderTest.cpp
+   src/HeaderTest.cpp
 )
 
 add_executable(gtest_sigproc ${gtest_sigproc_src} )
