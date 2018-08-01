@@ -26,13 +26,13 @@ namespace pss {
 namespace astrotypes {
 
 template<typename T, typename Alloc>
-TimeFrequency<T, Alloc>::TimeFrequency(DimensionSize<Time> time_size, DimensionSize<Frequency> freq_size)
+TimeFrequency<T, Alloc>::TimeFrequency(DimensionSize<units::Time> time_size, DimensionSize<units::Frequency> freq_size)
     : BaseT(time_size, freq_size)
 {
 }
 
 template<typename T, typename Alloc>
-TimeFrequency<T, Alloc>::TimeFrequency(DimensionSize<Frequency> freq_size, DimensionSize<Time> time_size)
+TimeFrequency<T, Alloc>::TimeFrequency(DimensionSize<units::Frequency> freq_size, DimensionSize<units::Time> time_size)
     : BaseT(time_size, freq_size)
 {
 }
@@ -45,27 +45,27 @@ TimeFrequency<T, Alloc>::~TimeFrequency()
 template<typename T, typename Alloc>
 typename TimeFrequency<T, Alloc>::Spectra TimeFrequency<T, Alloc>::spectrum(std::size_t offset)
 {
-    return (*this)[DimensionIndex<Time>(offset)];
+    return (*this)[DimensionIndex<units::Time>(offset)];
 }
 
 template<typename T, typename Alloc>
 typename TimeFrequency<T, Alloc>::ConstSpectra TimeFrequency<T, Alloc>::spectrum(std::size_t offset) const
 {
-    return (*this)[DimensionIndex<Time>(offset)];
+    return (*this)[DimensionIndex<units::Time>(offset)];
 }
 
 template<typename T, typename Alloc>
 typename TimeFrequency<T, Alloc>::Channel TimeFrequency<T, Alloc>::channel(std::size_t offset)
 {
-    return Channel(*this, DimensionSpan<Time>(DimensionIndex<Time>(0), this->template size<Time>())
-                        , DimensionSpan<Frequency>(DimensionIndex<Frequency>(offset), DimensionSize<Frequency>(1)));
+    return Channel(*this, DimensionSpan<units::Time>(DimensionIndex<units::Time>(0), this->template size<units::Time>())
+                        , DimensionSpan<units::Frequency>(DimensionIndex<units::Frequency>(offset), DimensionSize<units::Frequency>(1)));
 }
 
 template<typename T, typename Alloc>
 typename TimeFrequency<T, Alloc>::ConstChannel TimeFrequency<T, Alloc>::channel(std::size_t offset) const
 {
-    return ConstChannel(*this, DimensionSpan<Time>(DimensionIndex<Time>(0), this->template size<Time>())
-                        , DimensionSpan<Frequency>(DimensionIndex<Frequency>(offset), DimensionSize<Frequency>(1)));
+    return ConstChannel(*this, DimensionSpan<units::Time>(DimensionIndex<units::Time>(0), this->template size<units::Time>())
+                        , DimensionSpan<units::Frequency>(DimensionIndex<units::Frequency>(offset), DimensionSize<units::Frequency>(1)));
 }
 
 // ***************************************************************
@@ -73,13 +73,13 @@ typename TimeFrequency<T, Alloc>::ConstChannel TimeFrequency<T, Alloc>::channel(
 // ***************************************************************
 //
 template<typename T, typename Alloc>
-FrequencyTime<T, Alloc>::FrequencyTime(DimensionSize<Frequency> freq_size, DimensionSize<Time> time_size)
+FrequencyTime<T, Alloc>::FrequencyTime(DimensionSize<units::Frequency> freq_size, DimensionSize<units::Time> time_size)
     : BaseT(freq_size, time_size)
 {
 }
 
 template<typename T, typename Alloc>
-FrequencyTime<T, Alloc>::FrequencyTime(DimensionSize<Time> time_size, DimensionSize<Frequency> freq_size)
+FrequencyTime<T, Alloc>::FrequencyTime(DimensionSize<units::Time> time_size, DimensionSize<units::Frequency> freq_size)
     : BaseT(freq_size, time_size)
 {
 }
@@ -92,27 +92,27 @@ FrequencyTime<T, Alloc>::~FrequencyTime()
 template<typename T, typename Alloc>
 typename FrequencyTime<T, Alloc>::Channel FrequencyTime<T, Alloc>::channel(std::size_t offset)
 {
-    return (*this)[DimensionIndex<Frequency>(offset)];
+    return (*this)[DimensionIndex<units::Frequency>(offset)];
 }
 
 template<typename T, typename Alloc>
 typename FrequencyTime<T, Alloc>::ConstChannel FrequencyTime<T, Alloc>::channel(std::size_t offset) const
 {
-    return (*this)[DimensionIndex<Frequency>(offset)];
+    return (*this)[DimensionIndex<units::Frequency>(offset)];
 }
 
 template<typename T, typename Alloc>
 typename FrequencyTime<T, Alloc>::Spectra FrequencyTime<T, Alloc>::spectrum(std::size_t offset)
 {
-    return Spectra(*this, DimensionSpan<Frequency>(DimensionIndex<Frequency>(0), this->template size<Frequency>())
-                        , DimensionSpan<Time>(DimensionIndex<Time>(offset), DimensionSize<Time>(1)));
+    return Spectra(*this, DimensionSpan<units::Frequency>(DimensionIndex<units::Frequency>(0), this->template size<units::Frequency>())
+                        , DimensionSpan<units::Time>(DimensionIndex<units::Time>(offset), DimensionSize<units::Time>(1)));
 }
 
 template<typename T, typename Alloc>
 typename FrequencyTime<T, Alloc>::ConstSpectra FrequencyTime<T, Alloc>::spectrum(std::size_t offset) const
 {
-    return ConstSpectra(*this, DimensionSpan<Frequency>(DimensionIndex<Frequency>(0), this->template size<Frequency>())
-                        , DimensionSpan<Time>(DimensionIndex<Time>(offset), DimensionSize<Time>(1)));
+    return ConstSpectra(*this, DimensionSpan<units::Frequency>(DimensionIndex<units::Frequency>(0), this->template size<units::Frequency>())
+                        , DimensionSpan<units::Time>(DimensionIndex<units::Time>(offset), DimensionSize<units::Time>(1)));
 }
 
 } // namespace astrotypes
