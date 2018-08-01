@@ -38,19 +38,7 @@ namespace units {
  * 
  */
 
-struct ModifiedJulianClock : public std::chrono::system_clock
-{
-    typedef julian_day duration;
-    typedef duration::rep rep;
-    typedef duration::period period;
-    typedef TimePoint<ModifiedJulianClock> time_point;
-    static constexpr bool is_steady = false;
-    static const julian_day diff_from_system_epoch;
-    static constexpr const char* symbol = "MJD";
-
-    static time_point now() noexcept;
-
-};
+PSS_UNITS_DEFINE_CLOCK(ModifiedJulianClock, julian_day(40587.0), MJD, false);
 
 } // namespace units
 } // namespace astrotypes

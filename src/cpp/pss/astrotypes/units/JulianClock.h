@@ -26,7 +26,7 @@
 #ifndef PSS_ASTROTYPES_UNITS_JULIANCLOCK_H
 #define PSS_ASTROTYPES_UNITS_JULIANCLOCK_H
 
-#include "TimePoint.h"
+#include "DefineClock.h"
 #include <chrono>
 
 namespace pss {
@@ -45,19 +45,8 @@ typedef julian_day julian_days;
  * @details
  * 
  */
-struct JulianClock : public std::chrono::system_clock
-{
-    typedef julian_day duration;
-    typedef duration::rep rep;
-    typedef duration::period period;
-    typedef TimePoint<JulianClock> time_point;
-    static constexpr bool is_steady = false;
-    static const julian_day diff_from_system_epoch;
-    static constexpr const char* symbol="JD";
 
-    static time_point now() noexcept;
-};
-
+PSS_UNITS_DEFINE_CLOCK(JulianClock, julian_day(2440587.5), JD, false);
 
 } // namespace units
 } // namespace astrotypes

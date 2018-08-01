@@ -36,19 +36,8 @@ namespace units {
  * @details
  *      epocj is Julian date 2451545.0 TT (Terrestrial Time), or January 1, 2000, noon TT
  */
-struct J2000Clock : public std::chrono::system_clock
-{
-    typedef julian_day duration;
-    typedef duration::rep rep;
-    typedef duration::period period;
-    typedef TimePoint<J2000Clock> time_point;
-    static constexpr bool is_steady = false;
-    static const julian_day diff_from_system_epoch;
-    static constexpr const char* symbol="J2000";
 
-    static time_point now() noexcept;
-};
-
+PSS_UNITS_DEFINE_CLOCK(J2000Clock, julian_day(JulianClock::diff_from_system_epoch.count() - 2451545), J2000, false);
 
 } // namespace units
 } // namespace astrotypes
