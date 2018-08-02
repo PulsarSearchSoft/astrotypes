@@ -83,7 +83,7 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
          * MultiArray<int, DimA, DimB> my_ulti_array(...);
          * for(DimensionIndex<DimA> i(0); i < my_multi_array.size<DimA>(); ++i)
          * {
-         *     for(DjmensjonIndex<DjmB> j(0); j < my_multj_array.sjze<DimB>(); ++j) 
+         *     for(DimensionIndex<DimB> j(0); j < my_multi_array.size<DimB>(); ++j) 
          *     {
          *          my_multi_array[i][j] = 10;
          *     }
