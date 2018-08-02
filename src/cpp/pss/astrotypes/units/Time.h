@@ -67,12 +67,10 @@ class Quantity<TimeUnit
         typedef typename chrono_duration::period period;
 
     public:
-        // export base class constructors
-        using boost::units::quantity<TimeUnit, NumericalRep>::quantity;
-
         /**
          * @brief Default empty constructor.
          */
+        Quantity() {}
         Quantity(BaseT const& b) : BaseT(b) {}
         explicit Quantity(chrono_duration const& d) : BaseT(d.count()) {}
 
@@ -86,8 +84,8 @@ class Quantity<TimeUnit
         /**
          * @brief auto convert to the std::chrono::duration type
          */
-        operator chrono_duration const& () const { reinterpret_cast<chrono_duration>(*this); };
-        operator chrono_duration& () { reinterpret_cast<chrono_duration>(*this); };
+        operator chrono_duration const& () const { duration_cast<chrono_duration>(*this); };
+        operator chrono_duration& () { duration_cast<chrono_duration>(*this); };
 
         /**
          * @brief Conversion from std::chrono::duration types
