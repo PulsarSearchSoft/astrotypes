@@ -32,7 +32,7 @@
 
 #ifndef PSS_UNITS_DEFINE_CLOCK
 #define PSS_UNITS_DEFINE_CLOCK(_name_, duration_before_epoch, _symbol_, _is_steady_) \
-namespace {                                                 \
+namespace detail {                                          \
     template<typename TimePoint>                            \
     struct _name_##_implementation_t : public std::chrono::system_clock    \
     {                                                       \
@@ -49,7 +49,7 @@ namespace {                                                 \
     _name_##_implementation_t<TimePoint>::diff_from_system_epoch(duration_before_epoch); \
 }                                                           \
                                                             \
-struct _name_ : public _name_##_implementation_t<TimePoint<_name_, decltype(duration_before_epoch)>> \
+struct _name_ : public detail::_name_##_implementation_t<TimePoint<_name_, decltype(duration_before_epoch)>> \
 {                                                           \
     private:                                                \
         typedef _name_##_implementation_t<TimePoint<_name_, decltype(duration_before_epoch)>> BaseT; \
