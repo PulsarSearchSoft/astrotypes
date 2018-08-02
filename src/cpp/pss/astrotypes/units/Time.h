@@ -67,14 +67,6 @@ class Quantity<TimeUnit
         typedef typename chrono_duration::period period;
 
     public:
-        // reproduce the chrono typedefs
-        typedef NumericalRep rep;
-        typedef typename chrono_duration::period period;
-
-    public:
-        // export base class constructors
-        using boost::units::quantity<TimeUnit, NumericalRep>::quantity;
-
         /**
          * @brief Default empty constructor.
          */
