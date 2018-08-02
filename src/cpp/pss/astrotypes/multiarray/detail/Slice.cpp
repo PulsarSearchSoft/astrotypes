@@ -37,7 +37,7 @@ Slice<is_const, Parent, Dimension, Dimensions...>::Slice(Parent& parent
     : BaseT(spans..., parent)
     , _span(d)
     , _base_span(0U) // not used (yet) so don't bother calculating it
-    , _ptr(parent.begin() + static_cast<const std::size_t>(_span.start()) * BaseT::_base_span)
+    , _ptr(parent.begin() + static_cast<std::size_t>(_span.start()) * BaseT::_base_span)
 {
     BaseT::offset(_ptr);
 }
@@ -56,20 +56,20 @@ Slice<is_const, Parent, Dimension, Dimensions...>::Slice( DimensionSpan<Dimensio
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
 void Slice<is_const, Parent, Dimension, Dimensions...>::offset(parent_iterator const& it) 
 {
-    _ptr=it + static_cast<const std::size_t>(_span.start()) * BaseT::_base_span;
+    _ptr=it + static_cast<std::size_t>(_span.start()) * BaseT::_base_span;
     BaseT::offset(_ptr);
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
 std::size_t Slice<is_const, Parent, Dimension, Dimensions...>::base_span() const
 {
-    return static_cast<const std::size_t>(BaseT::_base_span) * _span.span();
+    return static_cast<std::size_t>(BaseT::_base_span) * _span.span();
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
 std::size_t Slice<is_const, Parent, Dimension, Dimensions...>::diff_base_span() const
 {
-    return static_cast<const std::size_t>(BaseT::_base_span) * (_span.span() - 1);
+    return static_cast<std::size_t>(BaseT::_base_span) * (_span.span() - 1);
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
@@ -235,7 +235,7 @@ template<bool is_const, typename Parent, typename Dimension>
 Slice<is_const, Parent, Dimension>::Slice(Parent& parent, DimensionSpan<Dimension> const& d)
     : _span(d)
     , _base_span(parent.template size<Dimension>())
-    , _ptr(parent.begin() + static_cast<const std::size_t>(_span.start()))
+    , _ptr(parent.begin() + static_cast<std::size_t>(_span.start()))
 {
 }
 
@@ -249,7 +249,7 @@ Slice<is_const, Parent, Dimension>::Slice(DimensionSpan<Dimension> const& d, Par
 template<bool is_const, typename Parent, typename Dimension>
 void Slice<is_const, Parent, Dimension>::offset(parent_iterator const& it)
 {
-    _ptr = it + static_cast<const std::size_t>(_span.start());
+    _ptr = it + static_cast<std::size_t>(_span.start());
 }
 
 template<bool is_const, typename Parent, typename Dimension>
@@ -287,25 +287,25 @@ typename Slice<is_const, Parent, Dimension>::reference_type Slice<is_const, Pare
 template<bool is_const, typename Parent, typename Dimension>
 typename Slice<is_const, Parent, Dimension>::reference_type Slice<is_const, Parent, Dimension>::operator[](DimensionIndex<Dimension> const& p) const
 {
-    return *(_ptr + static_cast<std::size_t const>(p));
+    return *(_ptr + static_cast<std::size_t>(p));
 }
 
 template<bool is_const, typename Parent, typename Dimension>
 std::size_t Slice<is_const, Parent, Dimension>::base_span() const
 {
-    return static_cast<const std::size_t>(_span.span());
+    return static_cast<std::size_t>(_span.span());
 }
 
 template<bool is_const, typename Parent, typename Dimension>
 std::size_t Slice<is_const, Parent, Dimension>::diff_base_span() const
 {
-    return static_cast<const std::size_t>(_span.span());
+    return static_cast<std::size_t>(_span.span());
 }
 
 template<bool is_const, typename Parent, typename Dimension>
 std::size_t Slice<is_const, Parent, Dimension>::contiguous_span() const
 {
-    return static_cast<const std::size_t>(_span.span());
+    return static_cast<std::size_t>(_span.span());
 }
 
 template<bool is_const, typename Parent, typename Dimension>
@@ -323,7 +323,7 @@ typename Slice<is_const, Parent, Dimension>::parent_iterator& Slice<is_const, Pa
 template<bool is_const, typename Parent, typename Dimension>
 Slice<is_const, Parent, Dimension>& Slice<is_const, Parent, Dimension>::operator+=(DimensionSize<Dimension> const& offset)
 {
-    _ptr += static_cast<const std::size_t&>(offset) * _base_span;
+    _ptr += static_cast<std::size_t>(offset) * _base_span;
     return *this;
 }
 

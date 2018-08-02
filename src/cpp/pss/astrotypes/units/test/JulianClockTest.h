@@ -1,7 +1,7 @@
 /*
- * MIT License
+ * The MIT License (MIT)
  *
- * Copyright (c) 2018 PulsarSearchSoft
+ * Copyright (c) 2016 The SKA organisation
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,36 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+#ifndef PSS_ASTROTYPES_UTILS_TEST_JULIANCLOCKTEST_H
+#define PSS_ASTROTYPES_UTILS_TEST_JULIANCLOCKTEST_H
 
-#include "pss/astrotypes/units/Time.h"
-#include "pss/astrotypes/units/Utilities.h"
-#include "../UtilitiesTest.h"
+#include <gtest/gtest.h>
 
 namespace pss {
 namespace astrotypes {
 namespace units {
 namespace test {
 
-void UtilitiesTest::SetUp() {}
-
-void UtilitiesTest::TearDown() {}
-
-UtilitiesTest::UtilitiesTest() {}
-
-UtilitiesTest::~UtilitiesTest() {}
-
-TEST(UtilitiesTest, test_hash)
+/**
+ * @brief
+ * 
+ * @details
+ * 
+ */
+class JulianClockTest : public ::testing::Test
 {
-    double value = 12345.6;
-    Quantity<Seconds, double> quantity(value * seconds);
-    typedef boost::units::quantity<boost::units::si::time, double> QuantityType;
-    ASSERT_EQ(std::hash<double>()(value), std::hash<QuantityType>()(quantity));
-    // TODO
-    //ASSERT_EQ(std::hash<double>()(value), std::hash<pss::astrotypes::units::Seconds<double>>()(quantity));
-}
+    protected:
+        void SetUp() override;
+        void TearDown() override;
+
+    public:
+        JulianClockTest();
+
+        ~JulianClockTest();
+
+    private:
+};
 
 } // namespace test
 } // namespace units
 } // namespace astrotypes
 } // namespace pss
 
+#endif // PSS_ASTROTYPES_UTILS_TEST_JULIANCLOCKTEST_H 

@@ -25,6 +25,8 @@
 #include "pss/astrotypes/types/TimeFrequency.h"
 
 
+using namespace pss::astrotypes::units;
+
 namespace pss {
 namespace astrotypes {
 namespace test {
