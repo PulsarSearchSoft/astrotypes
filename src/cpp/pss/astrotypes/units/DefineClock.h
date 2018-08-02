@@ -47,7 +47,7 @@ namespace {                                                 \
     template<typename TimePoint>                            \
     const typename _name_##_implementation_t<TimePoint>::duration \
     _name_##_implementation_t<TimePoint>::diff_from_system_epoch(duration_before_epoch); \
-};                                                          \
+}                                                           \
                                                             \
 struct _name_ : public _name_##_implementation_t<TimePoint<_name_, decltype(duration_before_epoch)>> \
 {                                                           \
