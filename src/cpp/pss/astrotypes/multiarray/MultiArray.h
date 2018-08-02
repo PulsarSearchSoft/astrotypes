@@ -44,15 +44,14 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
 {
         typedef MultiArray<Alloc, T, OtherDimensions...> BaseT;
         typedef MultiArray<Alloc, T, FirstDimension, OtherDimensions...> SelfType;
+        typedef std::vector<T, Alloc> Container;
 
-    protected:
+    public:
         typedef Slice<false, SelfType, FirstDimension, OtherDimensions...> SliceType;
         typedef Slice<true, SelfType, FirstDimension, OtherDimensions...> ConstSliceType;
         typedef Slice<false, SelfType, OtherDimensions...> ReducedDimensionSliceType;
         typedef Slice<true, SelfType, OtherDimensions...> ConstReducedDimensionSliceType;
 
-    public:
-        typedef std::vector<T, Alloc> Container;
         typedef typename Container::iterator iterator;
         typedef typename Container::const_iterator const_iterator;
         typedef typename Container::value_type value_type;
@@ -83,7 +82,7 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
          * MultiArray<int, DimA, DimB> my_ulti_array(...);
          * for(DimensionIndex<DimA> i(0); i < my_multi_array.size<DimA>(); ++i)
          * {
-         *     for(DjmensjonIndex<DjmB> j(0); j < my_multj_array.sjze<DimB>(); ++j) 
+         *     for(DimensionIndex<DimB> j(0); j < my_multi_array.size<DimB>(); ++j) 
          *     {
          *          my_multi_array[i][j] = 10;
          *     }
@@ -157,12 +156,11 @@ template<typename Alloc, typename T, typename FirstDimension>
 class MultiArray<Alloc, T, FirstDimension>
 {
         typedef MultiArray<Alloc, T, FirstDimension> SelfType;
-        typedef Slice<false, SelfType, FirstDimension> SliceType;
-        typedef Slice<true, SelfType, FirstDimension> ConstSliceType;
-
         typedef std::vector<T, Alloc> Container;
 
     public:
+        typedef Slice<false, SelfType, FirstDimension> SliceType;
+        typedef Slice<true, SelfType, FirstDimension> ConstSliceType;
         typedef typename Container::iterator iterator;
         typedef typename Container::const_iterator const_iterator;
 
