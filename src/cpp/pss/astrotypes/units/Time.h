@@ -168,6 +168,14 @@ boost::units::quantity<Unit, Rep2>& operator-=(boost::units::quantity<Unit, Rep2
     return b -= pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c);
 }
 
+// deived by a duration
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+auto operator/(boost::units::quantity<Unit, Rep2> const& b, std::chrono::duration<Rep, Ratio> const& c) 
+    -> decltype(boost::units::quantity<Unit, Rep2>()/boost::units::quantity<Unit, Rep>())
+{
+    return b / pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep>>(c);
+}
+
 // interchangability between boost units and chrono types for > and < operators
 template<typename Ratio, typename Rep, typename Unit, typename Rep2>
 bool operator<(boost::units::quantity<Unit, Rep2> const& b, std::chrono::duration<Rep, Ratio> const& c)
@@ -236,6 +244,15 @@ std::chrono::duration<Rep, Ratio>& operator-=(std::chrono::duration<Rep, Ratio>&
 {
     return c -= pss::astrotypes::units::duration_cast<std::chrono::duration<Rep, Ratio>>(b);
 }
+
+/*
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+auto operator/(std::chrono::duration<Rep, Ratio> const& c, boost::units::quantity<Unit, Rep2> const& b) 
+    -> decltype(boost::units::quantity<Unit, Rep>()/boost::units::quantity<Unit, Rep2>())
+{
+    return pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep>>(c) / b;
+}
+*/
 
 } // namespace chrono
 } // namespace std

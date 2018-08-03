@@ -131,6 +131,28 @@ TEST(TimeTest, duration_operator_minus_equal)
     ASSERT_EQ( chrono_seconds, std::chrono::seconds(90) );
 }
 
+TEST(TimeTest, quantity_operator_divide)
+{
+    typedef boost::units::quantity<MilliSeconds, double> BoostType;
+    const std::chrono::seconds chrono_seconds(10);
+    const BoostType a(100 * seconds);
+    
+    auto res = a / chrono_seconds;
+    ASSERT_EQ( res, 10.0 );
+}
+
+TEST(TimeTest, duration_operator_divide)
+{
+/* TODO doesn't work with clang - std:: impl breaks compilation  before a template match
+    typedef boost::units::quantity<MilliSeconds, double> BoostType;
+    const std::chrono::seconds chrono_seconds(100);
+    const BoostType a(10 * seconds);
+    
+    auto res = chrono_seconds / a;
+    ASSERT_EQ( res, 10.0 );
+*/
+}
+
 TEST(TimeTest, duration_cast_milliseconds_to_seconds)
 {
     // chrono -> boost
