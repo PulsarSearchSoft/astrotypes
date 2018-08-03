@@ -26,8 +26,12 @@
 
 # project name and specify the minumum cmake version.
 project(astrotypes)
-cmake_policy(SET CMP0048 OLD) # don't let cmake control the version variables
 cmake_policy(SET CMP0000 OLD) # don't complain about not having a minimum cmake version
+
+if(${CMAKE_MAJOR_VERSION} GREATER 2)
+cmake_policy(SET CMP0048 OLD) # don't let cmake control the version variables
+endif(${CMAKE_MAJOR_VERSION} GREATER 2)
+enable_testing()
 
 # cmake setup.
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake)
