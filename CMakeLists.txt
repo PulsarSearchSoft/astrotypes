@@ -26,11 +26,14 @@
 
 # project name and specify the minumum cmake version.
 project(astrotypes)
-cmake_policy(SET CMP0000 OLD) # don't complain about not having a minimum cmake version
+if(COMMAND cmake_policy)
+  cmake_policy(SET CMP0003 NEW) # use full paths to libraries on the link line
+  cmake_policy(SET CMP0000 OLD) # don't complain about not having a minimum cmake version
 
-if(${CMAKE_MAJOR_VERSION} GREATER 2)
-cmake_policy(SET CMP0048 OLD) # don't let cmake control the version variables
-endif(${CMAKE_MAJOR_VERSION} GREATER 2)
+  if(${CMAKE_MAJOR_VERSION} GREATER 2)
+    cmake_policy(SET CMP0048 OLD) # don't let cmake control the version variables
+  endif(${CMAKE_MAJOR_VERSION} GREATER 2)
+endif(COMMAND cmake_policy)
 enable_testing()
 
 # cmake setup.
