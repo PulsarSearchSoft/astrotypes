@@ -96,6 +96,15 @@ class Quantity<TimeUnit
             : BaseT(std::chrono::duration_cast<std::chrono::duration<DurationType, std::ratio<1, 1>>>(duration).count()
                    * seconds) {}
 
+        /**
+         * @brief copy ssignment
+         */
+        template<typename UnitType, typename OtherDataType>
+        Quantity& operator=(boost::units::quantity<UnitType, OtherDataType> const& o)
+        {
+            static_cast<BaseT&>(*this) = BaseT(o);
+            return *this; 
+        }
 };
 
 } // namespace units
