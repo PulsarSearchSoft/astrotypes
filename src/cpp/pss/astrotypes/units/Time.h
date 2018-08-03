@@ -139,8 +139,34 @@ inline bool operator!=(std::chrono::duration<Rep, Ratio> const& c, boost::units:
 } // namespace chrono 
 } // namespace std
 
+// --------------------- std::crono::duration and boost::units::quantity interoperability ------------
 namespace boost {
 namespace units {
+
+// simple mathc operators with chrono types
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+boost::units::quantity<Unit, Rep2> operator+(boost::units::quantity<Unit, Rep2> const& b, std::chrono::duration<Rep, Ratio> const& c)
+{
+    return b + pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c);
+}
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+boost::units::quantity<Unit, Rep2> operator-(boost::units::quantity<Unit, Rep2> const& b, std::chrono::duration<Rep, Ratio> const& c)
+{
+    return b - pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c);
+}
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+boost::units::quantity<Unit, Rep2>& operator+=(boost::units::quantity<Unit, Rep2>& b, std::chrono::duration<Rep, Ratio> const& c)
+{
+    return b += pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c);
+}
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+boost::units::quantity<Unit, Rep2>& operator-=(boost::units::quantity<Unit, Rep2>& b, std::chrono::duration<Rep, Ratio> const& c)
+{
+    return b -= pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c);
+}
 
 // interchangability between boost units and chrono types for > and < operators
 template<typename Ratio, typename Rep, typename Unit, typename Rep2>
@@ -178,10 +204,40 @@ bool operator!=(boost::units::quantity<Unit, Rep2> const& b, std::chrono::durati
 
 // overloads of some cmath functions to handle boost quantities
 namespace std {
-    template<typename Ratio, typename Rep>
-    std::chrono::duration<Rep, Ratio> abs(std::chrono::duration<Rep, Ratio> const& v) {
-        return std::chrono::duration<Rep, Ratio>(std::abs(v.count()));
-    }
+// cmath helpers
+template<typename Ratio, typename Rep>
+std::chrono::duration<Rep, Ratio> abs(std::chrono::duration<Rep, Ratio> const& v) {
+    return std::chrono::duration<Rep, Ratio>(std::abs(v.count()));
+}
+
+namespace chrono {
+
+// operators for standard math and boost::units::quantity types
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+std::chrono::duration<Rep, Ratio> operator+(std::chrono::duration<Rep, Ratio> const& c, boost::units::quantity<Unit, Rep2> const& b)
+{
+    return c + pss::astrotypes::units::duration_cast<std::chrono::duration<Rep, Ratio>>(b);
+}
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+std::chrono::duration<Rep, Ratio> operator-(std::chrono::duration<Rep, Ratio> const& c, boost::units::quantity<Unit, Rep2> const& b)
+{
+    return c - pss::astrotypes::units::duration_cast<std::chrono::duration<Rep, Ratio>>(b);
+}
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+std::chrono::duration<Rep, Ratio>& operator+=(std::chrono::duration<Rep, Ratio>& c, boost::units::quantity<Unit, Rep2> const& b)
+{
+    return c += pss::astrotypes::units::duration_cast<std::chrono::duration<Rep, Ratio>>(b);
+}
+
+template<typename Ratio, typename Rep, typename Unit, typename Rep2>
+std::chrono::duration<Rep, Ratio>& operator-=(std::chrono::duration<Rep, Ratio>& c, boost::units::quantity<Unit, Rep2> const& b)
+{
+    return c -= pss::astrotypes::units::duration_cast<std::chrono::duration<Rep, Ratio>>(b);
+}
+
+} // namespace chrono
 } // namespace std
 
 
