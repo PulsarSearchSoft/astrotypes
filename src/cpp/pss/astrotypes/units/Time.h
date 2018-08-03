@@ -212,6 +212,15 @@ bool operator!=(boost::units::quantity<Unit, Rep2> const& b, std::chrono::durati
 
 // overloads of some cmath functions to handle boost quantities
 namespace std {
+
+template<typename Unit, typename Rep, typename T2>
+struct common_type<boost::units::quantity<Unit, Rep>, T2> : public std::common_type<Rep, T2>
+{};
+
+template<typename Unit, typename Rep, typename T2>
+struct common_type<T2, boost::units::quantity<Unit, Rep>> : public std::common_type<T2, Rep>
+{};
+
 // cmath helpers
 template<typename Ratio, typename Rep>
 std::chrono::duration<Rep, Ratio> abs(std::chrono::duration<Rep, Ratio> const& v) {
@@ -245,14 +254,12 @@ std::chrono::duration<Rep, Ratio>& operator-=(std::chrono::duration<Rep, Ratio>&
     return c -= pss::astrotypes::units::duration_cast<std::chrono::duration<Rep, Ratio>>(b);
 }
 
-/*
 template<typename Ratio, typename Rep, typename Unit, typename Rep2>
 auto operator/(std::chrono::duration<Rep, Ratio> const& c, boost::units::quantity<Unit, Rep2> const& b) 
     -> decltype(boost::units::quantity<Unit, Rep>()/boost::units::quantity<Unit, Rep2>())
 {
     return pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep>>(c) / b;
 }
-*/
 
 } // namespace chrono
 } // namespace std
