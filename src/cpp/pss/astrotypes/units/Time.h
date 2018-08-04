@@ -72,6 +72,10 @@ class Quantity<TimeUnit
          */
         Quantity() {}
         Quantity(BaseT const& b) : BaseT(b) {}
+
+        template<typename UnitType, typename OtherDataType
+               , typename std::enable_if<!std::is_same<UnitType, TimeUnit>::value, void>::type>
+        explicit Quantity(boost::units::quantity<UnitType, OtherDataType> const& o) : BaseT(o) {}
         explicit Quantity(chrono_duration const& d) : BaseT(d.count()) {}
 
         /**
@@ -105,7 +109,16 @@ class Quantity<TimeUnit
             static_cast<BaseT&>(*this) = BaseT(o);
             return *this; 
         }
+
 };
+/*
+template<typename Unit, typename Rep, typename Unit2, typename Rep2>
+Quantity<Unit, Rep>& operator=(Quantity<Unit, Rep>& a, boost::units::quantity<Unit2, Rep2> const& b)
+{
+    a = Quantity(b);
+    return a;
+}
+*/
 
 } // namespace units
 } // namespace astrotypes

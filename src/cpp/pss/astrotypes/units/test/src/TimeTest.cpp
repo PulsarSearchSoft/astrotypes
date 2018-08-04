@@ -151,6 +151,34 @@ TEST(TimeTest, duration_operator_divide)
     ASSERT_EQ( res, 10.0 );
 }
 
+TEST(TimeTest, Quantity_operator_construct)
+{
+    Quantity<boost::units::si::time, double> a(100 * seconds);
+    Quantity<MilliSeconds, double> b(a);
+    Quantity<MilliSeconds, double> expect(100 * seconds);
+    ASSERT_EQ(b, expect);
+
+    // from a boost::units::quantity
+    boost::units::quantity<MilliSeconds, double> c(a);
+    ASSERT_EQ(c, expect);
+}
+
+TEST(TimeTest, Quantity_operator_equal_assign)
+{
+    Quantity<boost::units::si::time, double> a(100 * seconds);
+    Quantity<MilliSeconds, double> expect(100 * seconds);
+    Quantity<MilliSeconds, double> b;
+    ASSERT_NE(b, expect);
+    b = a;
+    ASSERT_EQ(b, expect);
+
+    // with a boost::quantity
+    boost::units::quantity<boost::units::si::time, double> c(200 * seconds);
+    Quantity<MilliSeconds, double> expect2(200 * seconds);
+    b = c;
+    ASSERT_EQ(b, expect2);
+}
+
 TEST(TimeTest, duration_cast_milliseconds_to_seconds)
 {
     // chrono -> boost
