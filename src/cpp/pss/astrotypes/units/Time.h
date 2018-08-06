@@ -111,14 +111,6 @@ class Quantity<TimeUnit
         }
 
 };
-/*
-template<typename Unit, typename Rep, typename Unit2, typename Rep2>
-Quantity<Unit, Rep>& operator=(Quantity<Unit, Rep>& a, boost::units::quantity<Unit2, Rep2> const& b)
-{
-    a = Quantity(b);
-    return a;
-}
-*/
 
 } // namespace units
 } // namespace astrotypes
@@ -285,6 +277,5 @@ auto operator/(std::chrono::duration<Rep, Ratio> const& c, boost::units::quantit
 
 } // namespace chrono
 } // namespace std
-
 
 #endif // ASTROTYPES_UNITS_TIME_H

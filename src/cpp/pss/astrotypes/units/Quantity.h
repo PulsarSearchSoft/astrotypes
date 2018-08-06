@@ -90,4 +90,37 @@ Quantity<Unit, Rep> operator-(Quantity<Unit, Rep> const& a, boost::units::quanti
 } // namespace astrotypes
 } // namespace pss
 
+namespace boost {
+namespace units {
+
+template<typename T1, typename Unit, typename X>
+struct multiply_typeof_helper<T1, pss::astrotypes::units::Quantity<Unit, X>>
+{
+    typedef typename multiply_typeof_helper<T1, quantity<Unit, X>>::type BoostType;
+    typedef pss::astrotypes::units::Quantity<typename BoostType::unit_type, typename BoostType::value_type> type;
+};
+
+template<typename T1, typename Unit, typename X>
+struct multiply_typeof_helper<pss::astrotypes::units::Quantity<Unit, X>, T1>
+{
+    typedef typename multiply_typeof_helper<quantity<Unit, X>, T1>::type BoostType;
+    typedef pss::astrotypes::units::Quantity<typename BoostType::unit_type, typename BoostType::value_type> type;
+};
+
+template<typename T1, typename Unit, typename X>
+struct divide_typeof_helper<T1, pss::astrotypes::units::Quantity<Unit, X>>
+{
+    typedef typename divide_typeof_helper<T1, quantity<Unit, X>>::type BoostType;
+    typedef pss::astrotypes::units::Quantity<typename BoostType::unit_type, typename BoostType::value_type> type;
+};
+
+template<typename T1, typename Unit, typename X>
+struct divide_typeof_helper<pss::astrotypes::units::Quantity<Unit, X>, T1>
+{
+    typedef typename divide_typeof_helper<quantity<Unit, X>, T1>::type BoostType;
+    typedef pss::astrotypes::units::Quantity<typename BoostType::unit_type, typename BoostType::value_type> type;
+};
+
+} // namespace units
+} // namespace boost
 #endif // PSS_ASTROTYPES_UNITS_QUANTITY_H
