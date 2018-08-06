@@ -141,13 +141,13 @@ inline bool operator>=(std::chrono::duration<Rep, Ratio> const& lhs, boost::unit
 template<typename Ratio, typename Rep, typename Unit, typename Rep2>
 inline bool operator==(std::chrono::duration<Rep, Ratio> const& c, boost::units::quantity<Unit, Rep2> const& b)
 {
-    return pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c) == b;
+    return c == pss::astrotypes::units::duration_cast<std::chrono::duration<Rep, Ratio>>(b);
 }
 
 template<typename Ratio, typename Rep, typename Unit, typename Rep2>
 inline bool operator!=(std::chrono::duration<Rep, Ratio> const& c, boost::units::quantity<Unit, Rep2> const& b)
 {
-    return pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c) != b;
+    return c != pss::astrotypes::units::duration_cast<std::chrono::duration<Rep, Ratio>>(b);
 }
 
 } // namespace chrono 
@@ -218,7 +218,7 @@ bool operator==(boost::units::quantity<Unit, Rep2> const& b, std::chrono::durati
 template<typename Ratio, typename Rep, typename Unit, typename Rep2>
 bool operator!=(boost::units::quantity<Unit, Rep2> const& b, std::chrono::duration<Rep, Ratio> const& c)
 {
-    return b == pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c);
+    return b != pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c);
 }
 
 } // namespace units

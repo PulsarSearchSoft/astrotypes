@@ -48,6 +48,18 @@ TEST(TimeTest, test_seconds)
     ASSERT_EQ(1, local_seconds.value());
 }
 
+TEST(TimeTest, operator_equal_chrono_quantity)
+{
+    boost::units::quantity<Seconds, double> b(10 * seconds);
+    const std::chrono::seconds chrono_seconds(10);
+
+    ASSERT_TRUE(chrono_seconds == b);
+    ASSERT_TRUE(b == chrono_seconds);
+    ASSERT_FALSE(chrono_seconds != b);
+    ASSERT_FALSE(b != chrono_seconds);
+
+}
+
 TEST(TimeTest, quantity_operator_plus)
 {
     typedef boost::units::quantity<Seconds, double> BoostType;
