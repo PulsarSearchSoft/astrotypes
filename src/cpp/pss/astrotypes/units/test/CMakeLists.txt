@@ -2,6 +2,7 @@ include_directories(${GTEST_INCLUDE_DIR})
 link_directories(${GTEST_LIBRARY_DIR})
 
 set(gtest_units_src
+    src/UnitsTest.cpp
     src/UtilitiesTest.cpp
     src/TimeTest.cpp
     src/JulianClockTest.cpp
