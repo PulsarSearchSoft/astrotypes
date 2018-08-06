@@ -46,19 +46,15 @@ typedef boost::units::frequency_dimension Frequency;
 
 // Units
 using Hertz = boost::units::si::frequency;
+using KiloHertz = boost::units::make_scaled_unit<boost::units::si::frequency, boost::units::scale<10, boost::units::static_rational<3>>>::type;
 using MegaHertz = boost::units::make_scaled_unit<boost::units::si::frequency, boost::units::scale<10, boost::units::static_rational<6>>>::type;
+using GigaHertz = boost::units::make_scaled_unit<boost::units::si::frequency, boost::units::scale<10, boost::units::static_rational<9>>>::type;
 
 static boost::units::si::frequency const hertz = boost::units::si::hertz;
 static boost::units::si::frequency const hz = boost::units::si::hertz;
+BOOST_UNITS_STATIC_CONSTANT(kilohertz, KiloHertz);
 BOOST_UNITS_STATIC_CONSTANT(megahertz, MegaHertz);
-
-/**
- * @brief Frequency Quantity
- */
-template<typename NumericalRep, typename FreqUnit=Hertz>
-struct FreqQuantity : public boost::units::quantity<typename std::enable_if<std::is_same<Frequency, typename FreqUnit::dimension_type>::value, FreqUnit>::type, NumericalRep>
-{
-};
+BOOST_UNITS_STATIC_CONSTANT(gigahertz, MegaHertz);
 
 } // namespace units
 } // namespace astrotypes

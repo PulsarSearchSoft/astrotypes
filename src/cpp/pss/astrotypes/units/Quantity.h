@@ -48,13 +48,43 @@ class Quantity : public boost::units::quantity<Unit, NumericalRep>
 
     public:
         // export base class constructors
-        using boost::units::quantity<Unit, NumericalRep>::quantity;
+        //using boost::units::quantity<Unit, NumericalRep>::quantity;
 
         /**
          * @brief Default empty constructor.
          */
         Quantity(BaseT const& b) : BaseT(b) {}
+        Quantity(BaseT&& b) : BaseT(std::move(b)) {}
+
+        /**
+         * @brief instatiate from alternative unit
+         */
+        template<typename UnitType, typename OtherDataType
+               , typename std::enable_if<!std::is_same<UnitType, Unit>::value, void>::type>
+        explicit Quantity(boost::units::quantity<UnitType, OtherDataType> const& o) : BaseT(o) {}
+
+        /**
+         * @brief copy ssignment
+         */
+        template<typename UnitType, typename OtherDataType>
+        Quantity& operator=(boost::units::quantity<UnitType, OtherDataType> const& o)
+        {
+            static_cast<BaseT&>(*this) = BaseT(o);
+            return *this; 
+        }
 };
+
+template<typename Unit, typename Rep, typename Unit2, typename Rep2>
+Quantity<Unit, Rep> operator+(Quantity<Unit, Rep> const& a, boost::units::quantity<Unit2, Rep2> const& b)
+{
+   return Quantity<Unit, Rep>(static_cast<boost::units::quantity<Unit, Rep>>(a) + b); 
+}
+
+template<typename Unit, typename Rep, typename Unit2, typename Rep2>
+Quantity<Unit, Rep> operator-(Quantity<Unit, Rep> const& a, boost::units::quantity<Unit2, Rep2> const& b)
+{
+   return Quantity<Unit, Rep>(static_cast<boost::units::quantity<Unit, Rep>>(a) - b); 
+}
 
 } // namespace units
 } // namespace astrotypes
