@@ -364,6 +364,33 @@ TEST_F(SliceTest, test_three_dimensions_equals)
 
 }
 
+TEST_F(SliceTest, test_has_dimension)
+{
+    typedef Slice<true, ParentType<1>, DimensionA> TestSlice1d;
+    static_assert(std::is_same<typename has_dimension<TestSlice1d, DimensionA>::type, std::true_type>::value, "expecting true");
+    static_assert(std::is_same<typename has_dimension<TestSlice1d, DimensionB>::type, std::false_type>::value, "expecting false");
+}
+
+TEST_F(SliceTest, test_is_multi_dimension)
+{
+    typedef Slice<true, ParentType<2>, DimensionA> TestSlice1d;
+    static_assert(std::is_same<typename has_exact_dimensions<TestSlice1d, DimensionA>::type, std::true_type>::value, "expecting true");
+    static_assert(std::is_same<typename has_exact_dimensions<TestSlice1d, DimensionB>::type, std::false_type>::value, "expecting false");
+
+    typedef Slice<true, ParentType<2>, DimensionA, DimensionB> TestSlice2d;
+    bool r = has_exact_dimensions<TestSlice2d, DimensionA, DimensionB>::value;
+    static_assert(std::is_same<typename has_exact_dimensions<TestSlice2d, DimensionA, DimensionB>::type, std::true_type>::value, "expecting true");
+    ASSERT_TRUE(r);
+    r = has_exact_dimensions<Slice<true, ParentType<2>, DimensionA, DimensionB>, DimensionA, DimensionB>::value;
+    ASSERT_TRUE(r);
+    r = has_exact_dimensions<Slice<true, ParentType<2>, DimensionA, DimensionB>, DimensionA>::value;
+    ASSERT_FALSE(r);
+    r = has_exact_dimensions<Slice<true, ParentType<2>, DimensionA, DimensionB>, DimensionB>::value;
+    ASSERT_FALSE(r);
+    r = has_exact_dimensions<Slice<true, ParentType<2>, DimensionA, DimensionB>, DimensionB, DimensionA>::value;
+    ASSERT_FALSE(r);
+}
+
 } // namespace test
 } // namespace astrotypes
 } // namespace pss

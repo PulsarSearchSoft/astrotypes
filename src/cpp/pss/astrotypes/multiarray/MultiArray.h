@@ -230,6 +230,15 @@ class MultiArray<Alloc, T, FirstDimension>
         std::vector<T> _data;
 };
 
+template<typename Alloc, typename T, typename Dimension> 
+struct has_dimension<MultiArray<Alloc, T, Dimension>, Dimension> : public std::true_type
+{};
+
+template<typename Alloc, typename T, typename... Dimensions> 
+struct has_exact_dimensions<MultiArray<Alloc, T, Dimensions...>, Dimensions...> : public std::true_type 
+{
+};
+
 } // namespace astrotypes
 } // namespace pss
 

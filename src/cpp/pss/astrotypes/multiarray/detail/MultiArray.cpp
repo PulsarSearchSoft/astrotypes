@@ -25,6 +25,20 @@
 namespace pss {
 namespace astrotypes {
 
+///////// type traits helpers
+template<typename Alloc, typename T, typename Dimension1, typename Dimension> 
+struct has_dimension<MultiArray<Alloc, T, Dimension1>, Dimension> : public std::false_type
+{};
+
+template<typename Alloc, typename T, typename Dimension, typename... Dimensions> 
+struct has_dimension<MultiArray<Alloc, T, Dimension, Dimensions...>, Dimension> : public std::true_type
+{};
+
+template<typename Alloc, typename T, typename Dimension1, typename Dimension, typename... Dimensions> 
+struct has_dimension<MultiArray<Alloc, T, Dimension1, Dimensions...>, Dimension> 
+    : public has_dimension<MultiArray<Alloc, T, Dimensions...>, Dimension>
+{};
+
 ////////////////////////////////////////////////
 // generic dimension implementation
 ////////////////////////////////////////////////

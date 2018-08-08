@@ -25,6 +25,7 @@
 #define PSS_ASTROTYPES_MULTIARRAY_SLICE_H
 #include "DimensionSpan.h"
 #include "SliceIterator.h"
+#include "TypeTraits.h"
 #include "detail/SlicePosition.h"
 #include <utility>
 
@@ -207,14 +208,37 @@ class Slice<is_const, ParentT, Dimension>
          * @ brief return the size of the slice in the specified dimension (will always be zero)
          */
         template<typename Dim>
-        typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSize<Dim>>::type 
-        size() const;
+        static constexpr
+        typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (!has_dimension<ParentT, Dim>::value))
+                               , DimensionSize<Dim>>::type 
+        size();
+
+        /**
+         * @brief return the size of the slice in the specified dimension (will always be one)
+         * @detials case where the Dim is not represented ecxplicitly by the Slice, but by the Parent
+         */
+        template<typename Dim>
+        static constexpr
+        typename std::enable_if<(!std::is_same<Dim, Dimension>::value)
+                               && has_dimension<ParentT, Dim>::value
+                               , DimensionSize<Dim>>::type 
+        size();
 
         /**
          * @brief return the value at the position specified in this Dimension
          */
         reference_type operator[](std::size_t index) const;
         reference_type operator[](DimensionIndex<Dimension> const& index) const;
+
+        // specialisations for implicit (i.e Parent has dimension but Slice does not)
+        template<typename Dim, typename Enable=typename std::enable_if<has_dimension<Parent, Dim>::value
+                                                            && !std::is_same<Dim, Dimension>::value>::type>
+        SelfType const& operator[](DimensionIndex<Dim> const&) const { return *this; }
+
+        // specialisations for implicit (i.e Parent has dimension but Slice does not)
+        template<typename Dim, typename Enable=typename std::enable_if<has_dimension<Parent, Dim>::value
+                                                            && !std::is_same<Dim, Dimension>::value>::type>
+        SelfType& operator[](DimensionIndex<Dim> const&) { return *this; }
 
         /**
          * @brief iterator pointing to the first element in the slice

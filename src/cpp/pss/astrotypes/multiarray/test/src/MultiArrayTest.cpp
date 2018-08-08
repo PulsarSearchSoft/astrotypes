@@ -336,6 +336,36 @@ TEST_F(MultiArrayTest, test_three_dimension_equal_operator)
     ASSERT_FALSE(ma_1 == ma_2);
 }
 
+TEST_F(MultiArrayTest, test_has_dimension)
+{
+    typedef MultiArray<std::allocator<unsigned>, unsigned, DimensionA> TestType1d;
+    static_assert(std::is_same<typename has_dimension<TestType1d, DimensionA>::type, std::true_type>::value, "expecting true");
+    static_assert(std::is_same<typename has_dimension<TestType1d, DimensionB>::type, std::false_type>::value, "expecting false");
+    typedef MultiArray<std::allocator<unsigned>, unsigned, DimensionA, DimensionB> TestType2d;
+    static_assert(std::is_same<typename has_dimension<TestType2d, DimensionA>::type, std::true_type>::value, "expecting true");
+    static_assert(std::is_same<typename has_dimension<TestType2d, DimensionB>::type, std::true_type>::value, "expecting true");
+    static_assert(std::is_same<typename has_dimension<TestType2d, DimensionC>::type, std::false_type>::value, "expecting false");
+}
+
+TEST_F(MultiArrayTest, test_has_exact_dimensions)
+{
+    typedef MultiArray<std::allocator<unsigned>, unsigned, DimensionA> TestType1d;
+    typedef MultiArray<std::allocator<unsigned>, unsigned, DimensionA, DimensionB> TestType2d;
+
+    // 1D
+    static_assert(std::is_same<typename has_exact_dimensions<TestType1d, DimensionA, DimensionB>::type, std::false_type>::value, "expecting false");
+    static_assert(std::is_same<typename has_exact_dimensions<TestType1d, DimensionB>::type, std::false_type>::value, "expecting false");
+    static_assert(std::is_same<typename has_exact_dimensions<TestType1d, DimensionA>::type, std::true_type>::value, "expecting true");
+
+    // 2d
+    bool r = has_exact_dimensions<TestType2d, DimensionA, DimensionB>::value;
+    ASSERT_TRUE(r);
+    static_assert(std::is_same<typename has_exact_dimensions<TestType2d, DimensionB, DimensionA>::type, std::false_type>::value, "expecting false");
+    static_assert(std::is_same<typename has_exact_dimensions<TestType2d, DimensionB>::type, std::false_type>::value, "expecting false");
+    static_assert(std::is_same<typename has_exact_dimensions<TestType2d, DimensionA, DimensionB, DimensionC>::type, std::false_type>::value, "expecting false");
+    static_assert(std::is_same<typename has_exact_dimensions<TestType2d, DimensionA, DimensionB>::type, std::true_type>::value, "expecting true");
+}
+
 } // namespace test
 } // namespace astrotypes
 } // namespace pss

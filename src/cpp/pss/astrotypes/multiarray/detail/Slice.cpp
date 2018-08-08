@@ -28,6 +28,36 @@
 namespace pss {
 namespace astrotypes {
 
+// type traits helper structs
+template<bool is_const, typename ParentT, typename Dimension>
+struct has_dimension<Slice<is_const, ParentT, Dimension>, Dimension> : public std::true_type
+{};
+
+template<bool is_const, typename ParentT, typename Dimension1, typename Dimension>
+struct has_dimension<Slice<is_const, ParentT, Dimension1>, Dimension> : public has_dimension<ParentT, Dimension>
+{};
+
+template<bool is_const, typename ParentT, typename Dimension, typename... Dimensions>
+struct has_dimension<Slice<is_const, ParentT, Dimension, Dimensions...>, Dimension> : public std::true_type
+{
+};
+
+template<bool is_const, typename ParentT, typename Dimension1, typename Dimension, typename... Dimensions>
+struct has_dimension<Slice<is_const, ParentT, Dimension1, Dimensions...>, Dimension> 
+    : public has_dimension<Slice<is_const, ParentT, Dimensions...>, Dimension>
+{
+};
+
+template<bool is_const, typename ParentT, typename... Dimensions>
+struct has_exact_dimensions<Slice<is_const, ParentT, Dimensions...>, Dimensions...> : public std::true_type //has_exact_dimensions<ParentT>
+{
+};
+
+template<bool is_const, typename ParentT, typename... SliceDimensions, typename... Dimensions>
+struct has_exact_dimensions<Slice<is_const, ParentT, SliceDimensions...>, Dimensions...> : public has_exact_dimensions<ParentT, Dimensions...>
+{
+};
+
 // ------------------- multi dimension ----------------------- -------------
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
 Slice<is_const, Parent, Dimension, Dimensions...>::Slice(Parent& parent
@@ -272,9 +302,21 @@ typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimen
 
 template<bool is_const, typename Parent, typename Dimension>
 template<typename Dim>
-typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSize<Dim>>::type Slice<is_const, Parent, Dimension>::size() const
+constexpr
+typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (!has_dimension<Parent, Dim>::value))
+                       , DimensionSize<Dim>>::type Slice<is_const, Parent, Dimension>::size()
 {
     return DimensionSize<Dim>(0);
+}
+
+template<bool is_const, typename Parent, typename Dimension>
+template<typename Dim>
+constexpr
+typename std::enable_if<(!std::is_same<Dim, Dimension>::value)
+                        && has_dimension<Parent, Dim>::value
+                       , DimensionSize<Dim>>::type Slice<is_const, Parent, Dimension>::size()
+{
+    return DimensionSize<Dim>(1);
 }
 
 template<bool is_const, typename Parent, typename Dimension>
