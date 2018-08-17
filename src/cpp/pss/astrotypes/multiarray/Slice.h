@@ -52,7 +52,7 @@ struct arg_helper<T, Dim, Dims...> : public arg_helper<T, Dims...>
 
     static inline
     T&& arg(Dim&&, Dims&&...args)
-    { return BaseT::arg(std::forward<T>(args)...); }
+    { return BaseT::arg(std::forward<Dims>(args)...); }
 };
 
 /**
@@ -62,6 +62,7 @@ struct arg_helper<T, Dim, Dims...> : public arg_helper<T, Dims...>
  */
 struct copy_resize_construct_tag {};
 struct copy_resize_construct_base_tag {};
+struct internal_construct_tag{};
 
 template<bool is_const, typename ParentT, typename Dimension, typename... Dimensions>
 class Slice : private Slice<is_const, ParentT, Dimensions...>
@@ -82,14 +83,12 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         typedef Slice<true, ParentT, Dimension, Dimensions...> ConstSliceType;
 
     public:
-        Slice( Parent& parent
-             , DimensionSpan<Dimension> const&
-             , DimensionSpan<Dimensions> const&...
-        );
+        template<typename... Dims>
+       Slice( typename std::enable_if<arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+             , DimensionSpan<Dims> const& ...);
 
-        /// constructor that will use the parents dimensions as default if not specified
-        template<typename... Dims, typename Enable=std::enable_if<!arg_helper<Dimension, Dims...>::value>>
-        Slice( Parent& parent
+        template<typename... Dims>
+        Slice( typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Parent&>::type parent
              , DimensionSpan<Dims> const& ...);
 
         static constexpr std::size_t rank = 1 + sizeof...(Dimensions);
@@ -145,7 +144,7 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
          * @brief Take a sub-slice from this slice
          * @params ipass a DimensionSpan<Dimension> object for each dimension
          *         you wish to restrict.
-         *         Span indexes are relative to Slice boundary, not hee parent
+         *         Span indexes are relative to Slice boundary, not the parent
          */
         template<typename... Dims>
         typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice>::type
@@ -204,15 +203,15 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         parent_iterator const& offset(parent_iterator const&); // init the offset relative to the top parent
 
         // init for inheriting classes only
-        Slice( DimensionSpan<Dimension> const&
-             , DimensionSpan<Dimensions> const&...
-             , Parent const& parent
-        );
+        template<typename... Dims>
+        Slice( internal_construct_tag const&
+             , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+             , DimensionSpan<Dims> const& ... spans);
 
-        // init for constructing slices in other Dimensions
-        Slice( DimensionSpan<Dimensions> const&...
-             , Parent const& parent
-        );
+        template<typename... Dims>
+        Slice( internal_construct_tag const&
+             , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+             , DimensionSpan<Dims> const& ... spans);
 
         template<typename... Dims>
         Slice( copy_resize_construct_tag const&
@@ -376,7 +375,15 @@ class Slice<is_const, ParentT, Dimension>
         SelfType& operator+=(std::size_t n);
 
     protected:
-        Slice(DimensionSpan<Dimension> const&, Parent const&);
+        template<typename... Dims>
+        Slice( internal_construct_tag const&
+             , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+             , DimensionSpan<Dims> const&... spans);
+
+        template<typename... Dims>
+        Slice( internal_construct_tag const&
+             , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+             , DimensionSpan<Dims> const&... spans);
 
         template<typename... Dims>
         Slice( typename std::enable_if<!arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type

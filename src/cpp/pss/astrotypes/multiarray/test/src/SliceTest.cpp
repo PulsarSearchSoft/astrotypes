@@ -197,6 +197,37 @@ TEST_F(SliceTest, test_two_dimensions)
     }
 }
 
+TEST_F(SliceTest, test_two_dimensions_contructor_out_of_order_dims)
+{
+    ParentType<2> p(50);
+    Slice<false, ParentType<2>, DimensionA, DimensionB> slice_a(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(19))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(22))
+                                              );
+    Slice<false, ParentType<2>, DimensionA, DimensionB> slice_b(p
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(22))
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(19))
+                                              );
+
+    ASSERT_EQ(10U, static_cast<std::size_t>(slice_a.size<DimensionA>()));
+    ASSERT_EQ(3U, static_cast<std::size_t>(slice_a.size<DimensionB>()));
+    ASSERT_EQ(10U, static_cast<std::size_t>(slice_b.size<DimensionA>()));
+    ASSERT_EQ(3U, static_cast<std::size_t>(slice_b.size<DimensionB>()));
+
+    Slice<false, ParentType<2>, DimensionA, DimensionB> slice_c(p
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(22))
+                                              );
+    ASSERT_EQ(50U, static_cast<std::size_t>(slice_c.size<DimensionA>()));
+    ASSERT_EQ(3U, static_cast<std::size_t>(slice_c.size<DimensionB>()));
+
+    Slice<false, ParentType<2>, DimensionA, DimensionB> slice_d(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(19))
+                                              );
+
+    ASSERT_EQ(10U, static_cast<std::size_t>(slice_d.size<DimensionA>()));
+    ASSERT_EQ(50U, static_cast<std::size_t>(slice_d.size<DimensionB>()));
+}
+
 TEST_F(SliceTest, test_two_dimensions_slice_iterators)
 {
     ParentType<2> p(50);
