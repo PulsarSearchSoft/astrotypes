@@ -1,18 +1,18 @@
 /*
  * MIT License
- * 
+ *
  * Copyright (c) 2018 PulsarSearchSoft
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -28,14 +28,46 @@
 namespace pss {
 namespace astrotypes {
 
+// type traits helper structs
+template<bool is_const, typename ParentT, typename Dimension>
+struct has_dimension<Slice<is_const, ParentT, Dimension>, Dimension> : public std::true_type
+{};
+
+template<bool is_const, typename ParentT, typename Dimension1, typename Dimension>
+struct has_dimension<Slice<is_const, ParentT, Dimension1>, Dimension> : public has_dimension<ParentT, Dimension>
+{};
+
+template<bool is_const, typename ParentT, typename Dimension, typename... Dimensions>
+struct has_dimension<Slice<is_const, ParentT, Dimension, Dimensions...>, Dimension> : public std::true_type
+{
+};
+
+template<bool is_const, typename ParentT, typename Dimension1, typename Dimension, typename... Dimensions>
+struct has_dimension<Slice<is_const, ParentT, Dimension1, Dimensions...>, Dimension>
+    : public has_dimension<Slice<is_const, ParentT, Dimensions...>, Dimension>
+{
+};
+
+template<bool is_const, typename ParentT, typename... Dimensions>
+struct has_exact_dimensions<Slice<is_const, ParentT, Dimensions...>, Dimensions...> : public std::true_type //has_exact_dimensions<ParentT>
+{
+};
+
+/*
+template<bool is_const, typename ParentT, typename... SliceDimensions, typename... Dimensions>
+struct has_exact_dimensions<Slice<is_const, ParentT, SliceDimensions...>, Dimensions...> : public has_exact_dimensions<ParentT, Dimensions...>
+{
+};
+*/
+
 // ------------------- multi dimension ----------------------- -------------
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
-Slice<is_const, Parent, Dimension, Dimensions...>::Slice(Parent& parent
-                                              , DimensionSpan<Dimension> const& d
-                                              , DimensionSpan<Dimensions> const&... spans
-                                              )
-    : BaseT(spans..., parent)
-    , _span(d)
+template<typename... Dims>
+Slice<is_const, Parent, Dimension, Dimensions...>::Slice(
+        typename std::enable_if<arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+     ,  DimensionSpan<Dims> const&... spans)
+    : BaseT(internal_construct_tag(), parent, spans... )
+    , _span(arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...))
     , _base_span(0U) // not used (yet) so don't bother calculating it
     , _ptr(parent.begin() + static_cast<std::size_t>(_span.start()) * BaseT::_base_span)
 {
@@ -43,21 +75,103 @@ Slice<is_const, Parent, Dimension, Dimensions...>::Slice(Parent& parent
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
-Slice<is_const, Parent, Dimension, Dimensions...>::Slice( DimensionSpan<Dimension> const& d
-                                              , DimensionSpan<Dimensions> const&... spans
-                                              , Parent const& parent
+template<typename... Dims>
+Slice<is_const, Parent, Dimension, Dimensions...>::Slice(
+        typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+     ,  DimensionSpan<Dims> const&... spans)
+    : BaseT(internal_construct_tag(), parent, spans... )
+    , _span(DimensionSpan<Dimension>(DimensionIndex<Dimension>(0), DimensionSize<Dimension>(parent.template size<Dimension>())))
+    , _base_span(0U) // not used (yet) so don't bother calculating it
+    , _ptr(parent.begin())
+{
+    BaseT::offset(_ptr);
+}
+
+// SLice changed dim constructor - case Dim not provided bu constructor args
+template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+template<typename... Dims>
+Slice<is_const, Parent, Dimension, Dimensions...>::Slice( copy_resize_construct_tag const&
+                                                        , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
+                                                        , DimensionSpan<Dims>&&... spans
+                                                        )
+    : BaseT(copy_resize_construct_base_tag(), static_cast<BaseT const&>(copy), std::forward<DimensionSpan<Dims>>(spans)...)
+    , _span(copy._span)
+    , _base_span(copy._base_span) // not used (yet) so don't bother calculating it
+    , _ptr(copy._ptr)
+{
+    _ptr = BaseT::offset(_ptr);
+}
+
+template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+template<typename... Dims>
+Slice<is_const, Parent, Dimension, Dimensions...>::Slice( copy_resize_construct_base_tag const&
+                                                        , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
+                                                        , DimensionSpan<Dims>&&... spans
+                                                        )
+    : BaseT(copy_resize_construct_base_tag(), static_cast<BaseT const&>(copy), std::forward<DimensionSpan<Dims>>(spans)...)
+    , _span(copy._span)
+    , _base_span(copy._base_span) // not used (yet) so don't bother calculating it
+{
+}
+
+// SLice changed dim constructor - case Dim provided bu constructor args
+template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+template<typename... Dims>
+Slice<is_const, Parent, Dimension, Dimensions...>::Slice(copy_resize_construct_tag const&
+                                                        , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
+                                                        , DimensionSpan<Dims>&&... spans
                                               )
-    : BaseT(spans..., parent)
-    , _span(d)
+    : BaseT(copy_resize_construct_base_tag(), static_cast<BaseT const&>(copy), std::forward<DimensionSpan<Dims>>(spans)...)
+    , _span(DimensionSpan<Dimension>(DimensionIndex<Dimension>(copy._span.start()
+                           + arg_helper<DimensionSpan<Dimension>, DimensionSpan<Dims>...>::arg(std::forward<DimensionSpan<Dims>>(spans)...).start())
+                           , arg_helper<DimensionSpan<Dimension>, DimensionSpan<Dims>...>::arg(std::forward<DimensionSpan<Dims>>(spans)...).span()))
+    , _base_span(copy._base_span) // not used (yet) so don't bother calculating it
+    , _ptr(copy._ptr + static_cast<std::size_t>(
+                           arg_helper<DimensionSpan<Dimension>, DimensionSpan<Dims>...>::arg(std::forward<DimensionSpan<Dims>>(spans)...).start())
+                     * BaseT::_base_span)
+{
+    BaseT::offset(_ptr);
+}
+
+template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+template<typename... Dims>
+Slice<is_const, Parent, Dimension, Dimensions...>::Slice( copy_resize_construct_base_tag const&
+                                                        , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
+                                                        , DimensionSpan<Dims>&&... spans
+                                                        )
+    : BaseT(copy_resize_construct_base_tag(), static_cast<BaseT const&>(copy), std::forward<DimensionSpan<Dims>>(spans)...)
+    , _span(arg_helper<DimensionSpan<Dimension>, DimensionSpan<Dims>...>::arg(std::forward<DimensionSpan<Dims>>(spans)...))
+    , _base_span(copy._base_span) // not used (yet) so don't bother calculating it
+{
+}
+
+template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+template<typename... Dims>
+Slice<is_const, Parent, Dimension, Dimensions...>::Slice( internal_construct_tag const&
+       , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+       , DimensionSpan<Dims> const& ... spans)
+    : BaseT(internal_construct_tag(), parent, spans...)
+    , _span(arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...))
     , _base_span(parent.template size<Dimension>() * BaseT::_base_span)
 {
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
-void Slice<is_const, Parent, Dimension, Dimensions...>::offset(parent_iterator const& it) 
+template<typename... Dims>
+Slice<is_const, Parent, Dimension, Dimensions...>::Slice( internal_construct_tag const&
+       , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+       , DimensionSpan<Dims> const& ... spans)
+    : BaseT(internal_construct_tag(), parent, spans...)
+    , _span(DimensionSpan<Dimension>(DimensionIndex<Dimension>(0), DimensionSize<Dimension>(parent->template size<Dimension>())))
+    , _base_span(parent.template size<Dimension>() * BaseT::_base_span)
+{
+}
+
+template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+typename Slice<is_const, Parent, Dimension, Dimensions...>::parent_iterator const& Slice<is_const, Parent, Dimension, Dimensions...>::offset(parent_iterator const& it)
 {
     _ptr=it + static_cast<std::size_t>(_span.start()) * BaseT::_base_span;
-    BaseT::offset(_ptr);
+    return BaseT::offset(_ptr);
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
@@ -98,7 +212,7 @@ std::size_t Slice<is_const, Parent, Dimension, Dimensions...>::data_size() const
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
 template<typename Dim>
-typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimension>>::type 
+typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimension>>::type
 Slice<is_const, Parent, Dimension, Dimensions...>::size() const
 {
     return _span.span();
@@ -106,7 +220,7 @@ Slice<is_const, Parent, Dimension, Dimensions...>::size() const
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
 template<typename Dim>
-typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSize<Dim>>::type 
+typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSize<Dim>>::type
 Slice<is_const, Parent, Dimension, Dimensions...>::size() const
 {
     return BaseT::template size<Dim>();
@@ -120,12 +234,22 @@ Slice<is_const, Parent, Dimension, Dimensions...>::operator[](DimensionIndex<Dim
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
-Slice<is_const, Parent, Dimensions...>
-Slice<is_const, Parent, Dimension, Dimensions...>::operator[](std::size_t offset) const
+template<typename Dim>
+typename std::enable_if<arg_helper<Dim, Dimensions...>::value
+&& !std::is_same<Dim, Dimension>::value, typename Slice<is_const, Parent, Dimension, Dimensions...>::SliceType>::type
+Slice<is_const, Parent, Dimension, Dimensions...>::operator[](DimensionIndex<Dim> const& index)
 {
-    return BaseT(*this) += offset;
+    return SliceType(copy_resize_construct_tag(), *this, DimensionSpan<Dim>(index, DimensionSize<Dim>(1)));
 }
 
+template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+template<typename Dim>
+typename std::enable_if<arg_helper<Dim, Dimensions...>::value
+&& !std::is_same<Dim, Dimension>::value, typename Slice<is_const, Parent, Dimension, Dimensions...>::ConstSliceType>::type
+Slice<is_const, Parent, Dimension, Dimensions...>::operator[](DimensionIndex<Dim> const& index) const
+{
+    return ConstSliceType(copy_resize_construct_tag(), reinterpret_cast<ConstSliceType const&>(*this), DimensionSpan<Dim>(index, DimensionSize<Dim>(1)));
+}
 
 // n.b offset refers to the dimension in the level above (i.e a full _base_span)
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
@@ -145,15 +269,36 @@ Slice<is_const, Parent, Dimension, Dimensions...>& Slice<is_const, Parent, Dimen
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
-Slice<is_const, Parent, Dimension, Dimensions...>
-Slice<is_const, Parent, Dimension, Dimensions...>::slice(DimensionSpan<Dimension> const& span) const
+template<typename... Dims>
+typename std::enable_if<arg_helper<Dimension, Dims...>::value, typename Slice<is_const, Parent, Dimension, Dimensions...>::SliceType>::type
+Slice<is_const, Parent, Dimension, Dimensions...>::slice(DimensionSpan<Dims>&&... spans)
 {
-    assert(span.span() <= _span.span());
-    SelfType s(*this);
-    s += DimensionSize<Dimension>(span.start());
-    s._span.start(_span.start() + DimensionSize<Dimension>(span.start()));
-    s._span.span(span.span());
-    return s;
+    return SliceType(copy_resize_construct_tag(), *this, std::forward<DimensionSpan<Dims>>(spans)...);
+}
+
+template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+template<typename... Dims>
+typename std::enable_if<!arg_helper<Dimension, Dims...>::value, typename Slice<is_const, Parent, Dimension, Dimensions...>::SliceType>::type
+Slice<is_const, Parent, Dimension, Dimensions...>::slice(DimensionSpan<Dims>&&... spans)
+{
+    return SliceType(copy_resize_construct_tag(), *this, std::forward<DimensionSpan<Dims>>(spans)...);
+}
+
+
+template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+template<typename... Dims>
+typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice<true, Parent, Dimension, Dimensions...>>::type
+Slice<is_const, Parent, Dimension, Dimensions...>::slice(DimensionSpan<Dims>&&... spans) const
+{
+    return ConstSliceType(copy_resize_construct_tag(), reinterpret_cast<ConstSliceType const&>(*this), std::forward<DimensionSpan<Dims>>(spans)...);
+}
+
+template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
+template<typename... Dims>
+typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice<true, Parent, Dimension, Dimensions...>>::type
+Slice<is_const, Parent, Dimension, Dimensions...>::slice(DimensionSpan<Dims>&&... spans) const
+{
+    return ConstSliceType(copy_resize_construct_tag(), reinterpret_cast<ConstSliceType const&>(*this), std::forward<DimensionSpan<Dims>>(spans)...);
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
@@ -239,17 +384,55 @@ Slice<is_const, Parent, Dimension>::Slice(Parent& parent, DimensionSpan<Dimensio
 {
 }
 
+
 template<bool is_const, typename Parent, typename Dimension>
-Slice<is_const, Parent, Dimension>::Slice(DimensionSpan<Dimension> const& d, Parent const& p)
-    : _span(d)
-    , _base_span(p.template size<Dimension>())
+template<typename... Dims>
+Slice<is_const, Parent, Dimension>::Slice( internal_construct_tag const&
+       , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+       , DimensionSpan<Dims> const& ... spans)
+    : _span(arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...))
+    , _base_span(parent.template size<Dimension>())
+{
+}
+
+
+template<bool is_const, typename Parent, typename Dimension>
+template<typename... Dims>
+Slice<is_const, Parent, Dimension>::Slice( internal_construct_tag const&
+       , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+       , DimensionSpan<Dims> const& ...)
+    : _span(DimensionSpan<Dimension>(DimensionIndex<Dimension>(0), DimensionSize<Dimension>(parent.template size<Dimension>())))
+    , _base_span(parent.template size<Dimension>())
 {
 }
 
 template<bool is_const, typename Parent, typename Dimension>
-void Slice<is_const, Parent, Dimension>::offset(parent_iterator const& it)
+template<typename... Dims>
+Slice<is_const, Parent, Dimension>::Slice( typename std::enable_if<!arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type
+     , Slice const& copy
+     , DimensionSpan<Dims>&&...)
+    : _span(copy._span)
+    , _base_span(copy._base_span)
+{
+}
+
+template<bool is_const, typename Parent, typename Dimension>
+template<typename... Dims>
+Slice<is_const, Parent, Dimension>::Slice( typename std::enable_if<arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type
+     , Slice const& copy
+     , DimensionSpan<Dims>&&... spans)
+    : _span(DimensionSpan<Dimension>(DimensionIndex<Dimension>(copy._span.start()
+                           + arg_helper<DimensionSpan<Dimension>, DimensionSpan<Dims>...>::arg(std::forward<DimensionSpan<Dims>>(spans)...).start())
+                           , arg_helper<DimensionSpan<Dimension>, DimensionSpan<Dims>...>::arg(std::forward<DimensionSpan<Dims>>(spans)...).span()))
+    , _base_span(copy._base_span)
+{
+}
+
+template<bool is_const, typename Parent, typename Dimension>
+typename Slice<is_const, Parent, Dimension>::parent_iterator const& Slice<is_const, Parent, Dimension>::offset(parent_iterator const& it)
 {
     _ptr = it + static_cast<std::size_t>(_span.start());
+    return _ptr;
 }
 
 template<bool is_const, typename Parent, typename Dimension>
@@ -272,9 +455,21 @@ typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimen
 
 template<bool is_const, typename Parent, typename Dimension>
 template<typename Dim>
-typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSize<Dim>>::type Slice<is_const, Parent, Dimension>::size() const
+constexpr
+typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (!has_dimension<Parent, Dim>::value))
+                       , DimensionSize<Dim>>::type Slice<is_const, Parent, Dimension>::size()
 {
     return DimensionSize<Dim>(0);
+}
+
+template<bool is_const, typename Parent, typename Dimension>
+template<typename Dim>
+constexpr
+typename std::enable_if<(!std::is_same<Dim, Dimension>::value)
+                        && has_dimension<Parent, Dim>::value
+                       , DimensionSize<Dim>>::type Slice<is_const, Parent, Dimension>::size()
+{
+    return DimensionSize<Dim>(1);
 }
 
 template<bool is_const, typename Parent, typename Dimension>
@@ -288,6 +483,26 @@ template<bool is_const, typename Parent, typename Dimension>
 typename Slice<is_const, Parent, Dimension>::reference_type Slice<is_const, Parent, Dimension>::operator[](DimensionIndex<Dimension> const& p) const
 {
     return *(_ptr + static_cast<std::size_t>(p));
+}
+
+template<bool is_const, typename Parent, typename Dimension>
+Slice<is_const, Parent, Dimension> Slice<is_const, Parent, Dimension>::slice(DimensionSpan<Dimension> const& span)
+{
+    Slice r(*this);
+    _ptr += static_cast<std::size_t>(_span.start());
+    r._span.start(_span.start() + DimensionSize<Dimension>(span.start()));
+    r._span.span(span.span());
+    return r;
+}
+
+template<bool is_const, typename Parent, typename Dimension>
+typename Slice<is_const, Parent, Dimension>::ConstSliceType Slice<is_const, Parent, Dimension>::slice(DimensionSpan<Dimension> const& span) const
+{
+    ConstSliceType r(*this);
+    _ptr += static_cast<std::size_t>(_span.start());
+    r._span.start(_span.start() + DimensionSize<Dimension>(span.start()));
+    r._span.span(span.span());
+    return r;
 }
 
 template<bool is_const, typename Parent, typename Dimension>

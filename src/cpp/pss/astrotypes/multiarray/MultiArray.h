@@ -59,7 +59,8 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
         typedef T const& const_reference_type;
 
     public:
-        MultiArray(DimensionSize<FirstDimension> const&, DimensionSize<OtherDimensions> const& ... sizes);
+        template<typename... Dims>
+        MultiArray(DimensionSize<Dims> const& ... sizes);
 
         /**
          * @brief iterators acting over he entire data structure
@@ -91,6 +92,18 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
          */
         ReducedDimensionSliceType operator[](DimensionIndex<FirstDimension> index);
         ConstReducedDimensionSliceType operator[](DimensionIndex<FirstDimension> index) const;
+
+        template<typename Dim>
+        typename std::enable_if<has_dimension<MultiArray, Dim>::value
+                            && !std::is_same<Dim, FirstDimension>::value
+                            , SliceType>::type
+        operator[](DimensionIndex<Dim> const&);
+
+        template<typename Dim>
+        typename std::enable_if<has_dimension<MultiArray, Dim>::value
+                            && !std::is_same<Dim, FirstDimension>::value
+                            , ConstSliceType>::type
+        operator[](DimensionIndex<Dim> const&) const;
 
         /**
          * @brief return a slice of the specified dimension spanning the index_range provided
@@ -133,9 +146,10 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
          */
         bool equal_size(MultiArray const&) const;
         
-
     protected:
-        MultiArray(bool disable_resize_tag, DimensionSize<FirstDimension> const&, DimensionSize<OtherDimensions> const& ... sizes);
+        template<typename... Dims>
+        MultiArray(typename std::enable_if<arg_helper<FirstDimension, Dims...>::value, bool>::type disable_resize_tag
+                  , DimensionSize<Dims> const&...);
 
         template<typename Dimension, typename... Dims>
         typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type 
@@ -169,7 +183,8 @@ class MultiArray<Alloc, T, FirstDimension>
         typedef T value_type;
 
     public:
-        MultiArray(DimensionSize<FirstDimension> const& size);
+        template<typename... Dims>
+        MultiArray(DimensionSize<Dims> const&... size);
         ~MultiArray();
 
         /**
@@ -214,7 +229,9 @@ class MultiArray<Alloc, T, FirstDimension>
         const_iterator cend() const;
 
     protected:
-        MultiArray(bool disable_resize_tag, DimensionSize<FirstDimension> const&);
+        template<typename... Dims>
+        MultiArray(typename std::enable_if<arg_helper<FirstDimension, Dims...>::value, bool>::type disable_resize_tag
+                  , DimensionSize<Dims> const&...);
 
         /// resize
         template<typename Dimension>
@@ -228,6 +245,15 @@ class MultiArray<Alloc, T, FirstDimension>
     private:
         DimensionSize<FirstDimension> _size;
         std::vector<T> _data;
+};
+
+template<typename Alloc, typename T, typename Dimension> 
+struct has_dimension<MultiArray<Alloc, T, Dimension>, Dimension> : public std::true_type
+{};
+
+template<typename Alloc, typename T, typename... Dimensions> 
+struct has_exact_dimensions<MultiArray<Alloc, T, Dimensions...>, Dimensions...> : public std::true_type 
+{
 };
 
 } // namespace astrotypes
