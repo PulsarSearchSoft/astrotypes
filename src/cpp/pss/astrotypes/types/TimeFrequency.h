@@ -138,6 +138,16 @@ class FrequencyTime : public MultiArray<Alloc, T, units::Frequency, units::Time>
         ConstSpectra spectrum(std::size_t offset) const;
 };
 
+template<typename Alloc, typename T>
+struct has_exact_dimensions<TimeFrequency<T, Alloc>, units::Time, units::Frequency> : public std::true_type
+{
+};
+
+template<typename Alloc, typename T>
+struct has_exact_dimensions<FrequencyTime<T, Alloc>, units::Frequency, units::Time> : public std::true_type
+{
+};
+
 } // namespace astrotypes
 } // namespace pss
 #include "detail/TimeFrequency.cpp"
