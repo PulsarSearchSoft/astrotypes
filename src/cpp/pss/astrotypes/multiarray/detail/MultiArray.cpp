@@ -44,18 +44,23 @@ struct has_dimension<MultiArray<Alloc, T, Dimension1, Dimensions...>, Dimension>
 ////////////////////////////////////////////////
 // public interface for ensuring all is correctly sized up
 template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
-MultiArray<Alloc, T, FirstDimension, Dimensions...>::MultiArray(DimensionSize<FirstDimension> const& fd, DimensionSize<Dimensions> const& ... sizes)
+template<typename... Dims>
+//MultiArray<Alloc, T, FirstDimension, Dimensions...>::MultiArray(DimensionSize<FirstDimension> const& fd, DimensionSize<Dimensions> const& ... sizes)
+MultiArray<Alloc, T, FirstDimension, Dimensions...>::MultiArray(DimensionSize<Dims> const& ... sizes)
     : BaseT(false, sizes...)
-    , _size(fd)
+    , _size(arg_helper<DimensionSize<FirstDimension> const&, DimensionSize<Dims> const&...>::arg(sizes...))
 {
-    resize(fd);
+    resize(arg_helper<DimensionSize<FirstDimension> const&, DimensionSize<Dims> const&...>::arg(sizes...));
 }
 
 // private interface for constructing in an inheritance stack
 template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
-MultiArray<Alloc, T, FirstDimension, Dimensions...>::MultiArray(bool, DimensionSize<FirstDimension> const& fd, DimensionSize<Dimensions> const& ... sizes)
+template<typename... Dims>
+MultiArray<Alloc, T, FirstDimension, Dimensions...>::MultiArray(
+                                  typename std::enable_if<arg_helper<FirstDimension, Dims...>::value, bool>::type
+                                , DimensionSize<Dims> const&... sizes)
     : BaseT(false, sizes...)
-    , _size(fd)
+    , _size(arg_helper<DimensionSize<FirstDimension> const&, DimensionSize<Dims> const&...>::arg(sizes...))
 {
 }
 
@@ -99,14 +104,32 @@ template<typename Alloc, typename T, typename FirstDimension, typename... Dimens
 typename MultiArray<Alloc, T, FirstDimension, Dimensions...>::ReducedDimensionSliceType MultiArray<Alloc, T, FirstDimension, Dimensions...>::operator[](DimensionIndex<FirstDimension> index)
 {
     return SliceType(*this, DimensionSpan<FirstDimension>(index, DimensionSize<FirstDimension>(1))
-                          , DimensionSpan<Dimensions>(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template size<Dimensions>()))...)[0];
+                          , DimensionSpan<Dimensions>(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template size<Dimensions>()))...)[DimensionIndex<FirstDimension>(0)];
 }
 
 template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
 typename MultiArray<Alloc, T, FirstDimension, Dimensions...>::ConstReducedDimensionSliceType MultiArray<Alloc, T, FirstDimension, Dimensions...>::operator[](DimensionIndex<FirstDimension> index) const
 {
     return ConstSliceType(*this, DimensionSpan<FirstDimension>(index, DimensionSize<FirstDimension>(1))
-                          , DimensionSpan<Dimensions>(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template size<Dimensions>()))...)[0];
+                          , DimensionSpan<Dimensions>(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template size<Dimensions>()))...)[DimensionIndex<FirstDimension>(0)];
+}
+
+template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
+template<typename Dim>
+typename std::enable_if<has_dimension<MultiArray<Alloc, T, FirstDimension, Dimensions...>, Dim>::value
+&& !std::is_same<Dim, FirstDimension>::value, typename MultiArray<Alloc, T, FirstDimension, Dimensions...>::ConstSliceType>::type
+MultiArray<Alloc, T, FirstDimension, Dimensions...>::operator[](DimensionIndex<Dim> const& index) const
+{
+   return ConstSliceType(*this, DimensionSpan<Dim>(index, DimensionSize<Dim>(1)));
+}
+
+template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
+template<typename Dim>
+typename std::enable_if<has_dimension<MultiArray<Alloc, T, FirstDimension, Dimensions...>, Dim>::value
+&& !std::is_same<Dim, FirstDimension>::value, typename MultiArray<Alloc, T, FirstDimension, Dimensions...>::SliceType>::type
+MultiArray<Alloc, T, FirstDimension, Dimensions...>::operator[](DimensionIndex<Dim> const& index)
+{
+   return SliceType(*this, DimensionSpan<Dim>(index, DimensionSize<Dim>(1)));
 }
 
 template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
@@ -191,15 +214,19 @@ bool MultiArray<Alloc, T, FirstDimension, Dimensions...>::operator==(MultiArray 
 // Single Dimension specialisation 
 /////////////////////////////////////////////////////////////
 template<typename Alloc, typename T, typename FirstDimension>
-MultiArray<Alloc, T, FirstDimension>::MultiArray(DimensionSize<FirstDimension> const& size)
-    : _size(size)
+template<typename... Dims>
+MultiArray<Alloc, T, FirstDimension>::MultiArray(DimensionSize<Dims> const&... sizes)
+    : _size(arg_helper<DimensionSize<FirstDimension> const&, DimensionSize<Dims> const&...>::arg(sizes...))
 {
-    _data.resize(size);
+    _data.resize(_size);
 }
 
 template<typename Alloc, typename T, typename FirstDimension>
-MultiArray<Alloc, T, FirstDimension>::MultiArray(bool, DimensionSize<FirstDimension> const& size)
-    : _size(size)
+template<typename... Dims>
+MultiArray<Alloc, T, FirstDimension>::MultiArray(
+        typename std::enable_if<arg_helper<FirstDimension, Dims...>::value, bool>::type
+        , DimensionSize<Dims> const&... sizes)
+    : _size(arg_helper<DimensionSize<FirstDimension> const&, DimensionSize<Dims> const&...>::arg(sizes...))
 {
 }
 
