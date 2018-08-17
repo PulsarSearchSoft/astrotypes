@@ -155,13 +155,50 @@ TEST_F(TimeFrequencyTest, test_freq_time_channel)
     FrequencyTime<uint8_t> tf1(time_size, freq_size);
     
     typename FrequencyTime<uint8_t>::Channel c = tf1.channel(0);
-    ASSERT_EQ(c.size<Frequency>(), DimensionSize<Frequency>(0));
+    //ASSERT_EQ(c.size<Frequency>(), DimensionSize<Frequency>(0));
     ASSERT_EQ(c.size<Time>(), time_size);
 
     FrequencyTime<uint8_t> const& tf2 = tf1;
     typename FrequencyTime<uint8_t>::ConstChannel c2 = tf2.channel(5);
-    ASSERT_EQ(c2.size<Frequency>(), DimensionSize<Frequency>(0));
+    //ASSERT_EQ(c2.size<Frequency>(), DimensionSize<Frequency>(0));
     ASSERT_EQ(c2.size<Time>(), time_size);
+}
+
+TEST_F(TimeFrequencyTest, test_time_freq_has_exact_dimensions)
+{
+    static_assert(std::is_same<std::true_type, typename has_exact_dimensions<TimeFrequency<double>, units::Time, units::Frequency>::type>::value, "expecting true");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<TimeFrequency<double>, units::Time>::type>::value, "expecting false");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<TimeFrequency<double>, units::Frequency, units::Time>::type>::value, "expecting false");
+}
+
+TEST_F(TimeFrequencyTest, test_freq_time_has_exact_dimensions)
+{
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<FrequencyTime<double>, units::Time, units::Frequency>::type>::value, "expecting false");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<FrequencyTime<double>, units::Time>::type>::value, "expecting false");
+    static_assert(std::is_same<std::true_type, typename has_exact_dimensions<FrequencyTime<double>, units::Frequency, units::Time>::type>::value, "expecting true");
+}
+
+TEST_F(TimeFrequencyTest, test_time_freq_slice_has_exact_dimensions)
+{
+    static_assert(std::is_same<std::true_type, typename has_exact_dimensions<TimeFrequency<double>::Channel, units::Time, units::Frequency>::type>::value, "expecting true");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<TimeFrequency<double>::Channel, units::Time>::type>::value, "expecting false");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<TimeFrequency<double>::Channel, units::Frequency>::type>::value, "expecting false");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<TimeFrequency<double>::Spectra, units::Frequency, units::Time>::type>::value, "expecting false");
+    //static_assert(std::is_same<std::true_type, typename has_exact_dimensions<TimeFrequency<double>::Spectra, units::Time, units::Frequency>::type>::value, "expecting true");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<TimeFrequency<double>::Spectra, units::Time>::type>::value, "expecting false");
+    static_assert(std::is_same<std::true_type, typename has_exact_dimensions<TimeFrequency<double>::Spectra, units::Frequency>::type>::value, "expecting true");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<TimeFrequency<double>::Spectra, units::Frequency, units::Time>::type>::value, "expecting false");
+}
+
+TEST_F(TimeFrequencyTest, test_freq_time_slice_has_exact_dimensions)
+{
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<FrequencyTime<double>::Spectra, units::Time, units::Frequency>::type>::value, "expecting false");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<FrequencyTime<double>::Spectra, units::Time>::type>::value, "expecting false");
+    static_assert(std::is_same<std::true_type, typename has_exact_dimensions<FrequencyTime<double>::Spectra, units::Frequency, units::Time>::type>::value, "expecting true");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<FrequencyTime<double>::Channel, units::Time, units::Frequency>::type>::value, "expecting false");
+    //static_assert(std::is_same<std::true_type, typename has_exact_dimensions<FrequencyTime<double>::Channel, units::Frequency, units::Time>::type>::value, "expecting true");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<FrequencyTime<double>::Channel, units::Frequency>::type>::value, "expecting false");
+    static_assert(std::is_same<std::true_type, typename has_exact_dimensions<FrequencyTime<double>::Channel, units::Time>::type>::value, "expecting true");
 }
 
 } // namespace test
