@@ -1,18 +1,18 @@
 /*
  * MIT License
- * 
+ *
  * Copyright (c) 2018 PulsarSearchSoft
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -32,11 +32,36 @@
 namespace pss {
 namespace astrotypes {
 
+template<typename T, typename... Dims>
+struct arg_helper : public std::false_type
+{
+};
+
+template<typename T, typename... Dims>
+struct arg_helper<T, T, Dims...> : public std::true_type
+{
+    static inline
+    T&& arg(T&& arg, Dims&&...)
+    { return std::forward<T>(arg); }
+};
+
+template<typename T, typename Dim, typename... Dims>
+struct arg_helper<T, Dim, Dims...> : public arg_helper<T, Dims...>
+{
+    typedef arg_helper<T, Dims...> BaseT;
+
+    static inline
+    T&& arg(Dim&&, Dims&&...args)
+    { return BaseT::arg(std::forward<T>(args)...); }
+};
+
 /**
  * @brief
  *      Representation of a Slice through a Data Array
  * @details
  */
+struct copy_resize_construct_tag {};
+struct copy_resize_construct_base_tag {};
 
 template<bool is_const, typename ParentT, typename Dimension, typename... Dimensions>
 class Slice : private Slice<is_const, ParentT, Dimensions...>
@@ -53,12 +78,19 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         typedef typename std::conditional<is_const, const ParentT, ParentT>::type Parent;
         typedef SliceIterator<SelfType, is_const> iterator;
         typedef SliceIterator<SelfType, true> const_iterator;
+        typedef Slice<is_const, ParentT, Dimension, Dimensions...> SliceType;
+        typedef Slice<true, ParentT, Dimension, Dimensions...> ConstSliceType;
 
     public:
         Slice( Parent& parent
              , DimensionSpan<Dimension> const&
              , DimensionSpan<Dimensions> const&...
         );
+
+        /// constructor that will use the parents dimensions as default if not specified
+        template<typename... Dims, typename Enable=std::enable_if<!arg_helper<Dimension, Dims...>::value>>
+        Slice( Parent& parent
+             , DimensionSpan<Dims> const& ...);
 
         static constexpr std::size_t rank = 1 + sizeof...(Dimensions);
 
@@ -79,31 +111,58 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
          *      std::size_t size_A_as_size_t = static_cast<std::size_t>(size_of_A);
          * @endcode
          * @details
-         *      If you intend to inherit from this class you may need to call this method with the 
+         *      If you intend to inherit from this class you may need to call this method with the
          *      template keyword.
-         *      e,g, 
+         *      e,g,
          *      @code
          *      slice.template size<DimensionA>();
          *      @endcode
          */
         template<typename Dim>
-        typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimension>>::type 
+        typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimension>>::type
         size() const;
 
         template<typename Dim>
-        typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSize<Dim>>::type 
+        typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSize<Dim>>::type
         size() const;
 
         /**
          * @brief Take a slice in the specified dimension one channel thick
          */
         Slice<is_const, ParentT, Dimensions...> operator[](DimensionIndex<Dimension>) const;
-        Slice<is_const, ParentT, Dimensions...> operator[](std::size_t) const; // TODO remove
+
+        template<typename Dim>
+        typename std::enable_if<arg_helper<Dim, Dimensions...>::value
+                            && !std::is_same<Dim, Dimension>::value, Slice<is_const, ParentT, Dimension, Dimensions...>>::type
+        operator[](DimensionIndex<Dim> const&);
+
+        template<typename Dim>
+        typename std::enable_if<arg_helper<Dim, Dimensions...>::value
+                            && !std::is_same<Dim, Dimension>::value, ConstSliceType>::type
+        operator[](DimensionIndex<Dim> const&) const;
 
         /**
-         * @brief Take a slice from this slice
+         * @brief Take a sub-slice from this slice
+         * @params ipass a DimensionSpan<Dimension> object for each dimension
+         *         you wish to restrict.
+         *         Span indexes are relative to Slice boundary, not hee parent
          */
-        Slice<is_const, ParentT, Dimension, Dimensions...> slice(DimensionSpan<Dimension> const& span) const;
+        template<typename... Dims>
+        typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice>::type
+        slice(DimensionSpan<Dims>&&... spans);
+
+        template<typename... Dims>
+        typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice>::type
+        slice(DimensionSpan<Dims>&&... spans);
+
+        template<typename... Dims>
+        typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice<true, ParentT, Dimension, Dimensions...>>::type
+        slice(DimensionSpan<Dims>&&... spans) const;
+
+        template<typename... Dims>
+        typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice<true, ParentT, Dimension, Dimensions...>>::type
+        slice(DimensionSpan<Dims>&&... spans) const;
+
 
         /**
          * @brief iterator pointing to the first element in the slice
@@ -142,13 +201,38 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         parent_iterator const& base_ptr() const;
         parent_iterator& base_ptr();
 
-        void offset(parent_iterator const&); // init the offset relative to the top parent
+        parent_iterator const& offset(parent_iterator const&); // init the offset relative to the top parent
 
         // init for inheriting classes only
         Slice( DimensionSpan<Dimension> const&
              , DimensionSpan<Dimensions> const&...
              , Parent const& parent
         );
+
+        // init for constructing slices in other Dimensions
+        Slice( DimensionSpan<Dimensions> const&...
+             , Parent const& parent
+        );
+
+        template<typename... Dims>
+        Slice( copy_resize_construct_tag const&
+             , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
+             , DimensionSpan<Dims>&&... spans );
+
+        template<typename... Dims>
+        Slice( copy_resize_construct_base_tag const&
+             , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
+             , DimensionSpan<Dims>&&... spans );
+
+        template<typename... Dims>
+        Slice( copy_resize_construct_tag const&
+             , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
+             , DimensionSpan<Dims>&&... spans );
+
+        template<typename... Dims>
+        Slice( copy_resize_construct_base_tag const&
+             , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
+             , DimensionSpan<Dims>&&... spans );
 
         // increment pointer by a n * span length
         SelfType& operator+=(std::size_t n);
@@ -181,8 +265,8 @@ class Slice<is_const, ParentT, Dimension>
 
     public:
         typedef typename std::conditional<is_const, const ParentT, ParentT>::type Parent;
-        //typedef SliceIterator<SelfType, is_const> iterator;
-        //typedef SliceIterator<SelfType, true> const_iterator;
+        typedef Slice<is_const, ParentT, Dimension> SliceType;
+        typedef Slice<true, ParentT, Dimension> ConstSliceType;
         typedef parent_iterator iterator;
         typedef parent_const_iterator const_iterator;
 
@@ -201,7 +285,7 @@ class Slice<is_const, ParentT, Dimension>
          * @ brief return the size of the slice in the specified dimension
          */
         template<typename Dim>
-        typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimension>>::type 
+        typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimension>>::type
         size() const;
 
         /**
@@ -210,7 +294,7 @@ class Slice<is_const, ParentT, Dimension>
         template<typename Dim>
         static constexpr
         typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (!has_dimension<ParentT, Dim>::value))
-                               , DimensionSize<Dim>>::type 
+                               , DimensionSize<Dim>>::type
         size();
 
         /**
@@ -221,7 +305,7 @@ class Slice<is_const, ParentT, Dimension>
         static constexpr
         typename std::enable_if<(!std::is_same<Dim, Dimension>::value)
                                && has_dimension<ParentT, Dim>::value
-                               , DimensionSize<Dim>>::type 
+                               , DimensionSize<Dim>>::type
         size();
 
         /**
@@ -239,6 +323,12 @@ class Slice<is_const, ParentT, Dimension>
         template<typename Dim, typename Enable=typename std::enable_if<has_dimension<Parent, Dim>::value
                                                             && !std::is_same<Dim, Dimension>::value>::type>
         SelfType& operator[](DimensionIndex<Dim> const&) { return *this; }
+
+        /**
+         * @brief return a sub window on the slice
+         */
+        ConstSliceType slice(DimensionSpan<Dimension> const& span) const;
+        SliceType slice(DimensionSpan<Dimension> const& span);
 
         /**
          * @brief iterator pointing to the first element in the slice
@@ -259,8 +349,6 @@ class Slice<is_const, ParentT, Dimension>
          */
         template<bool is_const_>
         bool operator==(Slice<is_const_, ParentT, Dimension> const&) const;
-        //bool operator==(/*Slice<is_const, ParentT, Dimension> const&*/ SelfType const&) const;
-
 
     protected:
         template<bool, typename P, typename D, typename... Ds> friend class Slice;
@@ -282,10 +370,23 @@ class Slice<is_const, ParentT, Dimension>
         parent_iterator const& base_ptr() const;
         parent_iterator& base_ptr();
 
-        void offset(parent_iterator const&); // init the offset relative to the top parent
-        Slice(DimensionSpan<Dimension> const&, Parent const&);
+        parent_iterator const& offset(parent_iterator const&); // init the offset relative to the top parent
+
         SelfType& operator+=(DimensionSize<Dimension> const&);
         SelfType& operator+=(std::size_t n);
+
+    protected:
+        Slice(DimensionSpan<Dimension> const&, Parent const&);
+
+        template<typename... Dims>
+        Slice( typename std::enable_if<!arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type
+             , Slice const& copy
+             , DimensionSpan<Dims>&&... spans );
+
+        template<typename... Dims>
+        Slice( typename std::enable_if<arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type
+             , Slice const& copy
+             , DimensionSpan<Dims>&&... spans );
 
     private:
         DimensionSpan<Dimension> _span;
