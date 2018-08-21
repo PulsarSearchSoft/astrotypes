@@ -65,6 +65,40 @@ std::ostream& Header::OStreamAdapter<T>::operator<<(std::ostream& os) const
     return os;
 }
 
+
+DimensionSize<units::Frequency> Header::number_of_channels() const
+{
+    if(_n_chans.is_set()) return DimensionSize<units::Frequency>(_n_chans);
+    return DimensionSize<units::Frequency>(0);
+}
+
+void Header::number_of_channels(std::size_t n)
+{
+    _n_chans = n;
+}
+
+unsigned Header::number_of_bits() const
+{
+    if(_n_bits.is_set()) return _n_bits;
+    return 0;
+}
+
+void Header::number_of_bits(unsigned n)
+{
+    _n_bits = n;
+}
+
+void Header::number_of_ifs(unsigned i)
+{
+    _nifs = i;
+}
+
+unsigned Header::number_of_ifs() const
+{
+    if(_nifs) return _nifs;
+    return 0;
+}
+
 } // namespace sigproc
 } // namespace astrotypes
 } // namespace pss

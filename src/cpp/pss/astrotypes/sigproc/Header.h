@@ -100,8 +100,15 @@ class Header
                 mutable std::ostream* _os;
         };
 
+        enum class DataType {
+            Undefined  = 0,
+            FilterBank = 1, // stored as a series of spectra
+            TimeSeries      // stored as a series of channels
+        };
+
     public:
         Header();
+        virtual ~Header() {};
 
         /**
          * @brief return the telescope_id identifier (if any)
@@ -123,6 +130,16 @@ class Header
          * @details optional
          */
         void machine_id(unsigned id);
+
+        /**
+         * @brief set the data type
+         */
+        void data_type(DataType type);
+
+        /**
+         * @brief set the data type
+         */
+        DataType data_type() const;
 
         /**
          * @brief return the value of the raw data filename (if any)
@@ -231,22 +248,26 @@ class Header
         /**
          * @brief return the number of frequency channels
          */
-        std::size_t number_of_channels() const;
+        inline DimensionSize<units::Frequency> number_of_channels() const;
 
         /// set the number of channels
-        void number_of_channels(std::size_t);
+        inline void number_of_channels(std::size_t);
 
         /**
          * @brief return the number of vits
          */
-        unsigned number_of_bits() const;
-        void number_of_bits(unsigned);
+        inline unsigned number_of_bits() const;
+        inline void number_of_bits(unsigned);
 
         /**
-         * @brief return the number of streams (e.g. polarisations)
+         * @brief return the number of IF streams (e.g. polarisations) in each channel
          */
-        unsigned number_of_ifs() const;
-        void number_of_ifs(unsigned);
+        inline unsigned number_of_ifs() const;
+
+        /**
+         * @brief set the number of IF streams (e.g. polarisations) in each channel
+         */
+        inline void number_of_ifs(unsigned);
 
         /**
          * @brief return the reference Dispersion Measure

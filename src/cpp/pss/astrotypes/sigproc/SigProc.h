@@ -28,14 +28,8 @@
  * @brief Top level include header for the Sigproc module standard use cases
  */
 #include "Header.h"
-
-namespace pss {
-namespace astrotypes {
-namespace sigproc {
-
-
-} // namespace sigproc
-} // namespace astrotypes
-} // namespace pss
+#include "SigProcFormat.h"
+#include "ResizeAdapter.h"
+#include "DataFactory.h"
 
 #endif // PSS_ASTROTYPES_SIGPROC_SIGPROC_H

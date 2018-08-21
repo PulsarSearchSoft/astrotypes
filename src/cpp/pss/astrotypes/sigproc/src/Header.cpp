@@ -209,6 +209,17 @@ boost::optional<std::string> const& Header::raw_data_file() const
     return _raw_data_file;
 }
 
+void Header::data_type(Header::DataType type)
+{
+    _data_type = static_cast<unsigned>(type);
+}
+
+Header::DataType Header::data_type() const
+{
+    if(_data_type.is_set()) return static_cast<DataType>((int)_data_type);
+    return DataType::Undefined;
+}
+
 void Header::raw_data_file(std::string const& filename)
 {
     _raw_data_file = filename;
@@ -313,39 +324,6 @@ std::vector<boost::units::quantity<units::MegaHertz, double>> const& Header::fre
 void Header::frequency_channels(std::vector<boost::units::quantity<units::MegaHertz, double>> const& frequency_channels)
 {
     *_freq_channels = frequency_channels;
-}
-
-unsigned Header::number_of_bits() const
-{
-    if(_n_bits.is_set()) return _n_bits;
-    return 0;
-}
-
-void Header::number_of_bits(unsigned n)
-{
-    _n_bits = n;
-}
-
-std::size_t Header::number_of_channels() const
-{
-    if(_n_chans.is_set()) return _n_chans;
-    return 0;
-}
-
-void Header::number_of_channels(std::size_t n)
-{
-    _n_chans = n;
-}
-
-unsigned Header::number_of_ifs() const
-{
-    if(_nifs.is_set()) return _nifs;
-    return 0;
-}
-
-void Header::number_of_ifs(unsigned n)
-{
-    _nifs = n;
 }
 
 boost::optional<units::DispersionMeasure<double>> const& Header::ref_dm() const

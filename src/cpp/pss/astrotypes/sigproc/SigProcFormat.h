@@ -152,7 +152,6 @@ class SigProcFormat<units::Frequency, units::Time>
                 std::istream& _is;
         };
 
-
     public:
         SigProcFormat() {}
         inline OSigProcFormat operator<<(std::ostream&) const;
