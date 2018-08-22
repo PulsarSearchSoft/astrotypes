@@ -61,6 +61,8 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
     public:
         template<typename... Dims>
         MultiArray(DimensionSize<Dims> const& ... sizes);
+        //explicit MultiArray(MultiArray const&) = default;
+        MultiArray(MultiArray const&) = delete;
 
         /**
          * @brief iterators acting over he entire data structure

@@ -44,18 +44,18 @@ namespace astrotypes {
 template<typename T, typename Alloc=std::allocator<T>>
 class TimeFrequency : public MultiArray<Alloc, T, units::Time, units::Frequency>
 {
-    private:
-        typedef MultiArray<Alloc, T, units::Time, units::Frequency> BaseT;
-
     public:
+        typedef MultiArray<Alloc, T, units::Time, units::Frequency> BaseT;
         typedef typename BaseT::ReducedDimensionSliceType Spectra;
         typedef typename BaseT::ConstReducedDimensionSliceType ConstSpectra;
         typedef typename BaseT::SliceType Channel;
         typedef typename BaseT::ConstSliceType ConstChannel;
 
     public:
-        TimeFrequency(DimensionSize<units::Time>, DimensionSize<units::Frequency>);
-        TimeFrequency(DimensionSize<units::Frequency>, DimensionSize<units::Time>);
+        TimeFrequency( DimensionSize<units::Time> = DimensionSize<units::Time>(0)
+                     , DimensionSize<units::Frequency> = DimensionSize<units::Frequency>(0));
+        TimeFrequency( DimensionSize<units::Frequency>
+                     , DimensionSize<units::Time> = DimensionSize<units::Time>(0));
         ~TimeFrequency();
 
         /// @brief return a single spectrum from the specified offset
@@ -115,18 +115,19 @@ class TimeFrequency : public MultiArray<Alloc, T, units::Time, units::Frequency>
 template<typename T, typename Alloc=std::allocator<T>>
 class FrequencyTime : public MultiArray<Alloc, T, units::Frequency, units::Time>
 {
-    private:
-        typedef MultiArray<Alloc, T, units::Frequency, units::Time> BaseT;
 
     public:
+        typedef MultiArray<Alloc, T, units::Frequency, units::Time> BaseT;
         typedef typename BaseT::ReducedDimensionSliceType Channel;
         typedef typename BaseT::ConstReducedDimensionSliceType ConstChannel;
         typedef Slice<false, BaseT, units::Frequency, units::Time> Spectra;
         typedef Slice<true, BaseT, units::Frequency, units::Time> ConstSpectra;
 
     public:
-        FrequencyTime(DimensionSize<units::Frequency>, DimensionSize<units::Time>);
-        FrequencyTime(DimensionSize<units::Time>, DimensionSize<units::Frequency>);
+        FrequencyTime( DimensionSize<units::Frequency> = DimensionSize<units::Frequency>(0)
+                     , DimensionSize<units::Time> = DimensionSize<units::Time>(0));
+        FrequencyTime( DimensionSize<units::Time>
+                     , DimensionSize<units::Frequency> = DimensionSize<units::Frequency>(0));
         ~FrequencyTime();
 
         /// retrun a single channel across all time samples
@@ -145,6 +146,16 @@ struct has_exact_dimensions<TimeFrequency<T, Alloc>, units::Time, units::Frequen
 
 template<typename Alloc, typename T>
 struct has_exact_dimensions<FrequencyTime<T, Alloc>, units::Frequency, units::Time> : public std::true_type
+{
+};
+
+template<typename Alloc, typename T, typename... Dims>
+struct has_dimension<TimeFrequency<T, Alloc>, Dims...> : public has_dimension<typename TimeFrequency<T, Alloc>::BaseT, Dims...>
+{
+};
+
+template<typename Alloc, typename T, typename... Dims>
+struct has_dimension<FrequencyTime<T, Alloc>, Dims...> : public has_dimension<typename FrequencyTime<T, Alloc>::BaseT, Dims...>
 {
 };
 

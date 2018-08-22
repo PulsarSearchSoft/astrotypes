@@ -24,9 +24,19 @@
 #ifndef PSS_ASTROTYPES_MULTIARRAY_TYPETRAITS_H
 #define PSS_ASTROTYPES_MULTIARRAY_TYPETRAITS_H
 
+#include <type_traits>
+
 
 namespace pss {
 namespace astrotypes {
+
+template<typename T1, typename T2>
+struct And : public std::false_type
+{};
+
+template<>
+struct And<std::true_type, std::true_type> : public std::true_type
+{};
 
 /**
  * @biref return true if the Dimension is represented in the structure @tparam T
@@ -37,12 +47,36 @@ namespace astrotypes {
  * template<typename T>
  * void do_something(std::enable_if<has_dimension<units::Time>::value, T>::type const&);
  * @endcode
+ *
+ * @details
+ * provide a specialisation of this class to inherit from std::true_type if it hss the specified dimension
  */
 template<typename T, typename Dimension>
 struct has_dimension : public std::false_type
 {
 };
 
+template<typename T >
+struct has_dimension<T, T> : public std::true_type
+{
+};
+
+/**
+ * @biref return true if the all Dimensions provided are represented in the structure @tparam T
+ */
+template<typename T, typename Dimension, typename... Dimensions>
+struct has_dimensions : public And<typename has_dimension<T, Dimension>::type, typename has_dimensions<T, Dimensions...>::type>
+{
+};
+
+template<typename T, typename Dimension>
+struct has_dimensions<T, Dimension> : public has_dimension<T, Dimension>
+{
+};
+
+// convenience alias
+//template<typename T, typename Dimension, typename... Dimensions>
+//using has_dimensions = has_dimension<T, Dimension, Dimensions...>;
 
 /**
  * @biref return true if the Dimensions provided match exaclty those of the structure T (including order)
