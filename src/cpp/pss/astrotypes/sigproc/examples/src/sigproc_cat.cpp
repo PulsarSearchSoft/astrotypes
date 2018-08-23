@@ -33,8 +33,8 @@ void usage(const char* program_name)
               << "\twith appropriatw src_file header field pointing to the first file\n"
               << "Options:\n"
               << "\t--as_time_series:  save as multiple channels (time series)\n"
-              << "\t--as_filterbank:  save as multiple spectra (filterbank)\n"
-              << "\t--help: this message\n";
+              << "\t--as_filterbank :  save as multiple spectra (filterbank)\n"
+              << "\t--help          : this message\n";
 }
 
 // Generates code for each DataType that we might encounter
