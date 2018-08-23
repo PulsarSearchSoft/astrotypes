@@ -71,14 +71,6 @@ namespace {
 }
 
 template<typename T>
-typename std::enable_if<has_exact_dimensions<T, units::Time, units::Frequency>::value, SigProcFormat<units::Time, units::Frequency>::OSigProcFormat const&>::type
-SigProcFormat<units::Time, units::Frequency>::OSigProcFormat::operator<<(T const& d) const
-{
-    write(d.cbegin(), d.cend(), _os);
-    return *this;
-}
-
-template<typename T>
 typename std::enable_if<has_exact_dimensions<T, units::Time, units::Frequency>::value, SigProcFormat<units::Time, units::Frequency>::ISigProcFormat const&>::type
 SigProcFormat<units::Time, units::Frequency>::ISigProcFormat::operator>>(T& d) const
 {
@@ -95,6 +87,14 @@ SigProcFormat<units::Time, units::Frequency>::ISigProcFormat::operator>>(T& d) c
 }
 
 template<typename T>
+typename std::enable_if<has_exact_dimensions<T, units::Time, units::Frequency>::value, SigProcFormat<units::Time, units::Frequency>::OSigProcFormat const&>::type
+SigProcFormat<units::Time, units::Frequency>::OSigProcFormat::operator<<(T const& d) const
+{
+    write(d.cbegin(), d.cend(), _os);
+    return *this;
+}
+
+template<typename T>
 typename std::enable_if<has_exact_dimensions<T, units::Frequency, units::Time>::value, SigProcFormat<units::Time, units::Frequency>::ISigProcFormat const&>::type
 SigProcFormat<units::Time, units::Frequency>::ISigProcFormat::operator>>(T& d) const
 {
@@ -107,6 +107,17 @@ SigProcFormat<units::Time, units::Frequency>::ISigProcFormat::operator>>(T& d) c
 }
 
 template<typename T>
+typename std::enable_if<has_exact_dimensions<T, units::Time>::value, SigProcFormat<units::Time, units::Frequency>::OSigProcFormat const&>::type
+SigProcFormat<units::Time, units::Frequency>::OSigProcFormat::operator<<(T const& d) const
+{
+    for(DimensionIndex<units::Time> spectrum_num(0);  spectrum_num < d.template size<units::Time>(); ++spectrum_num)
+    {
+        write(d.cbegin(), d.cend(), _os);
+    }
+    return *this;
+}
+
+template<typename T>
 typename std::enable_if<has_exact_dimensions<T, units::Frequency, units::Time>::value, SigProcFormat<units::Time, units::Frequency>::OSigProcFormat const&>::type
 SigProcFormat<units::Time, units::Frequency>::OSigProcFormat::operator<<(T const& d) const
 {
@@ -114,17 +125,6 @@ SigProcFormat<units::Time, units::Frequency>::OSigProcFormat::operator<<(T const
     {
         auto const spectrum = d[spectrum_num];
         write(spectrum.cbegin(), spectrum.cend(), _os);
-    }
-    return *this;
-}
-
-template<typename T>
-typename std::enable_if<has_exact_dimensions<T, units::Time>::value, SigProcFormat<units::Time, units::Frequency>::OSigProcFormat const&>::type
-SigProcFormat<units::Time, units::Frequency>::OSigProcFormat::operator<<(T const& d) const
-{
-    for(DimensionIndex<units::Time> spectrum_num(0);  spectrum_num < d.template size<units::Time>(); ++spectrum_num)
-    {
-        write(d.cbegin(), d.cend(), _os);
     }
     return *this;
 }
@@ -188,7 +188,7 @@ typename SigProcFormat<units::Time, units::Frequency>::ISigProcFormat SigProcFor
 }
 
 template<typename Dimension1, typename Dimension2>
-typename SigProcFormat<Dimension1, Dimension2>::OSigProcFormat operator<<(std::ostream& os, SigProcFormat<Dimension1, Dimension2>& f)
+typename SigProcFormat<Dimension1, Dimension2>::OSigProcFormat operator<<(std::ostream& os, SigProcFormat<Dimension1, Dimension2> const& f)
 {
     return f << os;
 }

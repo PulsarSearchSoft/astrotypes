@@ -340,7 +340,7 @@ TEST_F(HeaderTest, test_extract_info_from_time_frequency)
     astrotypes::TimeFrequency<uint16_t> data(astrotypes::DimensionSize<units::Time>(2), astrotypes::DimensionSize<units::Frequency>(4));
     header << data;
     ASSERT_EQ(header.number_of_bits(), 16U);
-    ASSERT_EQ(header.number_of_channels(), 4U);
+    ASSERT_EQ(4U, header.number_of_channels());
 }
 
 TEST_F(HeaderTest, test_ref_dm)

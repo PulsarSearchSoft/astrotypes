@@ -46,9 +46,6 @@ class SigProcFormat<Dimension1, Dimension1> {
     SigProcFormat() { static_assert(true, "dimesions cannot be the same for SigProcFormat"); }
 };
 
-// forward declaration 
-template<typename Dimension1, typename Dimension2>
-typename SigProcFormat<Dimension1, Dimension2>::OSigProcFormat operator<<(std::ostream& os, SigProcFormat<Dimension1, Dimension2> const&);
 
 template<>
 class SigProcFormat<units::Time, units::Frequency>
@@ -60,8 +57,6 @@ class SigProcFormat<units::Time, units::Frequency>
                 OSigProcFormat(std::ostream& os) : _os(os) {}
 
             public:
-         //       template<typename T, typename Alloc>
-         //       OSigProcFormat const& operator<<(astrotypes::TimeFrequency<T, Alloc> const&);
                 template<typename T>
                 typename std::enable_if<has_exact_dimensions<T, units::Time, units::Frequency>::value, OSigProcFormat const&>::type
                 operator<<(T const&) const;
@@ -73,9 +68,6 @@ class SigProcFormat<units::Time, units::Frequency>
                 template<typename T>
                 typename std::enable_if<has_exact_dimensions<T, units::Frequency, units::Time>::value, OSigProcFormat const&>::type
                 operator<<(T const&) const;
-
-                //template<typename T, typename Alloc>
-                //OSigProcFormat const& operator<<(astrotypes::FrequencyTime<T, Alloc> const&);
 
             protected:
                 std::ostream& _os;
@@ -157,6 +149,13 @@ class SigProcFormat<units::Frequency, units::Time>
         inline OSigProcFormat operator<<(std::ostream&) const;
         inline ISigProcFormat operator>>(std::istream&) const;
 };
+
+// forward declaration 
+template<typename Dimension1, typename Dimension2>
+typename SigProcFormat<Dimension1, Dimension2>::OSigProcFormat operator<<(std::ostream& os, SigProcFormat<Dimension1, Dimension2> const&);
+
+template<typename Dimension1, typename Dimension2>
+typename SigProcFormat<Dimension1, Dimension2>::ISigProcFormat operator>>(std::istream& os, SigProcFormat<Dimension1, Dimension2> const&);
 
 } // namespace sigproc
 } // namespace astrotypes

@@ -21,16 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef PSS_ASTROTYPES_SIGPROC_SIGPROC_H
-#define PSS_ASTROTYPES_SIGPROC_SIGPROC_H
+#ifndef PSS_ASTROTYPES_SIGPROC_ISTREAM_H
+#define PSS_ASTROTYPES_SIGPROC_ISTREAM_H
+#include "SigProcFormat.h"
+#include "pss/astrotypes/multiarray/TypeTraits.h"
+#include "pss/astrotypes/units/Time.h"
 
-/**
- * @brief Top level include header for the Sigproc module standard use cases
- */
-#include "Header.h"
-#include "ResizeAdapter.h"
-#include "DataFactory.h"
-#include "IStream.h"
-#include "OStream.h"
+template<typename T>
+typename std::enable_if<pss::astrotypes::has_dimensions<T, pss::astrotypes::units::Time, pss::astrotypes::units::Frequency>::value,
+std::istream>::type& operator>>(std::istream&, T&)
+{
+    // improve compile time erro messaging - we should never instantiate this function
+    // as we need a SigProcFormat Adapter to know how to interpret the stream 
+    static_assert(sizeof(T)==0, "attempt to use operator>> on an istream without a SigProcFormat Adapter.");
+}
 
-#endif // PSS_ASTROTYPES_SIGPROC_SIGPROC_H
+#endif // PSS_ASTROTYPES_SIGPROC_ISTREAM_H

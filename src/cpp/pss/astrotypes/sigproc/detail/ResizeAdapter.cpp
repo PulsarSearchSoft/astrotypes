@@ -24,27 +24,51 @@
 
 namespace pss {
 namespace astrotypes {
+namespace sigproc {
 
 template<typename Dimension>
-DimensionSpan<Dimension>::DimensionSpan(DimensionIndex<Dimension> start_index, DimensionIndex<Dimension> end_index)
-    : _start_index(start_index)
-    , _span(end_index - start_index + 1)
+ResizeAdapter<Dimension>::ResizeAdapter(DimensionSize<Dimension> ts)
+    : _samples(ts)
 {
 }
 
 template<typename Dimension>
-DimensionSpan<Dimension>::DimensionSpan(DimensionIndex<Dimension> start_index, DimensionSize<Dimension> size)
-    : _start_index(start_index)
-    , _span(size)
+template<typename Stream>
+ResizeAdapter<Dimension>::ResizeAdapterStream<Stream>::ResizeAdapterStream(Stream& is, ResizeAdapter const& ra)
+    : _is(is)
+    , _ra(ra)
 {
 }
 
 template<typename Dimension>
-DimensionSpan<Dimension>::DimensionSpan(DimensionSize<Dimension> size)
-    : _start_index(0)
-    , _span(size)
+template<typename Stream>
+template<typename T>
+typename std::enable_if<has_exact_dimensions<T, units::Time, units::Frequency>::value, typename ResizeAdapter<Dimension>::template ResizeAdapterStream<Stream>>::type const&
+ResizeAdapter<Dimension>::ResizeAdapterStream<Stream>::operator>>(T& tf) const
 {
+    tf.resize(_ra._samples);
+    _is >> tf;
+    return *this;
 }
 
+template<typename Dimension>
+template<typename Stream>
+template<typename T>
+typename std::enable_if<has_exact_dimensions<T, units::Frequency, units::Time>::value, typename ResizeAdapter<Dimension>::template ResizeAdapterStream<Stream>>::type const&
+ResizeAdapter<Dimension>::ResizeAdapterStream<Stream>::operator>>(T& tf) const
+{
+    tf.resize(_ra._samples);
+    _is >> tf;
+    return *this;
+}
+
+template<typename Dimension, typename Stream>
+inline
+typename ResizeAdapter<Dimension>::template ResizeAdapterStream<Stream> operator>>(Stream& is, ResizeAdapter<Dimension>& ra)
+{
+    return ResizeAdapter<Dimension>::template ResizeAdapterStream<Stream>(is, ra);
+}
+
+} // namespace sigproc
 } // namespace astrotypes
 } // namespace pss
