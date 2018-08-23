@@ -249,6 +249,16 @@ bool HeaderFieldWithTolerance<T, ToleranceType>::operator==(HeaderFieldWithToler
     return compare_tolerance<typename std::decay<ToleranceType>::type>::exec(abs(*this->_var - *h._var) , _tolerance); 
 }
 
+inline HeaderFieldBase::HeaderFieldBase(std::string const& header_name, Header& h)
+{
+    h.add(header_name, *this);
+}
+
+inline void HeaderFieldBase::add_read(std::string const& header_label, HeaderFieldBase& field, Header& header)
+{
+    header.add_read(header_label, field);
+}
+
 } // namespace sigproc
 } // namespace astrotypes
 } // namespace pss

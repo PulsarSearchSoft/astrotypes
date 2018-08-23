@@ -25,15 +25,12 @@
 #define PSS_ASTROTYPES_SIGPROC_HEADER_H
 
 #include "HeaderField.h"
+#include "detail/HeaderBase.h"
 #include "pss/astrotypes/units/Time.h"
 #include "pss/astrotypes/units/Frequency.h"
 #include "pss/astrotypes/units/Angle.h"
 #include "pss/astrotypes/units/DispersionMeasure.h"
 #include "pss/astrotypes/types/TimeFrequency.h"
-#include <boost/optional.hpp>
-#include <iostream>
-#include <exception>
-#include <map>
 
 namespace pss {
 namespace astrotypes {
@@ -71,7 +68,7 @@ namespace sigproc {
  * @subsection Exteinding for Custom types
  */
 
-class Header
+class Header : public HeaderBase<Header>
 {
     private:
         typedef Header SelfType;
@@ -89,16 +86,8 @@ class Header
         friend class HeaderFieldBase;
 
     public:
-        // Adapter for ouputing debug info about the header
-        class Info {
-            public:
-                Info();
-                std::ostream& operator<<(Header& os) const;
-                Info const& operator<<(std::ostream& os) const;
-
-            private:
-                mutable std::ostream* _os;
-        };
+        /// Adapter for ouputing debug info about the header
+        using HeaderBase<Header>::Info;
 
         enum class DataType {
             Undefined  = 0,
@@ -248,16 +237,22 @@ class Header
         /**
          * @brief return the number of frequency channels
          */
-        inline DimensionSize<units::Frequency> number_of_channels() const;
-
-        /// set the number of channels
-        inline void number_of_channels(std::size_t);
+        DimensionSize<units::Frequency> number_of_channels() const;
 
         /**
-         * @brief return the number of vits
+         * @brief set the number of channels
          */
-        inline unsigned number_of_bits() const;
-        inline void number_of_bits(unsigned);
+        void number_of_channels(std::size_t);
+
+        /**
+         * @brief return the number of bits
+         */
+        unsigned number_of_bits() const;
+
+        /**
+         * @brief set the number of bits 
+         */
+        void number_of_bits(unsigned);
 
         /**
          * @brief return the number of time samples (optional)
@@ -265,23 +260,23 @@ class Header
          * @deprecated
          *          This can usually be calculated from the file size instead
          */
-        inline boost::optional<unsigned> const& number_of_samples() const;
+        boost::optional<unsigned> const& number_of_samples() const;
 
         /**
          * @brief set the number of time samples (optional)
          * @deprecated
          */
-        inline void number_of_samples(unsigned);
+        void number_of_samples(unsigned);
 
         /**
          * @brief return the number of IF streams (e.g. polarisations) in each channel
          */
-        inline unsigned number_of_ifs() const;
+        unsigned number_of_ifs() const;
 
         /**
          * @brief set the number of IF streams (e.g. polarisations) in each channel
          */
-        inline void number_of_ifs(unsigned);
+        void number_of_ifs(unsigned);
 
         /**
          * @brief return the reference Dispersion Measure
@@ -307,20 +302,6 @@ class Header
         void period(boost::units::quantity<units::Seconds, double>);
 
         /**
-         * @brief read in header data from the provided stream
-         * @details will throw if the data stream is not in the expected format or eof
-         * @throw if attempt to write out of bounds data (e.g strings > 80 chars)
-         */
-        void read(std::istream & stream);
-
-        /**
-         * @brief write header data to the provided stream
-         * @details
-         * @throw if attemp to read out of bounds data (e.g strings > 80 chars)
-         */
-        void write(std::ostream & stream) const;
-
-        /**
          * @brief write header data to the provided object, resizing appropriately
          */
         template<typename T, typename Alloc>
@@ -344,50 +325,7 @@ class Header
         template<typename T, typename Alloc>
         OStreamAdapter<astrotypes::TimeFrequency<T, Alloc>> operator<<(astrotypes::TimeFrequency<T, Alloc> const&);
 
-        /**
-         * @brief returns true if the data formats match
-         * @details source names/machine names are ignored
-         *          this only matches data formatting types and offsets
-         */
-        bool operator==(Header const&) const;
-
-        /**
-         * @brief returns true if the data format meta data does not match
-         * @details see caveats in operator==
-         */
-        bool operator!=(Header const&) const;
-
-        /**
-         * @brief returns the number of bytes in the header
-         */
-        std::size_t size() const;
-
-        /**
-         * @brief reset all header variables to an undefined state
-         */
-        void reset();
-
-    protected:
-        template<typename T>
-        std::runtime_error parse_error(std::string const& msg, T const& msg2) const;
-
-        /**
-         * @brief add a field to be parsed for read and write
-         */
-        void add(std::string const& label, HeaderFieldBase& field);
-
-        /**
-         * @brief add a field to be parsed for read only
-         */
-        void add_read(std::string const& label, HeaderFieldBase& field);
-
-
     private:
-        mutable unsigned _size; // byte size of the header
-
-        std::map<SigProcLabel, HeaderFieldBase*> _headers;
-        std::map<SigProcLabel, HeaderFieldBase*> _read_only_headers;
-
         // standard header data fields
         HeaderField<unsigned>           _telescope_id;
         HeaderField<unsigned>           _machine_id;
@@ -413,9 +351,7 @@ class Header
         HeaderField<boost::units::quantity<units::Seconds, double>>        _period;      // folding period seconds
 };
 
-std::ostream& operator<<(std::ostream& os, Header const&);
 Header::Info const& operator<<(std::ostream& os, Header::Info const&);
-std::istream& operator>>(std::istream& os, Header&);
 
 } // namespace sigproc
 } // namespace astrotypes

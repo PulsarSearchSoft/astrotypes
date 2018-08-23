@@ -12,6 +12,6 @@ SUBPACKAGE(sigproc)
 
 # should come after all SUBPACKAGE directives
 include_subpackage_files()
-add_library(${CMAKE_PROJECT_NAME} ${lib_src_cpu}) 
+#add_library(${CMAKE_PROJECT_NAME} ${lib_src_cpu}) 
 
 #install(TARGETS ${CMAKE_PROJECT_NAME} DESTINATION ${LIBRARY_INSTALL_DIR})

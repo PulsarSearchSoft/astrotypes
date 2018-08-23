@@ -46,6 +46,7 @@ class HeaderFieldBase
     protected:
         // allows us to hide HeaderFields from the writer
         HeaderFieldBase() {};
+
         /// add the provided field as a read_only parameter
         void add_read(std::string const& header_label, HeaderFieldBase& field, Header& header);
 
