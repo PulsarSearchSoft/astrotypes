@@ -88,6 +88,16 @@ void Header::number_of_bits(unsigned n)
     _n_bits = n;
 }
 
+boost::optional<unsigned> const& Header::number_of_samples() const
+{
+    return _nsamples;
+}
+
+void Header::number_of_samples(unsigned n)
+{
+    _nsamples = n;
+}
+
 void Header::number_of_ifs(unsigned i)
 {
     _nifs = i;

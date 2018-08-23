@@ -260,6 +260,20 @@ class Header
         inline void number_of_bits(unsigned);
 
         /**
+         * @brief return the number of time samples (optional)
+         * @details optional field. 
+         * @deprecated
+         *          This can usually be calculated from the file size instead
+         */
+        inline boost::optional<unsigned> const& number_of_samples() const;
+
+        /**
+         * @brief set the number of time samples (optional)
+         * @deprecated
+         */
+        inline void number_of_samples(unsigned);
+
+        /**
          * @brief return the number of IF streams (e.g. polarisations) in each channel
          */
         inline unsigned number_of_ifs() const;
