@@ -59,9 +59,8 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
         typedef T const& const_reference_type;
 
     public:
-        template<typename... Dims>
-        MultiArray(DimensionSize<Dims> const& ... sizes);
-        //explicit MultiArray(MultiArray const&) = default;
+        template<typename Dim, typename... Dims>
+        MultiArray(DimensionSize<Dim> size, DimensionSize<Dims>... sizes);
         MultiArray(MultiArray const&) = delete;
 
         /**
@@ -185,8 +184,8 @@ class MultiArray<Alloc, T, FirstDimension>
         typedef T value_type;
 
     public:
-        template<typename... Dims>
-        MultiArray(DimensionSize<Dims> const&... size);
+        template<typename Dim, typename... Dims>
+        MultiArray(DimensionSize<Dim> const& size, DimensionSize<Dims> const&... sizes);
         ~MultiArray();
 
         /**

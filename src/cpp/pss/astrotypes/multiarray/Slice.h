@@ -83,12 +83,14 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         typedef Slice<true, ParentT, Dimension, Dimensions...> ConstSliceType;
 
     public:
-        template<typename... Dims>
-       Slice( typename std::enable_if<arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+        template<typename Dim, typename... Dims>
+        Slice( typename std::enable_if<arg_helper<Dimension, Dim, Dims...>::value, Parent&>::type parent
+             , DimensionSpan<Dim> const&
              , DimensionSpan<Dims> const& ...);
 
-        template<typename... Dims>
-        Slice( typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+        template<typename Dim, typename... Dims>
+        Slice( typename std::enable_if<!arg_helper<Dimension, Dim, Dims...>::value, Parent&>::type parent
+             , DimensionSpan<Dim> const&
              , DimensionSpan<Dims> const& ...);
 
         static constexpr std::size_t rank = 1 + sizeof...(Dimensions);
@@ -291,21 +293,21 @@ class Slice<is_const, ParentT, Dimension>
          * @ brief return the size of the slice in the specified dimension (will always be zero)
          */
         template<typename Dim>
-        static constexpr
+        constexpr
         typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (!has_dimension<ParentT, Dim>::value))
                                , DimensionSize<Dim>>::type
-        size();
+        size() const;
 
         /**
          * @brief return the size of the slice in the specified dimension (will always be one)
          * @detials case where the Dim is not represented ecxplicitly by the Slice, but by the Parent
          */
         template<typename Dim>
-        static constexpr
+        constexpr
         typename std::enable_if<(!std::is_same<Dim, Dimension>::value)
                                && has_dimension<ParentT, Dim>::value
                                , DimensionSize<Dim>>::type
-        size();
+        size() const;
 
         /**
          * @brief return the value at the position specified in this Dimension

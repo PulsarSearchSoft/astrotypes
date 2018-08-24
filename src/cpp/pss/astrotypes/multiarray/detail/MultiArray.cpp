@@ -44,13 +44,13 @@ struct has_dimension<MultiArray<Alloc, T, Dimension1, Dimensions...>, Dimension>
 ////////////////////////////////////////////////
 // public interface for ensuring all is correctly sized up
 template<typename Alloc, typename T, typename FirstDimension, typename... Dimensions>
-template<typename... Dims>
+template<typename Dim, typename... Dims>
 //MultiArray<Alloc, T, FirstDimension, Dimensions...>::MultiArray(DimensionSize<FirstDimension> const& fd, DimensionSize<Dimensions> const& ... sizes)
-MultiArray<Alloc, T, FirstDimension, Dimensions...>::MultiArray(DimensionSize<Dims> const& ... sizes)
-    : BaseT(false, sizes...)
-    , _size(arg_helper<DimensionSize<FirstDimension> const&, DimensionSize<Dims> const&...>::arg(sizes...))
+MultiArray<Alloc, T, FirstDimension, Dimensions...>::MultiArray(DimensionSize<Dim> size, DimensionSize<Dims>... sizes)
+    : BaseT(false, size, sizes...)
+    , _size(arg_helper<DimensionSize<FirstDimension> const&, DimensionSize<Dim> const&, DimensionSize<Dims> const&...>::arg(size, sizes...))
 {
-    resize(arg_helper<DimensionSize<FirstDimension> const&, DimensionSize<Dims> const&...>::arg(sizes...));
+    resize(arg_helper<DimensionSize<FirstDimension> const&, DimensionSize<Dim> const&, DimensionSize<Dims> const&...>::arg(size, sizes...));
 }
 
 // private interface for constructing in an inheritance stack
@@ -214,9 +214,9 @@ bool MultiArray<Alloc, T, FirstDimension, Dimensions...>::operator==(MultiArray 
 // Single Dimension specialisation 
 /////////////////////////////////////////////////////////////
 template<typename Alloc, typename T, typename FirstDimension>
-template<typename... Dims>
-MultiArray<Alloc, T, FirstDimension>::MultiArray(DimensionSize<Dims> const&... sizes)
-    : _size(arg_helper<DimensionSize<FirstDimension> const&, DimensionSize<Dims> const&...>::arg(sizes...))
+template<typename Dim, typename... Dims>
+MultiArray<Alloc, T, FirstDimension>::MultiArray(DimensionSize<Dim> const& size, DimensionSize<Dims> const&... sizes)
+    : _size(arg_helper<DimensionSize<FirstDimension> const&, DimensionSize<Dim> const&, DimensionSize<Dims> const&...>::arg(size, sizes...))
 {
     _data.resize(_size);
 }
