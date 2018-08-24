@@ -293,21 +293,21 @@ class Slice<is_const, ParentT, Dimension>
          * @ brief return the size of the slice in the specified dimension (will always be zero)
          */
         template<typename Dim>
-        static constexpr
+        constexpr
         typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (!has_dimension<ParentT, Dim>::value))
                                , DimensionSize<Dim>>::type
-        size();
+        size() const;
 
         /**
          * @brief return the size of the slice in the specified dimension (will always be one)
          * @detials case where the Dim is not represented ecxplicitly by the Slice, but by the Parent
          */
         template<typename Dim>
-        static constexpr
+        constexpr
         typename std::enable_if<(!std::is_same<Dim, Dimension>::value)
                                && has_dimension<ParentT, Dim>::value
                                , DimensionSize<Dim>>::type
-        size();
+        size() const;
 
         /**
          * @brief return the value at the position specified in this Dimension
