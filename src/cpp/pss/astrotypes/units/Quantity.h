@@ -60,7 +60,7 @@ class Quantity : public boost::units::quantity<Unit, NumericalRep>
          * @brief instatiate from alternative unit
          */
         template<typename UnitType, typename OtherDataType
-               , typename std::enable_if<!std::is_same<UnitType, Unit>::value, void>::type>
+               , typename Enable = typename std::enable_if<!std::is_same<UnitType, Unit>::value, void>::type>
         explicit Quantity(boost::units::quantity<UnitType, OtherDataType> const& o) : BaseT(o) {}
 
         /**
