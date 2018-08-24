@@ -73,9 +73,6 @@ class Quantity<TimeUnit
         Quantity() {}
         Quantity(BaseT const& b) : BaseT(b) {}
 
-        template<typename UnitType, typename OtherDataType
-               , typename std::enable_if<!std::is_same<UnitType, TimeUnit>::value, void>::type>
-        explicit Quantity(boost::units::quantity<UnitType, OtherDataType> const& o) : BaseT(o) {}
         explicit Quantity(chrono_duration const& d) : BaseT(d.count()) {}
 
         /**
