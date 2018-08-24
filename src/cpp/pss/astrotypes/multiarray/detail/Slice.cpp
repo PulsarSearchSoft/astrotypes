@@ -62,12 +62,13 @@ struct has_exact_dimensions<Slice<is_const, ParentT, SliceDimensions...>, Dimens
 
 // ------------------- multi dimension ----------------------- -------------
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
-template<typename... Dims>
+template<typename Dim, typename... Dims>
 Slice<is_const, Parent, Dimension, Dimensions...>::Slice(
-        typename std::enable_if<arg_helper<Dimension, Dims...>::value, Parent&>::type parent
-     ,  DimensionSpan<Dims> const&... spans)
-    : BaseT(internal_construct_tag(), parent, spans... )
-    , _span(arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...))
+          typename std::enable_if<arg_helper<Dimension, Dim, Dims...>::value, Parent&>::type parent
+       , DimensionSpan<Dim> const& span
+       , DimensionSpan<Dims> const&... spans)
+    : BaseT(internal_construct_tag(), parent, span, spans... )
+    , _span(arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dim> const&, DimensionSpan<Dims> const&...>::arg(span, spans...))
     , _base_span(0U) // not used (yet) so don't bother calculating it
     , _ptr(parent.begin() + static_cast<std::size_t>(_span.start()) * BaseT::_base_span)
 {
@@ -75,11 +76,12 @@ Slice<is_const, Parent, Dimension, Dimensions...>::Slice(
 }
 
 template<bool is_const, typename Parent, typename Dimension, typename... Dimensions>
-template<typename... Dims>
+template<typename Dim, typename... Dims>
 Slice<is_const, Parent, Dimension, Dimensions...>::Slice(
-        typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Parent&>::type parent
-     ,  DimensionSpan<Dims> const&... spans)
-    : BaseT(internal_construct_tag(), parent, spans... )
+        typename std::enable_if<!arg_helper<Dimension, Dim, Dims...>::value, Parent&>::type parent
+       , DimensionSpan<Dim> const& span
+       , DimensionSpan<Dims> const&... spans)
+    : BaseT(internal_construct_tag(), parent, span, spans... )
     , _span(DimensionSpan<Dimension>(DimensionIndex<Dimension>(0), DimensionSize<Dimension>(parent.template size<Dimension>())))
     , _base_span(0U) // not used (yet) so don't bother calculating it
     , _ptr(parent.begin())

@@ -83,12 +83,14 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         typedef Slice<true, ParentT, Dimension, Dimensions...> ConstSliceType;
 
     public:
-        template<typename... Dims>
-       Slice( typename std::enable_if<arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+        template<typename Dim, typename... Dims>
+        Slice( typename std::enable_if<arg_helper<Dimension, Dim, Dims...>::value, Parent&>::type parent
+             , DimensionSpan<Dim> const&
              , DimensionSpan<Dims> const& ...);
 
-        template<typename... Dims>
-        Slice( typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Parent&>::type parent
+        template<typename Dim, typename... Dims>
+        Slice( typename std::enable_if<!arg_helper<Dimension, Dim, Dims...>::value, Parent&>::type parent
+             , DimensionSpan<Dim> const&
              , DimensionSpan<Dims> const& ...);
 
         static constexpr std::size_t rank = 1 + sizeof...(Dimensions);
