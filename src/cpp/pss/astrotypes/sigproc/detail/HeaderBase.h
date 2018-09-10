@@ -51,19 +51,19 @@ namespace sigproc {
  *          // oh oh no source name,  better deal with it
  *          ...
  *      }
- *      // once tested you can get the underlying vaiable with the dereference operator *
+ *      // once tested you can get the underlying variable with the dereference operator *
  *      std::string const& source = *header.source_name();
  * @endcode
  *
  *    note also that many of the types returned as types with specific units. If your writting new code
  *    its a good idea to keep this type information when you pass this value around, but for compatibility
- *    with less type safe codes and you need just the numerical valuem you can call the value() mehtod
+ *    with less type safe codes and you need just the numerical value you can call the value() mehtod
  * @code
  *    // n.b. this loses type information.
  *    double tsamp_in_secs = header.sample_interval().value();
  * @endcode
  *
- * @subsection Exteinding for Custom types
+ * @subsection Extending for Custom types
  */
 
 template<typename Derived>
@@ -97,7 +97,7 @@ class HeaderBase
         /**
          * @brief write header data to the provided stream
          * @details
-         * @throw if attemp to read out of bounds data (e.g strings > 80 chars)
+         * @throw if attempt to read out of bounds data (e.g strings > 80 chars)
          */
         void write(std::ostream & stream) const;
 
@@ -125,7 +125,7 @@ class HeaderBase
         void reset();
 
     protected:
-        // default implemnations overridable in Derived type
+        // default implemention overridable in Derived type
         void do_read(std::istream & stream);
         void do_write(std::ostream & stream) const;
         bool do_equal(HeaderBase const&) const;
