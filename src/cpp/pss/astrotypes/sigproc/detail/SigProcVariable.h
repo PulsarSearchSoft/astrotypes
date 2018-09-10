@@ -94,7 +94,7 @@ struct SigProcLabel
         return std::strcmp(_string.c_str(), txt) != 0;
     }
 
-    // allows to be stroed in std::map 
+    // allows to be stored in std::map 
     inline bool operator<(SigProcLabel const& v) const { return _string < v._string; }
 
     std::string const& string() const { return _string; }
