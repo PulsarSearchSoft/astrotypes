@@ -70,7 +70,7 @@ struct BitToUnsignedInt<8> {
  * @tparam nifs       : The number of if streams
  * @tparam nifs       : the number of bits (to be passed to BinTypeMap)
  * @tparam BitTypeMap : the map of nbits to type (e.g BitToUnsignedInt)
- *                      typcially the elements inside the container @param type
+ *                      typically the elements inside the container @param type
  *
  * @details           : uses std::arrays of nifs rank where nifs>1, otherwise
  *                      the type provided by BitTypeMap<nbits>::type
@@ -97,7 +97,7 @@ struct DefaultDataFactoryTraits {
 
     static constexpr unsigned MaxNifs = 1; // maximum number of data for each channel (e.g 4 polarisations)
 
-    /// The mapping of th number of bits to the NumericalReapresentation of those bits
+    /// The mapping of th number of bits to the NumericalRepresentation of those bits
     template<unsigned nbits>
     using BitsTypeMap = BitToUnsignedInt<nbits>;
 
