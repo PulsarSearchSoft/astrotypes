@@ -65,7 +65,7 @@ namespace sigproc {
  *    double tsamp_in_secs = header.sample_interval().value();
  * @endcode
  *
- * @subsection Exteinding for Custom types
+ * @subsection Extending for Custom types
  */
 
 class Header : public HeaderBase<Header>
@@ -197,7 +197,7 @@ class Header : public HeaderBase<Header>
 
         /**
          * @brief get the frequency of the first channel
-         * @detials optional
+         * @details optional
          */
         boost::optional<boost::units::quantity<units::MegaHertz, double>> const& fch1() const;
 
@@ -210,7 +210,7 @@ class Header : public HeaderBase<Header>
 
         /**
          * @brief get the band width of a channel (assumes homogenous badwidth for each channel)
-         * @detials optional
+         * @details optional
          */
         boost::optional<boost::units::quantity<units::MegaHertz, double>> const& foff() const;
 
