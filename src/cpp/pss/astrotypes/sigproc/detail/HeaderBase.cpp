@@ -37,7 +37,7 @@ std::runtime_error HeaderBase<Derived>::parse_error(std::string const& msg, T co
         ss << ": " << msg2;
     }
     catch(...) {
-        // dont't let this method throw
+        // don't let this method throw
     }
 
     return std::runtime_error(ss.str());
