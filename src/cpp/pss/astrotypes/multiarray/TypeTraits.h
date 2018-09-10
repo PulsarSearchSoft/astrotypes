@@ -39,7 +39,7 @@ struct And<std::true_type, std::true_type> : public std::true_type
 {};
 
 /**
- * @biref return true if the Dimension is represented in the structure @tparam T
+ * @brief return true if the Dimension is represented in the structure @tparam T
  * @tparam Dimension  : the dimension to find 
  * @param T : the structure to search for the Dimension
  * @code
@@ -62,7 +62,7 @@ struct has_dimension<T, T> : public std::true_type
 };
 
 /**
- * @biref return true if the all Dimensions provided are represented in the structure @tparam T
+ * @brief return true if the all Dimensions provided are represented in the structure @tparam T
  */
 template<typename T, typename Dimension, typename... Dimensions>
 struct has_dimensions : public And<typename has_dimension<T, Dimension>::type, typename has_dimensions<T, Dimensions...>::type>
@@ -79,7 +79,7 @@ struct has_dimensions<T, Dimension> : public has_dimension<T, Dimension>
 //using has_dimensions = has_dimension<T, Dimension, Dimensions...>;
 
 /**
- * @biref return true if the Dimensions provided match exactly those of the structure T (including order)
+ * @brief return true if the Dimensions provided match exactly those of the structure T (including order)
  * @tparam Dimensions  : the dimension to find in the order required
  * @param T : the structure to search for the Dimension
  * members:
