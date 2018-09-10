@@ -84,7 +84,7 @@ class HeaderField : public HeaderFieldBase
         typedef HeaderFieldBase BaseT;
 
     protected:
-        // for exapnsion only, not to be used as a public interface
+        // for expansion only, not to be used as a public interface
         HeaderField() {};
 
     public:
@@ -110,7 +110,7 @@ class HeaderField : public HeaderFieldBase
 };
 
 /**
- * @brief specialisation to allow the == operator to return true if the values are within sepcified tolerance
+ * @brief specialisation to allow the == operator to return true if the values are within specified tolerance
  */
 template<typename T, typename ToleranceType>
 class HeaderFieldWithTolerance : public HeaderField<T>
