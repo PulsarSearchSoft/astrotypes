@@ -41,7 +41,7 @@ struct And<std::true_type, std::true_type> : public std::true_type
 /**
  * @biref return true if the Dimension is represented in the structure @tparam T
  * @tparam Dimension  : the dimension to find 
- * @param T : sthe structure to search for the Dimension
+ * @param T : the structure to search for the Dimension
  * @code
  * /// example of a definition for a function that only supports types that support the Time dimension
  * template<typename T>
@@ -79,14 +79,14 @@ struct has_dimensions<T, Dimension> : public has_dimension<T, Dimension>
 //using has_dimensions = has_dimension<T, Dimension, Dimensions...>;
 
 /**
- * @biref return true if the Dimensions provided match exaclty those of the structure T (including order)
+ * @biref return true if the Dimensions provided match exactly those of the structure T (including order)
  * @tparam Dimensions  : the dimension to find in the order required
- * @param T : sthe structure to search for the Dimension
+ * @param T : the structure to search for the Dimension
  * members:
  *     bool value; // true or false
  *     type; // std::true_type or std::false_type
  * @code
- * /// example of a definition for a function that only supports types that are Time and Frequency ordererd
+ * /// example of a definition for a function that only supports types that are Time and Frequency ordered
  * template<typename T>
  * void do_something(std::enable_if<has_exact_dimension<units::Time, units::Frequency>::value, T>::type const&);
  * @endcode
