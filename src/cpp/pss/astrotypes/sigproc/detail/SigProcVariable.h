@@ -32,6 +32,7 @@
 #ifndef PSS_ASTROTYPES_SIGPROC_SIGPROCVARIABLE_H
 #define PSS_ASTROTYPES_SIGPROC_SIGPROCVARIABLE_H
 
+#include <cstring>
 #include <iostream>
 
 namespace pss {
