@@ -40,7 +40,7 @@ namespace sigproc {
  *        Once determined the user provided template function is called.
  * @param FnTemplate a templated class or struct with a static method
  *        @code
- *        template<typenmme SigProcInputTraits>
+ *        template<typename SigProcInputTraits>
  *        struct MyDataHandler {
  *           static void exec(ArgA a, ArgB b); // you can specify any number of args
  *        };
@@ -49,13 +49,13 @@ namespace sigproc {
  *
  * @param DataFactoryTraits Allows customisation for setting the mappings between
  *        the number of bits, the numdeb of IF streams, and the types that they
- *        should be represented by. If you create custum types see the DefaultDataFactoryTraits
+ *        should be represented by. If you create custom types see the DefaultDataFactoryTraits
  *        for more information on how to modify.
  *
  * @details
  *        As the data types have no base classes we cannot follow
  *        the normal factory pattern of returning types on request.
- *        Instead we can determine the type and pass this on to a teplated function
+ *        Instead we can determine the type and pass this on to a templated function
  *        to do the work with that data type.
  *        The code below uses the header info to determine the type
  *        @code
@@ -89,7 +89,7 @@ class DataFactory
 
             /**
              * @brief The type of Stream Adapter required to interpret input streams
-             * @details Stream Adapter that is combaitble with the sigproc header for both reading and writing
+             * @details Stream Adapter that is compatible with the sigproc header for both reading and writing
              */
             typedef AdapterT Adapter;
         };
