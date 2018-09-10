@@ -58,7 +58,7 @@ class SliceIteratorBase : public SliceIteratorBase<DerivedType, SliceType, is_co
         typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
 
     protected:
-        typedef typename BaseT::ImplT ImplT; // to allow friend decalariont
+        typedef typename BaseT::ImplT ImplT; // to allow friend declaration
 
     public:
         typedef typename std::iterator_traits<parent_iterator>::value_type value_type;
@@ -91,7 +91,7 @@ class SliceIteratorBase<DerivedType, SliceType, is_const, 1>
         typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
 
     protected:
-        typedef SelfType ImplT; // to allow friend decalariont
+        typedef SelfType ImplT; // to allow friend declaration
 
     public:
         typedef typename std::iterator_traits<parent_iterator>::value_type value_type;
@@ -116,7 +116,7 @@ class SliceIteratorBase<DerivedType, SliceType, is_const, 1>
         /// dereference operator
         const reference operator*() const;
 
-        /// create an end iterator for the givn slice
+        /// create an end iterator for the given slice
         static DerivedType create_end(SliceT& slice);
 
         difference_type operator-(SelfType const&) const;
@@ -131,7 +131,7 @@ class SliceIterator : public SliceIteratorBase<SliceIterator<SliceType, is_const
         typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
 
     public:
-        // made availabel for Fried definitions in Slice class
+        // made available for Fried definitions in Slice class
         typedef SliceIteratorBase<SliceIterator<SliceType, is_const>, SliceType, is_const, SliceType::rank> BaseT;
         typedef SliceIteratorBase<SliceIterator<SliceType, is_const>, SliceType, is_const, 1> ImplT;
 
