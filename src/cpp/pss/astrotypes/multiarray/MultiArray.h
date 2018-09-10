@@ -35,7 +35,7 @@ namespace astrotypes {
 /**
  * @brief
  *      template classes to specify multiple dimesion arrays with explicit dimension types
- * @tparam T the type fo object to be stored in the array (e.g. float, int, Stikes, etc)
+ * @tparam T the type fo object to be stored in the array (e.g. float, int, Stokes, etc)
  *
  * @details
  */
@@ -65,7 +65,7 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
 
         /**
          * @brief iterators acting over he entire data structure
-         * @detilas useful for e.g std::copy of the entire structure
+         * @details useful for e.g std::copy of the entire structure
          *          without inspection
          */
         iterator begin();
@@ -81,7 +81,7 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
          *    This can be used to access elements in a similar way to c style arrays.
          *
          * @code
-         * MultiArray<int, DimA, DimB> my_ulti_array(...);
+         * MultiArray<int, DimA, DimB> my_multi_array(...);
          * for(DimensionIndex<DimA> i(0); i < my_multi_array.size<DimA>(); ++i)
          * {
          *     for(DimensionIndex<DimB> j(0); j < my_multi_array.size<DimB>(); ++j) 
@@ -143,7 +143,7 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
         bool operator==(MultiArray const&) const;
 
         /**
-         * @brief return true if the sizes of each dimension are quivalent
+         * @brief return true if the sizes of each dimension are equivalent
          */
         bool equal_size(MultiArray const&) const;
         
@@ -204,7 +204,7 @@ class MultiArray<Alloc, T, FirstDimension>
         size() const;
 
         /**
-         * @brief the total size of data in all dimesions
+         * @brief the total size of data in all dimensions
          */
         std::size_t data_size() const;
 
@@ -217,7 +217,7 @@ class MultiArray<Alloc, T, FirstDimension>
         bool operator==(MultiArray const&) const;
 
         /**
-         * @brief return true if the sizes of each dimension are quivalent
+         * @brief return true if the sizes of each dimension are equivalent
          */
         bool equal_size(MultiArray const&) const;
 
