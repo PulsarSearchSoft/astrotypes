@@ -96,7 +96,7 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         static constexpr std::size_t rank = 1 + sizeof...(Dimensions);
 
         /**
-         * @brief the total number of data memebers in this slice
+         * @brief the total number of data members in this slice
          */
         std::size_t data_size() const;
 
@@ -106,7 +106,7 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
          *      Slice<DimesionA, DimensionB> slice(...some initialisers...);
          *      DimensionSize<DimensionA> size_of_A = slice.size<DimensionA>();
          *      DimensionSize<DimensionB> size_of_B = slice.size<DimensionB>();
-         *      // note you can rmeomve the dimension tagging on the DimesionSize
+         *      // note you can remove the dimension tagging on the DimesionSize
          *      // objects for compatibilty with less strongly types libs
          *      // with a static_cast
          *      std::size_t size_A_as_size_t = static_cast<std::size_t>(size_of_A);
@@ -144,7 +144,7 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
 
         /**
          * @brief Take a sub-slice from this slice
-         * @params ipass a DimensionSpan<Dimension> object for each dimension
+         * @params pass a DimensionSpan<Dimension> object for each dimension
          *         you wish to restrict.
          *         Span indexes are relative to Slice boundary, not the parent
          */
@@ -194,7 +194,7 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         // return the size of memory occupied by the lowest dimension
         std::size_t contiguous_span() const;
 
-        // reeturn the span of all lower dimensions than this one (i.e an index of +1 in this dimension)
+        // return the span of all lower dimensions than this one (i.e an index of +1 in this dimension)
         std::size_t base_span() const;
         std::size_t diff_base_span() const;
 
@@ -278,19 +278,19 @@ class Slice<is_const, ParentT, Dimension>
         static constexpr std::size_t rank = 1;
 
         /**
-         * @brief the total number of data memebers in this slice
+         * @brief the total number of data members in this slice
          */
         std::size_t data_size() const;
 
         /**
-         * @ brief return the size of the slice in the specified dimension
+         * @brief return the size of the slice in the specified dimension
          */
         template<typename Dim>
         typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimension>>::type
         size() const;
 
         /**
-         * @ brief return the size of the slice in the specified dimension (will always be zero)
+         * @brief return the size of the slice in the specified dimension (will always be zero)
          */
         template<typename Dim>
         constexpr
@@ -300,7 +300,7 @@ class Slice<is_const, ParentT, Dimension>
 
         /**
          * @brief return the size of the slice in the specified dimension (will always be one)
-         * @detials case where the Dim is not represented ecxplicitly by the Slice, but by the Parent
+         * @details case where the Dim is not represented explicitly by the Slice, but by the Parent
          */
         template<typename Dim>
         constexpr
