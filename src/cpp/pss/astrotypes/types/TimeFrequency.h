@@ -34,7 +34,7 @@ namespace astrotypes {
 
 /**
  * @brief
- *       A template class representing values associated with a time and frequecny
+ *       A template class representing values associated with a time and frequency
  *       such as Stokes values or voltages.
  *
  * @details
@@ -59,7 +59,7 @@ class TimeFrequency : public MultiArray<Alloc, T, units::Time, units::Frequency>
         ~TimeFrequency();
 
         /// @brief return a single spectrum from the specified offset
-        //  @detials the type returned is a MultiArray @class Slice with all
+        //  @details the type returned is a MultiArray @class Slice with all
         //           the features of that available;
         //  @example
         //  @code
@@ -73,7 +73,7 @@ class TimeFrequency : public MultiArray<Alloc, T, units::Time, units::Frequency>
         //  std::fill(spectrum.begin(), spectra.end(), 100U);
         //
         //  // use the  [] interface to access a particular element
-        //  spectrum[DimensionIndex<Frequency>(7)] += 1; // modify the 8th channel value in thie specturm
+        //  spectrum[DimensionIndex<Frequency>(7)] += 1; // modify the 8th channel value in this spectrum
         //
         //  @endcode
         //
@@ -81,7 +81,7 @@ class TimeFrequency : public MultiArray<Alloc, T, units::Time, units::Frequency>
         ConstSpectra spectrum(std::size_t offset) const;
 
         /// retrun a single channel across all time samples
-        //  @detials the type returned is a MultiArray @class Slice with all
+        //  @details the type returned is a MultiArray @class Slice with all
         //           the features of that available;
         //  @example
         //  @code
@@ -103,7 +103,7 @@ class TimeFrequency : public MultiArray<Alloc, T, units::Time, units::Frequency>
 
 /**
  * @brief
- *       A template class representing values associated with a time and frequecny
+ *       A template class representing values associated with a time and frequency
  *       such as Stokes values or voltages.
  *
  * @details
@@ -130,7 +130,7 @@ class FrequencyTime : public MultiArray<Alloc, T, units::Frequency, units::Time>
                      , DimensionSize<units::Frequency> = DimensionSize<units::Frequency>(0));
         ~FrequencyTime();
 
-        /// retrun a single channel across all time samples
+        /// @brief return a single channel across all time samples
         Channel channel(std::size_t channel_number);
         ConstChannel channel(std::size_t channel_number) const;
 
