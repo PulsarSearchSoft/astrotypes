@@ -36,7 +36,7 @@ namespace astrotypes {
  * @details
  * @code
  * bool   flags[100];
- * MutliContainer<2, int> c1(10, 10);
+ * MultiContainer<2, int> c1(10, 10);
  * auto im = make_IndexMapper(flags, c1);
  *
  * auto it = c1.begin();
