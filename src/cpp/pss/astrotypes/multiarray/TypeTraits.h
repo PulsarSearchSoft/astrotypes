@@ -49,7 +49,7 @@ struct And<std::true_type, std::true_type> : public std::true_type
  * @endcode
  *
  * @details
- * provide a specialisation of this class to inherit from std::true_type if it hss the specified dimension
+ * provide a specialisation of this class to inherit from std::true_type if it has the specified dimension
  */
 template<typename T, typename Dimension>
 struct has_dimension : public std::false_type
