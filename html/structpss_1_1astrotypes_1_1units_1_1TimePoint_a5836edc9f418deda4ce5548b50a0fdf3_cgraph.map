@@ -1,0 +1,4 @@
+<map id="pss::astrotypes::units::TimePoint::operator+=" name="pss::astrotypes::units::TimePoint::operator+=">
+<area shape="rect" id="node2" href="$namespaceboost_1_1units.html#a409a69b43d8752ca1f16c35352e316cd" title="boost::units::operator+=" alt="" coords="214,12,376,37"/>
+<area shape="rect" id="node3" href="$namespacepss_1_1astrotypes_1_1units.html#a3394ca2076334f38c8468dbf77b3c12d" title="Mimic the std::duration_cast to convert to/from boost::units::quantity&lt;time, X&gt; tyeps. " alt="" coords="424,5,571,44"/>
+</map>

@@ -1,5 +1,5 @@
 <map id="pss::astrotypes::test::TEST_F" name="pss::astrotypes::test::TEST_F">
 <area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1TimeFrequency.html#aa2c013a93738d1f0634826d70d332cd3" title="return a single spectrum from the specified offset " alt="" coords="193,5,404,44"/>
-<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1Slice.html#aa6a6c77d9a7eb2da02e5bdda1e3f7248" title="pss::astrotypes::Slice\l::cbegin" alt="" coords="225,68,372,107"/>
-<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1Slice.html#a2aa3cdfdef352a1d7cc19e8b5a86f81d" title="pss::astrotypes::Slice\l::cend" alt="" coords="225,131,372,169"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1Slice.html#ab94a8b2732192206cdbd218854b0e162" title="pss::astrotypes::Slice\l::cbegin" alt="" coords="225,68,372,107"/>
+<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1Slice.html#ada4ff220dfc9057aae9d21b873654da6" title="pss::astrotypes::Slice\l::cend" alt="" coords="225,131,372,169"/>
 </map>

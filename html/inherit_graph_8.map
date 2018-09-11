@@ -1,4 +1,3 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$structpss_1_1astrotypes_1_1FreqQuantity.html" title="Frequency Quantity. " alt="" coords="122,5,318,44"/>
-<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1TimeQuantity.html" title="Second data type. " alt="" coords="121,68,319,107"/>
+<area shape="rect" id="node1" href="$classpss_1_1astrotypes_1_1DataBuffer.html" title="a std::vector that does not initialise its members when they are plain old data (i.e. float, int,...) " alt="" coords="5,5,187,44"/>
 </map>

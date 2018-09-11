@@ -1,0 +1,3 @@
+<map id="pss::astrotypes::units::Quantity&lt; TimeUnit, NumericalRep, typename std::enable_if&lt; boost::units::is_unit_of_dimension&lt; TimeUnit, boost::units::time_dimension &gt;::value &gt;::type &gt;::operator chrono_duration const &amp;" name="pss::astrotypes::units::Quantity&lt; TimeUnit, NumericalRep, typename std::enable_if&lt; boost::units::is_unit_of_dimension&lt; TimeUnit, boost::units::time_dimension &gt;::value &gt;::type &gt;::operator chrono_duration const &amp;">
+<area shape="rect" id="node2" href="$namespacepss_1_1astrotypes_1_1units.html#a3394ca2076334f38c8468dbf77b3c12d" title="Mimic the std::duration_cast to convert to/from boost::units::quantity&lt;time, X&gt; tyeps. " alt="" coords="280,45,427,84"/>
+</map>

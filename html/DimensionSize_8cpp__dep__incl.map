@@ -3,15 +3,12 @@
 <area shape="rect" id="node3" href="$DimensionIndex_8h.html" title="src/cpp/pss/astrotypes\l/multiarray/DimensionIndex.h" alt="" coords="483,199,677,237"/>
 <area shape="rect" id="node4" href="$DimensionSpan_8h.html" title="src/cpp/pss/astrotypes\l/multiarray/DimensionSpan.h" alt="" coords="350,292,542,331"/>
 <area shape="rect" id="node7" href="$MultiArray_8h.html" title="src/cpp/pss/astrotypes\l/multiarray/MultiArray.h" alt="" coords="636,465,794,504"/>
-<area shape="rect" id="node16" href="$DimensionSizeTest_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/test/src/Dimension\lSizeTest.cpp" alt="" coords="753,192,950,244"/>
+<area shape="rect" id="node13" href="$DimensionSizeTest_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/test/src/Dimension\lSizeTest.cpp" alt="" coords="753,192,950,244"/>
 <area shape="rect" id="node5" href="$Slice_8h.html" title="src/cpp/pss/astrotypes\l/multiarray/Slice.h" alt="" coords="214,379,368,417"/>
 <area shape="rect" id="node6" href="$Slice_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/detail/Slice.cpp" alt="" coords="5,465,182,504"/>
-<area shape="rect" id="node14" href="$SliceIterator_8h.html" title="src/cpp/pss/astrotypes\l/multiarray/SliceIterator.h" alt="" coords="207,465,376,504"/>
-<area shape="rect" id="node15" href="$SliceTest_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/test/src/SliceTest.cpp" alt="" coords="400,465,612,504"/>
+<area shape="rect" id="node11" href="$SliceIterator_8h.html" title="src/cpp/pss/astrotypes\l/multiarray/SliceIterator.h" alt="" coords="207,465,376,504"/>
+<area shape="rect" id="node12" href="$SliceTest_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/test/src/SliceTest.cpp" alt="" coords="400,465,612,504"/>
 <area shape="rect" id="node8" href="$MultiArrayTest_8cpp.html" title="src/cpp/pss/astrotypes\l/multiarray/test/src/MultiArray\lTest.cpp" alt="" coords="517,552,711,604"/>
 <area shape="rect" id="node9" href="$TimeFrequency_8h.html" title="src/cpp/pss/astrotypes\l/types/TimeFrequency.h" alt="" coords="735,559,898,597"/>
-<area shape="rect" id="node10" href="$SigProcHeader_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/SigProcHeader.h" alt="" coords="606,659,779,697"/>
-<area shape="rect" id="node12" href="$SigProcHeaderTest_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/test/src/SigProcHeader\lTest.cpp" alt="" coords="712,752,921,804"/>
-<area shape="rect" id="node13" href="$TimeFrequencyTest_8cpp.html" title="src/cpp/pss/astrotypes\l/types/test/src/TimeFrequency\lTest.cpp" alt="" coords="854,652,1054,704"/>
-<area shape="rect" id="node11" href="$src_2SigProcHeader_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/src/SigProcHeader.cpp" alt="" coords="480,759,689,797"/>
+<area shape="rect" id="node10" href="$TimeFrequencyTest_8cpp.html" title="src/cpp/pss/astrotypes\l/types/test/src/TimeFrequency\lTest.cpp" alt="" coords="717,652,916,704"/>
 </map>

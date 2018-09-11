@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['view_2ecpp',['View.cpp',['../View_8cpp.html',1,'']]],
-  ['view_2eh',['View.h',['../View_8h.html',1,'']]],
-  ['viewiterator_2ecpp',['ViewIterator.cpp',['../ViewIterator_8cpp.html',1,'']]],
-  ['viewiterator_2eh',['ViewIterator.h',['../ViewIterator_8h.html',1,'']]]
+  ['reducedrankslice_2ecpp',['ReducedRankSlice.cpp',['../ReducedRankSlice_8cpp.html',1,'']]],
+  ['reducedrankslice_2eh',['ReducedRankSlice.h',['../ReducedRankSlice_8h.html',1,'']]],
+  ['requirements_2emd',['requirements.md',['../requirements_8md.html',1,'']]]
 ];

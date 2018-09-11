@@ -1,6 +1,3 @@
 <map id="src/cpp/pss/astrotypes/types/TimeFrequency.h" name="src/cpp/pss/astrotypes/types/TimeFrequency.h">
-<area shape="rect" id="node2" href="$SigProcHeader_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/SigProcHeader.h" alt="" coords="131,99,304,137"/>
-<area shape="rect" id="node4" href="$SigProcHeaderTest_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/test/src/SigProcHeader\lTest.cpp" alt="" coords="237,192,446,244"/>
-<area shape="rect" id="node5" href="$TimeFrequencyTest_8cpp.html" title="src/cpp/pss/astrotypes\l/types/test/src/TimeFrequency\lTest.cpp" alt="" coords="379,92,578,144"/>
-<area shape="rect" id="node3" href="$src_2SigProcHeader_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/src/SigProcHeader.cpp" alt="" coords="5,199,213,237"/>
+<area shape="rect" id="node2" href="$TimeFrequencyTest_8cpp.html" title="src/cpp/pss/astrotypes\l/types/test/src/TimeFrequency\lTest.cpp" alt="" coords="5,92,205,144"/>
 </map>

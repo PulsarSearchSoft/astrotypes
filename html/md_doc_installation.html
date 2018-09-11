@@ -43,6 +43,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -83,7 +84,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="Installation"></a>
 Installation</h1>
-<h2>cmake</h2>
+<h2>Header Only Library</h2>
+<p>astrotypes is a header only library and so installation is a case of using <code>#include</code> directives and setting the -I option on your compiler to point to the astrotypes headers install location. Note that the <a class="el" href="md_doc_installation.html#Dependencies">dependencies</a> will also need to be installed.</p>
+<h3>Example: including astrotypes using git subtrees</h3>
+<p>If you are using git to mamange your repository one of the many strategies available is called subtrees. Although we provide a subtree example we do not necessarily condone its use. Each stategy has its own merits and compromises and the user should satisfy themselves as to the most appropriate one for their project.</p>
+<p>From the top level of your project, create a directory for putting in thirdparty dependencies. </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;mkdir thirdparty</div>
+</div><!-- fragment --><p> Now use git subtrees to install astrotypes </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;git subtree add --prefix thirdparty/astrotypes https://github.com/PulsarSearchSoft/astrotypes.git master --squash</div>
+</div><!-- fragment --><p>Any time you need to update the version of astrotypes you can use: </p><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;git subtree pull --prefix thirdparty/astrotypes https://github.com/PulsarSearchSoft/astrotypes.git master --squash</div>
+</div><!-- fragment --><p>The only thing left to do is to update your build system so that your thirdparty directory, and the required dependencies are added to the include path.</p>
+<h2>Building the unit tests and examples: cmake</h2>
 <p>Cmake is a widely used, platform and toolchain agnostic build tool. One of the features of cmake is that it provides out of source builds so you don't mix up build products (libraries, binaries, etc) from the source code. This is very powerful in other ways, you may want to build the same source using different compilers and compare the results.</p>
 <p>Configuring your build with cmake:</p><ul>
 <li>create a directory for your build products <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;mkdir build</div>
@@ -98,10 +107,12 @@ Installation</h1>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;make</div>
 </div><!-- fragment --><p>If you want to see whats going on under the hood you can run</p>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;make VERBOSE=1</div>
-</div><!-- fragment --><h2>Dependencies</h2>
+</div><!-- fragment --><h1><a class="anchor" id="Dependencies"></a>
+Dependencies</h1>
 <h3>Boost</h3>
+<p>Boost Website: <a href="https://www.boost.org">https://www.boost.org</a></p>
 <p>This project requires the boost_units library. You can use your local, or system installation of boost libs for this, however for convenience we also provide a packaged version of boost_units (and its dependencies) in the thirdparty directory of this repository.</p>
-<p>By default cmake will look for boost in the following order:</p><ul>
+<p>By default the cmake for building the tests and examples will look for boost in the following order:</p><ul>
 <li>User defined variables: <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;-DBoost_ROOT=&lt;path_to_boost_root&gt; </div>
 </div><!-- fragment --> or <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;-DBoost_INCLUDE_DIRS=&lt;path_to_boost_includes&gt; &amp; Boost_LIBRARY_DIRS=&lt;path_to_boost_libs&gt;</div>
 </div><!-- fragment --></li>
@@ -124,7 +135,7 @@ Installation</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 12 2018 09:43:20 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Sep 11 2018 11:44:38 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -43,6 +43,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -96,29 +97,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Time.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;boost/units/systems/si/time.hpp&gt;</code><br />
-<code>#include &lt;boost/units/quantity.hpp&gt;</code><br />
-<code>#include &lt;boost/units/make_scaled_unit.hpp&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="TimeUnits_8h_source.html">TimeUnits.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="BoostDurationCast_8h_source.html">BoostDurationCast.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="Quantity_8h_source.html">Quantity.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="JulianClock_8h_source.html">JulianClock.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="J2000Clock_8h_source.html">J2000Clock.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ModifiedJulianClock_8h_source.html">ModifiedJulianClock.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="cmath_8h_source.html">cmath.h</a>&quot;</code><br />
 <code>#include &lt;chrono&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Time.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="Time_8h__incl.png" border="0" usemap="#src_2cpp_2pss_2astrotypes_2units_2Time_8h" alt=""/></div>
+<map name="src_2cpp_2pss_2astrotypes_2units_2Time_8h" id="src_2cpp_2pss_2astrotypes_2units_2Time_8h">
+<area shape="rect" id="node2" href="TimeUnits_8h.html" title="TimeUnits.h" alt="" coords="43,532,135,557"/><area shape="rect" id="node6" href="BoostDurationCast_8h.html" title="BoostDurationCast.h" alt="" coords="184,459,328,484"/><area shape="rect" id="node9" href="Quantity_8h.html" title="Quantity.h" alt="" coords="666,239,747,264"/><area shape="rect" id="node11" href="JulianClock_8h.html" title="JulianClock.h" alt="" coords="1194,165,1294,191"/><area shape="rect" id="node20" href="J2000Clock_8h.html" title="J2000Clock.h" alt="" coords="1313,92,1415,117"/><area shape="rect" id="node21" href="ModifiedJulianClock_8h.html" title="ModifiedJulianClock.h" alt="" coords="1087,92,1238,117"/><area shape="rect" id="node22" href="cmath_8h.html" title="cmath.h" alt="" coords="1439,92,1508,117"/><area shape="rect" id="node8" href="BoostDurationCast_8cpp.html" title="detail/BoostDurationCast.cpp" alt="" coords="159,532,353,557"/><area shape="rect" id="node12" href="DefineClock_8h.html" title="DefineClock.h" alt="" coords="1103,239,1207,264"/><area shape="rect" id="node13" href="TimePoint_8h.html" title="TimePoint.h" alt="" coords="841,312,933,337"/><area shape="rect" id="node16" href="TimePoint_8cpp.html" title="detail/TimePoint.cpp" alt="" coords="816,385,958,411"/></map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="Time_8h__dep__incl.png" border="0" usemap="#src_2cpp_2pss_2astrotypes_2units_2Time_8hdep" alt=""/></div>
 <map name="src_2cpp_2pss_2astrotypes_2units_2Time_8hdep" id="src_2cpp_2pss_2astrotypes_2units_2Time_8hdep">
-<area shape="rect" id="node2" href="TimeFrequency_8h.html" title="src/cpp/pss/astrotypes\l/types/TimeFrequency.h" alt="" coords="260,92,423,131"/><area shape="rect" id="node7" href="DataRate_8h.html" title="src/cpp/pss/astrotypes\l/units/DataRate.h" alt="" coords="447,92,601,131"/><area shape="rect" id="node8" href="TimeTest_8h.html" title="src/cpp/pss/astrotypes\l/units/test/TimeTest.h" alt="" coords="624,92,778,131"/><area shape="rect" id="node10" href="UtilitiesTest_8cpp.html" title="src/cpp/pss/astrotypes\l/units/test/src/UtilitiesTest.cpp" alt="" coords="802,92,998,131"/><area shape="rect" id="node3" href="SigProcHeader_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/SigProcHeader.h" alt="" coords="131,185,304,224"/><area shape="rect" id="node5" href="SigProcHeaderTest_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/test/src/SigProcHeader\lTest.cpp" alt="" coords="237,279,446,331"/><area shape="rect" id="node6" href="TimeFrequencyTest_8cpp.html" title="src/cpp/pss/astrotypes\l/types/test/src/TimeFrequency\lTest.cpp" alt="" coords="379,179,578,231"/><area shape="rect" id="node4" href="src_2SigProcHeader_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/src/SigProcHeader.cpp" alt="" coords="5,285,213,324"/><area shape="rect" id="node9" href="TimeTest_8cpp.html" title="src/cpp/pss/astrotypes\l/units/test/src/TimeTest.cpp" alt="" coords="610,185,793,224"/></map>
+<area shape="rect" id="node2" href="TimeFrequency_8h.html" title="src/cpp/pss/astrotypes\l/types/TimeFrequency.h" alt="" coords="24,92,186,131"/><area shape="rect" id="node4" href="DataRate_8h.html" title="src/cpp/pss/astrotypes\l/units/DataRate.h" alt="" coords="211,92,365,131"/><area shape="rect" id="node5" href="TimeTest_8h.html" title="src/cpp/pss/astrotypes\l/units/test/TimeTest.h" alt="" coords="388,92,542,131"/><area shape="rect" id="node7" href="UtilitiesTest_8cpp.html" title="src/cpp/pss/astrotypes\l/units/test/src/UtilitiesTest.cpp" alt="" coords="566,92,762,131"/><area shape="rect" id="node8" href="Units_8h.html" title="src/cpp/pss/astrotypes\l/units/Units.h" alt="" coords="785,92,939,131"/><area shape="rect" id="node3" href="TimeFrequencyTest_8cpp.html" title="src/cpp/pss/astrotypes\l/types/test/src/TimeFrequency\lTest.cpp" alt="" coords="5,179,205,231"/><area shape="rect" id="node6" href="TimeTest_8cpp.html" title="src/cpp/pss/astrotypes\l/units/test/src/TimeTest.cpp" alt="" coords="374,185,556,224"/><area shape="rect" id="node9" href="UnitsTest_8cpp.html" title="src/cpp/pss/astrotypes\l/units/test/src/UnitsTest.cpp" alt="" coords="771,185,954,224"/></map>
 </div>
 </div>
 <p><a href="Time_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1TimeQuantity.html">pss::astrotypes::TimeQuantity&lt; NumericalRep, TimeUnit &gt;</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Second data type.  <a href="classpss_1_1astrotypes_1_1TimeQuantity.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1units_1_1Quantity_3_01TimeUnit_00_01NumericalRep_00_01typename_01std_155cc2de38ca4ad11883bae649422c99e.html">pss::astrotypes::units::Quantity&lt; TimeUnit, NumericalRep, typename std::enable_if&lt; boost::units::is_unit_of_dimension&lt; TimeUnit, boost::units::time_dimension &gt;::value &gt;::type &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specialisation of <a class="el" href="classpss_1_1astrotypes_1_1units_1_1Quantity.html">Quantity</a> unit for time dimension types.  <a href="classpss_1_1astrotypes_1_1units_1_1Quantity_3_01TimeUnit_00_01NumericalRep_00_01typename_01std_155cc2de38ca4ad11883bae649422c99e.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1common__type_3_01boost_1_1units_1_1quantity_3_01Unit_00_01Rep_01_4_00_01T2_01_4.html">std::common_type&lt; boost::units::quantity&lt; Unit, Rep &gt;, T2 &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structstd_1_1common__type_3_01T2_00_01boost_1_1units_1_1quantity_3_01Unit_00_01Rep_01_4_01_4.html">std::common_type&lt; T2, boost::units::quantity&lt; Unit, Rep &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="namespaces"></a>
@@ -127,39 +138,104 @@ Namespaces</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:namespacepss_1_1astrotypes"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html">pss::astrotypes</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacepss_1_1astrotypes_1_1units"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1units.html">pss::astrotypes::units</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespacestd_1_1chrono"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacestd_1_1chrono.html">std::chrono</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceboost"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboost.html">boost</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceboost_1_1units"><td class="memItemLeft" align="right" valign="top"> &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1units.html">boost::units</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a4d42a70baae22926695ecfb33fd7975b"><td class="memItemLeft" align="right" valign="top">typedef boost::units::time_dimension&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html#a4d42a70baae22926695ecfb33fd7975b">pss::astrotypes::Time</a></td></tr>
-<tr class="separator:a4d42a70baae22926695ecfb33fd7975b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1dfdca44c829f9049ec3bcfd0dba3e7e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html#a1dfdca44c829f9049ec3bcfd0dba3e7e">pss::astrotypes::Second</a> = boost::units::si::time</td></tr>
-<tr class="separator:a1dfdca44c829f9049ec3bcfd0dba3e7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae159cf12602a5dc1dedfcf6310765688"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html#ae159cf12602a5dc1dedfcf6310765688">pss::astrotypes::Seconds</a> = Second</td></tr>
-<tr class="separator:ae159cf12602a5dc1dedfcf6310765688"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af420daae44c139b6db526a1c4a3ee103"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html#af420daae44c139b6db526a1c4a3ee103">pss::astrotypes::MilliSecond</a> = boost::units::make_scaled_unit&lt; boost::units::si::time, boost::units::scale&lt; 10, boost::units::static_rational&lt;-3 &gt;&gt;&gt;::type</td></tr>
-<tr class="separator:af420daae44c139b6db526a1c4a3ee103"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2da380f0777c9f0c53a7d6051b41e0ae"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html#a2da380f0777c9f0c53a7d6051b41e0ae">pss::astrotypes::MilliSeconds</a> = MilliSecond</td></tr>
-<tr class="separator:a2da380f0777c9f0c53a7d6051b41e0ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46e26919694720979b94d0dcfe87d869"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html#a46e26919694720979b94d0dcfe87d869">pss::astrotypes::MicroSecond</a> = boost::units::make_scaled_unit&lt; boost::units::si::time, boost::units::scale&lt; 10, boost::units::static_rational&lt;-6 &gt;&gt;&gt;::type</td></tr>
-<tr class="separator:a46e26919694720979b94d0dcfe87d869"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d16833374d0524989ea443b7792a6da"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html#a3d16833374d0524989ea443b7792a6da">pss::astrotypes::MicroSeconds</a> = MicroSecond</td></tr>
-<tr class="separator:a3d16833374d0524989ea443b7792a6da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae702614038e6ff4e1c551b610316ed67"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html#ae702614038e6ff4e1c551b610316ed67">pss::astrotypes::NanoSecond</a> = boost::units::make_scaled_unit&lt; boost::units::si::time, boost::units::scale&lt; 10, boost::units::static_rational&lt;-9 &gt;&gt;&gt;::type</td></tr>
-<tr class="separator:ae702614038e6ff4e1c551b610316ed67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8967a560638eb087b5863ebd71920b22"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html#a8967a560638eb087b5863ebd71920b22">pss::astrotypes::NanoSeconds</a> = NanoSecond</td></tr>
-<tr class="separator:a8967a560638eb087b5863ebd71920b22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abade66c850c8897ac4d3151d258f0f86"><td class="memItemLeft" align="right" valign="top">typedef boost::units::time_dimension&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1units.html#abade66c850c8897ac4d3151d258f0f86">pss::astrotypes::units::Time</a></td></tr>
+<tr class="separator:abade66c850c8897ac4d3151d258f0f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90155aa1b894468bee15585e0c2a3264"><td class="memItemLeft" align="right" valign="top">typedef JulianClock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1units.html#a90155aa1b894468bee15585e0c2a3264">pss::astrotypes::units::JulianDate</a></td></tr>
+<tr class="separator:a90155aa1b894468bee15585e0c2a3264"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ed127925577645ccf35b2eeddd5fed1"><td class="memItemLeft" align="right" valign="top">typedef ModifiedJulianClock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1units.html#a9ed127925577645ccf35b2eeddd5fed1">pss::astrotypes::units::ModifiedJulianDate</a></td></tr>
+<tr class="separator:a9ed127925577645ccf35b2eeddd5fed1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca1a3755891a0730bf19e9172f76a813"><td class="memItemLeft" align="right" valign="top">typedef ModifiedJulianClock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1units.html#aca1a3755891a0730bf19e9172f76a813">pss::astrotypes::units::MJD</a></td></tr>
+<tr class="separator:aca1a3755891a0730bf19e9172f76a813"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadfba7a02c020ba436edfbdaf1767963"><td class="memItemLeft" align="right" valign="top">typedef J2000Clock::time_point&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1units.html#aadfba7a02c020ba436edfbdaf1767963">pss::astrotypes::units::J2000</a></td></tr>
+<tr class="separator:aadfba7a02c020ba436edfbdaf1767963"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aa356e1c7fec9692fa8fca50248fb48db"><td class="memTemplParams" colspan="2">template&lt;typename DataType , typename DurationType , typename PeriodType &gt; </td></tr>
-<tr class="memitem:aa356e1c7fec9692fa8fca50248fb48db"><td class="memTemplItemLeft" align="right" valign="top">constexpr boost::units::quantity&lt; boost::units::si::time, DataType &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes.html#aa356e1c7fec9692fa8fca50248fb48db">pss::astrotypes::duration_cast</a> (const std::chrono::duration&lt; DurationType, PeriodType &gt; &amp;duration)</td></tr>
-<tr class="memdesc:aa356e1c7fec9692fa8fca50248fb48db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Mimic the std::duration_cast for boost::units::quantity.  <a href="#aa356e1c7fec9692fa8fca50248fb48db">More...</a><br /></td></tr>
-<tr class="separator:aa356e1c7fec9692fa8fca50248fb48db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9972a4c5d93d64e888f8ba409f6eaed"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:ae9972a4c5d93d64e888f8ba409f6eaed"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1chrono.html#ae9972a4c5d93d64e888f8ba409f6eaed">std::chrono::operator&lt;</a> (std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c, boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b)</td></tr>
+<tr class="separator:ae9972a4c5d93d64e888f8ba409f6eaed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb6ce5bbf547b6778f38090ab8939284"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:adb6ce5bbf547b6778f38090ab8939284"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1chrono.html#adb6ce5bbf547b6778f38090ab8939284">std::chrono::operator&gt;</a> (std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c, boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b)</td></tr>
+<tr class="separator:adb6ce5bbf547b6778f38090ab8939284"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa253712b677b7d45019d177b735a7b3"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:aaa253712b677b7d45019d177b735a7b3"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1chrono.html#aaa253712b677b7d45019d177b735a7b3">std::chrono::operator&lt;=</a> (std::chrono::duration&lt; Rep, Ratio &gt; const &amp;lhs, boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;rhs)</td></tr>
+<tr class="separator:aaa253712b677b7d45019d177b735a7b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a763e66439dd8d0193f5625b72a362b61"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:a763e66439dd8d0193f5625b72a362b61"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1chrono.html#a763e66439dd8d0193f5625b72a362b61">std::chrono::operator&gt;=</a> (std::chrono::duration&lt; Rep, Ratio &gt; const &amp;lhs, boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;rhs)</td></tr>
+<tr class="separator:a763e66439dd8d0193f5625b72a362b61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af43a9049326c97ff5562b0d8daf8ff41"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:af43a9049326c97ff5562b0d8daf8ff41"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1chrono.html#af43a9049326c97ff5562b0d8daf8ff41">std::chrono::operator==</a> (std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c, boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b)</td></tr>
+<tr class="separator:af43a9049326c97ff5562b0d8daf8ff41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9617503f49fffcc2f864465a9b9b05e"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:aa9617503f49fffcc2f864465a9b9b05e"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1chrono.html#aa9617503f49fffcc2f864465a9b9b05e">std::chrono::operator!=</a> (std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c, boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b)</td></tr>
+<tr class="separator:aa9617503f49fffcc2f864465a9b9b05e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06eabf4f570f9ddc887baabfb630a2bb"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:a06eabf4f570f9ddc887baabfb630a2bb"><td class="memTemplItemLeft" align="right" valign="top">boost::units::quantity&lt; Unit, Rep2 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1units.html#a06eabf4f570f9ddc887baabfb630a2bb">boost::units::operator+</a> (boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b, std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c)</td></tr>
+<tr class="separator:a06eabf4f570f9ddc887baabfb630a2bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7293f9a4e4e26a527a385f93f92bb17c"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:a7293f9a4e4e26a527a385f93f92bb17c"><td class="memTemplItemLeft" align="right" valign="top">boost::units::quantity&lt; Unit, Rep2 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1units.html#a7293f9a4e4e26a527a385f93f92bb17c">boost::units::operator-</a> (boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b, std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c)</td></tr>
+<tr class="separator:a7293f9a4e4e26a527a385f93f92bb17c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a409a69b43d8752ca1f16c35352e316cd"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:a409a69b43d8752ca1f16c35352e316cd"><td class="memTemplItemLeft" align="right" valign="top">boost::units::quantity&lt; Unit, Rep2 &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1units.html#a409a69b43d8752ca1f16c35352e316cd">boost::units::operator+=</a> (boost::units::quantity&lt; Unit, Rep2 &gt; &amp;b, std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c)</td></tr>
+<tr class="separator:a409a69b43d8752ca1f16c35352e316cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ae97066566cddf8558bafcb8e3c30c0"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:a0ae97066566cddf8558bafcb8e3c30c0"><td class="memTemplItemLeft" align="right" valign="top">boost::units::quantity&lt; Unit, Rep2 &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1units.html#a0ae97066566cddf8558bafcb8e3c30c0">boost::units::operator-=</a> (boost::units::quantity&lt; Unit, Rep2 &gt; &amp;b, std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c)</td></tr>
+<tr class="separator:a0ae97066566cddf8558bafcb8e3c30c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f63eaef8d3eb043b2c7c62b925010a7"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:a9f63eaef8d3eb043b2c7c62b925010a7"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1units.html#a9f63eaef8d3eb043b2c7c62b925010a7">boost::units::operator/</a> (boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b, std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c) -&gt; decltype(boost::units::quantity&lt; Unit, Rep2 &gt;()/boost::units::quantity&lt; Unit, Rep &gt;())</td></tr>
+<tr class="separator:a9f63eaef8d3eb043b2c7c62b925010a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69e6e6e9df1252f7bbdcc7b25eea768a"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:a69e6e6e9df1252f7bbdcc7b25eea768a"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1units.html#a69e6e6e9df1252f7bbdcc7b25eea768a">boost::units::operator&lt;</a> (boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b, std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c)</td></tr>
+<tr class="separator:a69e6e6e9df1252f7bbdcc7b25eea768a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77283dba63c265f12247cb00d7f726bd"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:a77283dba63c265f12247cb00d7f726bd"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1units.html#a77283dba63c265f12247cb00d7f726bd">boost::units::operator&gt;</a> (boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b, std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c)</td></tr>
+<tr class="separator:a77283dba63c265f12247cb00d7f726bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a188183501591d5546cdf3bd5bf63cd34"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:a188183501591d5546cdf3bd5bf63cd34"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1units.html#a188183501591d5546cdf3bd5bf63cd34">boost::units::operator&lt;=</a> (boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;lhs, std::chrono::duration&lt; Rep, Ratio &gt; const &amp;rhs)</td></tr>
+<tr class="separator:a188183501591d5546cdf3bd5bf63cd34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11811a5fe941d622660344a064589a00"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:a11811a5fe941d622660344a064589a00"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1units.html#a11811a5fe941d622660344a064589a00">boost::units::operator&gt;=</a> (boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;lhs, std::chrono::duration&lt; Rep, Ratio &gt; const &amp;rhs)</td></tr>
+<tr class="separator:a11811a5fe941d622660344a064589a00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af52dcf55ddd5b4dd09c328936dd17a86"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:af52dcf55ddd5b4dd09c328936dd17a86"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1units.html#af52dcf55ddd5b4dd09c328936dd17a86">boost::units::operator==</a> (boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b, std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c)</td></tr>
+<tr class="separator:af52dcf55ddd5b4dd09c328936dd17a86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addd0ff3e6dc556682c3d7a32ad803e34"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:addd0ff3e6dc556682c3d7a32ad803e34"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceboost_1_1units.html#addd0ff3e6dc556682c3d7a32ad803e34">boost::units::operator!=</a> (boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b, std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c)</td></tr>
+<tr class="separator:addd0ff3e6dc556682c3d7a32ad803e34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40381fc10222647f5939dee07514a6e4"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep &gt; </td></tr>
+<tr class="memitem:a40381fc10222647f5939dee07514a6e4"><td class="memTemplItemLeft" align="right" valign="top">std::chrono::duration&lt; Rep, Ratio &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><b>std::abs</b> (std::chrono::duration&lt; Rep, Ratio &gt; const &amp;v)</td></tr>
+<tr class="separator:a40381fc10222647f5939dee07514a6e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99d93e6aa4504c71078c4d94748ea66d"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:a99d93e6aa4504c71078c4d94748ea66d"><td class="memTemplItemLeft" align="right" valign="top">std::chrono::duration&lt; Rep, Ratio &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1chrono.html#a99d93e6aa4504c71078c4d94748ea66d">std::chrono::operator+</a> (std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c, boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b)</td></tr>
+<tr class="separator:a99d93e6aa4504c71078c4d94748ea66d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7780c114a1d2c356e0379199c769a882"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:a7780c114a1d2c356e0379199c769a882"><td class="memTemplItemLeft" align="right" valign="top">std::chrono::duration&lt; Rep, Ratio &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1chrono.html#a7780c114a1d2c356e0379199c769a882">std::chrono::operator-</a> (std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c, boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b)</td></tr>
+<tr class="separator:a7780c114a1d2c356e0379199c769a882"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecfde668629d2836393b476d5c531407"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:aecfde668629d2836393b476d5c531407"><td class="memTemplItemLeft" align="right" valign="top">std::chrono::duration&lt; Rep, Ratio &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1chrono.html#aecfde668629d2836393b476d5c531407">std::chrono::operator+=</a> (std::chrono::duration&lt; Rep, Ratio &gt; &amp;c, boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b)</td></tr>
+<tr class="separator:aecfde668629d2836393b476d5c531407"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe8c17b3587ca9f4676632ebe270ff81"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:abe8c17b3587ca9f4676632ebe270ff81"><td class="memTemplItemLeft" align="right" valign="top">std::chrono::duration&lt; Rep, Ratio &gt; &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1chrono.html#abe8c17b3587ca9f4676632ebe270ff81">std::chrono::operator-=</a> (std::chrono::duration&lt; Rep, Ratio &gt; &amp;c, boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b)</td></tr>
+<tr class="separator:abe8c17b3587ca9f4676632ebe270ff81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ad4231ce28828dc0a587e8a904ebd7e"><td class="memTemplParams" colspan="2">template&lt;typename Ratio , typename Rep , typename Unit , typename Rep2 &gt; </td></tr>
+<tr class="memitem:a0ad4231ce28828dc0a587e8a904ebd7e"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacestd_1_1chrono.html#a0ad4231ce28828dc0a587e8a904ebd7e">std::chrono::operator/</a> (std::chrono::duration&lt; Rep, Ratio &gt; const &amp;c, boost::units::quantity&lt; Unit, Rep2 &gt; const &amp;b) -&gt; decltype(boost::units::quantity&lt; Unit, Rep &gt;()/boost::units::quantity&lt; Unit, Rep2 &gt;())</td></tr>
+<tr class="separator:a0ad4231ce28828dc0a587e8a904ebd7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 12 2018 09:43:20 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Sep 11 2018 11:44:38 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

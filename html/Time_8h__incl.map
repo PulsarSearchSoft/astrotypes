@@ -1,2 +1,13 @@
 <map id="src/cpp/pss/astrotypes/units/Time.h" name="src/cpp/pss/astrotypes/units/Time.h">
+<area shape="rect" id="node2" href="$TimeUnits_8h.html" title="TimeUnits.h" alt="" coords="43,532,135,557"/>
+<area shape="rect" id="node6" href="$BoostDurationCast_8h.html" title="BoostDurationCast.h" alt="" coords="184,459,328,484"/>
+<area shape="rect" id="node9" href="$Quantity_8h.html" title="Quantity.h" alt="" coords="666,239,747,264"/>
+<area shape="rect" id="node11" href="$JulianClock_8h.html" title="JulianClock.h" alt="" coords="1194,165,1294,191"/>
+<area shape="rect" id="node20" href="$J2000Clock_8h.html" title="J2000Clock.h" alt="" coords="1313,92,1415,117"/>
+<area shape="rect" id="node21" href="$ModifiedJulianClock_8h.html" title="ModifiedJulianClock.h" alt="" coords="1087,92,1238,117"/>
+<area shape="rect" id="node22" href="$cmath_8h.html" title="cmath.h" alt="" coords="1439,92,1508,117"/>
+<area shape="rect" id="node8" href="$BoostDurationCast_8cpp.html" title="detail/BoostDurationCast.cpp" alt="" coords="159,532,353,557"/>
+<area shape="rect" id="node12" href="$DefineClock_8h.html" title="DefineClock.h" alt="" coords="1103,239,1207,264"/>
+<area shape="rect" id="node13" href="$TimePoint_8h.html" title="TimePoint.h" alt="" coords="841,312,933,337"/>
+<area shape="rect" id="node16" href="$TimePoint_8cpp.html" title="detail/TimePoint.cpp" alt="" coords="816,385,958,411"/>
 </map>

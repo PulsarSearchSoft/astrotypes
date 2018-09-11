@@ -1,12 +1,13 @@
 <map id="src/cpp/pss/astrotypes/multiarray/MultiArray.h" name="src/cpp/pss/astrotypes/multiarray/MultiArray.h">
-<area shape="rect" id="node2" href="$Slice_8h.html" title="Slice.h" alt="" coords="434,92,495,117"/>
+<area shape="rect" id="node2" href="$Slice_8h.html" title="Slice.h" alt="" coords="426,92,487,117"/>
 <area shape="rect" id="node4" href="$DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="788,312,909,337"/>
 <area shape="rect" id="node6" href="$DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="911,239,1039,264"/>
-<area shape="rect" id="node19" href="$MultiArray_8cpp.html" title="detail/MultiArray.cpp" alt="" coords="1045,92,1186,117"/>
-<area shape="rect" id="node3" href="$DimensionSpan_8h.html" title="DimensionSpan.h" alt="" coords="672,165,798,191"/>
-<area shape="rect" id="node9" href="$SliceIterator_8h.html" title="SliceIterator.h" alt="" coords="257,165,360,191"/>
+<area shape="rect" id="node20" href="$MultiArray_8cpp.html" title="detail/MultiArray.cpp" alt="" coords="1045,92,1186,117"/>
+<area shape="rect" id="node3" href="$DimensionSpan_8h.html" title="DimensionSpan.h" alt="" coords="673,165,800,191"/>
+<area shape="rect" id="node9" href="$SliceIterator_8h.html" title="SliceIterator.h" alt="" coords="198,165,301,191"/>
 <area shape="rect" id="node10" href="$SlicePosition_8h.html" title="detail/SlicePosition.h" alt="" coords="346,239,490,264"/>
-<area shape="rect" id="node16" href="$Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="456,165,567,191"/>
+<area shape="rect" id="node16" href="$TypeTraits_8h.html" title="TypeTraits.h" alt="" coords="325,165,420,191"/>
+<area shape="rect" id="node17" href="$Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="494,165,605,191"/>
 <area shape="rect" id="node8" href="$DimensionSpan_8cpp.html" title="detail/DimensionSpan.cpp" alt="" coords="610,239,786,264"/>
 <area shape="rect" id="node5" href="$DimensionSize_8cpp.html" title="detail/DimensionSize.cpp" alt="" coords="763,385,934,411"/>
 <area shape="rect" id="node7" href="$DimensionIndex_8cpp.html" title="detail/DimensionIndex.cpp" alt="" coords="933,312,1111,337"/>

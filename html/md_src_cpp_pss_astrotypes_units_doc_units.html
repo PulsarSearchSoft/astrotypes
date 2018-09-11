@@ -43,6 +43,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -102,7 +103,7 @@ Dimensions and Units</h1>
 <div class="line">FreqQuantity&lt;float&gt; doubled_freq = double_frequency(t); <span class="comment">// bug caught by the compiler</span></div>
 </div><!-- fragment --><p>So strong typing can save you and your users hours of debugging frustrating runtime errors.</p>
 <h2>Boost Quantites</h2>
-<p>The boost::units library we use is a very powerful tool that takes typing to the next level. It will perform a full dimensional analysis at compile time (i.e. no runtime cost) ensuring your variables are consistent with physics. e.g. </p><div class="fragment"><div class="line"><span class="comment">// work funtion will compile OK</span></div>
+<p>The <a class="el" href="namespaceboost_1_1units.html">boost::units</a> library we use is a very powerful tool that takes typing to the next level. It will perform a full dimensional analysis at compile time (i.e. no runtime cost) ensuring your variables are consistent with physics. e.g. </p><div class="fragment"><div class="line"><span class="comment">// work funtion will compile OK</span></div>
 <div class="line">boost::units::quantity&lt;energy&gt; work(boost::units::quantity&lt;force&gt; f, boost::units::quantity&lt;length&gt; d) {</div>
 <div class="line">    <span class="keywordflow">return</span> f * d;</div>
 <div class="line">} </div>
@@ -112,12 +113,12 @@ Dimensions and Units</h1>
 <div class="line">    <span class="keywordflow">return</span> f * d;</div>
 <div class="line">} </div>
 </div><!-- fragment --><p>The boost::units::quantity is a templated class that takes two template parameters. The first one is the unit (not just a dimension, but also the unit in that dimension e.g. seconds, milliseconds, etc). The second paramter is the actual numerical type that will be stored (float, int, unsigned, etc), with the default being a double.</p>
-<p>Our own units are based on top of the boost::units SI system of units. They are desinged to be fully comaptible with the boost::units::si system but also allow us to use std::chrono types to represent time and still benefit from all boost::units has to offer. For a full tutorial on the capailities of boost::units please refer to the boost documentation.</p>
+<p>Our own units are based on top of the <a class="el" href="namespaceboost_1_1units.html">boost::units</a> SI system of units. They are desinged to be fully comaptible with the boost::units::si system but also allow us to use <a class="el" href="namespacestd_1_1chrono.html">std::chrono</a> types to represent time and still benefit from all <a class="el" href="namespaceboost_1_1units.html">boost::units</a> has to offer. For a full tutorial on the capailities of <a class="el" href="namespaceboost_1_1units.html">boost::units</a> please refer to the boost documentation.</p>
 <h2>Some Examples</h2>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 12 2018 09:43:20 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Sep 11 2018 11:44:38 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

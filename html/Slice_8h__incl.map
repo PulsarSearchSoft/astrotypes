@@ -2,7 +2,8 @@
 <area shape="rect" id="node2" href="$DimensionSpan_8h.html" title="DimensionSpan.h" alt="" coords="217,92,343,117"/>
 <area shape="rect" id="node8" href="$SliceIterator_8h.html" title="SliceIterator.h" alt="" coords="689,92,792,117"/>
 <area shape="rect" id="node9" href="$SlicePosition_8h.html" title="detail/SlicePosition.h" alt="" coords="480,165,624,191"/>
-<area shape="rect" id="node15" href="$Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="815,92,926,117"/>
+<area shape="rect" id="node15" href="$TypeTraits_8h.html" title="TypeTraits.h" alt="" coords="816,92,910,117"/>
+<area shape="rect" id="node16" href="$Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="934,92,1045,117"/>
 <area shape="rect" id="node3" href="$DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="30,239,152,264"/>
 <area shape="rect" id="node5" href="$DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="128,165,256,191"/>
 <area shape="rect" id="node7" href="$DimensionSpan_8cpp.html" title="detail/DimensionSpan.cpp" alt="" coords="280,165,456,191"/>

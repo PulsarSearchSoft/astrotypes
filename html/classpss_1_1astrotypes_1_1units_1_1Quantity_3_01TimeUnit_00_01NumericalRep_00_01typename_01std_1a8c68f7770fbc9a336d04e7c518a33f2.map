@@ -1,0 +1,2 @@
+<map id="pss::astrotypes::units::Quantity&lt; TimeUnit, NumericalRep, typename std::enable_if&lt; boost::units::is_unit_of_dimension&lt; TimeUnit, boost::units::time_dimension &gt;::value &gt;::type &gt;" name="pss::astrotypes::units::Quantity&lt; TimeUnit, NumericalRep, typename std::enable_if&lt; boost::units::is_unit_of_dimension&lt; TimeUnit, boost::units::time_dimension &gt;::value &gt;::type &gt;">
+</map>
