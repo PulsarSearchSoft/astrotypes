@@ -56,8 +56,14 @@ struct arg_helper<T, Dim, Dims...> : public arg_helper<T, Dims...>
 };
 
 /**
+ * @class Slice
  * @brief
  *      Representation of a Slice through a Data Array
+ * @tparam ParnetT the data structure that the slice will be based on
+ * @tparam is_const true if the ParentT is const, false otherwise
+ * @tparam SliceMixin A template wrapper class around a slice that allows
+ *         you to propagate a custom interface to any slice to be consistent 
+ *         with your main data structure interface.
  * @details
  */
 struct copy_resize_construct_tag {};

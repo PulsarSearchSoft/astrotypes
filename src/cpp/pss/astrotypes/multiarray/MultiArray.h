@@ -253,14 +253,13 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         std::vector<T> _data;
 };
 
-template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension> 
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension>
 struct has_dimension<MultiArray<Alloc, T, SliceMixin, Dimension>, Dimension> : public std::true_type
 {};
 
-template<typename Alloc, typename T, template<typename> class SliceMixin, typename... Dimensions> 
-struct has_exact_dimensions<MultiArray<Alloc, T, SliceMixin, Dimensions...>, Dimensions...> : public std::true_type 
-{
-};
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename... Dimensions>
+struct has_exact_dimensions<MultiArray<Alloc, T, SliceMixin, Dimensions...>, Dimensions...> : public std::true_type
+{};
 
 } // namespace astrotypes
 } // namespace pss
