@@ -32,6 +32,11 @@
 namespace pss {
 namespace astrotypes {
     // pre declarations
+// Y   template<typename SliceType, bool is_const> class SliceIterator;
+    template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+    class Slice;
+    //template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+
     template<typename SliceType, bool is_const> class SliceIterator;
 
 } // namespace pss
@@ -137,6 +142,25 @@ class SliceIterator : public SliceIteratorBase<SliceIterator<SliceType, is_const
 
     public:
         SliceIterator(SliceT&);
+};
+
+
+template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions, bool is_const2>
+//class SliceIterator<SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>>, is_const2> : public SliceIterator<Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>, is_const2>
+class SliceIterator<SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>>, is_const2> : public SliceIteratorBase<SliceIterator<SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>>, is_const2>, Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>, is_const2, Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>::rank>
+{
+        typedef Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...> SliceType;
+        typedef typename std::conditional<is_const2, SliceType const, SliceType>::type SliceT;
+
+    public:
+        typedef SliceIteratorBase<SliceIterator<SliceMixin<SliceType>, is_const2>, SliceType, is_const2, SliceType::rank> BaseT;
+        typedef SliceIteratorBase<SliceIterator<SliceMixin<SliceType>, is_const2>, SliceType, is_const2, 1> ImplT;
+        //typedef typename SliceIterator<SliceType, is_const2>::BaseT BaseT;
+        //typedef typename SliceIterator<SliceType, is_const2>::ImplT ImplT;
+
+    public:
+        //SliceIterator(SliceT& s) : SliceIterator<SliceType, is_const2>(s) {}
+        SliceIterator(SliceT& s) : BaseT(s) {}
 };
 
 } // namespace astrotypes

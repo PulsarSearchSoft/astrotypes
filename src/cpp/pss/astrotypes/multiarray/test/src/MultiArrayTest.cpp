@@ -52,10 +52,18 @@ struct DimensionA {};
 struct DimensionB {};
 struct DimensionC {};
 
-template<typename T, typename... Dimensions>
-class TestMultiArray : public MultiArray<std::allocator<T>, T, Dimensions...>
+template<typename T>
+class TestMultiArrayMixin : public T
 {
-        typedef MultiArray<std::allocator<T>, T,  Dimensions...> BaseT;
+    public:
+        TestMultiArrayMixin(T const& t) : T(t) {}
+        using T::T;
+};
+
+template<typename T, typename... Dimensions>
+class TestMultiArray : public MultiArray<std::allocator<T>, T, TestMultiArrayMixin, Dimensions...>
+{
+        typedef MultiArray<std::allocator<T>, T, TestMultiArrayMixin,  Dimensions...> BaseT;
 
     public:
         template<typename... Args>
@@ -338,10 +346,10 @@ TEST_F(MultiArrayTest, test_three_dimension_equal_operator)
 
 TEST_F(MultiArrayTest, test_has_dimension)
 {
-    typedef MultiArray<std::allocator<unsigned>, unsigned, DimensionA> TestType1d;
+    typedef MultiArray<std::allocator<unsigned>, unsigned, TestMultiArrayMixin, DimensionA> TestType1d;
     static_assert(std::is_same<typename has_dimension<TestType1d, DimensionA>::type, std::true_type>::value, "expecting true");
     static_assert(std::is_same<typename has_dimension<TestType1d, DimensionB>::type, std::false_type>::value, "expecting false");
-    typedef MultiArray<std::allocator<unsigned>, unsigned, DimensionA, DimensionB> TestType2d;
+    typedef MultiArray<std::allocator<unsigned>, unsigned, TestMultiArrayMixin, DimensionA, DimensionB> TestType2d;
     static_assert(std::is_same<typename has_dimension<TestType2d, DimensionA>::type, std::true_type>::value, "expecting true");
     static_assert(std::is_same<typename has_dimension<TestType2d, DimensionB>::type, std::true_type>::value, "expecting true");
     static_assert(std::is_same<typename has_dimension<TestType2d, DimensionC>::type, std::false_type>::value, "expecting false");
@@ -349,8 +357,8 @@ TEST_F(MultiArrayTest, test_has_dimension)
 
 TEST_F(MultiArrayTest, test_has_exact_dimensions)
 {
-    typedef MultiArray<std::allocator<unsigned>, unsigned, DimensionA> TestType1d;
-    typedef MultiArray<std::allocator<unsigned>, unsigned, DimensionA, DimensionB> TestType2d;
+    typedef MultiArray<std::allocator<unsigned>, unsigned, TestMultiArrayMixin, DimensionA> TestType1d;
+    typedef MultiArray<std::allocator<unsigned>, unsigned, TestMultiArrayMixin, DimensionA, DimensionB> TestType2d;
 
     // 1D
     static_assert(std::is_same<typename has_exact_dimensions<TestType1d, DimensionA, DimensionB>::type, std::false_type>::value, "expecting false");

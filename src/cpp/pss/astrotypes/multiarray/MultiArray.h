@@ -39,18 +39,18 @@ namespace astrotypes {
  *
  * @details
  */
-template<typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions>
-class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... OtherDimensions>
+class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
 {
-        typedef MultiArray<Alloc, T, OtherDimensions...> BaseT;
-        typedef MultiArray<Alloc, T, FirstDimension, OtherDimensions...> SelfType;
+        typedef MultiArray<Alloc, T, SliceMixin, OtherDimensions...> BaseT;
+        typedef MultiArray<Alloc, T, SliceMixin, FirstDimension, OtherDimensions...> SelfType;
         typedef std::vector<T, Alloc> Container;
 
     public:
-        typedef Slice<false, SelfType, FirstDimension, OtherDimensions...> SliceType;
-        typedef Slice<true, SelfType, FirstDimension, OtherDimensions...> ConstSliceType;
-        typedef Slice<false, SelfType, OtherDimensions...> ReducedDimensionSliceType;
-        typedef Slice<true, SelfType, OtherDimensions...> ConstReducedDimensionSliceType;
+        typedef SliceMixin<Slice<false, SelfType, SliceMixin, FirstDimension, OtherDimensions...>> SliceType;
+        typedef SliceMixin<Slice<true, SelfType, SliceMixin, FirstDimension, OtherDimensions...>> ConstSliceType;
+        typedef SliceMixin<Slice<false, SelfType, SliceMixin, OtherDimensions...>> ReducedDimensionSliceType;
+        typedef SliceMixin<Slice<true, SelfType, SliceMixin, OtherDimensions...>> ConstReducedDimensionSliceType;
 
         typedef typename Container::iterator iterator;
         typedef typename Container::const_iterator const_iterator;
@@ -107,9 +107,15 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
 
         /**
          * @brief return a slice of the specified dimension spanning the index_range provided
-         */
         SliceType slice(DimensionSpan<FirstDimension> const& index_range);
         ConstSliceType slice(DimensionSpan<FirstDimension> const& index_range) const;
+         */
+
+        template<typename Dim, typename... Dims>
+        SliceType slice(DimensionSpan<Dim>&& range, DimensionSpan<Dims>&&...);
+
+        template<typename Dim, typename... Dims>
+        ConstSliceType slice(DimensionSpan<Dim>&& range, DimensionSpan<Dims>&&...) const;
 
         /**
          * @brief resize the array in the specified dimension
@@ -166,15 +172,15 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
 };
 
 // specialisation for single dimension arrays
-template<typename Alloc, typename T, typename FirstDimension>
-class MultiArray<Alloc, T, FirstDimension>
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
+class MultiArray<Alloc, T, SliceMixin, FirstDimension>
 {
-        typedef MultiArray<Alloc, T, FirstDimension> SelfType;
+        typedef MultiArray<Alloc, T, SliceMixin, FirstDimension> SelfType;
         typedef std::vector<T, Alloc> Container;
 
     public:
-        typedef Slice<false, SelfType, FirstDimension> SliceType;
-        typedef Slice<true, SelfType, FirstDimension> ConstSliceType;
+        typedef SliceMixin<Slice<false, SelfType, SliceMixin, FirstDimension>> SliceType;
+        typedef SliceMixin<Slice<true, SelfType, SliceMixin, FirstDimension>> ConstSliceType;
         typedef typename Container::iterator iterator;
         typedef typename Container::const_iterator const_iterator;
 
@@ -247,12 +253,12 @@ class MultiArray<Alloc, T, FirstDimension>
         std::vector<T> _data;
 };
 
-template<typename Alloc, typename T, typename Dimension> 
-struct has_dimension<MultiArray<Alloc, T, Dimension>, Dimension> : public std::true_type
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension> 
+struct has_dimension<MultiArray<Alloc, T, SliceMixin, Dimension>, Dimension> : public std::true_type
 {};
 
-template<typename Alloc, typename T, typename... Dimensions> 
-struct has_exact_dimensions<MultiArray<Alloc, T, Dimensions...>, Dimensions...> : public std::true_type 
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename... Dimensions> 
+struct has_exact_dimensions<MultiArray<Alloc, T, SliceMixin, Dimensions...>, Dimensions...> : public std::true_type 
 {
 };
 

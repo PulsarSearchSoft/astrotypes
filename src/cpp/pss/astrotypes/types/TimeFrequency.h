@@ -32,6 +32,26 @@
 namespace pss {
 namespace astrotypes {
 
+template<typename SliceType>
+class TimeFreqSlice : public SliceType
+{
+    public:
+        typedef typename SliceType::template OperatorSliceType<units::Frequency>::type Channel;
+        typedef typename SliceType::template ConstOperatorSliceType<units::Frequency>::type ConstChannel;
+        typedef typename SliceType::template OperatorSliceType<units::Time>::type Spectra;
+        typedef typename SliceType::template ConstOperatorSliceType<units::Time>::type ConstSpectra;
+
+        using SliceType::SliceType;
+
+    public:
+        TimeFreqSlice(SliceType const& t);
+        TimeFreqSlice(SliceType&& t);
+        Channel channel(std::size_t channel_number);
+        ConstChannel channel(std::size_t channel_number) const;
+        Spectra spectrum(std::size_t offset);
+        ConstSpectra spectrum(std::size_t offset) const;
+};
+
 /**
  * @brief
  *       A template class representing values associated with a time and frequecny
@@ -42,10 +62,10 @@ namespace astrotypes {
  */
 
 template<typename T, typename Alloc=std::allocator<T>>
-class TimeFrequency : public MultiArray<Alloc, T, units::Time, units::Frequency>
+class TimeFrequency : public MultiArray<Alloc, T, TimeFreqSlice, units::Time, units::Frequency>
 {
     private:
-        typedef MultiArray<Alloc, T, units::Time, units::Frequency> BaseT;
+        typedef MultiArray<Alloc, T, TimeFreqSlice, units::Time, units::Frequency> BaseT;
 
     public:
         typedef typename BaseT::ReducedDimensionSliceType Spectra;
@@ -113,16 +133,16 @@ class TimeFrequency : public MultiArray<Alloc, T, units::Time, units::Frequency>
  */
 
 template<typename T, typename Alloc=std::allocator<T>>
-class FrequencyTime : public MultiArray<Alloc, T, units::Frequency, units::Time>
+class FrequencyTime : public MultiArray<Alloc, T, TimeFreqSlice, units::Frequency, units::Time>
 {
     private:
-        typedef MultiArray<Alloc, T, units::Frequency, units::Time> BaseT;
+        typedef MultiArray<Alloc, T, TimeFreqSlice, units::Frequency, units::Time> BaseT;
 
     public:
         typedef typename BaseT::ReducedDimensionSliceType Channel;
         typedef typename BaseT::ConstReducedDimensionSliceType ConstChannel;
-        typedef Slice<false, BaseT, units::Frequency, units::Time> Spectra;
-        typedef Slice<true, BaseT, units::Frequency, units::Time> ConstSpectra;
+        typedef Slice<false, BaseT, TimeFreqSlice, units::Frequency, units::Time> Spectra;
+        typedef Slice<true, BaseT, TimeFreqSlice, units::Frequency, units::Time> ConstSpectra;
 
     public:
         FrequencyTime(DimensionSize<units::Frequency>, DimensionSize<units::Time>);
