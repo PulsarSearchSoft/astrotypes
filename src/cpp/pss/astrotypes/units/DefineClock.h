@@ -30,6 +30,11 @@
 #include "TimePoint.h"
 #include <chrono>
 
+#ifndef QUOTE
+#define Q(x) #x
+#define QUOTE(x) Q(x)
+#endif
+
 #ifndef PSS_UNITS_DEFINE_CLOCK
 #define PSS_UNITS_DEFINE_CLOCK(_name_, duration_before_epoch, _symbol_, _is_steady_) \
 namespace detail {                                          \
@@ -59,7 +64,7 @@ struct _name_ : public detail::_name_##_implementation_t<TimePoint<_name_, declt
         typedef duration::rep rep;                          \
         typedef duration::period period;                    \
         static constexpr bool is_steady = _is_steady_;      \
-        static constexpr const char* symbol="_symbol_";     \
+        static constexpr const char* symbol=QUOTE(_symbol_);\
                                                             \
 }
 
