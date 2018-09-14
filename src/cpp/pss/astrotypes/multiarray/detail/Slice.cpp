@@ -78,6 +78,18 @@ template<typename Dim, typename SliceType>
 struct ConstOperatorSliceTypeHelper;
 
 template<typename Dim, bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+struct OperatorSliceTypeHelper<Dim, SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>>> : public OperatorSliceTypeHelper<Dim, Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>>
+{
+    typedef typename OperatorSliceTypeHelper<Dim, Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>>::type type;
+};
+
+template<typename Dim, bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+struct ConstOperatorSliceTypeHelper<Dim, SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>>> : public ConstOperatorSliceTypeHelper<Dim, Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>>
+{
+    typedef typename ConstOperatorSliceTypeHelper<Dim, Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>>::type type;
+};
+
+template<typename Dim, bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 struct OperatorSliceTypeHelper<Dim, Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>> {
     typedef typename Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>::SliceType type;
 };

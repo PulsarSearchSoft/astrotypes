@@ -40,6 +40,37 @@ struct has_dimension<MultiArray<Alloc, T, SliceMixin, Dimension1, Dimensions...>
 {};
 
 ////////////////////////////////////////////////
+// type deduction helpers
+// /////////////////////////////////////////////
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dim>
+struct MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::OperatorSliceType
+{
+    typedef typename OperatorSliceTypeHelper<Dim, typename MultiArray::SliceType>::type type;
+};
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dim>
+struct MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::ConstOperatorSliceType
+{
+    typedef typename ConstOperatorSliceTypeHelper<Dim, typename MultiArray::SliceType>::type type;
+};
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension>
+template<typename Dim>
+struct MultiArray<Alloc, T, SliceMixin, Dimension>::OperatorSliceType
+{
+    typedef typename OperatorSliceTypeHelper<Dim, typename MultiArray::SliceType>::type type;
+};
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension>
+template<typename Dim>
+struct MultiArray<Alloc, T, SliceMixin, Dimension>::ConstOperatorSliceType
+{
+    typedef typename ConstOperatorSliceTypeHelper<Dim, typename MultiArray::SliceType>::type type;
+};
+
+////////////////////////////////////////////////
 // generic dimension implementation
 ////////////////////////////////////////////////
 // public interface for ensuring all is correctly sized up

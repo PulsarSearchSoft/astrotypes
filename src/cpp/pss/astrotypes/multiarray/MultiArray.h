@@ -47,6 +47,22 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         typedef std::vector<T, Alloc> Container;
 
     public:
+        /** 
+          * @brief provides a template to determine the returned type of an operator[]
+          *  @tparam Dim  the dimension that will be called
+          *  @param type The type that will we returned by the operator[DimensionIndex<Dim>]
+          */
+        template<typename Dim>
+        struct OperatorSliceType;
+
+        /** 
+          * @brief provides a template to determine the returned type of an operator[] const
+          *  @tparam Dim  the dimension that will be called
+          *  @param type The type that will we returned by the operator[DimensionIndex<Dim>]
+          */
+        template<typename Dim>
+        struct ConstOperatorSliceType;
+
         typedef SliceMixin<Slice<false, SelfType, SliceMixin, FirstDimension, OtherDimensions...>> SliceType;
         typedef SliceMixin<Slice<true, SelfType, SliceMixin, FirstDimension, OtherDimensions...>> ConstSliceType;
         typedef SliceMixin<Slice<false, SelfType, SliceMixin, OtherDimensions...>> ReducedDimensionSliceType;
@@ -179,6 +195,22 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         typedef std::vector<T, Alloc> Container;
 
     public:
+        /** 
+          * @brief provides a template to determine the returned type of an operator[]
+          *  @tparam Dim  the dimension that will be called
+          *  @param type The type that will we returned by the operator[DimensionIndex<Dim>]
+          */
+        template<typename Dim>
+        struct OperatorSliceType;
+
+        /** 
+          * @brief provides a template to determine the returned type of an operator[] const
+          *  @tparam Dim  the dimension that will be called
+          *  @param type The type that will we returned by the operator[DimensionIndex<Dim>]
+          */
+        template<typename Dim>
+        struct ConstOperatorSliceType;
+
         typedef SliceMixin<Slice<false, SelfType, SliceMixin, FirstDimension>> SliceType;
         typedef SliceMixin<Slice<true, SelfType, SliceMixin, FirstDimension>> ConstSliceType;
         typedef typename Container::iterator iterator;
