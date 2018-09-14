@@ -39,8 +39,12 @@ struct has_dimension<MultiArray<Alloc, T, SliceMixin, Dimension1, Dimensions...>
     : public has_dimension<MultiArray<Alloc, T, SliceMixin, Dimensions...>, Dimension>
 {};
 
-template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension, typename... SliceDimensions>
-struct has_dimension<SliceMixin<MultiArray<Alloc, T, SliceMixin, SliceDimensions...>>, Dimension> : public has_dimension<MultiArray<Alloc, T, SliceMixin, SliceDimensions...>, Dimension>
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename SliceDimension, typename Dimension>
+struct has_dimension<SliceMixin<MultiArray<Alloc, T, SliceMixin, SliceDimension>>, Dimension> : public has_dimension<MultiArray<Alloc, T, SliceMixin, SliceDimension>, Dimension>
+{};
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension, typename D1, typename D2, typename... SliceDimensions>
+struct has_dimension<SliceMixin<MultiArray<Alloc, T, SliceMixin, D1, D2, SliceDimensions...>>, Dimension> : public has_dimension<MultiArray<Alloc, T, SliceMixin, D1, D2, SliceDimensions...>, Dimension>
 {};
 
 ////////////////////////////////////////////////
