@@ -32,10 +32,8 @@
 namespace pss {
 namespace astrotypes {
     // pre declarations
-// Y   template<typename SliceType, bool is_const> class SliceIterator;
     template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
     class Slice;
-    //template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 
     template<typename SliceType, bool is_const> class SliceIterator;
 

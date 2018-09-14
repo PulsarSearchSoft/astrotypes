@@ -1,18 +1,18 @@
 /*
  * MIT License
- * 
+ *
  * Copyright (c) 2018 PulsarSearchSoft
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -47,7 +47,7 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         typedef std::vector<T, Alloc> Container;
 
     public:
-        /** 
+        /**
           * @brief provides a template to determine the returned type of an operator[]
           *  @tparam Dim  the dimension that will be called
           *  @param type The type that will we returned by the operator[DimensionIndex<Dim>]
@@ -55,7 +55,7 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         template<typename Dim>
         struct OperatorSliceType;
 
-        /** 
+        /**
           * @brief provides a template to determine the returned type of an operator[] const
           *  @tparam Dim  the dimension that will be called
           *  @param type The type that will we returned by the operator[DimensionIndex<Dim>]
@@ -99,7 +99,7 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
          * MultiArray<int, DimA, DimB> my_ulti_array(...);
          * for(DimensionIndex<DimA> i(0); i < my_multi_array.size<DimA>(); ++i)
          * {
-         *     for(DimensionIndex<DimB> j(0); j < my_multi_array.size<DimB>(); ++j) 
+         *     for(DimensionIndex<DimB> j(0); j < my_multi_array.size<DimB>(); ++j)
          *     {
          *          my_multi_array[i][j] = 10;
          *     }
@@ -146,11 +146,11 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
          *      @endcode
          */
         template<typename Dim>
-        typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type 
+        typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type
         size() const;
 
         template<typename Dim>
-        typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
+        typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type
         size() const;
 
         /**
@@ -167,18 +167,18 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
          * @brief return true if the sizes of each dimension are quivalent
          */
         bool equal_size(MultiArray const&) const;
-        
+
     protected:
         template<typename... Dims>
         MultiArray(typename std::enable_if<arg_helper<FirstDimension, Dims...>::value, bool>::type disable_resize_tag
                   , DimensionSize<Dims> const&...);
 
         template<typename Dimension, typename... Dims>
-        typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type 
+        typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type
         do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>&&... sizes);
 
         template<typename Dimension, typename... Dims>
-        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type 
+        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type
         do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>&&... sizes);
 
         void do_resize(std::size_t total);
@@ -195,7 +195,7 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         typedef std::vector<T, Alloc> Container;
 
     public:
-        /** 
+        /**
           * @brief provides a template to determine the returned type of an operator[]
           *  @tparam Dim  the dimension that will be called
           *  @param type The type that will we returned by the operator[DimensionIndex<Dim>]
@@ -203,7 +203,7 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         template<typename Dim>
         struct OperatorSliceType;
 
-        /** 
+        /**
           * @brief provides a template to determine the returned type of an operator[] const
           *  @tparam Dim  the dimension that will be called
           *  @param type The type that will we returned by the operator[DimensionIndex<Dim>]
@@ -226,18 +226,18 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         ~MultiArray();
 
         /**
-         * @brief 
+         * @brief
          */
         reference_type operator[](DimensionIndex<FirstDimension> index);
         const_reference_type operator[](DimensionIndex<FirstDimension> index) const;
 
         /// size
         template<typename Dim>
-        typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type 
+        typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type
         size() const;
 
         template<typename Dim>
-        typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
+        typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type
         size() const;
 
         /**
@@ -273,11 +273,11 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
 
         /// resize
         template<typename Dimension>
-        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type 
+        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type
         do_resize(std::size_t total_size, DimensionSize<Dimension> size);
 
         //template<typename Dimension>
-        //typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type 
+        //typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type
         void do_resize(std::size_t total_size);
 
     private:

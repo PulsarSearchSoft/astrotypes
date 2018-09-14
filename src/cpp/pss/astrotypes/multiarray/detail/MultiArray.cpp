@@ -163,22 +163,6 @@ MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::operator[](Dime
    return SliceType(*this, DimensionSpan<Dim>(index, DimensionSize<Dim>(1)));
 }
 
-/*
-template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
-typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::SliceType MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::slice(DimensionSpan<FirstDimension> const& index_range)
-{
-    return SliceType(*this, index_range
-                          , DimensionSpan<Dimensions>(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template size<Dimensions>()))...);
-}
-
-template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
-typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::ConstSliceType MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::slice(DimensionSpan<FirstDimension> const& index_range) const
-{
-    return ConstSliceType(*this, index_range
-                          , DimensionSpan<Dimensions>(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template size<Dimensions>()))...);
-}
-*/
-
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 template<typename Dim, typename... Dims>
 typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::ConstSliceType MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::slice(DimensionSpan<Dim>&& range, DimensionSpan<Dims>&&... ranges) const
