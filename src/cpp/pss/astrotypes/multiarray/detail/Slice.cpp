@@ -64,12 +64,12 @@ struct has_exact_dimensions<Slice<is_const, ParentT, SliceMixin, Dimension>, Dim
 };
 
 template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension>
-struct has_exact_dimensions<SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimension>>, Dimension> : public has_exact_dimensions<Slice<is_const, ParentT, SliceMixin, Dimension>>::type
+struct has_exact_dimensions<SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimension>>, Dimension> : public has_exact_dimensions<Slice<is_const, ParentT, SliceMixin, Dimension>, Dimension>::type
 {
 };
 
 template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename D1, typename D2, typename... Dimensions>
-struct has_exact_dimensions<SliceMixin<Slice<is_const, ParentT, SliceMixin, D1, D2, Dimensions...>>, D1, D2, Dimensions...> : public has_exact_dimensions<Slice<is_const, ParentT, SliceMixin, D1, D2, Dimensions...>>::type
+struct has_exact_dimensions<SliceMixin<Slice<is_const, ParentT, SliceMixin, D1, D2, Dimensions...>>, D1, D2, Dimensions...> : public has_exact_dimensions<Slice<is_const, ParentT, SliceMixin, D1, D2, Dimensions...>, D1, D2, Dimensions...>::type
 {
 };
 
