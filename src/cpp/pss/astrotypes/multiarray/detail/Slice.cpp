@@ -53,22 +53,25 @@ struct has_dimension<SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimensions.
 {
 };
 
-template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename... Dimensions>
-struct has_exact_dimensions<Slice<is_const, ParentT, SliceMixin, Dimensions...>, Dimensions...> : public std::true_type //has_exact_dimensions<ParentT>
+template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename D1, typename D2, typename... Dimensions>
+struct has_exact_dimensions<Slice<is_const, ParentT, SliceMixin, D1, D2, Dimensions...>, D1, D2, Dimensions...> : public std::true_type
 {
 };
 
-template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename... Dimensions>
-struct has_exact_dimensions<SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimensions...>>, Dimensions...> : public std::true_type //has_exact_dimensions<ParentT>
+template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension>
+struct has_exact_dimensions<Slice<is_const, ParentT, SliceMixin, Dimension>, Dimension> : public std::true_type //has_exact_dimensions<ParentT>
 {
 };
 
-/*
-template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename... SliceDimensions, typename... Dimensions>
-struct has_exact_dimensions<Slice<is_const, ParentT, SliceMixin, SliceDimensions...>, Dimensions...> : public has_exact_dimensions<ParentT, Dimensions...>
+template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension>
+struct has_exact_dimensions<SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimension>>, Dimension> : public has_exact_dimensions<Slice<is_const, ParentT, SliceMixin, Dimension>>::type
 {
 };
-*/
+
+template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename D1, typename D2, typename... Dimensions>
+struct has_exact_dimensions<SliceMixin<Slice<is_const, ParentT, SliceMixin, D1, D2, Dimensions...>>, D1, D2, Dimensions...> : public has_exact_dimensions<Slice<is_const, ParentT, SliceMixin, D1, D2, Dimensions...>>::type
+{
+};
 
 // -- determine the rwturn types of the various dimension reducing operators
 template<typename Dim, typename SliceType>
