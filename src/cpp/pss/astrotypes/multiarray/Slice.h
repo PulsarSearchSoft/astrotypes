@@ -56,19 +56,26 @@ struct arg_helper<T, Dim, Dims...> : public arg_helper<T, Dims...>
 };
 
 /**
+ * @class Slice
  * @brief
  *      Representation of a Slice through a Data Array
+ * @tparam ParnetT the data structure that the slice will be based on
+ * @tparam is_const true if the ParentT is const, false otherwise
+ * @tparam SliceMixin A template wrapper class around a slice that allows
+ *         you to propagate a custom interface to any slice to be consistent 
+ *         with your main data structure interface.
  * @details
  */
 struct copy_resize_construct_tag {};
 struct copy_resize_construct_base_tag {};
 struct internal_construct_tag{};
 
-template<bool is_const, typename ParentT, typename Dimension, typename... Dimensions>
-class Slice : private Slice<is_const, ParentT, Dimensions...>
+
+template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+class Slice : private Slice<is_const, ParentT, SliceMixin, Dimensions...>
 {
-        typedef Slice<is_const, ParentT, Dimensions...> BaseT;
-        typedef Slice<is_const, ParentT, Dimension, Dimensions...> SelfType;
+        typedef Slice<is_const, ParentT, SliceMixin, Dimensions...> BaseT;
+        typedef Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...> SelfType;
         typedef typename ParentT::value_type value_type;
         typedef Dimension SelfDimension;
 
@@ -76,11 +83,22 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         typedef typename std::conditional<is_const, parent_const_iterator, typename ParentT::iterator>::type parent_iterator;
 
     public:
+        /// provides a template to determine the returned type of an operator[]
+        //  @tparam Dim  the dimension that will be called
+        //  @param type The type that will we returned by the operator[DimensionIndex<Dim>]
+        template<typename Dim>
+        struct OperatorSliceType;
+
+        template<typename Dim>
+        struct ConstOperatorSliceType;
+
         typedef typename std::conditional<is_const, const ParentT, ParentT>::type Parent;
-        typedef SliceIterator<SelfType, is_const> iterator;
-        typedef SliceIterator<SelfType, true> const_iterator;
-        typedef Slice<is_const, ParentT, Dimension, Dimensions...> SliceType;
-        typedef Slice<true, ParentT, Dimension, Dimensions...> ConstSliceType;
+        typedef SliceIterator<SliceMixin<SelfType>, is_const> iterator;
+        typedef SliceIterator<SliceMixin<SelfType>, true> const_iterator;
+        typedef SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>> SliceType;
+        typedef SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimensions...>> ReducedSliceType;
+        typedef SliceMixin<Slice<true, ParentT, SliceMixin, Dimension, Dimensions...>> ConstSliceType;
+        typedef SliceMixin<Slice<true, ParentT, SliceMixin, Dimensions...>> ConstReducedSliceType;
 
     public:
         template<typename Dim, typename... Dims>
@@ -130,11 +148,13 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
         /**
          * @brief Take a slice in the specified dimension one channel thick
          */
-        Slice<is_const, ParentT, Dimensions...> operator[](DimensionIndex<Dimension>) const;
+        //Slice<is_const, ParentT, SliceMixin, Dimensions...> operator[](DimensionIndex<Dimension>) const;
+        ConstReducedSliceType operator[](DimensionIndex<Dimension>) const;
+        ReducedSliceType operator[](DimensionIndex<Dimension>);
 
         template<typename Dim>
         typename std::enable_if<arg_helper<Dim, Dimensions...>::value
-                            && !std::is_same<Dim, Dimension>::value, Slice<is_const, ParentT, Dimension, Dimensions...>>::type
+                            && !std::is_same<Dim, Dimension>::value, SliceType>::type
         operator[](DimensionIndex<Dim> const&);
 
         template<typename Dim>
@@ -149,19 +169,19 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
          *         Span indexes are relative to Slice boundary, not the parent
          */
         template<typename... Dims>
-        typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice>::type
+        typename std::enable_if<arg_helper<Dimension, Dims...>::value, SliceType>::type
         slice(DimensionSpan<Dims>&&... spans);
 
         template<typename... Dims>
-        typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice>::type
+        typename std::enable_if<!arg_helper<Dimension, Dims...>::value, SliceType>::type
         slice(DimensionSpan<Dims>&&... spans);
 
         template<typename... Dims>
-        typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice<true, ParentT, Dimension, Dimensions...>>::type
+        typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice<true, ParentT, SliceMixin, Dimension, Dimensions...>>::type
         slice(DimensionSpan<Dims>&&... spans) const;
 
         template<typename... Dims>
-        typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice<true, ParentT, Dimension, Dimensions...>>::type
+        typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice<true, ParentT, SliceMixin, Dimension, Dimensions...>>::type
         slice(DimensionSpan<Dims>&&... spans) const;
 
 
@@ -183,10 +203,10 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
          * @brief compare two arrays
          */
         template<bool const_type>
-        bool operator==(Slice<const_type, ParentT, Dimension, Dimensions...> const&) const;
+        bool operator==(Slice<const_type, ParentT, SliceMixin, Dimension, Dimensions...> const&) const;
 
     protected:
-        template<bool, typename P, typename D, typename... Ds> friend class Slice;
+        template<bool, typename P, template<typename> class, typename D, typename... Ds> friend class Slice;
 
         template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
         template<typename IteratorDifferenceT> IteratorDifferenceT diff_it(IteratorDifferenceT const& diff) const;
@@ -255,19 +275,25 @@ class Slice : private Slice<is_const, ParentT, Dimensions...>
 
 // specialisation for 0 dimensional slice
 // which should return a single element
-template<bool is_const, typename ParentT, typename Dimension>
-class Slice<is_const, ParentT, Dimension>
+template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension>
+class Slice<is_const, ParentT, SliceMixin, Dimension>
 {
-        typedef Slice<is_const, ParentT, Dimension> SelfType;
+        typedef Slice<is_const, ParentT, SliceMixin, Dimension> SelfType;
         typedef typename ParentT::const_iterator parent_const_iterator;
         typedef typename std::conditional<is_const, parent_const_iterator, typename ParentT::iterator>::type parent_iterator;
-        typedef typename std::iterator_traits<parent_iterator>::reference reference_type;
         typedef Dimension SelfDimension;
 
     public:
+        template<typename Dim>
+        struct OperatorSliceType;
+
+        template<typename Dim>
+        struct ConstOperatorSliceType;
+
+        typedef typename std::iterator_traits<parent_iterator>::reference reference_type;
         typedef typename std::conditional<is_const, const ParentT, ParentT>::type Parent;
-        typedef Slice<is_const, ParentT, Dimension> SliceType;
-        typedef Slice<true, ParentT, Dimension> ConstSliceType;
+        typedef Slice<is_const, ParentT, SliceMixin, Dimension> SliceType;
+        typedef Slice<true, ParentT, SliceMixin, Dimension> ConstSliceType;
         typedef parent_iterator iterator;
         typedef parent_const_iterator const_iterator;
 
@@ -349,10 +375,10 @@ class Slice<is_const, ParentT, Dimension>
          * @brief compare tow arrays
          */
         template<bool is_const_>
-        bool operator==(Slice<is_const_, ParentT, Dimension> const&) const;
+        bool operator==(Slice<is_const_, ParentT, SliceMixin, Dimension> const&) const;
 
     protected:
-        template<bool, typename P, typename D, typename... Ds> friend class Slice;
+        template<bool, typename P, template<typename> class, typename D, typename... Ds> friend class Slice;
 
         template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
         template<typename IteratorDifferenceT> static IteratorDifferenceT diff_it(IteratorDifferenceT const& diff);

@@ -93,10 +93,15 @@ TEST_F(TimeFrequencyTest, test_time_freq_channel)
         SCOPED_TRACE(channel_num);
         SCOPED_TRACE("channel_num:");
         Channel c = tf1.channel(channel_num);
+        
+        for(DimensionIndex<Time> num(0); num < time_size; ++num) {
+            ASSERT_EQ(*c[num].begin(), (int)((unsigned)num * freq_size) + channel_num) << num;
+        }
         ASSERT_EQ(c.size<Frequency>(), DimensionSize<Frequency>(1));
         ASSERT_EQ(c.size<Time>(), time_size);
         SliceIterator<Channel, false> it=c.begin();
         SliceIterator<Channel, true> it_const=c.cbegin();
+        ASSERT_EQ(*c[DimensionIndex<Time>(0)].begin(), *it);
         ASSERT_EQ(it, it_const);
         unsigned count=0;
         while(it != c.end()) {
@@ -137,31 +142,47 @@ TEST_F(TimeFrequencyTest, test_freq_time_spectrum)
 {
     DimensionSize<Time> time_size(50);
     DimensionSize<Frequency> freq_size(10);
-    FrequencyTime<uint8_t> tf1(time_size, freq_size);
+    FrequencyTime<uint8_t> ft1(time_size, freq_size);
     
-    typename FrequencyTime<uint8_t>::Spectra s = tf1.spectrum(0);
+    typename FrequencyTime<uint8_t>::Spectra s = ft1.spectrum(0);
     unsigned n=0;
     std::for_each(s.cbegin(), s.cend(), [&](uint8_t) { ++n; } );
     ASSERT_EQ(n, (unsigned)(freq_size));
 
-    FrequencyTime<uint8_t> const& tf2 = tf1;
-    typename FrequencyTime<uint8_t>::ConstSpectra s2 = tf2.spectrum(3);
+    FrequencyTime<uint8_t> const& ft2 = ft1;
+    typename FrequencyTime<uint8_t>::ConstSpectra s2 = ft2.spectrum(3);
+
+    // verify spectra interface works for slices
+    typename FrequencyTime<uint8_t>::SliceType slice = ft1.slice( DimensionSpan<Frequency>(DimensionIndex<Frequency>(2), DimensionSize<Frequency>(4))
+                         , DimensionSpan<Time>(DimensionIndex<Time>(10), DimensionSize<Time>(10)));
+    auto spectra = slice.spectrum(2);
+    auto const& const_spectra = const_cast<decltype(slice) const&>(slice).spectrum(2);
+    ASSERT_EQ(spectra.size<Frequency>(), DimensionSize<Frequency>(4));
+    ASSERT_EQ(const_spectra.size<Frequency>(), DimensionSize<Frequency>(4));
 }
 
 TEST_F(TimeFrequencyTest, test_freq_time_channel)
 {
     DimensionSize<Time> time_size(50);
     DimensionSize<Frequency> freq_size(10);
-    FrequencyTime<uint8_t> tf1(time_size, freq_size);
+    FrequencyTime<uint8_t> ft1(time_size, freq_size);
     
-    typename FrequencyTime<uint8_t>::Channel c = tf1.channel(0);
-    //ASSERT_EQ(c.size<Frequency>(), DimensionSize<Frequency>(0));
+    typename FrequencyTime<uint8_t>::Channel c = ft1.channel(0);
+    ASSERT_EQ(c.size<Frequency>(), DimensionSize<Frequency>(1));
     ASSERT_EQ(c.size<Time>(), time_size);
 
-    FrequencyTime<uint8_t> const& tf2 = tf1;
+    FrequencyTime<uint8_t> const& tf2 = ft1;
     typename FrequencyTime<uint8_t>::ConstChannel c2 = tf2.channel(5);
-    //ASSERT_EQ(c2.size<Frequency>(), DimensionSize<Frequency>(0));
+    ASSERT_EQ(c2.size<Frequency>(), DimensionSize<Frequency>(1));
     ASSERT_EQ(c2.size<Time>(), time_size);
+
+    // verify channel interface works for slices
+    typename FrequencyTime<uint8_t>::SliceType slice = ft1.slice( DimensionSpan<Frequency>(DimensionIndex<Frequency>(0), DimensionSize<Frequency>(2))
+                         , DimensionSpan<Time>(DimensionIndex<Time>(10), DimensionSize<Time>(10)));
+    auto channel = slice.channel(2);
+    auto const& const_channel = const_cast<decltype(slice) const&>(slice).channel(2);
+    ASSERT_EQ((std::size_t)channel.size<Time>(), 10U);
+    ASSERT_EQ((std::size_t)const_channel.size<Time>(), 10U);
 }
 
 TEST_F(TimeFrequencyTest, test_time_freq_has_exact_dimensions)

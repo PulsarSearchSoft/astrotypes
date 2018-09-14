@@ -54,6 +54,14 @@ struct DimensionA {};
 struct DimensionB {};
 struct DimensionC {};
 
+template<typename T>
+class TestSliceMixin : public T
+{
+    public:
+        TestSliceMixin(T const& t) : T(t) {}
+        using T::T;
+};
+
 template<int NDim>
 struct ParentType {
     typedef int value_type;
@@ -94,7 +102,7 @@ struct ParentType {
 TEST_F(SliceTest, test_single_dimension)
 {
     ParentType<1> p(50);
-    Slice<false, ParentType<1>, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
+    Slice<false, ParentType<1>, TestSliceMixin, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
     // test size
     ASSERT_EQ(11U, static_cast<std::size_t>(slice.size<DimensionA>()));
     ASSERT_EQ(0U, static_cast<std::size_t>(slice.size<DimensionB>()));
@@ -109,7 +117,7 @@ TEST_F(SliceTest, test_single_dimension)
 TEST_F(SliceTest, test_single_dimension_iterators)
 {
     ParentType<1> p(50);
-    Slice<false, ParentType<1>, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(19)));
+    Slice<false, ParentType<1>, TestSliceMixin, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(19)));
 
     // test operator[]
     auto it = slice.begin();
@@ -146,7 +154,7 @@ TEST_F(SliceTest, test_single_dimension_iterators)
 TEST_F(SliceTest, test_single_dimension_iterators_diff)
 {
     ParentType<1> const p(50);
-    Slice<true, ParentType<1>, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
+    Slice<true, ParentType<1>, TestSliceMixin, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
 
     auto it = slice.begin();
     auto it2 = slice.begin();
@@ -160,8 +168,8 @@ TEST_F(SliceTest, test_single_dimension_equals)
 {
     ParentType<1> const p(50);
     ParentType<1> p2(50);
-    Slice<true, ParentType<1>, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
-    Slice<false, ParentType<1>, DimensionA> slice_2(p2, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
+    Slice<true, ParentType<1>, TestSliceMixin, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
+    Slice<false, ParentType<1>, TestSliceMixin, DimensionA> slice_2(p2, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
     ASSERT_EQ(slice, slice_2);
     slice_2[1] = 0;
     ASSERT_FALSE(slice==slice_2);
@@ -170,11 +178,11 @@ TEST_F(SliceTest, test_single_dimension_equals)
 TEST_F(SliceTest, test_two_dimensions)
 {
     ParentType<2> p(50);
-    Slice<false, ParentType<2>, DimensionA, DimensionB> slice(p
+    Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> slice(p
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(19))
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(22))
                                               );
-    Slice<true, ParentType<2>, DimensionA, DimensionB> const_slice(p
+    Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> const_slice(p
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(19))
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(22))
                                               );
@@ -200,11 +208,11 @@ TEST_F(SliceTest, test_two_dimensions)
 TEST_F(SliceTest, test_two_dimensions_contructor_out_of_order_dims)
 {
     ParentType<2> p(50);
-    Slice<false, ParentType<2>, DimensionA, DimensionB> slice_a(p
+    Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> slice_a(p
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(19))
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(22))
                                               );
-    Slice<false, ParentType<2>, DimensionA, DimensionB> slice_b(p
+    Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> slice_b(p
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(22))
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(19))
                                               );
@@ -214,13 +222,13 @@ TEST_F(SliceTest, test_two_dimensions_contructor_out_of_order_dims)
     ASSERT_EQ(10U, static_cast<std::size_t>(slice_b.size<DimensionA>()));
     ASSERT_EQ(3U, static_cast<std::size_t>(slice_b.size<DimensionB>()));
 
-    Slice<false, ParentType<2>, DimensionA, DimensionB> slice_c(p
+    Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> slice_c(p
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(22))
                                               );
     ASSERT_EQ(50U, static_cast<std::size_t>(slice_c.size<DimensionA>()));
     ASSERT_EQ(3U, static_cast<std::size_t>(slice_c.size<DimensionB>()));
 
-    Slice<false, ParentType<2>, DimensionA, DimensionB> slice_d(p
+    Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> slice_d(p
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(19))
                                               );
 
@@ -231,7 +239,7 @@ TEST_F(SliceTest, test_two_dimensions_contructor_out_of_order_dims)
 TEST_F(SliceTest, test_two_dimensions_slice_iterators)
 {
     ParentType<2> p(50);
-    Slice<false, ParentType<2>, DimensionA, DimensionB> slice(p
+    Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> slice(p
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
                                               );
@@ -252,7 +260,7 @@ TEST_F(SliceTest, test_two_dimensions_slice_iterators)
 TEST_F(SliceTest, test_two_dimensions_slice_of_slice)
 {
     ParentType<2> p(50);
-    Slice<false, ParentType<2>, DimensionA, DimensionB> big_slice(p
+    Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> big_slice(p
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
                                               );
@@ -307,7 +315,7 @@ TEST_F(SliceTest, test_two_dimensions_slice_of_slice)
 TEST_F(SliceTest, test_two_dimensions_iterators_diff)
 {
     ParentType<2> p(50);
-    Slice<false, ParentType<2>, DimensionA, DimensionB> slice(p
+    Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> slice(p
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
                                               );
@@ -325,7 +333,7 @@ TEST_F(SliceTest, test_two_dimensions_iterators_diff)
 TEST_F(SliceTest, test_three_dimensions)
 {
     ParentType<3> p(50);
-    Slice<false, ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+    Slice<false, ParentType<3>, TestSliceMixin, DimensionA, DimensionB, DimensionC> slice(p
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(10))
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(22))
                                               , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(6))
@@ -356,13 +364,13 @@ TEST_F(SliceTest, test_three_dimensions)
 TEST_F(SliceTest, test_three_dimensions_same_dim_sub_slice)
 {
     ParentType<3> p(50);
-    Slice<false, ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+    Slice<false, ParentType<3>, TestSliceMixin, DimensionA, DimensionB, DimensionC> slice(p
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionSize<DimensionA>(10))
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionSize<DimensionB>(3))
                                               , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionSize<DimensionC>(5))
                                               );
     // cut a sub slice (should be of the same type - hence no auto
-    Slice<false, ParentType<3>, DimensionA, DimensionB, DimensionC> sub_slice =
+    Slice<false, ParentType<3>, TestSliceMixin, DimensionA, DimensionB, DimensionC> sub_slice =
                     slice.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(2), DimensionIndex<DimensionA>(6)));
 
     ASSERT_EQ(5U, static_cast<std::size_t>(sub_slice.size<DimensionA>()));
@@ -384,12 +392,12 @@ TEST_F(SliceTest, test_three_dimensions_same_dim_sub_slice)
 TEST_F(SliceTest, test_three_dimensions_slice_iterators)
 {
     ParentType<3> p(50);
-    Slice<false, ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+    Slice<false, ParentType<3>, TestSliceMixin, DimensionA, DimensionB, DimensionC> slice(p
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
                                               , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
     );
-    Slice<false, ParentType<3>, DimensionA, DimensionB, DimensionC> sub_slice =
+    Slice<false, ParentType<3>, TestSliceMixin, DimensionA, DimensionB, DimensionC> sub_slice =
                     slice.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(2), DimensionIndex<DimensionA>(4)));
 
     auto it = sub_slice.begin();
@@ -410,12 +418,12 @@ TEST_F(SliceTest, test_three_dimensions_slice_iterators)
 TEST_F(SliceTest, const_test_three_dimensions_slice_iterators)
 {
     ParentType<3> const p(50);
-    Slice<true, ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+    Slice<true, ParentType<3>, TestSliceMixin, DimensionA, DimensionB, DimensionC> slice(p
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
                                               , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
     );
-    Slice<true, ParentType<3>, DimensionA, DimensionB, DimensionC> sub_slice =
+    Slice<true, ParentType<3>, TestSliceMixin, DimensionA, DimensionB, DimensionC> sub_slice =
                     slice.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(2), DimensionIndex<DimensionA>(4)));
 
     auto it = sub_slice.begin();
@@ -441,7 +449,7 @@ TEST_F(SliceTest, const_test_three_dimensions_slice_iterators)
 TEST_F(SliceTest, test_three_dimensions_iterators_diff)
 {
     ParentType<3> p(50);
-    Slice<true, ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+    Slice<true, ParentType<3>, TestSliceMixin, DimensionA, DimensionB, DimensionC> slice(p
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
                                               , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
@@ -460,13 +468,13 @@ TEST_F(SliceTest, test_three_dimensions_iterators_diff)
 TEST_F(SliceTest, test_three_dimensions_equals)
 {
     ParentType<3> const p(50);
-    Slice<true, ParentType<3>, DimensionA, DimensionB, DimensionC> slice(p
+    Slice<true, ParentType<3>, TestSliceMixin, DimensionA, DimensionB, DimensionC> slice(p
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
                                               , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
     );
     ParentType<3> p2(50);
-    Slice<false, ParentType<3>, DimensionA, DimensionB, DimensionC> slice_2(p2
+    Slice<false, ParentType<3>, TestSliceMixin, DimensionA, DimensionB, DimensionC> slice_2(p2
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
                                               , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(2), DimensionIndex<DimensionC>(7))
@@ -483,28 +491,28 @@ TEST_F(SliceTest, test_three_dimensions_equals)
 
 TEST_F(SliceTest, test_has_dimension)
 {
-    typedef Slice<true, ParentType<1>, DimensionA> TestSlice1d;
+    typedef Slice<true, ParentType<1>, TestSliceMixin, DimensionA> TestSlice1d;
     static_assert(std::is_same<typename has_dimension<TestSlice1d, DimensionA>::type, std::true_type>::value, "expecting true");
     static_assert(std::is_same<typename has_dimension<TestSlice1d, DimensionB>::type, std::false_type>::value, "expecting false");
 }
 
 TEST_F(SliceTest, test_is_multi_dimension)
 {
-    typedef Slice<true, ParentType<2>, DimensionA> TestSlice1d;
+    typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA> TestSlice1d;
     static_assert(std::is_same<typename has_exact_dimensions<TestSlice1d, DimensionA>::type, std::true_type>::value, "expecting true");
     static_assert(std::is_same<typename has_exact_dimensions<TestSlice1d, DimensionB>::type, std::false_type>::value, "expecting false");
 
-    typedef Slice<true, ParentType<2>, DimensionA, DimensionB> TestSlice2d;
+    typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> TestSlice2d;
     bool r = has_exact_dimensions<TestSlice2d, DimensionA, DimensionB>::value;
     static_assert(std::is_same<typename has_exact_dimensions<TestSlice2d, DimensionA, DimensionB>::type, std::true_type>::value, "expecting true");
     ASSERT_TRUE(r);
-    r = has_exact_dimensions<Slice<true, ParentType<2>, DimensionA, DimensionB>, DimensionA, DimensionB>::value;
+    r = has_exact_dimensions<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>, DimensionA, DimensionB>::value;
     ASSERT_TRUE(r);
-    r = has_exact_dimensions<Slice<true, ParentType<2>, DimensionA, DimensionB>, DimensionA>::value;
+    r = has_exact_dimensions<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>, DimensionA>::value;
     ASSERT_FALSE(r);
-    r = has_exact_dimensions<Slice<true, ParentType<2>, DimensionA, DimensionB>, DimensionB>::value;
+    r = has_exact_dimensions<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>, DimensionB>::value;
     ASSERT_FALSE(r);
-    r = has_exact_dimensions<Slice<true, ParentType<2>, DimensionA, DimensionB>, DimensionB, DimensionA>::value;
+    r = has_exact_dimensions<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>, DimensionB, DimensionA>::value;
     ASSERT_FALSE(r);
 }
 

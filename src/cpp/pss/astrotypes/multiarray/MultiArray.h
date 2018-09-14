@@ -1,18 +1,18 @@
 /*
  * MIT License
- * 
+ *
  * Copyright (c) 2018 PulsarSearchSoft
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -39,18 +39,34 @@ namespace astrotypes {
  *
  * @details
  */
-template<typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions>
-class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... OtherDimensions>
+class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
 {
-        typedef MultiArray<Alloc, T, OtherDimensions...> BaseT;
-        typedef MultiArray<Alloc, T, FirstDimension, OtherDimensions...> SelfType;
+        typedef MultiArray<Alloc, T, SliceMixin, OtherDimensions...> BaseT;
+        typedef MultiArray<Alloc, T, SliceMixin, FirstDimension, OtherDimensions...> SelfType;
         typedef std::vector<T, Alloc> Container;
 
     public:
-        typedef Slice<false, SelfType, FirstDimension, OtherDimensions...> SliceType;
-        typedef Slice<true, SelfType, FirstDimension, OtherDimensions...> ConstSliceType;
-        typedef Slice<false, SelfType, OtherDimensions...> ReducedDimensionSliceType;
-        typedef Slice<true, SelfType, OtherDimensions...> ConstReducedDimensionSliceType;
+        /**
+          * @brief provides a template to determine the returned type of an operator[]
+          *  @tparam Dim  the dimension that will be called
+          *  @param type The type that will we returned by the operator[DimensionIndex<Dim>]
+          */
+        template<typename Dim>
+        struct OperatorSliceType;
+
+        /**
+          * @brief provides a template to determine the returned type of an operator[] const
+          *  @tparam Dim  the dimension that will be called
+          *  @param type The type that will we returned by the operator[DimensionIndex<Dim>]
+          */
+        template<typename Dim>
+        struct ConstOperatorSliceType;
+
+        typedef SliceMixin<Slice<false, SelfType, SliceMixin, FirstDimension, OtherDimensions...>> SliceType;
+        typedef SliceMixin<Slice<true, SelfType, SliceMixin, FirstDimension, OtherDimensions...>> ConstSliceType;
+        typedef SliceMixin<Slice<false, SelfType, SliceMixin, OtherDimensions...>> ReducedDimensionSliceType;
+        typedef SliceMixin<Slice<true, SelfType, SliceMixin, OtherDimensions...>> ConstReducedDimensionSliceType;
 
         typedef typename Container::iterator iterator;
         typedef typename Container::const_iterator const_iterator;
@@ -84,7 +100,7 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
          * MultiArray<int, DimA, DimB> my_multi_array(...);
          * for(DimensionIndex<DimA> i(0); i < my_multi_array.size<DimA>(); ++i)
          * {
-         *     for(DimensionIndex<DimB> j(0); j < my_multi_array.size<DimB>(); ++j) 
+         *     for(DimensionIndex<DimB> j(0); j < my_multi_array.size<DimB>(); ++j)
          *     {
          *          my_multi_array[i][j] = 10;
          *     }
@@ -108,9 +124,15 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
 
         /**
          * @brief return a slice of the specified dimension spanning the index_range provided
-         */
         SliceType slice(DimensionSpan<FirstDimension> const& index_range);
         ConstSliceType slice(DimensionSpan<FirstDimension> const& index_range) const;
+         */
+
+        template<typename Dim, typename... Dims>
+        SliceType slice(DimensionSpan<Dim>&& range, DimensionSpan<Dims>&&...);
+
+        template<typename Dim, typename... Dims>
+        ConstSliceType slice(DimensionSpan<Dim>&& range, DimensionSpan<Dims>&&...) const;
 
         /**
          * @brief resize the array in the specified dimension
@@ -125,11 +147,11 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
          *      @endcode
          */
         template<typename Dim>
-        typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type 
+        typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type
         size() const;
 
         template<typename Dim>
-        typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
+        typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type
         size() const;
 
         /**
@@ -146,18 +168,18 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
          * @brief return true if the sizes of each dimension are equivalent
          */
         bool equal_size(MultiArray const&) const;
-        
+
     protected:
         template<typename... Dims>
         MultiArray(typename std::enable_if<arg_helper<FirstDimension, Dims...>::value, bool>::type disable_resize_tag
                   , DimensionSize<Dims> const&...);
 
         template<typename Dimension, typename... Dims>
-        typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type 
+        typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type
         do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>&&... sizes);
 
         template<typename Dimension, typename... Dims>
-        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type 
+        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type
         do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>&&... sizes);
 
         void do_resize(std::size_t total);
@@ -167,15 +189,31 @@ class MultiArray : MultiArray<Alloc, T, OtherDimensions...>
 };
 
 // specialisation for single dimension arrays
-template<typename Alloc, typename T, typename FirstDimension>
-class MultiArray<Alloc, T, FirstDimension>
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
+class MultiArray<Alloc, T, SliceMixin, FirstDimension>
 {
-        typedef MultiArray<Alloc, T, FirstDimension> SelfType;
+        typedef MultiArray<Alloc, T, SliceMixin, FirstDimension> SelfType;
         typedef std::vector<T, Alloc> Container;
 
     public:
-        typedef Slice<false, SelfType, FirstDimension> SliceType;
-        typedef Slice<true, SelfType, FirstDimension> ConstSliceType;
+        /**
+          * @brief provides a template to determine the returned type of an operator[]
+          *  @tparam Dim  the dimension that will be called
+          *  @param type The type that will we returned by the operator[DimensionIndex<Dim>]
+          */
+        template<typename Dim>
+        struct OperatorSliceType;
+
+        /**
+          * @brief provides a template to determine the returned type of an operator[] const
+          *  @tparam Dim  the dimension that will be called
+          *  @param type The type that will we returned by the operator[DimensionIndex<Dim>]
+          */
+        template<typename Dim>
+        struct ConstOperatorSliceType;
+
+        typedef SliceMixin<Slice<false, SelfType, SliceMixin, FirstDimension>> SliceType;
+        typedef SliceMixin<Slice<true, SelfType, SliceMixin, FirstDimension>> ConstSliceType;
         typedef typename Container::iterator iterator;
         typedef typename Container::const_iterator const_iterator;
 
@@ -189,18 +227,18 @@ class MultiArray<Alloc, T, FirstDimension>
         ~MultiArray();
 
         /**
-         * @brief 
+         * @brief
          */
         reference_type operator[](DimensionIndex<FirstDimension> index);
         const_reference_type operator[](DimensionIndex<FirstDimension> index) const;
 
         /// size
         template<typename Dim>
-        typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type 
+        typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type
         size() const;
 
         template<typename Dim>
-        typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
+        typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type
         size() const;
 
         /**
@@ -236,11 +274,11 @@ class MultiArray<Alloc, T, FirstDimension>
 
         /// resize
         template<typename Dimension>
-        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type 
+        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type
         do_resize(std::size_t total_size, DimensionSize<Dimension> size);
 
         //template<typename Dimension>
-        //typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type 
+        //typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type
         void do_resize(std::size_t total_size);
 
     private:
@@ -248,14 +286,17 @@ class MultiArray<Alloc, T, FirstDimension>
         std::vector<T> _data;
 };
 
-template<typename Alloc, typename T, typename Dimension> 
-struct has_dimension<MultiArray<Alloc, T, Dimension>, Dimension> : public std::true_type
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension>
+struct has_dimension<MultiArray<Alloc, T, SliceMixin, Dimension>, Dimension> : public std::true_type
 {};
 
-template<typename Alloc, typename T, typename... Dimensions> 
-struct has_exact_dimensions<MultiArray<Alloc, T, Dimensions...>, Dimensions...> : public std::true_type 
-{
-};
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension>
+struct has_exact_dimensions<MultiArray<Alloc, T, SliceMixin, Dimension>, Dimension> : public std::true_type
+{};
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension1, typename Dimension2, typename... Dimensions>
+struct has_exact_dimensions<MultiArray<Alloc, T, SliceMixin, Dimension1, Dimension2, Dimensions...>, Dimension1, Dimension2, Dimensions...> : public std::true_type
+{};
 
 } // namespace astrotypes
 } // namespace pss
