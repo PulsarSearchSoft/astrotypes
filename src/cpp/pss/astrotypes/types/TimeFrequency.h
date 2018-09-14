@@ -102,7 +102,7 @@ class TimeFreqCommon : public SliceType
 template<typename T, typename Alloc=std::allocator<T>>
 class TimeFrequency : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Time, units::Frequency>>
 {
-    private:
+    public:
         typedef TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Time, units::Frequency>> BaseT;
 
     public:
@@ -130,7 +130,7 @@ class TimeFrequency : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon,
 template<typename T, typename Alloc=std::allocator<T>>
 class FrequencyTime : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Frequency, units::Time>>
 {
-    private:
+    public:
         typedef TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Frequency, units::Time>> BaseT;
 
     public:
@@ -152,6 +152,16 @@ struct has_exact_dimensions<TimeFrequency<T, Alloc>, units::Time, units::Frequen
 
 template<typename Alloc, typename T>
 struct has_exact_dimensions<FrequencyTime<T, Alloc>, units::Frequency, units::Time> : public std::true_type
+{
+};
+
+template<typename Alloc, typename T, typename... Dims>
+struct has_dimension<TimeFrequency<T, Alloc>, Dims...> : public has_dimension<typename TimeFrequency<T, Alloc>::BaseT, Dims...>
+{
+};
+
+template<typename Alloc, typename T, typename... Dims>
+struct has_dimension<FrequencyTime<T, Alloc>, Dims...> : public has_dimension<typename FrequencyTime<T, Alloc>::BaseT, Dims...>
 {
 };
 
