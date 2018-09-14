@@ -95,13 +95,13 @@ TEST_F(TimeFrequencyTest, test_time_freq_channel)
         Channel c = tf1.channel(channel_num);
         
         for(DimensionIndex<Time> num(0); num < time_size; ++num) {
-            ASSERT_EQ(*c[num].begin(), (int)((unsigned)num * freq_size) + channel_num) << num;
+            ASSERT_EQ(c[num], (int)((unsigned)num * freq_size) + channel_num) << num;
         }
         ASSERT_EQ(c.size<Frequency>(), DimensionSize<Frequency>(1));
         ASSERT_EQ(c.size<Time>(), time_size);
         SliceIterator<Channel, false> it=c.begin();
         SliceIterator<Channel, true> it_const=c.cbegin();
-        ASSERT_EQ(*c[DimensionIndex<Time>(0)].begin(), *it);
+        ASSERT_EQ(c[DimensionIndex<Time>(0)], *it);
         ASSERT_EQ(it, it_const);
         unsigned count=0;
         while(it != c.end()) {
@@ -173,7 +173,7 @@ TEST_F(TimeFrequencyTest, test_freq_time_channel)
 
     FrequencyTime<uint8_t> const& tf2 = ft1;
     typename FrequencyTime<uint8_t>::ConstChannel c2 = tf2.channel(5);
-    ASSERT_EQ(c2.size<Frequency>(), DimensionSize<Frequency>(1));
+    ASSERT_EQ(c2.size<Frequency>(), DimensionSize<Frequency>(0));
     ASSERT_EQ(c2.size<Time>(), time_size);
 
     // verify channel interface works for slices
@@ -201,11 +201,11 @@ TEST_F(TimeFrequencyTest, test_freq_time_has_exact_dimensions)
 
 TEST_F(TimeFrequencyTest, test_time_freq_slice_has_exact_dimensions)
 {
-    static_assert(std::is_same<std::true_type, typename has_exact_dimensions<TimeFrequency<double>::Channel, units::Time, units::Frequency>::type>::value, "expecting true");
-    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<TimeFrequency<double>::Channel, units::Time>::type>::value, "expecting false");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<TimeFrequency<double>::Channel, units::Time, units::Frequency>::type>::value, "expecting false");
     static_assert(std::is_same<std::false_type, typename has_exact_dimensions<TimeFrequency<double>::Channel, units::Frequency>::type>::value, "expecting false");
+    static_assert(std::is_same<std::true_type, typename has_exact_dimensions<TimeFrequency<double>::Channel, units::Time>::type>::value, "expecting true");
     static_assert(std::is_same<std::false_type, typename has_exact_dimensions<TimeFrequency<double>::Spectra, units::Frequency, units::Time>::type>::value, "expecting false");
-    //static_assert(std::is_same<std::true_type, typename has_exact_dimensions<TimeFrequency<double>::Spectra, units::Time, units::Frequency>::type>::value, "expecting true");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<TimeFrequency<double>::Spectra, units::Time, units::Frequency>::type>::value, "expecting false");
     static_assert(std::is_same<std::false_type, typename has_exact_dimensions<TimeFrequency<double>::Spectra, units::Time>::type>::value, "expecting false");
     static_assert(std::is_same<std::true_type, typename has_exact_dimensions<TimeFrequency<double>::Spectra, units::Frequency>::type>::value, "expecting true");
     static_assert(std::is_same<std::false_type, typename has_exact_dimensions<TimeFrequency<double>::Spectra, units::Frequency, units::Time>::type>::value, "expecting false");
@@ -215,9 +215,10 @@ TEST_F(TimeFrequencyTest, test_freq_time_slice_has_exact_dimensions)
 {
     static_assert(std::is_same<std::false_type, typename has_exact_dimensions<FrequencyTime<double>::Spectra, units::Time, units::Frequency>::type>::value, "expecting false");
     static_assert(std::is_same<std::false_type, typename has_exact_dimensions<FrequencyTime<double>::Spectra, units::Time>::type>::value, "expecting false");
-    static_assert(std::is_same<std::true_type, typename has_exact_dimensions<FrequencyTime<double>::Spectra, units::Frequency, units::Time>::type>::value, "expecting true");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<FrequencyTime<double>::Spectra, units::Frequency, units::Time>::type>::value, "expecting false");
+    static_assert(std::is_same<std::true_type, typename has_exact_dimensions<FrequencyTime<double>::Spectra, units::Frequency>::type>::value, "expecting true");
     static_assert(std::is_same<std::false_type, typename has_exact_dimensions<FrequencyTime<double>::Channel, units::Time, units::Frequency>::type>::value, "expecting false");
-    //static_assert(std::is_same<std::true_type, typename has_exact_dimensions<FrequencyTime<double>::Channel, units::Frequency, units::Time>::type>::value, "expecting true");
+    static_assert(std::is_same<std::false_type, typename has_exact_dimensions<FrequencyTime<double>::Channel, units::Frequency, units::Time>::type>::value, "expecting false");
     static_assert(std::is_same<std::false_type, typename has_exact_dimensions<FrequencyTime<double>::Channel, units::Frequency>::type>::value, "expecting false");
     static_assert(std::is_same<std::true_type, typename has_exact_dimensions<FrequencyTime<double>::Channel, units::Time>::type>::value, "expecting true");
 }

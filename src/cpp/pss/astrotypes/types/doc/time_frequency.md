@@ -17,9 +17,9 @@ std::fill(time_frequency.begin(), time_frequency.end(), 0);
 
 // Iterate over each spectrum using the [] bracket style interface
 unsigned total_pow=0;
-for(DimensionIndex<Time> i(0); i < time_frequency.template size<Time>(); ++i) {
+for(DimensionIndex<Time> i(0); i < time_frequency.template dimension<Time>(); ++i) {
     auto spectrum = time_frequency[i];
-    for(DimensionIndex<Frequency> j(0); j < spectrum.template size<Frequency>(); ++j) {
+    for(DimensionIndex<Frequency> j(0); j < spectrum.template dimension<Frequency>(); ++j) {
         total_pow += spectrum[j];
     }
 }
@@ -27,7 +27,7 @@ for(DimensionIndex<Time> i(0); i < time_frequency.template size<Time>(); ++i) {
 ~~~~
 
 ## Would you care for a slice?
-You can extract prats of a TimeFrequency chunk as a slice.
+You can extract parts of a TimeFrequency chunk as a slice.
 
 ~~~~{.cpp}
 #include "pss/astrotypes/types/TimeFrequency.h"

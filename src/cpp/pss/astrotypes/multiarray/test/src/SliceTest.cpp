@@ -106,9 +106,11 @@ TEST_F(SliceTest, test_single_dimension)
     // test size
     ASSERT_EQ(11U, static_cast<std::size_t>(slice.size<DimensionA>()));
     ASSERT_EQ(0U, static_cast<std::size_t>(slice.size<DimensionB>()));
+    ASSERT_EQ(11U, static_cast<std::size_t>(slice.dimension<DimensionA>()));
+    ASSERT_EQ(0U, static_cast<std::size_t>(slice.dimension<DimensionB>()));
 
     // test operator[]
-    for(std::size_t i = 0; i < slice.size<DimensionA>(); ++i) {
+    for(std::size_t i = 0; i < slice.dimension<DimensionA>(); ++i) {
         ASSERT_EQ(slice[i], i+ 10U); // check we can read
         slice[i]=i;                  // and write
     }
@@ -189,6 +191,8 @@ TEST_F(SliceTest, test_two_dimensions)
     // test size
     ASSERT_EQ(10U, static_cast<std::size_t>(slice.size<DimensionA>()));
     ASSERT_EQ(3U, static_cast<std::size_t>(slice.size<DimensionB>()));
+    ASSERT_EQ(10U, static_cast<std::size_t>(slice.dimension<DimensionA>()));
+    ASSERT_EQ(3U, static_cast<std::size_t>(slice.dimension<DimensionB>()));
 
     // test operator[]
     ASSERT_EQ(3U, static_cast<std::size_t>(slice[DimensionIndex<DimensionA>(0)].size<DimensionB>()));
@@ -199,8 +203,8 @@ TEST_F(SliceTest, test_two_dimensions)
         for(DimensionIndex<DimensionB> j(0); j < slice.size<DimensionB>(); ++j) {
             ASSERT_EQ(slice[i][j], (static_cast<std::size_t>(i) + 10U) * static_cast<std::size_t>(p.size<DimensionB>()) + static_cast<std::size_t>(j) + 20U) << "i=" << i << " j=" << j; // check we can read
             ASSERT_EQ(const_slice[i][j], (static_cast<std::size_t>(i) + 10U) * static_cast<std::size_t>(p.size<DimensionB>()) + static_cast<std::size_t>(j) + 20U) << "i=" << i << " j=" << j; // check we can read
-            ASSERT_EQ(*slice[j][i].begin(), slice[i][j]) << "i=" << i << " j=" << j; // check we can read
-            ASSERT_EQ(*const_slice[j][i].begin(), slice[i][j]) << "i=" << i << " j=" << j; // check we can read
+            ASSERT_EQ(slice[j][i], slice[i][j]) << "i=" << i << " j=" << j; // check we can read
+            ASSERT_EQ(const_slice[j][i], slice[i][j]) << "i=" << i << " j=" << j; // check we can read
         }
     }
 }
@@ -355,10 +359,14 @@ TEST_F(SliceTest, test_three_dimensions)
                           ((std::size_t)i + 1U) * static_cast<std::size_t>(p.size<DimensionB>()) * static_cast<std::size_t>(p.size<DimensionC>())
                         + ((std::size_t)j + 20U) * static_cast<std::size_t>(p.size<DimensionC>())
                         + (std::size_t)k + 2U) << "i=" << i << " j=" << j << " k=" << k; // check we can read
+            ASSERT_EQ(slice[i][j][k], slice[i][k][j]);
+//            ASSERT_EQ(slice[i][j][k], slice[j][i][k]) << "i=" << i << " j=" << j << " k=" << k;
+//            ASSERT_EQ(slice[i][j][k], slice[j][k][i]) << "i=" << i << " j=" << j << " k=" << k;
+//            ASSERT_EQ(slice[i][j][k], slice[k][j][i]) << "i=" << i << " j=" << j << " k=" << k;
+//            ASSERT_EQ(slice[i][j][k], slice[k][i][j]) << "i=" << i << " j=" << j << " k=" << k;
             }
         }
     }
-
 }
 
 TEST_F(SliceTest, test_three_dimensions_same_dim_sub_slice)
