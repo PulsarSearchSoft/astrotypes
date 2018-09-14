@@ -32,56 +32,23 @@
 namespace pss {
 namespace astrotypes {
 
-/**
- * @brief
- *       A template class representing values associated with a time and frequency
- *       such as Stokes values or voltages.
- *
- * @details
- *       Stored as a contiguous block af complete spectrum.
- */
-
-template<typename T, typename Alloc=std::allocator<T>>
-class TimeFrequency : public MultiArray<Alloc, T, units::Time, units::Frequency>
+template<typename SliceType>
+class TimeFreqCommon : public SliceType
 {
     public:
-        typedef MultiArray<Alloc, T, units::Time, units::Frequency> BaseT;
-        typedef typename BaseT::ReducedDimensionSliceType Spectra;
-        typedef typename BaseT::ConstReducedDimensionSliceType ConstSpectra;
-        typedef typename BaseT::SliceType Channel;
-        typedef typename BaseT::ConstSliceType ConstChannel;
+        typedef typename SliceType::template OperatorSliceType<units::Frequency>::type Channel;
+        typedef typename SliceType::template ConstOperatorSliceType<units::Frequency>::type ConstChannel;
+        typedef typename SliceType::template OperatorSliceType<units::Time>::type Spectra;
+        typedef typename SliceType::template ConstOperatorSliceType<units::Time>::type ConstSpectra;
+
+        using SliceType::SliceType;
 
     public:
-        TimeFrequency( DimensionSize<units::Time> = DimensionSize<units::Time>(0)
-                     , DimensionSize<units::Frequency> = DimensionSize<units::Frequency>(0));
-        TimeFrequency( DimensionSize<units::Frequency>
-                     , DimensionSize<units::Time> = DimensionSize<units::Time>(0));
-        ~TimeFrequency();
-
-        /// @brief return a single spectrum from the specified offset
-        //  @details the type returned is a MultiArray @class Slice with all
-        //           the features of that available;
-        //  @example
-        //  @code
-        //  // create a TimeFrequency block
-        //  TimeFrequency<uint16_t> tf(DimensionSize<Time>(100), DimensionSize<Frequency>(4096));
-        //
-        //  // get the first spectrum
-        //  typename TimeFrequency<uint16_t>::Spectra spectrum = tf.spectrum(0);
-        //
-        //  // use the Spectra's iterator interface tp generate an increasing sequence
-        //  std::fill(spectrum.begin(), spectra.end(), 100U);
-        //
-        //  // use the  [] interface to access a particular element
-        //  spectrum[DimensionIndex<Frequency>(7)] += 1; // modify the 8th channel value in this spectrum
-        //
-        //  @endcode
-        //
-        Spectra spectrum(std::size_t offset);
-        ConstSpectra spectrum(std::size_t offset) const;
+        TimeFreqCommon(SliceType const& t);
+        TimeFreqCommon(SliceType&& t);
 
         /// retrun a single channel across all time samples
-        //  @details the type returned is a MultiArray @class Slice with all
+        //  @detials the type returned is a MultiArray @class Slice with all
         //           the features of that available;
         //  @example
         //  @code
@@ -99,44 +66,83 @@ class TimeFrequency : public MultiArray<Alloc, T, units::Time, units::Frequency>
         //
         Channel channel(std::size_t channel_number);
         ConstChannel channel(std::size_t channel_number) const;
+
+        /// @brief return a single spectrum from the specified offset
+        //  @detials the type returned is a MultiArray @class Slice with all
+        //           the features of that available;
+        //  @example
+        //  @code
+        //  // create a TimeFrequency block
+        //  TimeFrequency<uint16_t> tf(DimensionSize<Time>(100), DimensionSize<Frequency>(4096));
+        //
+        //  // get the first spectrum
+        //  typename TimeFrequency<uint16_t>::Spectra spectrum = tf.spectrum(0);
+        //
+        //  // use the Spectra's iterator interface tp generate an increasing sequence
+        //  std::fill(spectrum.begin(), spectra.end(), 100U);
+        //
+        //  // use the  [] interface to access a particular element
+        //  spectrum[DimensionIndex<Frequency>(7)] += 1; // modify the 8th channel value in thie specturm
+        //
+        //  @endcode
+        //
+        Spectra spectrum(std::size_t offset);
+        ConstSpectra spectrum(std::size_t offset) const;
 };
 
 /**
  * @brief
- *       A template class representing values associated with a time and frequency
+ *       A template class representing values associated with a time and frequecny
  *       such as Stokes values or voltages.
  *
  * @details
- *       Stored as a contiguous channels in time. This can be used in exactly the same
- *       calls as the TimeFrequency object. They are designed to be interchangable
- *       without having to rewrite any code that uses this interface.
+ *       Stored as a contiguous block af complete spectrum.
  */
 
 template<typename T, typename Alloc=std::allocator<T>>
-class FrequencyTime : public MultiArray<Alloc, T, units::Frequency, units::Time>
+class TimeFrequency : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Time, units::Frequency>>
 {
+    private:
+        typedef TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Time, units::Frequency>> BaseT;
 
     public:
-        typedef MultiArray<Alloc, T, units::Frequency, units::Time> BaseT;
-        typedef typename BaseT::ReducedDimensionSliceType Channel;
-        typedef typename BaseT::ConstReducedDimensionSliceType ConstChannel;
-        typedef Slice<false, BaseT, units::Frequency, units::Time> Spectra;
-        typedef Slice<true, BaseT, units::Frequency, units::Time> ConstSpectra;
+        typedef typename BaseT::Channel Channel;
+        typedef typename BaseT::ConstChannel ConstChannel;
+        typedef typename BaseT::Spectra Spectra;
+        typedef typename BaseT::ConstSpectra ConstSpectra;
 
     public:
-        FrequencyTime( DimensionSize<units::Frequency> = DimensionSize<units::Frequency>(0)
-                     , DimensionSize<units::Time> = DimensionSize<units::Time>(0));
-        FrequencyTime( DimensionSize<units::Time>
-                     , DimensionSize<units::Frequency> = DimensionSize<units::Frequency>(0));
+        TimeFrequency(DimensionSize<units::Time>, DimensionSize<units::Frequency>);
+        TimeFrequency(DimensionSize<units::Frequency>, DimensionSize<units::Time>);
+        ~TimeFrequency();
+};
+
+/**
+ * @brief
+ *       A template class representing values associated with a time and frequecny
+ *       such as Stokes values or voltages.
+ *
+ * @details
+ *       Stored as a multiple contiguous time series. This can be used in exactly the same
+ *       calls as the TimeFrequency object. They are designed to be interchangable
+ *       without having to rewrite any code that uses this interface.
+ */
+template<typename T, typename Alloc=std::allocator<T>>
+class FrequencyTime : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Frequency, units::Time>>
+{
+    private:
+        typedef TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Frequency, units::Time>> BaseT;
+
+    public:
+        typedef typename BaseT::Channel Channel;
+        typedef typename BaseT::ConstChannel ConstChannel;
+        typedef typename BaseT::Spectra Spectra;
+        typedef typename BaseT::ConstSpectra ConstSpectra;
+
+    public:
+        FrequencyTime(DimensionSize<units::Frequency>, DimensionSize<units::Time>);
+        FrequencyTime(DimensionSize<units::Time>, DimensionSize<units::Frequency>);
         ~FrequencyTime();
-
-        /// @brief return a single channel across all time samples
-        Channel channel(std::size_t channel_number);
-        ConstChannel channel(std::size_t channel_number) const;
-
-        /// @brief return a single spectrum from the specified offset
-        Spectra spectrum(std::size_t offset);
-        ConstSpectra spectrum(std::size_t offset) const;
 };
 
 template<typename Alloc, typename T>
@@ -146,16 +152,6 @@ struct has_exact_dimensions<TimeFrequency<T, Alloc>, units::Time, units::Frequen
 
 template<typename Alloc, typename T>
 struct has_exact_dimensions<FrequencyTime<T, Alloc>, units::Frequency, units::Time> : public std::true_type
-{
-};
-
-template<typename Alloc, typename T, typename... Dims>
-struct has_dimension<TimeFrequency<T, Alloc>, Dims...> : public has_dimension<typename TimeFrequency<T, Alloc>::BaseT, Dims...>
-{
-};
-
-template<typename Alloc, typename T, typename... Dims>
-struct has_dimension<FrequencyTime<T, Alloc>, Dims...> : public has_dimension<typename FrequencyTime<T, Alloc>::BaseT, Dims...>
 {
 };
 
