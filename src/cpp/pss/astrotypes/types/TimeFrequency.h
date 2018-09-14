@@ -123,11 +123,10 @@ class TimeFrequency : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon,
  *       such as Stokes values or voltages.
  *
  * @details
- *       Stored as a contiguous channels in time. This can be used in exactly the same
+ *       Stored as a multiple contiguous time series. This can be used in exactly the same
  *       calls as the TimeFrequency object. They are designed to be interchangable
  *       without having to rewrite any code that uses this interface.
  */
-
 template<typename T, typename Alloc=std::allocator<T>>
 class FrequencyTime : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Frequency, units::Time>>
 {
