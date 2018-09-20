@@ -34,10 +34,9 @@ namespace astrotypes {
 
 /**
  * @brief
- *      template classes to specify multiple dimesion arrays with explicit dimension types
- * @tparam T the type fo object to be stored in the array (e.g. float, int, Stikes, etc)
+ *      template classes to specify multiple dimension arrays with explicit dimension types
+ * @tparam T the type of object to be stored in the array (e.g. float, int, Stokes, etc)
  *
- * @details
  */
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... OtherDimensions>
 class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
@@ -79,10 +78,11 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
     public:
         template<typename Dim, typename... Dims>
         MultiArray(DimensionSize<Dim> size, DimensionSize<Dims>... sizes);
+        MultiArray(MultiArray const&) = delete;
 
         /**
          * @brief iterators acting over he entire data structure
-         * @detilas useful for e.g std::copy of the entire structure
+         * @details useful for e.g std::copy of the entire structure
          *          without inspection
          */
         iterator begin();
@@ -98,7 +98,7 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
          *    This can be used to access elements in a similar way to c style arrays.
          *
          * @code
-         * MultiArray<int, DimA, DimB> my_ulti_array(...);
+         * MultiArray<int, DimA, DimB> my_multi_array(...);
          * for(DimensionIndex<DimA> i(0); i < my_multi_array.size<DimA>(); ++i)
          * {
          *     for(DimensionIndex<DimB> j(0); j < my_multi_array.size<DimB>(); ++j)
@@ -125,10 +125,7 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
 
         /**
          * @brief return a slice of the specified dimension spanning the index_range provided
-        SliceType slice(DimensionSpan<FirstDimension> const& index_range);
-        ConstSliceType slice(DimensionSpan<FirstDimension> const& index_range) const;
          */
-
         template<typename Dim, typename... Dims>
         SliceType slice(DimensionSpan<Dim>&& range, DimensionSpan<Dims>&&...);
 
@@ -164,7 +161,7 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         dimension() const;
 
         /**
-         * @brief the total size of data in all dimesions
+         * @brief the total size of data in all dimensions
          */
         std::size_t data_size() const;
 
@@ -174,7 +171,7 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         bool operator==(MultiArray const&) const;
 
         /**
-         * @brief return true if the sizes of each dimension are quivalent
+         * @brief return true if the sizes of each dimension are equivalent
          */
         bool equal_size(MultiArray const&) const;
 
@@ -259,7 +256,7 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         dimension() const;
 
         /**
-         * @brief the total size of data in all dimesions
+         * @brief the total size of data in all dimensions
          */
         std::size_t data_size() const;
 
@@ -272,7 +269,7 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         bool operator==(MultiArray const&) const;
 
         /**
-         * @brief return true if the sizes of each dimension are quivalent
+         * @brief return true if the sizes of each dimension are equivalent
          */
         bool equal_size(MultiArray const&) const;
 
