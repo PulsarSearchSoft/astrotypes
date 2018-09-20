@@ -103,7 +103,7 @@ void HeaderBase<Derived>::do_read(std::istream & stream)
         }
 
         // read in the value
-        it->second->read(stream);
+        _size += it->second->read(stream);
     }
 }
 
@@ -194,6 +194,16 @@ bool HeaderBase<Derived>::operator!=(HeaderBase<Derived> const& h) const
 
 template<typename Derived>
 std::size_t HeaderBase<Derived>::size() const {
+/*
+    std::size_t size = 0U;
+    for(auto const& header : _headers) {
+        if(header.second->is_set()) {
+            size += header.first.size();
+            size += header.size_bytes();
+        }
+    }
+    return size;
+*/
     return _size;
 }
 
