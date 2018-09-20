@@ -143,20 +143,20 @@ template<typename Alloc, typename T, template<typename> class SliceMixin, typena
 typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::ReducedDimensionSliceType MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::operator[](DimensionIndex<FirstDimension> index)
 {
     return SliceType(*this, DimensionSpan<FirstDimension>(index, DimensionSize<FirstDimension>(1))
-                          , DimensionSpan<Dimensions>(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template size<Dimensions>()))...)[DimensionIndex<FirstDimension>(0)];
+                          , DimensionSpan<Dimensions>(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template dimension<Dimensions>()))...)[DimensionIndex<FirstDimension>(0)];
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::ConstReducedDimensionSliceType MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::operator[](DimensionIndex<FirstDimension> index) const
 {
     return ConstSliceType(*this, DimensionSpan<FirstDimension>(index, DimensionSize<FirstDimension>(1))
-                          , DimensionSpan<Dimensions>(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template size<Dimensions>()))...)[DimensionIndex<FirstDimension>(0)];
+                          , DimensionSpan<Dimensions>(DimensionIndex<Dimensions>(0), DimensionSize<Dimensions>(this->template dimension<Dimensions>()))...)[DimensionIndex<FirstDimension>(0)];
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<has_dimension<MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>, Dim>::value
-&& !std::is_same<Dim, FirstDimension>::value, typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::ConstSliceType>::type
+&& !std::is_same<Dim, FirstDimension>::value, typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::template ConstOperatorSliceType<Dim>::type>::type
 MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::operator[](DimensionIndex<Dim> const& index) const
 {
    return ConstSliceType(*this, DimensionSpan<Dim>(index, DimensionSize<Dim>(1)));
@@ -165,7 +165,7 @@ MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::operator[](Dime
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<has_dimension<MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>, Dim>::value
-&& !std::is_same<Dim, FirstDimension>::value, typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::SliceType>::type
+&& !std::is_same<Dim, FirstDimension>::value, typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::template OperatorSliceType<Dim>::type>::type
 MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::operator[](DimensionIndex<Dim> const& index)
 {
    return SliceType(*this, DimensionSpan<Dim>(index, DimensionSize<Dim>(1)));
@@ -197,13 +197,29 @@ template<typename Dim>
 typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type
 MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::size() const
 {
-    return BaseT::template size<Dim>();
+    return BaseT::template dimension<Dim>();
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type
 MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::size() const
+{
+    return _size;
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dim>
+typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
+MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::dimension() const
+{
+    return BaseT::template dimension<Dim>();
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dim>
+typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type 
+MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::dimension() const
 {
     return _size;
 }
@@ -240,7 +256,7 @@ std::size_t MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::dat
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 bool MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::equal_size(MultiArray const& o) const
 {
-    return _size == o.size<FirstDimension>() && BaseT::equal_size(static_cast<BaseT const&>(o));
+    return _size == o.dimension<FirstDimension>() && BaseT::equal_size(static_cast<BaseT const&>(o));
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
@@ -286,6 +302,22 @@ template<typename Alloc, typename T, template<typename> class SliceMixin, typena
 template<typename Dim>
 typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type
 MultiArray<Alloc, T, SliceMixin, FirstDimension>::size() const
+{
+    return _size;
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
+template<typename Dim>
+typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type 
+MultiArray<Alloc, T, SliceMixin, FirstDimension>::dimension() const
+{
+    return DimensionSize<Dim>(0);
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
+template<typename Dim>
+typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type 
+MultiArray<Alloc, T, SliceMixin, FirstDimension>::dimension() const
 {
     return _size;
 }
@@ -365,14 +397,14 @@ typename MultiArray<Alloc, T, SliceMixin, FirstDimension>::const_iterator MultiA
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
 bool MultiArray<Alloc, T, SliceMixin, FirstDimension>::operator==(MultiArray const& o) const
 {
-    return _size == o.size<FirstDimension>()
+    return _size == o.dimension<FirstDimension>() 
            && std::equal(o.cbegin(), o.cend(), cbegin());
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
 bool MultiArray<Alloc, T, SliceMixin, FirstDimension>::equal_size(MultiArray const& o) const
 {
-    return _size == o.size<FirstDimension>();
+    return _size == o.dimension<FirstDimension>();
 }
 
 } // namespace astrotypes

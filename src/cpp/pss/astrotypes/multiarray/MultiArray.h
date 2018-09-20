@@ -47,6 +47,11 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         typedef std::vector<T, Alloc> Container;
 
     public:
+        typedef typename BaseT::iterator iterator;
+        typedef typename BaseT::const_iterator const_iterator;
+        typedef typename BaseT::value_type value_type;
+
+    public:
         /**
           * @brief provides a template to determine the returned type of an operator[]
           *  @tparam Dim  the dimension that will be called
@@ -65,12 +70,9 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
 
         typedef SliceMixin<Slice<false, SelfType, SliceMixin, FirstDimension, OtherDimensions...>> SliceType;
         typedef SliceMixin<Slice<true, SelfType, SliceMixin, FirstDimension, OtherDimensions...>> ConstSliceType;
-        typedef SliceMixin<Slice<false, SelfType, SliceMixin, OtherDimensions...>> ReducedDimensionSliceType;
-        typedef SliceMixin<Slice<true, SelfType, SliceMixin, OtherDimensions...>> ConstReducedDimensionSliceType;
+        typedef typename SliceType::template OperatorSliceType<FirstDimension>::type ReducedDimensionSliceType;
+        typedef typename ConstSliceType::template ConstOperatorSliceType<FirstDimension>::type ConstReducedDimensionSliceType;
 
-        typedef typename Container::iterator iterator;
-        typedef typename Container::const_iterator const_iterator;
-        typedef typename Container::value_type value_type;
         typedef T& reference_type;
         typedef T const& const_reference_type;
 
@@ -113,13 +115,13 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         template<typename Dim>
         typename std::enable_if<has_dimension<MultiArray, Dim>::value
                             && !std::is_same<Dim, FirstDimension>::value
-                            , SliceType>::type
+                            , typename OperatorSliceType<Dim>::type>::type
         operator[](DimensionIndex<Dim> const&);
 
         template<typename Dim>
         typename std::enable_if<has_dimension<MultiArray, Dim>::value
                             && !std::is_same<Dim, FirstDimension>::value
-                            , ConstSliceType>::type
+                            , typename ConstOperatorSliceType<Dim>::type>::type
         operator[](DimensionIndex<Dim> const&) const;
 
         /**
@@ -153,6 +155,14 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         template<typename Dim>
         typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type
         size() const;
+
+        template<typename Dim>
+        typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type
+        dimension() const;
+
+        template<typename Dim>
+        typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type
+        dimension() const;
 
         /**
          * @brief the total size of data in all dimesions
@@ -240,6 +250,14 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         template<typename Dim>
         typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type
         size() const;
+
+        template<typename Dim>
+        typename std::enable_if<std::is_same<Dim, FirstDimension>::value, DimensionSize<FirstDimension>>::type
+        dimension() const;
+
+        template<typename Dim>
+        typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type
+        dimension() const;
 
         /**
          * @brief the total size of data in all dimensions

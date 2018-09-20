@@ -27,6 +27,7 @@
 #include "pss/astrotypes/multiarray/TypeTraits.h"
 #include "pss/astrotypes/units/Time.h"
 
+/*
 template<typename T>
 typename std::enable_if<pss::astrotypes::has_dimensions<T, pss::astrotypes::units::Time, pss::astrotypes::units::Frequency>::value,
 std::istream>::type& operator>>(std::istream&, T&)
@@ -35,5 +36,6 @@ std::istream>::type& operator>>(std::istream&, T&)
     // as we need a SigProcFormat Adapter to know how to interpret the stream 
     static_assert(sizeof(T)==0, "attempt to use operator>> on an istream without a SigProcFormat Adapter.");
 }
+*/
 
 #endif // PSS_ASTROTYPES_SIGPROC_ISTREAM_H

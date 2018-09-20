@@ -37,6 +37,10 @@ namespace astrotypes {
 
     template<typename SliceType, bool is_const> class SliceIterator;
 
+    namespace multiarray {
+        template<typename T, typename D, std::size_t> class ReducedRankSlice;
+    } // namespace multiarray
+
 } // namespace pss
 } // namespace astrotypes
 
@@ -58,10 +62,10 @@ class SliceIteratorBase : public SliceIteratorBase<DerivedType, SliceType, is_co
         typedef SliceIteratorBase<DerivedType, SliceType, is_const, 1> BaseT;
         typedef SliceIteratorBase<DerivedType, SliceType, is_const, SliceType::rank> SelfType;
         typedef typename std::conditional<is_const, typename SliceType::Parent::const_iterator, typename SliceType::Parent::iterator>::type parent_iterator;
-        typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
 
     protected:
-        typedef typename BaseT::ImplT ImplT; // to allow friend declaration
+        typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
+        typedef typename BaseT::ImplT ImplT; // to allow friend decalariont
 
     public:
         typedef typename std::iterator_traits<parent_iterator>::value_type value_type;
@@ -91,10 +95,10 @@ class SliceIteratorBase<DerivedType, SliceType, is_const, 1>
 
         typedef SliceIteratorBase<DerivedType, SliceType, is_const, 1> SelfType;
         typedef typename std::conditional<is_const, typename SliceType::Parent::const_iterator, typename SliceType::Parent::iterator>::type parent_iterator;
-        typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
 
     protected:
-        typedef SelfType ImplT; // to allow friend declaration
+        typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
+        typedef SelfType ImplT; // to allow friend decalariont
 
     public:
         typedef typename std::iterator_traits<parent_iterator>::value_type value_type;
@@ -129,8 +133,16 @@ class SliceIteratorBase<DerivedType, SliceType, is_const, 1>
 };
 
 template<typename SliceType, bool is_const>
-class SliceIterator : public SliceIteratorBase<SliceIterator<SliceType, is_const>, SliceType, is_const, SliceType::rank>
+class SliceIterator;
+
+template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions, bool is_const2>
+class SliceIterator<Slice<is_const2, ParentT, SliceMixin, Dimension, Dimensions...>, is_const> 
+    : public SliceIteratorBase<SliceIterator<Slice<is_const2, ParentT, SliceMixin, Dimension, Dimensions...>, is_const>
+                                           , Slice<is_const2, ParentT, SliceMixin, Dimension, Dimensions...>, is_const
+                                           , Slice<is_const2, ParentT, SliceMixin, Dimension, Dimensions...>::rank>
 {
+    protected:
+        typedef Slice<is_const2, ParentT, SliceMixin, Dimension, Dimensions...> SliceType;
         typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
 
     public:
@@ -139,14 +151,16 @@ class SliceIterator : public SliceIteratorBase<SliceIterator<SliceType, is_const
         typedef SliceIteratorBase<SliceIterator<SliceType, is_const>, SliceType, is_const, 1> ImplT;
 
     public:
-        SliceIterator(SliceT&);
+        SliceIterator(SliceT& s) : BaseT(s) {}
+        SliceIterator(BaseT const& b) : BaseT(b) {}
+        SliceIterator(BaseT&& b) : BaseT(std::forward<BaseT>(b)) {}
 };
-
 
 // handle mixin types
 template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions, bool is_const2>
 class SliceIterator<SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>>, is_const2> : public SliceIteratorBase<SliceIterator<SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>>, is_const2>, Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>, is_const2, Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...>::rank>
 {
+    protected:
         typedef Slice<is_const, ParentT, SliceMixin, Dimension, Dimensions...> SliceType;
         typedef typename std::conditional<is_const2, SliceType const, SliceType>::type SliceT;
 
@@ -156,6 +170,99 @@ class SliceIterator<SliceMixin<Slice<is_const, ParentT, SliceMixin, Dimension, D
 
     public:
         SliceIterator(SliceT& s) : BaseT(s) {}
+};
+
+template<typename T, std::size_t B, typename SliceType, bool is_const>
+class SliceIterator<multiarray::ReducedRankSlice<SliceType, T, B>, is_const> : public SliceIterator<SliceType, is_const>
+{
+        typedef SliceIterator<SliceType, is_const> ActualBaseT;
+
+    protected:
+        typedef typename ActualBaseT::SliceT SliceT;  // Inner level of mixin
+
+    public:
+        typedef typename ActualBaseT::BaseT BaseT; // required for friend access
+        typedef typename ActualBaseT::ImplT ImplT; // required for friend aceess
+
+    public:
+        SliceIterator(SliceT& s);
+        SliceIterator(BaseT const& b) : ActualBaseT(b) {}
+        SliceIterator(BaseT&& b) : ActualBaseT(std::forward<BaseT>(b)) {}
+
+        SliceIterator& operator++();
+        SliceIterator& operator++(int);
+
+        static SliceIterator create_end(SliceT& slice) { return SliceIterator(ActualBaseT::create_end(slice)); }
+};
+
+// This is a wrapper class that ensures we return the types we expect to see
+template<template<typename, typename...> class Mixin, typename... Ts, typename SliceType, bool is_const>
+class SliceIterator<Mixin<SliceType, Ts...>, is_const> : public SliceIterator<SliceType, is_const>
+{
+        typedef SliceIterator<SliceType, is_const> ActualBaseT;
+
+    protected:
+        typedef typename ActualBaseT::SliceT SliceT;  // Inner level of mixin
+
+    public:
+        typedef typename ActualBaseT::BaseT BaseT; // required for friend access
+        typedef typename ActualBaseT::ImplT ImplT; // required for friend aceess
+
+    public:
+        SliceIterator(SliceT& s) : ActualBaseT(s) {};
+        SliceIterator(BaseT const& b) : ActualBaseT(b) {}
+        SliceIterator(BaseT&& b) : ActualBaseT(std::forward<BaseT>(b)) {}
+
+        SliceIterator& operator++();
+        SliceIterator& operator++(int);
+
+        static SliceIterator create_end(SliceT& slice) { return SliceIterator(ActualBaseT::create_end(slice)); }
+};
+
+/*
+ * @brief remove any mixins from the tyeps list
+ */
+template<typename SliceType>
+struct SliceMixinRemover
+{
+    typedef SliceType type;
+};
+
+template<typename SliceType, typename D, std::size_t Rank>
+struct SliceMixinRemover<multiarray::ReducedRankSlice<SliceType, D, Rank>>
+{
+    typedef multiarray::ReducedRankSlice<typename SliceMixinRemover<SliceType>::type, D, Rank> type;
+};
+
+template<template<typename> class Mixin, typename SliceType>
+struct SliceMixinRemover<Mixin<SliceType>>
+{
+    typedef typename SliceMixinRemover<SliceType>::type type;
+};
+
+/*
+ * @brief add layers in the mixin structure of the SliceType
+ */
+template<typename ReplacementSliceType, typename SliceIterator>
+struct SliceIteratorHelper;
+
+template<typename ReplacementSliceType
+        , typename SliceType
+        , bool is_const>
+struct SliceIteratorHelper<ReplacementSliceType, SliceIterator<SliceType, is_const>>
+{
+    typedef SliceIterator<ReplacementSliceType, is_const> type;
+};
+
+
+// remove the SliceMixin
+template<typename ReplacementSliceType
+        , template<typename> class SliceMixin
+        , typename SliceType
+        , bool is_const>
+struct SliceIteratorHelper<ReplacementSliceType, SliceIterator<SliceMixin<SliceType>, is_const>>
+{
+    typedef SliceIterator<SliceMixin<ReplacementSliceType>, is_const> type;
 };
 
 } // namespace astrotypes

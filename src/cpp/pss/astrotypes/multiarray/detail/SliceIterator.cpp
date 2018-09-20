@@ -113,10 +113,32 @@ bool SliceIteratorBase<DerivedType, SliceType, is_const, 1>::operator!=(SliceIte
     return _current != o._current;
 }
 
-template<typename SliceType, bool is_const>
-SliceIterator<SliceType, is_const>::SliceIterator(SliceT& slice)
-    : BaseT(slice)
+template<typename T, std::size_t B, typename SliceType, bool is_const>
+SliceIterator<multiarray::ReducedRankSlice<SliceType, T, B>, is_const>& SliceIterator<multiarray::ReducedRankSlice<SliceType, T, B>, is_const>::operator++()
 {
+    static_assert(B == 1 , "not yet implemented");
+    ++static_cast<ActualBaseT&>(*this);
+    return *this;
+}
+
+template<typename T, std::size_t B, typename SliceType, bool is_const>
+SliceIterator<multiarray::ReducedRankSlice<SliceType, T, B>, is_const>& SliceIterator<multiarray::ReducedRankSlice<SliceType, T, B>, is_const>::operator++(int)
+{
+    static_assert(B == 1 , "not yet implemented");
+    return static_cast<ActualBaseT&>(*this)++;
+}
+
+template<template<typename, typename...> class Mixin, typename... Ts, typename SliceType, bool is_const>
+SliceIterator<Mixin<SliceType, Ts...>, is_const>& SliceIterator<Mixin<SliceType, Ts...>, is_const>::operator++()
+{
+    ++static_cast<ActualBaseT&>(*this);
+    return *this;
+}
+
+template<template<typename, typename...> class Mixin, typename... Ts, typename SliceType, bool is_const>
+SliceIterator<Mixin<SliceType, Ts...>, is_const>& SliceIterator<Mixin<SliceType, Ts...>, is_const>::operator++(int)
+{
+    return static_cast<ActualBaseT&>(*this)++;
 }
 
 } // namespace astrotypes

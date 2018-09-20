@@ -66,6 +66,10 @@ class SigProcFormat<units::Time, units::Frequency>
                 operator<<(T const&) const;
 
                 template<typename T>
+                typename std::enable_if<has_exact_dimensions<T, units::Frequency>::value, OSigProcFormat const&>::type
+                operator<<(T const&) const;
+
+                template<typename T>
                 typename std::enable_if<has_exact_dimensions<T, units::Frequency, units::Time>::value, OSigProcFormat const&>::type
                 operator<<(T const&) const;
 
@@ -117,6 +121,14 @@ class SigProcFormat<units::Frequency, units::Time>
                 
                 template<typename T, typename Alloc>
                 OSigProcFormat const& operator<<(astrotypes::FrequencyTime<T, Alloc> const&);
+
+                template<typename T>
+                typename std::enable_if<has_exact_dimensions<T, units::Time>::value, OSigProcFormat const&>::type
+                operator<<(T const&) const;
+
+                template<typename T>
+                typename std::enable_if<has_exact_dimensions<T, units::Frequency>::value, OSigProcFormat const&>::type
+                operator<<(T const&) const;
 
             protected:
                 std::ostream& _os;

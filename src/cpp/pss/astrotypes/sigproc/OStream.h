@@ -33,6 +33,7 @@ namespace pss {
 namespace astrotypes {
 namespace sigproc {
 
+/*
 template<typename T>
 typename std::enable_if<pss::astrotypes::has_dimensions<T, pss::astrotypes::units::Time, pss::astrotypes::units::Frequency>::value,
 std::ostream>::type& operator<<(std::ostream&, T&)
@@ -41,6 +42,7 @@ std::ostream>::type& operator<<(std::ostream&, T&)
     // as we need a SigProcFormat Adapter to know how to interpret the stream 
     static_assert(sizeof(T)==0, "attempt to use operator<< on an ostream without a SigProcFormat Adapter.");
 }
+*/
 
 } // namespace sigproc
 } // namespace astrotypes
