@@ -35,9 +35,8 @@ namespace astrotypes {
 /**
  * @brief
  *      template classes to specify multiple dimension arrays with explicit dimension types
- * @tparam T the type fo object to be stored in the array (e.g. float, int, Stokes, etc)
+ * @tparam T the type of object to be stored in the array (e.g. float, int, Stokes, etc)
  *
- * @details
  */
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... OtherDimensions>
 class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
@@ -126,10 +125,7 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
 
         /**
          * @brief return a slice of the specified dimension spanning the index_range provided
-        SliceType slice(DimensionSpan<FirstDimension> const& index_range);
-        ConstSliceType slice(DimensionSpan<FirstDimension> const& index_range) const;
          */
-
         template<typename Dim, typename... Dims>
         SliceType slice(DimensionSpan<Dim>&& range, DimensionSpan<Dims>&&...);
 
