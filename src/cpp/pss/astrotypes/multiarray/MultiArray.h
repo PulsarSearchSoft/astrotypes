@@ -34,7 +34,7 @@ namespace astrotypes {
 
 /**
  * @brief
- *      template classes to specify multiple dimesion arrays with explicit dimension types
+ *      template classes to specify multiple dimension arrays with explicit dimension types
  * @tparam T the type fo object to be stored in the array (e.g. float, int, Stokes, etc)
  *
  * @details
@@ -165,7 +165,7 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         dimension() const;
 
         /**
-         * @brief the total size of data in all dimesions
+         * @brief the total size of data in all dimensions
          */
         std::size_t data_size() const;
 
