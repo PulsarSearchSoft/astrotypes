@@ -43,6 +43,8 @@ class DimensionSpan
     public:
         DimensionSpan(DimensionIndex<Dimension> start_index, DimensionIndex<Dimension> end_index);
         DimensionSpan(DimensionIndex<Dimension> start_index, DimensionSize<Dimension> size);
+        /// convenience operator, start_index will be set to 0
+        DimensionSpan(DimensionSize<Dimension> size);
 
         inline DimensionIndex<Dimension>&         start() { return _start_index; }
         inline DimensionIndex<Dimension> const&   start() const { return _start_index; };

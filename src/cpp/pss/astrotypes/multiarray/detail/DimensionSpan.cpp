@@ -39,5 +39,12 @@ DimensionSpan<Dimension>::DimensionSpan(DimensionIndex<Dimension> start_index, D
 {
 }
 
+template<typename Dimension>
+DimensionSpan<Dimension>::DimensionSpan(DimensionSize<Dimension> size)
+    : _start_index(0)
+    , _span(size)
+{
+}
+
 } // namespace astrotypes
 } // namespace pss
