@@ -26,43 +26,11 @@
 #include <type_traits>
 #include <tuple>
 
+#include <type_traits>
+
 
 namespace pss {
 namespace astrotypes {
-
-/**
- * @biref return true if the Dimension is represented in the structure @tparam T
- * @tparam Dimension  : the dimension to find
- * @param T : the structure to search for the Dimension
- * @code
- * /// example of a definition for a function that only supports types that support the Time dimension
- * template<typename T>
- * void do_something(std::enable_if<has_dimension<units::Time>::value, T>::type const&);
- * @endcode
- */
-template<typename T, typename Dimension>
-struct has_dimension : public std::false_type
-{
-};
-
-
-/**
- * @biref return true if the Dimensions provided match exaclty those of the structure T (including order)
- * @tparam Dimensions  : the dimension to find in the order required
- * @param T : the structure to search for the Dimension
- * members:
- *     bool value; // true or false
- *     type; // std::true_type or std::false_type
- * @code
- * /// example of a definition for a function that only supports types that are Time and Frequency ordererd
- * template<typename T>
- * void do_something(std::enable_if<has_exact_dimension<units::Time, units::Frequency>::value, T>::type const&);
- * @endcode
- */
-template<typename T, typename... Dimensions>
-struct has_exact_dimensions : public std::false_type
-{
-};
 
 /**
  * @brief helper class to perform a logical and on all the arguments
@@ -78,6 +46,71 @@ struct logical_and<T, T> : public std::true_type
 template<typename T1, typename T2>
 struct logical_and<T1, T2> : public std::false_type
 {};
+
+static_assert(logical_and<std::true_type, std::true_type>::value, "oh oh");
+static_assert(!logical_and<std::false_type, std::true_type>::value, "oh oh");
+static_assert(!logical_and<std::true_type, std::false_type>::value, "oh oh");
+static_assert(logical_and<std::true_type, std::true_type, std::true_type>::value, "oh oh");
+static_assert(!logical_and<std::false_type, std::true_type, std::true_type>::value, "oh oh");
+static_assert(!logical_and<std::true_type, std::true_type, std::false_type>::value, "oh oh");
+
+/**
+ * @brief return true if the Dimension is represented in the structure @tparam T
+ * @tparam Dimension  : the dimension to find 
+ * @param T : the structure to search for the Dimension
+ * @code
+ * /// example of a definition for a function that only supports types that support the Time dimension
+ * template<typename T>
+ * void do_something(std::enable_if<has_dimension<units::Time>::value, T>::type const&);
+ * @endcode
+ *
+ * @details
+ * provide a specialisation of this class to inherit from std::true_type if it has the specified dimension
+ */
+template<typename T, typename Dimension>
+struct has_dimension : public std::false_type
+{
+};
+
+template<typename T >
+struct has_dimension<T, T> : public std::true_type
+{
+};
+
+/**
+ * @brief return true if the all Dimensions provided are represented in the structure @tparam T
+ */
+template<typename T, typename Dimension, typename... Dimensions>
+struct has_dimensions : public logical_and<typename has_dimension<T, Dimension>::type, typename has_dimensions<T, Dimensions...>::type>
+{
+};
+
+template<typename T, typename Dimension>
+struct has_dimensions<T, Dimension> : public has_dimension<T, Dimension>
+{
+};
+
+// convenience alias
+//template<typename T, typename Dimension, typename... Dimensions>
+//using has_dimensions = has_dimension<T, Dimension, Dimensions...>;
+
+/**
+ * @brief return true if the Dimensions provided match exactly those of the structure T (including order)
+ * @tparam Dimensions  : the dimension to find in the order required
+ * @param T : the structure to search for the Dimension
+ * members:
+ *     bool value; // true or false
+ *     type; // std::true_type or std::false_type
+ * @code
+ * /// example of a definition for a function that only supports types that are Time and Frequency ordered
+ * template<typename T>
+ * void do_something(std::enable_if<has_exact_dimension<units::Time, units::Frequency>::value, T>::type const&);
+ * @endcode
+ */
+template<typename T, typename... Dimensions>
+struct has_exact_dimensions : public std::false_type
+{
+};
 
 /**
  * @ brief helper class to determine if a tuple has a certain type
