@@ -67,7 +67,11 @@ class TestMultiArray : public MultiArray<std::allocator<T>, T, TestMultiArrayMix
 
     public:
         template<typename... Args>
-        TestMultiArray(Args&&... args) : BaseT(std::forward<Args>(args)...) {
+        TestMultiArray(TestMultiArray<Args...> const& arg) : BaseT(arg) {
+        }
+
+        template<typename... Args>
+        TestMultiArray(DimensionSize<Args>... args) : BaseT(args...) {
             unsigned n=0;
             // fill with a number sequence 1,2,3,4.....
             std::generate(this->begin(), this->end(), [&] () mutable { 
@@ -75,6 +79,22 @@ class TestMultiArray : public MultiArray<std::allocator<T>, T, TestMultiArrayMix
                                                                      });
         }
 };
+
+} // namespace test
+
+// this must be declared in the astrotypes namespace
+template<typename Dimension, typename T, typename... Dimensions>
+struct has_dimension<test::TestMultiArray<T, Dimensions...>, Dimension> : public list_has_type<Dimension, Dimensions...>::type
+{
+};
+
+static_assert(has_dimension<test::TestMultiArray<int, test::DimensionA>, test::DimensionA>::value, "oh oh");
+static_assert(!has_dimension<test::TestMultiArray<int, test::DimensionA>, test::DimensionB>::value, "oh oh");
+static_assert(has_dimension<test::TestMultiArray<int, test::DimensionA, test::DimensionB>, test::DimensionA>::value, "oh oh");
+static_assert(has_dimension<test::TestMultiArray<int, test::DimensionA, test::DimensionB>, test::DimensionB>::value, "oh oh");
+static_assert(!has_dimension<test::TestMultiArray<int, test::DimensionA, test::DimensionB>, test::DimensionC>::value, "oh oh");
+
+namespace test {
 
 TEST_F(MultiArrayTest, test_single_dimension_size)
 {
@@ -138,6 +158,23 @@ TEST_F(MultiArrayTest, test_two_dimension_1_slice_DimensionA_const_iterator)
                                 ++n;
                            });
     ASSERT_EQ(n-(unsigned)size_b, (unsigned)size_b);
+}
+
+TEST_F(MultiArrayTest, test_two_dimension_transpose_constructor)
+{
+    DimensionSize<DimensionA> size_a(30);
+    DimensionSize<DimensionB> size_b(20);
+    TestMultiArray<int, DimensionA, DimensionB> ab(size_a, size_b);
+
+    TestMultiArray<int, DimensionB, DimensionA> ba(ab);
+    ASSERT_EQ(ba.dimension<DimensionA>(), size_a);
+    ASSERT_EQ(ba.dimension<DimensionB>(), size_b);
+
+    for(DimensionIndex<DimensionA> i(0); i < ab.dimension<DimensionA>(); ++i) {
+        for(DimensionIndex<DimensionB> j(0); j < ab.dimension<DimensionB>(); ++j) {
+            ASSERT_EQ(ba[j][i], ab[i][j]) << " i=" << i << " j=" << j << " " << &ba[j][i];
+        }
+    }
 }
 
 TEST_F(MultiArrayTest, test_three_dimension_size)

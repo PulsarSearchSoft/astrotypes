@@ -114,6 +114,15 @@ class TimeFrequency : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon,
     public:
         TimeFrequency(DimensionSize<units::Time>, DimensionSize<units::Frequency>);
         TimeFrequency(DimensionSize<units::Frequency>, DimensionSize<units::Time>);
+
+        /**
+         * @brief The transpose constructor
+         * @details copy data from a FrequencyTime object
+         */
+        template<typename FrequencyTimeType, typename Enable=typename std::enable_if<
+                   has_exact_dimensions<FrequencyTimeType, units::Frequency, units::Time>::value>::type>
+        TimeFrequency(FrequencyTimeType const&);
+
         ~TimeFrequency();
 };
 
@@ -142,6 +151,15 @@ class FrequencyTime : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon,
     public:
         FrequencyTime(DimensionSize<units::Frequency>, DimensionSize<units::Time>);
         FrequencyTime(DimensionSize<units::Time>, DimensionSize<units::Frequency>);
+
+        /**
+         * @brief The transpose constructor
+         * @details copy data from a TimeFrequency object
+         */
+        template<typename TimeFrequencyType, typename Enable=typename std::enable_if<
+                   has_exact_dimensions<TimeFrequencyType, units::Time, units::Frequency>::value>::type>
+        FrequencyTime(TimeFrequencyType const&);
+
         ~FrequencyTime();
 };
 
@@ -152,6 +170,26 @@ struct has_exact_dimensions<TimeFrequency<T, Alloc>, units::Time, units::Frequen
 
 template<typename Alloc, typename T>
 struct has_exact_dimensions<FrequencyTime<T, Alloc>, units::Frequency, units::Time> : public std::true_type
+{
+};
+
+template<typename Alloc, typename T>
+struct has_dimension<TimeFrequency<T, Alloc>, units::Time> : public std::true_type
+{
+};
+
+template<typename Alloc, typename T>
+struct has_dimension<TimeFrequency<T, Alloc>, units::Frequency> : public std::true_type
+{
+};
+
+template<typename Alloc, typename T>
+struct has_dimension<FrequencyTime<T, Alloc>, units::Time> : public std::true_type
+{
+};
+
+template<typename Alloc, typename T>
+struct has_dimension<FrequencyTime<T, Alloc>, units::Frequency> : public std::true_type
 {
 };
 
