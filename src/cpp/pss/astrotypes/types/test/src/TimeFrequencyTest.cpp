@@ -1,18 +1,18 @@
 /*
  * MIT License
- * 
+ *
  * Copyright (c) 2018 PulsarSearchSoft
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -67,7 +67,7 @@ TEST_F(TimeFrequencyTest, test_time_freq_spectrum)
     DimensionSize<Time> time_size(50);
     DimensionSize<Frequency> freq_size(10);
     TimeFrequency<uint8_t> tf1(time_size, freq_size);
-    
+
     for(unsigned spectrum_num =0; spectrum_num < (std::size_t)time_size; ++spectrum_num)
     {
         unsigned n=0;
@@ -87,13 +87,13 @@ TEST_F(TimeFrequencyTest, test_time_freq_channel)
     TimeFrequency<int> tf1(time_size, freq_size);
     unsigned val=0;
     std::generate(tf1.begin(), tf1.end(), [&]() { return val++; });
-    
-    typedef typename TimeFrequency<int>::Channel Channel; 
+
+    typedef typename TimeFrequency<int>::Channel Channel;
     for(unsigned channel_num=0; channel_num < (std::size_t)freq_size; ++ channel_num) {
         SCOPED_TRACE(channel_num);
         SCOPED_TRACE("channel_num:");
         Channel c = tf1.channel(channel_num);
-        
+
         for(DimensionIndex<Time> num(0); num < time_size; ++num) {
             ASSERT_EQ(c[num], (int)((unsigned)num * freq_size) + channel_num) << num;
         }
@@ -112,7 +112,7 @@ TEST_F(TimeFrequencyTest, test_time_freq_channel)
         ASSERT_EQ(count, (unsigned)(time_size));
         unsigned count2=0;
         std::for_each(c.cbegin(), c.cend(), [&](int const& val)
-                                            { 
+                                            {
                                                 ASSERT_EQ(count2 * (std::size_t)freq_size + channel_num, val) << " count=" << count2;
                                                 ++count2;
                                             } );
@@ -143,7 +143,7 @@ TEST_F(TimeFrequencyTest, test_freq_time_spectrum)
     DimensionSize<Time> time_size(50);
     DimensionSize<Frequency> freq_size(10);
     FrequencyTime<uint8_t> ft1(time_size, freq_size);
-    
+
     typename FrequencyTime<uint8_t>::Spectra s = ft1.spectrum(0);
     unsigned n=0;
     std::for_each(s.cbegin(), s.cend(), [&](uint8_t) { ++n; } );
@@ -166,7 +166,7 @@ TEST_F(TimeFrequencyTest, test_freq_time_channel)
     DimensionSize<Time> time_size(50);
     DimensionSize<Frequency> freq_size(10);
     FrequencyTime<uint8_t> ft1(time_size, freq_size);
-    
+
     typename FrequencyTime<uint8_t>::Channel c = ft1.channel(0);
     ASSERT_EQ(c.size<Frequency>(), DimensionSize<Frequency>(1));
     ASSERT_EQ(c.size<Time>(), time_size);
@@ -184,6 +184,53 @@ TEST_F(TimeFrequencyTest, test_freq_time_channel)
     ASSERT_EQ((std::size_t)channel.size<Time>(), 10U);
     ASSERT_EQ((std::size_t)const_channel.size<Time>(), 10U);
 }
+
+TEST_F(TimeFrequencyTest, test_time_freq_transpose)
+{
+    DimensionSize<Time> time_size(50);
+    DimensionSize<Frequency> freq_size(10);
+    TimeFrequency<uint8_t> tf(time_size, freq_size);
+    unsigned val=0;
+    std::generate(tf.begin(), tf.end(), [&]() { return val++; });
+    static_assert(has_exact_dimensions<decltype(tf), units::Time, units::Frequency>::value, "oh oh");
+    static_assert(has_dimension<decltype(tf), units::Time>::value, "oh oh");
+
+    // call the transpose constructor
+    FrequencyTime<uint8_t> ft(tf);
+
+    ASSERT_EQ(ft.dimension<Time>(), time_size);
+    ASSERT_EQ(ft.dimension<Frequency>(), freq_size);
+    for(DimensionIndex<Time> ti(0); ti < time_size; ++ti)
+    {
+        for(DimensionIndex<Frequency> fi(0); fi < freq_size; ++fi)
+        {
+            ASSERT_EQ(tf[ti][fi], ft[fi][ti]);
+        }
+    }
+}
+
+TEST_F(TimeFrequencyTest, test_freq_time_transpose)
+{
+    DimensionSize<Time> time_size(50);
+    DimensionSize<Frequency> freq_size(10);
+    FrequencyTime<uint8_t> ft1(time_size, freq_size);
+    unsigned val=0;
+    std::generate(ft1.begin(), ft1.end(), [&]() { return val++; });
+
+    // call the transpose constructor
+    TimeFrequency<uint8_t> tf1(ft1);
+
+    ASSERT_EQ(tf1.dimension<Time>(), time_size);
+    ASSERT_EQ(tf1.dimension<Frequency>(), freq_size);
+    for(DimensionIndex<Time> ti(0); ti < time_size; ++ti)
+    {
+        for(DimensionIndex<Frequency> fi(0); fi < freq_size; ++fi)
+        {
+            ASSERT_EQ(tf1[ti][fi], ft1[fi][ti]);
+        }
+    }
+}
+
 
 TEST_F(TimeFrequencyTest, test_time_freq_has_exact_dimensions)
 {

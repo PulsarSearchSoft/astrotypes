@@ -357,7 +357,7 @@ template<bool is_const, typename Parent, template<typename> class SliceMixin, ty
 typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::template ConstOperatorSliceType<Dimension>::type
 Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::operator[](DimensionIndex<Dimension> offset) const
 {
-    typedef Slice<true, Parent, SliceMixin, Dimension, Dimensions...> SliceType;
+    typedef typename ConstOperatorSliceType<Dimension>::type SliceType;
     return SliceType(reinterpret_cast<SliceType const&>(*this)) += static_cast<std::size_t>(offset);
 }
 
