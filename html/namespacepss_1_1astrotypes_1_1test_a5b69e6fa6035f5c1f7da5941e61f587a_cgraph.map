@@ -1,5 +1,5 @@
 <map id="pss::astrotypes::test::TEST_F" name="pss::astrotypes::test::TEST_F">
-<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1MultiArray.html#ac7e561e681f10d72a33c3efc8b4c749b" title="resize the array in the specified dimension " alt="" coords="193,5,372,57"/>
-<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1MultiArray.html#ac0b6a823ee5227e9bd06f545e7ba88f9" title="iterators acting over he entire data structure &#160;useful for e.g std::copy of the entire structure with..." alt="" coords="193,81,372,133"/>
-<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1MultiArray.html#ae5958ebb453db55a086ef95034eb42d0" title="pss::astrotypes::MultiArray\l\&lt; std::allocator\&lt; T \&gt;, T,\l Dimensions...\&gt;::end" alt="" coords="193,157,372,209"/>
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1MultiArray.html#af978aee66609ea80e3ab3282be69efea" title="pss::astrotypes::MultiArray\l\&lt; std::allocator\&lt; T \&gt;, T,\l TestMultiArrayMixin, Dimensions...\&gt;\l::dimension" alt="" coords="208,5,444,71"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1MultiArray.html#a5a9ef3fef9929d2fd15329b2719af0b2" title="iterators acting over he entire data structure " alt="" coords="208,95,444,160"/>
+<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1MultiArray.html#a999f2999c0ab9d93b8a923b65198ff49" title="pss::astrotypes::MultiArray\l\&lt; std::allocator\&lt; T \&gt;, T,\l TestMultiArrayMixin, Dimensions...\&gt;::end" alt="" coords="193,184,459,236"/>
 </map>

@@ -84,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="#index_b"><span>b</span></a></li>
       <li><a href="#index_c"><span>c</span></a></li>
       <li><a href="#index_d"><span>d</span></a></li>
+      <li><a href="#index_e"><span>e</span></a></li>
       <li><a href="#index_i"><span>i</span></a></li>
       <li><a href="#index_p"><span>p</span></a></li>
       <li><a href="#index_r"><span>r</span></a></li>
@@ -113,7 +114,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_b"></a>- b -</h3><ul>
 <li>BaseT
 : <a class="el" href="structpss_1_1astrotypes_1_1arg__helper_3_01T_00_01Dim_00_01Dims_8_8_8_4.html#a97014733beb5cd393b63ac936ba8a813">pss::astrotypes::arg_helper&lt; T, Dim, Dims...&gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator.html#a9cdfafb80214be558200bced25dbd023">pss::astrotypes::SliceIterator&lt; SliceType, is_const &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator_3_01Mixin_3_01SliceType_00_01Ts_8_8_8_4_00_01is__const_01_4.html#a25fe0ac0ead2e8986b23810ca2b4169c">pss::astrotypes::SliceIterator&lt; Mixin&lt; SliceType, Ts...&gt;, is_const &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator_3_01multiarray_1_1ReducedRankSlice_3_01SliceType_00_01T_00_01B_01_4_00_01is__const_01_4.html#ac1ac7bb5185cc2c39ed031761c5000dd">pss::astrotypes::SliceIterator&lt; multiarray::ReducedRankSlice&lt; SliceType, T, B &gt;, is_const &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator_3_01Slice_3_01is__const2_00_01ParentT_00_01SliceMixin_002013a057c174d7af20b4cdfe1cc3ab6c.html#ae1edaf769a6ec733344659509542dba2">pss::astrotypes::SliceIterator&lt; Slice&lt; is_const2, ParentT, SliceMixin, Dimension, Dimensions...&gt;, is_const &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator_3_01SliceMixin_3_01Slice_3_01is__const_00_01ParentT_00_07f1a29fa23730d123862a52847e827a2.html#aee9fd77a2b41321fe843248bdf6b4298">pss::astrotypes::SliceIterator&lt; SliceMixin&lt; Slice&lt; is_const, ParentT, SliceMixin, Dimension, Dimensions...&gt; &gt;, is_const2 &gt;</a>
 , <a class="el" href="structpss_1_1astrotypes_1_1SlicePosition.html#a2e49eb5ec9ba0ce1502e6829adf3fa39">pss::astrotypes::SlicePosition&lt; Rank &gt;</a>
 </li>
 <li>BoostType
@@ -127,39 +131,49 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
 <li>Channel
-: <a class="el" href="classpss_1_1astrotypes_1_1FrequencyTime.html#a5adc6a7b11c8c831b70c391c67fd5b00">pss::astrotypes::FrequencyTime&lt; T, Alloc &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1TimeFrequency.html#a733e8ca5581a3123072586101b4fabee">pss::astrotypes::TimeFrequency&lt; T, Alloc &gt;</a>
+: <a class="el" href="classpss_1_1astrotypes_1_1FrequencyTime.html#a4e26e68cd8d0f01f26adb52c5f0c6301">pss::astrotypes::FrequencyTime&lt; T, Alloc &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1TimeFreqCommon.html#aebe82e231aef91323b2e80cd3f0daf52">pss::astrotypes::TimeFreqCommon&lt; SliceType &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1TimeFrequency.html#a5d9b5556b2963d2783f996c2759b47b7">pss::astrotypes::TimeFrequency&lt; T, Alloc &gt;</a>
 </li>
 <li>const_iterator
-: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1103fd9f6e3cf03694822666eeaf2bcc">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension, OtherDimensions &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01FirstDimension_01_4.html#a5710024ba5beff663ffb82b5d10886b0">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#ab91147bfa4c0b4ca6997b521d52eab68">pss::astrotypes::Slice&lt; is_const, ParentT, Dimension, Dimensions &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01ParentT_00_01Dimension_01_4.html#a20f186968c8f9f90425360aaf9c915db">pss::astrotypes::Slice&lt; is_const, ParentT, Dimension &gt;</a>
+: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac121fa95df2bf73cedc9182912116d8d">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a7b8043eaef35d261699c179d59a65648">pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim, RankT &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice_3_01SliceType_00_01ExcludedDim_00_011_01_4.html#ac3056bb8b92fc0721e780ba29c0dd356">pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim, 1 &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01SliceMixin_00_01FirstDimension_01_4.html#a7102776b1174135fa3fc02b4d09e1522">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#afb43111071de5658a1127dbc298c9641">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01SliceTraitsT_00_01SliceMixin_00_01Dimension_01_4.html#a7c34d4bbe4d2508486c22d65ce02fff3">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension &gt;</a>
 , <a class="el" href="structpss_1_1astrotypes_1_1test_1_1ParentType.html#a6823ec0ba93a942f936f9b1186eaa0d2">pss::astrotypes::test::ParentType&lt; NDim &gt;</a>
 </li>
 <li>const_reference_type
-: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#af2335ad5e8ae11b121a6e7059073afc0">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension, OtherDimensions &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01FirstDimension_01_4.html#a8040188ffdfb98aae58e9f9b1aa960b3">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension &gt;</a>
+: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ae9a462a1b65989beeefa59a2edd24438">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice_3_01SliceType_00_01ExcludedDim_00_011_01_4.html#af8bc85275de6beeabb6105ebe6c7ff51">pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim, 1 &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01SliceMixin_00_01FirstDimension_01_4.html#acde96931249d0e3cb0c4bfad66d80612">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01SliceTraitsT_00_01SliceMixin_00_01Dimension_01_4.html#a0c3a5edff1f1b5c3e6e85929ebe64abe">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension &gt;</a>
 </li>
 <li>ConstChannel
-: <a class="el" href="classpss_1_1astrotypes_1_1FrequencyTime.html#a4a3cc9680c7e7843a360070a6dfb4de9">pss::astrotypes::FrequencyTime&lt; T, Alloc &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1TimeFrequency.html#a9c3221da9186bedc9bc65350f6a00a7f">pss::astrotypes::TimeFrequency&lt; T, Alloc &gt;</a>
+: <a class="el" href="classpss_1_1astrotypes_1_1FrequencyTime.html#a0633313ac26b19edf79100439e57c181">pss::astrotypes::FrequencyTime&lt; T, Alloc &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1TimeFreqCommon.html#ac9d688561bef539ffdb7086f7f9321af">pss::astrotypes::TimeFreqCommon&lt; SliceType &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1TimeFrequency.html#a63a042ddca5644817cdc8777d360d578">pss::astrotypes::TimeFrequency&lt; T, Alloc &gt;</a>
 </li>
 <li>ConstIterator
 : <a class="el" href="classpss_1_1astrotypes_1_1View.html#a71a87e50f31d4e784b3ec8f6e21979a4">pss::astrotypes::View&lt; MultiArrayType &gt;</a>
 </li>
 <li>ConstReducedDimensionSliceType
-: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1f1e5ae122d934b1ba7d3c098fa17a66">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension, OtherDimensions &gt;</a>
+: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a167f2cbd567ab75621fa6662f2d8d064">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;</a>
+</li>
+<li>ConstReducedSliceType
+: <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a5c888341151b61773610fadb442b7492">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;</a>
 </li>
 <li>ConstSliceType
-: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a2ce6292a0e2bfa861581fc73f019e96a">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension, OtherDimensions &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01FirstDimension_01_4.html#aa260b138c994292d73db7eb9a9489c62">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a55fc9d19f78af16d798e040918d53ae5">pss::astrotypes::Slice&lt; is_const, ParentT, Dimension, Dimensions &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01ParentT_00_01Dimension_01_4.html#aed9f4a8dd2306f2778787d13d4d02ee1">pss::astrotypes::Slice&lt; is_const, ParentT, Dimension &gt;</a>
+: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#aab9fc83a487ac4b0bc1108ed0428c9a2">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01SliceMixin_00_01FirstDimension_01_4.html#acbc25ecbe54aa7c6d4763f3ceea9afa4">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#acb5f1eff6b8458b9f3aca7cc39612c03">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01SliceTraitsT_00_01SliceMixin_00_01Dimension_01_4.html#a6d191eafad8b040b4664d4d42f469c5c">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension &gt;</a>
 </li>
 <li>ConstSpectra
-: <a class="el" href="classpss_1_1astrotypes_1_1FrequencyTime.html#a08da607ed07a7aa32c7b02c0cc5a1514">pss::astrotypes::FrequencyTime&lt; T, Alloc &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1TimeFrequency.html#aedccb58e4573192753a8182095806b57">pss::astrotypes::TimeFrequency&lt; T, Alloc &gt;</a>
+: <a class="el" href="classpss_1_1astrotypes_1_1FrequencyTime.html#a971233b01d78a2dd28fa09d5470d5d5a">pss::astrotypes::FrequencyTime&lt; T, Alloc &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1TimeFreqCommon.html#a0b429ae12932019171b5227526acb9d6">pss::astrotypes::TimeFreqCommon&lt; SliceType &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1TimeFrequency.html#af313853cc1fd457c4462c29671d16111">pss::astrotypes::TimeFrequency&lt; T, Alloc &gt;</a>
 </li>
 </ul>
 
@@ -172,20 +186,50 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>dimension
 : <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html#ae74711d4460f1fbd5a8f34626d47cffc">pss::astrotypes::DimensionSize&lt; Dimension &gt;</a>
 </li>
+<li>DimensionTuple
+: <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a48e65b954f917b5b7fd808d3ed52ce1f">pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim, RankT &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice_3_01SliceType_00_01ExcludedDim_00_011_01_4.html#a7fdf2e661a1a06fb8f8245da27ad6613">pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim, 1 &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#adb87d1974386017fb9cb4d8a2fa8e9ae">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01SliceTraitsT_00_01SliceMixin_00_01Dimension_01_4.html#aa96f3730cf0eac78683bbb8363395777">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension &gt;</a>
+</li>
+</ul>
+
+
+<h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>ExcludeTuple
+: <a class="el" href="structpss_1_1astrotypes_1_1InternalSliceTraits.html#a13af66ae04edd57351ef4279c45da986">pss::astrotypes::InternalSliceTraits&lt; ParentT, ExcludeDimension &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1InternalSliceTraits_3_01InternalSliceTraits_3_01Traits_00_01D_01_4_00_01ExcludeDimension_01_4.html#ac7b8e123894fc2396a34a8859d12edf0">pss::astrotypes::InternalSliceTraits&lt; InternalSliceTraits&lt; Traits, D &gt;, ExcludeDimension &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#ab30736b50dd1e285aa9bff7d35edb903">pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim, RankT &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#aab28b1cae00a552bdca4a50b9fbf1b41">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01SliceTraitsT_00_01SliceMixin_00_01Dimension_01_4.html#a94fefd098662786690528df814c6df5b">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1SliceTraitsHelper.html#a522967e6238761b04a7cb3d18b8393e2">pss::astrotypes::SliceTraitsHelper&lt; TraitsT &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1SliceTraitsHelper_3_01InternalSliceTraits_3_01TraitsT_00_01D_01_4_01_4.html#a210fa9696e0090febf6603bb5ec16724">pss::astrotypes::SliceTraitsHelper&lt; InternalSliceTraits&lt; TraitsT, D &gt; &gt;</a>
+</li>
 </ul>
 
 
 <h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
+<li>impl_const_iterator
+: <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a462deb4d8067b8c7cb566d639a17b1fb">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;</a>
+</li>
+<li>impl_iterator
+: <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a5afedecf3fd0c7ea7aa0e5493e323ca7">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;</a>
+</li>
 <li>ImplT
-: <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator.html#a275c2949f4cb8f19e78d672d05ebbcb2">pss::astrotypes::SliceIterator&lt; SliceType, is_const &gt;</a>
+: <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator_3_01Mixin_3_01SliceType_00_01Ts_8_8_8_4_00_01is__const_01_4.html#a357026554e72796e0180b825402255a1">pss::astrotypes::SliceIterator&lt; Mixin&lt; SliceType, Ts...&gt;, is_const &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator_3_01multiarray_1_1ReducedRankSlice_3_01SliceType_00_01T_00_01B_01_4_00_01is__const_01_4.html#a9f2ecd9c58c448993d6d3ff0e2e3f8ba">pss::astrotypes::SliceIterator&lt; multiarray::ReducedRankSlice&lt; SliceType, T, B &gt;, is_const &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator_3_01Slice_3_01is__const2_00_01ParentT_00_01SliceMixin_002013a057c174d7af20b4cdfe1cc3ab6c.html#ab3331d0dee6a24dbaa977f342d06ff79">pss::astrotypes::SliceIterator&lt; Slice&lt; is_const2, ParentT, SliceMixin, Dimension, Dimensions...&gt;, is_const &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator_3_01SliceMixin_3_01Slice_3_01is__const_00_01ParentT_00_07f1a29fa23730d123862a52847e827a2.html#a2076523218a6ece536717b4a23fb8381">pss::astrotypes::SliceIterator&lt; SliceMixin&lt; Slice&lt; is_const, ParentT, SliceMixin, Dimension, Dimensions...&gt; &gt;, is_const2 &gt;</a>
 , <a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase.html#a24618e93994d275ddfbd6f439323333b">pss::astrotypes::SliceIteratorBase&lt; DerivedType, SliceType, is_const, Rank &gt;</a>
 , <a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#aa6d44300fadf63a8c386b4f17eee62c0">pss::astrotypes::SliceIteratorBase&lt; DerivedType, SliceType, is_const, 1 &gt;</a>
 </li>
 <li>iterator
-: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a6c07b5e12becc22b4f7508b12c25230b">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension, OtherDimensions &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01FirstDimension_01_4.html#a287335b27a8b2de2045ca6bb13120073">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a136201c10e8a70004795eb64a3bf4de9">pss::astrotypes::Slice&lt; is_const, ParentT, Dimension, Dimensions &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01ParentT_00_01Dimension_01_4.html#a27b252c4f30a7d6f09cac4b4e26bb221">pss::astrotypes::Slice&lt; is_const, ParentT, Dimension &gt;</a>
+: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a7a1e65fbc326d420d65f557867df2cfb">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a26fd410c238e7f1382c9924bd576fc04">pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim, RankT &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice_3_01SliceType_00_01ExcludedDim_00_011_01_4.html#a7c0f3114cd0b2c0b0b17512f111f6f69">pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim, 1 &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01SliceMixin_00_01FirstDimension_01_4.html#a476182d14dccb19d296173bf583d31fa">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#abb7cc574e9e68fdecff46be65c097dd1">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01SliceTraitsT_00_01SliceMixin_00_01Dimension_01_4.html#ae9b1db5ccf2daef76656660629183a1f">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension &gt;</a>
 , <a class="el" href="structpss_1_1astrotypes_1_1test_1_1ParentType.html#a184f4439eb603ea9a0f820d6c31b5c42">pss::astrotypes::test::ParentType&lt; NDim &gt;</a>
 </li>
 <li>Iterator
@@ -200,8 +244,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_p"></a>- p -</h3><ul>
 <li>Parent
-: <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a3d0d8d02149c68932e0dc948028bb370">pss::astrotypes::Slice&lt; is_const, ParentT, Dimension, Dimensions &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01ParentT_00_01Dimension_01_4.html#a042c84fb2590dede2e8d13a86f19e6da">pss::astrotypes::Slice&lt; is_const, ParentT, Dimension &gt;</a>
+: <a class="el" href="structpss_1_1astrotypes_1_1InternalSliceTraits.html#a16010961e553d29be1b8603c37da15e9">pss::astrotypes::InternalSliceTraits&lt; ParentT, ExcludeDimension &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1InternalSliceTraits_3_01InternalSliceTraits_3_01Traits_00_01D_01_4_00_01ExcludeDimension_01_4.html#ab65db767aebf4fb8b8063cabc9d6b08b">pss::astrotypes::InternalSliceTraits&lt; InternalSliceTraits&lt; Traits, D &gt;, ExcludeDimension &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01SliceTraitsT_00_01SliceMixin_00_01Dimension_01_4.html#a0986f7f115cf4d3d2f58d47d5a1c338a">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1SliceTraitsHelper.html#ab8a5db7d41d1c78e348cacc83e663549">pss::astrotypes::SliceTraitsHelper&lt; TraitsT &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1SliceTraitsHelper_3_01InternalSliceTraits_3_01TraitsT_00_01D_01_4_01_4.html#aae30f74772caab196783c1dd868bfa10">pss::astrotypes::SliceTraitsHelper&lt; InternalSliceTraits&lt; TraitsT, D &gt; &gt;</a>
 </li>
 <li>period
 : <a class="el" href="classpss_1_1astrotypes_1_1units_1_1Quantity_3_01TimeUnit_00_01NumericalRep_00_01typename_01std_155cc2de38ca4ad11883bae649422c99e.html#ac903f676fb937fa3a77a0c03662240a9">pss::astrotypes::units::Quantity&lt; TimeUnit, NumericalRep, typename std::enable_if&lt; boost::units::is_unit_of_dimension&lt; TimeUnit, boost::units::time_dimension &gt;::value &gt;::type &gt;</a>
@@ -215,15 +263,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_r"></a>- r -</h3><ul>
 <li>ReducedDimensionSliceType
-: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#aee52820cb2fc5b17c22718f681d5c21a">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension, OtherDimensions &gt;</a>
+: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ad6b6c59123cc871a544167bac522e1f4">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;</a>
+</li>
+<li>ReducedSliceType
+: <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a097400ffe0795cf4f2d74010b2cf98d8">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;</a>
 </li>
 <li>reference
 : <a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase.html#a22673210b5c54c32bdcabe73337c9d55">pss::astrotypes::SliceIteratorBase&lt; DerivedType, SliceType, is_const, Rank &gt;</a>
 , <a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#af42bcc00b82c72b3769b1e89ba5cdb77">pss::astrotypes::SliceIteratorBase&lt; DerivedType, SliceType, is_const, 1 &gt;</a>
 </li>
 <li>reference_type
-: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ab819c440905d876db4d20ae9bdeff717">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension, OtherDimensions &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01FirstDimension_01_4.html#a8fd34df98edd9cbcb3519340a48f62a9">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension &gt;</a>
+: <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice_3_01SliceType_00_01ExcludedDim_00_011_01_4.html#ac6b353204448481570311adaf35a0bc9">pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim, 1 &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3ed00690afc3edfd818188f16ae44682">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01SliceMixin_00_01FirstDimension_01_4.html#ab6b604ad884bd4b4a37a799ffba19d0d">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01SliceTraitsT_00_01SliceMixin_00_01Dimension_01_4.html#a2a5a5908b036ecadfecb4f5e4f92c32e">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension &gt;</a>
 , <a class="el" href="structpss_1_1astrotypes_1_1test_1_1ParentType.html#a264a60ef00799d4a3a9bb36ebdd3309b">pss::astrotypes::test::ParentType&lt; NDim &gt;</a>
 </li>
 <li>rep
@@ -233,15 +286,26 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
+<li>SliceT
+: <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator_3_01Mixin_3_01SliceType_00_01Ts_8_8_8_4_00_01is__const_01_4.html#ae27a587d3e46151ecb4f92b646ae0546">pss::astrotypes::SliceIterator&lt; Mixin&lt; SliceType, Ts...&gt;, is_const &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator_3_01multiarray_1_1ReducedRankSlice_3_01SliceType_00_01T_00_01B_01_4_00_01is__const_01_4.html#a47be2e727e73ce02d1627cf433cbc1bb">pss::astrotypes::SliceIterator&lt; multiarray::ReducedRankSlice&lt; SliceType, T, B &gt;, is_const &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator_3_01Slice_3_01is__const2_00_01ParentT_00_01SliceMixin_002013a057c174d7af20b4cdfe1cc3ab6c.html#a6e1a3246916ba3a9dc57f9c645e7c7f0">pss::astrotypes::SliceIterator&lt; Slice&lt; is_const2, ParentT, SliceMixin, Dimension, Dimensions...&gt;, is_const &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator_3_01SliceMixin_3_01Slice_3_01is__const_00_01ParentT_00_07f1a29fa23730d123862a52847e827a2.html#a53862de9c25f67f9058ec1733603838b">pss::astrotypes::SliceIterator&lt; SliceMixin&lt; Slice&lt; is_const, ParentT, SliceMixin, Dimension, Dimensions...&gt; &gt;, is_const2 &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase.html#a2b8d8dd24b7d99472bd5bd50debfa6f5">pss::astrotypes::SliceIteratorBase&lt; DerivedType, SliceType, is_const, Rank &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#a8a7aeb8e0bcfc00ce754df79086a1406">pss::astrotypes::SliceIteratorBase&lt; DerivedType, SliceType, is_const, 1 &gt;</a>
+</li>
 <li>SliceType
-: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a16a24d8c9c79190ecacbe3f19d2aeebf">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension, OtherDimensions &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01FirstDimension_01_4.html#ae4a650ea3dbe7911477d48d6aafe526c">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a5c02917bf81a1256df4e82afabeb1890">pss::astrotypes::Slice&lt; is_const, ParentT, Dimension, Dimensions &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01ParentT_00_01Dimension_01_4.html#a8607450e040a45be234146b843143a93">pss::astrotypes::Slice&lt; is_const, ParentT, Dimension &gt;</a>
+: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a09f1de091813da37c9a178330792fc29">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01SliceMixin_00_01FirstDimension_01_4.html#ad66b3387665f2c9fa2bc6af5de9cf722">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a6d1aa65ca4fb784088e105e0e57a4244">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01SliceTraitsT_00_01SliceMixin_00_01Dimension_01_4.html#a41815edaf6246ed1ee940166c901a459">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator_3_01Slice_3_01is__const2_00_01ParentT_00_01SliceMixin_002013a057c174d7af20b4cdfe1cc3ab6c.html#a534cfba75c93b334eab77f240ebb2b1c">pss::astrotypes::SliceIterator&lt; Slice&lt; is_const2, ParentT, SliceMixin, Dimension, Dimensions...&gt;, is_const &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1SliceIterator_3_01SliceMixin_3_01Slice_3_01is__const_00_01ParentT_00_07f1a29fa23730d123862a52847e827a2.html#ada3858af517ec7b0dc307dab777211ec">pss::astrotypes::SliceIterator&lt; SliceMixin&lt; Slice&lt; is_const, ParentT, SliceMixin, Dimension, Dimensions...&gt; &gt;, is_const2 &gt;</a>
 </li>
 <li>Spectra
-: <a class="el" href="classpss_1_1astrotypes_1_1FrequencyTime.html#a82950ba4748608988a694f528ac0e4d8">pss::astrotypes::FrequencyTime&lt; T, Alloc &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1TimeFrequency.html#aebc4dec55bf0359b459cc71612cd1813">pss::astrotypes::TimeFrequency&lt; T, Alloc &gt;</a>
+: <a class="el" href="classpss_1_1astrotypes_1_1FrequencyTime.html#a0aae859b6a7a0d85812627d2fabcad26">pss::astrotypes::FrequencyTime&lt; T, Alloc &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1TimeFreqCommon.html#aaae1c33ccbf12429eed43a66ef47462c">pss::astrotypes::TimeFreqCommon&lt; SliceType &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1TimeFrequency.html#a135595857bba81593497d2e03aadfc84">pss::astrotypes::TimeFrequency&lt; T, Alloc &gt;</a>
 </li>
 </ul>
 
@@ -252,12 +316,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 , <a class="el" href="structboost_1_1units_1_1divide__typeof__helper_3_01T1_00_01pss_1_1astrotypes_1_1units_1_1Quantity_3_01Unit_00_01X_01_4_01_4.html#afe333dbc9fd2e53e6afae6daa07f789c">boost::units::divide_typeof_helper&lt; T1, pss::astrotypes::units::Quantity&lt; Unit, X &gt; &gt;</a>
 , <a class="el" href="structboost_1_1units_1_1multiply__typeof__helper_3_01pss_1_1astrotypes_1_1units_1_1Quantity_3_01Unit_00_01X_01_4_00_01T1_01_4.html#a4b5f17fe8402d823a68793aaca3b1245">boost::units::multiply_typeof_helper&lt; pss::astrotypes::units::Quantity&lt; Unit, X &gt;, T1 &gt;</a>
 , <a class="el" href="structboost_1_1units_1_1multiply__typeof__helper_3_01T1_00_01pss_1_1astrotypes_1_1units_1_1Quantity_3_01Unit_00_01X_01_4_01_4.html#aa2bffdd9e43d075a554bcc313ab7e6fd">boost::units::multiply_typeof_helper&lt; T1, pss::astrotypes::units::Quantity&lt; Unit, X &gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1ConstOperatorSliceTypeHelper_3_01Dim_00_01Slice_3_01is__const_00_01Slaf5f77a1595b097e3da089014f62bfc2.html#a4f4f13bbaec222edc2321db854261b0b">pss::astrotypes::ConstOperatorSliceTypeHelper&lt; Dim, Slice&lt; is_const, SliceTraitsT, SliceMixin, Dim &gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1ConstOperatorSliceTypeHelper_3_01Dim_00_01Slice_3_01is__const_00_01Sl16542b50f286e9286fc4a86182b15276.html#ac2be9b85d0b016a3d29c52228ca83974">pss::astrotypes::ConstOperatorSliceTypeHelper&lt; Dim, Slice&lt; is_const, SliceTraitsT, SliceMixin, Dim, Dimensions...&gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1ConstOperatorSliceTypeHelper_3_01Dim_00_01Slice_3_01is__const_00_01Sled1435c8f7662adb91d9fd6850824e7f.html#a2acd6b0936f93417cc86fa8be475743d">pss::astrotypes::ConstOperatorSliceTypeHelper&lt; Dim, Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...&gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1ConstOperatorSliceTypeHelper_3_01Dim_00_01SliceMixin_3_01Slice_3_01is2bdb4d6b4328bb0387af381554042ee5.html#aff26b62c8c8b9aa05186b7f80972d70f">pss::astrotypes::ConstOperatorSliceTypeHelper&lt; Dim, SliceMixin&lt; Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...&gt; &gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1join__tuples_3_01std_1_1tuple_3_01Tuple1_8_8_8_4_00_01std_1_1tuple_3_01Tuple2_8_8_8_4_01_4.html#a6faef8f7e6c8f6449b42e000c3a7806c">pss::astrotypes::join_tuples&lt; std::tuple&lt; Tuple1...&gt;, std::tuple&lt; Tuple2...&gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1join__tuples_3_01std_1_1tuple_3_01Tuple1_8_8_8_4_00_01std_1_1tuple_3_d3492b250b549614119e81c887cb7cc3.html#a9532f3913163e4dc65e7a871df997cb5">pss::astrotypes::join_tuples&lt; std::tuple&lt; Tuple1...&gt;, std::tuple&lt; Tuple2...&gt;, Tuples...&gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1ConstOperatorSliceType.html#a6e9ee1082dc81879f2463a3831cf5b39">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::ConstOperatorSliceType&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1OperatorSliceType.html#a80e100632239255075fc9700d289e125">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::OperatorSliceType&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;</a>
 , <a class="el" href="structpss_1_1astrotypes_1_1NumericalRepresentation.html#a66912a72fb3b3743af1608da46ab4bdc">pss::astrotypes::NumericalRepresentation&lt; Container &gt;</a>
 , <a class="el" href="structpss_1_1astrotypes_1_1NumericalRepresentation_3_01std_1_1array_3_01T_00_01S_01_4_01_4.html#ae9215f967c8f872be7836d0ff16d9499">pss::astrotypes::NumericalRepresentation&lt; std::array&lt; T, S &gt; &gt;</a>
 , <a class="el" href="structpss_1_1astrotypes_1_1NumericalRepresentation_3_01std_1_1list_3_01T_00_01Allocator_01_4_01_4.html#aba45b047ae9a4b76268fbe9f9538a3a3">pss::astrotypes::NumericalRepresentation&lt; std::list&lt; T, Allocator &gt; &gt;</a>
 , <a class="el" href="structpss_1_1astrotypes_1_1NumericalRepresentation_3_01std_1_1map_3_01Ts_8_8_8_4_01_4.html#aafe1ff48ed21ffd68c450bc8b394ab3c">pss::astrotypes::NumericalRepresentation&lt; std::map&lt; Ts...&gt; &gt;</a>
 , <a class="el" href="structpss_1_1astrotypes_1_1NumericalRepresentation_3_01std_1_1vector_3_01T_00_01Allocator_01_4_01_4.html#a38906c2cddaa61d18120b734494dd525">pss::astrotypes::NumericalRepresentation&lt; std::vector&lt; T, Allocator &gt; &gt;</a>
 , <a class="el" href="structpss_1_1astrotypes_1_1NumericalRepresentation_3_01T[]_4.html#aaa5a837520f00c76945bc44903f19519">pss::astrotypes::NumericalRepresentation&lt; T[]&gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1OperatorSliceTypeHelper_3_01Dim_00_01Slice_3_01is__const_00_01SliceTrca3abe13ea3d6da5bd5d9d9dd1b69508.html#a63fb483dc34b89a589927b17e5011e19">pss::astrotypes::OperatorSliceTypeHelper&lt; Dim, Slice&lt; is_const, SliceTraitsT, SliceMixin, Dim &gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1OperatorSliceTypeHelper_3_01Dim_00_01Slice_3_01is__const_00_01SliceTrb5f5aa811976067cedad041a63164ad7.html#ac15cb87c97f7b43af2265455edfcbb6e">pss::astrotypes::OperatorSliceTypeHelper&lt; Dim, Slice&lt; is_const, SliceTraitsT, SliceMixin, Dim, Dimensions...&gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1OperatorSliceTypeHelper_3_01Dim_00_01Slice_3_01is__const_00_01SliceTr0321350c828083b6561a80b322be2384.html#a16a200fa633b3dec9ccd2c6150539b12">pss::astrotypes::OperatorSliceTypeHelper&lt; Dim, Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...&gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1OperatorSliceTypeHelper_3_01Dim_00_01SliceMixin_3_01Slice_3_01is__cond931f80f2eff8a9690f7ef4674ed663c.html#aed92ba99ed3989d21fc0dabf5960acbf">pss::astrotypes::OperatorSliceTypeHelper&lt; Dim, SliceMixin&lt; Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...&gt; &gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1Slice_1_1ConstOperatorSliceType.html#a6265191f52c5fbf2808119196e391dea">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;::ConstOperatorSliceType&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1Slice_1_1OperatorSliceType.html#ad6d20f74a8599979e2e8fe0718a28cb1">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;::OperatorSliceType&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1Slice_3_01is__const_00_01SliceTraitsT_00_01SliceMixin_00_01Dimension_01_4_1_1ConstOperatorSliceType.html#a8fb98f435cf0cb622bc14c7378efc3e0">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension &gt;::ConstOperatorSliceType&lt; Dim &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1Slice_3_01is__const_00_01SliceTraitsT_00_01SliceMixin_00_01Dimension_01_4_1_1OperatorSliceType.html#a01c90f5fed663ed270ab3d3867c13e3c">pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension &gt;::OperatorSliceType&lt; Dim &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1SliceIteratorHelper_3_01ReplacementSliceType_00_01SliceIterator_3_01S8a42e487adb00cac0de7bd75f3b0dbc8.html#a80c8c6a4345e251b88c1b14cf4a269c3">pss::astrotypes::SliceIteratorHelper&lt; ReplacementSliceType, SliceIterator&lt; SliceMixin&lt; SliceType &gt;, is_const &gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1SliceIteratorHelper_3_01ReplacementSliceType_00_01SliceIterator_3_01Sa7163af4bf81bd6b3b9d4a553d1abd49.html#aad88fe270319158821e92b451037629c">pss::astrotypes::SliceIteratorHelper&lt; ReplacementSliceType, SliceIterator&lt; SliceType, is_const &gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1SliceMixinRemover.html#ac945e648bc9a11dc323888a4376603d3">pss::astrotypes::SliceMixinRemover&lt; SliceType &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1SliceMixinRemover_3_01Mixin_3_01SliceType_01_4_01_4.html#a12cacf54ec213191f30634d44fb694c3">pss::astrotypes::SliceMixinRemover&lt; Mixin&lt; SliceType &gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1SliceMixinRemover_3_01multiarray_1_1ReducedRankSlice_3_01SliceType_00_01D_00_01Rank_01_4_01_4.html#a8fa312c890058bdc098ff4e2dcc0604a">pss::astrotypes::SliceMixinRemover&lt; multiarray::ReducedRankSlice&lt; SliceType, D, Rank &gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1tuple__diff_3_01std_1_1tuple_3_01T_01_4_00_01std_1_1tuple_3_01Tuple2_8_8_8_4_01_4.html#aeb3a622ab83348256940544a575240c2">pss::astrotypes::tuple_diff&lt; std::tuple&lt; T &gt;, std::tuple&lt; Tuple2...&gt; &gt;</a>
+, <a class="el" href="structpss_1_1astrotypes_1_1tuple__diff_3_01std_1_1tuple_3_01T_00_01Tuple1_8_8_8_4_00_01std_1_1tuple_3_01Tuple2_8_8_8_4_01_4.html#a49027c7922306e943b4736a1578953c4">pss::astrotypes::tuple_diff&lt; std::tuple&lt; T, Tuple1...&gt;, std::tuple&lt; Tuple2...&gt; &gt;</a>
 , <a class="el" href="structpss_1_1astrotypes_1_1units_1_1boost__unit__to__std__ratio_3_01Day_01_4.html#a01a6de070c451ecbd5fccb63d7a8c286">pss::astrotypes::units::boost_unit_to_std_ratio&lt; Day &gt;</a>
 , <a class="el" href="structpss_1_1astrotypes_1_1units_1_1boost__unit__to__std__ratio_3_01MicroSecond_01_4.html#a1ff87186739814e1287a5a450b09553f">pss::astrotypes::units::boost_unit_to_std_ratio&lt; MicroSecond &gt;</a>
 , <a class="el" href="structpss_1_1astrotypes_1_1units_1_1boost__unit__to__std__ratio_3_01MilliSecond_01_4.html#a398ff3fb05763cc731163b856cd0c0e4">pss::astrotypes::units::boost_unit_to_std_ratio&lt; MilliSecond &gt;</a>
@@ -270,8 +357,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <h3><a class="anchor" id="index_v"></a>- v -</h3><ul>
 <li>value_type
-: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a276b48cb45fc21eb0ec2468f9e6ee48d">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension, OtherDimensions &gt;</a>
-, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01FirstDimension_01_4.html#a18eb6aba139ec69eeb2c4819e4980019">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension &gt;</a>
+: <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a542310c7bac434889847071d84c76481">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;</a>
+, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01SliceMixin_00_01FirstDimension_01_4.html#a31108340967d4cc9514f8c50a9ee56a6">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension &gt;</a>
 , <a class="el" href="classpss_1_1astrotypes_1_1PointerAllocator.html#a7e7cc3c5c51d2a077a74f0037c2a3a7b">pss::astrotypes::PointerAllocator&lt; LocalType &gt;</a>
 , <a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase.html#af9789bb398832321d4525161d08e198f">pss::astrotypes::SliceIteratorBase&lt; DerivedType, SliceType, is_const, Rank &gt;</a>
 , <a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#afd0c7f06c5c3c740484a018ee623579e">pss::astrotypes::SliceIteratorBase&lt; DerivedType, SliceType, is_const, 1 &gt;</a>
@@ -282,7 +369,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 11 2018 11:44:39 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 21 2018 15:15:29 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

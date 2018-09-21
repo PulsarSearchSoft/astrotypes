@@ -7,8 +7,6 @@ var searchData=
   ['developers_5fguide_2emd',['developers_guide.md',['../developers__guide_8md.html',1,'']]],
   ['dimensionindex_2ecpp',['DimensionIndex.cpp',['../DimensionIndex_8cpp.html',1,'']]],
   ['dimensionindex_2eh',['DimensionIndex.h',['../DimensionIndex_8h.html',1,'']]],
-  ['dimensionmeta_2ecpp',['DimensionMeta.cpp',['../DimensionMeta_8cpp.html',1,'']]],
-  ['dimensionmeta_2eh',['DimensionMeta.h',['../DimensionMeta_8h.html',1,'']]],
   ['dimensionsize_2ecpp',['DimensionSize.cpp',['../DimensionSize_8cpp.html',1,'']]],
   ['dimensionsize_2eh',['DimensionSize.h',['../DimensionSize_8h.html',1,'']]],
   ['dimensionsizetest_2ecpp',['DimensionSizeTest.cpp',['../DimensionSizeTest_8cpp.html',1,'']]],

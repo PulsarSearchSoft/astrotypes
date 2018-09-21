@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structpss_1_1astrotypes_1_1test_1_1DimensionA.html" title="pss::astrotypes::test\l::DimensionA" alt="" coords="5,5,145,44"/>
+<area shape="rect" id="node1" href="$classpss_1_1astrotypes_1_1MultiArray.html" title="pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Frequency, units::Time \&gt;" alt="" coords="5,12,212,64"/>
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1TimeFreqCommon.html" title="pss::astrotypes::TimeFreq\lCommon\&lt; MultiArray\&lt; Alloc,\l T, TimeFreqCommon, units\l::Frequency, units::Time \&gt; \&gt;" alt="" coords="260,5,450,71"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1FrequencyTime.html" title="A template class representing values associated with a time and frequecny such as Stokes values or vo..." alt="" coords="498,19,679,57"/>
 </map>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>astrotypes: pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension, OtherDimensions &gt; Class Template Reference</title>
+<title>astrotypes: pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -91,270 +91,316 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classpss_1_1astrotypes_1_1MultiArray-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension, OtherDimensions &gt; Class Template Reference</div>  </div>
+<div class="title">pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
-<p>template classes to specify multiple dimesion arrays with explicit dimension types  
+<p>template classes to specify multiple dimension arrays with explicit dimension types  
  <a href="classpss_1_1astrotypes_1_1MultiArray.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="MultiArray_8h_source.html">src/cpp/pss/astrotypes/multiarray/MultiArray.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension, OtherDimensions &gt;:</div>
+Inheritance diagram for pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classpss_1_1astrotypes_1_1MultiArray__inherit__graph.png" border="0" usemap="#pss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01FirstDimension_00_01OtherDimensions_01_4_inherit__map" alt="Inheritance graph"/></div>
-<map name="pss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01FirstDimension_00_01OtherDimensions_01_4_inherit__map" id="pss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01FirstDimension_00_01OtherDimensions_01_4_inherit__map">
-<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1MultiArray.html" title="{pss::astrotypes::MultiArray\l\&lt; Alloc, T, units::Frequency,\l units::Time \&gt;\n||+ MultiArray()\l+ begin()\l+ begin()\l+ end()\l+ end()\l+ cbegin()\l+ cend()\l+ operator[]()\l+ operator[]()\l+ operator[]()\land 9 more...\l# MultiArray()\l# do_resize()\l# do_resize()\l# do_resize()\l}" alt="" coords="11,367,194,653"/><area shape="rect" id="node4" href="classpss_1_1astrotypes_1_1MultiArray.html" title="{pss::astrotypes::MultiArray\l\&lt; Alloc, T, units::Time,\l units::Frequency \&gt;\n||+ MultiArray()\l+ begin()\l+ begin()\l+ end()\l+ end()\l+ cbegin()\l+ cend()\l+ operator[]()\l+ operator[]()\l+ operator[]()\land 9 more...\l# MultiArray()\l# do_resize()\l# do_resize()\l# do_resize()\l}" alt="" coords="224,367,403,653"/><area shape="rect" id="node6" href="classpss_1_1astrotypes_1_1MultiArray.html" title="{pss::astrotypes::MultiArray\l\&lt; std::allocator\&lt; T \&gt;, T,\l Dimensions...\&gt;\n||+ MultiArray()\l+ begin()\l+ begin()\l+ end()\l+ end()\l+ cbegin()\l+ cend()\l+ operator[]()\l+ operator[]()\l+ operator[]()\land 9 more...\l# MultiArray()\l# do_resize()\l# do_resize()\l# do_resize()\l}" alt="" coords="427,367,605,653"/><area shape="rect" id="node3" href="classpss_1_1astrotypes_1_1FrequencyTime.html" title="A template class representing values associated with a time and frequecny such as Stokes values or vo..." alt="" coords="5,703,187,869"/><area shape="rect" id="node5" href="classpss_1_1astrotypes_1_1TimeFrequency.html" title="A template class representing values associated with a time and frequecny such as Stokes values or vo..." alt="" coords="211,703,421,869"/><area shape="rect" id="node7" href="classpss_1_1astrotypes_1_1test_1_1TestMultiArray.html" title="{pss::astrotypes::test\l::TestMultiArray\&lt; T,\l Dimensions \&gt;\n||+ TestMultiArray()\l}" alt="" coords="446,736,586,836"/></map>
+<div class="center"><img src="classpss_1_1astrotypes_1_1MultiArray__inherit__graph.png" border="0" usemap="#pss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01SliceMixin_00_01FirstDimension_00_01OtherDimensions_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="pss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01SliceMixin_00_01FirstDimension_00_01OtherDimensions_01_4_inherit__map" id="pss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01SliceMixin_00_01FirstDimension_00_01OtherDimensions_01_4_inherit__map">
+<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1MultiArray.html" title="{pss::astrotypes::MultiArray\l\&lt; std::allocator\&lt; T \&gt;, T,\l TestMultiArrayMixin, Dimensions...\&gt;\n||+ MultiArray()\l+ MultiArray()\l+ MultiArray()\l+ begin()\l+ begin()\l+ end()\l+ end()\l+ cbegin()\l+ cend()\l+ operator[]()\land 13 more...\l# MultiArray()\l# MultiArray()\l# do_resize()\l# do_resize()\l# do_resize()\l# do_transpose()\l}" alt="" coords="5,407,242,720"/><area shape="rect" id="node4" href="classpss_1_1astrotypes_1_1MultiArray.html" title="{pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Time, units::Frequency \&gt;\n||+ MultiArray()\l+ MultiArray()\l+ MultiArray()\l+ begin()\l+ begin()\l+ end()\l+ end()\l+ cbegin()\l+ cend()\l+ operator[]()\land 13 more...\l# MultiArray()\l# MultiArray()\l# do_resize()\l# do_resize()\l# do_resize()\l# do_transpose()\l}" alt="" coords="265,407,472,720"/><area shape="rect" id="node7" href="classpss_1_1astrotypes_1_1MultiArray.html" title="{pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Frequency, units::Time \&gt;\n||+ MultiArray()\l+ MultiArray()\l+ MultiArray()\l+ begin()\l+ begin()\l+ end()\l+ end()\l+ cbegin()\l+ cend()\l+ operator[]()\land 13 more...\l# MultiArray()\l# MultiArray()\l# do_resize()\l# do_resize()\l# do_resize()\l# do_transpose()\l}" alt="" coords="496,407,703,720"/><area shape="rect" id="node3" href="classpss_1_1astrotypes_1_1test_1_1TestMultiArray.html" title="{pss::astrotypes::test\l::TestMultiArray\&lt; T,\l Dimensions \&gt;\n||+ TestMultiArray()\l+ TestMultiArray()\l}" alt="" coords="54,803,193,916"/><area shape="rect" id="node5" href="classpss_1_1astrotypes_1_1TimeFreqCommon.html" title="{pss::astrotypes::TimeFreq\lCommon\&lt; MultiArray\&lt; Alloc,\l T, TimeFreqCommon, units\l::Time, units::Frequency \&gt; \&gt;\n||+ TimeFreqCommon()\l+ TimeFreqCommon()\l+ channel()\l+ channel()\l+ spectrum()\l+ spectrum()\l}" alt="" coords="274,769,464,949"/><area shape="rect" id="node6" href="classpss_1_1astrotypes_1_1TimeFrequency.html" title="A template class representing values associated with a time and frequecny such as Stokes values or vo..." alt="" coords="264,999,474,1125"/><area shape="rect" id="node8" href="classpss_1_1astrotypes_1_1TimeFreqCommon.html" title="{pss::astrotypes::TimeFreq\lCommon\&lt; MultiArray\&lt; Alloc,\l T, TimeFreqCommon, units\l::Frequency, units::Time \&gt; \&gt;\n||+ TimeFreqCommon()\l+ TimeFreqCommon()\l+ channel()\l+ channel()\l+ spectrum()\l+ spectrum()\l}" alt="" coords="504,769,695,949"/><area shape="rect" id="node9" href="classpss_1_1astrotypes_1_1FrequencyTime.html" title="A template class representing values associated with a time and frequecny such as Stokes values or vo..." alt="" coords="509,999,690,1125"/></map>
 </div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1ConstOperatorSliceType.html">ConstOperatorSliceType</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides a template to determine the returned type of an operator[] const  <a href="structpss_1_1astrotypes_1_1MultiArray_1_1ConstOperatorSliceType.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1OperatorSliceType.html">OperatorSliceType</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">provides a template to determine the returned type of an operator[]  <a href="structpss_1_1astrotypes_1_1MultiArray_1_1OperatorSliceType.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a16a24d8c9c79190ecacbe3f19d2aeebf"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; false, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">SelfType</a>, FirstDimension, OtherDimensions...&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a16a24d8c9c79190ecacbe3f19d2aeebf">SliceType</a></td></tr>
-<tr class="separator:a16a24d8c9c79190ecacbe3f19d2aeebf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ce6292a0e2bfa861581fc73f019e96a"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; true, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">SelfType</a>, FirstDimension, OtherDimensions...&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a2ce6292a0e2bfa861581fc73f019e96a">ConstSliceType</a></td></tr>
-<tr class="separator:a2ce6292a0e2bfa861581fc73f019e96a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee52820cb2fc5b17c22718f681d5c21a"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; false, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">SelfType</a>, OtherDimensions...&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#aee52820cb2fc5b17c22718f681d5c21a">ReducedDimensionSliceType</a></td></tr>
-<tr class="separator:aee52820cb2fc5b17c22718f681d5c21a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f1e5ae122d934b1ba7d3c098fa17a66"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; true, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">SelfType</a>, OtherDimensions...&gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1f1e5ae122d934b1ba7d3c098fa17a66">ConstReducedDimensionSliceType</a></td></tr>
-<tr class="separator:a1f1e5ae122d934b1ba7d3c098fa17a66"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c07b5e12becc22b4f7508b12c25230b"><td class="memItemLeft" align="right" valign="top">typedef Container::iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a6c07b5e12becc22b4f7508b12c25230b">iterator</a></td></tr>
-<tr class="separator:a6c07b5e12becc22b4f7508b12c25230b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1103fd9f6e3cf03694822666eeaf2bcc"><td class="memItemLeft" align="right" valign="top">typedef Container::const_iterator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1103fd9f6e3cf03694822666eeaf2bcc">const_iterator</a></td></tr>
-<tr class="separator:a1103fd9f6e3cf03694822666eeaf2bcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a276b48cb45fc21eb0ec2468f9e6ee48d"><td class="memItemLeft" align="right" valign="top">typedef Container::value_type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a276b48cb45fc21eb0ec2468f9e6ee48d">value_type</a></td></tr>
-<tr class="separator:a276b48cb45fc21eb0ec2468f9e6ee48d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab819c440905d876db4d20ae9bdeff717"><td class="memItemLeft" align="right" valign="top">typedef T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ab819c440905d876db4d20ae9bdeff717">reference_type</a></td></tr>
-<tr class="separator:ab819c440905d876db4d20ae9bdeff717"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2335ad5e8ae11b121a6e7059073afc0"><td class="memItemLeft" align="right" valign="top">typedef T const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#af2335ad5e8ae11b121a6e7059073afc0">const_reference_type</a></td></tr>
-<tr class="separator:af2335ad5e8ae11b121a6e7059073afc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a1e65fbc326d420d65f557867df2cfb"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a7a1e65fbc326d420d65f557867df2cfb">BaseT::iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a7a1e65fbc326d420d65f557867df2cfb">iterator</a></td></tr>
+<tr class="separator:a7a1e65fbc326d420d65f557867df2cfb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac121fa95df2bf73cedc9182912116d8d"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac121fa95df2bf73cedc9182912116d8d">BaseT::const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac121fa95df2bf73cedc9182912116d8d">const_iterator</a></td></tr>
+<tr class="separator:ac121fa95df2bf73cedc9182912116d8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a542310c7bac434889847071d84c76481"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a542310c7bac434889847071d84c76481">BaseT::value_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a542310c7bac434889847071d84c76481">value_type</a></td></tr>
+<tr class="separator:a542310c7bac434889847071d84c76481"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09f1de091813da37c9a178330792fc29"><td class="memItemLeft" align="right" valign="top">typedef SliceMixin&lt; <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; false, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">SelfType</a>, SliceMixin, FirstDimension, OtherDimensions...&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a09f1de091813da37c9a178330792fc29">SliceType</a></td></tr>
+<tr class="separator:a09f1de091813da37c9a178330792fc29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab9fc83a487ac4b0bc1108ed0428c9a2"><td class="memItemLeft" align="right" valign="top">typedef SliceMixin&lt; <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; true, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">SelfType</a>, SliceMixin, FirstDimension, OtherDimensions...&gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#aab9fc83a487ac4b0bc1108ed0428c9a2">ConstSliceType</a></td></tr>
+<tr class="separator:aab9fc83a487ac4b0bc1108ed0428c9a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6b6c59123cc871a544167bac522e1f4"><td class="memItemLeft" align="right" valign="top">typedef SliceType::template <a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1OperatorSliceType.html">OperatorSliceType</a>&lt; FirstDimension &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ad6b6c59123cc871a544167bac522e1f4">ReducedDimensionSliceType</a></td></tr>
+<tr class="separator:ad6b6c59123cc871a544167bac522e1f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a167f2cbd567ab75621fa6662f2d8d064"><td class="memItemLeft" align="right" valign="top">typedef ConstSliceType::template <a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1ConstOperatorSliceType.html">ConstOperatorSliceType</a>&lt; FirstDimension &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a167f2cbd567ab75621fa6662f2d8d064">ConstReducedDimensionSliceType</a></td></tr>
+<tr class="separator:a167f2cbd567ab75621fa6662f2d8d064"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ed00690afc3edfd818188f16ae44682"><td class="memItemLeft" align="right" valign="top">typedef T &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3ed00690afc3edfd818188f16ae44682">reference_type</a></td></tr>
+<tr class="separator:a3ed00690afc3edfd818188f16ae44682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9a462a1b65989beeefa59a2edd24438"><td class="memItemLeft" align="right" valign="top">typedef T const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ae9a462a1b65989beeefa59a2edd24438">const_reference_type</a></td></tr>
+<tr class="separator:ae9a462a1b65989beeefa59a2edd24438"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3403003fe72075719971cbb0da60f2ea"><td class="memTemplParams" colspan="2">template&lt;typename Dim , typename... Dims&gt; </td></tr>
-<tr class="memitem:a3403003fe72075719971cbb0da60f2ea"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3403003fe72075719971cbb0da60f2ea">MultiArray</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dim &gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac7e561e681f10d72a33c3efc8b4c749b">size</a>, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt;...sizes)</td></tr>
-<tr class="separator:a3403003fe72075719971cbb0da60f2ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0b6a823ee5227e9bd06f545e7ba88f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a6c07b5e12becc22b4f7508b12c25230b">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac0b6a823ee5227e9bd06f545e7ba88f9">begin</a> ()</td></tr>
-<tr class="memdesc:ac0b6a823ee5227e9bd06f545e7ba88f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterators acting over he entire data structure  useful for e.g std::copy of the entire structure without inspection  <a href="#ac0b6a823ee5227e9bd06f545e7ba88f9">More...</a><br /></td></tr>
-<tr class="separator:ac0b6a823ee5227e9bd06f545e7ba88f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5958ebb453db55a086ef95034eb42d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a6c07b5e12becc22b4f7508b12c25230b">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ae5958ebb453db55a086ef95034eb42d0">end</a> ()</td></tr>
-<tr class="separator:ae5958ebb453db55a086ef95034eb42d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88770b8837adafbf15b3cbe9e63a1fd5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1103fd9f6e3cf03694822666eeaf2bcc">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a88770b8837adafbf15b3cbe9e63a1fd5">begin</a> () const </td></tr>
-<tr class="separator:a88770b8837adafbf15b3cbe9e63a1fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a681fee99e8fad4823756efd0042b0e9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1103fd9f6e3cf03694822666eeaf2bcc">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a681fee99e8fad4823756efd0042b0e9a">end</a> () const </td></tr>
-<tr class="separator:a681fee99e8fad4823756efd0042b0e9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99571f48dd4923d128c2ddacc507c268"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1103fd9f6e3cf03694822666eeaf2bcc">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a99571f48dd4923d128c2ddacc507c268">cbegin</a> () const </td></tr>
-<tr class="separator:a99571f48dd4923d128c2ddacc507c268"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d230a0469d837f5d144a615966f3804"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1103fd9f6e3cf03694822666eeaf2bcc">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a8d230a0469d837f5d144a615966f3804">cend</a> () const </td></tr>
-<tr class="separator:a8d230a0469d837f5d144a615966f3804"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46962e076b5f4dfea1b12b5373956269"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#aee52820cb2fc5b17c22718f681d5c21a">ReducedDimensionSliceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a46962e076b5f4dfea1b12b5373956269">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; FirstDimension &gt; index)</td></tr>
-<tr class="memdesc:a46962e076b5f4dfea1b12b5373956269"><td class="mdescLeft">&#160;</td><td class="mdescRight">take a slice of width 1 data at the specified index of the first dimension  <a href="#a46962e076b5f4dfea1b12b5373956269">More...</a><br /></td></tr>
-<tr class="separator:a46962e076b5f4dfea1b12b5373956269"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cab11e18a0c526c9ae29a70765f5b01"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1f1e5ae122d934b1ba7d3c098fa17a66">ConstReducedDimensionSliceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a6cab11e18a0c526c9ae29a70765f5b01">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; FirstDimension &gt; index) const </td></tr>
-<tr class="separator:a6cab11e18a0c526c9ae29a70765f5b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a6f5b32651850f0a7bcec801293bd7f"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
-<tr class="memitem:a9a6f5b32651850f0a7bcec801293bd7f"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>, Dim &gt;::value &amp;&amp;!std::is_same&lt; Dim, FirstDimension &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a16a24d8c9c79190ecacbe3f19d2aeebf">SliceType</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a9a6f5b32651850f0a7bcec801293bd7f">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; const &amp;)</td></tr>
-<tr class="separator:a9a6f5b32651850f0a7bcec801293bd7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a312ff6b8bcaa89e75de9a3a8f79b16c5"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
-<tr class="memitem:a312ff6b8bcaa89e75de9a3a8f79b16c5"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>, Dim &gt;::value &amp;&amp;!std::is_same&lt; Dim, FirstDimension &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a2ce6292a0e2bfa861581fc73f019e96a">ConstSliceType</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a312ff6b8bcaa89e75de9a3a8f79b16c5">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; const &amp;) const </td></tr>
-<tr class="separator:a312ff6b8bcaa89e75de9a3a8f79b16c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e12c7bfbca6a1b77b3ae19beb1035b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a16a24d8c9c79190ecacbe3f19d2aeebf">SliceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3e12c7bfbca6a1b77b3ae19beb1035b2">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; FirstDimension &gt; const &amp;index_range)</td></tr>
-<tr class="memdesc:a3e12c7bfbca6a1b77b3ae19beb1035b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">return a slice of the specified dimension spanning the index_range provided  <a href="#a3e12c7bfbca6a1b77b3ae19beb1035b2">More...</a><br /></td></tr>
-<tr class="separator:a3e12c7bfbca6a1b77b3ae19beb1035b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a482350d10beb5dfe5a83d975c5e7c8c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a2ce6292a0e2bfa861581fc73f019e96a">ConstSliceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a482350d10beb5dfe5a83d975c5e7c8c1">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; FirstDimension &gt; const &amp;index_range) const </td></tr>
-<tr class="separator:a482350d10beb5dfe5a83d975c5e7c8c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19ea4d1677206c56a85ec20aa8259434"><td class="memTemplParams" colspan="2">template&lt;typename... Dimensions&gt; </td></tr>
-<tr class="memitem:a19ea4d1677206c56a85ec20aa8259434"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a19ea4d1677206c56a85ec20aa8259434">resize</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dimensions &gt;...<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac7e561e681f10d72a33c3efc8b4c749b">size</a>)</td></tr>
-<tr class="memdesc:a19ea4d1677206c56a85ec20aa8259434"><td class="mdescLeft">&#160;</td><td class="mdescRight">resize the array in the specified dimension  <a href="#a19ea4d1677206c56a85ec20aa8259434">More...</a><br /></td></tr>
-<tr class="separator:a19ea4d1677206c56a85ec20aa8259434"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7e561e681f10d72a33c3efc8b4c749b"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
-<tr class="memitem:ac7e561e681f10d72a33c3efc8b4c749b"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; Dim, FirstDimension &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; FirstDimension &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac7e561e681f10d72a33c3efc8b4c749b">size</a> () const </td></tr>
-<tr class="memdesc:ac7e561e681f10d72a33c3efc8b4c749b"><td class="mdescLeft">&#160;</td><td class="mdescRight">resize the array in the specified dimension  <a href="#ac7e561e681f10d72a33c3efc8b4c749b">More...</a><br /></td></tr>
-<tr class="separator:ac7e561e681f10d72a33c3efc8b4c749b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88b3f8225501fc54ce33fd6fe10ac63a"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
-<tr class="memitem:a88b3f8225501fc54ce33fd6fe10ac63a"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_same&lt; Dim, FirstDimension &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dim &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a88b3f8225501fc54ce33fd6fe10ac63a">size</a> () const </td></tr>
-<tr class="separator:a88b3f8225501fc54ce33fd6fe10ac63a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a212ee73b39e22751572d4aef93e31a53"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a212ee73b39e22751572d4aef93e31a53">data_size</a> () const </td></tr>
-<tr class="memdesc:a212ee73b39e22751572d4aef93e31a53"><td class="mdescLeft">&#160;</td><td class="mdescRight">the total size of data in all dimesions  <a href="#a212ee73b39e22751572d4aef93e31a53">More...</a><br /></td></tr>
-<tr class="separator:a212ee73b39e22751572d4aef93e31a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d8a22c05c2aa6bacf9e14b395041a63"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a7d8a22c05c2aa6bacf9e14b395041a63">operator==</a> (<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a> const &amp;) const </td></tr>
-<tr class="memdesc:a7d8a22c05c2aa6bacf9e14b395041a63"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare data in the two arrays  <a href="#a7d8a22c05c2aa6bacf9e14b395041a63">More...</a><br /></td></tr>
-<tr class="separator:a7d8a22c05c2aa6bacf9e14b395041a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19fa95bb0957aa19ab409d89d8db47df"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a19fa95bb0957aa19ab409d89d8db47df">equal_size</a> (<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a> const &amp;) const </td></tr>
-<tr class="memdesc:a19fa95bb0957aa19ab409d89d8db47df"><td class="mdescLeft">&#160;</td><td class="mdescRight">return true if the sizes of each dimension are quivalent  <a href="#a19fa95bb0957aa19ab409d89d8db47df">More...</a><br /></td></tr>
-<tr class="separator:a19fa95bb0957aa19ab409d89d8db47df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ecf84aa27ace3276724721c4e112759"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
-<tr class="memitem:a8ecf84aa27ace3276724721c4e112759"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a8ecf84aa27ace3276724721c4e112759">MultiArray</a> (typename std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; FirstDimension, Dims...&gt;::value, bool &gt;::type, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt; const &amp;...sizes)</td></tr>
-<tr class="separator:a8ecf84aa27ace3276724721c4e112759"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb444263ea4b9a890a6b42fd1da2c1b5"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
-<tr class="memitem:adb444263ea4b9a890a6b42fd1da2c1b5"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions...&gt;, Dim &gt;::value &amp;&amp;!std::is_same&lt; Dim, FirstDimension &gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a2ce6292a0e2bfa861581fc73f019e96a">ConstSliceType</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#adb444263ea4b9a890a6b42fd1da2c1b5">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; const &amp;index) const </td></tr>
-<tr class="separator:adb444263ea4b9a890a6b42fd1da2c1b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc20ef849c4884299abce3978d9f3b5d"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
-<tr class="memitem:acc20ef849c4884299abce3978d9f3b5d"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions...&gt;, Dim &gt;::value &amp;&amp;!std::is_same&lt; Dim, FirstDimension &gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a16a24d8c9c79190ecacbe3f19d2aeebf">SliceType</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#acc20ef849c4884299abce3978d9f3b5d">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; const &amp;index)</td></tr>
-<tr class="separator:acc20ef849c4884299abce3978d9f3b5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88b3f8225501fc54ce33fd6fe10ac63a"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
-<tr class="memitem:a88b3f8225501fc54ce33fd6fe10ac63a"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_same&lt; Dim, FirstDimension &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dim &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a88b3f8225501fc54ce33fd6fe10ac63a">size</a> () const </td></tr>
-<tr class="separator:a88b3f8225501fc54ce33fd6fe10ac63a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7e561e681f10d72a33c3efc8b4c749b"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
-<tr class="memitem:ac7e561e681f10d72a33c3efc8b4c749b"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; Dim, FirstDimension &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; FirstDimension &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac7e561e681f10d72a33c3efc8b4c749b">size</a> () const </td></tr>
-<tr class="separator:ac7e561e681f10d72a33c3efc8b4c749b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a52a01b54507d8bfd54e69f1ff696dab3"><td class="memTemplParams" colspan="2">template&lt;typename Dim , typename... Dims&gt; </td></tr>
-<tr class="memitem:a52a01b54507d8bfd54e69f1ff696dab3"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_same&lt; Dim, FirstDimension &gt;::value, void &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a52a01b54507d8bfd54e69f1ff696dab3">do_resize</a> (std::size_t total, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dim &gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac7e561e681f10d72a33c3efc8b4c749b">size</a>, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt; &amp;&amp;...sizes)</td></tr>
-<tr class="separator:a52a01b54507d8bfd54e69f1ff696dab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7a69e48a0986ee7757a499f6f7cb65b"><td class="memTemplParams" colspan="2">template&lt;typename Dim , typename... Dims&gt; </td></tr>
-<tr class="memitem:ab7a69e48a0986ee7757a499f6f7cb65b"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; Dim, FirstDimension &gt;::value, void &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ab7a69e48a0986ee7757a499f6f7cb65b">do_resize</a> (std::size_t total, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dim &gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac7e561e681f10d72a33c3efc8b4c749b">size</a>, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt; &amp;&amp;...sizes)</td></tr>
-<tr class="separator:ab7a69e48a0986ee7757a499f6f7cb65b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22d364e2f0439dcab2849a2fd6099219"><td class="memTemplParams" colspan="2">template&lt;typename Dim , typename... Dims&gt; </td></tr>
+<tr class="memitem:a22d364e2f0439dcab2849a2fd6099219"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a22d364e2f0439dcab2849a2fd6099219">MultiArray</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dim &gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3f2d3f180dc0cbcf5f31051dc7c7af6a">size</a>, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt;...sizes)</td></tr>
+<tr class="separator:a22d364e2f0439dcab2849a2fd6099219"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a547c59e239fc1187b55da51b1faca641"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a547c59e239fc1187b55da51b1faca641">MultiArray</a> (<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a> const &amp;)=default</td></tr>
+<tr class="memdesc:a547c59e239fc1187b55da51b1faca641"><td class="mdescLeft">&#160;</td><td class="mdescRight">copy operator needs to be called explicitly as this is an expensive operation  <a href="#a547c59e239fc1187b55da51b1faca641">More...</a><br /></td></tr>
+<tr class="separator:a547c59e239fc1187b55da51b1faca641"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c389c46414b2f23f6a298e47a3e8fa0"><td class="memTemplParams" colspan="2">template&lt;typename DimensionType , typename Enable  = typename std::enable_if&lt;                   has_dimensions&lt;DimensionType, FirstDimension, OtherDimensions...&gt;::value                &amp;&amp; !has_exact_dimensions&lt;FirstDimension, OtherDimensions...&gt;::value&gt;::type&gt; </td></tr>
+<tr class="memitem:a1c389c46414b2f23f6a298e47a3e8fa0"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1c389c46414b2f23f6a298e47a3e8fa0">MultiArray</a> (DimensionType const &amp;)</td></tr>
+<tr class="memdesc:a1c389c46414b2f23f6a298e47a3e8fa0"><td class="mdescLeft">&#160;</td><td class="mdescRight">initialise and transpose from a group with different memory ordering  <a href="#a1c389c46414b2f23f6a298e47a3e8fa0">More...</a><br /></td></tr>
+<tr class="separator:a1c389c46414b2f23f6a298e47a3e8fa0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a9ef3fef9929d2fd15329b2719af0b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a7a1e65fbc326d420d65f557867df2cfb">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a5a9ef3fef9929d2fd15329b2719af0b2">begin</a> ()</td></tr>
+<tr class="memdesc:a5a9ef3fef9929d2fd15329b2719af0b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterators acting over he entire data structure  <a href="#a5a9ef3fef9929d2fd15329b2719af0b2">More...</a><br /></td></tr>
+<tr class="separator:a5a9ef3fef9929d2fd15329b2719af0b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a999f2999c0ab9d93b8a923b65198ff49"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a7a1e65fbc326d420d65f557867df2cfb">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a999f2999c0ab9d93b8a923b65198ff49">end</a> ()</td></tr>
+<tr class="separator:a999f2999c0ab9d93b8a923b65198ff49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af439501f99a0989b75c07c0caec61399"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac121fa95df2bf73cedc9182912116d8d">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#af439501f99a0989b75c07c0caec61399">begin</a> () const </td></tr>
+<tr class="separator:af439501f99a0989b75c07c0caec61399"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a153bd3f19c7a7c2a77b3857a3a2ce572"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac121fa95df2bf73cedc9182912116d8d">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a153bd3f19c7a7c2a77b3857a3a2ce572">end</a> () const </td></tr>
+<tr class="separator:a153bd3f19c7a7c2a77b3857a3a2ce572"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33b7d8e943526599302f4d35f715bde9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac121fa95df2bf73cedc9182912116d8d">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a33b7d8e943526599302f4d35f715bde9">cbegin</a> () const </td></tr>
+<tr class="separator:a33b7d8e943526599302f4d35f715bde9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed783c7a841440e713f1721f2d64c0fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac121fa95df2bf73cedc9182912116d8d">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#aed783c7a841440e713f1721f2d64c0fe">cend</a> () const </td></tr>
+<tr class="separator:aed783c7a841440e713f1721f2d64c0fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fabb799cdbeb454509f651b64be2aa8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ad6b6c59123cc871a544167bac522e1f4">ReducedDimensionSliceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a8fabb799cdbeb454509f651b64be2aa8">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; FirstDimension &gt; index)</td></tr>
+<tr class="memdesc:a8fabb799cdbeb454509f651b64be2aa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">take a slice of width 1 data at the specified index of the first dimension  <a href="#a8fabb799cdbeb454509f651b64be2aa8">More...</a><br /></td></tr>
+<tr class="separator:a8fabb799cdbeb454509f651b64be2aa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6c3dc96e4473c8065398ecccd2898e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a167f2cbd567ab75621fa6662f2d8d064">ConstReducedDimensionSliceType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ae6c3dc96e4473c8065398ecccd2898e8">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; FirstDimension &gt; index) const </td></tr>
+<tr class="separator:ae6c3dc96e4473c8065398ecccd2898e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a891b751200a146c045b01afd0e4ad00c"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:a891b751200a146c045b01afd0e4ad00c"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>, Dim &gt;::value &amp;&amp;!std::is_same&lt; Dim, FirstDimension &gt;::value, typename <a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1OperatorSliceType.html">OperatorSliceType</a>&lt; Dim &gt;::type &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a891b751200a146c045b01afd0e4ad00c">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; const &amp;)</td></tr>
+<tr class="separator:a891b751200a146c045b01afd0e4ad00c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdbb903bc952ef1ac1d827267862478e"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:abdbb903bc952ef1ac1d827267862478e"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>, Dim &gt;::value &amp;&amp;!std::is_same&lt; Dim, FirstDimension &gt;::value, typename <a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1ConstOperatorSliceType.html">ConstOperatorSliceType</a>&lt; Dim &gt;::type &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#abdbb903bc952ef1ac1d827267862478e">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; const &amp;) const </td></tr>
+<tr class="separator:abdbb903bc952ef1ac1d827267862478e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a3fe388c5f4f2ecb8ece7a250e6d773"><td class="memTemplParams" colspan="2">template&lt;typename Dim , typename... Dims&gt; </td></tr>
+<tr class="memitem:a3a3fe388c5f4f2ecb8ece7a250e6d773"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a09f1de091813da37c9a178330792fc29">SliceType</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3a3fe388c5f4f2ecb8ece7a250e6d773">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dim &gt; &amp;&amp;range, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...)</td></tr>
+<tr class="memdesc:a3a3fe388c5f4f2ecb8ece7a250e6d773"><td class="mdescLeft">&#160;</td><td class="mdescRight">return a slice of the specified dimension spanning the index_range provided  <a href="#a3a3fe388c5f4f2ecb8ece7a250e6d773">More...</a><br /></td></tr>
+<tr class="separator:a3a3fe388c5f4f2ecb8ece7a250e6d773"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afef105cce5fe2345d62bbdcef2722cb9"><td class="memTemplParams" colspan="2">template&lt;typename Dim , typename... Dims&gt; </td></tr>
+<tr class="memitem:afef105cce5fe2345d62bbdcef2722cb9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#aab9fc83a487ac4b0bc1108ed0428c9a2">ConstSliceType</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#afef105cce5fe2345d62bbdcef2722cb9">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dim &gt; &amp;&amp;range, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...) const </td></tr>
+<tr class="separator:afef105cce5fe2345d62bbdcef2722cb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9b7fc104e7e8db7ebbdaf3e4bbdea97"><td class="memTemplParams" colspan="2">template&lt;typename... Dimensions&gt; </td></tr>
+<tr class="memitem:aa9b7fc104e7e8db7ebbdaf3e4bbdea97"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#aa9b7fc104e7e8db7ebbdaf3e4bbdea97">resize</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dimensions &gt;...<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3f2d3f180dc0cbcf5f31051dc7c7af6a">size</a>)</td></tr>
+<tr class="memdesc:aa9b7fc104e7e8db7ebbdaf3e4bbdea97"><td class="mdescLeft">&#160;</td><td class="mdescRight">resize the array in the specified dimension  <a href="#aa9b7fc104e7e8db7ebbdaf3e4bbdea97">More...</a><br /></td></tr>
+<tr class="separator:aa9b7fc104e7e8db7ebbdaf3e4bbdea97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f2d3f180dc0cbcf5f31051dc7c7af6a"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:a3f2d3f180dc0cbcf5f31051dc7c7af6a"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; Dim, FirstDimension &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; FirstDimension &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3f2d3f180dc0cbcf5f31051dc7c7af6a">size</a> () const </td></tr>
+<tr class="memdesc:a3f2d3f180dc0cbcf5f31051dc7c7af6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">resize the array in the specified dimension  <a href="#a3f2d3f180dc0cbcf5f31051dc7c7af6a">More...</a><br /></td></tr>
+<tr class="separator:a3f2d3f180dc0cbcf5f31051dc7c7af6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf4e3168e54fd250f57b477d92a8aa0b"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:adf4e3168e54fd250f57b477d92a8aa0b"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_same&lt; Dim, FirstDimension &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dim &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#adf4e3168e54fd250f57b477d92a8aa0b">size</a> () const </td></tr>
+<tr class="separator:adf4e3168e54fd250f57b477d92a8aa0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af978aee66609ea80e3ab3282be69efea"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:af978aee66609ea80e3ab3282be69efea"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; Dim, FirstDimension &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; FirstDimension &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#af978aee66609ea80e3ab3282be69efea">dimension</a> () const </td></tr>
+<tr class="separator:af978aee66609ea80e3ab3282be69efea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36891cc9dd8fa4ff84a1fe1891a45ac1"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:a36891cc9dd8fa4ff84a1fe1891a45ac1"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_same&lt; Dim, FirstDimension &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dim &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a36891cc9dd8fa4ff84a1fe1891a45ac1">dimension</a> () const </td></tr>
+<tr class="separator:a36891cc9dd8fa4ff84a1fe1891a45ac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0ff0e1b114317b9776e24af26534c8c"><td class="memItemLeft" align="right" valign="top">std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ab0ff0e1b114317b9776e24af26534c8c">data_size</a> () const </td></tr>
+<tr class="memdesc:ab0ff0e1b114317b9776e24af26534c8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">the total size of data in all dimensions  <a href="#ab0ff0e1b114317b9776e24af26534c8c">More...</a><br /></td></tr>
+<tr class="separator:ab0ff0e1b114317b9776e24af26534c8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab86969dba95448ed1c64e5a6b728f67c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ab86969dba95448ed1c64e5a6b728f67c">operator==</a> (<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a> const &amp;) const </td></tr>
+<tr class="memdesc:ab86969dba95448ed1c64e5a6b728f67c"><td class="mdescLeft">&#160;</td><td class="mdescRight">compare data in the two arrays  <a href="#ab86969dba95448ed1c64e5a6b728f67c">More...</a><br /></td></tr>
+<tr class="separator:ab86969dba95448ed1c64e5a6b728f67c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ed26b28411bc736df3b0a40eee10d3e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a6ed26b28411bc736df3b0a40eee10d3e">equal_size</a> (<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a> const &amp;) const </td></tr>
+<tr class="memdesc:a6ed26b28411bc736df3b0a40eee10d3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">return true if the sizes of each dimension are equivalent  <a href="#a6ed26b28411bc736df3b0a40eee10d3e">More...</a><br /></td></tr>
+<tr class="separator:a6ed26b28411bc736df3b0a40eee10d3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accd84007882cd32cd3a429656b5f5133"><td class="memTemplParams" colspan="2">template&lt;typename MultiArrayType , typename DimensionType &gt; </td></tr>
+<tr class="memitem:accd84007882cd32cd3a429656b5f5133"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#accd84007882cd32cd3a429656b5f5133">do_transpose</a> (MultiArrayType &amp;ma, DimensionType const &amp;d)</td></tr>
+<tr class="separator:accd84007882cd32cd3a429656b5f5133"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d27f40472b920b219ae97c6d197ac8c"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
+<tr class="memitem:a5d27f40472b920b219ae97c6d197ac8c"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a5d27f40472b920b219ae97c6d197ac8c">MultiArray</a> (typename std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; FirstDimension, Dims...&gt;::value, bool &gt;::type, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt; const &amp;...sizes)</td></tr>
+<tr class="separator:a5d27f40472b920b219ae97c6d197ac8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88d3e897f618b933c5bd8786782e3809"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:a88d3e897f618b933c5bd8786782e3809"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;, Dim &gt;::value &amp;&amp;!std::is_same&lt; Dim, FirstDimension &gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::template <a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1ConstOperatorSliceType.html">ConstOperatorSliceType</a>&lt; Dim &gt;::type &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a88d3e897f618b933c5bd8786782e3809">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; const &amp;index) const </td></tr>
+<tr class="separator:a88d3e897f618b933c5bd8786782e3809"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ae7d2ded821c66ea7b6dbb41755bb46"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:a2ae7d2ded821c66ea7b6dbb41755bb46"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;, Dim &gt;::value &amp;&amp;!std::is_same&lt; Dim, FirstDimension &gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::template <a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1OperatorSliceType.html">OperatorSliceType</a>&lt; Dim &gt;::type &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a2ae7d2ded821c66ea7b6dbb41755bb46">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; const &amp;index)</td></tr>
+<tr class="separator:a2ae7d2ded821c66ea7b6dbb41755bb46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4e990021c8aa65edfec35f4bf7becf0"><td class="memTemplParams" colspan="2">template&lt;typename Dim , typename... Dims&gt; </td></tr>
+<tr class="memitem:ab4e990021c8aa65edfec35f4bf7becf0"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#aab9fc83a487ac4b0bc1108ed0428c9a2">ConstSliceType</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ab4e990021c8aa65edfec35f4bf7becf0">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dim &gt; &amp;&amp;range, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...ranges) const </td></tr>
+<tr class="separator:ab4e990021c8aa65edfec35f4bf7becf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3384a6cc919329d3974ca75a295210d1"><td class="memTemplParams" colspan="2">template&lt;typename Dim , typename... Dims&gt; </td></tr>
+<tr class="memitem:a3384a6cc919329d3974ca75a295210d1"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a09f1de091813da37c9a178330792fc29">SliceType</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3384a6cc919329d3974ca75a295210d1">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dim &gt; &amp;&amp;range, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...ranges)</td></tr>
+<tr class="separator:a3384a6cc919329d3974ca75a295210d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf4e3168e54fd250f57b477d92a8aa0b"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:adf4e3168e54fd250f57b477d92a8aa0b"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_same&lt; Dim, FirstDimension &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dim &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#adf4e3168e54fd250f57b477d92a8aa0b">size</a> () const </td></tr>
+<tr class="separator:adf4e3168e54fd250f57b477d92a8aa0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f2d3f180dc0cbcf5f31051dc7c7af6a"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:a3f2d3f180dc0cbcf5f31051dc7c7af6a"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; Dim, FirstDimension &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; FirstDimension &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3f2d3f180dc0cbcf5f31051dc7c7af6a">size</a> () const </td></tr>
+<tr class="separator:a3f2d3f180dc0cbcf5f31051dc7c7af6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36891cc9dd8fa4ff84a1fe1891a45ac1"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:a36891cc9dd8fa4ff84a1fe1891a45ac1"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_same&lt; Dim, FirstDimension &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dim &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a36891cc9dd8fa4ff84a1fe1891a45ac1">dimension</a> () const </td></tr>
+<tr class="separator:a36891cc9dd8fa4ff84a1fe1891a45ac1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af978aee66609ea80e3ab3282be69efea"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:af978aee66609ea80e3ab3282be69efea"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; Dim, FirstDimension &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; FirstDimension &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#af978aee66609ea80e3ab3282be69efea">dimension</a> () const </td></tr>
+<tr class="separator:af978aee66609ea80e3ab3282be69efea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a53ddbba4da5522d8821a30e9402605"><td class="memTemplParams" colspan="2">template&lt;typename Dim , typename... Dims&gt; </td></tr>
+<tr class="memitem:a6a53ddbba4da5522d8821a30e9402605"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_same&lt; Dim, FirstDimension &gt;::value, void &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a6a53ddbba4da5522d8821a30e9402605">do_resize</a> (std::size_t total, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dim &gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3f2d3f180dc0cbcf5f31051dc7c7af6a">size</a>, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt; &amp;&amp;...sizes)</td></tr>
+<tr class="separator:a6a53ddbba4da5522d8821a30e9402605"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75a5a86526728d0cbc19e85e4abb0b24"><td class="memTemplParams" colspan="2">template&lt;typename Dim , typename... Dims&gt; </td></tr>
+<tr class="memitem:a75a5a86526728d0cbc19e85e4abb0b24"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; Dim, FirstDimension &gt;::value, void &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a75a5a86526728d0cbc19e85e4abb0b24">do_resize</a> (std::size_t total, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dim &gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3f2d3f180dc0cbcf5f31051dc7c7af6a">size</a>, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt; &amp;&amp;...sizes)</td></tr>
+<tr class="separator:a75a5a86526728d0cbc19e85e4abb0b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a1cde4ad3c869a5d644276acb065e6321"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
-<tr class="memitem:a1cde4ad3c869a5d644276acb065e6321"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1cde4ad3c869a5d644276acb065e6321">MultiArray</a> (typename std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; FirstDimension, Dims...&gt;::value, bool &gt;::type disable_resize_tag, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt; const &amp;...)</td></tr>
-<tr class="separator:a1cde4ad3c869a5d644276acb065e6321"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a8fd5acd6ed3475fd5186b1bb38ec67"><td class="memTemplParams" colspan="2">template&lt;typename Dimension , typename... Dims&gt; </td></tr>
-<tr class="memitem:a1a8fd5acd6ed3475fd5186b1bb38ec67"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_same&lt; Dimension, FirstDimension &gt;::value, void &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1a8fd5acd6ed3475fd5186b1bb38ec67">do_resize</a> (std::size_t total, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dimension &gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac7e561e681f10d72a33c3efc8b4c749b">size</a>, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt; &amp;&amp;...sizes)</td></tr>
-<tr class="separator:a1a8fd5acd6ed3475fd5186b1bb38ec67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a427c1bfbf830459aed371d34197bd2a6"><td class="memTemplParams" colspan="2">template&lt;typename Dimension , typename... Dims&gt; </td></tr>
-<tr class="memitem:a427c1bfbf830459aed371d34197bd2a6"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; Dimension, FirstDimension &gt;::value, void &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a427c1bfbf830459aed371d34197bd2a6">do_resize</a> (std::size_t total, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dimension &gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac7e561e681f10d72a33c3efc8b4c749b">size</a>, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt; &amp;&amp;...sizes)</td></tr>
-<tr class="separator:a427c1bfbf830459aed371d34197bd2a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bfef84805d3f2038bef1caa375134eb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a6bfef84805d3f2038bef1caa375134eb">do_resize</a> (std::size_t total)</td></tr>
-<tr class="separator:a6bfef84805d3f2038bef1caa375134eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2066b9224d7bb962e22a25f0e5263eb4"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
+<tr class="memitem:a2066b9224d7bb962e22a25f0e5263eb4"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a2066b9224d7bb962e22a25f0e5263eb4">MultiArray</a> (typename std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; FirstDimension, Dims...&gt;::value, bool &gt;::type disable_resize_tag, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt; const &amp;...)</td></tr>
+<tr class="separator:a2066b9224d7bb962e22a25f0e5263eb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01ec7b31f3a3ee2b9258ecd852038dc7"><td class="memTemplParams" colspan="2">template&lt;typename DimensionType &gt; </td></tr>
+<tr class="memitem:a01ec7b31f3a3ee2b9258ecd852038dc7"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a01ec7b31f3a3ee2b9258ecd852038dc7">MultiArray</a> (typename std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1has__dimensions.html">has_dimensions</a>&lt; DimensionType, FirstDimension, OtherDimensions...&gt;::value, bool &gt;::type disable_transpose_tag, DimensionType const &amp;d)</td></tr>
+<tr class="separator:a01ec7b31f3a3ee2b9258ecd852038dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c05fe11f6a40a7aeeeb96f4e5978b7b"><td class="memTemplParams" colspan="2">template&lt;typename Dimension , typename... Dims&gt; </td></tr>
+<tr class="memitem:a6c05fe11f6a40a7aeeeb96f4e5978b7b"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_same&lt; Dimension, FirstDimension &gt;::value, void &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a6c05fe11f6a40a7aeeeb96f4e5978b7b">do_resize</a> (std::size_t total, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dimension &gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3f2d3f180dc0cbcf5f31051dc7c7af6a">size</a>, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt; &amp;&amp;...sizes)</td></tr>
+<tr class="separator:a6c05fe11f6a40a7aeeeb96f4e5978b7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26ca6edff62ffaabe9b207270f5545cd"><td class="memTemplParams" colspan="2">template&lt;typename Dimension , typename... Dims&gt; </td></tr>
+<tr class="memitem:a26ca6edff62ffaabe9b207270f5545cd"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; Dimension, FirstDimension &gt;::value, void &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a26ca6edff62ffaabe9b207270f5545cd">do_resize</a> (std::size_t total, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dimension &gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3f2d3f180dc0cbcf5f31051dc7c7af6a">size</a>, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt; &amp;&amp;...sizes)</td></tr>
+<tr class="separator:a26ca6edff62ffaabe9b207270f5545cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc5a3fa348696352e7053600809e3d2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#adc5a3fa348696352e7053600809e3d2e">do_resize</a> (std::size_t total)</td></tr>
+<tr class="separator:adc5a3fa348696352e7053600809e3d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ca17f44312ae70f8aa92cde72631df0"><td class="memTemplParams" colspan="2">template&lt;typename SelfSlice , typename OtherSlice &gt; </td></tr>
+<tr class="memitem:a9ca17f44312ae70f8aa92cde72631df0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a9ca17f44312ae70f8aa92cde72631df0">do_transpose</a> (SelfSlice &amp;, OtherSlice const &amp;)</td></tr>
+<tr class="separator:a9ca17f44312ae70f8aa92cde72631df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h3>template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt;<br />
-class pss::astrotypes::MultiArray&lt; Alloc, T, FirstDimension, OtherDimensions &gt;</h3>
+<div class="textblock"><h3>template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt;<br />
+class pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;</h3>
 
-<p>template classes to specify multiple dimesion arrays with explicit dimension types </p>
+<p>template classes to specify multiple dimension arrays with explicit dimension types </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">T</td><td>the type fo object to be stored in the array (e.g. float, int, Stikes, etc) </td></tr>
+    <tr><td class="paramname">T</td><td>the type of object to be stored in the array (e.g. float, int, Stokes, etc) </td></tr>
   </table>
   </dd>
 </dl>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
-<a class="anchor" id="a1103fd9f6e3cf03694822666eeaf2bcc"></a>
+<a class="anchor" id="ac121fa95df2bf73cedc9182912116d8d"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef Container::const_iterator <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1103fd9f6e3cf03694822666eeaf2bcc">const_iterator</a></td>
+          <td class="memname">typedef <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac121fa95df2bf73cedc9182912116d8d">BaseT::const_iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac121fa95df2bf73cedc9182912116d8d">const_iterator</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="af2335ad5e8ae11b121a6e7059073afc0"></a>
+<a class="anchor" id="ae9a462a1b65989beeefa59a2edd24438"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef T const&amp; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#af2335ad5e8ae11b121a6e7059073afc0">const_reference_type</a></td>
+          <td class="memname">typedef T const&amp; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ae9a462a1b65989beeefa59a2edd24438">const_reference_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a1f1e5ae122d934b1ba7d3c098fa17a66"></a>
+<a class="anchor" id="a167f2cbd567ab75621fa6662f2d8d064"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt;true, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">SelfType</a>, OtherDimensions...&gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1f1e5ae122d934b1ba7d3c098fa17a66">ConstReducedDimensionSliceType</a></td>
+          <td class="memname">typedef ConstSliceType::template <a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1ConstOperatorSliceType.html">ConstOperatorSliceType</a>&lt;FirstDimension&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a167f2cbd567ab75621fa6662f2d8d064">ConstReducedDimensionSliceType</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a2ce6292a0e2bfa861581fc73f019e96a"></a>
+<a class="anchor" id="aab9fc83a487ac4b0bc1108ed0428c9a2"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt;true, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">SelfType</a>, FirstDimension, OtherDimensions...&gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a2ce6292a0e2bfa861581fc73f019e96a">ConstSliceType</a></td>
+          <td class="memname">typedef SliceMixin&lt;<a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt;true, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">SelfType</a>, SliceMixin, FirstDimension, OtherDimensions...&gt; &gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#aab9fc83a487ac4b0bc1108ed0428c9a2">ConstSliceType</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a6c07b5e12becc22b4f7508b12c25230b"></a>
+<a class="anchor" id="a7a1e65fbc326d420d65f557867df2cfb"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef Container::iterator <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a6c07b5e12becc22b4f7508b12c25230b">iterator</a></td>
+          <td class="memname">typedef <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a7a1e65fbc326d420d65f557867df2cfb">BaseT::iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a7a1e65fbc326d420d65f557867df2cfb">iterator</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="aee52820cb2fc5b17c22718f681d5c21a"></a>
+<a class="anchor" id="ad6b6c59123cc871a544167bac522e1f4"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt;false, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">SelfType</a>, OtherDimensions...&gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#aee52820cb2fc5b17c22718f681d5c21a">ReducedDimensionSliceType</a></td>
+          <td class="memname">typedef SliceType::template <a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1OperatorSliceType.html">OperatorSliceType</a>&lt;FirstDimension&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ad6b6c59123cc871a544167bac522e1f4">ReducedDimensionSliceType</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="ab819c440905d876db4d20ae9bdeff717"></a>
+<a class="anchor" id="a3ed00690afc3edfd818188f16ae44682"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef T&amp; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ab819c440905d876db4d20ae9bdeff717">reference_type</a></td>
+          <td class="memname">typedef T&amp; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a3ed00690afc3edfd818188f16ae44682">reference_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a16a24d8c9c79190ecacbe3f19d2aeebf"></a>
+<a class="anchor" id="a09f1de091813da37c9a178330792fc29"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt;false, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">SelfType</a>, FirstDimension, OtherDimensions...&gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a16a24d8c9c79190ecacbe3f19d2aeebf">SliceType</a></td>
+          <td class="memname">typedef SliceMixin&lt;<a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt;false, <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">SelfType</a>, SliceMixin, FirstDimension, OtherDimensions...&gt; &gt; <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a09f1de091813da37c9a178330792fc29">SliceType</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a276b48cb45fc21eb0ec2468f9e6ee48d"></a>
+<a class="anchor" id="a542310c7bac434889847071d84c76481"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">typedef Container::value_type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a276b48cb45fc21eb0ec2468f9e6ee48d">value_type</a></td>
+          <td class="memname">typedef <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a542310c7bac434889847071d84c76481">BaseT::value_type</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a542310c7bac434889847071d84c76481">value_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -362,16 +408,16 @@ template&lt;typename Alloc, typename T, typename FirstDimension, typename... Oth
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a3403003fe72075719971cbb0da60f2ea"></a>
+<a class="anchor" id="a22d364e2f0439dcab2849a2fd6099219"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension , typename... Dimensions&gt; </div>
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension , typename... Dimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dim , typename... Dims&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a> </td>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a> </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dim &gt;&#160;</td>
           <td class="paramname"><em>size</em>, </td>
@@ -393,19 +439,86 @@ template&lt;typename Dim , typename... Dims&gt; </div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classpss_1_1astrotypes_1_1MultiArray_a3403003fe72075719971cbb0da60f2ea_cgraph.png" border="0" usemap="#classpss_1_1astrotypes_1_1MultiArray_a3403003fe72075719971cbb0da60f2ea_cgraph" alt=""/></div>
-<map name="classpss_1_1astrotypes_1_1MultiArray_a3403003fe72075719971cbb0da60f2ea_cgraph" id="classpss_1_1astrotypes_1_1MultiArray_a3403003fe72075719971cbb0da60f2ea_cgraph">
-<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1MultiArray.html#a19ea4d1677206c56a85ec20aa8259434" title="resize the array in the specified dimension " alt="" coords="232,5,410,44"/></map>
+<div class="center"><img src="classpss_1_1astrotypes_1_1MultiArray_a22d364e2f0439dcab2849a2fd6099219_cgraph.png" border="0" usemap="#classpss_1_1astrotypes_1_1MultiArray_a22d364e2f0439dcab2849a2fd6099219_cgraph" alt=""/></div>
+<map name="classpss_1_1astrotypes_1_1MultiArray_a22d364e2f0439dcab2849a2fd6099219_cgraph" id="classpss_1_1astrotypes_1_1MultiArray_a22d364e2f0439dcab2849a2fd6099219_cgraph">
+<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1MultiArray.html#aa9b7fc104e7e8db7ebbdaf3e4bbdea97" title="resize the array in the specified dimension " alt="" coords="232,5,410,44"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a1cde4ad3c869a5d644276acb065e6321"></a>
+<a class="anchor" id="a547c59e239fc1187b55da51b1faca641"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a> </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt; const &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>copy operator needs to be called explicitly as this is an expensive operation </p>
+
+</div>
+</div>
+<a class="anchor" id="a1c389c46414b2f23f6a298e47a3e8fa0"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension , typename... Dimensions&gt; </div>
+<div class="memtemplate">
+template&lt;typename DimensionType , typename Enable&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a> </td>
+          <td>(</td>
+          <td class="paramtype">DimensionType const &amp;&#160;</td>
+          <td class="paramname"><em>d</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>initialise and transpose from a group with different memory ordering </p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classpss_1_1astrotypes_1_1MultiArray_a1c389c46414b2f23f6a298e47a3e8fa0_cgraph.png" border="0" usemap="#classpss_1_1astrotypes_1_1MultiArray_a1c389c46414b2f23f6a298e47a3e8fa0_cgraph" alt=""/></div>
+<map name="classpss_1_1astrotypes_1_1MultiArray_a1c389c46414b2f23f6a298e47a3e8fa0_cgraph" id="classpss_1_1astrotypes_1_1MultiArray_a1c389c46414b2f23f6a298e47a3e8fa0_cgraph">
+<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1MultiArray.html#aa9b7fc104e7e8db7ebbdaf3e4bbdea97" title="resize the array in the specified dimension " alt="" coords="232,5,410,44"/><area shape="rect" id="node3" href="classpss_1_1astrotypes_1_1MultiArray.html#a9ca17f44312ae70f8aa92cde72631df0" title="pss::astrotypes::MultiArray\l::do_transpose" alt="" coords="232,68,410,107"/></map>
+</div>
+</p>
+
+</div>
+</div>
+<a class="anchor" id="a2066b9224d7bb962e22a25f0e5263eb4"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename... Dims&gt; </div>
 <table class="mlabels">
@@ -413,7 +526,7 @@ template&lt;typename... Dims&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a> </td>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a> </td>
           <td>(</td>
           <td class="paramtype">typename std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; FirstDimension, Dims...&gt;::value, bool &gt;::type&#160;</td>
           <td class="paramname"><em>disable_resize_tag</em>, </td>
@@ -439,16 +552,54 @@ template&lt;typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a8ecf84aa27ace3276724721c4e112759"></a>
+<a class="anchor" id="a01ec7b31f3a3ee2b9258ecd852038dc7"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... Dimensions&gt; </div>
+<div class="memtemplate">
+template&lt;typename DimensionType&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a> </td>
+          <td>(</td>
+          <td class="paramtype">typename std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1has__dimensions.html">has_dimensions</a>&lt; DimensionType, FirstDimension, Dimensions...&gt;::value, bool &gt;::type&#160;</td>
+          <td class="paramname"><em>disable_transpose_tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DimensionType const &amp;&#160;</td>
+          <td class="paramname"><em>d</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5d27f40472b920b219ae97c6d197ac8c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename... Dims&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a> </td>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a> </td>
           <td>(</td>
           <td class="paramtype">typename std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; FirstDimension, Dims...&gt;::value, bool &gt;::type&#160;</td>
           <td class="paramname">, </td>
@@ -470,14 +621,14 @@ template&lt;typename... Dims&gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ac0b6a823ee5227e9bd06f545e7ba88f9"></a>
+<a class="anchor" id="a5a9ef3fef9929d2fd15329b2719af0b2"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension , typename... Dimensions&gt; </div>
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension , typename... Dimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a6c07b5e12becc22b4f7508b12c25230b">iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::begin </td>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a7a1e65fbc326d420d65f557867df2cfb">iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::begin </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -485,18 +636,19 @@ template&lt;typename Alloc , typename T , typename FirstDimension , typename... 
       </table>
 </div><div class="memdoc">
 
-<p>iterators acting over he entire data structure  useful for e.g std::copy of the entire structure without inspection </p>
+<p>iterators acting over he entire data structure </p>
+<p>useful for e.g std::copy of the entire structure without inspection </p>
 
 </div>
 </div>
-<a class="anchor" id="a88770b8837adafbf15b3cbe9e63a1fd5"></a>
+<a class="anchor" id="af439501f99a0989b75c07c0caec61399"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension , typename... Dimensions&gt; </div>
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension , typename... Dimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1103fd9f6e3cf03694822666eeaf2bcc">const_iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::begin </td>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac121fa95df2bf73cedc9182912116d8d">const_iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::begin </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -506,14 +658,14 @@ template&lt;typename Alloc , typename T , typename FirstDimension , typename... 
 
 </div>
 </div>
-<a class="anchor" id="a99571f48dd4923d128c2ddacc507c268"></a>
+<a class="anchor" id="a33b7d8e943526599302f4d35f715bde9"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension , typename... Dimensions&gt; </div>
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension , typename... Dimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1103fd9f6e3cf03694822666eeaf2bcc">const_iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::cbegin </td>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac121fa95df2bf73cedc9182912116d8d">const_iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::cbegin </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -523,14 +675,14 @@ template&lt;typename Alloc , typename T , typename FirstDimension , typename... 
 
 </div>
 </div>
-<a class="anchor" id="a8d230a0469d837f5d144a615966f3804"></a>
+<a class="anchor" id="aed783c7a841440e713f1721f2d64c0fe"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension , typename... Dimensions&gt; </div>
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension , typename... Dimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1103fd9f6e3cf03694822666eeaf2bcc">const_iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::cend </td>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac121fa95df2bf73cedc9182912116d8d">const_iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::cend </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -540,14 +692,14 @@ template&lt;typename Alloc , typename T , typename FirstDimension , typename... 
 
 </div>
 </div>
-<a class="anchor" id="a212ee73b39e22751572d4aef93e31a53"></a>
+<a class="anchor" id="ab0ff0e1b114317b9776e24af26534c8c"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension , typename... Dimensions&gt; </div>
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension , typename... Dimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::size_t <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::data_size </td>
+          <td class="memname">std::size_t <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::data_size </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -555,15 +707,91 @@ template&lt;typename Alloc , typename T , typename FirstDimension , typename... 
       </table>
 </div><div class="memdoc">
 
-<p>the total size of data in all dimesions </p>
+<p>the total size of data in all dimensions </p>
 
 </div>
 </div>
-<a class="anchor" id="a1a8fd5acd6ed3475fd5186b1bb38ec67"></a>
+<a class="anchor" id="af978aee66609ea80e3ab3282be69efea"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
+<div class="memtemplate">
+template&lt;typename Dim &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;std::is_same&lt;Dim, FirstDimension&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt;FirstDimension&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::dimension </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a36891cc9dd8fa4ff84a1fe1891a45ac1"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
+<div class="memtemplate">
+template&lt;typename Dim &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;!std::is_same&lt;Dim, FirstDimension&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt;Dim&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::dimension </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a36891cc9dd8fa4ff84a1fe1891a45ac1"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
+<div class="memtemplate">
+template&lt;typename Dim &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;!std::is_same&lt;Dim, FirstDimension&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt;Dim&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::dimension </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af978aee66609ea80e3ab3282be69efea"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
+<div class="memtemplate">
+template&lt;typename Dim &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;std::is_same&lt;Dim, FirstDimension&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt;FirstDimension&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::dimension </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6c05fe11f6a40a7aeeeb96f4e5978b7b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dimension , typename... Dims&gt; </div>
 <table class="mlabels">
@@ -571,7 +799,7 @@ template&lt;typename Dimension , typename... Dims&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;!std::is_same&lt;Dimension, FirstDimension&gt;::value, void&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::do_resize </td>
+          <td class="memname">std::enable_if&lt;!std::is_same&lt;Dimension, FirstDimension&gt;::value, void&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::do_resize </td>
           <td>(</td>
           <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>total</em>, </td>
@@ -603,11 +831,11 @@ template&lt;typename Dimension , typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a427c1bfbf830459aed371d34197bd2a6"></a>
+<a class="anchor" id="a26ca6edff62ffaabe9b207270f5545cd"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dimension , typename... Dims&gt; </div>
 <table class="mlabels">
@@ -615,7 +843,7 @@ template&lt;typename Dimension , typename... Dims&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;std::is_same&lt;Dimension, FirstDimension&gt;::value, void&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::do_resize </td>
+          <td class="memname">std::enable_if&lt;std::is_same&lt;Dimension, FirstDimension&gt;::value, void&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::do_resize </td>
           <td>(</td>
           <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>total</em>, </td>
@@ -647,17 +875,17 @@ template&lt;typename Dimension , typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a6bfef84805d3f2038bef1caa375134eb"></a>
+<a class="anchor" id="adc5a3fa348696352e7053600809e3d2e"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension , typename... Dimensions&gt; </div>
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension , typename... Dimensions&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::do_resize </td>
+          <td class="memname">void <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::do_resize </td>
           <td>(</td>
           <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>total</em></td><td>)</td>
@@ -673,16 +901,16 @@ template&lt;typename Alloc , typename T , typename FirstDimension , typename... 
 
 </div>
 </div>
-<a class="anchor" id="a52a01b54507d8bfd54e69f1ff696dab3"></a>
+<a class="anchor" id="a6a53ddbba4da5522d8821a30e9402605"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dim , typename... Dims&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;!std::is_same&lt;Dim, FirstDimension&gt;::value, void&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::do_resize </td>
+          <td class="memname">std::enable_if&lt;!std::is_same&lt;Dim, FirstDimension&gt;::value, void&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::do_resize </td>
           <td>(</td>
           <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>total</em>, </td>
@@ -709,16 +937,16 @@ template&lt;typename Dim , typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ab7a69e48a0986ee7757a499f6f7cb65b"></a>
+<a class="anchor" id="a75a5a86526728d0cbc19e85e4abb0b24"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dim , typename... Dims&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;std::is_same&lt;Dim, FirstDimension&gt;::value, void&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::do_resize </td>
+          <td class="memname">std::enable_if&lt;std::is_same&lt;Dim, FirstDimension&gt;::value, void&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::do_resize </td>
           <td>(</td>
           <td class="paramtype">std::size_t&#160;</td>
           <td class="paramname"><em>total</em>, </td>
@@ -745,14 +973,82 @@ template&lt;typename Dim , typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ae5958ebb453db55a086ef95034eb42d0"></a>
+<a class="anchor" id="accd84007882cd32cd3a429656b5f5133"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension , typename... Dimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
+<div class="memtemplate">
+template&lt;typename MultiArrayType , typename DimensionType &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a6c07b5e12becc22b4f7508b12c25230b">iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::end </td>
+          <td class="memname">void <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::do_transpose </td>
+          <td>(</td>
+          <td class="paramtype">MultiArrayType &amp;&#160;</td>
+          <td class="paramname"><em>ma</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">DimensionType const &amp;&#160;</td>
+          <td class="paramname"><em>d</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9ca17f44312ae70f8aa92cde72631df0"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
+<div class="memtemplate">
+template&lt;typename SelfSlice , typename OtherSlice &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::do_transpose </td>
+          <td>(</td>
+          <td class="paramtype">SelfSlice &amp;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">OtherSlice const &amp;&#160;</td>
+          <td class="paramname">&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a999f2999c0ab9d93b8a923b65198ff49"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension , typename... Dimensions&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a7a1e65fbc326d420d65f557867df2cfb">iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::end </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -762,14 +1058,14 @@ template&lt;typename Alloc , typename T , typename FirstDimension , typename... 
 
 </div>
 </div>
-<a class="anchor" id="a681fee99e8fad4823756efd0042b0e9a"></a>
+<a class="anchor" id="a153bd3f19c7a7c2a77b3857a3a2ce572"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension , typename... Dimensions&gt; </div>
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension , typename... Dimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1103fd9f6e3cf03694822666eeaf2bcc">const_iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::end </td>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ac121fa95df2bf73cedc9182912116d8d">const_iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::end </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -779,45 +1075,45 @@ template&lt;typename Alloc , typename T , typename FirstDimension , typename... 
 
 </div>
 </div>
-<a class="anchor" id="a19fa95bb0957aa19ab409d89d8db47df"></a>
+<a class="anchor" id="a6ed26b28411bc736df3b0a40eee10d3e"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension , typename... Dimensions&gt; </div>
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension , typename... Dimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::equal_size </td>
+          <td class="memname">bool <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::equal_size </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt; const &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt; const &amp;&#160;</td>
           <td class="paramname"><em>o</em></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>return true if the sizes of each dimension are quivalent </p>
+<p>return true if the sizes of each dimension are equivalent </p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classpss_1_1astrotypes_1_1MultiArray_a19fa95bb0957aa19ab409d89d8db47df_cgraph.png" border="0" usemap="#classpss_1_1astrotypes_1_1MultiArray_a19fa95bb0957aa19ab409d89d8db47df_cgraph" alt=""/></div>
-<map name="classpss_1_1astrotypes_1_1MultiArray_a19fa95bb0957aa19ab409d89d8db47df_cgraph" id="classpss_1_1astrotypes_1_1MultiArray_a19fa95bb0957aa19ab409d89d8db47df_cgraph">
-<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1MultiArray.html#ac7e561e681f10d72a33c3efc8b4c749b" title="resize the array in the specified dimension " alt="" coords="232,5,410,44"/></map>
+<div class="center"><img src="classpss_1_1astrotypes_1_1MultiArray_a6ed26b28411bc736df3b0a40eee10d3e_cgraph.png" border="0" usemap="#classpss_1_1astrotypes_1_1MultiArray_a6ed26b28411bc736df3b0a40eee10d3e_cgraph" alt=""/></div>
+<map name="classpss_1_1astrotypes_1_1MultiArray_a6ed26b28411bc736df3b0a40eee10d3e_cgraph" id="classpss_1_1astrotypes_1_1MultiArray_a6ed26b28411bc736df3b0a40eee10d3e_cgraph">
+<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1MultiArray.html#af978aee66609ea80e3ab3282be69efea" title="pss::astrotypes::MultiArray\l::dimension" alt="" coords="232,5,410,44"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a7d8a22c05c2aa6bacf9e14b395041a63"></a>
+<a class="anchor" id="ab86969dba95448ed1c64e5a6b728f67c"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension , typename... Dimensions&gt; </div>
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension , typename... Dimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">bool <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::operator== </td>
+          <td class="memname">bool <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::operator== </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt; const &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt; const &amp;&#160;</td>
           <td class="paramname"><em>o</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -829,22 +1125,22 @@ template&lt;typename Alloc , typename T , typename FirstDimension , typename... 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classpss_1_1astrotypes_1_1MultiArray_a7d8a22c05c2aa6bacf9e14b395041a63_cgraph.png" border="0" usemap="#classpss_1_1astrotypes_1_1MultiArray_a7d8a22c05c2aa6bacf9e14b395041a63_cgraph" alt=""/></div>
-<map name="classpss_1_1astrotypes_1_1MultiArray_a7d8a22c05c2aa6bacf9e14b395041a63_cgraph" id="classpss_1_1astrotypes_1_1MultiArray_a7d8a22c05c2aa6bacf9e14b395041a63_cgraph">
-<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1MultiArray.html#a99571f48dd4923d128c2ddacc507c268" title="pss::astrotypes::MultiArray\l::cbegin" alt="" coords="232,5,410,44"/><area shape="rect" id="node3" href="classpss_1_1astrotypes_1_1MultiArray.html#a8d230a0469d837f5d144a615966f3804" title="pss::astrotypes::MultiArray\l::cend" alt="" coords="232,68,410,107"/></map>
+<div class="center"><img src="classpss_1_1astrotypes_1_1MultiArray_ab86969dba95448ed1c64e5a6b728f67c_cgraph.png" border="0" usemap="#classpss_1_1astrotypes_1_1MultiArray_ab86969dba95448ed1c64e5a6b728f67c_cgraph" alt=""/></div>
+<map name="classpss_1_1astrotypes_1_1MultiArray_ab86969dba95448ed1c64e5a6b728f67c_cgraph" id="classpss_1_1astrotypes_1_1MultiArray_ab86969dba95448ed1c64e5a6b728f67c_cgraph">
+<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1MultiArray.html#a33b7d8e943526599302f4d35f715bde9" title="pss::astrotypes::MultiArray\l::cbegin" alt="" coords="232,5,410,44"/><area shape="rect" id="node3" href="classpss_1_1astrotypes_1_1MultiArray.html#aed783c7a841440e713f1721f2d64c0fe" title="pss::astrotypes::MultiArray\l::cend" alt="" coords="232,68,410,107"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a46962e076b5f4dfea1b12b5373956269"></a>
+<a class="anchor" id="a8fabb799cdbeb454509f651b64be2aa8"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension, typename... Dimensions&gt; </div>
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... Dimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#aee52820cb2fc5b17c22718f681d5c21a">ReducedDimensionSliceType</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::operator[] </td>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#ad6b6c59123cc871a544167bac522e1f4">ReducedDimensionSliceType</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::operator[] </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; FirstDimension &gt;&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
@@ -855,10 +1151,10 @@ template&lt;typename Alloc , typename T , typename FirstDimension, typename... D
 
 <p>take a slice of width 1 data at the specified index of the first dimension </p>
 <p>This can be used to access elements in a similar way to c style arrays.</p>
-<div class="fragment"><div class="line">MultiArray&lt;int, DimA, DimB&gt; my_ulti_array(...);</div>
+<div class="fragment"><div class="line">MultiArray&lt;int, DimA, DimB&gt; my_multi_array(...);</div>
 <div class="line"><span class="keywordflow">for</span>(DimensionIndex&lt;DimA&gt; i(0); i &lt; my_multi_array.size&lt;DimA&gt;(); ++i)</div>
 <div class="line">{</div>
-<div class="line">    <span class="keywordflow">for</span>(DimensionIndex&lt;DimB&gt; j(0); j &lt; my_multi_array.size&lt;DimB&gt;(); ++j) </div>
+<div class="line">    <span class="keywordflow">for</span>(DimensionIndex&lt;DimB&gt; j(0); j &lt; my_multi_array.size&lt;DimB&gt;(); ++j)</div>
 <div class="line">    {</div>
 <div class="line">         my_multi_array[i][j] = 10;</div>
 <div class="line">    }</div>
@@ -866,14 +1162,14 @@ template&lt;typename Alloc , typename T , typename FirstDimension, typename... D
 </div><!-- fragment --> 
 </div>
 </div>
-<a class="anchor" id="a6cab11e18a0c526c9ae29a70765f5b01"></a>
+<a class="anchor" id="ae6c3dc96e4473c8065398ecccd2898e8"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension, typename... Dimensions&gt; </div>
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... Dimensions&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a1f1e5ae122d934b1ba7d3c098fa17a66">ConstReducedDimensionSliceType</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::operator[] </td>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a167f2cbd567ab75621fa6662f2d8d064">ConstReducedDimensionSliceType</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::operator[] </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; FirstDimension &gt;&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
@@ -884,16 +1180,16 @@ template&lt;typename Alloc , typename T , typename FirstDimension, typename... D
 
 </div>
 </div>
-<a class="anchor" id="a9a6f5b32651850f0a7bcec801293bd7f"></a>
+<a class="anchor" id="a891b751200a146c045b01afd0e4ad00c"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dim &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;<a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt;<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>, Dim&gt;::value &amp;&amp; !std::is_same&lt;Dim, FirstDimension&gt;::value , <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a16a24d8c9c79190ecacbe3f19d2aeebf">SliceType</a>&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::operator[] </td>
+          <td class="memname">std::enable_if&lt;<a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt;<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>, Dim&gt;::value &amp;&amp; !std::is_same&lt;Dim, FirstDimension&gt;::value , typename <a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1OperatorSliceType.html">OperatorSliceType</a>&lt;Dim&gt;::type&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::operator[] </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; const &amp;&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -904,16 +1200,16 @@ template&lt;typename Dim &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a312ff6b8bcaa89e75de9a3a8f79b16c5"></a>
+<a class="anchor" id="abdbb903bc952ef1ac1d827267862478e"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dim &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;<a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt;<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>, Dim&gt;::value &amp;&amp; !std::is_same&lt;Dim, FirstDimension&gt;::value , <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a2ce6292a0e2bfa861581fc73f019e96a">ConstSliceType</a>&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::operator[] </td>
+          <td class="memname">std::enable_if&lt;<a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt;<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>, Dim&gt;::value &amp;&amp; !std::is_same&lt;Dim, FirstDimension&gt;::value , typename <a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1ConstOperatorSliceType.html">ConstOperatorSliceType</a>&lt;Dim&gt;::type&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::operator[] </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; const &amp;&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -924,16 +1220,16 @@ template&lt;typename Dim &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="adb444263ea4b9a890a6b42fd1da2c1b5"></a>
+<a class="anchor" id="a88d3e897f618b933c5bd8786782e3809"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dim &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;<a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt;<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt;Alloc, T, FirstDimension, Dimensions...&gt;, Dim&gt;::value&amp;&amp; !std::is_same&lt;Dim, FirstDimension&gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt;Alloc, T, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a2ce6292a0e2bfa861581fc73f019e96a">ConstSliceType</a>&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::operator[] </td>
+          <td class="memname">std::enable_if&lt;<a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt;<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt;Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;, Dim&gt;::value&amp;&amp; !std::is_same&lt;Dim, FirstDimension&gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt;Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::template <a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1ConstOperatorSliceType.html">ConstOperatorSliceType</a>&lt;Dim&gt;::type&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::operator[] </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; const &amp;&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
@@ -944,16 +1240,16 @@ template&lt;typename Dim &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="acc20ef849c4884299abce3978d9f3b5d"></a>
+<a class="anchor" id="a2ae7d2ded821c66ea7b6dbb41755bb46"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dim &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;<a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt;<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt;Alloc, T, FirstDimension, Dimensions...&gt;, Dim&gt;::value&amp;&amp; !std::is_same&lt;Dim, FirstDimension&gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt;Alloc, T, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a16a24d8c9c79190ecacbe3f19d2aeebf">SliceType</a>&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::operator[] </td>
+          <td class="memname">std::enable_if&lt;<a class="el" href="structpss_1_1astrotypes_1_1has__dimension.html">has_dimension</a>&lt;<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt;Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;, Dim&gt;::value&amp;&amp; !std::is_same&lt;Dim, FirstDimension&gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt;Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::template <a class="el" href="structpss_1_1astrotypes_1_1MultiArray_1_1OperatorSliceType.html">OperatorSliceType</a>&lt;Dim&gt;::type&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::operator[] </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; const &amp;&#160;</td>
           <td class="paramname"><em>index</em></td><td>)</td>
@@ -964,16 +1260,16 @@ template&lt;typename Dim &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a19ea4d1677206c56a85ec20aa8259434"></a>
+<a class="anchor" id="aa9b7fc104e7e8db7ebbdaf3e4bbdea97"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension , typename... Dimensions&gt; </div>
+template&lt;typename Alloc , typename T , template&lt; typename &gt; class SliceMixin, typename FirstDimension , typename... Dimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename... Dims&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">void <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::resize </td>
+          <td class="memname">void <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, Dimensions &gt;::resize </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dims &gt;...&#160;</td>
           <td class="paramname"><em>size</em></td><td>)</td>
@@ -986,16 +1282,16 @@ template&lt;typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ac7e561e681f10d72a33c3efc8b4c749b"></a>
+<a class="anchor" id="a3f2d3f180dc0cbcf5f31051dc7c7af6a"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dim &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;std::is_same&lt;Dim, FirstDimension&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt;FirstDimension&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::size </td>
+          <td class="memname">std::enable_if&lt;std::is_same&lt;Dim, FirstDimension&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt;FirstDimension&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::size </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1008,16 +1304,16 @@ template&lt;typename Dim &gt; </div>
 </div><!-- fragment --> 
 </div>
 </div>
-<a class="anchor" id="a88b3f8225501fc54ce33fd6fe10ac63a"></a>
+<a class="anchor" id="adf4e3168e54fd250f57b477d92a8aa0b"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dim &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;!std::is_same&lt;Dim, FirstDimension&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt;Dim&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::size </td>
+          <td class="memname">std::enable_if&lt;!std::is_same&lt;Dim, FirstDimension&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt;Dim&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::size </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1027,16 +1323,16 @@ template&lt;typename Dim &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a88b3f8225501fc54ce33fd6fe10ac63a"></a>
+<a class="anchor" id="adf4e3168e54fd250f57b477d92a8aa0b"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dim &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;!std::is_same&lt;Dim, FirstDimension&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt;Dim&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::size </td>
+          <td class="memname">std::enable_if&lt;!std::is_same&lt;Dim, FirstDimension&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt;Dim&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::size </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1046,16 +1342,16 @@ template&lt;typename Dim &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="ac7e561e681f10d72a33c3efc8b4c749b"></a>
+<a class="anchor" id="a3f2d3f180dc0cbcf5f31051dc7c7af6a"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc, typename T, typename FirstDimension, typename... OtherDimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dim &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;std::is_same&lt;Dim, FirstDimension&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt;FirstDimension&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, OtherDimensions &gt;::size </td>
+          <td class="memname">std::enable_if&lt;std::is_same&lt;Dim, FirstDimension&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt;FirstDimension&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::size </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -1065,18 +1361,30 @@ template&lt;typename Dim &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a3e12c7bfbca6a1b77b3ae19beb1035b2"></a>
+<a class="anchor" id="a3a3fe388c5f4f2ecb8ece7a250e6d773"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension, typename... Dimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
+<div class="memtemplate">
+template&lt;typename Dim , typename... Dims&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a16a24d8c9c79190ecacbe3f19d2aeebf">SliceType</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::slice </td>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a09f1de091813da37c9a178330792fc29">SliceType</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::slice </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; FirstDimension &gt; const &amp;&#160;</td>
-          <td class="paramname"><em>index_range</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dim &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>range</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1085,18 +1393,90 @@ template&lt;typename Alloc , typename T , typename FirstDimension, typename... D
 
 </div>
 </div>
-<a class="anchor" id="a482350d10beb5dfe5a83d975c5e7c8c1"></a>
+<a class="anchor" id="afef105cce5fe2345d62bbdcef2722cb9"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Alloc , typename T , typename FirstDimension, typename... Dimensions&gt; </div>
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
+<div class="memtemplate">
+template&lt;typename Dim , typename... Dims&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a2ce6292a0e2bfa861581fc73f019e96a">ConstSliceType</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, FirstDimension, Dimensions &gt;::slice </td>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#aab9fc83a487ac4b0bc1108ed0428c9a2">ConstSliceType</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::slice </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; FirstDimension &gt; const &amp;&#160;</td>
-          <td class="paramname"><em>index_range</em></td><td>)</td>
-          <td> const</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dim &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>range</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab4e990021c8aa65edfec35f4bf7becf0"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
+<div class="memtemplate">
+template&lt;typename Dim , typename... Dims&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt;Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#aab9fc83a487ac4b0bc1108ed0428c9a2">ConstSliceType</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::slice </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dim &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>range</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>ranges</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a3384a6cc919329d3974ca75a295210d1"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Alloc, typename T, template&lt; typename &gt; class SliceMixin, typename FirstDimension, typename... OtherDimensions&gt; </div>
+<div class="memtemplate">
+template&lt;typename Dim , typename... Dims&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">MultiArray</a>&lt;Alloc, T, SliceMixin, FirstDimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html#a09f1de091813da37c9a178330792fc29">SliceType</a> <a class="el" href="classpss_1_1astrotypes_1_1MultiArray.html">pss::astrotypes::MultiArray</a>&lt; Alloc, T, SliceMixin, FirstDimension, OtherDimensions &gt;::slice </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dim &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>range</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>ranges</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1106,7 +1486,7 @@ template&lt;typename Alloc , typename T , typename FirstDimension, typename... D
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 11 2018 11:44:38 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 21 2018 15:15:27 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

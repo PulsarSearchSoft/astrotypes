@@ -97,14 +97,14 @@ Time Frequency Data</h1>
 <div class="line"></div>
 <div class="line"><span class="comment">// Iterate over each spectrum using the [] bracket style interface</span></div>
 <div class="line"><span class="keywordtype">unsigned</span> total_pow=0;</div>
-<div class="line"><span class="keywordflow">for</span>(DimensionIndex&lt;Time&gt; i(0); i &lt; time_frequency.template size&lt;Time&gt;(); ++i) {</div>
+<div class="line"><span class="keywordflow">for</span>(DimensionIndex&lt;Time&gt; i(0); i &lt; time_frequency.template dimension&lt;Time&gt;(); ++i) {</div>
 <div class="line">    <span class="keyword">auto</span> spectrum = time_frequency[i];</div>
-<div class="line">    <span class="keywordflow">for</span>(DimensionIndex&lt;Frequency&gt; j(0); j &lt; spectrum.template size&lt;Frequency&gt;(); ++j) {</div>
+<div class="line">    <span class="keywordflow">for</span>(DimensionIndex&lt;Frequency&gt; j(0); j &lt; spectrum.template dimension&lt;Frequency&gt;(); ++j) {</div>
 <div class="line">        total_pow += spectrum[j];</div>
 <div class="line">    }</div>
 <div class="line">}</div>
 </div><!-- fragment --><h2>Would you care for a slice?</h2>
-<p>You can extract prats of a TimeFrequency chunk as a slice.</p>
+<p>You can extract parts of a TimeFrequency chunk as a slice.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="TimeFrequency_8h.html">pss/astrotypes/types/TimeFrequency.h</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
 <div class="line"></div>
@@ -126,7 +126,10 @@ Time Frequency Data</h1>
 </div><!-- fragment --><h2>TimeFrequency or FrequencyTime?</h2>
 <p>The difference between the two classes is in the way the data is stored. The patterns of memory access are often a major factor in the speed of any algorithm you may write and so your choice of class will also be algorithm dependendent for maximal efficiency.</p>
 <p>But you don't have to commit to a specific type. By design the two classes have identical interfaces and so any code you write for one should work for the other seamlessly (if perhaps not at optimal efficiency).</p>
-<p>A simple way to write a function that can work with either type is to use a template.</p>
+<p>You can convert between the two types using the tranpose constructor. e.g. </p><div class="fragment"><div class="line"><span class="comment">// example conversion from TimeFrequency ordering to FrequencyTime ordering of 8bit data</span></div>
+<div class="line">TimeFrequency&lt;uint8_t&gt; time_frequency(DimensionSize&lt;Frequency&gt;(100), DimensionSize&lt;Time&gt;(10000));</div>
+<div class="line">FrequencyTime&lt;uint8_t&gt; frequency_time(time_frequency); <span class="comment">// all the data will be copied from the time_frequency object</span></div>
+</div><!-- fragment --><p>A simple way to write a function that can work with either type is to use a template.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="TimeFrequency_8h.html">pss/astrotypes/types/TimeFrequency.h</a>&quot;</span></div>
 <div class="line"></div>
 <div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> TimeFrequencyType&gt;</div>
@@ -138,7 +141,7 @@ Time Frequency Data</h1>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 11 2018 11:44:38 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 21 2018 15:15:27 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

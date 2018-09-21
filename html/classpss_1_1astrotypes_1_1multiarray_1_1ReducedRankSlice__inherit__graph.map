@@ -1,2 +1,2 @@
-<map id="pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim &gt;" name="pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim &gt;">
+<map id="pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim, RankT &gt;" name="pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim, RankT &gt;">
 </map>

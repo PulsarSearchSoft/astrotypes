@@ -120,7 +120,7 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a3ad84f64ec773a4f5285a331b70ca721"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#a3ad84f64ec773a4f5285a331b70ca721">SliceIteratorBase</a> (SliceT &amp;)</td></tr>
+<tr class="memitem:a3ad84f64ec773a4f5285a331b70ca721"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#a3ad84f64ec773a4f5285a331b70ca721">SliceIteratorBase</a> (<a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#a8a7aeb8e0bcfc00ce754df79086a1406">SliceT</a> &amp;)</td></tr>
 <tr class="separator:a3ad84f64ec773a4f5285a331b70ca721"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaef0bee4e317ac4b4087335e6c3d7a4f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#aaef0bee4e317ac4b4087335e6c3d7a4f">~SliceIteratorBase</a> ()</td></tr>
 <tr class="separator:aaef0bee4e317ac4b4087335e6c3d7a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,12 +142,14 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a342dd2ad6157e2ffa23b2988cbe66914"><td class="memItemLeft" align="right" valign="top">static DerivedType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#a342dd2ad6157e2ffa23b2988cbe66914">create_end</a> (SliceT &amp;slice)</td></tr>
+<tr class="memitem:a342dd2ad6157e2ffa23b2988cbe66914"><td class="memItemLeft" align="right" valign="top">static DerivedType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#a342dd2ad6157e2ffa23b2988cbe66914">create_end</a> (<a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#a8a7aeb8e0bcfc00ce754df79086a1406">SliceT</a> &amp;slice)</td></tr>
 <tr class="memdesc:a342dd2ad6157e2ffa23b2988cbe66914"><td class="mdescLeft">&#160;</td><td class="mdescRight">create an end iterator for the givn slice  <a href="#a342dd2ad6157e2ffa23b2988cbe66914">More...</a><br /></td></tr>
 <tr class="separator:a342dd2ad6157e2ffa23b2988cbe66914"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
 Protected Types</h2></td></tr>
+<tr class="memitem:a8a7aeb8e0bcfc00ce754df79086a1406"><td class="memItemLeft" align="right" valign="top">typedef std::conditional&lt; is_const, SliceType const, SliceType &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#a8a7aeb8e0bcfc00ce754df79086a1406">SliceT</a></td></tr>
+<tr class="separator:a8a7aeb8e0bcfc00ce754df79086a1406"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa6d44300fadf63a8c386b4f17eee62c0"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html">SelfType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#aa6d44300fadf63a8c386b4f17eee62c0">ImplT</a></td></tr>
 <tr class="separator:aa6d44300fadf63a8c386b4f17eee62c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -241,6 +243,28 @@ template&lt;typename DerivedType , typename SliceType , bool is_const&gt; </div>
 
 </div>
 </div>
+<a class="anchor" id="a8a7aeb8e0bcfc00ce754df79086a1406"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename DerivedType , typename SliceType , bool is_const&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::conditional&lt;is_const, SliceType const, SliceType&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase.html">pss::astrotypes::SliceIteratorBase</a>&lt; DerivedType, SliceType, is_const, 1 &gt;::<a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#a8a7aeb8e0bcfc00ce754df79086a1406">SliceT</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="afd0c7f06c5c3c740484a018ee623579e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -265,7 +289,7 @@ template&lt;typename DerivedType , typename SliceType , bool is_const&gt; </div>
         <tr>
           <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase.html">pss::astrotypes::SliceIteratorBase</a>&lt; DerivedType, SliceType, is_const, 1 &gt;::<a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase.html">SliceIteratorBase</a> </td>
           <td>(</td>
-          <td class="paramtype">SliceT &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#a8a7aeb8e0bcfc00ce754df79086a1406">SliceT</a> &amp;&#160;</td>
           <td class="paramname"><em>slice</em></td><td>)</td>
           <td></td>
         </tr>
@@ -304,7 +328,7 @@ template&lt;typename DerivedType , typename SliceType , bool is_const&gt; </div>
         <tr>
           <td class="memname">DerivedType <a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase.html">pss::astrotypes::SliceIteratorBase</a>&lt; DerivedType, SliceType, is_const, 1 &gt;::create_end </td>
           <td>(</td>
-          <td class="paramtype">SliceT &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#a8a7aeb8e0bcfc00ce754df79086a1406">SliceT</a> &amp;&#160;</td>
           <td class="paramname"><em>slice</em></td><td>)</td>
           <td></td>
         </tr>
@@ -483,7 +507,7 @@ template&lt;typename DerivedType , typename SliceType , bool is_const&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 11 2018 11:44:38 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 21 2018 15:15:27 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

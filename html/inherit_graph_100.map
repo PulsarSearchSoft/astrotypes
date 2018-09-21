@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structtesting_1_1internal_1_1AllOfResult9.html" title="testing::internal::\lAllOfResult9\&lt; M1, M2,\l M3, M4, M5, M6, M7,\l M8, M9 \&gt;" alt="" coords="5,5,173,76"/>
+<area shape="rect" id="node2" href="$structstd_1_1common__type_3_01boost_1_1units_1_1quantity_3_01Unit_00_01Rep_01_4_00_01T2_01_4.html" title="std::common_type\&lt; boost\l::units::quantity\&lt; Unit,\l Rep \&gt;, T2 \&gt;" alt="" coords="158,5,333,57"/>
+<area shape="rect" id="node3" href="$structstd_1_1common__type_3_01T2_00_01boost_1_1units_1_1quantity_3_01Unit_00_01Rep_01_4_01_4.html" title="std::common_type\&lt; T2,\l boost::units::quantity\l\&lt; Unit, Rep \&gt; \&gt;" alt="" coords="165,81,326,133"/>
 </map>

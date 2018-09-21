@@ -1,14 +1,16 @@
 <map id="src/cpp/pss/astrotypes/multiarray/detail/Slice.cpp" name="src/cpp/pss/astrotypes/multiarray/detail/Slice.cpp">
-<area shape="rect" id="node2" href="$Slice_8h.html" title="pss/astrotypes/multiarray\l/Slice.h" alt="" coords="562,92,732,131"/>
-<area shape="rect" id="node3" href="$DimensionSpan_8h.html" title="DimensionSpan.h" alt="" coords="217,179,343,204"/>
-<area shape="rect" id="node9" href="$SliceIterator_8h.html" title="SliceIterator.h" alt="" coords="641,179,744,204"/>
-<area shape="rect" id="node10" href="$SlicePosition_8h.html" title="detail/SlicePosition.h" alt="" coords="480,252,624,277"/>
-<area shape="rect" id="node16" href="$TypeTraits_8h.html" title="TypeTraits.h" alt="" coords="768,179,862,204"/>
-<area shape="rect" id="node4" href="$DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="30,325,152,351"/>
-<area shape="rect" id="node6" href="$DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="128,252,256,277"/>
-<area shape="rect" id="node8" href="$DimensionSpan_8cpp.html" title="detail/DimensionSpan.cpp" alt="" coords="280,252,456,277"/>
-<area shape="rect" id="node5" href="$DimensionSize_8cpp.html" title="detail/DimensionSize.cpp" alt="" coords="5,399,176,424"/>
-<area shape="rect" id="node7" href="$DimensionIndex_8cpp.html" title="detail/DimensionIndex.cpp" alt="" coords="175,325,353,351"/>
-<area shape="rect" id="node15" href="$SliceIterator_8cpp.html" title="detail/SliceIterator.cpp" alt="" coords="725,252,878,277"/>
-<area shape="rect" id="node12" href="$SlicePosition_8cpp.html" title="SlicePosition.cpp" alt="" coords="551,325,674,351"/>
+<area shape="rect" id="node2" href="$ReducedRankSlice_8h.html" title="ReducedRankSlice.h" alt="" coords="71,99,217,124"/>
+<area shape="rect" id="node5" href="$Slice_8h.html" title="pss/astrotypes/multiarray\l/Slice.h" alt="" coords="422,92,591,131"/>
+<area shape="rect" id="node4" href="$ReducedRankSlice_8cpp.html" title="ReducedRankSlice.cpp" alt="" coords="5,179,165,204"/>
+<area shape="rect" id="node6" href="$DimensionSpan_8h.html" title="DimensionSpan.h" alt="" coords="882,179,1009,204"/>
+<area shape="rect" id="node12" href="$SliceIterator_8h.html" title="SliceIterator.h" alt="" coords="455,179,558,204"/>
+<area shape="rect" id="node13" href="$SlicePosition_8h.html" title="detail/SlicePosition.h" alt="" coords="694,252,839,277"/>
+<area shape="rect" id="node19" href="$TypeTraits_8h.html" title="TypeTraits.h" alt="" coords="242,179,336,204"/>
+<area shape="rect" id="node7" href="$DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="853,325,974,351"/>
+<area shape="rect" id="node9" href="$DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="932,252,1060,277"/>
+<area shape="rect" id="node11" href="$DimensionSpan_8cpp.html" title="detail/DimensionSpan.cpp" alt="" coords="1084,252,1260,277"/>
+<area shape="rect" id="node8" href="$DimensionSize_8cpp.html" title="detail/DimensionSize.cpp" alt="" coords="828,399,999,424"/>
+<area shape="rect" id="node10" href="$DimensionIndex_8cpp.html" title="detail/DimensionIndex.cpp" alt="" coords="998,325,1175,351"/>
+<area shape="rect" id="node18" href="$SliceIterator_8cpp.html" title="detail/SliceIterator.cpp" alt="" coords="430,252,583,277"/>
+<area shape="rect" id="node15" href="$SlicePosition_8cpp.html" title="SlicePosition.cpp" alt="" coords="705,325,828,351"/>
 </map>

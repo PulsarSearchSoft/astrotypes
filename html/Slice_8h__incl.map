@@ -1,14 +1,16 @@
 <map id="src/cpp/pss/astrotypes/multiarray/Slice.h" name="src/cpp/pss/astrotypes/multiarray/Slice.h">
 <area shape="rect" id="node2" href="$DimensionSpan_8h.html" title="DimensionSpan.h" alt="" coords="217,92,343,117"/>
-<area shape="rect" id="node8" href="$SliceIterator_8h.html" title="SliceIterator.h" alt="" coords="689,92,792,117"/>
+<area shape="rect" id="node8" href="$SliceIterator_8h.html" title="SliceIterator.h" alt="" coords="741,92,844,117"/>
 <area shape="rect" id="node9" href="$SlicePosition_8h.html" title="detail/SlicePosition.h" alt="" coords="480,165,624,191"/>
-<area shape="rect" id="node15" href="$TypeTraits_8h.html" title="TypeTraits.h" alt="" coords="816,92,910,117"/>
-<area shape="rect" id="node16" href="$Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="934,92,1045,117"/>
+<area shape="rect" id="node15" href="$TypeTraits_8h.html" title="TypeTraits.h" alt="" coords="956,92,1050,117"/>
+<area shape="rect" id="node18" href="$Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="1101,92,1212,117"/>
 <area shape="rect" id="node3" href="$DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="30,239,152,264"/>
 <area shape="rect" id="node5" href="$DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="128,165,256,191"/>
 <area shape="rect" id="node7" href="$DimensionSpan_8cpp.html" title="detail/DimensionSpan.cpp" alt="" coords="280,165,456,191"/>
 <area shape="rect" id="node4" href="$DimensionSize_8cpp.html" title="detail/DimensionSize.cpp" alt="" coords="5,312,176,337"/>
 <area shape="rect" id="node6" href="$DimensionIndex_8cpp.html" title="detail/DimensionIndex.cpp" alt="" coords="175,239,353,264"/>
-<area shape="rect" id="node14" href="$SliceIterator_8cpp.html" title="detail/SliceIterator.cpp" alt="" coords="812,165,964,191"/>
+<area shape="rect" id="node14" href="$SliceIterator_8cpp.html" title="detail/SliceIterator.cpp" alt="" coords="725,165,878,191"/>
 <area shape="rect" id="node11" href="$SlicePosition_8cpp.html" title="SlicePosition.cpp" alt="" coords="551,239,674,264"/>
+<area shape="rect" id="node19" href="$ReducedRankSlice_8h.html" title="ReducedRankSlice.h" alt="" coords="1243,165,1389,191"/>
+<area shape="rect" id="node20" href="$ReducedRankSlice_8cpp.html" title="ReducedRankSlice.cpp" alt="" coords="1236,239,1396,264"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="pss::astrotypes::test::TEST_F" name="pss::astrotypes::test::TEST_F">
-<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1TimeFrequency.html#aa2c013a93738d1f0634826d70d332cd3" title="return a single spectrum from the specified offset " alt="" coords="193,5,404,44"/>
-<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1Slice.html#ab94a8b2732192206cdbd218854b0e162" title="pss::astrotypes::Slice\l::cbegin" alt="" coords="225,68,372,107"/>
-<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1Slice.html#ada4ff220dfc9057aae9d21b873654da6" title="pss::astrotypes::Slice\l::cend" alt="" coords="225,131,372,169"/>
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1TimeFreqCommon.html#a9c523af641ceba14ef312ccb6d76f331" title="return a single spectrum from the specified offset " alt="" coords="220,5,410,84"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1MultiArray.html#a33b7d8e943526599302f4d35f715bde9" title="pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Time, units::Frequency\l \&gt;::cbegin" alt="" coords="217,108,413,173"/>
+<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1MultiArray.html#aed783c7a841440e713f1721f2d64c0fe" title="pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Time, units::Frequency \&gt;::cend" alt="" coords="193,197,437,249"/>
 </map>

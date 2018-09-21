@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>astrotypes: pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim &gt; Class Template Reference</title>
+<title>astrotypes: pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim, RankT &gt; Class Template Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -92,39 +92,306 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
+<a href="#pro-types">Protected Types</a> &#124;
 <a href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim &gt; Class Template Reference</div>  </div>
+<div class="title">pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim, RankT &gt; Class Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 
 <p><code>#include &lt;<a class="el" href="ReducedRankSlice_8h_source.html">src/cpp/pss/astrotypes/multiarray/detail/ReducedRankSlice.h</a>&gt;</code></p>
 <div class="dynheader">
-Inheritance diagram for pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim &gt;:</div>
+Inheritance diagram for pss::astrotypes::multiarray::ReducedRankSlice&lt; SliceType, ExcludedDim, RankT &gt;:</div>
 <div class="dyncontent">
-<div class="center"><img src="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice__inherit__graph.png" border="0" usemap="#pss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice_3_01SliceType_00_01ExcludedDim_01_4_inherit__map" alt="Inheritance graph"/></div>
+<div class="center"><img src="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice__inherit__graph.png" border="0" usemap="#pss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice_3_01SliceType_00_01ExcludedDim_00_01RankT_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="pss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice_3_01SliceType_00_01ExcludedDim_00_01RankT_01_4_inherit__map" id="pss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice_3_01SliceType_00_01ExcludedDim_00_01RankT_01_4_inherit__map">
+</map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9b17ecfb373ced949380fd91be9059e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a9b17ecfb373ced949380fd91be9059e5">ReducedRankSlice</a> ()</td></tr>
-<tr class="separator:a9b17ecfb373ced949380fd91be9059e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa194286ea1b6d5fe7aa32cfc21faaef6"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
-<tr class="memitem:aa194286ea1b6d5fe7aa32cfc21faaef6"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; Dim, ExcludedDim &gt;::value, reference_type &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#aa194286ea1b6d5fe7aa32cfc21faaef6">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt;)</td></tr>
-<tr class="separator:aa194286ea1b6d5fe7aa32cfc21faaef6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b62c43716d815d088dadcca0ee69dac"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
-<tr class="memitem:a2b62c43716d815d088dadcca0ee69dac"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; Dim, ExcludedDim &gt;::value, const_reference_type &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a2b62c43716d815d088dadcca0ee69dac">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt;) const </td></tr>
-<tr class="separator:a2b62c43716d815d088dadcca0ee69dac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc16d1a0006eb4942622dfb949810e57"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#afc16d1a0006eb4942622dfb949810e57">ReducedRankSlice</a> (SliceType const &amp;s)</td></tr>
+<tr class="separator:afc16d1a0006eb4942622dfb949810e57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad381cab41edda9aa4a6375d961377be3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#ad381cab41edda9aa4a6375d961377be3">ReducedRankSlice</a> (SliceType &amp;&amp;s)</td></tr>
+<tr class="separator:ad381cab41edda9aa4a6375d961377be3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a944113460300d806f54f60e834252376"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a26fd410c238e7f1382c9924bd576fc04">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a944113460300d806f54f60e834252376">begin</a> ()</td></tr>
+<tr class="memdesc:a944113460300d806f54f60e834252376"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterator pointing to the first element in the slice  <a href="#a944113460300d806f54f60e834252376">More...</a><br /></td></tr>
+<tr class="separator:a944113460300d806f54f60e834252376"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f6fbf2772700dfc91225881d59237c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a7b8043eaef35d261699c179d59a65648">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a2f6fbf2772700dfc91225881d59237c6">begin</a> () const </td></tr>
+<tr class="separator:a2f6fbf2772700dfc91225881d59237c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a8a95ac4651c5aab3b8f56b7476c2eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a7b8043eaef35d261699c179d59a65648">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a0a8a95ac4651c5aab3b8f56b7476c2eb">cbegin</a> () const </td></tr>
+<tr class="separator:a0a8a95ac4651c5aab3b8f56b7476c2eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaa917fe7f269de1de010e2a4a3e60d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a26fd410c238e7f1382c9924bd576fc04">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#adaa917fe7f269de1de010e2a4a3e60d4">end</a> ()</td></tr>
+<tr class="memdesc:adaa917fe7f269de1de010e2a4a3e60d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterator pointing to just after the last element  <a href="#adaa917fe7f269de1de010e2a4a3e60d4">More...</a><br /></td></tr>
+<tr class="separator:adaa917fe7f269de1de010e2a4a3e60d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadd60577790addda0adcf4ef794e38a2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a7b8043eaef35d261699c179d59a65648">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#aadd60577790addda0adcf4ef794e38a2">end</a> () const </td></tr>
+<tr class="separator:aadd60577790addda0adcf4ef794e38a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1a0f3f8cec2d3544bed0f5b6081a93f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a7b8043eaef35d261699c179d59a65648">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#ac1a0f3f8cec2d3544bed0f5b6081a93f">cend</a> () const </td></tr>
+<tr class="separator:ac1a0f3f8cec2d3544bed0f5b6081a93f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1261c7ed12ea6f22afcc1e1b7bab3f97"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:a1261c7ed12ea6f22afcc1e1b7bab3f97"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_same&lt; Dim, ExcludedDim &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>&lt; typename <a class="el" href="structpss_1_1astrotypes_1_1SliceMixinRemover.html">SliceMixinRemover</a>&lt; typename SliceType::template OperatorSliceType&lt; Dim &gt;::type &gt;::type, ExcludedDim &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a1261c7ed12ea6f22afcc1e1b7bab3f97">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt;)</td></tr>
+<tr class="separator:a1261c7ed12ea6f22afcc1e1b7bab3f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b5c988e0d055bef4e37774165757f28"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:a2b5c988e0d055bef4e37774165757f28"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_same&lt; Dim, ExcludedDim &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>&lt; typename <a class="el" href="structpss_1_1astrotypes_1_1SliceMixinRemover.html">SliceMixinRemover</a>&lt; typename SliceType::template ConstOperatorSliceType&lt; Dim &gt;::type &gt;::type, ExcludedDim &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a2b5c988e0d055bef4e37774165757f28">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt;) const </td></tr>
+<tr class="separator:a2b5c988e0d055bef4e37774165757f28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e154d1b3d86232c76f157ee692fb02e"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:a4e154d1b3d86232c76f157ee692fb02e"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; std::is_same&lt; Dim, ExcludedDim &gt;::value, std::size_t &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a4e154d1b3d86232c76f157ee692fb02e">dimension</a> ()</td></tr>
+<tr class="separator:a4e154d1b3d86232c76f157ee692fb02e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaad3cd0de818da924b781694f624d2c6"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:aaad3cd0de818da924b781694f624d2c6"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_same&lt; Dim, ExcludedDim &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>&lt; typename <a class="el" href="structpss_1_1astrotypes_1_1SliceMixinRemover.html">SliceMixinRemover</a>&lt; typename SliceType::template OperatorSliceType&lt; Dim &gt;::type &gt;::type, ExcludedDim &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#aaad3cd0de818da924b781694f624d2c6">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a57bdd1fd255a43ccc423875b628dbec0">dimension</a>)</td></tr>
+<tr class="separator:aaad3cd0de818da924b781694f624d2c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03a67008323ae8c90a23c3b468f5ef19"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:a03a67008323ae8c90a23c3b468f5ef19"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!std::is_same&lt; Dim, ExcludedDim &gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>&lt; typename <a class="el" href="structpss_1_1astrotypes_1_1SliceMixinRemover.html">SliceMixinRemover</a>&lt; typename SliceType::template ConstOperatorSliceType&lt; Dim &gt;::type &gt;::type, ExcludedDim &gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a03a67008323ae8c90a23c3b468f5ef19">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a57bdd1fd255a43ccc423875b628dbec0">dimension</a>) const </td></tr>
+<tr class="separator:a03a67008323ae8c90a23c3b468f5ef19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a57bdd1fd255a43ccc423875b628dbec0"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
+<tr class="memitem:a57bdd1fd255a43ccc423875b628dbec0"><td class="memTemplItemLeft" align="right" valign="top">static std::enable_if&lt; std::is_same&lt; Dim, ExcludedDim &gt;::value, std::size_t &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a57bdd1fd255a43ccc423875b628dbec0">dimension</a> ()</td></tr>
+<tr class="memdesc:a57bdd1fd255a43ccc423875b628dbec0"><td class="mdescLeft">&#160;</td><td class="mdescRight">the width of the slice in this dimesnion has been reduced to 1  <a href="#a57bdd1fd255a43ccc423875b628dbec0">More...</a><br /></td></tr>
+<tr class="separator:a57bdd1fd255a43ccc423875b628dbec0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a00786d2a8599c92749f4024f5169738f"><td class="memItemLeft" align="right" valign="top">static constexpr std::size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a00786d2a8599c92749f4024f5169738f">rank</a> = SliceType::rank - 1</td></tr>
+<tr class="separator:a00786d2a8599c92749f4024f5169738f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-types"></a>
+Protected Types</h2></td></tr>
+<tr class="memitem:ab30736b50dd1e285aa9bff7d35edb903"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structpss_1_1astrotypes_1_1join__tuples.html">join_tuples</a>&lt; typename BaseT::ExcludeTuple, std::tuple&lt; ExcludedDim &gt; &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#ab30736b50dd1e285aa9bff7d35edb903">ExcludeTuple</a></td></tr>
+<tr class="separator:ab30736b50dd1e285aa9bff7d35edb903"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48e65b954f917b5b7fd808d3ed52ce1f"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structpss_1_1astrotypes_1_1tuple__diff.html">tuple_diff</a>&lt; typename SliceType::DimensionTuple, <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#ab30736b50dd1e285aa9bff7d35edb903">ExcludeTuple</a> &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a48e65b954f917b5b7fd808d3ed52ce1f">DimensionTuple</a></td></tr>
+<tr class="separator:a48e65b954f917b5b7fd808d3ed52ce1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26fd410c238e7f1382c9924bd576fc04"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structpss_1_1astrotypes_1_1SliceIteratorHelper.html">SliceIteratorHelper</a>&lt; <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>, typename SliceType::iterator &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a26fd410c238e7f1382c9924bd576fc04">iterator</a></td></tr>
+<tr class="separator:a26fd410c238e7f1382c9924bd576fc04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b8043eaef35d261699c179d59a65648"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structpss_1_1astrotypes_1_1SliceIteratorHelper.html">SliceIteratorHelper</a>&lt; <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>, typename SliceType::const_iterator &gt;::type&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a7b8043eaef35d261699c179d59a65648">const_iterator</a></td></tr>
+<tr class="separator:a7b8043eaef35d261699c179d59a65648"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a9b17ecfb373ced949380fd91be9059e5"></a>
+<h2 class="groupheader">Member Typedef Documentation</h2>
+<a class="anchor" id="a7b8043eaef35d261699c179d59a65648"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename SliceType , typename ExcludedDim &gt; </div>
+template&lt;typename SliceType, typename ExcludedDim, std::size_t RankT = SliceType::rank - 1&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim &gt;::<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a> </td>
+          <td class="memname">typedef <a class="el" href="structpss_1_1astrotypes_1_1SliceIteratorHelper.html">SliceIteratorHelper</a>&lt;<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>, typename SliceType::const_iterator&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a7b8043eaef35d261699c179d59a65648">const_iterator</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a48e65b954f917b5b7fd808d3ed52ce1f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType, typename ExcludedDim, std::size_t RankT = SliceType::rank - 1&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="structpss_1_1astrotypes_1_1tuple__diff.html">tuple_diff</a>&lt;typename SliceType::DimensionTuple, <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#ab30736b50dd1e285aa9bff7d35edb903">ExcludeTuple</a>&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a48e65b954f917b5b7fd808d3ed52ce1f">DimensionTuple</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ab30736b50dd1e285aa9bff7d35edb903"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType, typename ExcludedDim, std::size_t RankT = SliceType::rank - 1&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="structpss_1_1astrotypes_1_1join__tuples.html">join_tuples</a>&lt;typename BaseT::ExcludeTuple, std::tuple&lt;ExcludedDim&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#ab30736b50dd1e285aa9bff7d35edb903">ExcludeTuple</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a26fd410c238e7f1382c9924bd576fc04"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType, typename ExcludedDim, std::size_t RankT = SliceType::rank - 1&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="structpss_1_1astrotypes_1_1SliceIteratorHelper.html">SliceIteratorHelper</a>&lt;<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>, typename SliceType::iterator&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a26fd410c238e7f1382c9924bd576fc04">iterator</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="afc16d1a0006eb4942622dfb949810e57"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType, typename ExcludedDim, std::size_t RankT = SliceType::rank - 1&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a> </td>
+          <td>(</td>
+          <td class="paramtype">SliceType const &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ad381cab41edda9aa4a6375d961377be3"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType, typename ExcludedDim, std::size_t RankT = SliceType::rank - 1&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a> </td>
+          <td>(</td>
+          <td class="paramtype">SliceType &amp;&amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a944113460300d806f54f60e834252376"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType , typename ExcludedDim , std::size_t RankT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a26fd410c238e7f1382c9924bd576fc04">iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>iterator pointing to the first element in the slice </p>
+
+</div>
+</div>
+<a class="anchor" id="a2f6fbf2772700dfc91225881d59237c6"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType , typename ExcludedDim , std::size_t RankT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a7b8043eaef35d261699c179d59a65648">const_iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0a8a95ac4651c5aab3b8f56b7476c2eb"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType , typename ExcludedDim , std::size_t RankT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a7b8043eaef35d261699c179d59a65648">const_iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::cbegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac1a0f3f8cec2d3544bed0f5b6081a93f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType , typename ExcludedDim , std::size_t RankT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a7b8043eaef35d261699c179d59a65648">const_iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::cend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a4e154d1b3d86232c76f157ee692fb02e"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType, typename ExcludedDim, std::size_t RankT = SliceType::rank - 1&gt; </div>
+<div class="memtemplate">
+template&lt;typename Dim &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;std::is_same&lt;Dim, ExcludedDim&gt;::value, std::size_t&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::dimension </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -134,17 +401,121 @@ template&lt;typename SliceType , typename ExcludedDim &gt; </div>
 
 </div>
 </div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="aa194286ea1b6d5fe7aa32cfc21faaef6"></a>
+<a class="anchor" id="a57bdd1fd255a43ccc423875b628dbec0"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename SliceType , typename ExcludedDim &gt; </div>
+template&lt;typename SliceType, typename ExcludedDim, std::size_t RankT = SliceType::rank - 1&gt; </div>
+<div class="memtemplate">
+template&lt;typename Dim &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static std::enable_if&lt;std::is_same&lt;Dim, ExcludedDim&gt;::value, std::size_t&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::dimension </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>the width of the slice in this dimesnion has been reduced to 1 </p>
+
+</div>
+</div>
+<a class="anchor" id="adaa917fe7f269de1de010e2a4a3e60d4"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType , typename ExcludedDim , std::size_t RankT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a26fd410c238e7f1382c9924bd576fc04">iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>iterator pointing to just after the last element </p>
+
+</div>
+</div>
+<a class="anchor" id="aadd60577790addda0adcf4ef794e38a2"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType , typename ExcludedDim , std::size_t RankT&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::<a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html#a7b8043eaef35d261699c179d59a65648">const_iterator</a> <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aaad3cd0de818da924b781694f624d2c6"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType, typename ExcludedDim, std::size_t RankT = SliceType::rank - 1&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dim &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;std::is_same&lt;Dim, ExcludedDim&gt;::value, reference_type&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim &gt;::operator[] </td>
+          <td class="memname">std::enable_if&lt;!std::is_same&lt;Dim, ExcludedDim&gt;::value , <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>&lt;typename <a class="el" href="structpss_1_1astrotypes_1_1SliceMixinRemover.html">SliceMixinRemover</a>&lt;typename SliceType::template OperatorSliceType&lt;Dim&gt;::type&gt;::type, ExcludedDim&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt;&#160;</td>
+          <td class="paramname"><em>dimension</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a03a67008323ae8c90a23c3b468f5ef19"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType, typename ExcludedDim, std::size_t RankT = SliceType::rank - 1&gt; </div>
+<div class="memtemplate">
+template&lt;typename Dim &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;!std::is_same&lt;Dim, ExcludedDim&gt;::value , <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>&lt;typename <a class="el" href="structpss_1_1astrotypes_1_1SliceMixinRemover.html">SliceMixinRemover</a>&lt;typename SliceType::template ConstOperatorSliceType&lt;Dim&gt;::type&gt;::type, ExcludedDim&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::operator[] </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt;&#160;</td>
+          <td class="paramname"><em>dimension</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1261c7ed12ea6f22afcc1e1b7bab3f97"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType, typename ExcludedDim, std::size_t RankT = SliceType::rank - 1&gt; </div>
+<div class="memtemplate">
+template&lt;typename Dim &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::enable_if&lt;!std::is_same&lt;Dim, ExcludedDim&gt;::value , <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>&lt;typename <a class="el" href="structpss_1_1astrotypes_1_1SliceMixinRemover.html">SliceMixinRemover</a>&lt;typename SliceType::template OperatorSliceType&lt;Dim&gt;::type&gt;::type, ExcludedDim&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::operator[] </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt;&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -155,16 +526,16 @@ template&lt;typename Dim &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a2b62c43716d815d088dadcca0ee69dac"></a>
+<a class="anchor" id="a2b5c988e0d055bef4e37774165757f28"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename SliceType , typename ExcludedDim &gt; </div>
+template&lt;typename SliceType, typename ExcludedDim, std::size_t RankT = SliceType::rank - 1&gt; </div>
 <div class="memtemplate">
 template&lt;typename Dim &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">std::enable_if&lt;std::is_same&lt;Dim, ExcludedDim&gt;::value, const_reference_type&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim &gt;::operator[] </td>
+          <td class="memname">std::enable_if&lt;!std::is_same&lt;Dim, ExcludedDim&gt;::value , <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">ReducedRankSlice</a>&lt;typename <a class="el" href="structpss_1_1astrotypes_1_1SliceMixinRemover.html">SliceMixinRemover</a>&lt;typename SliceType::template ConstOperatorSliceType&lt;Dim&gt;::type&gt;::type, ExcludedDim&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::operator[] </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt;&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -175,10 +546,33 @@ template&lt;typename Dim &gt; </div>
 
 </div>
 </div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a00786d2a8599c92749f4024f5169738f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename SliceType, typename ExcludedDim, std::size_t RankT = SliceType::rank - 1&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::size_t <a class="el" href="classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html">pss::astrotypes::multiarray::ReducedRankSlice</a>&lt; SliceType, ExcludedDim, RankT &gt;::rank = SliceType::rank - 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 11 2018 11:44:38 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 21 2018 15:15:28 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

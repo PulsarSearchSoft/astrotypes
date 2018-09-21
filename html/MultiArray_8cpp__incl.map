@@ -1,9 +1,2 @@
 <map id="src/cpp/pss/astrotypes/multiarray/detail/MultiArray.cpp" name="src/cpp/pss/astrotypes/multiarray/detail/MultiArray.cpp">
-<area shape="rect" id="node2" href="$MultiArray_8h.html" title="../MultiArray.h" alt="" coords="335,95,448,121"/>
-<area shape="rect" id="node3" href="$Slice_8h.html" title="Slice.h" alt="" coords="309,169,375,196"/>
-<area shape="rect" id="node5" href="$DimensionSize_8h.html" title="DimensionSize.h" alt="" coords="301,319,431,345"/>
-<area shape="rect" id="node4" href="$DimensionIndex_8h.html" title="DimensionIndex.h" alt="" coords="33,244,173,271"/>
-<area shape="rect" id="node9" href="$Slice_8cpp.html" title="detail/Slice.cpp" alt="" coords="281,244,403,271"/>
-<area shape="rect" id="node7" href="$DimensionIndex_8cpp.html" title="detail/DimensionIndex.cpp" alt="" coords="5,319,201,345"/>
-<area shape="rect" id="node6" href="$DimensionSize_8cpp.html" title="detail/DimensionSize.cpp" alt="" coords="273,393,459,420"/>
 </map>

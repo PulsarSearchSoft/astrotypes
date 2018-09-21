@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['fail',['FAIL',['../gtest_8h.html#a3e26a8d27caa386ed0ea7ce9d5b7c4ed',1,'gtest.h']]],
-  ['friend_5ftest',['FRIEND_TEST',['../gtest__prod_8h.html#a8d443b4cc1d87a7a17943b8fbdbf3910',1,'gtest_prod.h']]]
+  ['q',['Q',['../DefineClock_8h.html#a2a280bfe12bc6e732a7c4d3d62443a14',1,'DefineClock.h']]],
+  ['quote',['QUOTE',['../DefineClock_8h.html#a2117b58e19182dff91ad3558e650541d',1,'DefineClock.h']]]
 ];
