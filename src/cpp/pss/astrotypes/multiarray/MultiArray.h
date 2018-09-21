@@ -78,7 +78,17 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
     public:
         template<typename Dim, typename... Dims>
         MultiArray(DimensionSize<Dim> size, DimensionSize<Dims>... sizes);
-        MultiArray(MultiArray const&) = delete;
+
+        /// copy operator needs to be called explicitly as this is an expensive operation
+        explicit MultiArray(MultiArray const&) = default;
+
+        /// @brief initialise and transpose from a group with different memory ordering
+        //  @details will copy the memory from the object tranposing it in the process
+        //  to the required memory order
+        template<typename DimensionType, typename Enable=typename std::enable_if<
+                   has_dimensions<DimensionType, FirstDimension, OtherDimensions...>::value
+                && !has_exact_dimensions<FirstDimension, OtherDimensions...>::value>::type>
+        explicit MultiArray(DimensionType const&);
 
         /**
          * @brief iterators acting over he entire data structure
@@ -180,6 +190,10 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         MultiArray(typename std::enable_if<arg_helper<FirstDimension, Dims...>::value, bool>::type disable_resize_tag
                   , DimensionSize<Dims> const&...);
 
+        template<typename DimensionType>
+        MultiArray(typename std::enable_if<has_dimensions<DimensionType, FirstDimension, OtherDimensions...>::value, bool>::type disable_transpose_tag
+                  , DimensionType const& d);
+
         template<typename Dimension, typename... Dims>
         typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type
         do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>&&... sizes);
@@ -189,6 +203,9 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>&&... sizes);
 
         void do_resize(std::size_t total);
+
+        template<typename SelfSlice, typename OtherSlice>
+        void do_transpose(SelfSlice&, OtherSlice const&);
 
     private:
         DimensionSize<FirstDimension>     _size;
@@ -230,7 +247,9 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
     public:
         template<typename Dim, typename... Dims>
         MultiArray(DimensionSize<Dim> const& size, DimensionSize<Dims> const&... sizes);
+        explicit MultiArray(MultiArray const&) = default;
         ~MultiArray();
+
 
         /**
          * @brief
@@ -286,14 +305,19 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         MultiArray(typename std::enable_if<arg_helper<FirstDimension, Dims...>::value, bool>::type disable_resize_tag
                   , DimensionSize<Dims> const&...);
 
+        template<typename DimensionType>
+        MultiArray(typename std::enable_if<has_dimension<DimensionType, FirstDimension>::value, bool>::type disable_transpose_tag
+                  , DimensionType const& d);
+
         /// resize
         template<typename Dimension>
         typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type
         do_resize(std::size_t total_size, DimensionSize<Dimension> size);
 
-        //template<typename Dimension>
-        //typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type
         void do_resize(std::size_t total_size);
+
+        template<typename SelfSlice, typename OtherSlice>
+        void do_transpose(SelfSlice&, OtherSlice const&);
 
     private:
         DimensionSize<FirstDimension> _size;

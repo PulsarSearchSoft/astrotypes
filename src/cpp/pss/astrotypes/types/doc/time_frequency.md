@@ -59,6 +59,13 @@ be algorithm dependendent for maximal efficiency.
 But you don't have to commit to a specific type. By design the two classes have identical interfaces and
 so any code you write for one should work for the other seamlessly (if perhaps not at optimal efficiency).
 
+You can convert between the two types using the tranpose constructor. e.g.
+~~~~{.cpp}
+// example conversion from TimeFrequency ordering to FrequencyTime ordering of 8bit data
+TimeFrequency<uint8_t> time_frequency(DimensionSize<Frequency>(100), DimensionSize<Time>(10000));
+FrequencyTime<uint8_t> frequency_time(time_frequency); // all the data will be copied from the time_frequency object
+~~~~
+
 A simple way to write a function that can work with either type is to use a template.
 
 ~~~~{.cpp}

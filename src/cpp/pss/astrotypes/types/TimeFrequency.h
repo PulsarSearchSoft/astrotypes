@@ -102,7 +102,7 @@ class TimeFreqCommon : public SliceType
 template<typename T, typename Alloc=std::allocator<T>>
 class TimeFrequency : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Time, units::Frequency>>
 {
-    public:
+    private:
         typedef TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Time, units::Frequency>> BaseT;
 
     public:
@@ -114,6 +114,15 @@ class TimeFrequency : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon,
     public:
         TimeFrequency(DimensionSize<units::Time>, DimensionSize<units::Frequency>);
         TimeFrequency(DimensionSize<units::Frequency>, DimensionSize<units::Time>);
+
+        /**
+         * @brief The transpose constructor
+         * @details copy data from a FrequencyTime object
+         */
+        template<typename FrequencyTimeType, typename Enable=typename std::enable_if<
+                   has_exact_dimensions<FrequencyTimeType, units::Frequency, units::Time>::value>::type>
+        TimeFrequency(FrequencyTimeType const&);
+
         ~TimeFrequency();
 };
 
@@ -130,7 +139,7 @@ class TimeFrequency : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon,
 template<typename T, typename Alloc=std::allocator<T>>
 class FrequencyTime : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Frequency, units::Time>>
 {
-    public:
+    private:
         typedef TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Frequency, units::Time>> BaseT;
 
     public:
@@ -142,6 +151,15 @@ class FrequencyTime : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon,
     public:
         FrequencyTime(DimensionSize<units::Frequency>, DimensionSize<units::Time>);
         FrequencyTime(DimensionSize<units::Time>, DimensionSize<units::Frequency>);
+
+        /**
+         * @brief The transpose constructor
+         * @details copy data from a TimeFrequency object
+         */
+        template<typename TimeFrequencyType, typename Enable=typename std::enable_if<
+                   has_exact_dimensions<TimeFrequencyType, units::Time, units::Frequency>::value>::type>
+        FrequencyTime(TimeFrequencyType const&);
+
         ~FrequencyTime();
 };
 
@@ -155,13 +173,23 @@ struct has_exact_dimensions<FrequencyTime<T, Alloc>, units::Frequency, units::Ti
 {
 };
 
-template<typename Alloc, typename T, typename... Dims>
-struct has_dimension<TimeFrequency<T, Alloc>, Dims...> : public has_dimension<typename TimeFrequency<T, Alloc>::BaseT, Dims...>
+template<typename Alloc, typename T>
+struct has_dimension<TimeFrequency<T, Alloc>, units::Time> : public std::true_type
 {
 };
 
-template<typename Alloc, typename T, typename... Dims>
-struct has_dimension<FrequencyTime<T, Alloc>, Dims...> : public has_dimension<typename FrequencyTime<T, Alloc>::BaseT, Dims...>
+template<typename Alloc, typename T>
+struct has_dimension<TimeFrequency<T, Alloc>, units::Frequency> : public std::true_type
+{
+};
+
+template<typename Alloc, typename T>
+struct has_dimension<FrequencyTime<T, Alloc>, units::Time> : public std::true_type
+{
+};
+
+template<typename Alloc, typename T>
+struct has_dimension<FrequencyTime<T, Alloc>, units::Frequency> : public std::true_type
 {
 };
 

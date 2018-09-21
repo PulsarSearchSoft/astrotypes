@@ -38,6 +38,13 @@ TimeFrequency<T, Alloc>::TimeFrequency(DimensionSize<units::Frequency> freq_size
 }
 
 template<typename T, typename Alloc>
+template<typename FrequencyTimeType, typename Enable>
+TimeFrequency<T, Alloc>::TimeFrequency(FrequencyTimeType const& ft)
+    : BaseT(ft)
+{
+}
+
+template<typename T, typename Alloc>
 TimeFrequency<T, Alloc>::~TimeFrequency()
 {
 }
@@ -55,6 +62,13 @@ FrequencyTime<T, Alloc>::FrequencyTime(DimensionSize<units::Frequency> freq_size
 template<typename T, typename Alloc>
 FrequencyTime<T, Alloc>::FrequencyTime(DimensionSize<units::Time> time_size, DimensionSize<units::Frequency> freq_size)
     : BaseT(freq_size, time_size)
+{
+}
+
+template<typename T, typename Alloc>
+template<typename TimeFrequencyType, typename Enable>
+FrequencyTime<T, Alloc>::FrequencyTime(TimeFrequencyType const& tf)
+    : BaseT(tf)
 {
 }
 

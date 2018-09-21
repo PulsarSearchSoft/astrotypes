@@ -90,10 +90,6 @@ struct has_dimensions<T, Dimension> : public has_dimension<T, Dimension>
 {
 };
 
-// convenience alias
-//template<typename T, typename Dimension, typename... Dimensions>
-//using has_dimensions = has_dimension<T, Dimension, Dimensions...>;
-
 /**
  * @brief return true if the Dimensions provided match exactly those of the structure T (including order)
  * @tparam Dimensions  : the dimension to find in the order required
@@ -113,9 +109,24 @@ struct has_exact_dimensions : public std::false_type
 };
 
 /**
+ * @ brief helper class to determine if a type is in a parameter list
+ */
+template<typename T1, typename T2, typename... Ts>
+struct list_has_type : public std::conditional<std::is_same<T1, T2>::value || std::is_same<T1, Ts...>::value, std::true_type, std::false_type>::type
+{ };
+
+template<typename T>
+struct list_has_type<T, T> : public std::true_type
+{};
+
+template<typename T1, typename T2>
+struct list_has_type<T1, T2> : public std::false_type
+{};
+
+/**
  * @ brief helper class to determine if a tuple has a certain type
  */
-template<typename Tuple, typename T>
+template<typename Tuple, typename T2>
 struct has_type : std::false_type
 { };
 
@@ -127,8 +138,13 @@ template<typename T, typename T2, typename... Ts>
 struct has_type<std::tuple<T2, Ts...>, T> : public has_type<T, std::tuple<Ts...>>::type
 {};
 
-template<typename Tuple, typename T, typename... Ts>
-struct has_types : public logical_and<typename has_type<Tuple, T>::type, has_type<Tuple, Ts>...>::type
+template<typename T1, typename T2, typename... Ts>
+struct has_types : public logical_and<typename has_type<T1, T2>::type, has_type<T1, Ts>...>::type
+{
+};
+
+template<typename T1, typename T2>
+struct has_types<T1, T2> : public has_type<T1, T2>::type
 {
 };
 
