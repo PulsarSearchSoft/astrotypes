@@ -1,7 +1,11 @@
 @section sigproc (FilterBank and TimeSeries) Data File Format
 
 ## Quick Start Example
-First read in the sigproc header
+### Sigproc Headers
+The sigproc format has a header at the beginning of each file that describes
+the binary data in the rest of the file.
+
+To read in the header we just need to:
 ~~~~.cpp
 using astro = pss::astrotypes;
 
@@ -13,13 +17,19 @@ in >> header;
 // print human friendly verison of the header
 std::cout << astro::sigproc::Header::Info() << header;
 ~~~~
+This is how we do it in the sigproc_header executable in the examples folder.
+
+\include src/sigproc_header.cpp
+
+### Reading in Sigproc Data
 Now we have all the information of the header encapsulated in the header object.
 We can put in some checks to see it is the data we are expecting.
 ~~~~.cpp
 // check header is what we are expecting
-if( header.data_type() != astro::sigproc::Header::DataType::FilerBank
-    && header.number_of_bits() != 16
-    && header.number_of_number_of_nifs() != 1
+// 
+if( header.data_type() != astro::sigproc::Header::DataType::FilterBank // FilterBank file
+    && header.number_of_bits() != 16                                   // 16 bit data
+    && header.number_of_number_of_nifs() != 1                          // Stokes I only
    )
 {
     throw std::runtime_error("unexpected file format");
@@ -55,9 +65,10 @@ you will need to generate code for each different possibilty. This is because ou
 TimeFrequency data types do not, for reasons of runtime speed, inherit from a common base class.
 
 Fortunately this is easier than it sounds. astrotypes::sigproc provides helpers to do this for you
-and all you need to do is provide a template class for your code.
+and all you need to do is provide a template class for your code. See the sigproc_cat.cpp in the examples
+directory.
 
-@example "sigproc_cat.cpp"
+\include "../examples/src/sigproc_cat.cpp"
 
 ## Non-Standard Sigproc Headers
 The Sigproc format has been much abused, and people have added many non-standard headers.
