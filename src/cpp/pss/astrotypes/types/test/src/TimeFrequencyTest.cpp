@@ -96,6 +96,8 @@ TEST_F(TimeFrequencyTest, test_time_freq_channel)
 
         for(DimensionIndex<Time> num(0); num < time_size; ++num) {
             ASSERT_EQ(c[num], (int)((unsigned)num * freq_size) + channel_num) << num;
+            c[num] += 1; // can we modify the value?
+            c[num] -= 1;
         }
         ASSERT_EQ(c.size<Frequency>(), DimensionSize<Frequency>(1));
         ASSERT_EQ(c.size<Time>(), time_size);
@@ -123,6 +125,15 @@ TEST_F(TimeFrequencyTest, test_time_freq_channel)
     typename TimeFrequency<int>::ConstChannel c2 = tf2.channel(5);
     ASSERT_EQ(c2.size<Frequency>(), DimensionSize<Frequency>(1));
     ASSERT_EQ(c2.size<Time>(), time_size);
+}
+
+TEST_F(TimeFrequencyTest, test_time_freq_channel_begin_end)
+{
+    DimensionSize<Time> time_size(2);
+    DimensionSize<Frequency> freq_size(10);
+    TimeFrequency<int> tf1(time_size, freq_size);
+    typename TimeFrequency<int>::Channel channel = tf1.channel(0);
+    std::fill(channel.begin(), channel.end(), 0);
 }
 
 TEST_F(TimeFrequencyTest, test_freq_time_instantiation)
@@ -170,6 +181,7 @@ TEST_F(TimeFrequencyTest, test_freq_time_channel)
     typename FrequencyTime<uint8_t>::Channel c = ft1.channel(0);
     ASSERT_EQ(c.size<Frequency>(), DimensionSize<Frequency>(1));
     ASSERT_EQ(c.size<Time>(), time_size);
+    std::fill(c.begin(), c.end(), 0);
 
     FrequencyTime<uint8_t> const& tf2 = ft1;
     typename FrequencyTime<uint8_t>::ConstChannel c2 = tf2.channel(5);
