@@ -26,10 +26,15 @@ namespace pss {
 namespace astrotypes {
 
 template<typename Dimension, typename... Dimensions>
-template<typename... Dims>
-ResizeAdapter<Dimension, Dimensions...>::ResizeAdapter(DimensionSize<Dims>... dims)
+ResizeAdapter<Dimension, Dimensions...>::ResizeAdapter()
 {
-    tuple_insert_type(_sizes, dims...);
+}
+
+template<typename Dimension, typename... Dimensions>
+template<typename Dim, typename... Dims>
+ResizeAdapter<Dimension, Dimensions...>::ResizeAdapter(DimensionSize<Dim> dim, DimensionSize<Dims>... dims)
+{
+    tuple_insert_type(_sizes, dim, dims...);
 }
 
 template<typename Dimension, typename... Dimensions>

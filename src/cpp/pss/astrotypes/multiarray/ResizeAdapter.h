@@ -96,8 +96,11 @@ class ResizeAdapter
         };
 
     public:
-        template<typename... Dims>
-        ResizeAdapter(DimensionSize<Dims>...);
+        ResizeAdapter();
+
+        template<typename Dim, typename... Dims>
+        ResizeAdapter(DimensionSize<Dim>, DimensionSize<Dims>...);
+
         ~ResizeAdapter() {};
 
         template<typename Stream, typename Dim, typename... Dims>
