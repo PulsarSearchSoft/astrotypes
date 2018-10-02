@@ -5,9 +5,11 @@ set(
    gtest_sigproc_src
    src/HeaderTest.cpp
    src/SigProcFormatTest.cpp
+   src/FileReaderTest.cpp
 )
 
-add_executable(gtest_sigproc ${gtest_sigproc_src} )
+
+add_executable(gtest_sigproc ${gtest_sigproc_src})
 #target_link_libraries(gtest_sigproc ${ASTROTYPES_TEST_UTILS} ${ASTROTYPES_LIBRARIES} ${GTEST_LIBRARIES})
 target_link_libraries(gtest_sigproc ${ASTROTYPES_TEST_UTILS} ${GTEST_LIBRARIES})
 add_test(gtest_sigproc gtest_sigproc)

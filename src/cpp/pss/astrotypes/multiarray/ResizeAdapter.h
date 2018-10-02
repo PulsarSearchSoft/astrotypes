@@ -87,12 +87,12 @@ class ResizeAdapter
         typedef std::tuple<DimensionSize<Dimension>, DimensionSize<Dimensions>...> TupleType;
 
     protected:
-        template<typename Stream>
-        struct ResizeAdapterStream : public ResizeAdapterStreamBase<Stream, Dimension, Dimensions...> {
-                typedef ResizeAdapterStreamBase<Stream, Dimension, Dimensions...> BaseT;
+        template<typename StreamType>
+        struct Stream : public ResizeAdapterStreamBase<StreamType, Dimension, Dimensions...> {
+                typedef ResizeAdapterStreamBase<StreamType, Dimension, Dimensions...> BaseT;
 
             public:
-                ResizeAdapterStream(Stream& is, ResizeAdapter& ra);
+                Stream(StreamType& is, ResizeAdapter const& ra);
         };
 
     public:
@@ -103,14 +103,14 @@ class ResizeAdapter
 
         ~ResizeAdapter() {};
 
-        template<typename Stream, typename Dim, typename... Dims>
-        ResizeAdapterStream<Stream> resize(Stream&, DimensionSize<Dim>, DimensionSize<Dims>...);
+        template<typename StreamT, typename Dim, typename... Dims>
+        Stream<StreamT> resize(StreamT&, DimensionSize<Dim>, DimensionSize<Dims>...);
 
     private:
 
-        template<typename Stream>
-        friend ResizeAdapterStream<Stream> operator>>(Stream& is, ResizeAdapter& ra) {
-            return ResizeAdapterStream<Stream>(is, ra);
+        template<typename StreamT>
+        friend Stream<StreamT> operator>>(StreamT& is, ResizeAdapter const& ra) {
+            return Stream<StreamT>(is, ra);
         }
 
         template<typename Stream, typename T, typename... Ts>

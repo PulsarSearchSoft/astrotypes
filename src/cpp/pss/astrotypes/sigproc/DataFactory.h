@@ -36,9 +36,10 @@ namespace astrotypes {
 namespace sigproc {
 
 /**
- * @brief Determines data type from a set of runtime parmmeters
- *        Once determined the user provided template function is called.
- * @param FnTemplate a templated class or struct with a static method
+ * @brief Determines the static data type from a set of runtime parmmeters
+ *        Once determined a user provided template function is called with this
+ *        type ingormation.
+ * @param FnTemplate a templated class or struct with a static exec() method
  *        @code
  *        template<typename SigProcInputTraits>
  *        struct MyDataHandler {

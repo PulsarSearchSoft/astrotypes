@@ -32,7 +32,6 @@ namespace {
     struct do_write {
         static void exec(IteratorType begin, IteratorType const end, std::ostream& os) {
             while(begin != end) {
-                //_file_stream.write(reinterpret_cast<const char*>(&(*it)), sizeof(data::TimeFrequencyDataType));
                 os << *begin;
                 ++begin;
             }

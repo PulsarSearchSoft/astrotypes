@@ -38,18 +38,18 @@ ResizeAdapter<Dimension, Dimensions...>::ResizeAdapter(DimensionSize<Dim> dim, D
 }
 
 template<typename Dimension, typename... Dimensions>
-template<typename Stream, typename Dim, typename... Dims>
-typename ResizeAdapter<Dimension, Dimensions...>::template ResizeAdapterStream<Stream> ResizeAdapter<Dimension, Dimensions...>::resize(Stream& stream, DimensionSize<Dim> s, DimensionSize<Dims>... dims)
+template<typename StreamT, typename Dim, typename... Dims>
+typename ResizeAdapter<Dimension, Dimensions...>::template Stream<StreamT> ResizeAdapter<Dimension, Dimensions...>::resize(StreamT& stream, DimensionSize<Dim> s, DimensionSize<Dims>... dims)
 {
     // pack dimensions into a tuple
     std::get<find_type<decltype(_sizes), DimensionSize<Dim>>::value>(_sizes) = s;
     tuple_insert_type(_sizes, dims...);
-    return ResizeAdapterStream<Stream>(stream, &this);
+    return Stream<StreamT>(stream, &this);
 }
 
 template<typename Dimension, typename... Dimensions>
-template<typename Stream>
-ResizeAdapter<Dimension, Dimensions...>::template ResizeAdapterStream<Stream>::ResizeAdapterStream(Stream& is, ResizeAdapter& ra)
+template<typename StreamType>
+ResizeAdapter<Dimension, Dimensions...>::template Stream<StreamType>::Stream(StreamType& is, ResizeAdapter const& ra)
     : BaseT(is, ra._sizes)
 {
 }

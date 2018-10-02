@@ -21,16 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef PSS_ASTROTYPES_SIGPROC_SIGPROC_H
-#define PSS_ASTROTYPES_SIGPROC_SIGPROC_H
+#ifndef PSS_ASTROTYPES_SIGPROC_TEST_FILEREADERTEST_H
+#define PSS_ASTROTYPES_SIGPROC_TEST_FILEREADERTEST_H
+
+#include <gtest/gtest.h>
+
+namespace pss {
+namespace astrotypes {
+namespace sigproc {
+namespace test {
 
 /**
- * @brief Top level include header for the Sigproc module standard use cases
+ * @brief
+ * @details
  */
-#include "Header.h"
-#include "FileReader.h"
-#include "DataFactory.h"
-#include "IStream.h"
-#include "OStream.h"
 
-#endif // PSS_ASTROTYPES_SIGPROC_SIGPROC_H
+class FileReaderTest : public ::testing::Test
+{
+    protected:
+        void SetUp() override;
+        void TearDown() override;
+
+    public:
+        FileReaderTest();
+
+        ~FileReaderTest();
+
+    private:
+};
+
+
+} // namespace test
+} // namespace sigproc
+} // namespace astrotypes
+} // namespace pss
+
+#endif // PSS_ASTROTYPES_SIGPROC_TEST_FILEREADERTEST_H
