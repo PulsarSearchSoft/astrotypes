@@ -195,12 +195,12 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
                   , DimensionType const& d);
 
         template<typename Dimension, typename... Dims>
-        typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, void>::type
-        do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>&&... sizes);
+        typename std::enable_if<!arg_helper<FirstDimension, Dimension, Dims...>::value, void>::type
+        do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>... sizes);
 
         template<typename Dimension, typename... Dims>
-        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type
-        do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>&&... sizes);
+        typename std::enable_if<arg_helper<FirstDimension, Dimension, Dims...>::value, void>::type
+        do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>... sizes);
 
         void do_resize(std::size_t total);
 
@@ -310,11 +310,13 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
                   , DimensionType const& d);
 
         /// resize
-        template<typename Dimension>
-        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, void>::type
-        do_resize(std::size_t total_size, DimensionSize<Dimension> size);
+        template<typename Dimension, typename... Dims>
+        typename std::enable_if<arg_helper<FirstDimension, Dimension, Dims...>::value, void>::type
+        do_resize(std::size_t total_size, DimensionSize<Dimension> size, DimensionSize<Dims>...);
 
-        void do_resize(std::size_t total_size);
+        template<typename... Dims>
+        typename std::enable_if<!arg_helper<FirstDimension, Dims...>::value, void>::type
+        do_resize(std::size_t total_size, DimensionSize<Dims>...);
 
         template<typename SelfSlice, typename OtherSlice>
         void do_transpose(SelfSlice&, OtherSlice const&);

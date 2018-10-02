@@ -135,7 +135,7 @@ struct has_type<std::tuple<T, Ts...>, T> : public std::true_type
 {};
 
 template<typename T, typename T2, typename... Ts>
-struct has_type<std::tuple<T2, Ts...>, T> : public has_type<T, std::tuple<Ts...>>::type
+struct has_type<std::tuple<T2, Ts...>, T> : public has_type<std::tuple<Ts...>, T>::type
 {};
 
 template<typename T1, typename T2, typename... Ts>
@@ -186,10 +186,10 @@ template<typename... TupleTs, typename T1, typename T2, typename... Ts>
 struct insert_type<std::tuple<TupleTs...>, T1, T2, Ts...>
 {
     inline
-    static void exec(std::tuple<TupleTs...>& tuple, T1&& value, T2&& value2, Ts&&... values)
+    static void exec(std::tuple<TupleTs...>& tuple, T1 const& value, T2 const& value2, Ts const&... values)
     {
-        insert_type<decltype(tuple), T1>::exec(tuple, std::forward<T1>(value));
-        insert_type<decltype(tuple), T2, Ts...>::exec(tuple, std::forward<T2>(value2), std::forward<Ts>(values)...);
+        insert_type<std::tuple<TupleTs...>, T1>::exec(tuple, value);
+        insert_type<std::tuple<TupleTs...>, T2, Ts...>::exec(tuple, value2, values...);
     }
 };
 
@@ -199,15 +199,15 @@ struct insert_type<std::tuple<TupleTs...>, T>
     inline
     static void exec(std::tuple<TupleTs...>& tuple, T const& value)
     {
-        //static_assert(has_type<std::tuple<TupleTs...>, T>::value, "Type does not exist in tuple");
+        static_assert(has_type<std::tuple<TupleTs...>, T>::value, "Type does not exist in tuple");
         std::get<find_type<std::tuple<TupleTs...>, T>::value>(tuple) = value;
     }
 };
 
 template<typename... TupleTs, typename... Ts>
-void tuple_insert_type(std::tuple<TupleTs...>& tuple, Ts&&...values)
+void tuple_insert_type(std::tuple<TupleTs...>& tuple, Ts const&...values)
 {
-    insert_type<std::tuple<TupleTs...>, typename std::remove_reference<Ts>::type...>::exec(tuple, std::forward<Ts>(values)...);
+    insert_type<std::tuple<TupleTs...>, typename std::remove_reference<Ts>::type...>::exec(tuple, values...);
 }
 
 /**

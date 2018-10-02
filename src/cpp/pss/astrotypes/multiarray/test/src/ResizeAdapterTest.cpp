@@ -64,7 +64,7 @@ TEST_F(ResizeAdapterTest, test_single_adapter)
     ASSERT_EQ(data.dimension<DimensionA>(), size_a);
 }
 
-TEST_F(ResizeAdapterTest, test_multi_adapter)
+TEST_F(ResizeAdapterTest, test_chained_adapter)
 {
     TestMultiArray<uint8_t, DimensionA, DimensionB, DimensionC> data(
             DimensionSize<DimensionA>(0)
@@ -84,6 +84,26 @@ TEST_F(ResizeAdapterTest, test_multi_adapter)
     ASSERT_EQ(data.dimension<DimensionA>(), size_a);
     ASSERT_EQ(data.dimension<DimensionB>(), size_b);
     ASSERT_EQ(data.dimension<DimensionC>(), size_c);
+}
+
+TEST_F(ResizeAdapterTest, test_multi_dim_adapter)
+{
+    TestMultiArray<uint8_t, DimensionA, DimensionB> data(DimensionSize<DimensionA>(0), DimensionSize<DimensionB>(0));
+
+    std::stringstream ss("hello");
+    DimensionSize<DimensionA> size_a(2);
+    DimensionSize<DimensionB> size_b(3);
+
+    ResizeAdapter<DimensionA, DimensionB> adapter_a_b(size_a, size_b);
+    ss >> adapter_a_b >> data;
+    ASSERT_EQ(data.dimension<DimensionA>(), size_a);
+    ASSERT_EQ(data.dimension<DimensionB>(), size_b);
+
+    TestMultiArray<uint8_t, DimensionA, DimensionB> data_2(DimensionSize<DimensionA>(0), DimensionSize<DimensionB>(0));
+    ResizeAdapter<DimensionB, DimensionA> adapter_b_a(size_a, size_b);
+    ss >> adapter_b_a >> data_2;
+    ASSERT_EQ(data_2.dimension<DimensionA>(), size_a);
+    ASSERT_EQ(data_2.dimension<DimensionB>(), size_b);
 }
 
 } // namespace test
