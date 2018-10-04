@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 
+#include "sigproc/HardCodedDataPath.h"
 
 namespace pss {
 namespace astrotypes {
@@ -34,9 +35,9 @@ inline SigProcTestFile::SigProcTestFile(std::string const& file)
 {
 }
 
-inline std::string const& SigProcTestFile::file() const
+inline std::string SigProcTestFile::file() const
 {
-    return _file;
+    return test_data_path() + "/" + _file;
 }
 
 inline std::size_t SigProcTestFile::number_of_channels() const
@@ -55,11 +56,11 @@ inline std::size_t SigProcTestFile::number_of_ifs() const
 }
 
 inline SigProcFilterBankTestFile::SigProcFilterBankTestFile()
-    : BaseT("minimal_filterbank.fil")
-    //, BaseT::_nchans(2)
-    //, BaseT::_nsamples(4)
-    //, BaseT::_nifs(1)
+    : BaseT("filterbank_8bit.fil")
 {
+    this->_nchans=2;
+    this->_nsamples=2560;
+    this->_nifs=1;
 }
 
 } // namespace test

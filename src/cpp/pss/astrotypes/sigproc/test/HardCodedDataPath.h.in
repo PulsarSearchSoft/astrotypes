@@ -1,18 +1,18 @@
 /*
  * MIT License
- *
+ * 
  * Copyright (c) 2018 PulsarSearchSoft
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,9 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef PSS_ASTROTYPES_SIGPROC_TEST_SIGPROCTESTFILE_H
-#define PSS_ASTROTYPES_SIGPROC_TEST_SIGPROCTESTFILE_H
-#include <string>
+#ifndef PSS_ASTROTYPES_SIGPROC_TEST_HARDCODEDDATAPATH_H
+#define PSS_ASTROTYPES_SIGPROC_TEST_HARDCODEDDATAPATH_H
 
 
 namespace pss {
@@ -32,41 +31,19 @@ namespace sigproc {
 namespace test {
 
 /**
- * @brief Interface for finding test files and the associated meta data used to gerneate them
+ * @brief A hardcoded path for unit testing code to access test data files
+ *        Should not be exported in a amke install
  */
-class SigProcTestFile
+
+inline std::string const& test_data_path()
 {
-    public:
-        SigProcTestFile(std::string const& file);
-        virtual ~SigProcTestFile() {};
-
-        // return the name of the file
-        std::string file() const;
-
-        // pamareters used in file generation
-        std::size_t number_of_channels() const;
-        std::size_t number_of_spectra() const;
-        std::size_t number_of_ifs() const;
-
-    protected:
-        std::string _file;
-        std::size_t _nchans;
-        std::size_t _nsamples;
-        unsigned _nifs;
-};
-
-class SigProcFilterBankTestFile : public SigProcTestFile
-{
-        typedef SigProcTestFile BaseT;
-
-    public:
-        SigProcFilterBankTestFile();
-};
+    static const std::string path("@CMAKE_CURRENT_SOURCE_DIR@/data");
+    return path;
+}
 
 } // namespace test
 } // namespace sigproc
 } // namespace astrotypes
 } // namespace pss
-#include "src/SigProcTestFile.cpp"
 
-#endif // PSS_ASTROTYPES_SIGPROC_TEST_SIGPROCTESTFILE_H
+#endif // PSS_ASTROTYPES_SIGPROC_TEST_HARDCODEDDATAPATH_H
