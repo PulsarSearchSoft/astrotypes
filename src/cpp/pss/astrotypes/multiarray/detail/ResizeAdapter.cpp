@@ -49,7 +49,7 @@ typename ResizeAdapter<Dimension, Dimensions...>::template Stream<StreamT> Resiz
 
 template<typename Dimension, typename... Dimensions>
 template<typename StreamType>
-ResizeAdapter<Dimension, Dimensions...>::template Stream<StreamType>::Stream(StreamType& is, ResizeAdapter const& ra)
+ResizeAdapter<Dimension, Dimensions...>::Stream<StreamType>::Stream(StreamType& is, ResizeAdapter const& ra)
     : BaseT(is, ra._sizes)
 {
 }

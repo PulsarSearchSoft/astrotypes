@@ -47,6 +47,7 @@ void FileReader<HeaderType>::open(std::string const& file_name)
 {
     _file_name = file_name;
     _stream.open(_file_name, std::ios::in | std::ios::binary);
+    if(!_stream) throw std::runtime_error(file_name + " failed to open");
     this->new_header(_stream);
 }
 
