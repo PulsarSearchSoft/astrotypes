@@ -133,7 +133,7 @@ int main(int argc, char** argv) {
     files.pop_back();
 
     // read in a sigproc file
-    std::ifstream input_file_stream(argv[1]);
+    std::ifstream input_file_stream(argv[1], std::ios::binary);
     
     pss::astrotypes::sigproc::Header header;
     input_file_stream >> header;

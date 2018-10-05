@@ -1,15 +1,36 @@
-@section sigproc (FilterBank and TimeSeries) Data File Format
+@section sigproc The Sigproc file format (FilterBank and TimeSeries)
 
 ## Quick Start Example
+~~~~{.cpp}
+#include "pss/astrotypes/types/SigProc.h"
+sigproc::FileReader filterbank_file("my_filterbank_file.fil");
+TimeFrequency<uint8_t> time_frequency;
+
+// The ResizeAdapter resizes the time_frequency object according to the filterbank files parameters and file size
+filterbank >> ResizeAdapter<units::Time, units::Frequency>() >> time_frequency;
+~~~~
+This will work equally with FrequencyTime types. Note that any corner turns will be done automatically by the streaming
+operators.
+
+If you only want to resize the number of channels, then leave out the units::Time template parameter in the ResizeAdapter.
+e.g.
+~~~~{.cpp}
+// read in the first 100 spectra
+TimeFrequency<uint8_t> time_frequency(DimensionSize<units::Time>(100));
+filterbank >> ResizeAdapter<units::Frequency>() >> time_frequency;
+~~~~
+
 ### Sigproc Headers
 The sigproc format has a header at the beginning of each file that describes
 the binary data in the rest of the file.
 
-To read in the header we just need to:
+We can use the FileReader as above to read this in and then you can access it via 
+the \m header() method. If you want more control, you can use the headers streaming operators.
+e.g.
 ~~~~.cpp
 using astro = pss::astrotypes;
 
-std::ifstream in("my_file_name.fil");
+std::ifstream in("my_file_name.fil", std::ios::binary);
 astro::sigproc::Header header;
 
 in >> header;
