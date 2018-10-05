@@ -22,6 +22,7 @@
  * SOFTWARE.
  */
 #include "../MultiArrayTest.h"
+#include "../TestMultiArray.h"
 #include "pss/astrotypes/multiarray/MultiArray.h"
 #include <algorithm>
 
@@ -47,54 +48,6 @@ void MultiArrayTest::SetUp()
 void MultiArrayTest::TearDown()
 {
 }
-
-struct DimensionA {};
-struct DimensionB {};
-struct DimensionC {};
-
-template<typename T>
-class TestMultiArrayMixin : public T
-{
-    public:
-        TestMultiArrayMixin(T const& t) : T(t) {}
-        using T::T;
-};
-
-template<typename T, typename... Dimensions>
-class TestMultiArray : public MultiArray<std::allocator<T>, T, TestMultiArrayMixin, Dimensions...>
-{
-        typedef MultiArray<std::allocator<T>, T, TestMultiArrayMixin,  Dimensions...> BaseT;
-
-    public:
-        template<typename... Args>
-        TestMultiArray(TestMultiArray<Args...> const& arg) : BaseT(arg) {
-        }
-
-        template<typename... Args>
-        TestMultiArray(DimensionSize<Args>... args) : BaseT(args...) {
-            unsigned n=0;
-            // fill with a number sequence 1,2,3,4.....
-            std::generate(this->begin(), this->end(), [&] () mutable { 
-                                                                       return n++; 
-                                                                     });
-        }
-};
-
-} // namespace test
-
-// this must be declared in the astrotypes namespace
-template<typename Dimension, typename T, typename... Dimensions>
-struct has_dimension<test::TestMultiArray<T, Dimensions...>, Dimension> : public list_has_type<Dimension, Dimensions...>::type
-{
-};
-
-static_assert(has_dimension<test::TestMultiArray<int, test::DimensionA>, test::DimensionA>::value, "oh oh");
-static_assert(!has_dimension<test::TestMultiArray<int, test::DimensionA>, test::DimensionB>::value, "oh oh");
-static_assert(has_dimension<test::TestMultiArray<int, test::DimensionA, test::DimensionB>, test::DimensionA>::value, "oh oh");
-static_assert(has_dimension<test::TestMultiArray<int, test::DimensionA, test::DimensionB>, test::DimensionB>::value, "oh oh");
-static_assert(!has_dimension<test::TestMultiArray<int, test::DimensionA, test::DimensionB>, test::DimensionC>::value, "oh oh");
-
-namespace test {
 
 TEST_F(MultiArrayTest, test_single_dimension_size)
 {
