@@ -126,9 +126,6 @@ class ResizeAdapter
 
         ~ResizeAdapter() {};
 
-        template<typename StreamT, typename Dim, typename... Dims>
-        Stream<StreamT> resize(StreamT&, DimensionSize<Dim>, DimensionSize<Dims>...);
-
     private:
         template<typename StreamT>
         friend Stream<StreamT> operator>>(StreamT& is, ResizeAdapter ra) {

@@ -66,16 +66,6 @@ ResizeAdapter<Dimension, Dimensions...>::ResizeAdapter(DimensionSize<Dim> dim, D
     tuple_insert_type(_sizes, dim, dims...);
 }
 
-template<typename Dimension, typename... Dimensions>
-template<typename StreamT, typename Dim, typename... Dims>
-typename ResizeAdapter<Dimension, Dimensions...>::template Stream<StreamT> ResizeAdapter<Dimension, Dimensions...>::resize(StreamT& stream, DimensionSize<Dim> s, DimensionSize<Dims>... dims)
-{
-    // pack dimensions into a tuple
-    std::get<find_type<decltype(_sizes), DimensionSize<Dim>>::value>(_sizes) = s;
-    tuple_insert_type(_sizes, dims...);
-    return Stream<StreamT>(stream, &this);
-}
-
 // helper funtion for Stream construction
 namespace {
 template<typename... Dimensions>
