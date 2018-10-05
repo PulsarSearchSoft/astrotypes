@@ -21,47 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
-#define PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
-
-
-namespace pss {
-namespace astrotypes {
+#ifndef PSS_ASTROTYPES_SIGPROC_SIGPROC_H
+#define PSS_ASTROTYPES_SIGPROC_SIGPROC_H
 
 /**
- * @brief
- *      A compile time dimesion tagging of size_t
- *
- * @details
+ * @brief Top level include header for the Sigproc module standard use cases
  */
+#include "Header.h"
+#include "FileReader.h"
+#include "DataFactory.h"
+#include "IStream.h"
+#include "OStream.h"
 
-template<typename Dimension>
-class DimensionSize
-{
-    public:
-        typedef Dimension dimension;
-
-    public:
-        DimensionSize(std::size_t size = 0);
-        ~DimensionSize();
-
-        operator std::size_t();
-        operator std::size_t() const;
-
-        bool operator<(DimensionSize<Dimension> const&) const;
-        bool operator==(DimensionSize<Dimension> const& s) const;
-        bool operator!=(DimensionSize<Dimension> const& s) const;
-        DimensionSize& operator+=(DimensionSize<Dimension> const& s);
-        DimensionSize& operator++();
-        DimensionSize operator++(int);
-
-    private:
-        std::size_t _size;
-};
-
-
-} // namespace astrotypes
-} // namespace pss
-#include "detail/DimensionSize.cpp"
-
-#endif // PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
+#endif // PSS_ASTROTYPES_SIGPROC_SIGPROC_H

@@ -21,47 +21,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
-#define PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
+#include "pss/astrotypes/sigproc/examples/ExtendedHeader.h"
 
 
 namespace pss {
 namespace astrotypes {
+namespace sigproc {
+namespace examples {
 
-/**
- * @brief
- *      A compile time dimesion tagging of size_t
- *
- * @details
- */
-
-template<typename Dimension>
-class DimensionSize
+ExtendedHeader::ExtendedHeader()
+    : _distance("distance", *this) // register our new header parameter
 {
-    public:
-        typedef Dimension dimension;
+}
 
-    public:
-        DimensionSize(std::size_t size = 0);
-        ~DimensionSize();
+ExtendedHeader::~ExtendedHeader()
+{
+}
 
-        operator std::size_t();
-        operator std::size_t() const;
+boost::optional<boost::units::quantity<pss::astrotypes::units::Parsecs, double>> const& ExtendedHeader::distance() const
+{
+    return _distance;
+}
 
-        bool operator<(DimensionSize<Dimension> const&) const;
-        bool operator==(DimensionSize<Dimension> const& s) const;
-        bool operator!=(DimensionSize<Dimension> const& s) const;
-        DimensionSize& operator+=(DimensionSize<Dimension> const& s);
-        DimensionSize& operator++();
-        DimensionSize operator++(int);
+void ExtendedHeader::distance(boost::units::quantity<pss::astrotypes::units::Parsecs, double> const& d)
+{
+    _distance = d;
+}
 
-    private:
-        std::size_t _size;
-};
-
-
+} // namespace examples
+} // namespace sigproc
 } // namespace astrotypes
 } // namespace pss
-#include "detail/DimensionSize.cpp"
-
-#endif // PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H

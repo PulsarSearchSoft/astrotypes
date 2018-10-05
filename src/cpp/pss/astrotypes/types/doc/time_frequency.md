@@ -4,7 +4,6 @@
 An example where we have 8 bit data stored in spectrum order. 
 Each specturm has a 100 channels and there are 10000 spectrum in each block.
 
-
 ~~~~{.cpp}
 #include "pss/astrotypes/types/TimeFrequency.h"
 #include <algorithm>
@@ -17,17 +16,36 @@ std::fill(time_frequency.begin(), time_frequency.end(), 0);
 
 // Iterate over each spectrum using the [] bracket style interface
 unsigned total_pow=0;
-for(DimensionIndex<Time> i(0); i < time_frequency.template dimension<Time>(); ++i) {
+for(DimensionIndex<Time> i(0); i < time_frequency.dimension<Time>(); ++i) {
     auto spectrum = time_frequency[i];
-    for(DimensionIndex<Frequency> j(0); j < spectrum.template dimension<Frequency>(); ++j) {
+    for(DimensionIndex<Frequency> j(0); j < spectrum.dimension<Frequency>(); ++j) {
         total_pow += spectrum[j];
     }
 }
 
 ~~~~
+C++ Note: If you are writing this as a template function, where the data type is one of the template paramters, you 
+will need to insert the template keyword when you call the dimension method. e.g.
+~~~~{.cpp}
+i < time_frequency.template dimension<Time>()
+~~~~
+
+## Loading in FilterBank files
+You can easily load in sigproc (Filterbank or TimeSeries) files
+e.g.
+~~~~{.cpp}
+#include "pss/astrotypes/types/SigProc.h"
+sigproc::FileReader filterbank_file("my_filterbank_file.fil");
+TimeFrequency<uint8_t> time_frequency;
+
+// The ResizeAdapter resizes the time_frequency object according to the filterbank files parameters and file size
+filterbank >> ResizeAdapter<units::Time, units::Frequency>() >> time_frequency;
+~~~~
+See the \ref sigproc "sigproc" section for many more options.
 
 ## Would you care for a slice?
-You can extract parts of a TimeFrequency chunk as a slice.
+You can extract parts of a TimeFrequency chunk as a slice. The Slice provides a view of the underlying
+data and does not make any copies.
 
 ~~~~{.cpp}
 #include "pss/astrotypes/types/TimeFrequency.h"

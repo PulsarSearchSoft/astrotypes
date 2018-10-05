@@ -21,47 +21,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
-#define PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
+#include "astrotypes/sigproc/test/SigProcWriterTest.h"
 
 
 namespace pss {
 namespace astrotypes {
+namespace sigproc {
+namespace test {
 
-/**
- * @brief
- *      A compile time dimesion tagging of size_t
- *
- * @details
- */
 
-template<typename Dimension>
-class DimensionSize
+SigProcWriterTest::SigProcWriterTest()
+    : ::testing::Test()
 {
-    public:
-        typedef Dimension dimension;
+}
 
-    public:
-        DimensionSize(std::size_t size = 0);
-        ~DimensionSize();
+SigProcWriterTest::~SigProcWriterTest()
+{
+}
 
-        operator std::size_t();
-        operator std::size_t() const;
+void SigProcWriterTest::SetUp()
+{
+}
 
-        bool operator<(DimensionSize<Dimension> const&) const;
-        bool operator==(DimensionSize<Dimension> const& s) const;
-        bool operator!=(DimensionSize<Dimension> const& s) const;
-        DimensionSize& operator+=(DimensionSize<Dimension> const& s);
-        DimensionSize& operator++();
-        DimensionSize operator++(int);
+void SigProcWriterTest::TearDown()
+{
+}
 
-    private:
-        std::size_t _size;
-};
+TEST_F(SigProcWriterTest, test_something)
+{
+}
 
-
+} // namespace test
+} // namespace sigproc
 } // namespace astrotypes
 } // namespace pss
-#include "detail/DimensionSize.cpp"
-
-#endif // PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H

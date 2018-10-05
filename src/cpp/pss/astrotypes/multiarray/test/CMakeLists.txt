@@ -9,6 +9,7 @@ set(
    src/PointerAllocatorTest.cpp
    src/SliceTest.cpp
    src/StandardAllocatorTest.cpp
+   src/ResizeAdapterTest.cpp
 )
 
 add_executable(gtest_multiarray ${gtest_multiarray_src} )

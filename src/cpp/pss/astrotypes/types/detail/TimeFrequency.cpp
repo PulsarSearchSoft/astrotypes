@@ -26,6 +26,12 @@ namespace pss {
 namespace astrotypes {
 
 template<typename T, typename Alloc>
+TimeFrequency<T, Alloc>::TimeFrequency()
+    : BaseT(DimensionSize<units::Time>(0), DimensionSize<units::Frequency>(0))
+{
+}
+
+template<typename T, typename Alloc>
 TimeFrequency<T, Alloc>::TimeFrequency(DimensionSize<units::Time> time_size, DimensionSize<units::Frequency> freq_size)
     : BaseT(time_size, freq_size)
 {
@@ -54,6 +60,12 @@ TimeFrequency<T, Alloc>::~TimeFrequency()
 // ***************************************************************
 //
 template<typename T, typename Alloc>
+FrequencyTime<T, Alloc>::FrequencyTime()
+    : BaseT(DimensionSize<units::Frequency>(0), DimensionSize<units::Time>(0))
+{
+}
+
+template<typename T, typename Alloc>
 FrequencyTime<T, Alloc>::FrequencyTime(DimensionSize<units::Frequency> freq_size, DimensionSize<units::Time> time_size)
     : BaseT(freq_size, time_size)
 {
@@ -74,6 +86,11 @@ FrequencyTime<T, Alloc>::FrequencyTime(TimeFrequencyType const& tf)
 
 template<typename T, typename Alloc>
 FrequencyTime<T, Alloc>::~FrequencyTime()
+{
+}
+
+template<typename SliceType>
+TimeFreqCommon<SliceType>::TimeFreqCommon()
 {
 }
 

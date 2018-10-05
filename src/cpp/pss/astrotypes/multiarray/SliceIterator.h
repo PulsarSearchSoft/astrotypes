@@ -123,7 +123,7 @@ class SliceIteratorBase<DerivedType, SliceType, is_const, 1>
         /// dereference operator
         const reference operator*() const;
 
-        /// create an end iterator for the givn slice
+        /// create an end iterator for the given slice
         static DerivedType create_end(SliceT& slice);
 
         difference_type operator-(SelfType const&) const;
@@ -146,7 +146,7 @@ class SliceIterator<Slice<is_const2, ParentT, SliceMixin, Dimension, Dimensions.
         typedef typename std::conditional<is_const, SliceType const, SliceType>::type SliceT;
 
     public:
-        // made availabel for Fried definitions in Slice class
+        // made available for Fried definitions in Slice class
         typedef SliceIteratorBase<SliceIterator<SliceType, is_const>, SliceType, is_const, SliceType::rank> BaseT;
         typedef SliceIteratorBase<SliceIterator<SliceType, is_const>, SliceType, is_const, 1> ImplT;
 

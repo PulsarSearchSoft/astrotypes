@@ -1,18 +1,18 @@
 /*
  * MIT License
- * 
+ *
  * Copyright (c) 2018 PulsarSearchSoft
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -44,6 +44,7 @@ class TimeFreqCommon : public SliceType
         using SliceType::SliceType;
 
     public:
+        TimeFreqCommon();
         TimeFreqCommon(SliceType const& t);
         TimeFreqCommon(SliceType&& t);
 
@@ -59,7 +60,7 @@ class TimeFreqCommon : public SliceType
         //  typename TimeFrequency<uint16_t>::Channel chanel = tf.channel(0);
         //
         //  // use the Chanel's iterator interface tp generate an increasing sequence
-        //  // 
+        //  //
         //  uint16_t n = 0;
         //  std::generate(channel.begin(), channel.end(), [&]() { return ++n; });
         //  @endcode
@@ -112,6 +113,7 @@ class TimeFrequency : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon,
         typedef typename BaseT::ConstSpectra ConstSpectra;
 
     public:
+        TimeFrequency();
         TimeFrequency(DimensionSize<units::Time>, DimensionSize<units::Frequency>);
         TimeFrequency(DimensionSize<units::Frequency>, DimensionSize<units::Time>);
 
@@ -149,6 +151,7 @@ class FrequencyTime : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon,
         typedef typename BaseT::ConstSpectra ConstSpectra;
 
     public:
+        FrequencyTime();
         FrequencyTime(DimensionSize<units::Frequency>, DimensionSize<units::Time>);
         FrequencyTime(DimensionSize<units::Time>, DimensionSize<units::Frequency>);
 

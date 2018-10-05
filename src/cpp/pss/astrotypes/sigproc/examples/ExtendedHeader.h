@@ -21,47 +21,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
-#define PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
+#ifndef PSS_ASTROTYPES_SIGPROC_EXAMPLES_EXTENDEDHEADER_H
+#define PSS_ASTROTYPES_SIGPROC_EXAMPLES_EXTENDEDHEADER_H
 
+#include "pss/astrotypes/sigproc/Header.h"
+#include "pss/astrotypes/units/Length.h"
 
 namespace pss {
 namespace astrotypes {
+namespace sigproc {
+namespace examples {
 
 /**
- * @brief
- *      A compile time dimesion tagging of size_t
- *
- * @details
+ * @brief An example of a simple extension to the basic sigproc format
  */
 
-template<typename Dimension>
-class DimensionSize
+class ExtendedHeader : public pss::astrotypes::sigproc::Header
 {
     public:
-        typedef Dimension dimension;
+        ExtendedHeader();
+        ~ExtendedHeader();
 
-    public:
-        DimensionSize(std::size_t size = 0);
-        ~DimensionSize();
+        /** 
+         * @brief get the calculated distance to the candidate
+         * @details note the return type is a boost::optional and should be tested
+         *          before trying to use its value.
+         */
+        boost::optional<boost::units::quantity<pss::astrotypes::units::Parsecs, double>> const& distance() const;
 
-        operator std::size_t();
-        operator std::size_t() const;
-
-        bool operator<(DimensionSize<Dimension> const&) const;
-        bool operator==(DimensionSize<Dimension> const& s) const;
-        bool operator!=(DimensionSize<Dimension> const& s) const;
-        DimensionSize& operator+=(DimensionSize<Dimension> const& s);
-        DimensionSize& operator++();
-        DimensionSize operator++(int);
+        /** 
+         * @brief set the distance to the candidate
+         * @param the distance to the candidate
+         */
+        void distance(boost::units::quantity<pss::astrotypes::units::Parsecs, double> const& d);
 
     private:
-        std::size_t _size;
+        HeaderField<boost::units::quantity<pss::astrotypes::units::Parsecs, double>>       _distance;
 };
 
 
+} // namespace examples
+} // namespace sigproc
 } // namespace astrotypes
 } // namespace pss
-#include "detail/DimensionSize.cpp"
 
-#endif // PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
+#endif // PSS_ASTROTYPES_SIGPROC_EXAMPLES_EXTENDEDHEADER_H

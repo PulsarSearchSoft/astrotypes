@@ -21,47 +21,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
-#define PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
+#ifndef PSS_ASTROTYPES_SIGPROC_OSTREAM_H
+#define PSS_ASTROTYPES_SIGPROC_OSTREAM_H
+#include "SigProcFormat.h"
+#include "pss/astrotypes/multiarray/TypeTraits.h"
+#include "pss/astrotypes/units/Time.h"
+#include "pss/astrotypes/units/Frequency.h"
 
 
 namespace pss {
 namespace astrotypes {
+namespace sigproc {
 
-/**
- * @brief
- *      A compile time dimesion tagging of size_t
- *
- * @details
- */
-
-template<typename Dimension>
-class DimensionSize
+/*
+template<typename T>
+typename std::enable_if<pss::astrotypes::has_dimensions<T, pss::astrotypes::units::Time, pss::astrotypes::units::Frequency>::value,
+std::ostream>::type& operator<<(std::ostream&, T&)
 {
-    public:
-        typedef Dimension dimension;
+    // improve compile time erro messaging - we should never instantiate this function
+    // as we need a SigProcFormat Adapter to know how to interpret the stream 
+    static_assert(sizeof(T)==0, "attempt to use operator<< on an ostream without a SigProcFormat Adapter.");
+}
+*/
 
-    public:
-        DimensionSize(std::size_t size = 0);
-        ~DimensionSize();
-
-        operator std::size_t();
-        operator std::size_t() const;
-
-        bool operator<(DimensionSize<Dimension> const&) const;
-        bool operator==(DimensionSize<Dimension> const& s) const;
-        bool operator!=(DimensionSize<Dimension> const& s) const;
-        DimensionSize& operator+=(DimensionSize<Dimension> const& s);
-        DimensionSize& operator++();
-        DimensionSize operator++(int);
-
-    private:
-        std::size_t _size;
-};
-
-
+} // namespace sigproc
 } // namespace astrotypes
 } // namespace pss
-#include "detail/DimensionSize.cpp"
 
-#endif // PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
+#endif // PSS_ASTROTYPES_SIGPROC_SIGPROCSTREAM_H

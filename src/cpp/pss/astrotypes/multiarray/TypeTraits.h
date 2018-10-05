@@ -112,7 +112,7 @@ struct has_exact_dimensions : public std::false_type
  * @ brief helper class to determine if a type is in a parameter list
  */
 template<typename T1, typename T2, typename... Ts>
-struct list_has_type : public std::conditional<std::is_same<T1, T2>::value || std::is_same<T1, Ts...>::value, std::true_type, std::false_type>::type
+struct list_has_type : public std::conditional<std::is_same<T1, T2>::value || list_has_type<T1, Ts...>::value, std::true_type, std::false_type>::type
 { };
 
 template<typename T>
@@ -135,7 +135,7 @@ struct has_type<std::tuple<T, Ts...>, T> : public std::true_type
 {};
 
 template<typename T, typename T2, typename... Ts>
-struct has_type<std::tuple<T2, Ts...>, T> : public has_type<T, std::tuple<Ts...>>::type
+struct has_type<std::tuple<T2, Ts...>, T> : public has_type<std::tuple<Ts...>, T>::type
 {};
 
 template<typename T1, typename T2, typename... Ts>
@@ -147,6 +147,145 @@ template<typename T1, typename T2>
 struct has_types<T1, T2> : public has_type<T1, T2>::type
 {
 };
+
+/**
+ * @ brief helper class to determine the index of a type T in a tuple
+ * @code
+ * find_type<std::tuple<A, B>, B>::value; // == 1
+ * find_type<std::tuple<A, B>, A>::value; // == 0
+ * @endcode
+ */
+template<typename Tuple, typename T2>
+struct find_type;
+
+template<typename T, typename... Ts>
+struct find_type<std::tuple<T, Ts...>, T>
+{
+    static const std::size_t value = 0;
+};
+
+template<typename T, typename T2, typename... Ts>
+struct find_type<std::tuple<T2, Ts...>, T>
+{
+    static const std::size_t value = 1 + find_type<std::tuple<Ts...>, T>::value;
+};
+
+/**
+ * @brief insert values into a tuple 
+ * @details tuple must not repeat types
+ * @code
+ * std::tuple<A, B> tuple;
+ * B b;
+ * tuple_insert_type(tuple, b);
+ * @endcode
+ */
+template<typename Tuple, typename T, typename... Ts>
+struct insert_type;
+
+template<typename... TupleTs, typename T1, typename T2, typename... Ts>
+struct insert_type<std::tuple<TupleTs...>, T1, T2, Ts...>
+{
+    inline
+    static void exec(std::tuple<TupleTs...>& tuple, T1 const& value, T2 const& value2, Ts const&... values)
+    {
+        insert_type<std::tuple<TupleTs...>, T1>::exec(tuple, value);
+        insert_type<std::tuple<TupleTs...>, T2, Ts...>::exec(tuple, value2, values...);
+    }
+};
+
+template<typename... TupleTs, typename T>
+struct insert_type<std::tuple<TupleTs...>, T>
+{
+    inline
+    static void exec(std::tuple<TupleTs...>& tuple, T const& value)
+    {
+        static_assert(has_type<std::tuple<TupleTs...>, T>::value, "Type does not exist in tuple");
+        std::get<find_type<std::tuple<TupleTs...>, T>::value>(tuple) = value;
+    }
+};
+
+template<typename... TupleTs, typename... Ts>
+void tuple_insert_type(std::tuple<TupleTs...>& tuple, Ts const&...values)
+{
+    insert_type<std::tuple<TupleTs...>, typename std::remove_reference<Ts>::type...>::exec(tuple, values...);
+}
+
+/**
+ * @brief copy the matching elements (by type) from one tuple into anothe
+ * @code
+ * tuple_copy(src_tuple, dst_tuple);
+ * @endcode
+ */
+template<typename Tuple, typename SrcTuple, std::size_t Index=std::tuple_size<SrcTuple>::value>
+struct tuple_copy_helper : tuple_copy_helper<Tuple, SrcTuple, Index-1>
+{
+    tuple_copy_helper(Tuple& tuple, SrcTuple const& src_tuple)
+        : tuple_copy_helper<Tuple, SrcTuple, Index-1>(tuple, src_tuple)
+    {
+        insert_type<Tuple, typename std::tuple_element<Index-1, SrcTuple>::type>::exec(tuple, std::get<Index-1>(src_tuple));
+    }
+};
+
+template<typename Tuple, typename SrcTuple>
+struct tuple_copy_helper<Tuple, SrcTuple, 0>
+{
+    tuple_copy_helper(Tuple&, SrcTuple const&) {}
+};
+
+template<typename... TupleTs, typename... Ts>
+void tuple_copy(std::tuple<TupleTs...> const& src_tuple, std::tuple<Ts...>& dst_tuple)
+{
+    tuple_copy_helper<std::tuple<Ts...>, std::tuple<TupleTs...>>(dst_tuple, src_tuple);
+}
+
+/**
+ * @brief create a tuple with types from both tuples, but guaranting that any type will
+ *        appear only once
+ */
+template<typename Tuple1, typename Tuple2s>
+struct unique_tuple;
+
+template<typename... Tuple1s>
+struct unique_tuple<std::tuple<Tuple1s...>, std::tuple<>>
+{
+    typedef std::tuple<Tuple1s...> type;
+};
+
+template<typename... Tuple1s, typename T, typename... Tuple2s>
+struct unique_tuple<std::tuple<Tuple1s...>, std::tuple<T, Tuple2s...>>
+{
+    typedef typename unique_tuple<typename std::conditional<has_type<std::tuple<Tuple1s...>, T>::value
+                                         , std::tuple<Tuple1s...>, std::tuple<Tuple1s..., T>>::type
+              , std::tuple<Tuple2s...>>::type type;
+};
+
+/**
+ * @brief produces an extended tuple type with params form all provided tuples
+ *        All types must be unique.
+ *        Earlier tuples in the parameter list take priority over those later
+ *        where there is a type match betwen tuples
+ */
+template<typename Tuple1, typename Tuple2>
+struct merge_tuples_type
+{
+    typedef typename unique_tuple<Tuple1, Tuple2>::type type;
+
+    inline static
+    type exec(Tuple1 const& tuple1, Tuple2 const& tuple2)
+    {
+        type r;
+        tuple_copy(tuple2, r);
+        tuple_copy(tuple1, r);
+        return r;
+    }
+};
+
+template<typename Tuple1, typename Tuple2>
+typename merge_tuples_type<Tuple1, Tuple2>::type
+merge_tuples(Tuple1 const& tuple1, Tuple2 const& tuple2)
+{
+    return merge_tuples_type<Tuple1, Tuple2>::exec(tuple1, tuple2);
+}
 
 /**
  * @brief produces a tuple type with params form all provided Tuples

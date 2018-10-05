@@ -258,19 +258,19 @@ MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::dimension() con
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 template<typename Dim, typename... Dims>
-typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, void>::type
-MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::do_resize(std::size_t total, DimensionSize<Dim> size, DimensionSize<Dims>&&... sizes)
+typename std::enable_if<!arg_helper<FirstDimension, Dim, Dims...>::value, void>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::do_resize(std::size_t total, DimensionSize<Dim> size, DimensionSize<Dims>... sizes)
 {
     BaseT::do_resize(total * static_cast<std::size_t>(_size), size, std::forward<DimensionSize<Dims>>(sizes)...);
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 template<typename Dim, typename... Dims>
-typename std::enable_if<std::is_same<Dim, FirstDimension>::value, void>::type
-MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::do_resize(std::size_t total, DimensionSize<Dim> size, DimensionSize<Dims>&&... sizes)
+typename std::enable_if<arg_helper<FirstDimension, Dim, Dims...>::value, void>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::do_resize(std::size_t total, DimensionSize<Dim> size, DimensionSize<Dims>... sizes)
 {
-    _size = size;
-    BaseT::do_resize(total * static_cast<std::size_t>(_size), std::forward<DimensionSize<Dims>>(sizes)...);
+    _size = arg_helper<DimensionSize<FirstDimension>, DimensionSize<Dim>, DimensionSize<Dims>...>::arg(std::forward<DimensionSize<Dim>>(size), std::forward<DimensionSize<Dims>>(sizes)...);
+    BaseT::do_resize(total * static_cast<std::size_t>(_size), size, std::forward<DimensionSize<Dims>>(sizes)...);
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
@@ -378,17 +378,20 @@ void MultiArray<Alloc, T, SliceMixin, FirstDimension>::resize(DimensionSize<Dim>
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
-void MultiArray<Alloc, T, SliceMixin, FirstDimension>::do_resize(std::size_t total)
+template<typename... Dims>
+typename std::enable_if<!arg_helper<FirstDimension, Dims...>::value, void>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension>::do_resize(std::size_t total, DimensionSize<Dims>...)
 {
     _data.resize(total * static_cast<std::size_t>(_size));
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
-template<typename Dim>
-typename std::enable_if<std::is_same<Dim, FirstDimension>::value, void>::type
-MultiArray<Alloc, T, SliceMixin, FirstDimension>::do_resize(std::size_t total, DimensionSize<Dim> size)
+template<typename Dim, typename... Dims>
+//typename std::enable_if<std::is_same<Dim, FirstDimension>::value, void>::type
+typename std::enable_if<arg_helper<FirstDimension, Dim, Dims...>::value, void>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension>::do_resize(std::size_t total, DimensionSize<Dim> size, DimensionSize<Dims>... sizes)
 {
-    _size = size;
+    _size = arg_helper<DimensionSize<FirstDimension>, DimensionSize<Dim>, DimensionSize<Dims>...>::arg(std::forward<DimensionSize<Dim>>(size), std::forward<DimensionSize<Dims>>(sizes)...);
     _data.resize(total * static_cast<std::size_t>(_size));
 }
 

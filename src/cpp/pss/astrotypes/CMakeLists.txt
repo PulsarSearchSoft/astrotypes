@@ -8,6 +8,7 @@ include_directories(${PROJECT_BINARY_DIR})  # pick up generated files
 SUBPACKAGE(multiarray)
 SUBPACKAGE(units)
 SUBPACKAGE(types)
+SUBPACKAGE(sigproc)
 
 # should come after all SUBPACKAGE directives
 include_subpackage_files()
