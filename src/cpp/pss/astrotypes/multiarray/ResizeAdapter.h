@@ -23,6 +23,7 @@
  */
 #ifndef PSS_ASTROTYPES_SIGPROC_RESIZEADAPTER_H
 #define PSS_ASTROTYPES_SIGPROC_RESIZEADAPTER_H
+#include "DimensionSize.h"
 
 namespace pss {
 namespace astrotypes {
@@ -77,8 +78,30 @@ struct ResizeAdapterStreamBase<Stream, std::tuple<DimensionSize<Dim>, DimensionS
 
 /**
  * @brief
- *      Allows you to define how a TimeFrequency or FrequencyTime object will be resized
- *      when reading from a sigproc input stream
+ *      Allows you to define how a MultiArray object should be resized
+ *      in a streaming context
+ * @details
+ * @code
+ * MyStream my_stream;
+ * MultiArrayDataType data;
+ *
+ * my_stream >> ResizeAdapter<DimensionA, DimensionB>() >> data;
+ * @endcode
+ * The stream object must provide the templated function:
+ * @code
+ * template<typename Dimension>
+ * DimensionSize<Dimension< dimension() const;
+ * @endcode
+ * and should return the new dimension size.
+ *
+ * ResizeAdapters can be chained, with the latest one taking priority
+ * @code
+ * // e,g, ensure that the DimesnonB is always 100
+ * my_stream >> ResizeAdapter<DimensionA, DimensionB>() >> ResizeAdapter<DimensionB>(DimensionSize<DimensionB>(100) >> data;
+ *
+ * // equally valid
+ * my_stream >> ResizeAdapter<DimensionA>() >> ResizeAdapter<DimensionB>(DimensionSize<DimensionB>(100) >> data;
+ * @code
  */
 
 template<typename Dimension, typename... Dimensions>
@@ -92,7 +115,7 @@ class ResizeAdapter
                 typedef ResizeAdapterStreamBase<StreamType, Dimension, Dimensions...> BaseT;
 
             public:
-                Stream(StreamType& is, ResizeAdapter const& ra);
+                Stream(StreamType& is, ResizeAdapter& ra);
         };
 
     public:
@@ -107,9 +130,8 @@ class ResizeAdapter
         Stream<StreamT> resize(StreamT&, DimensionSize<Dim>, DimensionSize<Dims>...);
 
     private:
-
         template<typename StreamT>
-        friend Stream<StreamT> operator>>(StreamT& is, ResizeAdapter const& ra) {
+        friend Stream<StreamT> operator>>(StreamT& is, ResizeAdapter ra) {
             return Stream<StreamT>(is, ra);
         }
 

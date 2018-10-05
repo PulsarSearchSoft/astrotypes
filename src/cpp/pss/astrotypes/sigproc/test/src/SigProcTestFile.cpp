@@ -40,12 +40,12 @@ inline std::string SigProcTestFile::file() const
     return test_data_path() + "/" + _file;
 }
 
-inline std::size_t SigProcTestFile::number_of_channels() const
+inline DimensionSize<units::Frequency> SigProcTestFile::number_of_channels() const
 {
     return _nchans;
 }
 
-inline std::size_t SigProcTestFile::number_of_spectra() const
+inline DimensionSize<units::Time> SigProcTestFile::number_of_spectra() const
 {
     return _nsamples;
 }

@@ -52,37 +52,57 @@ void FileReader<HeaderType>::open(std::string const& file_name)
 }
 
 template<typename HeaderType>
-DimensionSize<units::Time> FileReader<HeaderType>::number_of_samples() const
+std::size_t FileReader<HeaderType>::number_of_data_points() const
 {
-    return DimensionSize<units::Time>( (stat(_file_name) - this->_header.size())
-                                                / (this->_header.number_of_bits() * this->_header.number_of_ifs()));
-}
-
-template<typename HeaderType>
-template<typename T1, typename T2>
-typename ResizeAdapter<T1, T2>::template Stream<FileReader<HeaderType>>& FileReader<HeaderType>::operator>>(ResizeAdapter<T1, T2>& resizer) const
-{
-    return resizer.resize(*this, this->number_of_samples(), this->_header.number_of_channels());
-}
-
-template<typename HeaderType>
-typename ResizeAdapter<units::Time>::Stream<FileReader<HeaderType>>& FileReader<HeaderType>::operator>>(ResizeAdapter<units::Time>& resizer)
-{
-    return resizer.resize(*this, number_of_samples());
-}
-
-template<typename HeaderType>
-typename ResizeAdapter<units::Frequency>::Stream<FileReader<HeaderType>>& FileReader<HeaderType>::operator>>(ResizeAdapter<units::Frequency>& resizer)
-{
-    return resizer.resize(this->_header.number_of_channels());
+    struct stat file_info;
+    stat(_file_name.c_str(), &file_info);
+    return 8*((file_info.st_size - this->_header.size())/this->_header.number_of_bits());
 }
 
 template<typename HeaderType>
 template<typename DataType>
-FileReader<HeaderType>& FileReader<HeaderType>::operator>>(DataType& data)
+typename std::enable_if<has_dimensions<DataType, units::Time, units::Frequency>::value, FileReader<HeaderType>>::type &
+FileReader<HeaderType>::operator>>(DataType& data)
 {
     BaseT::read(_stream, data);
     return *this;
+}
+
+namespace {
+// helpers for the dimesion method
+template<typename Dimension>
+struct DimensionHelper {
+    template<typename HeaderType>
+    inline static DimensionSize<Dimension> exec(FileReader<HeaderType> const&)
+    {
+        return DimensionSize<Dimension>(0);
+    }
+};
+
+template<>
+struct DimensionHelper<units::Time> {
+    template<typename HeaderType>
+    inline static DimensionSize<units::Time> exec(FileReader<HeaderType> const& fr)
+    {
+        return DimensionSize<units::Time>(fr.number_of_data_points()/ (fr.header().number_of_ifs() * fr.header().number_of_channels()));
+    }
+};
+
+template<>
+struct DimensionHelper<units::Frequency> {
+    template<typename HeaderType>
+    inline static DimensionSize<units::Frequency> exec(FileReader<HeaderType> const& fr)
+    {
+        return fr.header().number_of_channels();
+    }
+};
+
+} // namespace
+template<typename HeaderType>
+template<typename Dimension>
+DimensionSize<Dimension> FileReader<HeaderType>::dimension() const
+{
+    return DimensionHelper<Dimension>::exec(*this);
 }
 
 } // namespace sigproc

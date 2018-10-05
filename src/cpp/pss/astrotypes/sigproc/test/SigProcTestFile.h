@@ -23,6 +23,9 @@
  */
 #ifndef PSS_ASTROTYPES_SIGPROC_TEST_SIGPROCTESTFILE_H
 #define PSS_ASTROTYPES_SIGPROC_TEST_SIGPROCTESTFILE_H
+#include "pss/astrotypes/multiarray/DimensionSize.h"
+#include "pss/astrotypes/units/Time.h"
+#include "pss/astrotypes/units/Frequency.h"
 #include <string>
 
 
@@ -44,14 +47,14 @@ class SigProcTestFile
         std::string file() const;
 
         // pamareters used in file generation
-        std::size_t number_of_channels() const;
-        std::size_t number_of_spectra() const;
+        DimensionSize<units::Frequency> number_of_channels() const;
+        DimensionSize<units::Time> number_of_spectra() const;
         std::size_t number_of_ifs() const;
 
     protected:
         std::string _file;
-        std::size_t _nchans;
-        std::size_t _nsamples;
+        DimensionSize<units::Frequency> _nchans;
+        DimensionSize<units::Time> _nsamples;
         unsigned _nifs;
 };
 

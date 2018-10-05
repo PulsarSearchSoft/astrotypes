@@ -60,26 +60,19 @@ class FileReader : public IStream<HeaderType>
          * @brief read in to the provided data object
          */
         template<typename DataType>
-        FileReader& operator>>(DataType& data);
+        typename std::enable_if<has_dimensions<DataType, units::Time, units::Frequency>::value, FileReader>::type &
+        operator>>(DataType& data);
 
         /**
-         * @brief setup a resize object with the number of channels
+         * @brief return the expected dimension of the data in the file
          */
-        typename ResizeAdapter<units::Frequency>::Stream<FileReader>& operator>>(ResizeAdapter<units::Frequency>& resizer);
+        template<typename Dimension>
+        DimensionSize<Dimension> dimension() const;
 
         /**
-         * @brief setup a resize object with the number of time samples
+         * @brief the number of data points in the file (i.e number of data points of nbits)
          */
-        typename ResizeAdapter<units::Time>::Stream<FileReader>& operator>>(ResizeAdapter<units::Time>& resizer);
-
-        /**
-         * @brief setup a resize object with the number of time samples and number of channels
-         */
-        template<typename T1, typename T2>
-        typename ResizeAdapter<T1, T2>::template Stream<FileReader>& operator>>(ResizeAdapter<T1, T2>& resizer) const;
-
-    protected:
-        DimensionSize<units::Time> number_of_samples() const;
+        std::size_t number_of_data_points() const;
 
     private:
         std::ifstream _stream;

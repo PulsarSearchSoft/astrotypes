@@ -25,35 +25,6 @@
 namespace pss {
 namespace astrotypes {
 
-template<typename Dimension, typename... Dimensions>
-ResizeAdapter<Dimension, Dimensions...>::ResizeAdapter()
-{
-}
-
-template<typename Dimension, typename... Dimensions>
-template<typename Dim, typename... Dims>
-ResizeAdapter<Dimension, Dimensions...>::ResizeAdapter(DimensionSize<Dim> dim, DimensionSize<Dims>... dims)
-{
-    tuple_insert_type(_sizes, dim, dims...);
-}
-
-template<typename Dimension, typename... Dimensions>
-template<typename StreamT, typename Dim, typename... Dims>
-typename ResizeAdapter<Dimension, Dimensions...>::template Stream<StreamT> ResizeAdapter<Dimension, Dimensions...>::resize(StreamT& stream, DimensionSize<Dim> s, DimensionSize<Dims>... dims)
-{
-    // pack dimensions into a tuple
-    std::get<find_type<decltype(_sizes), DimensionSize<Dim>>::value>(_sizes) = s;
-    tuple_insert_type(_sizes, dims...);
-    return Stream<StreamT>(stream, &this);
-}
-
-template<typename Dimension, typename... Dimensions>
-template<typename StreamType>
-ResizeAdapter<Dimension, Dimensions...>::Stream<StreamType>::Stream(StreamType& is, ResizeAdapter const& ra)
-    : BaseT(is, ra._sizes)
-{
-}
-
 namespace {
 // unpack tuple in to arguments
 template <typename TupleType, std::size_t Index=std::tuple_size<TupleType>::value>
@@ -82,6 +53,64 @@ struct ResizeHelper<TupleType, 0>
 };
 
 } // namespace
+
+template<typename Dimension, typename... Dimensions>
+ResizeAdapter<Dimension, Dimensions...>::ResizeAdapter()
+{
+}
+
+template<typename Dimension, typename... Dimensions>
+template<typename Dim, typename... Dims>
+ResizeAdapter<Dimension, Dimensions...>::ResizeAdapter(DimensionSize<Dim> dim, DimensionSize<Dims>... dims)
+{
+    tuple_insert_type(_sizes, dim, dims...);
+}
+
+template<typename Dimension, typename... Dimensions>
+template<typename StreamT, typename Dim, typename... Dims>
+typename ResizeAdapter<Dimension, Dimensions...>::template Stream<StreamT> ResizeAdapter<Dimension, Dimensions...>::resize(StreamT& stream, DimensionSize<Dim> s, DimensionSize<Dims>... dims)
+{
+    // pack dimensions into a tuple
+    std::get<find_type<decltype(_sizes), DimensionSize<Dim>>::value>(_sizes) = s;
+    tuple_insert_type(_sizes, dims...);
+    return Stream<StreamT>(stream, &this);
+}
+
+// helper funtion for Stream construction
+namespace {
+template<typename... Dimensions>
+struct DimensionCopy;
+
+template<typename Dimension>
+struct DimensionCopy<Dimension>
+{
+    template<typename StreamType, typename TupleType>
+    inline static void exec(StreamType const& stream, TupleType& tuple)
+    {
+        tuple_insert_type(tuple, stream.template dimension<Dimension>());
+    }
+};
+
+template<typename Dimension, typename... Dimensions>
+struct DimensionCopy<Dimension, Dimensions...>
+{
+    template<typename StreamType, typename TupleType>
+    inline static void exec(StreamType const& stream, TupleType& tuple)
+    {
+        tuple_insert_type(tuple, stream.template dimension<Dimension>());
+        DimensionCopy<Dimensions...>::exec(stream, tuple);
+    }
+};
+
+} // namespace
+template<typename Dimension, typename... Dimensions>
+template<typename StreamType>
+ResizeAdapter<Dimension, Dimensions...>::Stream<StreamType>::Stream(StreamType& is, ResizeAdapter& ra)
+    : BaseT(is, ra._sizes)
+{
+    // transfer dimension info fromt the stream into the _sizes tuple
+    DimensionCopy<Dimension, Dimensions...>::exec(is, ra._sizes);
+}
 
 template<typename Stream, typename Dim, typename... Dims>
 template<typename T>

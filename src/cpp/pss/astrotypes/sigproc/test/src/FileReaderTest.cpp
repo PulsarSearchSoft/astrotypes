@@ -74,6 +74,28 @@ TEST_F(FileReaderTest, test_filterbank_file_ft_data)
     ASSERT_EQ(test_file.number_of_spectra(), ft_data.dimension<astrotypes::units::Time>());
 }
 
+TEST_F(FileReaderTest, test_filterbank_file_resize_time_tf_data)
+{
+    SigProcFilterBankTestFile test_file;
+    TimeFrequency<uint8_t> tf_data(DimensionSize<units::Frequency>(0), DimensionSize<units::Time>(test_file.number_of_spectra()));
+    sigproc::FileReader<> reader(test_file.file());
+    reader >> ResizeAdapter<units::Time>() >> tf_data;
+
+    ASSERT_EQ(0U, tf_data.dimension<astrotypes::units::Frequency>());
+    ASSERT_EQ(test_file.number_of_spectra(), tf_data.dimension<astrotypes::units::Time>());
+}
+
+TEST_F(FileReaderTest, test_filterbank_file_resize_frequency_tf_data)
+{
+    SigProcFilterBankTestFile test_file;
+    TimeFrequency<uint8_t> tf_data(test_file.number_of_spectra(), DimensionSize<units::Frequency>(0));
+    sigproc::FileReader<> reader(test_file.file());
+    reader >> ResizeAdapter<units::Frequency>() >> tf_data;
+
+    ASSERT_EQ(test_file.number_of_spectra(), tf_data.dimension<astrotypes::units::Time>()); // doesn't get overwritten
+    ASSERT_EQ(test_file.number_of_channels(), tf_data.dimension<astrotypes::units::Frequency>());
+}
+
 } // namespace test
 } // namespace sigproc
 } // namespace astrotypes

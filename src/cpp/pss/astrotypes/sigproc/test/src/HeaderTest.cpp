@@ -22,9 +22,11 @@
  * SOFTWARE.
  */
 #include "../HeaderTest.h"
+#include "../SigProcTestFile.h"
 #include "pss/astrotypes/sigproc/Header.h"
 #include "pss/astrotypes/types/TimeFrequency.h"
 #include <sstream>
+#include <fstream>
 
 
 namespace pss {
@@ -389,6 +391,17 @@ TEST_F(HeaderTest, info_adapter_write)
     std::stringstream ss1;
     ss1 << Header::Info() << h;
     std::cout << ss1.str() << "\n";
+}
+
+TEST_F(HeaderTest, read_filterbank_file_test)
+{
+    Header header;
+    SigProcFilterBankTestFile test_file;
+    std::ifstream s(test_file.file(), std::ios::in | std::ios::binary);
+    s >> header;
+    ASSERT_EQ(header.number_of_bits(), 8U);
+    ASSERT_EQ(header.number_of_channels(), test_file.number_of_channels());
+    ASSERT_EQ(header.number_of_ifs(), test_file.number_of_ifs());
 }
 
 } // namespace test
