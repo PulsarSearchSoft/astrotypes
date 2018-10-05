@@ -97,14 +97,23 @@ Time Frequency Data</h1>
 <div class="line"></div>
 <div class="line"><span class="comment">// Iterate over each spectrum using the [] bracket style interface</span></div>
 <div class="line"><span class="keywordtype">unsigned</span> total_pow=0;</div>
-<div class="line"><span class="keywordflow">for</span>(DimensionIndex&lt;Time&gt; i(0); i &lt; time_frequency.template dimension&lt;Time&gt;(); ++i) {</div>
+<div class="line"><span class="keywordflow">for</span>(DimensionIndex&lt;Time&gt; i(0); i &lt; time_frequency.dimension&lt;<a class="code" href="namespacepss_1_1astrotypes_1_1units.html#abade66c850c8897ac4d3151d258f0f86">Time</a>&gt;(); ++i) {</div>
 <div class="line">    <span class="keyword">auto</span> spectrum = time_frequency[i];</div>
-<div class="line">    <span class="keywordflow">for</span>(DimensionIndex&lt;Frequency&gt; j(0); j &lt; spectrum.template dimension&lt;Frequency&gt;(); ++j) {</div>
+<div class="line">    <span class="keywordflow">for</span>(DimensionIndex&lt;Frequency&gt; j(0); j &lt; spectrum.dimension&lt;<a class="code" href="namespacepss_1_1astrotypes_1_1units.html#a27ad7b0759f36361b2d3688dd1bd4b14">Frequency</a>&gt;(); ++j) {</div>
 <div class="line">        total_pow += spectrum[j];</div>
 <div class="line">    }</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2>Would you care for a slice?</h2>
-<p>You can extract parts of a TimeFrequency chunk as a slice.</p>
+</div><!-- fragment --><p> C++ Note: If you are writing this as a template function, where the data type is one of the template paramters, you will need to insert the template keyword when you call the dimension method. e.g. </p><div class="fragment"><div class="line">i &lt; time_frequency.template dimension&lt;Time&gt;()</div>
+</div><!-- fragment --><h2>Loading in FilterBank files</h2>
+<p>You can easily load in sigproc (Filterbank or TimeSeries) files e.g. </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;pss/astrotypes/types/SigProc.h&quot;</span></div>
+<div class="line">sigproc::FileReader filterbank_file(<span class="stringliteral">&quot;my_filterbank_file.fil&quot;</span>);</div>
+<div class="line">TimeFrequency&lt;uint8_t&gt; time_frequency;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// The ResizeAdapter resizes the time_frequency object according to the filterbank files parameters and file size</span></div>
+<div class="line">filterbank &gt;&gt; ResizeAdapter&lt;units::Time, units::Frequency&gt;() &gt;&gt; time_frequency;</div>
+</div><!-- fragment --><p> See the <a class="el" href="md_src_cpp_pss_astrotypes_sigproc_doc_sigproc_tutorial.html#sigproc">sigproc</a> section for many more options.</p>
+<h2>Would you care for a slice?</h2>
+<p>You can extract parts of a TimeFrequency chunk as a slice. The Slice provides a view of the underlying data and does not make any copies.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="TimeFrequency_8h.html">pss/astrotypes/types/TimeFrequency.h</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
 <div class="line"></div>
@@ -141,7 +150,7 @@ Time Frequency Data</h1>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 21 2018 15:15:27 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Oct 5 2018 13:56:18 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

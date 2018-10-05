@@ -1,0 +1,25 @@
+<map id="src/cpp/pss/astrotypes/sigproc/Header.h" name="src/cpp/pss/astrotypes/sigproc/Header.h">
+<area shape="rect" id="node2" href="$HeaderField_8h.html" title="HeaderField.h" alt="" coords="1478,272,1583,297"/>
+<area shape="rect" id="node11" href="$HeaderBase_8h.html" title="detail/HeaderBase.h" alt="" coords="1752,185,1894,211"/>
+<area shape="rect" id="node17" href="$Time_8h.html" title="pss/astrotypes/units\l/Time.h" alt="" coords="464,179,603,217"/>
+<area shape="rect" id="node33" href="$Frequency_8h.html" title="pss/astrotypes/units\l/Frequency.h" alt="" coords="997,179,1136,217"/>
+<area shape="rect" id="node36" href="$Angle_8h.html" title="pss/astrotypes/units\l/Angle.h" alt="" coords="2022,92,2162,131"/>
+<area shape="rect" id="node38" href="$DispersionMeasure_8h.html" title="pss/astrotypes/units\l/DispersionMeasure.h" alt="" coords="2665,92,2816,131"/>
+<area shape="rect" id="node45" href="$TimeFrequency_8h.html" title="pss/astrotypes/types\l/TimeFrequency.h" alt="" coords="1163,92,1306,131"/>
+<area shape="rect" id="node49" href="$Header_8cpp.html" title="detail/Header.cpp" alt="" coords="1615,99,1740,124"/>
+<area shape="rect" id="node3" href="$SigProcVariable_8h.html" title="pss/astrotypes/sigproc\l/detail/SigProcVariable.h" alt="" coords="1286,352,1453,391"/>
+<area shape="rect" id="node7" href="$SigProcVariable_8cpp.html" title="SigProcVariable.cpp" alt="" coords="1213,445,1355,471"/>
+<area shape="rect" id="node14" href="$HeaderBase_8cpp.html" title="HeaderBase.cpp" alt="" coords="1982,272,2103,297"/>
+<area shape="rect" id="node18" href="$TimeUnits_8h.html" title="TimeUnits.h" alt="" coords="457,359,549,384"/>
+<area shape="rect" id="node22" href="$BoostDurationCast_8h.html" title="BoostDurationCast.h" alt="" coords="44,272,188,297"/>
+<area shape="rect" id="node25" href="$Quantity_8h.html" title="Quantity.h" alt="" coords="758,272,839,297"/>
+<area shape="rect" id="node26" href="$JulianClock_8h.html" title="JulianClock.h" alt="" coords="312,359,413,384"/>
+<area shape="rect" id="node28" href="$J2000Clock_8h.html" title="J2000Clock.h" alt="" coords="438,272,540,297"/>
+<area shape="rect" id="node29" href="$ModifiedJulianClock_8h.html" title="ModifiedJulianClock.h" alt="" coords="213,272,364,297"/>
+<area shape="rect" id="node30" href="$cmath_8h.html" title="cmath.h" alt="" coords="666,272,734,297"/>
+<area shape="rect" id="node24" href="$BoostDurationCast_8cpp.html" title="detail/BoostDurationCast.cpp" alt="" coords="95,359,289,384"/>
+<area shape="rect" id="node27" href="$DefineClock_8h.html" title="DefineClock.h" alt="" coords="145,445,250,471"/>
+<area shape="rect" id="node46" href="$MultiArray_8h.html" title="pss/astrotypes/multiarray\l/MultiArray.h" alt="" coords="1183,265,1353,304"/>
+<area shape="rect" id="node48" href="$TimeFrequency_8cpp.html" title="detail/TimeFrequency.cpp" alt="" coords="1312,185,1485,211"/>
+<area shape="rect" id="node50" href="$HeaderField_8cpp.html" title="HeaderField.cpp" alt="" coords="1564,185,1684,211"/>
+</map>

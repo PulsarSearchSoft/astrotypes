@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['units',['units',['../md_src_cpp_pss_astrotypes_units_doc_units.html',1,'']]]
+  ['tutorial',['tutorial',['../md_src_cpp_doc_tutorial.html',1,'']]],
+  ['time_5ffrequency',['time_frequency',['../md_src_cpp_pss_astrotypes_types_doc_time_frequency.html',1,'']]]
 ];

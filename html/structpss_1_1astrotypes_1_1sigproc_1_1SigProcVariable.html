@@ -43,6 +43,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -100,16 +101,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>Read and write variables to sigproc format.  
  <a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#details">More...</a></p>
 
-<p><code>#include &lt;<a class="el" href="SigProcVariable_8h_source.html">src/cpp/pss/astrotypes/sigproc/SigProcVariable.h</a>&gt;</code></p>
+<p><code>#include &lt;<a class="el" href="SigProcVariable_8h_source.html">src/cpp/pss/astrotypes/sigproc/detail/SigProcVariable.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a16defe9844c7d91d357bf23a8317df9c"><td class="memItemLeft" align="right" valign="top">static unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a16defe9844c7d91d357bf23a8317df9c">write</a> (std::ostream &amp;, T const &amp;var)</td></tr>
 <tr class="memdesc:a16defe9844c7d91d357bf23a8317df9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">write the provided variable to the stream  <a href="#a16defe9844c7d91d357bf23a8317df9c">More...</a><br /></td></tr>
 <tr class="separator:a16defe9844c7d91d357bf23a8317df9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d0cf76202337f55a40ccbc20c796f3c"><td class="memItemLeft" align="right" valign="top">static unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a3d0cf76202337f55a40ccbc20c796f3c">read</a> (std::istream &amp;, T &amp;var)</td></tr>
-<tr class="memdesc:a3d0cf76202337f55a40ccbc20c796f3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">read form the stream into the variable provided  <a href="#a3d0cf76202337f55a40ccbc20c796f3c">More...</a><br /></td></tr>
-<tr class="separator:a3d0cf76202337f55a40ccbc20c796f3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a839abdebf07eb9ab7c3308dc826d5e58"><td class="memItemLeft" align="right" valign="top">static unsigned&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a839abdebf07eb9ab7c3308dc826d5e58">read</a> (std::istream &amp;, T &amp;var)</td></tr>
+<tr class="memdesc:a839abdebf07eb9ab7c3308dc826d5e58"><td class="mdescLeft">&#160;</td><td class="mdescRight">read form the stream into the variable provided  <a href="#a839abdebf07eb9ab7c3308dc826d5e58">More...</a><br /></td></tr>
+<tr class="separator:a839abdebf07eb9ab7c3308dc826d5e58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T&gt;<br />
@@ -117,8 +118,10 @@ struct pss::astrotypes::sigproc::SigProcVariable&lt; T &gt;</h3>
 
 <p>Read and write variables to sigproc format. </p>
 <p>You can specialise for any types that are not yet supported. </p>
+
+<p>Definition at line <a class="el" href="SigProcVariable_8h_source.html#l00051">51</a> of file <a class="el" href="SigProcVariable_8h_source.html">SigProcVariable.h</a>.</p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a3d0cf76202337f55a40ccbc20c796f3c"></a>
+<a class="anchor" id="a839abdebf07eb9ab7c3308dc826d5e58"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -128,7 +131,7 @@ template&lt;typename T &gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">unsigned <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html">pss::astrotypes::sigproc::SigProcVariable</a>&lt; T &gt;::read </td>
+          <td class="memname">unsigned <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html">pss::astrotypes::sigproc::SigProcVariable</a>&lt; Unit, NumericalRep &gt;::read </td>
           <td>(</td>
           <td class="paramtype">std::istream &amp;&#160;</td>
           <td class="paramname"><em>stream</em>, </td>
@@ -154,6 +157,8 @@ template&lt;typename T &gt; </div>
 
 <p>read form the stream into the variable provided </p>
 <dl class="section return"><dt>Returns</dt><dd>the number of bytes read </dd></dl>
+
+<p>Definition at line <a class="el" href="SigProcVariable_8cpp_source.html#l00039">39</a> of file <a class="el" href="SigProcVariable_8cpp_source.html">SigProcVariable.cpp</a>.</p>
 
 </div>
 </div>
@@ -194,12 +199,14 @@ template&lt;typename T &gt; </div>
 <p>write the provided variable to the stream </p>
 <dl class="section return"><dt>Returns</dt><dd>the number of bytes read </dd></dl>
 
+<p>Definition at line <a class="el" href="SigProcVariable_8cpp_source.html#l00032">32</a> of file <a class="el" href="SigProcVariable_8cpp_source.html">SigProcVariable.cpp</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 12 2018 09:43:20 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Oct 5 2018 13:56:19 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

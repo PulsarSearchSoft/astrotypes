@@ -1,0 +1,5 @@
+<map id="pss::astrotypes::sigproc::test::TEST_F" name="pss::astrotypes::sigproc::test::TEST_F">
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1sigproc_1_1test_1_1SigProcTestFile.html#a5cb53a041c6aa44c38077ffe5dfb64b1" title="pss::astrotypes::sigproc\l::test::SigProcTestFile\l::number_of_spectra" alt="" coords="232,5,394,57"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1sigproc_1_1test_1_1SigProcTestFile.html#ac633b15f5205d7c995d160d275f27bfa" title="pss::astrotypes::sigproc\l::test::SigProcTestFile::file" alt="" coords="226,81,400,120"/>
+<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1MultiArray.html#af978aee66609ea80e3ab3282be69efea" title="pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Time, units::Frequency\l \&gt;::dimension" alt="" coords="215,144,411,209"/>
+</map>

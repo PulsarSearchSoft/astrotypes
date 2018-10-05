@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structpss_1_1astrotypes_1_1ConstOperatorSliceTypeHelper.html" title="pss::astrotypes::ConstOperator\lSliceTypeHelper\&lt; Dim, SliceType \&gt;" alt="" coords="5,5,236,44"/>
+<area shape="rect" id="node1" href="$structpss_1_1astrotypes_1_1ConstOperatorSliceTypeHelper_3_01Dim_00_01Slice_3_01is__const_00_01Sled1435c8f7662adb91d9fd6850824e7f.html" title="pss::astrotypes::ConstOperator\lSliceTypeHelper\&lt; Dim, Slice\l\&lt; is_const, SliceTraitsT, SliceMixin,\l Dimension, Dimensions...\&gt; \&gt;" alt="" coords="5,5,234,71"/>
+<area shape="rect" id="node2" href="$structpss_1_1astrotypes_1_1ConstOperatorSliceTypeHelper_3_01Dim_00_01SliceMixin_3_01Slice_3_01is2bdb4d6b4328bb0387af381554042ee5.html" title="pss::astrotypes::ConstOperator\lSliceTypeHelper\&lt; Dim, SliceMixin\l\&lt; Slice\&lt; is_const, SliceTraitsT,\l SliceMixin, Dimension, Dimensions...\&gt; \&gt; \&gt;" alt="" coords="282,5,556,71"/>
 </map>

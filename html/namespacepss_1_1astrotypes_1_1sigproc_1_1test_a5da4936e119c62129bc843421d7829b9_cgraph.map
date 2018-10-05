@@ -1,0 +1,7 @@
+<map id="pss::astrotypes::sigproc::test::TEST_F" name="pss::astrotypes::sigproc::test::TEST_F">
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1sigproc_1_1test_1_1SigProcTestFile.html#ac633b15f5205d7c995d160d275f27bfa" title="pss::astrotypes::sigproc\l::test::SigProcTestFile::file" alt="" coords="226,5,400,44"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1sigproc_1_1test_1_1SigProcTestFile.html#aaef65f0d6ab1cc9878bfd12d3eb14302" title="pss::astrotypes::sigproc\l::test::SigProcTestFile\l::number_of_ifs" alt="" coords="232,68,394,120"/>
+<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1sigproc_1_1test_1_1SigProcTestFile.html#a71937598674865951bd4267d1729d8de" title="pss::astrotypes::sigproc\l::test::SigProcTestFile\l::number_of_channels" alt="" coords="232,144,394,196"/>
+<area shape="rect" id="node5" href="$classpss_1_1astrotypes_1_1MultiArray.html#af978aee66609ea80e3ab3282be69efea" title="pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Frequency, units::\lTime \&gt;::dimension" alt="" coords="215,220,411,285"/>
+<area shape="rect" id="node6" href="$classpss_1_1astrotypes_1_1sigproc_1_1test_1_1SigProcTestFile.html#a5cb53a041c6aa44c38077ffe5dfb64b1" title="pss::astrotypes::sigproc\l::test::SigProcTestFile\l::number_of_spectra" alt="" coords="232,309,394,361"/>
+</map>

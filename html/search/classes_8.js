@@ -1,10 +1,7 @@
 var searchData=
 [
-  ['list_5fhas_5ftype',['list_has_type',['../structpss_1_1astrotypes_1_1list__has__type.html',1,'pss::astrotypes']]],
-  ['list_5fhas_5ftype_3c_20t_2c_20t_20_3e',['list_has_type&lt; T, T &gt;',['../structpss_1_1astrotypes_1_1list__has__type_3_01T_00_01T_01_4.html',1,'pss::astrotypes']]],
-  ['list_5fhas_5ftype_3c_20t1_2c_20t2_20_3e',['list_has_type&lt; T1, T2 &gt;',['../structpss_1_1astrotypes_1_1list__has__type_3_01T1_00_01T2_01_4.html',1,'pss::astrotypes']]],
-  ['logical_5fand',['logical_and',['../structpss_1_1astrotypes_1_1logical__and.html',1,'pss::astrotypes']]],
-  ['logical_5fand_3c_20has_5fdimension_3c_20t_2c_20dimension_20_3e_3a_3atype_2c_20has_5fdimensions_3c_20t_2c_20dimensions_2e_2e_2e_3e_3a_3atype_20_3e',['logical_and&lt; has_dimension&lt; T, Dimension &gt;::type, has_dimensions&lt; T, Dimensions...&gt;::type &gt;',['../structpss_1_1astrotypes_1_1logical__and.html',1,'pss::astrotypes']]],
-  ['logical_5fand_3c_20t_2c_20t_20_3e',['logical_and&lt; T, T &gt;',['../structpss_1_1astrotypes_1_1logical__and_3_01T_00_01T_01_4.html',1,'pss::astrotypes']]],
-  ['logical_5fand_3c_20t1_2c_20t2_20_3e',['logical_and&lt; T1, T2 &gt;',['../structpss_1_1astrotypes_1_1logical__and_3_01T1_00_01T2_01_4.html',1,'pss::astrotypes']]]
+  ['join_5ftuples',['join_tuples',['../structpss_1_1astrotypes_1_1join__tuples.html',1,'pss::astrotypes']]],
+  ['join_5ftuples_3c_20std_3a_3atuple_3c_20tuple1_2e_2e_2e_3e_2c_20std_3a_3atuple_3c_20tuple2_2e_2e_2e_3e_20_3e',['join_tuples&lt; std::tuple&lt; Tuple1...&gt;, std::tuple&lt; Tuple2...&gt; &gt;',['../structpss_1_1astrotypes_1_1join__tuples_3_01std_1_1tuple_3_01Tuple1_8_8_8_4_00_01std_1_1tuple_3_01Tuple2_8_8_8_4_01_4.html',1,'pss::astrotypes']]],
+  ['join_5ftuples_3c_20std_3a_3atuple_3c_20tuple1_2e_2e_2e_3e_2c_20std_3a_3atuple_3c_20tuple2_2e_2e_2e_3e_2c_20tuples_2e_2e_2e_3e',['join_tuples&lt; std::tuple&lt; Tuple1...&gt;, std::tuple&lt; Tuple2...&gt;, Tuples...&gt;',['../structpss_1_1astrotypes_1_1join__tuples_3_01std_1_1tuple_3_01Tuple1_8_8_8_4_00_01std_1_1tuple_3_d3492b250b549614119e81c887cb7cc3.html',1,'pss::astrotypes']]],
+  ['julianclocktest',['JulianClockTest',['../classpss_1_1astrotypes_1_1units_1_1test_1_1JulianClockTest.html',1,'pss::astrotypes::units::test']]]
 ];

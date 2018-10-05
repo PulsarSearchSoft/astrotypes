@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.9.1"/>
-<title>astrotypes: src/cpp/pss/astrotypes/sigproc/SigProcVariable.h Source File</title>
+<title>astrotypes: src/cpp/pss/astrotypes/sigproc/detail/SigProcVariable.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -43,6 +43,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
+      <li><a href="examples.html"><span>Examples</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -83,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_9f7d2b6edb9001f47f5889cd3ac72c9a.html">src</a></li><li class="navelem"><a class="el" href="dir_e6493411e401b217e55814a70bc67722.html">cpp</a></li><li class="navelem"><a class="el" href="dir_b36468b34f66d36cd2e7213b6f9c7709.html">pss</a></li><li class="navelem"><a class="el" href="dir_82f636b71832917cef2ee9609ee2d2ab.html">astrotypes</a></li><li class="navelem"><a class="el" href="dir_e13f7bbb012df64a1e790a1027314f16.html">sigproc</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_9f7d2b6edb9001f47f5889cd3ac72c9a.html">src</a></li><li class="navelem"><a class="el" href="dir_e6493411e401b217e55814a70bc67722.html">cpp</a></li><li class="navelem"><a class="el" href="dir_b36468b34f66d36cd2e7213b6f9c7709.html">pss</a></li><li class="navelem"><a class="el" href="dir_82f636b71832917cef2ee9609ee2d2ab.html">astrotypes</a></li><li class="navelem"><a class="el" href="dir_e13f7bbb012df64a1e790a1027314f16.html">sigproc</a></li><li class="navelem"><a class="el" href="dir_aa88a5d3a3febc47607de7a538f64364.html">detail</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -125,53 +126,97 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#ifndef PSS_ASTROTYPES_SIGPROC_SIGPROCVARIABLE_H</span></div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#define PSS_ASTROTYPES_SIGPROC_SIGPROCVARIABLE_H</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacepss.html">pss</a> {</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">namespace </span>astrotypes {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">namespace </span>sigproc {</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html">   50</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html">SigProcVariable</a></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a16defe9844c7d91d357bf23a8317df9c">write</a>(std::ostream&amp;, T <span class="keyword">const</span>&amp; var);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a3d0cf76202337f55a40ccbc20c796f3c">read</a>(std::istream&amp;, T&amp; var);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="comment">// specialisation for std::string</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable_3_01std_1_1string_01_4.html">   67</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html">SigProcVariable</a>&lt;<a class="code" href="namespacestd.html">std</a>::string&gt;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;{</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a16defe9844c7d91d357bf23a8317df9c">write</a>(std::ostream&amp;, std::string <span class="keyword">const</span>&amp; var);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a3d0cf76202337f55a40ccbc20c796f3c">read</a>(std::istream&amp;, std::string&amp; var);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;};</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="comment">// specialisation for boost::quantity types</span></div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Unit, <span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable_3_01boost_1_1units_1_1quantity_3_01Unit_00_01T_01_4_01_4.html">   75</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html">SigProcVariable</a>&lt;boost::units::quantity&lt;Unit, T&gt;&gt;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;{</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a16defe9844c7d91d357bf23a8317df9c">write</a>(std::ostream&amp;, boost::units::quantity&lt;Unit, T&gt; <span class="keyword">const</span>&amp; var);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a3d0cf76202337f55a40ccbc20c796f3c">read</a>(std::istream&amp;, boost::units::quantity&lt;Unit, T&gt;&amp; var);</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;};</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &lt;iostream&gt;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespacepss.html">pss</a> {</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">namespace </span>astrotypes {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">namespace </span>sigproc {</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html">   51</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html">SigProcVariable</a></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;{</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a16defe9844c7d91d357bf23a8317df9c">write</a>(std::ostream&amp;, T <span class="keyword">const</span>&amp; var);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a839abdebf07eb9ab7c3308dc826d5e58">read</a>(std::istream&amp;, T&amp; var);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;};</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">// specialisation for std::string</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keyword">template</span>&lt;&gt;</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable_3_01std_1_1string_01_4.html">   68</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html">SigProcVariable</a>&lt;<a class="code" href="namespacestd.html">std</a>::string&gt;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;{</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a16defe9844c7d91d357bf23a8317df9c">write</a>(std::ostream&amp;, std::string <span class="keyword">const</span>&amp; var);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a839abdebf07eb9ab7c3308dc826d5e58">read</a>(std::istream&amp;, std::string&amp; var);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment">// specialisation for boost::quantity types</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Unit, <span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable_3_01boost_1_1units_1_1quantity_3_01Unit_00_01T_01_4_01_4.html">   76</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html">SigProcVariable</a>&lt;<a class="code" href="namespaceboost.html">boost</a>::units::quantity&lt;Unit, T&gt;&gt;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;{</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a16defe9844c7d91d357bf23a8317df9c">write</a>(std::ostream&amp;, boost::units::quantity&lt;Unit, T&gt; <span class="keyword">const</span>&amp; var);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a839abdebf07eb9ab7c3308dc826d5e58">read</a>(std::istream&amp;, boost::units::quantity&lt;Unit, T&gt;&amp; var);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
 <div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;} <span class="comment">// namespace sigproc</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;} <span class="comment">// namespace astrotypes</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;} <span class="comment">// namespace pss</span></div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="detail_2SigProcVariable_8cpp.html">detail/SigProcVariable.cpp</a>&quot;</span></div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="preprocessor">#endif // PSS_ASTROTYPES_SIGPROC_SIGPROCVARIABLE_H</span></div>
-<div class="ttc" id="namespacepss_html"><div class="ttname"><a href="namespacepss.html">pss</a></div><div class="ttdef"><b>Definition:</b> DataBuffer.cpp:26</div></div>
-<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable_html_a16defe9844c7d91d357bf23a8317df9c"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a16defe9844c7d91d357bf23a8317df9c">pss::astrotypes::sigproc::SigProcVariable::write</a></div><div class="ttdeci">static unsigned write(std::ostream &amp;, T const &amp;var)</div><div class="ttdoc">write the provided variable to the stream </div><div class="ttdef"><b>Definition:</b> SigProcVariable.cpp:32</div></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">// strong typing for the Header labels</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">   83</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;{</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a912b2a99228743b4722b92cd09c1138e">   85</a></span>&#160;    <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a912b2a99228743b4722b92cd09c1138e">SigProcLabel</a>() {}</div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a5da541d0bbe9dbc8c089741858614cc3">   86</a></span>&#160;    <span class="keyword">explicit</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a5da541d0bbe9dbc8c089741858614cc3">SigProcLabel</a>(std::string <span class="keyword">const</span>&amp; s) : _string(s) {}</div>
+<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a9ea2a971de1b0396258d3774e9985f84">   87</a></span>&#160;    <span class="keyword">explicit</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a9ea2a971de1b0396258d3774e9985f84">SigProcLabel</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> * s) : _string(s) {}</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="comment">//explicit operator std::string const&amp;() const { return _string; }</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a41c92c08d307f3b7a670a6b1fddae5dc">   89</a></span>&#160;    std::size_t <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a41c92c08d307f3b7a670a6b1fddae5dc">size</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;        <span class="keywordflow">return</span> _string.size() + <span class="keyword">sizeof</span>(int32_t);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    }</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;</div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#ab5c33e459dfa160be38f805418f02be4">   93</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#ab5c33e459dfa160be38f805418f02be4">operator!=</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* txt)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <span class="keywordflow">return</span> std::strcmp(_string.c_str(), txt) != 0;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="comment">// allows to be stored in std::map </span></div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#ac5885af08def3f826eca83c807bd8c5c">   98</a></span>&#160;    <span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#ac5885af08def3f826eca83c807bd8c5c">operator&lt;</a>(<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> <span class="keyword">const</span>&amp; v)<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _string &lt; v._string; }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;</div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#ae6fea8689d44e8dd171bcd580b8e9e12">  100</a></span>&#160;    std::string <span class="keyword">const</span>&amp; <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#ae6fea8689d44e8dd171bcd580b8e9e12">string</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> _string; }</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a2f273c7d2e7c3303a02a8292586752ed">write</a>(std::ostream&amp; os) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a7d228195137ba19a9f06a75400152d8f">read</a>(std::istream&amp; is);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        std::string _string;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;};</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;std::istream&amp; <a class="code" href="namespacepss_1_1astrotypes_1_1sigproc.html#a770d7c68f3fef1e2dc2e2ddc6e5d2545">operator&gt;&gt;</a>(std::istream&amp; stream, SigProcLabel&amp; var);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;std::ostream&amp; <a class="code" href="namespacepss_1_1astrotypes_1_1sigproc.html#a4ad5c9c194f9e731c83cae2a850cd3e9">operator&lt;&lt;</a>(std::ostream&amp; stream, SigProcLabel <span class="keyword">const</span>&amp; var);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;} <span class="comment">// namespace sigproc</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;} <span class="comment">// namespace astrotypes</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;} <span class="comment">// namespace pss</span></div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="SigProcVariable_8cpp.html">SigProcVariable.cpp</a>&quot;</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="preprocessor">#endif // PSS_ASTROTYPES_SIGPROC_SIGPROCVARIABLE_H</span></div>
+<div class="ttc" id="namespacepss_html"><div class="ttname"><a href="namespacepss.html">pss</a></div><div class="ttdef"><b>Definition:</b> <a href="DataBuffer_8cpp_source.html#l00026">DataBuffer.cpp:26</a></div></div>
+<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel_html_a912b2a99228743b4722b92cd09c1138e"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a912b2a99228743b4722b92cd09c1138e">pss::astrotypes::sigproc::SigProcLabel::SigProcLabel</a></div><div class="ttdeci">SigProcLabel()</div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8h_source.html#l00085">SigProcVariable.h:85</a></div></div>
+<div class="ttc" id="namespaceboost_html"><div class="ttname"><a href="namespaceboost.html">boost</a></div><div class="ttdef"><b>Definition:</b> <a href="Quantity_8h_source.html#l00093">Quantity.h:93</a></div></div>
+<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel_html_a41c92c08d307f3b7a670a6b1fddae5dc"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a41c92c08d307f3b7a670a6b1fddae5dc">pss::astrotypes::sigproc::SigProcLabel::size</a></div><div class="ttdeci">std::size_t size() const </div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8h_source.html#l00089">SigProcVariable.h:89</a></div></div>
+<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel_html_a5da541d0bbe9dbc8c089741858614cc3"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a5da541d0bbe9dbc8c089741858614cc3">pss::astrotypes::sigproc::SigProcLabel::SigProcLabel</a></div><div class="ttdeci">SigProcLabel(std::string const &amp;s)</div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8h_source.html#l00086">SigProcVariable.h:86</a></div></div>
+<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable_html_a16defe9844c7d91d357bf23a8317df9c"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a16defe9844c7d91d357bf23a8317df9c">pss::astrotypes::sigproc::SigProcVariable::write</a></div><div class="ttdeci">static unsigned write(std::ostream &amp;, T const &amp;var)</div><div class="ttdoc">write the provided variable to the stream </div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8cpp_source.html#l00032">SigProcVariable.cpp:32</a></div></div>
+<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel_html_ae6fea8689d44e8dd171bcd580b8e9e12"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#ae6fea8689d44e8dd171bcd580b8e9e12">pss::astrotypes::sigproc::SigProcLabel::string</a></div><div class="ttdeci">std::string const &amp; string() const </div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8h_source.html#l00100">SigProcVariable.h:100</a></div></div>
 <div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdoc">STL namespace. </div></div>
-<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable_html_a3d0cf76202337f55a40ccbc20c796f3c"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a3d0cf76202337f55a40ccbc20c796f3c">pss::astrotypes::sigproc::SigProcVariable::read</a></div><div class="ttdeci">static unsigned read(std::istream &amp;, T &amp;var)</div><div class="ttdoc">read form the stream into the variable provided </div><div class="ttdef"><b>Definition:</b> SigProcVariable.cpp:39</div></div>
-<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable_html"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html">pss::astrotypes::sigproc::SigProcVariable</a></div><div class="ttdoc">Read and write variables to sigproc format. </div><div class="ttdef"><b>Definition:</b> SigProcVariable.h:50</div></div>
-<div class="ttc" id="detail_2SigProcVariable_8cpp_html"><div class="ttname"><a href="detail_2SigProcVariable_8cpp.html">SigProcVariable.cpp</a></div></div>
+<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel_html_ac5885af08def3f826eca83c807bd8c5c"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#ac5885af08def3f826eca83c807bd8c5c">pss::astrotypes::sigproc::SigProcLabel::operator&lt;</a></div><div class="ttdeci">bool operator&lt;(SigProcLabel const &amp;v) const </div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8h_source.html#l00098">SigProcVariable.h:98</a></div></div>
+<div class="ttc" id="namespacepss_1_1astrotypes_1_1sigproc_html_a4ad5c9c194f9e731c83cae2a850cd3e9"><div class="ttname"><a href="namespacepss_1_1astrotypes_1_1sigproc.html#a4ad5c9c194f9e731c83cae2a850cd3e9">pss::astrotypes::sigproc::operator&lt;&lt;</a></div><div class="ttdeci">Header::Info const &amp; operator&lt;&lt;(std::ostream &amp;os, Header::Info const &amp;adapter)</div><div class="ttdef"><b>Definition:</b> <a href="Header_8cpp_source.html#l00286">Header.cpp:286</a></div></div>
+<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable_html_a839abdebf07eb9ab7c3308dc826d5e58"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html#a839abdebf07eb9ab7c3308dc826d5e58">pss::astrotypes::sigproc::SigProcVariable::read</a></div><div class="ttdeci">static unsigned read(std::istream &amp;, T &amp;var)</div><div class="ttdoc">read form the stream into the variable provided </div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8cpp_source.html#l00039">SigProcVariable.cpp:39</a></div></div>
+<div class="ttc" id="SigProcVariable_8cpp_html"><div class="ttname"><a href="SigProcVariable_8cpp.html">SigProcVariable.cpp</a></div></div>
+<div class="ttc" id="namespacepss_1_1astrotypes_1_1sigproc_html_a770d7c68f3fef1e2dc2e2ddc6e5d2545"><div class="ttname"><a href="namespacepss_1_1astrotypes_1_1sigproc.html#a770d7c68f3fef1e2dc2e2ddc6e5d2545">pss::astrotypes::sigproc::operator&gt;&gt;</a></div><div class="ttdeci">std::istream &amp; operator&gt;&gt;(std::istream &amp;stream, HeaderBase&lt; Derived &gt; &amp;headers)</div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00146">HeaderBase.cpp:146</a></div></div>
+<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable_html"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcVariable.html">pss::astrotypes::sigproc::SigProcVariable</a></div><div class="ttdoc">Read and write variables to sigproc format. </div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8h_source.html#l00051">SigProcVariable.h:51</a></div></div>
+<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel_html_a7d228195137ba19a9f06a75400152d8f"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a7d228195137ba19a9f06a75400152d8f">pss::astrotypes::sigproc::SigProcLabel::read</a></div><div class="ttdeci">void read(std::istream &amp;is)</div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8cpp_source.html#l00097">SigProcVariable.cpp:97</a></div></div>
+<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel_html"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">pss::astrotypes::sigproc::SigProcLabel</a></div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8h_source.html#l00083">SigProcVariable.h:83</a></div></div>
+<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel_html_a9ea2a971de1b0396258d3774e9985f84"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a9ea2a971de1b0396258d3774e9985f84">pss::astrotypes::sigproc::SigProcLabel::SigProcLabel</a></div><div class="ttdeci">SigProcLabel(const char *s)</div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8h_source.html#l00087">SigProcVariable.h:87</a></div></div>
+<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel_html_ab5c33e459dfa160be38f805418f02be4"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#ab5c33e459dfa160be38f805418f02be4">pss::astrotypes::sigproc::SigProcLabel::operator!=</a></div><div class="ttdeci">bool operator!=(const char *txt) const </div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8h_source.html#l00093">SigProcVariable.h:93</a></div></div>
+<div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel_html_a2f273c7d2e7c3303a02a8292586752ed"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a2f273c7d2e7c3303a02a8292586752ed">pss::astrotypes::sigproc::SigProcLabel::write</a></div><div class="ttdeci">void write(std::ostream &amp;os) const </div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8cpp_source.html#l00092">SigProcVariable.cpp:92</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Jul 12 2018 09:43:20 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Oct 5 2018 13:56:17 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

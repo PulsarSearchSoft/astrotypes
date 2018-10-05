@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classpss_1_1astrotypes_1_1MultiArray.html" title="pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Frequency, units::Time \&gt;" alt="" coords="5,12,212,64"/>
-<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1TimeFreqCommon.html" title="pss::astrotypes::TimeFreq\lCommon\&lt; MultiArray\&lt; Alloc,\l T, TimeFreqCommon, units\l::Frequency, units::Time \&gt; \&gt;" alt="" coords="260,5,450,71"/>
-<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1FrequencyTime.html" title="A template class representing values associated with a time and frequecny such as Stokes values or vo..." alt="" coords="498,19,679,57"/>
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice.html" title="pss::astrotypes::multiarray\l::ReducedRankSlice\&lt; SliceType,\l ExcludedDim, RankT \&gt;" alt="" coords="132,5,348,57"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1multiarray_1_1ReducedRankSlice_3_01SliceType_00_01ExcludedDim_00_011_01_4.html" title="pss::astrotypes::multiarray\l::ReducedRankSlice\&lt; SliceType,\l ExcludedDim, 1 \&gt;" alt="" coords="132,81,348,133"/>
+<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1TimeFreqCommon.html" title="pss::astrotypes::TimeFreq\lCommon\&lt; SliceType \&gt;" alt="" coords="153,157,328,196"/>
 </map>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['exactmatch',['ExactMatch',['../structtesting_1_1internal_1_1UnorderedMatcherRequire.html#ac393ce539a8090501b5ea3dbd541444caff31503b584408bbb15972c232d3377f',1,'testing::internal::UnorderedMatcherRequire']]]
+  ['filterbank',['FilterBank',['../classpss_1_1astrotypes_1_1sigproc_1_1Header.html#afba069d2d44d772e51960eae59f652cca319c40a51efb89140151b0fc405759fc',1,'pss::astrotypes::sigproc::Header']]]
 ];

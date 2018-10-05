@@ -1,7 +1,29 @@
 var searchData=
 [
-  ['view_2ecpp',['View.cpp',['../View_8cpp.html',1,'']]],
-  ['view_2eh',['View.h',['../View_8h.html',1,'']]],
-  ['viewiterator_2ecpp',['ViewIterator.cpp',['../ViewIterator_8cpp.html',1,'']]],
-  ['viewiterator_2eh',['ViewIterator.h',['../ViewIterator_8h.html',1,'']]]
+  ['sigproc_2eh',['SigProc.h',['../SigProc_8h.html',1,'']]],
+  ['sigproc_5fcat_2ecpp',['sigproc_cat.cpp',['../sigproc__cat_8cpp.html',1,'']]],
+  ['sigproc_5fheader_2ecpp',['sigproc_header.cpp',['../sigproc__header_8cpp.html',1,'']]],
+  ['sigproc_5ftutorial_2emd',['sigproc_tutorial.md',['../sigproc__tutorial_8md.html',1,'']]],
+  ['sigprocformat_2ecpp',['SigProcFormat.cpp',['../SigProcFormat_8cpp.html',1,'']]],
+  ['sigprocformat_2eh',['SigProcFormat.h',['../SigProcFormat_8h.html',1,'']]],
+  ['sigprocformatadapterselector_2eh',['SigProcFormatAdapterSelector.h',['../SigProcFormatAdapterSelector_8h.html',1,'']]],
+  ['sigprocformattest_2ecpp',['SigProcFormatTest.cpp',['../SigProcFormatTest_8cpp.html',1,'']]],
+  ['sigprocformattest_2eh',['SigProcFormatTest.h',['../SigProcFormatTest_8h.html',1,'']]],
+  ['sigproctestfile_2ecpp',['SigProcTestFile.cpp',['../SigProcTestFile_8cpp.html',1,'']]],
+  ['sigproctestfile_2eh',['SigProcTestFile.h',['../SigProcTestFile_8h.html',1,'']]],
+  ['sigprocvariable_2ecpp',['SigProcVariable.cpp',['../SigProcVariable_8cpp.html',1,'']]],
+  ['sigprocvariable_2eh',['SigProcVariable.h',['../SigProcVariable_8h.html',1,'']]],
+  ['sigprocwritertest_2ecpp',['SigProcWriterTest.cpp',['../SigProcWriterTest_8cpp.html',1,'']]],
+  ['sigprocwritertest_2eh',['SigProcWriterTest.h',['../SigProcWriterTest_8h.html',1,'']]],
+  ['slice_2ecpp',['Slice.cpp',['../Slice_8cpp.html',1,'']]],
+  ['slice_2eh',['Slice.h',['../Slice_8h.html',1,'']]],
+  ['sliceiterator_2ecpp',['SliceIterator.cpp',['../SliceIterator_8cpp.html',1,'']]],
+  ['sliceiterator_2eh',['SliceIterator.h',['../SliceIterator_8h.html',1,'']]],
+  ['sliceposition_2ecpp',['SlicePosition.cpp',['../SlicePosition_8cpp.html',1,'']]],
+  ['sliceposition_2eh',['SlicePosition.h',['../SlicePosition_8h.html',1,'']]],
+  ['slicetest_2ecpp',['SliceTest.cpp',['../SliceTest_8cpp.html',1,'']]],
+  ['slicetest_2eh',['SliceTest.h',['../SliceTest_8h.html',1,'']]],
+  ['standardallocator_2eh',['StandardAllocator.h',['../StandardAllocator_8h.html',1,'']]],
+  ['standardallocatortest_2ecpp',['StandardAllocatorTest.cpp',['../StandardAllocatorTest_8cpp.html',1,'']]],
+  ['standardallocatortest_2eh',['StandardAllocatorTest.h',['../StandardAllocatorTest_8h.html',1,'']]]
 ];

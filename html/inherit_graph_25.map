@@ -1,3 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classpss_1_1astrotypes_1_1IndexMapper.html" title="Maps indexes from one container onto another. " alt="" coords="5,5,247,57"/>
+<area shape="rect" id="node2" href="$structpss_1_1astrotypes_1_1has__exact__dimensions_3_01multiarray_1_1ReducedRankSlice_3_01SliceTyb1224b2492e6e3a0d0e932296bdb140f.html" title="pss::astrotypes::has\l_exact_dimensions\&lt; multiarray\l::ReducedRankSlice\&lt; SliceType,\l ExcludedDim, RankT \&gt;, Dimension,\l Dimensions...\&gt;" alt="" coords="100,5,335,84"/>
+<area shape="rect" id="node3" href="$structpss_1_1astrotypes_1_1units_1_1has__equivalent__rep.html" title="determine is the NumericalRep of the chrono::duration and the boost::quatity are equivalent ..." alt="" coords="128,108,307,160"/>
+<area shape="rect" id="node4" href="$structpss_1_1astrotypes_1_1units_1_1has__equivalent__unit.html" title="determine is the units of the chrono::duration and the boost::quatity are equivalent ..." alt="" coords="124,184,311,236"/>
 </map>

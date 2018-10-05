@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hertz',['Hertz',['../namespacepss_1_1astrotypes_1_1units.html#ac81c6ae2c67b23a3a93ee078f69d9c79',1,'pss::astrotypes::units']]]
+  ['gigahertz',['GigaHertz',['../namespacepss_1_1astrotypes_1_1units.html#a7717c62f42c6b05c4e9b5e62f8e966bd',1,'pss::astrotypes::units']]]
 ];

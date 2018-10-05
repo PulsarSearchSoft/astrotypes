@@ -1,6 +1,8 @@
 var searchData=
 [
   ['databuffer',['DataBuffer',['../classpss_1_1astrotypes_1_1DataBuffer.html',1,'pss::astrotypes']]],
+  ['datafactory',['DataFactory',['../classpss_1_1astrotypes_1_1sigproc_1_1DataFactory.html',1,'pss::astrotypes::sigproc']]],
+  ['defaultdatafactorytraits',['DefaultDataFactoryTraits',['../structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits.html',1,'pss::astrotypes::sigproc']]],
   ['dimensiona',['DimensionA',['../structpss_1_1astrotypes_1_1test_1_1DimensionA.html',1,'pss::astrotypes::test']]],
   ['dimensionb',['DimensionB',['../structpss_1_1astrotypes_1_1test_1_1DimensionB.html',1,'pss::astrotypes::test']]],
   ['dimensionc',['DimensionC',['../structpss_1_1astrotypes_1_1test_1_1DimensionC.html',1,'pss::astrotypes::test']]],

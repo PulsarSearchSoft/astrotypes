@@ -1,4 +1,6 @@
 <map id="src/cpp/pss/astrotypes/units/Length.h" name="src/cpp/pss/astrotypes/units/Length.h">
-<area shape="rect" id="node2" href="$Units_8h.html" title="src/cpp/pss/astrotypes\l/units/Units.h" alt="" coords="20,92,174,131"/>
-<area shape="rect" id="node3" href="$UnitsTest_8cpp.html" title="src/cpp/pss/astrotypes\l/units/test/src/UnitsTest.cpp" alt="" coords="5,179,189,217"/>
+<area shape="rect" id="node2" href="$ExtendedHeader_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/ExtendedHeader.h" alt="" coords="5,92,248,131"/>
+<area shape="rect" id="node4" href="$Units_8h.html" title="src/cpp/pss/astrotypes\l/units/Units.h" alt="" coords="272,92,426,131"/>
+<area shape="rect" id="node3" href="$ExtendedHeader_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/src\l/ExtendedHeader.cpp" alt="" coords="50,179,204,231"/>
+<area shape="rect" id="node5" href="$UnitsTest_8cpp.html" title="src/cpp/pss/astrotypes\l/units/test/src/UnitsTest.cpp" alt="" coords="258,185,441,224"/>
 </map>

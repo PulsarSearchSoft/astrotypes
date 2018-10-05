@@ -1,0 +1,32 @@
+<map id="src/cpp/pss/astrotypes/sigproc/examples/src/sigproc_header.cpp" name="src/cpp/pss/astrotypes/sigproc/examples/src/sigproc_header.cpp">
+<area shape="rect" id="node2" href="$SigProc_8h.html" title="pss/astrotypes/sigproc\l/SigProc.h" alt="" coords="1280,105,1434,144"/>
+<area shape="rect" id="node3" href="$Header_8h.html" title="Header.h" alt="" coords="1093,425,1168,451"/>
+<area shape="rect" id="node38" href="$FileReader_8h.html" title="FileReader.h" alt="" coords="1396,192,1493,217"/>
+<area shape="rect" id="node40" href="$IStream_8h.html" title="IStream.h" alt="" coords="890,272,969,297"/>
+<area shape="rect" id="node47" href="$DataFactory_8h.html" title="DataFactory.h" alt="" coords="1664,352,1768,377"/>
+<area shape="rect" id="node50" href="$OStream_8h.html" title="OStream.h" alt="" coords="488,352,574,377"/>
+<area shape="rect" id="node4" href="$HeaderField_8h.html" title="HeaderField.h" alt="" coords="1781,592,1886,617"/>
+<area shape="rect" id="node11" href="$HeaderBase_8h.html" title="detail/HeaderBase.h" alt="" coords="1486,505,1628,531"/>
+<area shape="rect" id="node15" href="$Time_8h.html" title="pss/astrotypes/units\l/Time.h" alt="" coords="433,585,572,624"/>
+<area shape="rect" id="node25" href="$Frequency_8h.html" title="pss/astrotypes/units\l/Frequency.h" alt="" coords="271,585,410,624"/>
+<area shape="rect" id="node28" href="$Angle_8h.html" title="pss/astrotypes/units\l/Angle.h" alt="" coords="2012,499,2151,537"/>
+<area shape="rect" id="node30" href="$DispersionMeasure_8h.html" title="pss/astrotypes/units\l/DispersionMeasure.h" alt="" coords="1243,499,1394,537"/>
+<area shape="rect" id="node35" href="$TimeFrequency_8h.html" title="pss/astrotypes/types\l/TimeFrequency.h" alt="" coords="647,499,790,537"/>
+<area shape="rect" id="node37" href="$Header_8cpp.html" title="detail/Header.cpp" alt="" coords="1043,505,1168,531"/>
+<area shape="rect" id="node5" href="$SigProcVariable_8h.html" title="pss/astrotypes/sigproc\l/detail/SigProcVariable.h" alt="" coords="1668,672,1834,711"/>
+<area shape="rect" id="node14" href="$HeaderBase_8cpp.html" title="HeaderBase.cpp" alt="" coords="1636,592,1756,617"/>
+<area shape="rect" id="node16" href="$TimeUnits_8h.html" title="TimeUnits.h" alt="" coords="293,759,385,784"/>
+<area shape="rect" id="node18" href="$BoostDurationCast_8h.html" title="BoostDurationCast.h" alt="" coords="376,679,520,704"/>
+<area shape="rect" id="node20" href="$Quantity_8h.html" title="Quantity.h" alt="" coords="946,679,1027,704"/>
+<area shape="rect" id="node21" href="$JulianClock_8h.html" title="JulianClock.h" alt="" coords="671,759,772,784"/>
+<area shape="rect" id="node22" href="$J2000Clock_8h.html" title="J2000Clock.h" alt="" coords="594,679,696,704"/>
+<area shape="rect" id="node23" href="$ModifiedJulianClock_8h.html" title="ModifiedJulianClock.h" alt="" coords="721,679,872,704"/>
+<area shape="rect" id="node24" href="$cmath_8h.html" title="cmath.h" alt="" coords="1102,679,1170,704"/>
+<area shape="rect" id="node39" href="$ResizeAdapter_8h.html" title="pss/astrotypes/multiarray\l/ResizeAdapter.h" alt="" coords="1359,265,1529,304"/>
+<area shape="rect" id="node46" href="$FileReader_8cpp.html" title="detail/FileReader.cpp" alt="" coords="1553,272,1700,297"/>
+<area shape="rect" id="node41" href="$SigProcFormat_8h.html" title="SigProcFormat.h" alt="" coords="663,425,785,451"/>
+<area shape="rect" id="node42" href="$SigProcFormatAdapterSelector_8h.html" title="SigProcFormatAdapterSelector.h" alt="" coords="1017,352,1234,377"/>
+<area shape="rect" id="node43" href="$TypeTraits_8h.html" title="TypeTraits.h" alt="" coords="298,425,393,451"/>
+<area shape="rect" id="node44" href="$IStream_8cpp.html" title="detail/IStream.cpp" alt="" coords="865,352,994,377"/>
+<area shape="rect" id="node48" href="$DefaultDataFactoryTraits_8h.html" title="DefaultDataFactoryTraits.h" alt="" coords="1754,425,1934,451"/>
+</map>

@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01SliceMixin_00_01FirstDimension_01_4_1_1OperatorSliceType.html" title="provides a template to determine the returned type of an operator[] " alt="" coords="5,5,220,71"/>
+<area shape="rect" id="node2" href="$structpss_1_1astrotypes_1_1list__has__type.html" title="pss::astrotypes::list\l_has_type\&lt; T1, T2, Ts \&gt;" alt="" coords="110,5,274,44"/>
+<area shape="rect" id="node3" href="$structpss_1_1astrotypes_1_1units_1_1is__equivalent.html" title="determine is the boost::quanity and the std::chrono:;duration are equivalent reperesentations i..." alt="" coords="100,68,285,120"/>
 </map>

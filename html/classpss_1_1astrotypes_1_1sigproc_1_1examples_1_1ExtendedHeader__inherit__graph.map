@@ -1,0 +1,5 @@
+<map id="pss::astrotypes::sigproc::examples::ExtendedHeader" name="pss::astrotypes::sigproc::examples::ExtendedHeader">
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html" title="Store SigProc header information. " alt="" coords="21,636,183,856"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html" title="{pss::astrotypes::sigproc\l::HeaderBase\&lt; Header \&gt;\n||+ HeaderBase()\l+ read()\l+ write()\l+ operator==()\l+ operator!=()\l+ size()\l+ reset()\l# do_read()\l# do_write()\l# do_equal()\l# do_reset()\l# parse_error()\l# add()\l# add_read()\l}" alt="" coords="17,327,187,587"/>
+<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html" title="Store SigProc header information. " alt="" coords="16,5,188,265"/>
+</map>
