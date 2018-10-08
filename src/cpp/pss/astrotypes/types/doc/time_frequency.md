@@ -35,7 +35,7 @@ You can easily load in sigproc (Filterbank or TimeSeries) files
 e.g.
 ~~~~{.cpp}
 #include "pss/astrotypes/types/SigProc.h"
-sigproc::FileReader filterbank_file("my_filterbank_file.fil");
+sigproc::FileReader<> filterbank_file("my_filterbank_file.fil");
 TimeFrequency<uint8_t> time_frequency;
 
 // The ResizeAdapter resizes the time_frequency object according to the filterbank files parameters and file size
