@@ -84,7 +84,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="sigproc"></a>
 The Sigproc file format (FilterBank and TimeSeries)</h1>
-<p>## Quick Start Example </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;pss/astrotypes/types/SigProc.h&quot;</span></div>
+<h2>Quick Start Example</h2>
+<p>To read in any sigproc file you can use the FileReader class. This will autmoatically convert formats from/to TimeFrequecy or FrequencyTime formats as appropriate.</p>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;pss/astrotypes/types/SigProc.h&quot;</span></div>
 <div class="line">sigproc::FileReader filterbank_file(<span class="stringliteral">&quot;my_filterbank_file.fil&quot;</span>);</div>
 <div class="line">TimeFrequency&lt;uint8_t&gt; time_frequency;</div>
 <div class="line"></div>
@@ -135,7 +137,7 @@ The Sigproc file format (FilterBank and TimeSeries)</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Oct 5 2018 13:56:18 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 8 2018 10:50:49 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
