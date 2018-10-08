@@ -117,9 +117,9 @@ class HeaderBase
         bool operator!=(HeaderBase const&) const;
 
         /**
-         * @brief copy values from one header to another
+         * @brief returns the matching field object for a given key
          */
-        Derived& copy_header_values(Derived const& dst);
+        HeaderFieldBase const& field(SigProcLabel const& key) const;
 
         /**
          * @brief returns the number of bytes in the header
@@ -132,6 +132,11 @@ class HeaderBase
         void reset();
 
     protected:
+        /**
+         * @brief copy values from one header to another
+         */
+        Derived& copy_header_values(Derived const& dst);
+
         // default implemention overridable in Derived type
         void do_read(std::istream & stream);
         void do_write(std::ostream & stream) const;

@@ -46,6 +46,13 @@ HeaderField<T>::HeaderField(std::string const& header_label, Header& h, T const&
 }
 
 template<typename T>
+HeaderField<T>::HeaderField(std::string const& header_label, Header& h, HeaderField const& t)
+    : BaseT(header_label, h)
+    , _var(t._var)
+{
+}
+
+template<typename T>
 HeaderField<T>& HeaderField<T>::operator=(T const& var )
 {
     _var = var;
@@ -110,6 +117,23 @@ HeaderField<std::vector<T>>::HeaderField( std::string const& start_label
                                         , std::string const& end_label
                                         , Header& header)
     : BaseT(start_label, header)
+    , _item_label_handler(_var)
+    , _end_label(end_label)
+    , _item_label(item_label)
+{
+    // register the read handlers
+    BaseT::add_read(end_label, _end_label_handler, header);
+    BaseT::add_read(item_label, _item_label_handler, header);
+}
+
+template<typename T>
+HeaderField<std::vector<T>>::HeaderField( std::string const& start_label
+                                        , std::string const& item_label
+                                        , std::string const& end_label
+                                        , Header& header
+                                        , HeaderField const& copy)
+    : BaseT(start_label, header)
+    , _var(copy._var)
     , _item_label_handler(_var)
     , _end_label(end_label)
     , _item_label(item_label)
@@ -211,6 +235,13 @@ void HeaderField<std::vector<T>>::operator=(const HeaderFieldBase& h )
 template<typename T, typename ToleranceType>
 HeaderFieldWithTolerance<T, ToleranceType>::HeaderFieldWithTolerance(std::string const& header_label, Header& header, ToleranceType const& t)
     : BaseT(header_label, header)
+    , _tolerance(t)
+{
+}
+
+template<typename T, typename ToleranceType>
+HeaderFieldWithTolerance<T, ToleranceType>::HeaderFieldWithTolerance(std::string const& header_label, Header& header, ToleranceType const& t, HeaderFieldWithTolerance const& copy)
+    : BaseT(header_label, header, copy)
     , _tolerance(t)
 {
 }

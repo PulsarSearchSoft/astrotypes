@@ -28,58 +28,82 @@ namespace pss {
 namespace astrotypes {
 namespace sigproc {
 
+static const SigProcLabel telescope_id_label("telescope_id");
+static const SigProcLabel machine_id_label("machine_id");
+static const SigProcLabel data_type_label("data_type");
+static const SigProcLabel raw_data_file_label("raw_data_file");
+static const SigProcLabel source_name_label("source_name");
+static const SigProcLabel barycentric_label("barycentric");
+static const SigProcLabel pulsarcentric_label("pulsarcentric");
+static const SigProcLabel az_start_label("az_start");
+static const SigProcLabel za_start_label("za_start");
+static const SigProcLabel src_raj_label("src_raj");
+static const SigProcLabel src_dej_label("src_dej");
+static const SigProcLabel tsamp_label("tsamp");
+static const SigProcLabel tstart_label("tstart");
+static const SigProcLabel nbits_label("nbits");
+static const SigProcLabel nsamples_label("nsamples");
+static const SigProcLabel fch1_label("fch1");
+static const SigProcLabel foff_label("foff");
+static const SigProcLabel fchannel_label("fchannel");
+static const SigProcLabel fchannel_start_label("FREQUENCY_START");
+static const SigProcLabel fchannel_end_label("FREQUENCY_END");
+static const SigProcLabel nchans_label("nchans");
+static const SigProcLabel nifs_label("nifs");
+static const SigProcLabel refdm_label("refdm");
+static const SigProcLabel period_label("period");
+
 inline Header::Header()
-    : _telescope_id("telescope_id", *this)
-    , _machine_id("machine_id", *this)
-    , _data_type("data_type", *this)
-    , _raw_data_file("raw_data_file", *this)
-    , _source_name("source_name", *this)
-    , _barycentric("barycentric", *this)
-    , _pulsarcentric("pulsarcentric", *this)
-    , _az_start("az_start", *this)
-    , _za_start("za_start", *this)
-    , _src_raj("src_raj", *this)
-    , _src_dej("src_dej", *this)
-    , _tsamp("tsamp", *this)
-    , _tstart("tstart", *this, _tsamp)
-    , _n_bits("nbits", *this)
-    , _nsamples("nsamples", *this)
-    , _fch1("fch1", *this)
-    , _foff("foff", *this)
-    , _freq_channels("FREQUENCY_START", "fchannel", "FREQUENCY_END", *this)
-    , _n_chans("nchans", *this)
-    , _nifs("nifs", *this)
-    , _refdm("refdm", *this)
-    , _period("period", *this)
+    : _telescope_id(telescope_id_label, *this)
+    , _machine_id(machine_id_label, *this)
+    , _data_type(data_type_label, *this)
+    , _raw_data_file(raw_data_file_label, *this)
+    , _source_name(source_name_label, *this)
+    , _barycentric(barycentric_label, *this)
+    , _pulsarcentric(pulsarcentric_label, *this)
+    , _az_start(az_start_label, *this)
+    , _za_start(za_start_label, *this)
+    , _src_raj(src_raj_label, *this)
+    , _src_dej(src_dej_label, *this)
+    , _tsamp(tsamp_label, *this)
+    , _tstart(tstart_label, *this, _tsamp)
+    , _n_bits(nbits_label, *this)
+    , _nsamples(nsamples_label, *this)
+    , _fch1(fch1_label, *this)
+    , _foff(foff_label, *this)
+    , _freq_channels(fchannel_start_label, fchannel_label, fchannel_end_label, *this)
+    , _n_chans(nchans_label, *this)
+    , _nifs(nifs_label, *this)
+    , _refdm(refdm_label, *this)
+    , _period(period_label, *this)
 {
 }
 
 inline Header::Header(Header const& h)
     : BaseT(h)
-    , _telescope_id("telescope_id", *this)
-    , _machine_id("machine_id", *this)
-    , _data_type("data_type", *this)
-    , _raw_data_file("raw_data_file", *this)
-    , _source_name("source_name", *this)
-    , _barycentric("barycentric", *this)
-    , _pulsarcentric("pulsarcentric", *this)
-    , _az_start("az_start", *this)
-    , _za_start("za_start", *this)
-    , _src_raj("src_raj", *this)
-    , _src_dej("src_dej", *this)
-    , _tsamp("tsamp", *this)
-    , _tstart("tstart", *this, _tsamp)
-    , _n_bits("nbits", *this)
-    , _nsamples("nsamples", *this)
-    , _fch1("fch1", *this)
-    , _foff("foff", *this)
-    , _freq_channels("FREQUENCY_START", "fchannel", "FREQUENCY_END", *this)
-    , _n_chans("nchans", *this)
-    , _nifs("nifs", *this)
-    , _refdm("refdm", *this)
-    , _period("period", *this)
+    , _telescope_id(telescope_id_label, *this, h._telescope_id)
+    , _machine_id(machine_id_label, *this, h._machine_id)
+    , _data_type(data_type_label, *this, h._data_type)
+    , _raw_data_file(raw_data_file_label, *this, h._raw_data_file)
+    , _source_name(source_name_label, *this, h._source_name)
+    , _barycentric(barycentric_label, *this, h._barycentric)
+    , _pulsarcentric(pulsarcentric_label, *this, h._pulsarcentric)
+    , _az_start(az_start_label, *this, h._az_start)
+    , _za_start(za_start_label, *this, h._za_start)
+    , _src_raj(src_raj_label, *this, h._src_raj)
+    , _src_dej(src_dej_label, *this, h._src_dej)
+    , _tsamp(tsamp_label, *this, h._tsamp)
+    , _tstart(tstart_label, *this, _tsamp, h._tstart)
+    , _n_bits(nbits_label, *this, h._n_bits)
+    , _nsamples(nsamples_label, *this, h._nsamples)
+    , _fch1(fch1_label, *this, h._fch1)
+    , _foff(foff_label, *this, h._foff)
+    , _freq_channels(fchannel_start_label, fchannel_label, fchannel_end_label, *this, h._freq_channels)
+    , _n_chans(nchans_label, *this, h._n_chans)
+    , _nifs(nifs_label, *this, h._nifs)
+    , _refdm(refdm_label, *this, h._refdm)
+    , _period(period_label, *this, h._period)
 {
-    this->copy_header_values(h);
 }
 
 inline Header& Header::operator=(Header const& h)

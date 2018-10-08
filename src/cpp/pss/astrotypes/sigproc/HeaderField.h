@@ -94,6 +94,9 @@ class HeaderField : public HeaderFieldBase
         HeaderField(std::string const& header_label, Header& header);
         HeaderField(std::string const& header_label, Header& header, T const& to_copy);
 
+        // Warning HeaderFieldBase must be convertible to HeaderField
+        HeaderField(std::string const& header_label, Header& header, HeaderField const&);
+
         operator T const&() const { return *_var; }
         operator T&() { return *_var; }
         operator boost::optional<T> const&() const { return _var; }
@@ -122,6 +125,7 @@ class HeaderFieldWithTolerance : public HeaderField<T>
 
     public:
         HeaderFieldWithTolerance(std::string const& header_label, Header& header, ToleranceType const&);
+        HeaderFieldWithTolerance(std::string const& header_label, Header& header, ToleranceType const&, HeaderFieldWithTolerance const&);
         HeaderFieldWithTolerance& operator=(T const& var);
         
         bool operator==(const HeaderFieldBase&) const override;
@@ -160,9 +164,7 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
                 bool is_set() const override { return false; }
                 unsigned read(std::istream &) override;
                 void reset() override {};
-                void operator=(const HeaderFieldBase& h) override {
-                    _vec = reinterpret_cast<ItemField const&>(h)._vec;
-                }
+                void operator=(const HeaderFieldBase&) override {}
 
             private:
                 std::vector<T>& _vec;
@@ -170,6 +172,7 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
 
     public:
         HeaderField(std::string const& start_label, std::string const& item_label, std::string const& end_label, Header& header);
+        HeaderField(std::string const& start_label, std::string const& item_label, std::string const& end_label, Header& header, HeaderField const& copy);
 
         operator std::vector<T> const&() const { return _var; }
         operator std::vector<T>&() { return _var; }

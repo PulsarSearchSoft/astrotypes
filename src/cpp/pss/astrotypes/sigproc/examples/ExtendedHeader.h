@@ -38,8 +38,11 @@ namespace examples {
 
 class ExtendedHeader : public pss::astrotypes::sigproc::Header
 {
+        typedef pss::astrotypes::sigproc::Header BaseT;
+
     public:
         ExtendedHeader();
+        ExtendedHeader(ExtendedHeader const& copy);
         ~ExtendedHeader();
 
         /** 

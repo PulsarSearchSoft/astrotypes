@@ -85,7 +85,9 @@ struct SigProcLabel
     SigProcLabel() {}
     explicit SigProcLabel(std::string const& s) : _string(s) {}
     explicit SigProcLabel(const char * s) : _string(s) {}
-    //explicit operator std::string const&() const { return _string; }
+
+    operator std::string const&() const { return _string; }
+
     std::size_t size() const {
         return _string.size() + sizeof(int32_t);
     }

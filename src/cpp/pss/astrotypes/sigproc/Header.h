@@ -183,12 +183,12 @@ class Header : public HeaderBase<Header>
          * @brief return the date of the start of the data block
          */
         boost::optional<units::ModifiedJulianDate> const& tstart() const;
-        
+
         /**
          * @brief set the date of the start of the data block
          */
         void tstart(units::ModifiedJulianDate const&);
-        
+
         /**
          * @brief return the sample_interval (if defined)
          */
@@ -254,13 +254,13 @@ class Header : public HeaderBase<Header>
         unsigned number_of_bits() const;
 
         /**
-         * @brief set the number of bits 
+         * @brief set the number of bits
          */
         void number_of_bits(unsigned);
 
         /**
          * @brief return the number of time samples (optional)
-         * @details optional field. 
+         * @details optional field.
          * @deprecated
          *          This can usually be calculated from the file size instead
          */

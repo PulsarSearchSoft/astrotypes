@@ -29,12 +29,20 @@ namespace astrotypes {
 namespace sigproc {
 namespace examples {
 
+static const SigProcLabel distance_label("distance");
+
 ExtendedHeader::ExtendedHeader()
-    : _distance("distance", *this) // register our new header parameter
+    : _distance(distance_label, *this) // register our new header parameter
 {
 }
 
 ExtendedHeader::~ExtendedHeader()
+{
+}
+
+ExtendedHeader::ExtendedHeader(ExtendedHeader const& copy)
+    : BaseT(copy)
+    , _distance(distance_label, *this, copy._distance)
 {
 }
 
