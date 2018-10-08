@@ -49,6 +49,12 @@ HeaderBase<Derived>::HeaderBase()
 }
 
 template<typename Derived>
+HeaderBase<Derived>::HeaderBase(HeaderBase const& h)
+    : _size(h._size)
+{
+}
+
+template<typename Derived>
 void HeaderBase<Derived>::reset()
 {
     static_cast<Derived&>(*this).do_reset();
@@ -60,6 +66,18 @@ void HeaderBase<Derived>::do_reset()
     for(auto const& header : _headers) {
         header.second->reset();
     }
+}
+
+template<typename Derived>
+Derived& HeaderBase<Derived>::copy_header_values(Derived const& dst)
+{
+    for(auto const& header : dst._headers) {
+        if(header.second->is_set()) {
+            auto& field = *_headers.at(header.first);
+            field = *header.second;
+        }
+    }
+    return static_cast<Derived&>(*this);
 }
 
 template<typename Derived>

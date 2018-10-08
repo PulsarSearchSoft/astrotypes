@@ -86,6 +86,8 @@ class HeaderBase
 
     public:
         HeaderBase();
+        // maps will not be copied over
+        HeaderBase(HeaderBase const&);
 
         /**
          * @brief read in header data from the provided stream
@@ -113,6 +115,11 @@ class HeaderBase
          * @details see caveats in operator==
          */
         bool operator!=(HeaderBase const&) const;
+
+        /**
+         * @brief copy values from one header to another
+         */
+        Derived& copy_header_values(Derived const& dst);
 
         /**
          * @brief returns the number of bytes in the header

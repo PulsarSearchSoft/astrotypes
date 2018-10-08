@@ -404,6 +404,25 @@ TEST_F(HeaderTest, read_filterbank_file_test)
     ASSERT_EQ(header.number_of_ifs(), test_file.number_of_ifs());
 }
 
+TEST_F(HeaderTest, copy_constructor_test)
+{
+    Header header1;
+    header1.number_of_channels(300);
+    header1.number_of_bits(65);
+    std::vector<boost::units::quantity<units::MegaHertz, double>> channels;
+    for(double i=100.0; i < 140.0; ++i) { 
+        channels.push_back( boost::units::quantity<units::MegaHertz, double>(i * units::megahertz) );
+    }
+    header1.frequency_channels(channels);
+
+    Header header2(header1);
+    
+    ASSERT_TRUE(header1 == header2);
+    Header header3;
+    header3 = header2;
+    ASSERT_TRUE(header1 == header3);
+}
+
 } // namespace test
 } // namespace sigproc
 } // namespace astrotypes

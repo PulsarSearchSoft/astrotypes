@@ -54,6 +54,39 @@ inline Header::Header()
 {
 }
 
+inline Header::Header(Header const& h)
+    : BaseT(h)
+    , _telescope_id("telescope_id", *this)
+    , _machine_id("machine_id", *this)
+    , _data_type("data_type", *this)
+    , _raw_data_file("raw_data_file", *this)
+    , _source_name("source_name", *this)
+    , _barycentric("barycentric", *this)
+    , _pulsarcentric("pulsarcentric", *this)
+    , _az_start("az_start", *this)
+    , _za_start("za_start", *this)
+    , _src_raj("src_raj", *this)
+    , _src_dej("src_dej", *this)
+    , _tsamp("tsamp", *this)
+    , _tstart("tstart", *this, _tsamp)
+    , _n_bits("nbits", *this)
+    , _nsamples("nsamples", *this)
+    , _fch1("fch1", *this)
+    , _foff("foff", *this)
+    , _freq_channels("FREQUENCY_START", "fchannel", "FREQUENCY_END", *this)
+    , _n_chans("nchans", *this)
+    , _nifs("nifs", *this)
+    , _refdm("refdm", *this)
+    , _period("period", *this)
+{
+    this->copy_header_values(h);
+}
+
+inline Header& Header::operator=(Header const& h)
+{
+    return this->copy_header_values(h);
+}
+
 template<typename T, typename Alloc>
 Header::OStreamAdapter<astrotypes::TimeFrequency<T, Alloc>> Header::operator<<(astrotypes::TimeFrequency<T, Alloc> const& data)
 {

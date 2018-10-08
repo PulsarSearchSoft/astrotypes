@@ -71,6 +71,7 @@ namespace sigproc {
 class Header : public HeaderBase<Header>
 {
     private:
+        typedef HeaderBase<Header> BaseT;
         typedef Header SelfType;
 
         template<typename T>
@@ -97,7 +98,10 @@ class Header : public HeaderBase<Header>
 
     public:
         Header();
+        Header(Header const&);
         virtual ~Header() {};
+
+        Header& operator=(Header const&);
 
         /**
          * @brief return the telescope_id identifier (if any)

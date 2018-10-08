@@ -76,6 +76,8 @@ class HeaderFieldBase
         virtual bool is_set() const = 0;
 
         virtual bool operator==(const HeaderFieldBase&) const { return true; };
+
+        virtual void operator=(const HeaderFieldBase&) = 0;
 };
 
 template<typename T>
@@ -96,6 +98,7 @@ class HeaderField : public HeaderFieldBase
         operator T&() { return *_var; }
         operator boost::optional<T> const&() const { return _var; }
         HeaderField& operator=(T const& var);
+        void operator=(const HeaderFieldBase&) override;
 
         unsigned read(std::istream &) override;
         unsigned write(std::ostream &) const override;
@@ -147,6 +150,7 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
                 // do content other than the label
                 bool is_set() const override { return false; }
                 void reset() override {};
+                void operator=(const HeaderFieldBase&) override {};
         };
 
         class ItemField : public HeaderFieldBase {
@@ -156,6 +160,9 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
                 bool is_set() const override { return false; }
                 unsigned read(std::istream &) override;
                 void reset() override {};
+                void operator=(const HeaderFieldBase& h) override {
+                    _vec = reinterpret_cast<ItemField const&>(h)._vec;
+                }
 
             private:
                 std::vector<T>& _vec;
@@ -181,6 +188,7 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
 
         bool operator==(const HeaderFieldBase&) const override;
         bool operator==(const HeaderField&) const;
+        void operator=(const HeaderFieldBase&) override;
 
     private:
         std::vector<T>  _var;

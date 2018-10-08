@@ -53,6 +53,12 @@ HeaderField<T>& HeaderField<T>::operator=(T const& var )
 }
 
 template<typename T>
+void HeaderField<T>::operator=(const HeaderFieldBase& h )
+{
+    _var = reinterpret_cast<HeaderField<T> const&>(h)._var;
+}
+
+template<typename T>
 unsigned HeaderField<T>::read(std::istream& stream)
 {
     T v;
@@ -193,6 +199,12 @@ bool HeaderField<std::vector<T>>::operator==(const HeaderField& h) const
 {
     if(h._var.size() != _var.size()) return false;
     return true;    // only checks if sizes are the same. is this enough?
+}
+
+template<typename T>
+void HeaderField<std::vector<T>>::operator=(const HeaderFieldBase& h )
+{
+    _var = reinterpret_cast<HeaderField<std::vector<T>> const&>(h)._var;
 }
 
 // ------ HeaderFieldWithTolerance ------
