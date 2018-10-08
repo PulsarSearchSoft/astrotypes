@@ -1,6 +1,10 @@
 @section sigproc The Sigproc file format (FilterBank and TimeSeries)
 
 ## Quick Start Example
+To read in any sigproc file you can use the FileReader class.
+This will autmoatically convert formats from/to TimeFrequecy or FrequencyTime formats
+as appropriate.
+
 ~~~~{.cpp}
 #include "pss/astrotypes/types/SigProc.h"
 sigproc::FileReader filterbank_file("my_filterbank_file.fil");

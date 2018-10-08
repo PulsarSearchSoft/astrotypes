@@ -6,7 +6,7 @@ set(
    src/TimeFrequencyTest.cpp
 )
 
-add_executable(gtest_types ${gtest_types_src} )
+add_executable(gtest_astrotypes_types ${gtest_types_src} )
 #target_link_libraries(gtest_types ${ASTROTYPES_TEST_UTILS} ${ASTROTYPES_LIBRARIES} ${GTEST_LIBRARIES})
-target_link_libraries(gtest_types ${ASTROTYPES_TEST_UTILS} ${GTEST_LIBRARIES})
-add_test(gtest_types gtest_types)
+target_link_libraries(gtest_astrotypes_types ${ASTROTYPES_TEST_UTILS} ${GTEST_LIBRARIES})
+add_test(gtest_astrotypes_types gtest_astrotypes_types)
