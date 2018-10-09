@@ -48,11 +48,11 @@ class HeaderFieldBase
         HeaderFieldBase() {};
 
         /// add the provided field as a read_only parameter
-        void add_read(std::string const& header_label, HeaderFieldBase& field, Header& header);
+        void add_read(SigProcLabel const& header_label, HeaderFieldBase& field, Header& header);
 
     public:
         // registers the Field to be read/written by the Header parser
-        HeaderFieldBase(std::string const& header_name, Header& h);
+        HeaderFieldBase(SigProcLabel const& header_name, Header& h);
         ~HeaderFieldBase() {}; // virtual not needed, we never expect to pass these around
 
         /// read into variable
@@ -91,11 +91,11 @@ class HeaderField : public HeaderFieldBase
 
     public:
         /// add the provided field as a read/write parameters
-        HeaderField(std::string const& header_label, Header& header);
-        HeaderField(std::string const& header_label, Header& header, T const& to_copy);
+        HeaderField(SigProcLabel const& header_label, Header& header);
+        HeaderField(SigProcLabel const& header_label, Header& header, T const& to_copy);
 
         // Warning HeaderFieldBase must be convertible to HeaderField
-        HeaderField(std::string const& header_label, Header& header, HeaderField const&);
+        HeaderField(SigProcLabel const& header_label, Header& header, HeaderField const&);
 
         operator T const&() const { return *_var; }
         operator T&() { return *_var; }
@@ -124,8 +124,8 @@ class HeaderFieldWithTolerance : public HeaderField<T>
         typedef HeaderField<T> BaseT;
 
     public:
-        HeaderFieldWithTolerance(std::string const& header_label, Header& header, ToleranceType const&);
-        HeaderFieldWithTolerance(std::string const& header_label, Header& header, ToleranceType const&, HeaderFieldWithTolerance const&);
+        HeaderFieldWithTolerance(SigProcLabel const& header_label, Header& header, ToleranceType const&);
+        HeaderFieldWithTolerance(SigProcLabel const& header_label, Header& header, ToleranceType const&, HeaderFieldWithTolerance const&);
         HeaderFieldWithTolerance& operator=(T const& var);
         
         bool operator==(const HeaderFieldBase&) const override;
@@ -171,8 +171,8 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
         };
 
     public:
-        HeaderField(std::string const& start_label, std::string const& item_label, std::string const& end_label, Header& header);
-        HeaderField(std::string const& start_label, std::string const& item_label, std::string const& end_label, Header& header, HeaderField const& copy);
+        HeaderField(SigProcLabel const& start_label, SigProcLabel const& item_label, SigProcLabel const& end_label, Header& header);
+        HeaderField(SigProcLabel const& start_label, SigProcLabel const& item_label, SigProcLabel const& end_label, Header& header, HeaderField const& copy);
 
         operator std::vector<T> const&() const { return _var; }
         operator std::vector<T>&() { return _var; }

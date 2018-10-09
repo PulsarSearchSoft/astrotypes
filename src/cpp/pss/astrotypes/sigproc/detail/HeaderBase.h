@@ -117,11 +117,6 @@ class HeaderBase
         bool operator!=(HeaderBase const&) const;
 
         /**
-         * @brief returns the matching field object for a given key
-         */
-        HeaderFieldBase const& field(SigProcLabel const& key) const;
-
-        /**
          * @brief returns the number of bytes in the header
          */
         std::size_t size() const;
@@ -151,12 +146,12 @@ class HeaderBase
         /**
          * @brief add a field to be parsed for read and write
          */
-        void add(std::string const& label, HeaderFieldBase& field);
+        void add(SigProcLabel const& label, HeaderFieldBase& field);
 
         /**
          * @brief add a field to be parsed for read only
          */
-        void add_read(std::string const& label, HeaderFieldBase& field);
+        void add_read(SigProcLabel const& label, HeaderFieldBase& field);
 
     private:
         mutable unsigned _size; // byte size of the header

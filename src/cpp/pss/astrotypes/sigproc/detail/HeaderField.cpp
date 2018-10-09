@@ -33,20 +33,20 @@ namespace astrotypes {
 namespace sigproc {
 
 template<typename T>
-HeaderField<T>::HeaderField(std::string const& header_label, Header& h)
+HeaderField<T>::HeaderField(SigProcLabel const& header_label, Header& h)
     : BaseT(header_label, h)
 {
 }
 
 template<typename T>
-HeaderField<T>::HeaderField(std::string const& header_label, Header& h, T const& t)
+HeaderField<T>::HeaderField(SigProcLabel const& header_label, Header& h, T const& t)
     : BaseT(header_label, h)
     , _var(t)
 {
 }
 
 template<typename T>
-HeaderField<T>::HeaderField(std::string const& header_label, Header& h, HeaderField const& t)
+HeaderField<T>::HeaderField(SigProcLabel const& header_label, Header& h, HeaderField const& t)
     : BaseT(header_label, h)
     , _var(t._var)
 {
@@ -83,7 +83,7 @@ unsigned HeaderField<T>::write(std::ostream& stream) const
 template<typename T>
 void HeaderField<T>::write_info(std::ostream& stream) const
 {
-    stream << *_var;
+    stream << std::setprecision(12) << *_var;
 }
 
 template<typename T>
@@ -112,9 +112,9 @@ bool HeaderField<T>::operator==(const HeaderField& f) const
 }
 // -------------- std::vector specialization
 template<typename T>
-HeaderField<std::vector<T>>::HeaderField( std::string const& start_label
-                                        , std::string const& item_label
-                                        , std::string const& end_label
+HeaderField<std::vector<T>>::HeaderField( SigProcLabel const& start_label
+                                        , SigProcLabel const& item_label
+                                        , SigProcLabel const& end_label
                                         , Header& header)
     : BaseT(start_label, header)
     , _item_label_handler(_var)
@@ -127,9 +127,9 @@ HeaderField<std::vector<T>>::HeaderField( std::string const& start_label
 }
 
 template<typename T>
-HeaderField<std::vector<T>>::HeaderField( std::string const& start_label
-                                        , std::string const& item_label
-                                        , std::string const& end_label
+HeaderField<std::vector<T>>::HeaderField( SigProcLabel const& start_label
+                                        , SigProcLabel const& item_label
+                                        , SigProcLabel const& end_label
                                         , Header& header
                                         , HeaderField const& copy)
     : BaseT(start_label, header)
@@ -233,14 +233,14 @@ void HeaderField<std::vector<T>>::operator=(const HeaderFieldBase& h )
 
 // ------ HeaderFieldWithTolerance ------
 template<typename T, typename ToleranceType>
-HeaderFieldWithTolerance<T, ToleranceType>::HeaderFieldWithTolerance(std::string const& header_label, Header& header, ToleranceType const& t)
+HeaderFieldWithTolerance<T, ToleranceType>::HeaderFieldWithTolerance(SigProcLabel const& header_label, Header& header, ToleranceType const& t)
     : BaseT(header_label, header)
     , _tolerance(t)
 {
 }
 
 template<typename T, typename ToleranceType>
-HeaderFieldWithTolerance<T, ToleranceType>::HeaderFieldWithTolerance(std::string const& header_label, Header& header, ToleranceType const& t, HeaderFieldWithTolerance const& copy)
+HeaderFieldWithTolerance<T, ToleranceType>::HeaderFieldWithTolerance(SigProcLabel const& header_label, Header& header, ToleranceType const& t, HeaderFieldWithTolerance const& copy)
     : BaseT(header_label, header, copy)
     , _tolerance(t)
 {
@@ -292,12 +292,12 @@ bool HeaderFieldWithTolerance<T, ToleranceType>::operator==(HeaderFieldWithToler
     return compare_tolerance<typename std::decay<ToleranceType>::type>::exec(abs(*this->_var - *h._var) , _tolerance); 
 }
 
-inline HeaderFieldBase::HeaderFieldBase(std::string const& header_name, Header& h)
+inline HeaderFieldBase::HeaderFieldBase(SigProcLabel const& header_name, Header& h)
 {
     h.add(header_name, *this);
 }
 
-inline void HeaderFieldBase::add_read(std::string const& header_label, HeaderFieldBase& field, Header& header)
+inline void HeaderFieldBase::add_read(SigProcLabel const& header_label, HeaderFieldBase& field, Header& header)
 {
     header.add_read(header_label, field);
 }

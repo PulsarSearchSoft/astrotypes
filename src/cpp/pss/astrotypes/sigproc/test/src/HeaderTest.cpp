@@ -383,6 +383,7 @@ TEST_F(HeaderTest, info_adapter_write)
     Header h;
     h.number_of_bits(16);
     h.number_of_channels(100);
+    h.sample_interval(boost::units::quantity<units::Seconds, double>(.01768888 * units::milliseconds));
     std::vector<boost::units::quantity<units::MegaHertz, double>> channels;
     for(double i=100.0; i < 140.0; ++i) { 
         channels.push_back( boost::units::quantity<units::MegaHertz, double>(i * units::megahertz) );

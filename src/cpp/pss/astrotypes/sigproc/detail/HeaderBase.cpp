@@ -174,12 +174,6 @@ bool HeaderBase<Derived>::operator==(HeaderBase<Derived> const& h) const
 }
 
 template<typename Derived>
-HeaderFieldBase const& HeaderBase<Derived>::field(SigProcLabel const& key) const
-{
-    return *_headers.at(key);
-}
-
-template<typename Derived>
 bool HeaderBase<Derived>::do_equal(HeaderBase<Derived> const& h) const
 {
     for(auto const& header : _headers) {
@@ -232,15 +226,15 @@ std::size_t HeaderBase<Derived>::size() const {
 }
 
 template<typename Derived>
-void HeaderBase<Derived>::add(std::string const& name, HeaderFieldBase& field)
+void HeaderBase<Derived>::add(SigProcLabel const& name, HeaderFieldBase& field)
 {
-    _headers.insert(std::make_pair(SigProcLabel(name), &field));
+    _headers.insert(std::make_pair(name, &field));
 }
 
 template<typename Derived>
-void HeaderBase<Derived>::add_read(std::string const& name, HeaderFieldBase& field)
+void HeaderBase<Derived>::add_read(SigProcLabel const& name, HeaderFieldBase& field)
 {
-    _read_only_headers.insert(std::make_pair(SigProcLabel(name), &field));
+    _read_only_headers.insert(std::make_pair(name, &field));
 }
 
 template<typename Derived>
