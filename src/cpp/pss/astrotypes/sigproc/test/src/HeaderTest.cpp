@@ -252,6 +252,45 @@ TEST_F(HeaderTest, number_of_bits)
     ASSERT_EQ(0, h.number_of_bits());
 }
 
+TEST_F(HeaderTest, test_data_type)
+{
+    Header h1;
+    h1.data_type(Header::DataType::FilterBank);
+
+    // test just the data type  field
+    Header h2;
+    h2.data_type(Header::DataType::TimeSeries);
+    ASSERT_NE(h1, h2);
+    h2.data_type(Header::DataType::FilterBank);
+    ASSERT_EQ(h1, h2);
+    Header restored = save_restore(h1);
+    ASSERT_EQ(h1, restored);
+
+    // Test dependednt types (samps etv)
+    // Case Filterbank
+    //    should ignore different number of samples
+    h1.number_of_samples(10);
+    h2.number_of_samples(20);
+    ASSERT_EQ(h1, h2); 
+    h1.number_of_channels(10);
+    ASSERT_NE(h1, h2); 
+    h2.number_of_channels(10);
+
+    // Case TimeSeries
+    //    number of samples should is now an imprtant variable
+    h1.data_type(Header::DataType::TimeSeries);
+    h2.data_type(Header::DataType::TimeSeries);
+    h1.number_of_samples(10);
+    h2.number_of_samples(20);
+    ASSERT_NE(h1, h2); 
+    h2.number_of_samples(10);
+    ASSERT_EQ(h1, h2); 
+
+    // didference in number of channels should be ignored
+    h2.number_of_channels(h1.number_of_channels() + 1);
+    ASSERT_EQ(h1, h2); 
+}
+
 TEST_F(HeaderTest, test_tstart)
 {
     units::MJD mjd(100.0 * units::days);
@@ -267,6 +306,10 @@ TEST_F(HeaderTest, test_tstart)
     ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_FALSE(h.tstart());
+
+    // tstart should eb ignored in header comparision
+    h2.tstart(units::MJD(250*units::days));
+    ASSERT_TRUE(h == h2);
 }
 
 TEST_F(HeaderTest, test_sample_interval)

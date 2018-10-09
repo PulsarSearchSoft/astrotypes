@@ -161,10 +161,22 @@ class HeaderBase
          */
         void add_read(SigProcLabel const& label, HeaderFieldBase& field);
 
+        /**
+         * @brief add a field to be checked in operator==
+         * @details n.b the label must already of been added with the add() method
+         */
+        void add_compare_field(SigProcLabel const&);
+
+        /**
+         * @brief remvoe a field to be checked in operator==
+         */
+        void remove_compare_field(SigProcLabel const&);
+
     private:
         mutable unsigned _size; // byte size of the header
 
         std::map<SigProcLabel, HeaderFieldBase*> _headers;
+        std::map<SigProcLabel, HeaderFieldBase*> _compare_headers;
         std::map<SigProcLabel, HeaderFieldBase*> _read_only_headers;
 };
 

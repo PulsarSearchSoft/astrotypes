@@ -22,7 +22,9 @@
  * SOFTWARE.
  */
 #include "HeaderField.cpp"
+#include "HeaderFieldDataType.cpp"
 #include <sstream>
+#include <exception>
 
 namespace pss {
 namespace astrotypes {
@@ -160,9 +162,32 @@ inline boost::optional<std::string> const& Header::raw_data_file() const
     return _raw_data_file;
 }
 
+inline void Header::updated_data_type()
+{
+    switch(data_type()) {
+        case Header::DataType::FilterBank:
+            this->remove_compare_field(nsamples_label);
+            this->add_compare_field(nchans_label);
+            break;
+        case Header::DataType::TimeSeries:
+            this->remove_compare_field(nchans_label);
+            this->add_compare_field(nsamples_label);
+            break;
+        default:
+            throw std::runtime_error("unknown datatype in sigproc");
+    }
+}
+
 inline void Header::data_type(Header::DataType type)
 {
+    bool do_update=true;
+    if(data_type()  == type) {
+        do_update=false;
+    }
+
     _data_type = static_cast<unsigned>(type);
+
+    if(do_update) updated_data_type();
 }
 
 inline Header::DataType Header::data_type() const

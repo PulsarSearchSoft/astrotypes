@@ -25,6 +25,7 @@
 #define PSS_ASTROTYPES_SIGPROC_HEADER_H
 
 #include "HeaderField.h"
+#include "detail/HeaderFieldDataType.h"
 #include "detail/HeaderBase.h"
 #include "pss/astrotypes/units/Time.h"
 #include "pss/astrotypes/units/Frequency.h"
@@ -85,6 +86,9 @@ class Header : public HeaderBase<Header>
         };
 
         friend class HeaderFieldBase;
+
+        template<typename T>
+        friend class HeaderFieldDataType;
 
     public:
         /// Adapter for ouputing debug info about the header
@@ -329,11 +333,14 @@ class Header : public HeaderBase<Header>
         template<typename T, typename Alloc>
         OStreamAdapter<astrotypes::TimeFrequency<T, Alloc>> operator<<(astrotypes::TimeFrequency<T, Alloc> const&);
 
+    protected:
+        void updated_data_type();
+
     private:
         // standard header data fields
         HeaderField<unsigned>           _telescope_id;
         HeaderField<unsigned>           _machine_id;
-        HeaderField<unsigned>           _data_type;
+        HeaderFieldDataType<unsigned>           _data_type;
         HeaderField<std::string>        _raw_data_file;
         HeaderField<std::string>        _source_name;
         HeaderField<unsigned>           _barycentric;

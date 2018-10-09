@@ -69,6 +69,22 @@ void HeaderBase<Derived>::do_reset()
 }
 
 template<typename Derived>
+void HeaderBase<Derived>::remove_compare_field(SigProcLabel const& label)
+{
+    auto it = _compare_headers.find(label);
+    if(it == _compare_headers.end()) return;
+    _compare_headers.erase(it);
+}
+
+template<typename Derived>
+void HeaderBase<Derived>::add_compare_field(SigProcLabel const& label)
+{
+    auto it = _compare_headers.find(label);
+    if(it != _compare_headers.end()) return;
+    _compare_headers.insert(std::make_pair(label, _headers.at(label)));
+}
+
+template<typename Derived>
 Derived& HeaderBase<Derived>::copy_header_values(Derived const& dst)
 {
     for(auto const& header : dst._headers) {
@@ -176,7 +192,7 @@ bool HeaderBase<Derived>::operator==(HeaderBase<Derived> const& h) const
 template<typename Derived>
 bool HeaderBase<Derived>::do_equal(HeaderBase<Derived> const& h) const
 {
-    for(auto const& header : _headers) {
+    for(auto const& header : _compare_headers) {
         auto const& field = *h._headers.at(header.first);
         if(header.second->is_set()) {
             if(!field.is_set()) {
@@ -229,6 +245,10 @@ template<typename Derived>
 void HeaderBase<Derived>::add(SigProcLabel const& name, HeaderFieldBase& field)
 {
     _headers.insert(std::make_pair(name, &field));
+    if(name != "tstart")
+    {
+        _compare_headers.insert(std::make_pair(name, &field));
+    }
 }
 
 template<typename Derived>
