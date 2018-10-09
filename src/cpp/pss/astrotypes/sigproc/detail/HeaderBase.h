@@ -115,6 +115,10 @@ class HeaderBase
          * @brief returns true if the data formats match
          * @details source names/machine names are ignored
          *          this only matches data formatting types and offsets
+         *          Equality in this case means that the data will be 
+         *          consistent with the data type. e.g. tstart is ignored
+         *          Other fields may be ignored depnding on the data tyep being
+         *          represented
          */
         bool operator==(HeaderBase const&) const;
 
