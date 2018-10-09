@@ -239,35 +239,41 @@ void HeaderBase<Derived>::add_read(SigProcLabel const& name, HeaderFieldBase& fi
 
 template<typename Derived>
 HeaderBase<Derived>::Info::Info()
-    : _os(&std::cout)
 {
 }
 
 template<typename Derived>
-typename HeaderBase<Derived>::Info const& HeaderBase<Derived>::Info::operator<<(std::ostream& os) const
+template<typename Stream>
+typename HeaderBase<Derived>::template InfoSentry<Stream> HeaderBase<Derived>::Info::sentry(Stream& os) const
 {
-    _os = &os;
-    return *this;
+    return HeaderBase<Derived>::InfoSentry<Stream>(os);
 }
 
 template<typename Derived>
-std::ostream& HeaderBase<Derived>::Info::operator<<(Derived& h) const
+template<typename Stream>
+HeaderBase<Derived>::InfoSentry<Stream>::InfoSentry(Stream& os)
+    : _os(os)
+{
+}
+
+template<typename Derived>
+template<typename Stream>
+Stream& HeaderBase<Derived>::InfoSentry<Stream>::operator<<(Derived& h) const
 {
     for(auto const& header : h._headers) {
         if(header.second->is_set()) {
-            *_os << std::left << std::setw(15) << header.second->header_info(header.first.string()) << " : ";
-            header.second->write_info(*_os);
-            *_os << "\n";
+            _os << std::left << std::setw(15) << header.second->header_info(header.first.string()) << " : ";
+            header.second->write_info(_os);
+            _os << "\n";
         }
     }
-    return *_os;
+    return _os;
 }
 
-template<typename Derived>
-typename HeaderBase<Derived>::Info const& operator<<(std::ostream& stream, typename HeaderBase<Derived>::Info const& adapter)
+template<typename Derived, typename Stream>
+typename HeaderBase<Derived>::template InfoSentry<Stream> const& operator<<(Stream& stream, typename HeaderBase<Derived>::Info const& adapter)
 {
-    adapter << stream;
-    return adapter;
+    return adapter.sentry(stream);
 }
 
 } // namespace sigproc

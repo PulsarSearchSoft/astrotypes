@@ -73,15 +73,23 @@ class HeaderBase
         friend class HeaderFieldBase;
 
     public:
+        template<typename Stream>
+        class InfoSentry {
+            public:
+                InfoSentry(Stream& os);
+                Stream& operator<<(Derived& os) const;
+
+            private:
+                Stream& _os;
+        };
+
+    public:
         // Adapter for ouputing debug info about the header
         class Info {
             public:
                 Info();
-                std::ostream& operator<<(Derived& os) const;
-                Info const& operator<<(std::ostream& os) const;
-
-            private:
-                mutable std::ostream* _os;
+                template<typename Stream>
+                InfoSentry<Stream> sentry(Stream& os) const;
         };
 
     public:
@@ -162,9 +170,6 @@ class HeaderBase
 
 template<typename Derived>
 std::ostream& operator<<(std::ostream& os, HeaderBase<Derived> const&);
-
-template<typename Derived>
-typename HeaderBase<Derived>::Info const& operator<<(std::ostream& os, typename HeaderBase<Derived>::Info const&);
 
 template<typename Derived>
 std::istream& operator>>(std::istream& os, HeaderBase<Derived>&);

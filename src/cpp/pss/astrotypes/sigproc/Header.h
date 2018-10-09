@@ -355,7 +355,8 @@ class Header : public HeaderBase<Header>
         HeaderField<boost::units::quantity<units::Seconds, double>>        _period;      // folding period seconds
 };
 
-Header::Info const& operator<<(std::ostream& os, Header::Info const&);
+template<typename Stream>
+Header::InfoSentry<Stream> operator<<(Stream& os, Header::Info const&);
 
 } // namespace sigproc
 } // namespace astrotypes

@@ -340,11 +340,12 @@ inline unsigned Header::number_of_ifs() const
     return 0;
 }
 
-inline Header::Info const& operator<<(std::ostream& os, Header::Info const& adapter)
+template<typename Stream>
+inline Header::InfoSentry<Stream> operator<<(Stream& os, Header::Info const& adapter)
 {
-    adapter << os;
-    return adapter;
+    return adapter.sentry(os);
 }
+
 
 } // namespace sigproc
 } // namespace astrotypes
