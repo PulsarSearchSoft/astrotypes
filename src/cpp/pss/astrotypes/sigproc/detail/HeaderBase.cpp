@@ -278,7 +278,7 @@ HeaderBase<Derived>::InfoSentry<Stream>::InfoSentry(Stream& os)
 
 template<typename Derived>
 template<typename Stream>
-Stream& HeaderBase<Derived>::InfoSentry<Stream>::operator<<(Derived& h) const
+Stream& HeaderBase<Derived>::InfoSentry<Stream>::operator<<(Derived const& h) const
 {
     for(auto const& header : h._headers) {
         if(header.second->is_set()) {

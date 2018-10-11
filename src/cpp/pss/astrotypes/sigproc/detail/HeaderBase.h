@@ -77,7 +77,7 @@ class HeaderBase
         class InfoSentry {
             public:
                 InfoSentry(Stream& os);
-                Stream& operator<<(Derived& os) const;
+                Stream& operator<<(Derived const& os) const;
 
             private:
                 Stream& _os;

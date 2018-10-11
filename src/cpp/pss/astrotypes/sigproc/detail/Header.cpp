@@ -365,6 +365,11 @@ inline unsigned Header::number_of_ifs() const
     return 0;
 }
 
+inline void Header::info(std::ostream& os) const
+{
+    os << Info() << *this;
+}
+
 template<typename Stream>
 inline Header::InfoSentry<Stream> operator<<(Stream& os, Header::Info const& adapter)
 {

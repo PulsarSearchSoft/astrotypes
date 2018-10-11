@@ -333,6 +333,11 @@ class Header : public HeaderBase<Header>
         template<typename T, typename Alloc>
         OStreamAdapter<astrotypes::TimeFrequency<T, Alloc>> operator<<(astrotypes::TimeFrequency<T, Alloc> const&);
 
+        /**
+         * @brief human readable summary of the header written to the stream
+         */
+        void info(std::ostream& stream) const;
+
     protected:
         void updated_data_type();
 
