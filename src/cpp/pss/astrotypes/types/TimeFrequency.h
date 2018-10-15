@@ -89,6 +89,14 @@ class TimeFreqCommon : public SliceType
         //
         Spectra spectrum(std::size_t offset);
         ConstSpectra spectrum(std::size_t offset) const;
+
+        /// @brief return the number of channels in the data structure
+        //  @details a synonym for dimension<Frequency>()
+        std::size_t number_of_channels() const;
+
+        /// @brief return the number of spectra in the data structure
+        //  @details a synonym for dimension<Time>()
+        std::size_t number_of_spectra() const;
 };
 
 /**

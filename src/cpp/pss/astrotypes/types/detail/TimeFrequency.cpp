@@ -130,5 +130,17 @@ typename TimeFreqCommon<SliceType>::ConstSpectra TimeFreqCommon<SliceType>::spec
     return (*this)[DimensionIndex<units::Time>(offset)];
 }
 
+template<typename SliceType>
+std::size_t TimeFreqCommon<SliceType>::number_of_channels() const
+{
+    return this->template dimension<units::Frequency>();
+}
+
+template<typename SliceType>
+std::size_t TimeFreqCommon<SliceType>::number_of_spectra() const
+{
+    return this->template dimension<units::Time>();
+}
+
 } // namespace astrotypes
 } // namespace pss
