@@ -74,6 +74,9 @@ class FileReader : public IStream<HeaderType>
          */
         std::size_t number_of_data_points() const;
 
+    protected:
+        void do_open(std::string const& file_name);
+
     private:
         std::ifstream _stream;
         std::string _file_name;

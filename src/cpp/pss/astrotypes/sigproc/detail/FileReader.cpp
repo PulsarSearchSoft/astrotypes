@@ -34,7 +34,7 @@ FileReader<HeaderType>::FileReader()
 template<typename HeaderType>
 FileReader<HeaderType>::FileReader(std::string const& file_name)
 {
-    open(file_name);
+    do_open(file_name);
 }
 
 template<typename HeaderType>
@@ -44,6 +44,13 @@ FileReader<HeaderType>::~FileReader()
 
 template<typename HeaderType>
 void FileReader<HeaderType>::open(std::string const& file_name)
+{
+    if(_stream.is_open()) _stream.close();
+    do_open(file_name);
+}
+
+template<typename HeaderType>
+void FileReader<HeaderType>::do_open(std::string const& file_name)
 {
     _file_name = file_name;
     _stream.open(_file_name, std::ios::in | std::ios::binary);
