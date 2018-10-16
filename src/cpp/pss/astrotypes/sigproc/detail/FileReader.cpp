@@ -63,7 +63,7 @@ std::size_t FileReader<HeaderType>::number_of_data_points() const
 {
     struct stat file_info;
     stat(_file_name.c_str(), &file_info);
-    return 8*((file_info.st_size - this->_header.size())/this->_header.number_of_bits());
+    return ((file_info.st_size - this->_header.size())*(8.0/this->_header.number_of_bits()));
 }
 
 template<typename HeaderType>

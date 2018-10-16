@@ -80,6 +80,24 @@ TEST_F(TimeFrequencyTest, test_time_freq_spectrum)
     typename TimeFrequency<uint8_t>::ConstSpectra s2 = tf2.spectrum(3);
 }
 
+TEST_F(TimeFrequencyTest, test_time_freq_slice)
+{
+    DimensionSize<Time> time_size(50);
+    DimensionSize<Frequency> freq_size(10);
+    const TimeFrequency<uint8_t> tf1(time_size, freq_size);
+
+    for(unsigned spectrum_num =0; spectrum_num < (std::size_t)time_size; ++spectrum_num)
+    {
+        unsigned n=0;
+        auto s = tf1.slice(DimensionSpan<Time>(DimensionSize<Time>(spectrum_num)));
+        std::for_each(s.cbegin(), s.cend(), [&](uint8_t) { ++n; } );
+        ASSERT_EQ(n, (unsigned)(freq_size * spectrum_num));
+        // a slice of a slice
+        auto s2 = s.slice(DimensionSpan<Time>(DimensionSize<Time>(1)));
+        ASSERT_EQ(s2.data_size(), (unsigned)(freq_size));
+    }
+}
+
 TEST_F(TimeFrequencyTest, test_time_freq_channel)
 {
     DimensionSize<Time> time_size(2);
