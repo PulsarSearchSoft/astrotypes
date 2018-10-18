@@ -237,12 +237,38 @@ TEST(TimeTest, duration_cast_const_seconds_to_seconds)
     BoostType bs(100 * seconds);
     ASSERT_EQ(conversion.value(), bs.value());
 
+    // boost -> boost
+    BoostType bs2 = duration_cast<BoostType>(bs);
+    ASSERT_EQ(bs2.value(), bs.value());
+
     // boost -> chrono
     typedef std::chrono::duration<double, std::ratio<1>> ChronoType;
     const boost::units::quantity<Seconds, double> q(10 * seconds);;
     auto chrono_conversion = duration_cast<ChronoType>(q);
     static_assert(std::is_same<decltype(chrono_conversion), ChronoType>::value, "wrong type returned by cast");
     ASSERT_EQ(chrono_conversion.count(), q.value());
+}
+
+TEST(TimeTest, duration_cast_const_seconds_to_milliseconds)
+{
+    // chrono -> boost
+    typedef boost::units::quantity<MilliSeconds, double> BoostType;
+    const std::chrono::duration<double, std::ratio<1,1>> d(100);
+    auto conversion = duration_cast<BoostType>(d);
+    static_assert(std::is_same<decltype(conversion), BoostType>::value, "wrong type returned by cast");
+    BoostType bs(100 * seconds);
+    ASSERT_EQ(conversion.value(), bs.value());
+
+    // boost -> chrono
+    typedef const std::chrono::duration<double, std::milli> ChronoType;
+    boost::units::quantity<Seconds, double> q(100 * seconds);;
+    auto chrono_conversion = duration_cast<ChronoType>(q);
+    static_assert(std::is_same<decltype(chrono_conversion), typename std::remove_cv<ChronoType>::type>::value, "wrong type returned by cast");
+    ASSERT_EQ(chrono_conversion.count(), 1000 * q.value());
+
+    // boost -> boost
+    const BoostType bs2 = duration_cast<BoostType>(q);
+    ASSERT_EQ(bs2.value(), q.value() * 1000);
 }
 
 TEST(TimeTest, duration_cast_seconds_to_milliseconds)
@@ -261,6 +287,10 @@ TEST(TimeTest, duration_cast_seconds_to_milliseconds)
     auto chrono_conversion = duration_cast<ChronoType>(q);
     static_assert(std::is_same<decltype(chrono_conversion), ChronoType>::value, "wrong type returned by cast");
     ASSERT_EQ(chrono_conversion.count(), 1000 * q.value());
+
+    // boost -> boost
+    const BoostType bs2 = duration_cast<BoostType>(q);
+    ASSERT_EQ(bs2.value(), q.value() * 1000);
 }
 
 TEST(TimeTest, duration_cast_milliseconds_to_milliseconds)

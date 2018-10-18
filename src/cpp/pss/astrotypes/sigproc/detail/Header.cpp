@@ -362,7 +362,7 @@ inline void Header::number_of_ifs(unsigned i)
 inline unsigned Header::number_of_ifs() const
 {
     if(_nifs) return _nifs;
-    return 0;
+    return 2;
 }
 
 inline void Header::info(std::ostream& os) const

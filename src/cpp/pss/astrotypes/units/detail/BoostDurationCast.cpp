@@ -67,8 +67,20 @@ struct has_equivalent_unit : public std::is_same<typename boost_unit_to_std_rati
 {
 };
 
+template<typename BoostUnit, typename BoostUnit2, typename NumT, typename Num2T>
+struct has_equivalent_unit<boost::units::quantity<BoostUnit, NumT>,
+                          boost::units::quantity<BoostUnit2, Num2T>> : public std::is_same<NumT, Num2T>::type
+{
+};
+
 template<typename BoostType, typename ChronoType>
 struct has_equivalent_rep : public std::is_same<typename BoostType::value_type, typename ChronoType::rep>::type
+{
+};
+
+template<typename BoostUnit, typename BoostUnit2, typename NumT, typename Num2T>
+struct has_equivalent_rep<boost::units::quantity<BoostUnit, NumT>,
+                          boost::units::quantity<BoostUnit2, Num2T>> : public std::is_same<BoostUnit, BoostUnit2>::type
 {
 };
 

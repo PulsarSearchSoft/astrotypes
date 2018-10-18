@@ -1,18 +1,18 @@
 /*
  * MIT License
- * 
+ *
  * Copyright (c) 2018 PulsarSearchSoft
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -79,7 +79,7 @@ struct is_equivalent;
 /**
  * @brief Mimic the std::duration_cast to convert to/from boost::units::quantity<time, X> tyeps
  * @details template overload to convert from a std::chrono::duration where the Unit is a time_dimesion
- *          where the two types are equivalent (in unit and numerical rep), then there is 
+ *          where the two types are equivalent (in unit and numerical rep), then there is
  *          simply a reinterpret_cast (i.e no runtime overheads).
  *          Otherwise a new object is created.
  * @code
@@ -88,12 +88,12 @@ struct is_equivalent;
  * @endcode
  */
 template<typename BoostQuantity, typename ChronoNumericalRep, typename PeriodType>
-constexpr 
-typename std::enable_if<boost::units::is_quantity<BoostQuantity>::value 
+constexpr
+typename std::enable_if<boost::units::is_quantity<BoostQuantity>::value
                         && boost::units::is_unit_of_dimension<typename BoostQuantity::unit_type, boost::units::time_dimension>::value
                         && !is_equivalent<BoostQuantity, std::chrono::duration<ChronoNumericalRep, PeriodType>>::value
                        , BoostQuantity // this is the type to convert to
-         >::type 
+         >::type
 duration_cast(const std::chrono::duration<ChronoNumericalRep, PeriodType>& duration)
 {
     typedef std::chrono::duration<typename BoostQuantity::value_type
@@ -104,12 +104,12 @@ duration_cast(const std::chrono::duration<ChronoNumericalRep, PeriodType>& durat
 // specialisation - when they are of equivalent types we can just reinterpet cast and save a copy
 // non const version
 template<typename BoostQuantity, typename ChronoNumericalRep, typename PeriodType>
-constexpr 
-typename std::enable_if<boost::units::is_quantity<BoostQuantity>::value 
+constexpr
+typename std::enable_if<boost::units::is_quantity<BoostQuantity>::value
                         && boost::units::is_unit_of_dimension<typename BoostQuantity::unit_type, boost::units::time_dimension>::value
                         && is_equivalent<BoostQuantity, std::chrono::duration<ChronoNumericalRep, PeriodType>>::value
                        , BoostQuantity& // this is the type to convert to
-         >::type 
+         >::type
 duration_cast(std::chrono::duration<ChronoNumericalRep, PeriodType>& duration)
 {
     return reinterpret_cast<BoostQuantity&>(duration);
@@ -117,12 +117,12 @@ duration_cast(std::chrono::duration<ChronoNumericalRep, PeriodType>& duration)
 
 // const version
 template<typename BoostQuantity, typename ChronoNumericalRep, typename PeriodType>
-constexpr 
-typename std::enable_if<boost::units::is_quantity<BoostQuantity>::value 
+constexpr
+typename std::enable_if<boost::units::is_quantity<BoostQuantity>::value
                         && boost::units::is_unit_of_dimension<typename BoostQuantity::unit_type, boost::units::time_dimension>::value
                         && is_equivalent<BoostQuantity, std::chrono::duration<ChronoNumericalRep, PeriodType>>::value
                        , const BoostQuantity& // this is the type to convert to
-         >::type 
+         >::type
 duration_cast(const std::chrono::duration<ChronoNumericalRep, PeriodType>& duration)
 {
     return reinterpret_cast<const BoostQuantity&>(duration);
@@ -130,12 +130,12 @@ duration_cast(const std::chrono::duration<ChronoNumericalRep, PeriodType>& durat
 
 // --------- boost::units::quantity -> std::chron::duration  conversions
 template<typename ChronoDuration, typename BoostNumericalRep, typename BoostUnit>
-constexpr 
-typename std::enable_if<!boost::units::is_quantity<ChronoDuration>::value 
+constexpr
+typename std::enable_if<!boost::units::is_quantity<ChronoDuration>::value
                         && boost::units::is_unit_of_dimension<BoostUnit, boost::units::time_dimension>::value
                         && !is_equivalent<boost::units::quantity<BoostUnit, BoostNumericalRep>, ChronoDuration>::value
                        , const ChronoDuration // this is the type to convert to
-         >::type 
+         >::type
 duration_cast(const boost::units::quantity<BoostUnit, BoostNumericalRep>& duration)
 {
     typedef std::chrono::duration<BoostNumericalRep
@@ -144,27 +144,37 @@ duration_cast(const boost::units::quantity<BoostUnit, BoostNumericalRep>& durati
 }
 
 template<typename ChronoDuration, typename BoostNumericalRep, typename BoostUnit>
-constexpr 
-typename std::enable_if<!boost::units::is_quantity<ChronoDuration>::value 
+constexpr
+typename std::enable_if<!boost::units::is_quantity<ChronoDuration>::value
                         && boost::units::is_unit_of_dimension<BoostUnit, boost::units::time_dimension>::value
                         && is_equivalent<boost::units::quantity<BoostUnit, BoostNumericalRep>, ChronoDuration>::value
-                       , const ChronoDuration& // this is the type to convert to
-         >::type 
+                       , ChronoDuration& // this is the type to convert to
+         >::type
 duration_cast(boost::units::quantity<BoostUnit, BoostNumericalRep>& duration)
 {
     return reinterpret_cast<ChronoDuration&>(duration);
 }
 
 template<typename ChronoDuration, typename BoostNumericalRep, typename BoostUnit>
-constexpr 
-typename std::enable_if<!boost::units::is_quantity<ChronoDuration>::value 
-                        && boost::units::is_unit_of_dimension<BoostUnit, boost::units::time_dimension>::value
+constexpr
+typename std::enable_if<boost::units::is_unit_of_dimension<BoostUnit, boost::units::time_dimension>::value
                         && is_equivalent<boost::units::quantity<BoostUnit, BoostNumericalRep>, ChronoDuration>::value
                        , const ChronoDuration& // this is the type to convert to
-         >::type 
+         >::type
 duration_cast(const boost::units::quantity<BoostUnit, BoostNumericalRep>& duration)
 {
     return reinterpret_cast<const ChronoDuration&>(duration);
+}
+
+template<typename BoostDuration, typename BoostNumericalRep, typename BoostUnit>
+constexpr
+typename std::enable_if<boost::units::is_quantity<BoostDuration>::value
+                        && !is_equivalent<boost::units::quantity<BoostUnit, BoostNumericalRep>, BoostDuration>::value
+                       , BoostDuration // this is the type to convert to
+         >::type
+duration_cast(boost::units::quantity<BoostUnit, BoostNumericalRep> const& duration)
+{
+    return static_cast<BoostDuration>(duration);
 }
 
 } // namespace units

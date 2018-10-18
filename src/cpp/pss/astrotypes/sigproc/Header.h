@@ -278,6 +278,7 @@ class Header : public HeaderBase<Header>
 
         /**
          * @brief return the number of IF streams (e.g. polarisations) in each channel
+         * @details if not set will return 1
          */
         unsigned number_of_ifs() const;
 
