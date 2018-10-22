@@ -134,13 +134,13 @@ constexpr
 typename std::enable_if<!boost::units::is_quantity<ChronoDuration>::value
                         && boost::units::is_unit_of_dimension<BoostUnit, boost::units::time_dimension>::value
                         && !is_equivalent<boost::units::quantity<BoostUnit, BoostNumericalRep>, ChronoDuration>::value
-                       , const ChronoDuration // this is the type to convert to
+                       , ChronoDuration // this is the type to convert to
          >::type
 duration_cast(const boost::units::quantity<BoostUnit, BoostNumericalRep>& duration)
 {
     typedef std::chrono::duration<BoostNumericalRep
                                 , typename boost_unit_to_std_ratio<BoostUnit>::type> equiv_chrono_duration;
-    return std::chrono::duration_cast<ChronoDuration>(reinterpret_cast<equiv_chrono_duration const&>(duration));
+    return std::chrono::duration_cast<ChronoDuration>(reinterpret_cast<const equiv_chrono_duration &>(duration));
 }
 
 template<typename ChronoDuration, typename BoostNumericalRep, typename BoostUnit>
