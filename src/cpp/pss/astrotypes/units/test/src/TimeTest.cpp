@@ -260,7 +260,7 @@ TEST(TimeTest, duration_cast_const_seconds_to_milliseconds)
     ASSERT_EQ(conversion.value(), bs.value());
 
     // boost -> chrono
-    typedef const std::chrono::duration<double, std::milli> ChronoType;
+    typedef std::chrono::duration<double, std::milli> ChronoType;
     boost::units::quantity<Seconds, double> q(100 * seconds);;
     auto chrono_conversion = duration_cast<ChronoType>(q);
     static_assert(std::is_same<decltype(chrono_conversion), typename std::remove_cv<ChronoType>::type>::value, "wrong type returned by cast");
