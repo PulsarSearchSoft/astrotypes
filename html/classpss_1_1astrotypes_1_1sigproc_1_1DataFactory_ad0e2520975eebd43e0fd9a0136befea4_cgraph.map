@@ -1,6 +1,10 @@
 <map id="pss::astrotypes::sigproc::DataFactory::exec" name="pss::astrotypes::sigproc::DataFactory::exec">
-<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a51be305333d0511ab5ab204113cb5fd4" title="set the data type " alt="" coords="220,5,381,44"/>
-<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a8a749a6ca444fcc3af1e23a318bc0ee1" title="return the number of IF streams (e.g. polarisations) in each channel " alt="" coords="218,68,383,107"/>
-<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#ac204628a76e4959a9d7bb43b0cf54c32" title="return the number of bits " alt="" coords="215,131,387,169"/>
-<area shape="rect" id="node5" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderField.html#af2ce21aafe8ee989501030008d4e09fb" title="return true if the variable has been set, false otherwise " alt="" coords="435,131,596,169"/>
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a51be305333d0511ab5ab204113cb5fd4" title="set the data type " alt="" coords="216,75,378,113"/>
+<area shape="rect" id="node8" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a8a749a6ca444fcc3af1e23a318bc0ee1" title="return the number of IF streams (e.g. polarisations) in each channel " alt="" coords="215,140,379,179"/>
+<area shape="rect" id="node9" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#ac204628a76e4959a9d7bb43b0cf54c32" title="return the number of bits " alt="" coords="438,212,610,251"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#ae26ae416c1f5d1207cba53b23b6bd5fa" title="set the data type " alt="" coords="673,5,835,44"/>
+<area shape="rect" id="node5" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a3db5d0d021c9fc1dd6cc1e42992d7d74" title="pss::astrotypes::sigproc\l::Header::updated_data_type" alt="" coords="427,75,621,113"/>
+<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderField.html#af2ce21aafe8ee989501030008d4e09fb" title="return true if the variable has been set, false otherwise " alt="" coords="887,111,1048,149"/>
+<area shape="rect" id="node6" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a488a22f5d8604d153dbd8e467e115fab" title="remvoe a field to be checked in operator== " alt="" coords="669,68,839,120"/>
+<area shape="rect" id="node7" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ad37c163c6e4828efade099484d1097d0" title="add a field to be checked in operator== " alt="" coords="669,144,839,196"/>
 </map>

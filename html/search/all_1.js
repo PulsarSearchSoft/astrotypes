@@ -2,8 +2,9 @@ var searchData=
 [
   ['adaptedistream',['AdaptedIStream',['../classpss_1_1astrotypes_1_1sigproc_1_1AdaptedIStream.html',1,'pss::astrotypes::sigproc']]],
   ['adapter',['Adapter',['../structpss_1_1astrotypes_1_1sigproc_1_1DataFactory_1_1SigProcInputTraits.html#a08f81fbad78c8b19aba1238f2de04d3e',1,'pss::astrotypes::sigproc::DataFactory::SigProcInputTraits']]],
-  ['add',['add',['../classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a9e15ffe256bf2e9155625839802f5bd3',1,'pss::astrotypes::sigproc::HeaderBase']]],
-  ['add_5fread',['add_read',['../classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a12f8601d4645a58b97e2a331bcfd2dd4',1,'pss::astrotypes::sigproc::HeaderBase::add_read()'],['../classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html#a4df6c111c1f69f7d424625e32233261d',1,'pss::astrotypes::sigproc::HeaderFieldBase::add_read()']]],
+  ['add',['add',['../classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a359fb976e402cec3ac06fc59cdb3cab0',1,'pss::astrotypes::sigproc::HeaderBase']]],
+  ['add_5fcompare_5ffield',['add_compare_field',['../classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ad37c163c6e4828efade099484d1097d0',1,'pss::astrotypes::sigproc::HeaderBase']]],
+  ['add_5fread',['add_read',['../classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a7409eceede2748769c4c8f926214b8a3',1,'pss::astrotypes::sigproc::HeaderBase::add_read()'],['../classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html#a700672ac59a5145e0cf9742c97c57cf0',1,'pss::astrotypes::sigproc::HeaderFieldBase::add_read()']]],
   ['allocate',['allocate',['../classpss_1_1astrotypes_1_1PointerAllocator.html#a77928fbd858f3b826b543ebc61d170ee',1,'pss::astrotypes::PointerAllocator::allocate()'],['../classpss_1_1astrotypes_1_1StandardAllocator.html#a8c12b697ccf04869f1b080e6b6a90644',1,'pss::astrotypes::StandardAllocator::allocate()']]],
   ['allocatormap',['AllocatorMap',['../structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits.html#a80526abc8e19ef5330d79d0d0aff1b43',1,'pss::astrotypes::sigproc::DefaultDataFactoryTraits']]],
   ['angle_2eh',['Angle.h',['../Angle_8h.html',1,'']]],

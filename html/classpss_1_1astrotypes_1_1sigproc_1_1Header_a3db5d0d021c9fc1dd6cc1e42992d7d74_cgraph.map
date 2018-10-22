@@ -1,0 +1,6 @@
+<map id="pss::astrotypes::sigproc::Header::updated_data_type" name="pss::astrotypes::sigproc::Header::updated_data_type">
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#ae26ae416c1f5d1207cba53b23b6bd5fa" title="set the data type " alt="" coords="251,5,413,44"/>
+<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a488a22f5d8604d153dbd8e467e115fab" title="remvoe a field to be checked in operator== " alt="" coords="247,68,417,120"/>
+<area shape="rect" id="node5" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ad37c163c6e4828efade099484d1097d0" title="add a field to be checked in operator== " alt="" coords="247,144,417,196"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderField.html#af2ce21aafe8ee989501030008d4e09fb" title="return true if the variable has been set, false otherwise " alt="" coords="465,5,626,44"/>
+</map>

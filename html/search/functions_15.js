@@ -10,6 +10,7 @@ var searchData=
   ['_7efrequencytime',['~FrequencyTime',['../classpss_1_1astrotypes_1_1FrequencyTime.html#aa0b69db9131f437425d0020f474c9a81',1,'pss::astrotypes::FrequencyTime']]],
   ['_7eheader',['~Header',['../classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a6602f8a61df272130133b1aa985078d3',1,'pss::astrotypes::sigproc::Header']]],
   ['_7eheaderfieldbase',['~HeaderFieldBase',['../classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html#a91b41045b0ec589d1024342f7b189765',1,'pss::astrotypes::sigproc::HeaderFieldBase']]],
+  ['_7eheaderfielddatatype',['~HeaderFieldDataType',['../classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldDataType.html#afab2841474fda90b432c26a456f9b548',1,'pss::astrotypes::sigproc::HeaderFieldDataType']]],
   ['_7eheadertest',['~HeaderTest',['../classpss_1_1astrotypes_1_1sigproc_1_1test_1_1HeaderTest.html#a8aaa58fe9a7b623c87e9ad611608fcc9',1,'pss::astrotypes::sigproc::test::HeaderTest']]],
   ['_7eindexmapper',['~IndexMapper',['../classpss_1_1astrotypes_1_1IndexMapper.html#af4e548e36d7c6818abef54213e64316d',1,'pss::astrotypes::IndexMapper']]],
   ['_7ejulianclocktest',['~JulianClockTest',['../classpss_1_1astrotypes_1_1units_1_1test_1_1JulianClockTest.html#affd29733c8974f0656a7d8a4ba1a8b86',1,'pss::astrotypes::units::test::JulianClockTest']]],

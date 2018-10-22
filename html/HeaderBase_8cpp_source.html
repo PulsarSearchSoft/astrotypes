@@ -94,19 +94,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="contents">
 <a href="HeaderBase_8cpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment"> * MIT License</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment"> * Copyright (c) 2018 PulsarSearchSoft</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * Permission is hereby granted, free of charge, to any person obtaining a copy</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment"> * of this software and associated documentation files (the &quot;Software&quot;), to deal</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment"> * in the Software without restriction, including without limitation the rights</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment"> * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment"> * copies of the Software, and to permit persons to whom the Software is</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment"> * furnished to do so, subject to the following conditions:</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"> * The above copyright notice and this permission notice shall be included in all</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"> * copies or substantial portions of the Software.</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> * </span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"> * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"> * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"> * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span></div>
@@ -143,241 +143,288 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;}</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ace3b67b506cdc03acfd1beaed325b826">   52</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ace3b67b506cdc03acfd1beaed325b826">HeaderBase&lt;Derived&gt;::reset</a>()</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;{</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">static_cast&lt;</span>Derived&amp;<span class="keyword">&gt;</span>(*this).do_reset();</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#adedbe47493bc9a9157cd0f9ad812bab7">   52</a></span>&#160;<a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ab5e3dbd1ed0f4ac243db0666703b9fa0">HeaderBase&lt;Derived&gt;::HeaderBase</a>(<a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase</a> <span class="keyword">const</span>&amp; h)</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    : _size(h._size)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ac9c117ad00160bb47bc58759f95a143e">   58</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ac9c117ad00160bb47bc58759f95a143e">HeaderBase&lt;Derived&gt;::do_reset</a>()</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ace3b67b506cdc03acfd1beaed325b826">   58</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ace3b67b506cdc03acfd1beaed325b826">HeaderBase&lt;Derived&gt;::reset</a>()</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;{</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> <span class="keyword">const</span>&amp; header : _headers) {</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        header.second-&gt;reset();</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a4ed313a3b28d0db072bdf6b73f0ba415">   66</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a4ed313a3b28d0db072bdf6b73f0ba415">HeaderBase&lt;Derived&gt;::read</a>(std::istream &amp; stream)</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;{</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keyword">static_cast&lt;</span>Derived&amp;<span class="keyword">&gt;</span>(*this).do_read(stream);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">static_cast&lt;</span>Derived&amp;<span class="keyword">&gt;</span>(*this).do_reset();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ac9c117ad00160bb47bc58759f95a143e">   64</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ac9c117ad00160bb47bc58759f95a143e">HeaderBase&lt;Derived&gt;::do_reset</a>()</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> <span class="keyword">const</span>&amp; header : _headers) {</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        header.second-&gt;reset();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#aefc6d4018fe5e46f503b22222fccff22">   72</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#aefc6d4018fe5e46f503b22222fccff22">HeaderBase&lt;Derived&gt;::do_read</a>(std::istream &amp; stream)</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a488a22f5d8604d153dbd8e467e115fab">   72</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a488a22f5d8604d153dbd8e467e115fab">HeaderBase&lt;Derived&gt;::remove_compare_field</a>(<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> <span class="keyword">const</span>&amp; label)</div>
 <div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;{</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    reset();</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="comment">// try to read in the first line of the header</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> str;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="comment">//stream &gt;&gt; str;</span></div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    str.<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a7d228195137ba19a9f06a75400152d8f">read</a>(stream);</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    _size = str.<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a41c92c08d307f3b7a670a6b1fddae5dc">size</a>();</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="comment">//if (std::strcmp(str.c_str(),&quot;HEADER_START&quot;) !=0) {</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span> (str != <span class="stringliteral">&quot;HEADER_START&quot;</span>){</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">throw</span> parse_error(<span class="stringliteral">&quot;expecting HEADER_START got &quot;</span>, str);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="comment">/* loop over and read remaining header lines until HEADER_END reached */</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordflow">while</span> (1) {</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        stream &gt;&gt; str;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        _size += str.<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a41c92c08d307f3b7a670a6b1fddae5dc">size</a>();</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">if</span>( str.string().find(std::string(<span class="stringliteral">&quot;HEADER_END&quot;</span>) ) != std::string::npos) {</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        }</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <span class="comment">// look for a matching known header</span></div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keyword">auto</span> it = _read_only_headers.find(str);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">if</span>( it == _read_only_headers.end()) {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;            <span class="comment">// look for a matching known header</span></div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;            it = _headers.find(str);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;            <span class="keywordflow">if</span>( it == _headers.end()) {</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                <span class="keywordflow">throw</span> parse_error(<span class="stringliteral">&quot;Header - unknown parameter&quot;</span>, str);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;            }</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">auto</span> it = _compare_headers.find(label);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    <span class="keywordflow">if</span>(it == _compare_headers.end()) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    _compare_headers.erase(it);</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;}</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ad37c163c6e4828efade099484d1097d0">   80</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ad37c163c6e4828efade099484d1097d0">HeaderBase&lt;Derived&gt;::add_compare_field</a>(<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> <span class="keyword">const</span>&amp; label)</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;{</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keyword">auto</span> it = _compare_headers.find(label);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordflow">if</span>(it != _compare_headers.end()) <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    _compare_headers.insert(std::make_pair(label, _headers.at(label)));</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;}</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ae78f7c307be913ec149254c235713ce1">   88</a></span>&#160;Derived&amp; <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ae78f7c307be913ec149254c235713ce1">HeaderBase&lt;Derived&gt;::copy_header_values</a>(Derived <span class="keyword">const</span>&amp; dst)</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;{</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> <span class="keyword">const</span>&amp; header : dst._headers) {</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keywordflow">if</span>(header.second-&gt;is_set()) {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;            <span class="keyword">auto</span>&amp; field = *_headers.at(header.first);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;            field = *header.second;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Derived&amp;<span class="keyword">&gt;</span>(*this);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a4ed313a3b28d0db072bdf6b73f0ba415">  100</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a4ed313a3b28d0db072bdf6b73f0ba415">HeaderBase&lt;Derived&gt;::read</a>(std::istream &amp; stream)</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;{</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">static_cast&lt;</span>Derived&amp;<span class="keyword">&gt;</span>(*this).do_read(stream);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;}</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="comment">// read in the value</span></div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        _size += it-&gt;second-&gt;read(stream);</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    }</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;}</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#aefc6d4018fe5e46f503b22222fccff22">  106</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#aefc6d4018fe5e46f503b22222fccff22">HeaderBase&lt;Derived&gt;::do_read</a>(std::istream &amp; stream)</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;{</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    reset();</div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a9d3d57b871e5b9d10174e72a082ec524">  111</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a9d3d57b871e5b9d10174e72a082ec524">HeaderBase&lt;Derived&gt;::write</a>(std::ostream&amp; stream)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="keyword">static_cast&lt;</span>Derived const&amp;<span class="keyword">&gt;</span>(*this).do_write(stream);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;}</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a371a7c70affe36437400192f5a02caa0">  116</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a371a7c70affe36437400192f5a02caa0">HeaderBase&lt;Derived&gt;::do_write</a>(std::ostream&amp; stream)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <span class="comment">// Write header</span></div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <span class="keyword">const</span> <span class="keyword">static</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> start(<span class="stringliteral">&quot;HEADER_START&quot;</span>);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    stream &lt;&lt; start;</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    _size = start.<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a41c92c08d307f3b7a670a6b1fddae5dc">size</a>(); </div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="comment">// write out header data</span></div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> <span class="keyword">const</span>&amp; header : _headers) {</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordflow">if</span>(header.second-&gt;is_set())</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        {</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;            stream &lt;&lt; header.first;</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;            _size += header.first.size();</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;            _size += header.second-&gt;write(stream);</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        }</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    }</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;    <span class="keyword">const</span> <span class="keyword">static</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> end(<span class="stringliteral">&quot;HEADER_END&quot;</span>);</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;    stream &lt;&lt; end;</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    _size += end.<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a41c92c08d307f3b7a670a6b1fddae5dc">size</a>(); </div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;}</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00139"></a><span class="lineno"><a class="line" href="namespacepss_1_1astrotypes_1_1sigproc.html#a82f6b8f3d6c9e5bd64f31fb27a03c9e4">  139</a></span>&#160;std::ostream&amp; operator&lt;&lt;(std::ostream&amp; stream, HeaderBase&lt;Derived&gt; <span class="keyword">const</span>&amp; h)</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;{</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    h.write(stream);</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    <span class="keywordflow">return</span> stream;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;}</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="namespacepss_1_1astrotypes_1_1sigproc.html#a770d7c68f3fef1e2dc2e2ddc6e5d2545">  146</a></span>&#160;std::istream&amp; <a class="code" href="namespacepss_1_1astrotypes_1_1sigproc.html#a770d7c68f3fef1e2dc2e2ddc6e5d2545">operator&gt;&gt;</a>(std::istream&amp; stream, <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase&lt;Derived&gt;</a>&amp; headers)</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;{</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    headers.<a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a4ed313a3b28d0db072bdf6b73f0ba415">read</a>(stream);</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keywordflow">return</span> stream;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;}</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="comment">// try to read in the first line of the header</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> str;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    <span class="comment">//stream &gt;&gt; str;</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    str.<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a7d228195137ba19a9f06a75400152d8f">read</a>(stream);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    _size = str.<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a41c92c08d307f3b7a670a6b1fddae5dc">size</a>();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <span class="comment">//if (std::strcmp(str.c_str(),&quot;HEADER_START&quot;) !=0) {</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordflow">if</span> (str != <span class="stringliteral">&quot;HEADER_START&quot;</span>){</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        <span class="keywordflow">throw</span> parse_error(<span class="stringliteral">&quot;expecting HEADER_START got &quot;</span>, str);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    }</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="comment">/* loop over and read remaining header lines until HEADER_END reached */</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordflow">while</span> (1) {</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;        stream &gt;&gt; str;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        _size += str.<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a41c92c08d307f3b7a670a6b1fddae5dc">size</a>();</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <span class="keywordflow">if</span>( str.string().find(std::string(<span class="stringliteral">&quot;HEADER_END&quot;</span>) ) != std::string::npos) {</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;            <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;        }</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <span class="comment">// look for a matching known header</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <span class="keyword">auto</span> it = _read_only_headers.find(str);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keywordflow">if</span>( it == _read_only_headers.end()) {</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;            <span class="comment">// look for a matching known header</span></div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            it = _headers.find(str);</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            <span class="keywordflow">if</span>( it == _headers.end()) {</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                <span class="keywordflow">throw</span> parse_error(<span class="stringliteral">&quot;Header - unknown parameter&quot;</span>, str);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;            }</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        }</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="comment">// read in the value</span></div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        _size += it-&gt;second-&gt;read(stream);</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;    }</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;}</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00145"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a9d3d57b871e5b9d10174e72a082ec524">  145</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a9d3d57b871e5b9d10174e72a082ec524">HeaderBase&lt;Derived&gt;::write</a>(std::ostream&amp; stream)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <span class="keyword">static_cast&lt;</span>Derived const&amp;<span class="keyword">&gt;</span>(*this).do_write(stream);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;}</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00150"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a371a7c70affe36437400192f5a02caa0">  150</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a371a7c70affe36437400192f5a02caa0">HeaderBase&lt;Derived&gt;::do_write</a>(std::ostream&amp; stream)<span class="keyword"> const </span>{</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00153"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a522b78bf7a693d9be38fd3d70b4c97ec">  153</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a522b78bf7a693d9be38fd3d70b4c97ec">HeaderBase&lt;Derived&gt;::operator==</a>(<a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase&lt;Derived&gt;</a> <span class="keyword">const</span>&amp; h)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Derived const&amp;<span class="keyword">&gt;</span>(*this).do_equal(h);</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;}</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a1281a84ef05def886c68a351d636b074">  159</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a1281a84ef05def886c68a351d636b074">HeaderBase&lt;Derived&gt;::do_equal</a>(<a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase&lt;Derived&gt;</a> <span class="keyword">const</span>&amp; h)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> <span class="keyword">const</span>&amp; header : _headers) {</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <span class="keyword">auto</span> <span class="keyword">const</span>&amp; field = *h._headers.at(header.first);</div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        <span class="keywordflow">if</span>(header.second-&gt;is_set()) {</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            <span class="keywordflow">if</span>(!field.is_set()) {</div>
-<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;                <span class="comment">// one is set, the other not so can&#39;t be equal</span></div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;            }</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;            <span class="keywordflow">try</span> {</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;                <span class="keywordflow">if</span>(!(field == *header.second)) {</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;                    <span class="comment">// we test the actual values as they are both set</span></div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;                }</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            }</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            <span class="keywordflow">catch</span>(std::exception <span class="keyword">const</span>&amp; e) {</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;                <span class="keywordflow">throw</span> parse_error(std::string(<span class="stringliteral">&quot;exception comparing values for header &quot;</span>) + header.first.string(), e.what());</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            }</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;            <span class="keywordflow">catch</span>(...) {</div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;                <span class="keywordflow">throw</span> parse_error(<span class="stringliteral">&quot;exception comparing values for header &quot;</span>, header.first);</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            }</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        }</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(field.is_set()) {</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            <span class="comment">// one is set, the other not so can&#39;t be equal</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        }</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;    }</div>
-<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;}</div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00190"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ac5e7fcb7872e495a95b0b27fb8c30b40">  190</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ac5e7fcb7872e495a95b0b27fb8c30b40">HeaderBase&lt;Derived&gt;::operator!=</a>(<a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase&lt;Derived&gt;</a> <span class="keyword">const</span>&amp; h)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;    <span class="keywordflow">return</span> !(h==*<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;}</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;</div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a6dc2fccc6eb5ff36f63c1b82507c12cf">  196</a></span>&#160;std::size_t <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a6dc2fccc6eb5ff36f63c1b82507c12cf">HeaderBase&lt;Derived&gt;::size</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;<span class="comment">    std::size_t size = 0U;</span></div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;<span class="comment">    for(auto const&amp; header : _headers) {</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="comment">        if(header.second-&gt;is_set()) {</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;<span class="comment">            size += header.first.size();</span></div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;<span class="comment">            size += header.size_bytes();</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;<span class="comment">        }</span></div>
-<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;<span class="comment">    }</span></div>
-<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;<span class="comment">    return size;</span></div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    <span class="keywordflow">return</span> _size;</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;}</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00211"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a9e15ffe256bf2e9155625839802f5bd3">  211</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a9e15ffe256bf2e9155625839802f5bd3">HeaderBase&lt;Derived&gt;::add</a>(std::string <span class="keyword">const</span>&amp; name, <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html">HeaderFieldBase</a>&amp; field)</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;{</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    _headers.insert(std::make_pair(<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a>(name), &amp;field));</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;}</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a12f8601d4645a58b97e2a331bcfd2dd4">  217</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a12f8601d4645a58b97e2a331bcfd2dd4">HeaderBase&lt;Derived&gt;::add_read</a>(std::string <span class="keyword">const</span>&amp; name, <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html">HeaderFieldBase</a>&amp; field)</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;{</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    _read_only_headers.insert(std::make_pair(<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a>(name), &amp;field));</div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;}</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00223"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html#adf77a255954f104e314b7c4f26ab582f">  223</a></span>&#160;<a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html#adf77a255954f104e314b7c4f26ab582f">HeaderBase&lt;Derived&gt;::Info::Info</a>()</div>
-<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160;    : _os(&amp;<a class="code" href="namespacestd.html">std</a>::cout)</div>
-<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;{</div>
-<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;}</div>
-<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;</div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00229"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html#a1d9a9543813799e1ccf64e6bdf6fd81e">  229</a></span>&#160;<span class="keyword">typename</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html">HeaderBase&lt;Derived&gt;::Info</a> <span class="keyword">const</span>&amp; <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html#adf24e4ebba977bcd77203aa33c8d1058">HeaderBase&lt;Derived&gt;::Info::operator&lt;&lt;</a>(std::ostream&amp; os)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;    _os = &amp;os;</div>
-<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;}</div>
-<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;</div>
-<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00236"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html#adf24e4ebba977bcd77203aa33c8d1058">  236</a></span>&#160;std::ostream&amp; <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html#adf24e4ebba977bcd77203aa33c8d1058">HeaderBase&lt;Derived&gt;::Info::operator&lt;&lt;</a>(Derived&amp; h)<span class="keyword"> const</span></div>
-<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> <span class="keyword">const</span>&amp; header : h._headers) {</div>
-<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;        <span class="keywordflow">if</span>(header.second-&gt;is_set()) {</div>
-<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;            *_os &lt;&lt; std::left &lt;&lt; std::setw(15) &lt;&lt; header.second-&gt;header_info(header.first.string()) &lt;&lt; <span class="stringliteral">&quot; : &quot;</span>;</div>
-<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            header.second-&gt;write_info(*_os);</div>
-<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            *_os &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        }</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;    }</div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;    <span class="keywordflow">return</span> *_os;</div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;}</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
-<div class="line"><a name="l00249"></a><span class="lineno"><a class="line" href="namespacepss_1_1astrotypes_1_1sigproc.html#a8edef0ac61dc85c733394662fa2c60a2">  249</a></span>&#160;<span class="keyword">typename</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html">HeaderBase&lt;Derived&gt;::Info</a> <span class="keyword">const</span>&amp; operator&lt;&lt;(std::ostream&amp; stream, typename HeaderBase&lt;Derived&gt;::Info <span class="keyword">const</span>&amp; adapter)</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;{</div>
-<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    adapter &lt;&lt; stream;</div>
-<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    <span class="keywordflow">return</span> adapter;</div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;}</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;} <span class="comment">// namespace sigproc</span></div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;} <span class="comment">// namespace astrotypes</span></div>
-<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;} <span class="comment">// namespace pss</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    <span class="comment">// Write header</span></div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="keyword">const</span> <span class="keyword">static</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> start(<span class="stringliteral">&quot;HEADER_START&quot;</span>);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    stream &lt;&lt; start;</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    _size = start.<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a41c92c08d307f3b7a670a6b1fddae5dc">size</a>();</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <span class="comment">// write out header data</span></div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> <span class="keyword">const</span>&amp; header : _headers) {</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;        <span class="keywordflow">if</span>(header.second-&gt;is_set())</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;        {</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;            stream &lt;&lt; header.first;</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;            _size += header.first.size();</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;            _size += header.second-&gt;write(stream);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;        }</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    }</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keyword">const</span> <span class="keyword">static</span> <a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> end(<span class="stringliteral">&quot;HEADER_END&quot;</span>);</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;    stream &lt;&lt; end;</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;    _size += end.<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a41c92c08d307f3b7a670a6b1fddae5dc">size</a>();</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;}</div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00173"></a><span class="lineno"><a class="line" href="namespacepss_1_1astrotypes_1_1sigproc.html#a82f6b8f3d6c9e5bd64f31fb27a03c9e4">  173</a></span>&#160;std::ostream&amp; operator&lt;&lt;(std::ostream&amp; stream, HeaderBase&lt;Derived&gt; <span class="keyword">const</span>&amp; h)</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;{</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    h.write(stream);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;    <span class="keywordflow">return</span> stream;</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;}</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="namespacepss_1_1astrotypes_1_1sigproc.html#a770d7c68f3fef1e2dc2e2ddc6e5d2545">  180</a></span>&#160;std::istream&amp; <a class="code" href="namespacepss_1_1astrotypes_1_1sigproc.html#a770d7c68f3fef1e2dc2e2ddc6e5d2545">operator&gt;&gt;</a>(std::istream&amp; stream, <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase&lt;Derived&gt;</a>&amp; headers)</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;{</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;    headers.<a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a4ed313a3b28d0db072bdf6b73f0ba415">read</a>(stream);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;    <span class="keywordflow">return</span> stream;</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;}</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a522b78bf7a693d9be38fd3d70b4c97ec">  187</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a522b78bf7a693d9be38fd3d70b4c97ec">HeaderBase&lt;Derived&gt;::operator==</a>(<a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase&lt;Derived&gt;</a> <span class="keyword">const</span>&amp; h)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">static_cast&lt;</span>Derived const&amp;<span class="keyword">&gt;</span>(*this).do_equal(h);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;}</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;</div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00193"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a1281a84ef05def886c68a351d636b074">  193</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a1281a84ef05def886c68a351d636b074">HeaderBase&lt;Derived&gt;::do_equal</a>(<a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase&lt;Derived&gt;</a> <span class="keyword">const</span>&amp; h)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> <span class="keyword">const</span>&amp; header : _compare_headers) {</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;        <span class="keyword">auto</span> <span class="keyword">const</span>&amp; field = *h._headers.at(header.first);</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;        <span class="keywordflow">if</span>(header.second-&gt;is_set()) {</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;            <span class="keywordflow">if</span>(!field.is_set()) {</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;                <span class="comment">// one is set, the other not so can&#39;t be equal</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;            }</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;            <span class="keywordflow">try</span> {</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;                <span class="keywordflow">if</span>(!(field == *header.second)) {</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;                    <span class="comment">// we test the actual values as they are both set</span></div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;                    <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;                }</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            }</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            <span class="keywordflow">catch</span>(std::exception <span class="keyword">const</span>&amp; e) {</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;                <span class="keywordflow">throw</span> parse_error(std::string(<span class="stringliteral">&quot;exception comparing values for header &quot;</span>) + header.first.string(), e.what());</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            }</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;            <span class="keywordflow">catch</span>(...) {</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;                <span class="keywordflow">throw</span> parse_error(<span class="stringliteral">&quot;exception comparing values for header &quot;</span>, header.first);</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            }</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;        }</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        <span class="keywordflow">else</span> <span class="keywordflow">if</span>(field.is_set()) {</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            <span class="comment">// one is set, the other not so can&#39;t be equal</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        }</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    }</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;}</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00224"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ac5e7fcb7872e495a95b0b27fb8c30b40">  224</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ac5e7fcb7872e495a95b0b27fb8c30b40">HeaderBase&lt;Derived&gt;::operator!=</a>(<a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase&lt;Derived&gt;</a> <span class="keyword">const</span>&amp; h)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="keywordflow">return</span> !(h==*<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;}</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00230"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a6dc2fccc6eb5ff36f63c1b82507c12cf">  230</a></span>&#160;std::size_t <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a6dc2fccc6eb5ff36f63c1b82507c12cf">HeaderBase&lt;Derived&gt;::size</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;<span class="comment">    std::size_t size = 0U;</span></div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;<span class="comment">    for(auto const&amp; header : _headers) {</span></div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160;<span class="comment">        if(header.second-&gt;is_set()) {</span></div>
+<div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;<span class="comment">            size += header.first.size();</span></div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;<span class="comment">            size += header.size_bytes();</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;<span class="comment">        }</span></div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;<span class="comment">    }</span></div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;<span class="comment">    return size;</span></div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;    <span class="keywordflow">return</span> _size;</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;}</div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00245"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a359fb976e402cec3ac06fc59cdb3cab0">  245</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a359fb976e402cec3ac06fc59cdb3cab0">HeaderBase&lt;Derived&gt;::add</a>(<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> <span class="keyword">const</span>&amp; name, <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html">HeaderFieldBase</a>&amp; field)</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;{</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    _headers.insert(std::make_pair(name, &amp;field));</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordflow">if</span>(name != <span class="stringliteral">&quot;tstart&quot;</span>)</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    {</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        _compare_headers.insert(std::make_pair(name, &amp;field));</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;    }</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;}</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00255"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a7409eceede2748769c4c8f926214b8a3">  255</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a7409eceede2748769c4c8f926214b8a3">HeaderBase&lt;Derived&gt;::add_read</a>(<a class="code" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> <span class="keyword">const</span>&amp; name, <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html">HeaderFieldBase</a>&amp; field)</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;{</div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;    _read_only_headers.insert(std::make_pair(name, &amp;field));</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;}</div>
+<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00261"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html#adf77a255954f104e314b7c4f26ab582f">  261</a></span>&#160;<a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html#adf77a255954f104e314b7c4f26ab582f">HeaderBase&lt;Derived&gt;::Info::Info</a>()</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;{</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;}</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Stream&gt;</div>
+<div class="line"><a name="l00267"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html#acda6466242959aa9a8bdbbb315a6c684">  267</a></span>&#160;<span class="keyword">typename</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase&lt;Derived&gt;::template</a> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1InfoSentry.html">InfoSentry&lt;Stream&gt;</a> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html#a8d5e274132c132b71d3104dad775f1e5">HeaderBase&lt;Derived&gt;::Info::sentry</a>(Stream&amp; os)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1InfoSentry.html">HeaderBase&lt;Derived&gt;::InfoSentry</a>&lt;Stream&gt;(os);</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;}</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Stream&gt;</div>
+<div class="line"><a name="l00274"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1InfoSentry.html#ab1b4ac980a38fdf0d8861230301a0755">  274</a></span>&#160;<a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase&lt;Derived&gt;::InfoSentry&lt;Stream&gt;::InfoSentry</a>(Stream&amp; os)</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;    : _os(os)</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;{</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;}</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;</div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived&gt;</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Stream&gt;</div>
+<div class="line"><a name="l00281"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1InfoSentry.html#a1ebfc3e2034705782989442f30f5b3e7">  281</a></span>&#160;Stream&amp; <a class="code" href="namespacepss_1_1astrotypes_1_1sigproc.html#a6412e7d35890ac345fddd3c7a3f4af00">HeaderBase&lt;Derived&gt;::InfoSentry&lt;Stream&gt;::operator&lt;&lt;</a>(Derived <span class="keyword">const</span>&amp; h)<span class="keyword"> const</span></div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;<span class="keyword"></span>{</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <span class="keywordflow">for</span>(<span class="keyword">auto</span> <span class="keyword">const</span>&amp; header : h._headers) {</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        <span class="keywordflow">if</span>(header.second-&gt;is_set()) {</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;            _os &lt;&lt; std::left &lt;&lt; std::setw(15) &lt;&lt; header.second-&gt;header_info(header.first.string()) &lt;&lt; <span class="stringliteral">&quot; : &quot;</span>;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;            header.second-&gt;write_info(_os);</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;            _os &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;        }</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    }</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    <span class="keywordflow">return</span> _os;</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;}</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Derived, <span class="keyword">typename</span> Stream&gt;</div>
+<div class="line"><a name="l00294"></a><span class="lineno"><a class="line" href="namespacepss_1_1astrotypes_1_1sigproc.html#a6412e7d35890ac345fddd3c7a3f4af00">  294</a></span>&#160;<span class="keyword">typename</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase&lt;Derived&gt;::template</a> InfoSentry&lt;Stream&gt; <span class="keyword">const</span>&amp; operator&lt;&lt;(Stream&amp; stream, typename HeaderBase&lt;Derived&gt;::Info <span class="keyword">const</span>&amp; adapter)</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;{</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    <span class="keywordflow">return</span> adapter.sentry(stream);</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;}</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;} <span class="comment">// namespace sigproc</span></div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;} <span class="comment">// namespace astrotypes</span></div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;} <span class="comment">// namespace pss</span></div>
 <div class="ttc" id="namespacepss_html"><div class="ttname"><a href="namespacepss.html">pss</a></div><div class="ttdef"><b>Definition:</b> <a href="DataBuffer_8cpp_source.html#l00026">DataBuffer.cpp:26</a></div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a12f8601d4645a58b97e2a331bcfd2dd4"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a12f8601d4645a58b97e2a331bcfd2dd4">pss::astrotypes::sigproc::HeaderBase::add_read</a></div><div class="ttdeci">void add_read(std::string const &amp;label, HeaderFieldBase &amp;field)</div><div class="ttdoc">add a field to be parsed for read only </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00217">HeaderBase.cpp:217</a></div></div>
 <div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase_html"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html">pss::astrotypes::sigproc::HeaderFieldBase</a></div><div class="ttdoc">class to provide a virtual lookup table for read/write the varoious types of SigProcVariables ...</div><div class="ttdef"><b>Definition:</b> <a href="HeaderField_8h_source.html#l00044">HeaderField.h:44</a></div></div>
 <div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel_html_a41c92c08d307f3b7a670a6b1fddae5dc"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a41c92c08d307f3b7a670a6b1fddae5dc">pss::astrotypes::sigproc::SigProcLabel::size</a></div><div class="ttdeci">std::size_t size() const </div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8h_source.html#l00089">SigProcVariable.h:89</a></div></div>
 <div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a119108e456fb28e6343df934a81e78ce"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a119108e456fb28e6343df934a81e78ce">pss::astrotypes::sigproc::HeaderBase::parse_error</a></div><div class="ttdeci">std::runtime_error parse_error(std::string const &amp;msg, T const &amp;msg2) const </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00033">HeaderBase.cpp:33</a></div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a1281a84ef05def886c68a351d636b074"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a1281a84ef05def886c68a351d636b074">pss::astrotypes::sigproc::HeaderBase::do_equal</a></div><div class="ttdeci">bool do_equal(HeaderBase const &amp;) const </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00159">HeaderBase.cpp:159</a></div></div>
-<div class="ttc" id="namespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdoc">STL namespace. </div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_ace3b67b506cdc03acfd1beaed325b826"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ace3b67b506cdc03acfd1beaed325b826">pss::astrotypes::sigproc::HeaderBase::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">reset all header variables to an undefined state </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00052">HeaderBase.cpp:52</a></div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a6dc2fccc6eb5ff36f63c1b82507c12cf"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a6dc2fccc6eb5ff36f63c1b82507c12cf">pss::astrotypes::sigproc::HeaderBase::size</a></div><div class="ttdeci">std::size_t size() const </div><div class="ttdoc">returns the number of bytes in the header </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00196">HeaderBase.cpp:196</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a1281a84ef05def886c68a351d636b074"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a1281a84ef05def886c68a351d636b074">pss::astrotypes::sigproc::HeaderBase::do_equal</a></div><div class="ttdeci">bool do_equal(HeaderBase const &amp;) const </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00193">HeaderBase.cpp:193</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_ace3b67b506cdc03acfd1beaed325b826"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ace3b67b506cdc03acfd1beaed325b826">pss::astrotypes::sigproc::HeaderBase::reset</a></div><div class="ttdeci">void reset()</div><div class="ttdoc">reset all header variables to an undefined state </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00058">HeaderBase.cpp:58</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a488a22f5d8604d153dbd8e467e115fab"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a488a22f5d8604d153dbd8e467e115fab">pss::astrotypes::sigproc::HeaderBase::remove_compare_field</a></div><div class="ttdeci">void remove_compare_field(SigProcLabel const &amp;)</div><div class="ttdoc">remvoe a field to be checked in operator== </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00072">HeaderBase.cpp:72</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a6dc2fccc6eb5ff36f63c1b82507c12cf"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a6dc2fccc6eb5ff36f63c1b82507c12cf">pss::astrotypes::sigproc::HeaderBase::size</a></div><div class="ttdeci">std::size_t size() const </div><div class="ttdoc">returns the number of bytes in the header </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00230">HeaderBase.cpp:230</a></div></div>
 <div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_ab5e3dbd1ed0f4ac243db0666703b9fa0"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ab5e3dbd1ed0f4ac243db0666703b9fa0">pss::astrotypes::sigproc::HeaderBase::HeaderBase</a></div><div class="ttdeci">HeaderBase()</div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00047">HeaderBase.cpp:47</a></div></div>
 <div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">pss::astrotypes::sigproc::HeaderBase</a></div><div class="ttdoc">Store SigProc header information. </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8h_source.html#l00070">HeaderBase.h:70</a></div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info_html"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html">pss::astrotypes::sigproc::HeaderBase::Info</a></div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8h_source.html#l00077">HeaderBase.h:77</a></div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a9e15ffe256bf2e9155625839802f5bd3"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a9e15ffe256bf2e9155625839802f5bd3">pss::astrotypes::sigproc::HeaderBase::add</a></div><div class="ttdeci">void add(std::string const &amp;label, HeaderFieldBase &amp;field)</div><div class="ttdoc">add a field to be parsed for read and write </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00211">HeaderBase.cpp:211</a></div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a522b78bf7a693d9be38fd3d70b4c97ec"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a522b78bf7a693d9be38fd3d70b4c97ec">pss::astrotypes::sigproc::HeaderBase::operator==</a></div><div class="ttdeci">bool operator==(HeaderBase const &amp;) const </div><div class="ttdoc">returns true if the data formats match </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00153">HeaderBase.cpp:153</a></div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info_html_adf77a255954f104e314b7c4f26ab582f"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html#adf77a255954f104e314b7c4f26ab582f">pss::astrotypes::sigproc::HeaderBase::Info::Info</a></div><div class="ttdeci">Info()</div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00223">HeaderBase.cpp:223</a></div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_ac9c117ad00160bb47bc58759f95a143e"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ac9c117ad00160bb47bc58759f95a143e">pss::astrotypes::sigproc::HeaderBase::do_reset</a></div><div class="ttdeci">void do_reset()</div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00058">HeaderBase.cpp:58</a></div></div>
-<div class="ttc" id="namespacepss_1_1astrotypes_1_1sigproc_html_a770d7c68f3fef1e2dc2e2ddc6e5d2545"><div class="ttname"><a href="namespacepss_1_1astrotypes_1_1sigproc.html#a770d7c68f3fef1e2dc2e2ddc6e5d2545">pss::astrotypes::sigproc::operator&gt;&gt;</a></div><div class="ttdeci">std::istream &amp; operator&gt;&gt;(std::istream &amp;stream, HeaderBase&lt; Derived &gt; &amp;headers)</div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00146">HeaderBase.cpp:146</a></div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_aefc6d4018fe5e46f503b22222fccff22"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#aefc6d4018fe5e46f503b22222fccff22">pss::astrotypes::sigproc::HeaderBase::do_read</a></div><div class="ttdeci">void do_read(std::istream &amp;stream)</div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00072">HeaderBase.cpp:72</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_ad37c163c6e4828efade099484d1097d0"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ad37c163c6e4828efade099484d1097d0">pss::astrotypes::sigproc::HeaderBase::add_compare_field</a></div><div class="ttdeci">void add_compare_field(SigProcLabel const &amp;)</div><div class="ttdoc">add a field to be checked in operator== </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00080">HeaderBase.cpp:80</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1InfoSentry_html"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1InfoSentry.html">pss::astrotypes::sigproc::HeaderBase::InfoSentry</a></div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8h_source.html#l00077">HeaderBase.h:77</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a522b78bf7a693d9be38fd3d70b4c97ec"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a522b78bf7a693d9be38fd3d70b4c97ec">pss::astrotypes::sigproc::HeaderBase::operator==</a></div><div class="ttdeci">bool operator==(HeaderBase const &amp;) const </div><div class="ttdoc">returns true if the data formats match </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00187">HeaderBase.cpp:187</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a359fb976e402cec3ac06fc59cdb3cab0"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a359fb976e402cec3ac06fc59cdb3cab0">pss::astrotypes::sigproc::HeaderBase::add</a></div><div class="ttdeci">void add(SigProcLabel const &amp;label, HeaderFieldBase &amp;field)</div><div class="ttdoc">add a field to be parsed for read and write </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00245">HeaderBase.cpp:245</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info_html_adf77a255954f104e314b7c4f26ab582f"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html#adf77a255954f104e314b7c4f26ab582f">pss::astrotypes::sigproc::HeaderBase::Info::Info</a></div><div class="ttdeci">Info()</div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00261">HeaderBase.cpp:261</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_ac9c117ad00160bb47bc58759f95a143e"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ac9c117ad00160bb47bc58759f95a143e">pss::astrotypes::sigproc::HeaderBase::do_reset</a></div><div class="ttdeci">void do_reset()</div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00064">HeaderBase.cpp:64</a></div></div>
+<div class="ttc" id="namespacepss_1_1astrotypes_1_1sigproc_html_a770d7c68f3fef1e2dc2e2ddc6e5d2545"><div class="ttname"><a href="namespacepss_1_1astrotypes_1_1sigproc.html#a770d7c68f3fef1e2dc2e2ddc6e5d2545">pss::astrotypes::sigproc::operator&gt;&gt;</a></div><div class="ttdeci">std::istream &amp; operator&gt;&gt;(std::istream &amp;stream, HeaderBase&lt; Derived &gt; &amp;headers)</div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00180">HeaderBase.cpp:180</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info_html_a8d5e274132c132b71d3104dad775f1e5"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html#a8d5e274132c132b71d3104dad775f1e5">pss::astrotypes::sigproc::HeaderBase::Info::sentry</a></div><div class="ttdeci">InfoSentry&lt; Stream &gt; sentry(Stream &amp;os) const </div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_aefc6d4018fe5e46f503b22222fccff22"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#aefc6d4018fe5e46f503b22222fccff22">pss::astrotypes::sigproc::HeaderBase::do_read</a></div><div class="ttdeci">void do_read(std::istream &amp;stream)</div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00106">HeaderBase.cpp:106</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a7409eceede2748769c4c8f926214b8a3"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a7409eceede2748769c4c8f926214b8a3">pss::astrotypes::sigproc::HeaderBase::add_read</a></div><div class="ttdeci">void add_read(SigProcLabel const &amp;label, HeaderFieldBase &amp;field)</div><div class="ttdoc">add a field to be parsed for read only </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00255">HeaderBase.cpp:255</a></div></div>
 <div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel_html_a7d228195137ba19a9f06a75400152d8f"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html#a7d228195137ba19a9f06a75400152d8f">pss::astrotypes::sigproc::SigProcLabel::read</a></div><div class="ttdeci">void read(std::istream &amp;is)</div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8cpp_source.html#l00097">SigProcVariable.cpp:97</a></div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_ac5e7fcb7872e495a95b0b27fb8c30b40"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ac5e7fcb7872e495a95b0b27fb8c30b40">pss::astrotypes::sigproc::HeaderBase::operator!=</a></div><div class="ttdeci">bool operator!=(HeaderBase const &amp;) const </div><div class="ttdoc">returns true if the data format meta data does not match </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00190">HeaderBase.cpp:190</a></div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a9d3d57b871e5b9d10174e72a082ec524"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a9d3d57b871e5b9d10174e72a082ec524">pss::astrotypes::sigproc::HeaderBase::write</a></div><div class="ttdeci">void write(std::ostream &amp;stream) const </div><div class="ttdoc">write header data to the provided stream </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00111">HeaderBase.cpp:111</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_ac5e7fcb7872e495a95b0b27fb8c30b40"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ac5e7fcb7872e495a95b0b27fb8c30b40">pss::astrotypes::sigproc::HeaderBase::operator!=</a></div><div class="ttdeci">bool operator!=(HeaderBase const &amp;) const </div><div class="ttdoc">returns true if the data format meta data does not match </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00224">HeaderBase.cpp:224</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a9d3d57b871e5b9d10174e72a082ec524"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a9d3d57b871e5b9d10174e72a082ec524">pss::astrotypes::sigproc::HeaderBase::write</a></div><div class="ttdeci">void write(std::ostream &amp;stream) const </div><div class="ttdoc">write header data to the provided stream </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00145">HeaderBase.cpp:145</a></div></div>
 <div class="ttc" id="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel_html"><div class="ttname"><a href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">pss::astrotypes::sigproc::SigProcLabel</a></div><div class="ttdef"><b>Definition:</b> <a href="SigProcVariable_8h_source.html#l00083">SigProcVariable.h:83</a></div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a371a7c70affe36437400192f5a02caa0"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a371a7c70affe36437400192f5a02caa0">pss::astrotypes::sigproc::HeaderBase::do_write</a></div><div class="ttdeci">void do_write(std::ostream &amp;stream) const </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00116">HeaderBase.cpp:116</a></div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a4ed313a3b28d0db072bdf6b73f0ba415"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a4ed313a3b28d0db072bdf6b73f0ba415">pss::astrotypes::sigproc::HeaderBase::read</a></div><div class="ttdeci">void read(std::istream &amp;stream)</div><div class="ttdoc">read in header data from the provided stream </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00066">HeaderBase.cpp:66</a></div></div>
-<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info_html_adf24e4ebba977bcd77203aa33c8d1058"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_1_1Info.html#adf24e4ebba977bcd77203aa33c8d1058">pss::astrotypes::sigproc::HeaderBase::Info::operator&lt;&lt;</a></div><div class="ttdeci">std::ostream &amp; operator&lt;&lt;(Derived &amp;os) const </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00236">HeaderBase.cpp:236</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a371a7c70affe36437400192f5a02caa0"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a371a7c70affe36437400192f5a02caa0">pss::astrotypes::sigproc::HeaderBase::do_write</a></div><div class="ttdeci">void do_write(std::ostream &amp;stream) const </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00150">HeaderBase.cpp:150</a></div></div>
+<div class="ttc" id="namespacepss_1_1astrotypes_1_1sigproc_html_a6412e7d35890ac345fddd3c7a3f4af00"><div class="ttname"><a href="namespacepss_1_1astrotypes_1_1sigproc.html#a6412e7d35890ac345fddd3c7a3f4af00">pss::astrotypes::sigproc::operator&lt;&lt;</a></div><div class="ttdeci">HeaderBase&lt; Derived &gt;::template InfoSentry&lt; Stream &gt; const &amp; operator&lt;&lt;(Stream &amp;stream, typename HeaderBase&lt; Derived &gt;::Info const &amp;adapter)</div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00294">HeaderBase.cpp:294</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_a4ed313a3b28d0db072bdf6b73f0ba415"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a4ed313a3b28d0db072bdf6b73f0ba415">pss::astrotypes::sigproc::HeaderBase::read</a></div><div class="ttdeci">void read(std::istream &amp;stream)</div><div class="ttdoc">read in header data from the provided stream </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00100">HeaderBase.cpp:100</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase_html_ae78f7c307be913ec149254c235713ce1"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ae78f7c307be913ec149254c235713ce1">pss::astrotypes::sigproc::HeaderBase::copy_header_values</a></div><div class="ttdeci">Derived &amp; copy_header_values(Derived const &amp;dst)</div><div class="ttdoc">copy values from one header to another </div><div class="ttdef"><b>Definition:</b> <a href="HeaderBase_8cpp_source.html#l00088">HeaderBase.cpp:88</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 8 2018 10:50:46 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 22 2018 12:56:59 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

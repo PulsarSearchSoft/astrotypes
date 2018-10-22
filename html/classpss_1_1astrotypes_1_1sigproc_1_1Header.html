@@ -94,6 +94,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#friends">Friends</a> &#124;
 <a href="classpss_1_1astrotypes_1_1sigproc_1_1Header-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -110,7 +111,7 @@ Inheritance diagram for pss::astrotypes::sigproc::Header:</div>
 <div class="dyncontent">
 <div class="center"><img src="classpss_1_1astrotypes_1_1sigproc_1_1Header__inherit__graph.png" border="0" usemap="#pss_1_1astrotypes_1_1sigproc_1_1Header_inherit__map" alt="Inheritance graph"/></div>
 <map name="pss_1_1astrotypes_1_1sigproc_1_1Header_inherit__map" id="pss_1_1astrotypes_1_1sigproc_1_1Header_inherit__map">
-<area shape="rect" id="node4" href="classpss_1_1astrotypes_1_1sigproc_1_1examples_1_1ExtendedHeader.html" title="An example of a simple extension to the basic sigproc format. " alt="" coords="5,905,199,1032"/><area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html" title="{pss::astrotypes::sigproc\l::HeaderBase\&lt; Header \&gt;\n||+ HeaderBase()\l+ read()\l+ write()\l+ operator==()\l+ operator!=()\l+ size()\l+ reset()\l# do_read()\l# do_write()\l# do_equal()\l# do_reset()\l# parse_error()\l# add()\l# add_read()\l}" alt="" coords="17,327,187,587"/><area shape="rect" id="node3" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html" title="Store SigProc header information. " alt="" coords="16,5,188,265"/></map>
+<area shape="rect" id="node4" href="classpss_1_1astrotypes_1_1sigproc_1_1examples_1_1ExtendedHeader.html" title="An example of a simple extension to the basic sigproc format. " alt="" coords="5,1025,199,1165"/><area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html" title="{pss::astrotypes::sigproc\l::HeaderBase\&lt; Header \&gt;\n||+ HeaderBase()\l+ HeaderBase()\l+ read()\l+ write()\l+ operator==()\l+ operator!=()\l+ size()\l+ reset()\l# copy_header_values()\l# do_read()\l# do_write()\l# do_equal()\l# do_reset()\l# parse_error()\l# add()\l# add_read()\l# add_compare_field()\l# remove_compare_field()\l}" alt="" coords="13,380,190,693"/><area shape="rect" id="node3" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html" title="Store SigProc header information. " alt="" coords="13,5,190,319"/></map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
@@ -125,8 +126,12 @@ Public Types</h2></td></tr>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a19850a0b4f20b9cb79d86684bc40294e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a19850a0b4f20b9cb79d86684bc40294e">Header</a> ()</td></tr>
 <tr class="separator:a19850a0b4f20b9cb79d86684bc40294e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c9366bbef23047113f2a085caae28be"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a7c9366bbef23047113f2a085caae28be">Header</a> (<a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html">Header</a> const &amp;)</td></tr>
+<tr class="separator:a7c9366bbef23047113f2a085caae28be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6602f8a61df272130133b1aa985078d3"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a6602f8a61df272130133b1aa985078d3">~Header</a> ()</td></tr>
 <tr class="separator:a6602f8a61df272130133b1aa985078d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a974b53b9bdf1abc7f8c716b4f20a991b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html">Header</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a974b53b9bdf1abc7f8c716b4f20a991b">operator=</a> (<a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html">Header</a> const &amp;)</td></tr>
+<tr class="separator:a974b53b9bdf1abc7f8c716b4f20a991b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3d7ec70772b8dd27433d79035334bf2b"><td class="memItemLeft" align="right" valign="top">boost::optional&lt; unsigned &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a3d7ec70772b8dd27433d79035334bf2b">telescope_id</a> () const </td></tr>
 <tr class="memdesc:a3d7ec70772b8dd27433d79035334bf2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the telescope_id identifier (if any)  <a href="#a3d7ec70772b8dd27433d79035334bf2b">More...</a><br /></td></tr>
 <tr class="separator:a3d7ec70772b8dd27433d79035334bf2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -259,9 +264,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a1e5f48020711717ba7cc61c15b447778"><td class="memTemplItemLeft" align="right" valign="top">OStreamAdapter&lt; <a class="el" href="classpss_1_1astrotypes_1_1TimeFrequency.html">astrotypes::TimeFrequency</a>&lt; T, Alloc &gt; &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a1e5f48020711717ba7cc61c15b447778">operator&lt;&lt;</a> (<a class="el" href="classpss_1_1astrotypes_1_1TimeFrequency.html">astrotypes::TimeFrequency</a>&lt; T, Alloc &gt; const &amp;)</td></tr>
 <tr class="memdesc:a1e5f48020711717ba7cc61c15b447778"><td class="mdescLeft">&#160;</td><td class="mdescRight">read header data from the provided object  <a href="#a1e5f48020711717ba7cc61c15b447778">More...</a><br /></td></tr>
 <tr class="separator:a1e5f48020711717ba7cc61c15b447778"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c843db752bddca5f5b38ac2a35fb763"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a9c843db752bddca5f5b38ac2a35fb763">info</a> (std::ostream &amp;stream) const </td></tr>
+<tr class="memdesc:a9c843db752bddca5f5b38ac2a35fb763"><td class="mdescLeft">&#160;</td><td class="mdescRight">human readable summary of the header written to the stream  <a href="#a9c843db752bddca5f5b38ac2a35fb763">More...</a><br /></td></tr>
+<tr class="separator:a9c843db752bddca5f5b38ac2a35fb763"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">pss::astrotypes::sigproc::HeaderBase&lt; Header &gt;</a></td></tr>
 <tr class="memitem:ab5e3dbd1ed0f4ac243db0666703b9fa0 inherit pub_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ab5e3dbd1ed0f4ac243db0666703b9fa0">HeaderBase</a> ()</td></tr>
 <tr class="separator:ab5e3dbd1ed0f4ac243db0666703b9fa0 inherit pub_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adedbe47493bc9a9157cd0f9ad812bab7 inherit pub_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#adedbe47493bc9a9157cd0f9ad812bab7">HeaderBase</a> (<a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase</a> const &amp;)</td></tr>
+<tr class="separator:adedbe47493bc9a9157cd0f9ad812bab7 inherit pub_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ed313a3b28d0db072bdf6b73f0ba415 inherit pub_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a4ed313a3b28d0db072bdf6b73f0ba415">read</a> (std::istream &amp;stream)</td></tr>
 <tr class="memdesc:a4ed313a3b28d0db072bdf6b73f0ba415 inherit pub_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">read in header data from the provided stream  <a href="#a4ed313a3b28d0db072bdf6b73f0ba415">More...</a><br /></td></tr>
 <tr class="separator:a4ed313a3b28d0db072bdf6b73f0ba415 inherit pub_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -281,14 +291,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:ace3b67b506cdc03acfd1beaed325b826 inherit pub_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset all header variables to an undefined state  <a href="#ace3b67b506cdc03acfd1beaed325b826">More...</a><br /></td></tr>
 <tr class="separator:ace3b67b506cdc03acfd1beaed325b826 inherit pub_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:aedbb9446e999ba95f34b0edcfd933deb"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#aedbb9446e999ba95f34b0edcfd933deb">HeaderFieldBase</a></td></tr>
-<tr class="separator:aedbb9446e999ba95f34b0edcfd933deb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
-Additional Inherited Members</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a3db5d0d021c9fc1dd6cc1e42992d7d74"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a3db5d0d021c9fc1dd6cc1e42992d7d74">updated_data_type</a> ()</td></tr>
+<tr class="separator:a3db5d0d021c9fc1dd6cc1e42992d7d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">pss::astrotypes::sigproc::HeaderBase&lt; Header &gt;</a></td></tr>
+<tr class="memitem:ae78f7c307be913ec149254c235713ce1 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html">Header</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ae78f7c307be913ec149254c235713ce1">copy_header_values</a> (Headerconst &amp;dst)</td></tr>
+<tr class="memdesc:ae78f7c307be913ec149254c235713ce1 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">copy values from one header to another  <a href="#ae78f7c307be913ec149254c235713ce1">More...</a><br /></td></tr>
+<tr class="separator:ae78f7c307be913ec149254c235713ce1 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aefc6d4018fe5e46f503b22222fccff22 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#aefc6d4018fe5e46f503b22222fccff22">do_read</a> (std::istream &amp;stream)</td></tr>
 <tr class="separator:aefc6d4018fe5e46f503b22222fccff22 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a371a7c70affe36437400192f5a02caa0 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a371a7c70affe36437400192f5a02caa0">do_write</a> (std::ostream &amp;stream) const</td></tr>
@@ -299,12 +309,26 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:ac9c117ad00160bb47bc58759f95a143e inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a119108e456fb28e6343df934a81e78ce inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memItemLeft" align="right" valign="top">std::runtime_error&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a119108e456fb28e6343df934a81e78ce">parse_error</a> (std::string const &amp;msg, T const &amp;msg2) const</td></tr>
 <tr class="separator:a119108e456fb28e6343df934a81e78ce inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e15ffe256bf2e9155625839802f5bd3 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a9e15ffe256bf2e9155625839802f5bd3">add</a> (std::string const &amp;label, <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html">HeaderFieldBase</a> &amp;field)</td></tr>
-<tr class="memdesc:a9e15ffe256bf2e9155625839802f5bd3 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a field to be parsed for read and write  <a href="#a9e15ffe256bf2e9155625839802f5bd3">More...</a><br /></td></tr>
-<tr class="separator:a9e15ffe256bf2e9155625839802f5bd3 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12f8601d4645a58b97e2a331bcfd2dd4 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a12f8601d4645a58b97e2a331bcfd2dd4">add_read</a> (std::string const &amp;label, <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html">HeaderFieldBase</a> &amp;field)</td></tr>
-<tr class="memdesc:a12f8601d4645a58b97e2a331bcfd2dd4 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a field to be parsed for read only  <a href="#a12f8601d4645a58b97e2a331bcfd2dd4">More...</a><br /></td></tr>
-<tr class="separator:a12f8601d4645a58b97e2a331bcfd2dd4 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a359fb976e402cec3ac06fc59cdb3cab0 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a359fb976e402cec3ac06fc59cdb3cab0">add</a> (<a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> const &amp;label, <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html">HeaderFieldBase</a> &amp;field)</td></tr>
+<tr class="memdesc:a359fb976e402cec3ac06fc59cdb3cab0 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a field to be parsed for read and write  <a href="#a359fb976e402cec3ac06fc59cdb3cab0">More...</a><br /></td></tr>
+<tr class="separator:a359fb976e402cec3ac06fc59cdb3cab0 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7409eceede2748769c4c8f926214b8a3 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a7409eceede2748769c4c8f926214b8a3">add_read</a> (<a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> const &amp;label, <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html">HeaderFieldBase</a> &amp;field)</td></tr>
+<tr class="memdesc:a7409eceede2748769c4c8f926214b8a3 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a field to be parsed for read only  <a href="#a7409eceede2748769c4c8f926214b8a3">More...</a><br /></td></tr>
+<tr class="separator:a7409eceede2748769c4c8f926214b8a3 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad37c163c6e4828efade099484d1097d0 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ad37c163c6e4828efade099484d1097d0">add_compare_field</a> (<a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> const &amp;)</td></tr>
+<tr class="memdesc:ad37c163c6e4828efade099484d1097d0 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">add a field to be checked in operator==  <a href="#ad37c163c6e4828efade099484d1097d0">More...</a><br /></td></tr>
+<tr class="separator:ad37c163c6e4828efade099484d1097d0 inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a488a22f5d8604d153dbd8e467e115fab inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a488a22f5d8604d153dbd8e467e115fab">remove_compare_field</a> (<a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1SigProcLabel.html">SigProcLabel</a> const &amp;)</td></tr>
+<tr class="memdesc:a488a22f5d8604d153dbd8e467e115fab inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">remvoe a field to be checked in operator==  <a href="#a488a22f5d8604d153dbd8e467e115fab">More...</a><br /></td></tr>
+<tr class="separator:a488a22f5d8604d153dbd8e467e115fab inherit pro_methods_classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:aedbb9446e999ba95f34b0edcfd933deb"><td class="memItemLeft" align="right" valign="top">class&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#aedbb9446e999ba95f34b0edcfd933deb">HeaderFieldBase</a></td></tr>
+<tr class="separator:aedbb9446e999ba95f34b0edcfd933deb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a28bbdb19ad7f63555e544bec204fd7"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a7a28bbdb19ad7f63555e544bec204fd7"><td class="memTemplItemLeft" align="right" valign="top">class&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a7a28bbdb19ad7f63555e544bec204fd7">HeaderFieldDataType</a></td></tr>
+<tr class="separator:a7a28bbdb19ad7f63555e544bec204fd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Store SigProc header information. </p>
@@ -318,7 +342,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- fragment --><p>note also that many of the types returned as types with specific units. If your writting new code its a good idea to keep this type information when you pass this value around, but for compatibility with less type safe codes and you need just the numerical valuem you can call the value() mehtod </p><div class="fragment"><div class="line"><span class="comment">// n.b. this loses type information.</span></div>
 <div class="line"><span class="keywordtype">double</span> tsamp_in_secs = header.sample_interval().value();</div>
 </div><!-- fragment -->
-<p>Definition at line <a class="el" href="Header_8h_source.html#l00071">71</a> of file <a class="el" href="Header_8h_source.html">Header.h</a>.</p>
+<p>Definition at line <a class="el" href="Header_8h_source.html#l00072">72</a> of file <a class="el" href="Header_8h_source.html">Header.h</a>.</p>
 </div><h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="afba069d2d44d772e51960eae59f652cc"></a>
 <div class="memitem">
@@ -346,7 +370,7 @@ Additional Inherited Members</h2></td></tr>
 </td></tr>
 </table>
 
-<p>Definition at line <a class="el" href="Header_8h_source.html#l00092">92</a> of file <a class="el" href="Header_8h_source.html">Header.h</a>.</p>
+<p>Definition at line <a class="el" href="Header_8h_source.html#l00097">97</a> of file <a class="el" href="Header_8h_source.html">Header.h</a>.</p>
 
 </div>
 </div>
@@ -372,7 +396,33 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00031">31</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00058">58</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7c9366bbef23047113f2a085caae28be"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">pss::astrotypes::sigproc::Header::Header </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html">Header</a> const &amp;&#160;</td>
+          <td class="paramname"><em>h</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00084">84</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -397,7 +447,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Header_8h_source.html#l00100">100</a> of file <a class="el" href="Header_8h_source.html">Header.h</a>.</p>
+<p>Definition at line <a class="el" href="Header_8h_source.html#l00106">106</a> of file <a class="el" href="Header_8h_source.html">Header.h</a>.</p>
 
 </div>
 </div>
@@ -425,7 +475,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>getters/setters for the telscope azimuth at start of scan (in degrees) </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00152">152</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00234">234</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -451,7 +501,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00157">157</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00239">239</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -478,7 +528,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>the value of the barycentric field (if any) </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00132">132</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00214">214</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -504,7 +554,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00137">137</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00219">219</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -532,7 +582,16 @@ Additional Inherited Members</h2></td></tr>
 
 <p>set the data type </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00106">106</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00181">181</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classpss_1_1astrotypes_1_1sigproc_1_1Header_a51be305333d0511ab5ab204113cb5fd4_cgraph.png" border="0" usemap="#classpss_1_1astrotypes_1_1sigproc_1_1Header_a51be305333d0511ab5ab204113cb5fd4_cgraph" alt=""/></div>
+<map name="classpss_1_1astrotypes_1_1sigproc_1_1Header_a51be305333d0511ab5ab204113cb5fd4_cgraph" id="classpss_1_1astrotypes_1_1sigproc_1_1Header_a51be305333d0511ab5ab204113cb5fd4_cgraph">
+<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#ae26ae416c1f5d1207cba53b23b6bd5fa" title="set the data type " alt="" coords="461,5,622,44"/><area shape="rect" id="node4" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a3db5d0d021c9fc1dd6cc1e42992d7d74" title="pss::astrotypes::sigproc\l::Header::updated_data_type" alt="" coords="215,72,409,111"/><area shape="rect" id="node3" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderField.html#af2ce21aafe8ee989501030008d4e09fb" title="return true if the variable has been set, false otherwise " alt="" coords="674,5,836,44"/><area shape="rect" id="node5" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a488a22f5d8604d153dbd8e467e115fab" title="remvoe a field to be checked in operator== " alt="" coords="457,68,626,120"/><area shape="rect" id="node6" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ad37c163c6e4828efade099484d1097d0" title="add a field to be checked in operator== " alt="" coords="457,144,626,196"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -559,7 +618,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>set the data type </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00111">111</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00193">193</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -596,7 +655,7 @@ Here is the call graph for this function:</div>
 <p>get the frequency of the first channel </p>
 <p>optional </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00193">193</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00275">275</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -625,7 +684,7 @@ Here is the call graph for this function:</div>
 <p>set the frequency of the first channel </p>
 <p>optional if you set this you should also set foff </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00198">198</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00280">280</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -653,7 +712,7 @@ Here is the call graph for this function:</div>
 <p>get the band width of a channel (assumes homogenous badwidth for each channel) </p>
 <p>optional </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00203">203</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00285">285</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -682,7 +741,7 @@ Here is the call graph for this function:</div>
 <p>set the frequency width of the channel (for fixed band width channels) </p>
 <p>optional if you set this you should also set fch1 </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00208">208</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00290">290</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -710,7 +769,7 @@ Here is the call graph for this function:</div>
 <p>return a list of frequency channels (if set) </p>
 <p>optional (alternative if <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a6e4e0349e04c2dd1f259c7d0fbe6c8ea" title="get the band width of a channel (assumes homogenous badwidth for each channel) ">foff()</a> and <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a17081272ded60b493fdcf8c182db5a1d" title="get the frequency of the first channel ">fch1()</a>) test <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a6dc2fccc6eb5ff36f63c1b82507c12cf" title="returns the number of bytes in the header ">size()</a> of vector to see if empty </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00213">213</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00295">295</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -739,7 +798,7 @@ Here is the call graph for this function:</div>
 <p>set a list of frequency channels (optional) </p>
 <p>set this OR <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a17081272ded60b493fdcf8c182db5a1d" title="get the frequency of the first channel ">fch1()</a> and <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a6e4e0349e04c2dd1f259c7d0fbe6c8ea" title="get the band width of a channel (assumes homogenous badwidth for each channel) ">foff()</a> </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00218">218</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00300">300</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -749,6 +808,34 @@ Here is the call graph for this function:</div>
 <area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a1a6556a1f4b3ddf08a6ac0137fef0440" title="return a list of frequency channels (if set) " alt="" coords="253,5,452,44"/></map>
 </div>
 </p>
+
+</div>
+</div>
+<a class="anchor" id="a9c843db752bddca5f5b38ac2a35fb763"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pss::astrotypes::sigproc::Header::info </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>stream</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>human readable summary of the header written to the stream </p>
+
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00368">368</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -775,7 +862,7 @@ Here is the call graph for this function:</div>
 
 <p>return the machine_id identifier (if any) </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00091">91</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00150">150</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -804,7 +891,7 @@ Here is the call graph for this function:</div>
 <p>set the machine_id identifier </p>
 <p>optional </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00096">96</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00155">155</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -831,7 +918,7 @@ Here is the call graph for this function:</div>
 
 <p>return the number of bits </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00254">254</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00336">336</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -868,7 +955,7 @@ Here is the call graph for this function:</div>
 
 <p>set the number of bits </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00260">260</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00342">342</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -895,7 +982,7 @@ Here is the call graph for this function:</div>
 
 <p>return the number of frequency channels </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00243">243</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00325">325</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -932,7 +1019,7 @@ Here is the call graph for this function:</div>
 
 <p>set the number of channels </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00249">249</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00331">331</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -958,8 +1045,9 @@ Here is the call graph for this function:</div>
 </div><div class="memdoc">
 
 <p>return the number of IF streams (e.g. polarisations) in each channel </p>
+<p>if not set will return 1 </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00280">280</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00362">362</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -987,7 +1075,7 @@ Here is the call graph for this function:</div>
 
 <p>set the number of IF streams (e.g. polarisations) in each channel </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00275">275</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00357">357</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1015,7 +1103,7 @@ Here is the call graph for this function:</div>
 <p>return the number of time samples (optional) </p>
 <p>optional field. </p><dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd>This can usually be calculated from the file size instead </dd></dl>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00265">265</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00347">347</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1044,7 +1132,7 @@ Here is the call graph for this function:</div>
 <p>set the number of time samples (optional) </p>
 <dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated:</a></b></dt><dd></dd></dl>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00270">270</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00352">352</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1086,7 +1174,42 @@ template&lt;typename T , typename Alloc &gt; </div>
 
 <p>read header data from the provided object </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00058">58</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00117">117</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a974b53b9bdf1abc7f8c716b4f20a991b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html">Header</a> &amp; pss::astrotypes::sigproc::Header::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html">Header</a> const &amp;&#160;</td>
+          <td class="paramname"><em>h</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00111">111</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classpss_1_1astrotypes_1_1sigproc_1_1Header_a974b53b9bdf1abc7f8c716b4f20a991b_cgraph.png" border="0" usemap="#classpss_1_1astrotypes_1_1sigproc_1_1Header_a974b53b9bdf1abc7f8c716b4f20a991b_cgraph" alt=""/></div>
+<map name="classpss_1_1astrotypes_1_1sigproc_1_1Header_a974b53b9bdf1abc7f8c716b4f20a991b_cgraph" id="classpss_1_1astrotypes_1_1sigproc_1_1Header_a974b53b9bdf1abc7f8c716b4f20a991b_cgraph">
+<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ae78f7c307be913ec149254c235713ce1" title="copy values from one header to another " alt="" coords="215,5,384,57"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -1153,7 +1276,7 @@ template&lt;typename T , typename Alloc &gt; </div>
 
 <p>return the folding period (if defined) </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00233">233</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00315">315</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1182,7 +1305,7 @@ template&lt;typename T , typename Alloc &gt; </div>
 <p>set folding period period </p>
 <p>optional </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00238">238</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00320">320</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1209,7 +1332,7 @@ template&lt;typename T , typename Alloc &gt; </div>
 
 <p>the value of the pulsarcentric field (if any) </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00142">142</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00224">224</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1235,7 +1358,7 @@ template&lt;typename T , typename Alloc &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00147">147</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00229">229</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1262,7 +1385,7 @@ template&lt;typename T , typename Alloc &gt; </div>
 
 <p>return the value of the raw data filename (if any) </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00101">101</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00160">160</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1291,7 +1414,7 @@ template&lt;typename T , typename Alloc &gt; </div>
 <p>set a value for the raw data filename </p>
 <p>optional </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00117">117</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00199">199</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1319,7 +1442,7 @@ template&lt;typename T , typename Alloc &gt; </div>
 <p>return the reference Dispersion Measure </p>
 <p>optional </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00223">223</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00305">305</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1348,7 +1471,7 @@ template&lt;typename T , typename Alloc &gt; </div>
 <p>set the reference Dispersion Measure </p>
 <p>optional </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00228">228</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00310">310</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1375,7 +1498,7 @@ template&lt;typename T , typename Alloc &gt; </div>
 
 <p>return the sample_interval (if defined) </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00182">182</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00264">264</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -1412,7 +1535,7 @@ Here is the call graph for this function:</div>
 
 <p>set sample_interval , the amount of time between two adjacent spectra </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00188">188</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00270">270</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1439,7 +1562,7 @@ Here is the call graph for this function:</div>
 
 <p>return the value of the source name (if any) </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00122">122</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00204">204</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1467,7 +1590,7 @@ Here is the call graph for this function:</div>
 
 <p>set a value for the source name </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00127">127</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00209">209</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1494,7 +1617,7 @@ Here is the call graph for this function:</div>
 
 <p>return the telescope_id identifier (if any) </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00081">81</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00140">140</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1522,7 +1645,7 @@ Here is the call graph for this function:</div>
 
 <p>set the telescope_id identifier </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00086">86</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00145">145</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1549,7 +1672,7 @@ Here is the call graph for this function:</div>
 
 <p>return the date of the start of the data block </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00172">172</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00254">254</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1577,7 +1700,41 @@ Here is the call graph for this function:</div>
 
 <p>set the date of the start of the data block </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00177">177</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00259">259</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a3db5d0d021c9fc1dd6cc1e42992d7d74"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void pss::astrotypes::sigproc::Header::updated_data_type </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00165">165</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+
+<p><div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classpss_1_1astrotypes_1_1sigproc_1_1Header_a3db5d0d021c9fc1dd6cc1e42992d7d74_cgraph.png" border="0" usemap="#classpss_1_1astrotypes_1_1sigproc_1_1Header_a3db5d0d021c9fc1dd6cc1e42992d7d74_cgraph" alt=""/></div>
+<map name="classpss_1_1astrotypes_1_1sigproc_1_1Header_a3db5d0d021c9fc1dd6cc1e42992d7d74_cgraph" id="classpss_1_1astrotypes_1_1sigproc_1_1Header_a3db5d0d021c9fc1dd6cc1e42992d7d74_cgraph">
+<area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html#ae26ae416c1f5d1207cba53b23b6bd5fa" title="set the data type " alt="" coords="251,5,413,44"/><area shape="rect" id="node4" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a488a22f5d8604d153dbd8e467e115fab" title="remvoe a field to be checked in operator== " alt="" coords="247,68,417,120"/><area shape="rect" id="node5" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ad37c163c6e4828efade099484d1097d0" title="add a field to be checked in operator== " alt="" coords="247,144,417,196"/><area shape="rect" id="node3" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderField.html#af2ce21aafe8ee989501030008d4e09fb" title="return true if the variable has been set, false otherwise " alt="" coords="465,5,626,44"/></map>
+</div>
+</p>
 
 </div>
 </div>
@@ -1604,7 +1761,7 @@ Here is the call graph for this function:</div>
 
 <p>getters/setters for the telscope zenith at start of scan (in degrees) </p>
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00162">162</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00244">244</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1630,7 +1787,7 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00167">167</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00249">249</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -1653,14 +1810,38 @@ Here is the call graph for this function:</div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Header_8h_source.html#l00086">86</a> of file <a class="el" href="Header_8h_source.html">Header.h</a>.</p>
+<p>Definition at line <a class="el" href="Header_8h_source.html#l00088">88</a> of file <a class="el" href="Header_8h_source.html">Header.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a7a28bbdb19ad7f63555e544bec204fd7"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldDataType.html">HeaderFieldDataType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="Header_8h_source.html#l00091">91</a> of file <a class="el" href="Header_8h_source.html">Header.h</a>.</p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 8 2018 10:50:49 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 22 2018 12:57:12 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

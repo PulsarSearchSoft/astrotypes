@@ -148,6 +148,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html">HeaderFieldBase</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">class to provide a virtual lookup table for read/write the varoious types of SigProcVariables  <a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldDataType.html">HeaderFieldDataType</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specilist class for the sigproc data type variable.  <a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldDataType.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldWithTolerance.html">HeaderFieldWithTolerance</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">specialisation to allow the == operator to return true if the values are within specified tolerance  <a href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldWithTolerance.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -181,17 +184,18 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a4ad5c9c194f9e731c83cae2a850cd3e9"><td class="memItemLeft" align="right" valign="top">Header::Info const &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1sigproc.html#a4ad5c9c194f9e731c83cae2a850cd3e9">operator&lt;&lt;</a> (std::ostream &amp;os, Header::Info const &amp;adapter)</td></tr>
-<tr class="separator:a4ad5c9c194f9e731c83cae2a850cd3e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d5573c124c3ec2ffd0d308090e988ae"><td class="memTemplParams" colspan="2">template&lt;typename Stream &gt; </td></tr>
+<tr class="memitem:a7d5573c124c3ec2ffd0d308090e988ae"><td class="memTemplItemLeft" align="right" valign="top">Header::InfoSentry&lt; Stream &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1sigproc.html#a7d5573c124c3ec2ffd0d308090e988ae">operator&lt;&lt;</a> (Stream &amp;os, Header::Info const &amp;adapter)</td></tr>
+<tr class="separator:a7d5573c124c3ec2ffd0d308090e988ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82f6b8f3d6c9e5bd64f31fb27a03c9e4"><td class="memTemplParams" colspan="2">template&lt;typename Derived &gt; </td></tr>
 <tr class="memitem:a82f6b8f3d6c9e5bd64f31fb27a03c9e4"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1sigproc.html#a82f6b8f3d6c9e5bd64f31fb27a03c9e4">operator&lt;&lt;</a> (std::ostream &amp;stream, <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase</a>&lt; Derived &gt; const &amp;h)</td></tr>
 <tr class="separator:a82f6b8f3d6c9e5bd64f31fb27a03c9e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a770d7c68f3fef1e2dc2e2ddc6e5d2545"><td class="memTemplParams" colspan="2">template&lt;typename Derived &gt; </td></tr>
 <tr class="memitem:a770d7c68f3fef1e2dc2e2ddc6e5d2545"><td class="memTemplItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1sigproc.html#a770d7c68f3fef1e2dc2e2ddc6e5d2545">operator&gt;&gt;</a> (std::istream &amp;stream, <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase</a>&lt; Derived &gt; &amp;headers)</td></tr>
 <tr class="separator:a770d7c68f3fef1e2dc2e2ddc6e5d2545"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8edef0ac61dc85c733394662fa2c60a2"><td class="memTemplParams" colspan="2">template&lt;typename Derived &gt; </td></tr>
-<tr class="memitem:a8edef0ac61dc85c733394662fa2c60a2"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase</a>&lt; Derived &gt;::Info const &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1sigproc.html#a8edef0ac61dc85c733394662fa2c60a2">operator&lt;&lt;</a> (std::ostream &amp;stream, typename <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase</a>&lt; Derived &gt;::Info const &amp;adapter)</td></tr>
-<tr class="separator:a8edef0ac61dc85c733394662fa2c60a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6412e7d35890ac345fddd3c7a3f4af00"><td class="memTemplParams" colspan="2">template&lt;typename Derived , typename Stream &gt; </td></tr>
+<tr class="memitem:a6412e7d35890ac345fddd3c7a3f4af00"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase</a>&lt; Derived &gt;::template InfoSentry&lt; Stream &gt; const &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1sigproc.html#a6412e7d35890ac345fddd3c7a3f4af00">operator&lt;&lt;</a> (Stream &amp;stream, typename <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase</a>&lt; Derived &gt;::Info const &amp;adapter)</td></tr>
+<tr class="separator:a6412e7d35890ac345fddd3c7a3f4af00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6871b9ece0d8c01da9146d40294aaf2"><td class="memTemplParams" colspan="2">template&lt;typename Dimension1 , typename Dimension2 &gt; </td></tr>
 <tr class="memitem:ae6871b9ece0d8c01da9146d40294aaf2"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1SigProcFormat.html">SigProcFormat</a>&lt; Dimension1, Dimension2 &gt;::OSigProcFormat&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1sigproc.html#ae6871b9ece0d8c01da9146d40294aaf2">operator&lt;&lt;</a> (std::ostream &amp;os, <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1SigProcFormat.html">SigProcFormat</a>&lt; Dimension1, Dimension2 &gt; const &amp;f)</td></tr>
 <tr class="separator:ae6871b9ece0d8c01da9146d40294aaf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -275,7 +279,7 @@ template&lt;typename Derived &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="HeaderBase_8cpp_source.html#l00139">139</a> of file <a class="el" href="HeaderBase_8cpp_source.html">HeaderBase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="HeaderBase_8cpp_source.html#l00173">173</a> of file <a class="el" href="HeaderBase_8cpp_source.html">HeaderBase.cpp</a>.</p>
 
 </div>
 </div>
@@ -309,16 +313,16 @@ template&lt;typename Dimension1 , typename Dimension2 &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a8edef0ac61dc85c733394662fa2c60a2"></a>
+<a class="anchor" id="a6412e7d35890ac345fddd3c7a3f4af00"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Derived &gt; </div>
+template&lt;typename Derived , typename Stream &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase</a>&lt; Derived &gt;::Info const &amp; pss::astrotypes::sigproc::operator&lt;&lt; </td>
+          <td class="memname"><a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html">HeaderBase</a>&lt;Derived&gt;::template InfoSentry&lt;Stream&gt; const&amp; pss::astrotypes::sigproc::operator&lt;&lt; </td>
           <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramtype">Stream &amp;&#160;</td>
           <td class="paramname"><em>stream</em>, </td>
         </tr>
         <tr>
@@ -335,21 +339,23 @@ template&lt;typename Derived &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="HeaderBase_8cpp_source.html#l00249">249</a> of file <a class="el" href="HeaderBase_8cpp_source.html">HeaderBase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="HeaderBase_8cpp_source.html#l00294">294</a> of file <a class="el" href="HeaderBase_8cpp_source.html">HeaderBase.cpp</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a4ad5c9c194f9e731c83cae2a850cd3e9"></a>
+<a class="anchor" id="a7d5573c124c3ec2ffd0d308090e988ae"></a>
 <div class="memitem">
 <div class="memproto">
+<div class="memtemplate">
+template&lt;typename Stream &gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Header::Info const &amp; pss::astrotypes::sigproc::operator&lt;&lt; </td>
+          <td class="memname">Header::InfoSentry&lt; Stream &gt; pss::astrotypes::sigproc::operator&lt;&lt; </td>
           <td>(</td>
-          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramtype">Stream &amp;&#160;</td>
           <td class="paramname"><em>os</em>, </td>
         </tr>
         <tr>
@@ -371,7 +377,7 @@ template&lt;typename Derived &gt; </div>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00286">286</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
+<p>Definition at line <a class="el" href="Header_8cpp_source.html#l00374">374</a> of file <a class="el" href="Header_8cpp_source.html">Header.cpp</a>.</p>
 
 </div>
 </div>
@@ -446,7 +452,7 @@ template&lt;typename Derived &gt; </div>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="HeaderBase_8cpp_source.html#l00146">146</a> of file <a class="el" href="HeaderBase_8cpp_source.html">HeaderBase.cpp</a>.</p>
+<p>Definition at line <a class="el" href="HeaderBase_8cpp_source.html#l00180">180</a> of file <a class="el" href="HeaderBase_8cpp_source.html">HeaderBase.cpp</a>.</p>
 
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
@@ -492,7 +498,7 @@ template&lt;typename Dimension1 , typename Dimension2 &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 8 2018 10:50:49 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 22 2018 12:57:12 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

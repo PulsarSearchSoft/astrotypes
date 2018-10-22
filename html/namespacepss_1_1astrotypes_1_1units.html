@@ -123,8 +123,12 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1units_1_1has__equivalent__rep.html">has_equivalent_rep</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">determine is the NumericalRep of the chrono::duration and the boost::quatity are equivalent  <a href="structpss_1_1astrotypes_1_1units_1_1has__equivalent__rep.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1units_1_1has__equivalent__rep_3_01boost_1_1units_1_1quantity_3_01Boosc9f8531785ab7b5827e15011da196c81.html">has_equivalent_rep&lt; boost::units::quantity&lt; BoostUnit, NumT &gt;, boost::units::quantity&lt; BoostUnit2, Num2T &gt; &gt;</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1units_1_1has__equivalent__unit.html">has_equivalent_unit</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">determine is the units of the chrono::duration and the boost::quatity are equivalent  <a href="structpss_1_1astrotypes_1_1units_1_1has__equivalent__unit.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1units_1_1has__equivalent__unit_3_01boost_1_1units_1_1quantity_3_01Boo799409944acd0e000c347ced5972cbcb.html">has_equivalent_unit&lt; boost::units::quantity&lt; BoostUnit, NumT &gt;, boost::units::quantity&lt; BoostUnit2, Num2T &gt; &gt;</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1units_1_1is__equivalent.html">is_equivalent</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">determine is the boost::quanity and the <a class="el" href="namespacestd_1_1chrono.html">std::chrono</a>:;duration are equivalent reperesentations i.e. both in unit and numerical representation  <a href="structpss_1_1astrotypes_1_1units_1_1is__equivalent.html#details">More...</a><br /></td></tr>
@@ -242,12 +246,15 @@ Functions</h2></td></tr>
 <tr class="memitem:abb7101d4a4bf183c9321f0da4885cd0d"><td class="memTemplParams" colspan="2">template&lt;typename ChronoDuration , typename BoostNumericalRep , typename BoostUnit &gt; </td></tr>
 <tr class="memitem:abb7101d4a4bf183c9321f0da4885cd0d"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt;!boost::units::is_quantity&lt; ChronoDuration &gt;::value &amp;&amp;boost::units::is_unit_of_dimension&lt; BoostUnit, boost::units::time_dimension &gt;::value &amp;&amp;!<a class="el" href="structpss_1_1astrotypes_1_1units_1_1is__equivalent.html">is_equivalent</a>&lt; boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt;, ChronoDuration &gt;::value, const ChronoDuration &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1units.html#abb7101d4a4bf183c9321f0da4885cd0d">duration_cast</a> (const boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt; &amp;duration)</td></tr>
 <tr class="separator:abb7101d4a4bf183c9321f0da4885cd0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a228b1660d4f4a298dbc31511692ed0c9"><td class="memTemplParams" colspan="2">template&lt;typename ChronoDuration , typename BoostNumericalRep , typename BoostUnit &gt; </td></tr>
-<tr class="memitem:a228b1660d4f4a298dbc31511692ed0c9"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt;!boost::units::is_quantity&lt; ChronoDuration &gt;::value &amp;&amp;boost::units::is_unit_of_dimension&lt; BoostUnit, boost::units::time_dimension &gt;::value &amp;&amp;<a class="el" href="structpss_1_1astrotypes_1_1units_1_1is__equivalent.html">is_equivalent</a>&lt; boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt;, ChronoDuration &gt;::value, const ChronoDuration &amp; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1units.html#a228b1660d4f4a298dbc31511692ed0c9">duration_cast</a> (boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt; &amp;duration)</td></tr>
-<tr class="separator:a228b1660d4f4a298dbc31511692ed0c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90cd5b7134aa7ae6ee54f0991ff19bdd"><td class="memTemplParams" colspan="2">template&lt;typename ChronoDuration , typename BoostNumericalRep , typename BoostUnit &gt; </td></tr>
-<tr class="memitem:a90cd5b7134aa7ae6ee54f0991ff19bdd"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt;!boost::units::is_quantity&lt; ChronoDuration &gt;::value &amp;&amp;boost::units::is_unit_of_dimension&lt; BoostUnit, boost::units::time_dimension &gt;::value &amp;&amp;<a class="el" href="structpss_1_1astrotypes_1_1units_1_1is__equivalent.html">is_equivalent</a>&lt; boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt;, ChronoDuration &gt;::value, const ChronoDuration &amp; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1units.html#a90cd5b7134aa7ae6ee54f0991ff19bdd">duration_cast</a> (const boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt; &amp;duration)</td></tr>
-<tr class="separator:a90cd5b7134aa7ae6ee54f0991ff19bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefab4e4dcf65d0999ac086ad49d14610"><td class="memTemplParams" colspan="2">template&lt;typename ChronoDuration , typename BoostNumericalRep , typename BoostUnit &gt; </td></tr>
+<tr class="memitem:aefab4e4dcf65d0999ac086ad49d14610"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt;!boost::units::is_quantity&lt; ChronoDuration &gt;::value &amp;&amp;boost::units::is_unit_of_dimension&lt; BoostUnit, boost::units::time_dimension &gt;::value &amp;&amp;<a class="el" href="structpss_1_1astrotypes_1_1units_1_1is__equivalent.html">is_equivalent</a>&lt; boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt;, ChronoDuration &gt;::value, ChronoDuration &amp; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1units.html#aefab4e4dcf65d0999ac086ad49d14610">duration_cast</a> (boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt; &amp;duration)</td></tr>
+<tr class="separator:aefab4e4dcf65d0999ac086ad49d14610"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0edaf884423cf506b454b4fb00973c6"><td class="memTemplParams" colspan="2">template&lt;typename ChronoDuration , typename BoostNumericalRep , typename BoostUnit &gt; </td></tr>
+<tr class="memitem:af0edaf884423cf506b454b4fb00973c6"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; boost::units::is_unit_of_dimension&lt; BoostUnit, boost::units::time_dimension &gt;::value &amp;&amp;<a class="el" href="structpss_1_1astrotypes_1_1units_1_1is__equivalent.html">is_equivalent</a>&lt; boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt;, ChronoDuration &gt;::value, const ChronoDuration &amp; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1units.html#af0edaf884423cf506b454b4fb00973c6">duration_cast</a> (const boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt; &amp;duration)</td></tr>
+<tr class="separator:af0edaf884423cf506b454b4fb00973c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1ae4dc067f80ee75247cacbbab38f1c"><td class="memTemplParams" colspan="2">template&lt;typename BoostDuration , typename BoostNumericalRep , typename BoostUnit &gt; </td></tr>
+<tr class="memitem:ac1ae4dc067f80ee75247cacbbab38f1c"><td class="memTemplItemLeft" align="right" valign="top">constexpr std::enable_if&lt; boost::units::is_quantity&lt; BoostDuration &gt;::value &amp;&amp;!<a class="el" href="structpss_1_1astrotypes_1_1units_1_1is__equivalent.html">is_equivalent</a>&lt; boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt;, BoostDuration &gt;::value, BoostDuration &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1units.html#ac1ae4dc067f80ee75247cacbbab38f1c">duration_cast</a> (boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt; const &amp;duration)</td></tr>
+<tr class="separator:ac1ae4dc067f80ee75247cacbbab38f1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea9cfca0b1fc5c326676520a98d30568"><td class="memTemplParams" colspan="2">template&lt;typename ClockType , typename Duration &gt; </td></tr>
 <tr class="memitem:aea9cfca0b1fc5c326676520a98d30568"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacepss_1_1astrotypes_1_1units.html#aea9cfca0b1fc5c326676520a98d30568">operator&lt;&lt;</a> (std::ostream &amp;os, <a class="el" href="structpss_1_1astrotypes_1_1units_1_1TimePoint.html">TimePoint</a>&lt; ClockType, Duration &gt; const &amp;tp)</td></tr>
 <tr class="separator:aea9cfca0b1fc5c326676520a98d30568"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1443,20 +1450,20 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="namespacepss_1_1astrotypes_1_1units_abb7101d4a4bf183c9321f0da4885cd0d_cgraph.png" border="0" usemap="#namespacepss_1_1astrotypes_1_1units_abb7101d4a4bf183c9321f0da4885cd0d_cgraph" alt=""/></div>
 <map name="namespacepss_1_1astrotypes_1_1units_abb7101d4a4bf183c9321f0da4885cd0d_cgraph" id="namespacepss_1_1astrotypes_1_1units_abb7101d4a4bf183c9321f0da4885cd0d_cgraph">
-<area shape="rect" id="node2" href="namespacepss_1_1astrotypes_1_1units.html#a90cd5b7134aa7ae6ee54f0991ff19bdd" title="pss::astrotypes::units\l::duration_cast" alt="" coords="200,5,346,44"/></map>
+<area shape="rect" id="node2" href="namespacepss_1_1astrotypes_1_1units.html#ac1ae4dc067f80ee75247cacbbab38f1c" title="pss::astrotypes::units\l::duration_cast" alt="" coords="200,5,346,44"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a228b1660d4f4a298dbc31511692ed0c9"></a>
+<a class="anchor" id="aefab4e4dcf65d0999ac086ad49d14610"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename ChronoDuration , typename BoostNumericalRep , typename BoostUnit &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">constexpr std::enable_if&lt;!boost::units::is_quantity&lt;ChronoDuration&gt;::value &amp;&amp; boost::units::is_unit_of_dimension&lt;BoostUnit, boost::units::time_dimension&gt;::value &amp;&amp; <a class="el" href="structpss_1_1astrotypes_1_1units_1_1is__equivalent.html">is_equivalent</a>&lt;boost::units::quantity&lt;BoostUnit, BoostNumericalRep&gt;, ChronoDuration&gt;::value , const ChronoDuration&amp; &gt;::type pss::astrotypes::units::duration_cast </td>
+          <td class="memname">constexpr std::enable_if&lt;!boost::units::is_quantity&lt;ChronoDuration&gt;::value &amp;&amp; boost::units::is_unit_of_dimension&lt;BoostUnit, boost::units::time_dimension&gt;::value &amp;&amp; <a class="el" href="structpss_1_1astrotypes_1_1units_1_1is__equivalent.html">is_equivalent</a>&lt;boost::units::quantity&lt;BoostUnit, BoostNumericalRep&gt;, ChronoDuration&gt;::value , ChronoDuration&amp; &gt;::type pss::astrotypes::units::duration_cast </td>
           <td>(</td>
           <td class="paramtype">boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt; &amp;&#160;</td>
           <td class="paramname"><em>duration</em></td><td>)</td>
@@ -1469,14 +1476,14 @@ template&lt;typename ChronoDuration , typename BoostNumericalRep , typename Boos
 
 </div>
 </div>
-<a class="anchor" id="a90cd5b7134aa7ae6ee54f0991ff19bdd"></a>
+<a class="anchor" id="af0edaf884423cf506b454b4fb00973c6"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename ChronoDuration , typename BoostNumericalRep , typename BoostUnit &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">constexpr std::enable_if&lt;!boost::units::is_quantity&lt;ChronoDuration&gt;::value &amp;&amp; boost::units::is_unit_of_dimension&lt;BoostUnit, boost::units::time_dimension&gt;::value &amp;&amp; <a class="el" href="structpss_1_1astrotypes_1_1units_1_1is__equivalent.html">is_equivalent</a>&lt;boost::units::quantity&lt;BoostUnit, BoostNumericalRep&gt;, ChronoDuration&gt;::value , const ChronoDuration&amp; &gt;::type pss::astrotypes::units::duration_cast </td>
+          <td class="memname">constexpr std::enable_if&lt;boost::units::is_unit_of_dimension&lt;BoostUnit, boost::units::time_dimension&gt;::value &amp;&amp; <a class="el" href="structpss_1_1astrotypes_1_1units_1_1is__equivalent.html">is_equivalent</a>&lt;boost::units::quantity&lt;BoostUnit, BoostNumericalRep&gt;, ChronoDuration&gt;::value , const ChronoDuration&amp; &gt;::type pss::astrotypes::units::duration_cast </td>
           <td>(</td>
           <td class="paramtype">const boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt; &amp;&#160;</td>
           <td class="paramname"><em>duration</em></td><td>)</td>
@@ -1485,7 +1492,27 @@ template&lt;typename ChronoDuration , typename BoostNumericalRep , typename Boos
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="BoostDurationCast_8h_source.html#l00165">165</a> of file <a class="el" href="BoostDurationCast_8h_source.html">BoostDurationCast.h</a>.</p>
+<p>Definition at line <a class="el" href="BoostDurationCast_8h_source.html#l00164">164</a> of file <a class="el" href="BoostDurationCast_8h_source.html">BoostDurationCast.h</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="ac1ae4dc067f80ee75247cacbbab38f1c"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename BoostDuration , typename BoostNumericalRep , typename BoostUnit &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::enable_if&lt;boost::units::is_quantity&lt;BoostDuration&gt;::value &amp;&amp; !<a class="el" href="structpss_1_1astrotypes_1_1units_1_1is__equivalent.html">is_equivalent</a>&lt;boost::units::quantity&lt;BoostUnit, BoostNumericalRep&gt;, BoostDuration&gt;::value , BoostDuration &gt;::type pss::astrotypes::units::duration_cast </td>
+          <td>(</td>
+          <td class="paramtype">boost::units::quantity&lt; BoostUnit, BoostNumericalRep &gt; const &amp;&#160;</td>
+          <td class="paramname"><em>duration</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="BoostDurationCast_8h_source.html#l00175">175</a> of file <a class="el" href="BoostDurationCast_8h_source.html">BoostDurationCast.h</a>.</p>
 
 </div>
 </div>
@@ -1882,7 +1909,7 @@ template&lt;typename ClockType , typename Duration &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 8 2018 10:50:50 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 22 2018 12:57:17 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
