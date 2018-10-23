@@ -99,7 +99,7 @@ struct DefaultDataFactoryTraits {
 
     /// The mapping of th number of bits to the NumericalRepresentation of those bits
     template<unsigned nbits>
-    using BitsTypeMap = BitToUnsignedInt<nbits>;
+    struct BitsTypeMap : public BitToUnsignedInt<nbits> {};
 
     /// The allocator type of the data types that will be generated
     template<typename T>
