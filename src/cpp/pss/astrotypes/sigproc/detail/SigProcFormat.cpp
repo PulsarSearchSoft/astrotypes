@@ -53,7 +53,7 @@ namespace {
     struct do_write<IteratorType, std::random_access_iterator_tag>
     {
         static void exec(IteratorType begin, IteratorType const end, std::ostream& os) {
-            os.write(reinterpret_cast<const char*>(&(*begin)), std::distance(begin, end));
+            os.write(reinterpret_cast<const char*>(&(*begin)), std::distance(begin, end) * sizeof(typename std::iterator_traits<typename std::remove_reference<IteratorType>::type>::value_type));
         }
     };
 
