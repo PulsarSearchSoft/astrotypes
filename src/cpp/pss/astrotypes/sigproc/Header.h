@@ -27,6 +27,7 @@
 #include "HeaderField.h"
 #include "detail/HeaderFieldDataType.h"
 #include "detail/HeaderBase.h"
+#include "pss/astrotypes/utils/Optional.h"
 #include "pss/astrotypes/units/Time.h"
 #include "pss/astrotypes/units/Frequency.h"
 #include "pss/astrotypes/units/Angle.h"
@@ -45,7 +46,7 @@ namespace sigproc {
  *    Sigproc has a number of mandatory and optional parameters
  *    All stored at the beginning of the sigproc file.
  *
- *    As a consequence the type often returned is a boost::optional<T>.
+ *    As a consequence the type often returned is a utils::Optional<T>.
  *    This class is designed to allow you to test if the value has been set
  *    or not.
  *    e.g.
@@ -110,7 +111,7 @@ class Header : public HeaderBase<Header>
         /**
          * @brief return the telescope_id identifier (if any)
          */
-        boost::optional<unsigned> telescope_id() const;
+        utils::Optional<unsigned> telescope_id() const;
 
         /**
          * @brief set the telescope_id identifier
@@ -120,7 +121,7 @@ class Header : public HeaderBase<Header>
         /**
          * @brief return the machine_id identifier (if any)
          */
-        boost::optional<unsigned> machine_id() const;
+        utils::Optional<unsigned> machine_id() const;
 
         /**
          * @brief set the machine_id identifier
@@ -141,7 +142,7 @@ class Header : public HeaderBase<Header>
         /**
          * @brief return the value of the raw data filename (if any)
          */
-        boost::optional<std::string> const& raw_data_file() const;
+        utils::Optional<std::string> const& raw_data_file() const;
 
         /**
          * @brief set a value for the raw data filename
@@ -152,7 +153,7 @@ class Header : public HeaderBase<Header>
         /**
          * @brief return the value of the source name (if any)
          */
-        boost::optional<std::string> const& source_name() const;
+        utils::Optional<std::string> const& source_name() const;
 
         /**
          * @brief set a value for the source name
@@ -162,31 +163,31 @@ class Header : public HeaderBase<Header>
         /**
          * @brief the value of the barycentric field (if any)
          */
-        boost::optional<unsigned> const& barycentric() const;
+        utils::Optional<unsigned> const& barycentric() const;
         void barycentric(bool barycentric);
 
         /**
          * @brief the value of the pulsarcentric field (if any)
          */
-        boost::optional<unsigned> const& pulsarcentric() const;
+        utils::Optional<unsigned> const& pulsarcentric() const;
         void pulsarcentric(bool pulsarcentric);
 
         /**
          * @brief getters/setters for the telscope azimuth at start of scan (in degrees)
          */
-        boost::optional<boost::units::quantity<units::Degree, double>> az_start() const;
+        utils::Optional<boost::units::quantity<units::Degree, double>> az_start() const;
         void az_start(boost::units::quantity<units::Degree, double> const&);
 
         /**
          * @brief getters/setters for the telscope zenith at start of scan (in degrees)
          */
-        boost::optional<boost::units::quantity<units::Degree, double>> za_start() const;
+        utils::Optional<boost::units::quantity<units::Degree, double>> za_start() const;
         void za_start(boost::units::quantity<units::Degree, double> const&);
 
         /**
          * @brief return the date of the start of the data block
          */
-        boost::optional<units::ModifiedJulianDate> const& tstart() const;
+        utils::Optional<units::ModifiedJulianDate> const& tstart() const;
 
         /**
          * @brief set the date of the start of the data block
@@ -207,7 +208,7 @@ class Header : public HeaderBase<Header>
          * @brief get the frequency of the first channel
          * @details optional
          */
-        boost::optional<boost::units::quantity<units::MegaHertz, double>> const& fch1() const;
+        utils::Optional<boost::units::quantity<units::MegaHertz, double>> const& fch1() const;
 
         /**
          * @brief set the frequency of the first channel
@@ -220,7 +221,7 @@ class Header : public HeaderBase<Header>
          * @brief get the band width of a channel (assumes homogenous badwidth for each channel)
          * @details optional
          */
-        boost::optional<boost::units::quantity<units::MegaHertz, double>> const& foff() const;
+        utils::Optional<boost::units::quantity<units::MegaHertz, double>> const& foff() const;
 
         /**
          * @brief set the frequency width of the channel (for fixed band width channels)
@@ -268,7 +269,7 @@ class Header : public HeaderBase<Header>
          * @deprecated
          *          This can usually be calculated from the file size instead
          */
-        boost::optional<unsigned> const& number_of_samples() const;
+        utils::Optional<unsigned> const& number_of_samples() const;
 
         /**
          * @brief set the number of time samples (optional)
@@ -291,7 +292,7 @@ class Header : public HeaderBase<Header>
          * @brief return the reference Dispersion Measure
          * @details optional
          */
-        boost::optional<units::DispersionMeasure<double>> const& ref_dm() const;
+        utils::Optional<units::DispersionMeasure<double>> const& ref_dm() const;
 
         /**
          * @brief set the reference Dispersion Measure
@@ -302,7 +303,7 @@ class Header : public HeaderBase<Header>
         /**
          * @brief return the folding period (if defined)
          */
-        boost::optional<boost::units::quantity<units::Seconds, double>> const& period() const;
+        utils::Optional<boost::units::quantity<units::Seconds, double>> const& period() const;
 
         /**
          * @brief set folding period period

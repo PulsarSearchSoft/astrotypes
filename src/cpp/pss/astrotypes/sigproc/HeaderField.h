@@ -24,7 +24,7 @@
 #ifndef PSS_ASTROTYPES_SIGPROC_HEADERFIELD_H
 #define PSS_ASTROTYPES_SIGPROC_HEADERFIELD_H
 #include "pss/astrotypes/sigproc/detail/SigProcVariable.h"
-#include <boost/optional.hpp>
+#include "pss/astrotypes/utils/Optional.h"
 #include <string>
 #include <vector>
 
@@ -99,7 +99,7 @@ class HeaderField : public HeaderFieldBase
 
         operator T const&() const { return *_var; }
         operator T&() { return *_var; }
-        operator boost::optional<T> const&() const { return _var; }
+        operator utils::Optional<T> const&() const { return _var; }
         HeaderField& operator=(T const& var);
         void operator=(const HeaderFieldBase&) override;
 
@@ -112,7 +112,7 @@ class HeaderField : public HeaderFieldBase
         bool operator==(const HeaderField&) const;
 
     protected:
-        boost::optional<T> _var;
+        utils::Optional<T> _var;
 };
 
 /**
@@ -176,7 +176,7 @@ class HeaderField<std::vector<T>> : public HeaderFieldBase
 
         operator std::vector<T> const&() const { return _var; }
         operator std::vector<T>&() { return _var; }
-        operator boost::optional<std::vector<T>> const&() const { return _var; }
+        operator utils::Optional<std::vector<T>> const&() const { return _var; }
         HeaderField& operator=(std::vector<T> const& var);
 
         unsigned read(std::istream &) override;

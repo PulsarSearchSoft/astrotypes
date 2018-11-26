@@ -21,42 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include "pss/astrotypes/sigproc/examples/ExtendedHeader.h"
+#ifndef PSS_ASTROTYPES_UTILS_TEST_OPTIONALTEST_H
+#define PSS_ASTROTYPES_UTILS_TEST_OPTIONALTEST_H
 
+#include <gtest/gtest.h>
 
 namespace pss {
 namespace astrotypes {
-namespace sigproc {
-namespace examples {
+namespace utils {
+namespace test {
 
-static const SigProcLabel distance_label("distance");
+/**
+ * @brief
+ * @details
+ */
 
-ExtendedHeader::ExtendedHeader()
-    : _distance(distance_label, *this) // register our new header parameter
+class OptionalTest : public ::testing::Test
 {
-}
+    protected:
+        void SetUp() override;
+        void TearDown() override;
 
-ExtendedHeader::~ExtendedHeader()
-{
-}
+    public:
+        OptionalTest();
 
-ExtendedHeader::ExtendedHeader(ExtendedHeader const& copy)
-    : BaseT(copy)
-    , _distance(distance_label, *this, copy._distance)
-{
-}
+        ~OptionalTest();
 
-utils::Optional<boost::units::quantity<pss::astrotypes::units::Parsecs, double>> const& ExtendedHeader::distance() const
-{
-    return _distance;
-}
+    private:
+};
 
-void ExtendedHeader::distance(boost::units::quantity<pss::astrotypes::units::Parsecs, double> const& d)
-{
-    _distance = d;
-}
 
-} // namespace examples
-} // namespace sigproc
+} // namespace test
+} // namespace utils
 } // namespace astrotypes
 } // namespace pss
+
+#endif // PSS_ASTROTYPES_UTILS_TEST_OPTIONALTEST_H

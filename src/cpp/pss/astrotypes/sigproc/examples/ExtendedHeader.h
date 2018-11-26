@@ -47,10 +47,10 @@ class ExtendedHeader : public pss::astrotypes::sigproc::Header
 
         /** 
          * @brief get the calculated distance to the candidate
-         * @details note the return type is a boost::optional and should be tested
+         * @details note the return type is a utils::Optional and should be tested
          *          before trying to use its value.
          */
-        boost::optional<boost::units::quantity<pss::astrotypes::units::Parsecs, double>> const& distance() const;
+        utils::Optional<boost::units::quantity<pss::astrotypes::units::Parsecs, double>> const& distance() const;
 
         /** 
          * @brief set the distance to the candidate

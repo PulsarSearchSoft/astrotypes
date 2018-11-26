@@ -25,7 +25,6 @@
 #define PSS_ASTROTYPES_SIGPROC_HEADERBASE_H
 
 #include "../HeaderField.h"
-#include <boost/optional.hpp>
 #include <iostream>
 #include <exception>
 #include <map>
@@ -42,7 +41,7 @@ namespace sigproc {
  *    Sigproc has a number of mandatory and optional parameters
  *    All stored at the beginning of the sigproc file.
  *
- *    As a consequence the type often returned is a boost::optional<T>.
+ *    As a consequence the type often returned is a utils::Optional<T>.
  *    This class is designed to allow you to test if the value has been set
  *    or not.
  *    e.g.

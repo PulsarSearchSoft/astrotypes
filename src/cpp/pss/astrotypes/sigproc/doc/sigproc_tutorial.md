@@ -49,10 +49,10 @@ This is how we do it in the sigproc_header executable in the examples folder.
 ### Reading in Sigproc Data
 Now we have all the information of the header encapsulated in the header object.
 Note that many of the headers are optional, and to relflect this they are returned as
-boost::optional types. To use such a variable you must check it is valid first like this:
+utils::Optional types. To use such a variable you must check it is valid first like this:
 ~~~~.cpp
 if(header.telescope_id()) {
-    std::cout << "telescope_id=" << header.telescope_id() << "\n";
+    std::cout << "telescope_id=" << *header.telescope_id() << "\n";
 }
 ~~~~
 

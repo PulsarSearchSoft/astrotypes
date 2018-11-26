@@ -137,7 +137,7 @@ std::ostream& Header::OStreamAdapter<T>::operator<<(std::ostream& os) const
 }
 
 // --------- getters and setters --------------------------
-inline boost::optional<unsigned> Header::telescope_id() const
+inline utils::Optional<unsigned> Header::telescope_id() const
 {
     return _telescope_id;
 }
@@ -147,7 +147,7 @@ inline void Header::telescope_id(unsigned id)
     _telescope_id = id;
 }
 
-inline boost::optional<unsigned> Header::machine_id() const
+inline utils::Optional<unsigned> Header::machine_id() const
 {
     return _machine_id;
 }
@@ -157,7 +157,7 @@ inline void Header::machine_id(unsigned id)
     _machine_id = id;
 }
 
-inline boost::optional<std::string> const& Header::raw_data_file() const
+inline utils::Optional<std::string> const& Header::raw_data_file() const
 {
     return _raw_data_file;
 }
@@ -201,7 +201,7 @@ inline void Header::raw_data_file(std::string const& filename)
     _raw_data_file = filename;
 }
 
-inline boost::optional<std::string> const& Header::source_name() const
+inline utils::Optional<std::string> const& Header::source_name() const
 {
     return _source_name;
 }
@@ -211,7 +211,7 @@ inline void Header::source_name(std::string const& name)
     _source_name = name;
 }
 
-inline boost::optional<unsigned> const& Header::barycentric() const
+inline utils::Optional<unsigned> const& Header::barycentric() const
 {
     return _barycentric;
 }
@@ -221,7 +221,7 @@ inline void Header::barycentric(bool b)
     _barycentric = b;
 }
 
-inline boost::optional<unsigned> const& Header::pulsarcentric() const
+inline utils::Optional<unsigned> const& Header::pulsarcentric() const
 {
     return _pulsarcentric;
 }
@@ -231,7 +231,7 @@ inline void Header::pulsarcentric(bool b)
     _pulsarcentric = b;
 }
 
-inline boost::optional<boost::units::quantity<units::Degree, double>> Header::az_start() const
+inline utils::Optional<boost::units::quantity<units::Degree, double>> Header::az_start() const
 {
     return _az_start;
 }
@@ -241,7 +241,7 @@ inline void Header::az_start(boost::units::quantity<units::Degree, double> const
     _az_start = v;
 }
 
-inline boost::optional<boost::units::quantity<units::Degree, double>> Header::za_start() const
+inline utils::Optional<boost::units::quantity<units::Degree, double>> Header::za_start() const
 {
     return _za_start;
 }
@@ -251,7 +251,7 @@ inline void Header::za_start(boost::units::quantity<units::Degree, double> const
     _za_start = v;
 }
 
-inline boost::optional<units::ModifiedJulianDate> const& Header::tstart() const
+inline utils::Optional<units::ModifiedJulianDate> const& Header::tstart() const
 {
     return _tstart;
 }
@@ -272,7 +272,7 @@ inline void Header::sample_interval(boost::units::quantity<units::Seconds, doubl
     _tsamp = tsamp;
 }
 
-inline boost::optional<boost::units::quantity<units::MegaHertz, double>> const& Header::fch1() const
+inline utils::Optional<boost::units::quantity<units::MegaHertz, double>> const& Header::fch1() const
 {
     return _fch1;
 }
@@ -282,7 +282,7 @@ inline void Header::fch1(boost::units::quantity<units::MegaHertz, double> const&
     _fch1 = f;
 }
 
-inline boost::optional<boost::units::quantity<units::MegaHertz, double>> const& Header::foff() const
+inline utils::Optional<boost::units::quantity<units::MegaHertz, double>> const& Header::foff() const
 {
     return _foff;
 }
@@ -302,7 +302,7 @@ inline void Header::frequency_channels(std::vector<boost::units::quantity<units:
     *_freq_channels = frequency_channels;
 }
 
-inline boost::optional<units::DispersionMeasure<double>> const& Header::ref_dm() const
+inline utils::Optional<units::DispersionMeasure<double>> const& Header::ref_dm() const
 {
     return _refdm;
 }
@@ -312,7 +312,7 @@ inline void Header::ref_dm(units::DispersionMeasure<double> dm)
     _refdm = dm;
 }
 
-inline boost::optional<boost::units::quantity<units::Seconds, double>> const& Header::period() const
+inline utils::Optional<boost::units::quantity<units::Seconds, double>> const& Header::period() const
 {
     return _period;
 }
@@ -344,7 +344,7 @@ inline void Header::number_of_bits(unsigned n)
     _n_bits = n;
 }
 
-inline boost::optional<unsigned> const& Header::number_of_samples() const
+inline utils::Optional<unsigned> const& Header::number_of_samples() const
 {
     return _nsamples;
 }
