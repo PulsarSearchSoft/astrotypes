@@ -1,14 +1,15 @@
 <map id="src/cpp/pss/astrotypes/units/DispersionMeasure.h" name="src/cpp/pss/astrotypes/units/DispersionMeasure.h">
-<area shape="rect" id="node2" href="$Header_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/Header.h" alt="" coords="258,92,412,131"/>
-<area shape="rect" id="node3" href="$DataFactory_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/DataFactory.h" alt="" coords="59,379,214,417"/>
-<area shape="rect" id="node4" href="$SigProc_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/SigProc.h" alt="" coords="106,472,260,511"/>
-<area shape="rect" id="node7" href="$ExtendedHeader_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/ExtendedHeader.h" alt="" coords="90,185,333,224"/>
-<area shape="rect" id="node9" href="$FileReader_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/FileReader.h" alt="" coords="348,379,502,417"/>
-<area shape="rect" id="node11" href="$SigProcFormatAdapterSelector_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/SigProcFormatAdapter\lSelector.h" alt="" coords="357,179,564,231"/>
-<area shape="rect" id="node13" href="$HeaderTest_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/test/src/HeaderTest.cpp" alt="" coords="639,185,850,224"/>
-<area shape="rect" id="node5" href="$sigproc__cat_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/src\l/sigproc_cat.cpp" alt="" coords="18,565,172,617"/>
-<area shape="rect" id="node6" href="$sigproc__header_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/src\l/sigproc_header.cpp" alt="" coords="196,565,350,617"/>
-<area shape="rect" id="node8" href="$ExtendedHeader_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/src\l/ExtendedHeader.cpp" alt="" coords="134,279,288,331"/>
-<area shape="rect" id="node10" href="$FileReaderTest_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/test/src/FileReader\lTest.cpp" alt="" coords="333,465,516,517"/>
-<area shape="rect" id="node12" href="$IStream_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/IStream.h" alt="" coords="348,285,502,324"/>
+<area shape="rect" id="node2" href="$Header_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/Header.h" alt="" coords="257,99,411,137"/>
+<area shape="rect" id="node14" href="$DispersionConstantTest_8cpp.html" title="src/cpp/pss/astrotypes\l/units/test/src/DispersionConstant\lTest.cpp" alt="" coords="435,92,655,144"/>
+<area shape="rect" id="node3" href="$DataFactory_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/DataFactory.h" alt="" coords="58,392,213,431"/>
+<area shape="rect" id="node4" href="$SigProc_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/SigProc.h" alt="" coords="105,485,259,524"/>
+<area shape="rect" id="node7" href="$ExtendedHeader_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/ExtendedHeader.h" alt="" coords="89,199,332,237"/>
+<area shape="rect" id="node9" href="$FileReader_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/FileReader.h" alt="" coords="347,392,501,431"/>
+<area shape="rect" id="node11" href="$SigProcFormatAdapterSelector_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/SigProcFormatAdapter\lSelector.h" alt="" coords="356,192,563,244"/>
+<area shape="rect" id="node13" href="$HeaderTest_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/test/src/HeaderTest.cpp" alt="" coords="638,199,850,237"/>
+<area shape="rect" id="node5" href="$sigproc__cat_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/src\l/sigproc_cat.cpp" alt="" coords="17,579,171,631"/>
+<area shape="rect" id="node6" href="$sigproc__header_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/src\l/sigproc_header.cpp" alt="" coords="195,579,349,631"/>
+<area shape="rect" id="node8" href="$ExtendedHeader_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/src\l/ExtendedHeader.cpp" alt="" coords="133,292,287,344"/>
+<area shape="rect" id="node10" href="$FileReaderTest_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/test/src/FileReader\lTest.cpp" alt="" coords="332,479,516,531"/>
+<area shape="rect" id="node12" href="$IStream_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/IStream.h" alt="" coords="347,299,501,337"/>
 </map>

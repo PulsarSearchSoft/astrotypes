@@ -15,5 +15,8 @@ var searchData=
   ['dimensionsizetest_2eh',['DimensionSizeTest.h',['../DimensionSizeTest_8h.html',1,'']]],
   ['dimensionspan_2ecpp',['DimensionSpan.cpp',['../DimensionSpan_8cpp.html',1,'']]],
   ['dimensionspan_2eh',['DimensionSpan.h',['../DimensionSpan_8h.html',1,'']]],
+  ['dispersionconstant_2eh',['DispersionConstant.h',['../DispersionConstant_8h.html',1,'']]],
+  ['dispersionconstanttest_2ecpp',['DispersionConstantTest.cpp',['../DispersionConstantTest_8cpp.html',1,'']]],
+  ['dispersionconstanttest_2eh',['DispersionConstantTest.h',['../DispersionConstantTest_8h.html',1,'']]],
   ['dispersionmeasure_2eh',['DispersionMeasure.h',['../DispersionMeasure_8h.html',1,'']]]
 ];

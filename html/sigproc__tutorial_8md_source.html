@@ -139,10 +139,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;### Reading in Sigproc Data</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;Now we have all the information of the header encapsulated in the header object.</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;Note that many of the headers are optional, and to relflect this they are returned as</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;boost::optional types. To use such a variable you must check it is valid first like this:</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;utils::Optional types. To use such a variable you must check it is valid first like this:</div>
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;~~~~.cpp</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;if(header.telescope_id()) {</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::cout &lt;&lt; &quot;telescope_id=&quot; &lt;&lt; header.telescope_id() &lt;&lt; &quot;\n&quot;;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;if(header.telescope_id().is_set()) {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    std::cout &lt;&lt; &quot;telescope_id=&quot; &lt;&lt; *header.telescope_id() &lt;&lt; &quot;\n&quot;;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;}</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;~~~~</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
@@ -203,7 +203,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 22 2018 12:56:59 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 29 2018 14:30:07 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

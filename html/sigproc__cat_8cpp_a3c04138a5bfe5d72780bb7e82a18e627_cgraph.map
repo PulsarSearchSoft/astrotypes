@@ -1,6 +1,6 @@
 <map id="main" name="main">
 <area shape="rect" id="node2" href="$sigproc__cat_8cpp.html#a4363d14b85fe8970acb3dc617389d772" title="usage" alt="" coords="155,28,213,53"/>
-<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a4e2259050b1656d9cc9ca24058320b70" title="return the value of the raw data filename (if any) " alt="" coords="104,77,265,116"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a24d1c8a1274955fb5cd6cc9626fb4df9" title="return the value of the raw data filename (if any) " alt="" coords="104,77,265,116"/>
 <area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1sigproc_1_1DataFactory.html#ad0e2520975eebd43e0fd9a0136befea4" title="pss::astrotypes::sigproc\l::DataFactory::exec" alt="" coords="104,140,265,179"/>
 <area shape="rect" id="node5" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a51be305333d0511ab5ab204113cb5fd4" title="set the data type " alt="" coords="314,75,476,113"/>
 <area shape="rect" id="node11" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a8a749a6ca444fcc3af1e23a318bc0ee1" title="return the number of IF streams (e.g. polarisations) in each channel " alt="" coords="313,140,477,179"/>

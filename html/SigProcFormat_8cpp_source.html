@@ -147,7 +147,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keyword">struct </span>do_write&lt;IteratorType, <a class="code" href="namespacestd.html">std</a>::random_access_iterator_tag&gt;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> exec(IteratorType begin, IteratorType <span class="keyword">const</span> end, std::ostream&amp; os) {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            os.write(reinterpret_cast&lt;const char*&gt;(&amp;(*begin)), std::distance(begin, end));</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            os.write(reinterpret_cast&lt;const char*&gt;(&amp;(*begin)), std::distance(begin, end) * <span class="keyword">sizeof</span>(<span class="keyword">typename</span> std::iterator_traits&lt;<span class="keyword">typename</span> std::remove_reference&lt;IteratorType&gt;::type&gt;::value_type));</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        }</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    };</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;</div>
@@ -331,7 +331,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 22 2018 12:56:59 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 29 2018 14:30:07 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

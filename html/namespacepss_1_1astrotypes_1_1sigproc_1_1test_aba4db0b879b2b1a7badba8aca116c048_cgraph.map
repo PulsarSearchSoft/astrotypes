@@ -1,6 +1,7 @@
 <map id="pss::astrotypes::sigproc::test::TEST_F" name="pss::astrotypes::sigproc::test::TEST_F">
-<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a2ba68b72fcc69129953851f377c496ca" title="the value of the pulsarcentric field (if any) " alt="" coords="215,5,376,44"/>
-<area shape="rect" id="node3" href="$namespacepss_1_1astrotypes_1_1sigproc_1_1test.html#a9414aefdf894b68a30b864a5865c5e6a" title="pss::astrotypes::sigproc\l::test::save_restore" alt="" coords="215,68,376,107"/>
-<area shape="rect" id="node5" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ace3b67b506cdc03acfd1beaed325b826" title="reset all header variables to an undefined state " alt="" coords="215,131,376,169"/>
-<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a4ed313a3b28d0db072bdf6b73f0ba415" title="read in header data from the provided stream " alt="" coords="424,68,586,107"/>
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1sigproc_1_1Header.html#ad684483b448ce0557d55239e6e0e24b0" title="the value of the pulsarcentric field (if any) " alt="" coords="215,5,376,44"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1utils_1_1Optional.html#a52435a12c3d26f1dfee26aa2dcd52238" title="if the value has been explicitly set then return true " alt="" coords="224,68,366,107"/>
+<area shape="rect" id="node4" href="$namespacepss_1_1astrotypes_1_1sigproc_1_1test.html#a9414aefdf894b68a30b864a5865c5e6a" title="pss::astrotypes::sigproc\l::test::save_restore" alt="" coords="215,131,376,169"/>
+<area shape="rect" id="node6" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#ace3b67b506cdc03acfd1beaed325b826" title="reset all header variables to an undefined state " alt="" coords="215,193,376,232"/>
+<area shape="rect" id="node5" href="$classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a4ed313a3b28d0db072bdf6b73f0ba415" title="read in header data from the provided stream " alt="" coords="424,131,586,169"/>
 </map>

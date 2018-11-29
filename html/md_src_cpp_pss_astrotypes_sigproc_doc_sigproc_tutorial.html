@@ -109,8 +109,8 @@ The Sigproc file format (FilterBank and TimeSeries)</h1>
 <div class="line">std::cout &lt;&lt; astro::sigproc::Header::Info() &lt;&lt; header;</div>
 </div><!-- fragment --><p> This is how we do it in the sigproc_header executable in the examples folder.</p>
 <div class="fragment"></div><!-- fragment --><h3>Reading in Sigproc Data</h3>
-<p>Now we have all the information of the header encapsulated in the header object. Note that many of the headers are optional, and to relflect this they are returned as boost::optional types. To use such a variable you must check it is valid first like this: </p><div class="fragment"><div class="line"><span class="keywordflow">if</span>(header.telescope_id()) {</div>
-<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;telescope_id=&quot;</span> &lt;&lt; header.telescope_id() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<p>Now we have all the information of the header encapsulated in the header object. Note that many of the headers are optional, and to relflect this they are returned as utils::Optional types. To use such a variable you must check it is valid first like this: </p><div class="fragment"><div class="line"><span class="keywordflow">if</span>(header.telescope_id().is_set()) {</div>
+<div class="line">    std::cout &lt;&lt; <span class="stringliteral">&quot;telescope_id=&quot;</span> &lt;&lt; *header.telescope_id() &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>We can put in some checks to see it is the data we are expecting. </p><div class="fragment"><div class="line"><span class="comment">// check header is what we are expecting</span></div>
 <div class="line"><span class="comment">// </span></div>
@@ -140,7 +140,7 @@ The Sigproc file format (FilterBank and TimeSeries)</h1>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 22 2018 12:57:07 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 29 2018 14:30:15 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

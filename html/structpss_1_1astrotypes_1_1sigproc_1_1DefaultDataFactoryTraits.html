@@ -91,6 +91,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits-members.html">List of all members</a>  </div>
@@ -101,18 +102,20 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p><code>#include &lt;<a class="el" href="DefaultDataFactoryTraits_8h_source.html">src/cpp/pss/astrotypes/sigproc/DefaultDataFactoryTraits.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits_1_1BitsTypeMap.html">BitsTypeMap</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The mapping of th number of bits to the <a class="el" href="structpss_1_1astrotypes_1_1NumericalRepresentation.html" title="meta programming struct to determine the internal type of a container ">NumericalRepresentation</a> of those bits.  <a href="structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits_1_1BitsTypeMap.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a947756f571f7425d3d56e070e91c3b35"><td class="memTemplParams" colspan="2">template&lt;unsigned nbits&gt; </td></tr>
-<tr class="memitem:a947756f571f7425d3d56e070e91c3b35"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits.html#a947756f571f7425d3d56e070e91c3b35">BitsTypeMap</a> = <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1BitToUnsignedInt.html">BitToUnsignedInt</a>&lt; nbits &gt;</td></tr>
-<tr class="memdesc:a947756f571f7425d3d56e070e91c3b35"><td class="mdescLeft">&#160;</td><td class="mdescRight">The mapping of th number of bits to the <a class="el" href="structpss_1_1astrotypes_1_1NumericalRepresentation.html" title="meta programming struct to determine the internal type of a container ">NumericalRepresentation</a> of those bits.  <a href="#a947756f571f7425d3d56e070e91c3b35">More...</a><br /></td></tr>
-<tr class="separator:a947756f571f7425d3d56e070e91c3b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80526abc8e19ef5330d79d0d0aff1b43"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
 <tr class="memitem:a80526abc8e19ef5330d79d0d0aff1b43"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits.html#a80526abc8e19ef5330d79d0d0aff1b43">AllocatorMap</a> = std::allocator&lt; T &gt;</td></tr>
 <tr class="memdesc:a80526abc8e19ef5330d79d0d0aff1b43"><td class="mdescLeft">&#160;</td><td class="mdescRight">The allocator type of the data types that will be generated.  <a href="#a80526abc8e19ef5330d79d0d0aff1b43">More...</a><br /></td></tr>
 <tr class="separator:a80526abc8e19ef5330d79d0d0aff1b43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a232ece50ed4a5e700660158176473b56"><td class="memTemplParams" colspan="2">template&lt;unsigned nifs, unsigned nbits&gt; </td></tr>
-<tr class="memitem:a232ece50ed4a5e700660158176473b56"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits.html#a232ece50ed4a5e700660158176473b56">ElementTypeMap</a> = <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1ElementType.html">ElementType</a>&lt; nifs, nbits, <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits.html#a947756f571f7425d3d56e070e91c3b35">BitsTypeMap</a> &gt;</td></tr>
+<tr class="memitem:a232ece50ed4a5e700660158176473b56"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits.html#a232ece50ed4a5e700660158176473b56">ElementTypeMap</a> = <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1ElementType.html">ElementType</a>&lt; nifs, nbits, <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits_1_1BitsTypeMap.html">BitsTypeMap</a> &gt;</td></tr>
 <tr class="memdesc:a232ece50ed4a5e700660158176473b56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specifies the mapping from the type that is associated with the different values of the number of seperate IF streams for each channel.  <a href="#a232ece50ed4a5e700660158176473b56">More...</a><br /></td></tr>
 <tr class="separator:a232ece50ed4a5e700660158176473b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -143,24 +146,6 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a947756f571f7425d3d56e070e91c3b35"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;unsigned nbits&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits.html#a947756f571f7425d3d56e070e91c3b35">pss::astrotypes::sigproc::DefaultDataFactoryTraits::BitsTypeMap</a> =  <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1BitToUnsignedInt.html">BitToUnsignedInt</a>&lt;nbits&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>The mapping of th number of bits to the <a class="el" href="structpss_1_1astrotypes_1_1NumericalRepresentation.html" title="meta programming struct to determine the internal type of a container ">NumericalRepresentation</a> of those bits. </p>
-
-<p>Definition at line <a class="el" href="DefaultDataFactoryTraits_8h_source.html#l00102">102</a> of file <a class="el" href="DefaultDataFactoryTraits_8h_source.html">DefaultDataFactoryTraits.h</a>.</p>
-
-</div>
-</div>
 <a class="anchor" id="a232ece50ed4a5e700660158176473b56"></a>
 <div class="memitem">
 <div class="memproto">
@@ -168,7 +153,7 @@ template&lt;unsigned nbits&gt; </div>
 template&lt;unsigned nifs, unsigned nbits&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits.html#a232ece50ed4a5e700660158176473b56">pss::astrotypes::sigproc::DefaultDataFactoryTraits::ElementTypeMap</a> =  <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1ElementType.html">ElementType</a>&lt;nifs, nbits, <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits.html#a947756f571f7425d3d56e070e91c3b35">BitsTypeMap</a>&gt;</td>
+          <td class="memname">using <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits.html#a232ece50ed4a5e700660158176473b56">pss::astrotypes::sigproc::DefaultDataFactoryTraits::ElementTypeMap</a> =  <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1ElementType.html">ElementType</a>&lt;nifs, nbits, <a class="el" href="structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits_1_1BitsTypeMap.html">BitsTypeMap</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -205,7 +190,7 @@ template&lt;unsigned nifs, unsigned nbits&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 22 2018 12:57:12 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 29 2018 14:30:20 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

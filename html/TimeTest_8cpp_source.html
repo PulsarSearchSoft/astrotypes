@@ -354,7 +354,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;    ASSERT_EQ(conversion.value(), bs.value());</div>
 <div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
 <div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <span class="comment">// boost -&gt; chrono</span></div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keyword">typedef</span> <span class="keyword">const</span> std::chrono::duration&lt;double, std::milli&gt; ChronoType;</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    <span class="keyword">typedef</span> std::chrono::duration&lt;double, std::milli&gt; ChronoType;</div>
 <div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    boost::units::quantity&lt;Seconds, double&gt; q(100 * seconds);;</div>
 <div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;    <span class="keyword">auto</span> chrono_conversion = <a class="code" href="namespacepss_1_1astrotypes_1_1units.html#a3394ca2076334f38c8468dbf77b3c12d">duration_cast</a>&lt;ChronoType&gt;(q);</div>
 <div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;    static_assert(std::is_same&lt;decltype(chrono_conversion), <span class="keyword">typename</span> std::remove_cv&lt;ChronoType&gt;::type&gt;::value, <span class="stringliteral">&quot;wrong type returned by cast&quot;</span>);</div>
@@ -422,7 +422,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 22 2018 12:56:59 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 29 2018 14:30:07 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['bitstypemap',['BitsTypeMap',['../structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits_1_1BitsTypeMap.html',1,'pss::astrotypes::sigproc::DefaultDataFactoryTraits']]],
   ['bittounsignedint',['BitToUnsignedInt',['../structpss_1_1astrotypes_1_1sigproc_1_1BitToUnsignedInt.html',1,'pss::astrotypes::sigproc']]],
   ['bittounsignedint_3c_2016_20_3e',['BitToUnsignedInt&lt; 16 &gt;',['../structpss_1_1astrotypes_1_1sigproc_1_1BitToUnsignedInt_3_0116_01_4.html',1,'pss::astrotypes::sigproc']]],
   ['bittounsignedint_3c_2032_20_3e',['BitToUnsignedInt&lt; 32 &gt;',['../structpss_1_1astrotypes_1_1sigproc_1_1BitToUnsignedInt_3_0132_01_4.html',1,'pss::astrotypes::sigproc']]],

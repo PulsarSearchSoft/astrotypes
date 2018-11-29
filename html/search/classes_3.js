@@ -14,6 +14,7 @@ var searchData=
   ['dimensionsize_3c_20units_3a_3atime_20_3e',['DimensionSize&lt; units::Time &gt;',['../classpss_1_1astrotypes_1_1DimensionSize.html',1,'pss::astrotypes']]],
   ['dimensionsizetest',['DimensionSizeTest',['../classpss_1_1astrotypes_1_1multiarray_1_1test_1_1DimensionSizeTest.html',1,'pss::astrotypes::multiarray::test']]],
   ['dimensionspan',['DimensionSpan',['../classpss_1_1astrotypes_1_1DimensionSpan.html',1,'pss::astrotypes']]],
+  ['dispersionconstanttest',['DispersionConstantTest',['../classpss_1_1astrotypes_1_1units_1_1test_1_1DispersionConstantTest.html',1,'pss::astrotypes::units::test']]],
   ['divide_5ftypeof_5fhelper_3c_20pss_3a_3aastrotypes_3a_3aunits_3a_3aquantity_3c_20unit_2c_20x_20_3e_2c_20t1_20_3e',['divide_typeof_helper&lt; pss::astrotypes::units::Quantity&lt; Unit, X &gt;, T1 &gt;',['../structboost_1_1units_1_1divide__typeof__helper_3_01pss_1_1astrotypes_1_1units_1_1Quantity_3_01Unit_00_01X_01_4_00_01T1_01_4.html',1,'boost::units']]],
   ['divide_5ftypeof_5fhelper_3c_20t1_2c_20pss_3a_3aastrotypes_3a_3aunits_3a_3aquantity_3c_20unit_2c_20x_20_3e_20_3e',['divide_typeof_helper&lt; T1, pss::astrotypes::units::Quantity&lt; Unit, X &gt; &gt;',['../structboost_1_1units_1_1divide__typeof__helper_3_01T1_00_01pss_1_1astrotypes_1_1units_1_1Quantity_3_01Unit_00_01X_01_4_01_4.html',1,'boost::units']]]
 ];

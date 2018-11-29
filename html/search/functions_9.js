@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['machine_5fid',['machine_id',['../classpss_1_1astrotypes_1_1sigproc_1_1Header.html#aea44d9bdc3239f3b9ca35c2508b00350',1,'pss::astrotypes::sigproc::Header::machine_id() const '],['../classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a910554c386d058e8a77cf02fc8e54371',1,'pss::astrotypes::sigproc::Header::machine_id(unsigned id)']]],
+  ['machine_5fid',['machine_id',['../classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a3cbaef1c9a11b5dac4281cfb03e4f0c8',1,'pss::astrotypes::sigproc::Header::machine_id() const '],['../classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a910554c386d058e8a77cf02fc8e54371',1,'pss::astrotypes::sigproc::Header::machine_id(unsigned id)']]],
   ['main',['main',['../sigproc__cat_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;sigproc_cat.cpp'],['../sigproc__header_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;sigproc_header.cpp']]],
   ['make_5findexmapper',['make_IndexMapper',['../namespacepss_1_1astrotypes.html#a25f52d838f9d833db7e56f2ee56c6310',1,'pss::astrotypes']]],
   ['merge_5ftuples',['merge_tuples',['../namespacepss_1_1astrotypes.html#a45f5debf659cdcc03e65fe3611dd3a33',1,'pss::astrotypes']]],

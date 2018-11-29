@@ -1,5 +1,7 @@
 <map id="src/cpp/pss/astrotypes/sigproc/detail/HeaderField.cpp" name="src/cpp/pss/astrotypes/sigproc/detail/HeaderField.cpp">
-<area shape="rect" id="node2" href="$HeaderField_8h.html" title="pss/astrotypes/sigproc\l/HeaderField.h" alt="" coords="140,92,294,131"/>
-<area shape="rect" id="node3" href="$SigProcVariable_8h.html" title="pss/astrotypes/sigproc\l/detail/SigProcVariable.h" alt="" coords="284,179,450,217"/>
-<area shape="rect" id="node7" href="$SigProcVariable_8cpp.html" title="SigProcVariable.cpp" alt="" coords="409,265,550,291"/>
+<area shape="rect" id="node2" href="$HeaderField_8h.html" title="pss/astrotypes/sigproc\l/HeaderField.h" alt="" coords="189,92,343,131"/>
+<area shape="rect" id="node3" href="$SigProcVariable_8h.html" title="pss/astrotypes/sigproc\l/detail/SigProcVariable.h" alt="" coords="333,179,500,217"/>
+<area shape="rect" id="node8" href="$Optional_8h.html" title="pss/astrotypes/utils\l/Optional.h" alt="" coords="529,179,664,217"/>
+<area shape="rect" id="node7" href="$SigProcVariable_8cpp.html" title="SigProcVariable.cpp" alt="" coords="287,265,429,291"/>
+<area shape="rect" id="node9" href="$Optional_8cpp.html" title="detail/Optional.cpp" alt="" coords="537,265,669,291"/>
 </map>

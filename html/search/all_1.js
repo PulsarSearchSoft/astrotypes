@@ -15,5 +15,5 @@ var searchData=
   ['arg_5fhelper_3c_20t_2c_20t_2c_20dims_2e_2e_2e_3e',['arg_helper&lt; T, T, Dims...&gt;',['../structpss_1_1astrotypes_1_1arg__helper_3_01T_00_01T_00_01Dims_8_8_8_4.html',1,'pss::astrotypes']]],
   ['astrotypes_5fpointerallocator_5fh',['ASTROTYPES_POINTERALLOCATOR_H',['../PointerAllocator_8h.html#a3390b4520a1fe688a4d820e2cb108106',1,'PointerAllocator.h']]],
   ['astrotypes_5funits_5fdatarate_5fh',['ASTROTYPES_UNITS_DATARATE_H',['../DataRate_8h.html#a2daca51326518e087d246e026b3b5e31',1,'DataRate.h']]],
-  ['az_5fstart',['az_start',['../classpss_1_1astrotypes_1_1sigproc_1_1Header.html#ac03578e31dd12442d0164d142907bb7e',1,'pss::astrotypes::sigproc::Header::az_start() const '],['../classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a402403e5fd7e9fb732da0c880261ad70',1,'pss::astrotypes::sigproc::Header::az_start(boost::units::quantity&lt; units::Degree, double &gt; const &amp;)']]]
+  ['az_5fstart',['az_start',['../classpss_1_1astrotypes_1_1sigproc_1_1Header.html#aa10754dd145f7ee20a513b97a46083a3',1,'pss::astrotypes::sigproc::Header::az_start() const '],['../classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a402403e5fd7e9fb732da0c880261ad70',1,'pss::astrotypes::sigproc::Header::az_start(boost::units::quantity&lt; units::Degree, double &gt; const &amp;)']]]
 ];
