@@ -95,9 +95,9 @@ TEST_F(HeaderTest, test_telescope_id)
     unsigned s(10);
 
     Header h;
-    ASSERT_FALSE(h.telescope_id());
+    ASSERT_FALSE(h.telescope_id().is_set());
     h.telescope_id(s);
-    ASSERT_TRUE(h.telescope_id());
+    ASSERT_TRUE(h.telescope_id().is_set());
     ASSERT_EQ(h.telescope_id(), s);
     Header h2 = save_restore(h);
     ASSERT_EQ(h2.telescope_id(), h.telescope_id());
@@ -105,7 +105,7 @@ TEST_F(HeaderTest, test_telescope_id)
     ASSERT_FALSE(h != h2);
     h.reset();
     ASSERT_FALSE(h == h2);
-    ASSERT_FALSE(h.telescope_id());
+    ASSERT_FALSE(h.telescope_id().is_set());
 }
 
 TEST_F(HeaderTest, test_machine_id)
@@ -113,16 +113,16 @@ TEST_F(HeaderTest, test_machine_id)
     unsigned s(20);
 
     Header h;
-    ASSERT_FALSE(h.machine_id());
+    ASSERT_FALSE(h.machine_id().is_set());
     h.machine_id(s);
-    ASSERT_TRUE(h.machine_id());
+    ASSERT_TRUE(h.machine_id().is_set());
     ASSERT_EQ(h.machine_id(), s);
     Header h2 = save_restore(h);
     ASSERT_EQ(h2.machine_id(), h.machine_id());
     ASSERT_TRUE(h == h2);
     ASSERT_FALSE(h != h2);
     h.reset();
-    ASSERT_FALSE(h.machine_id());
+    ASSERT_FALSE(h.machine_id().is_set());
 }
 
 TEST_F(HeaderTest, test_raw_data_file)
@@ -130,46 +130,46 @@ TEST_F(HeaderTest, test_raw_data_file)
     std::string s("abc");
 
     Header h;
-    ASSERT_FALSE(h.raw_data_file());
+    ASSERT_FALSE(h.raw_data_file().is_set());
     h.raw_data_file(s);
-    ASSERT_TRUE(h.raw_data_file());
+    ASSERT_TRUE(h.raw_data_file().is_set());
     ASSERT_EQ(h.raw_data_file(), s);
     Header h2 = save_restore(h);
     ASSERT_EQ(h2.raw_data_file(), h.raw_data_file());
     ASSERT_TRUE(h == h2);
     ASSERT_FALSE(h != h2);
     h.reset();
-    ASSERT_FALSE(h.raw_data_file());
+    ASSERT_FALSE(h.raw_data_file().is_set());
 }
 
 TEST_F(HeaderTest, test_barycentric)
 {
     Header h;
-    ASSERT_FALSE(h.barycentric());
+    ASSERT_FALSE(h.barycentric().is_set());
     h.barycentric(false);
-    ASSERT_TRUE(h.barycentric());
+    ASSERT_TRUE(h.barycentric().is_set());
     ASSERT_EQ(*h.barycentric(), 0U);
     Header h2 = save_restore(h);
     ASSERT_EQ(*h2.barycentric(), *h.barycentric());
     ASSERT_TRUE(h == h2);
     ASSERT_FALSE(h != h2);
     h.reset();
-    ASSERT_FALSE(h.barycentric());
+    ASSERT_FALSE(h.barycentric().is_set());
 }
 
 TEST_F(HeaderTest, test_pulsarcentric)
 {
     Header h;
-    ASSERT_FALSE(h.pulsarcentric());
+    ASSERT_FALSE(h.pulsarcentric().is_set());
     h.pulsarcentric(true);
-    ASSERT_TRUE(h.pulsarcentric());
+    ASSERT_TRUE(h.pulsarcentric().is_set());
     ASSERT_EQ(*h.pulsarcentric(), 1U);
     Header h2 = save_restore(h);
     ASSERT_EQ(*h2.pulsarcentric(), *h.pulsarcentric());
     ASSERT_TRUE(h == h2);
     ASSERT_FALSE(h != h2);
     h.reset();
-    ASSERT_FALSE(h.pulsarcentric());
+    ASSERT_FALSE(h.pulsarcentric().is_set());
 }
 
 TEST_F(HeaderTest, test_source_name)
@@ -177,16 +177,16 @@ TEST_F(HeaderTest, test_source_name)
     std::string s("abc");
 
     Header h;
-    ASSERT_FALSE(h.source_name());
+    ASSERT_FALSE(h.source_name().is_set());
     h.source_name(s);
-    ASSERT_TRUE(h.source_name());
+    ASSERT_TRUE(h.source_name().is_set());
     ASSERT_EQ(h.source_name(), s);
     Header h2 = save_restore(h);
     ASSERT_EQ(h2.source_name(), h.source_name());
     ASSERT_TRUE(h == h2);
     ASSERT_FALSE(h != h2);
     h.reset();
-    ASSERT_FALSE(h.source_name());
+    ASSERT_FALSE(h.source_name().is_set());
 }
 
 TEST_F(HeaderTest, test_az_start)
@@ -194,16 +194,16 @@ TEST_F(HeaderTest, test_az_start)
     boost::units::quantity<units::Degree, double> angle(150 * units::degrees);
 
     Header h;
-    ASSERT_FALSE(h.az_start());
+    ASSERT_FALSE(h.az_start().is_set());
     h.az_start(angle);
-    ASSERT_TRUE(h.az_start());
+    ASSERT_TRUE(h.az_start().is_set());
     ASSERT_EQ(h.az_start(), angle);
     Header h2 = save_restore(h);
     ASSERT_EQ(h2.az_start(), h.az_start());
     ASSERT_TRUE(h == h2);
     ASSERT_FALSE(h != h2);
     h.reset();
-    ASSERT_FALSE(h.az_start());
+    ASSERT_FALSE(h.az_start().is_set());
 }
 
 TEST_F(HeaderTest, test_za_start)
@@ -211,16 +211,16 @@ TEST_F(HeaderTest, test_za_start)
     boost::units::quantity<units::Degree, double> angle(150 * units::degrees);
 
     Header h;
-    ASSERT_FALSE(h.za_start());
+    ASSERT_FALSE(h.za_start().is_set());
     h.za_start(angle);
-    ASSERT_TRUE(h.za_start());
+    ASSERT_TRUE(h.za_start().is_set());
     ASSERT_EQ(h.za_start(), angle);
     Header h2 = save_restore(h);
     ASSERT_EQ(h2.za_start(), h.za_start());
     ASSERT_TRUE(h == h2);
     ASSERT_FALSE(h != h2);
     h.reset();
-    ASSERT_FALSE(h.za_start());
+    ASSERT_FALSE(h.za_start().is_set());
 }
 
 TEST_F(HeaderTest, number_of_channels)
@@ -296,16 +296,16 @@ TEST_F(HeaderTest, test_tstart)
     units::MJD mjd(100.0 * units::days);
 
     Header h;
-    ASSERT_FALSE(h.tstart());
+    ASSERT_FALSE(h.tstart().is_set());
     h.tstart(mjd);
-    ASSERT_TRUE(h.tstart());
+    ASSERT_TRUE(h.tstart().is_set());
     ASSERT_EQ(h.tstart(), mjd);
     Header h2 = save_restore(h);
     ASSERT_EQ(h2.tstart(), h.tstart());
     ASSERT_TRUE(h == h2);
     ASSERT_FALSE(h != h2);
     h.reset();
-    ASSERT_FALSE(h.tstart());
+    ASSERT_FALSE(h.tstart().is_set());
 
     // tstart should eb ignored in header comparision
     h2.tstart(units::MJD(250*units::days));
@@ -333,16 +333,16 @@ TEST_F(HeaderTest, test_fch1)
     boost::units::quantity<units::MegaHertz, double> freq(150 * units::megahertz);
 
     Header h;
-    ASSERT_FALSE(h.fch1());
+    ASSERT_FALSE(h.fch1().is_set());
     h.fch1(freq);
-    ASSERT_TRUE(h.fch1());
+    ASSERT_TRUE(h.fch1().is_set());
     ASSERT_EQ(h.fch1(), freq);
     Header h2 = save_restore(h);
     ASSERT_EQ(h2.fch1(), h.fch1());
     ASSERT_TRUE(h == h2);
     ASSERT_FALSE(h != h2);
     h.reset();
-    ASSERT_FALSE(h.fch1());
+    ASSERT_FALSE(h.fch1().is_set());
 }
 
 TEST_F(HeaderTest, test_foff)
@@ -350,16 +350,16 @@ TEST_F(HeaderTest, test_foff)
     boost::units::quantity<units::MegaHertz, double> freq(150 * units::megahertz);
 
     Header h;
-    ASSERT_FALSE(h.foff());
+    ASSERT_FALSE(h.foff().is_set());
     h.foff(freq);
-    ASSERT_TRUE(h.foff());
+    ASSERT_TRUE(h.foff().is_set());
     ASSERT_EQ(h.foff(), freq);
     Header h2 = save_restore(h);
     ASSERT_EQ(h2.foff(), h.foff());
     ASSERT_TRUE(h == h2);
     ASSERT_FALSE(h != h2);
     h.reset();
-    ASSERT_FALSE(h.foff());
+    ASSERT_FALSE(h.foff().is_set());
 }
 
 TEST_F(HeaderTest, test_frequency_channels)
@@ -393,16 +393,16 @@ TEST_F(HeaderTest, test_ref_dm)
     units::DispersionMeasure<double> dm(100 * units::parsecs_per_cube_cm);
 
     Header h;
-    ASSERT_FALSE(h.ref_dm());
+    ASSERT_FALSE(h.ref_dm().is_set());
     h.ref_dm(dm);
-    ASSERT_TRUE(h.ref_dm());
+    ASSERT_TRUE(h.ref_dm().is_set());
     ASSERT_EQ(h.ref_dm(), dm);
     Header h2 = save_restore(h);
     ASSERT_EQ(h2.ref_dm(), h.ref_dm());
     ASSERT_TRUE(h == h2);
     ASSERT_FALSE(h != h2);
     h.reset();
-    ASSERT_FALSE(h.ref_dm());
+    ASSERT_FALSE(h.ref_dm().is_set());
 }
 
 TEST_F(HeaderTest, test_period)
@@ -410,15 +410,15 @@ TEST_F(HeaderTest, test_period)
     boost::units::quantity<units::Seconds, double> p(100 * units::milliseconds);
 
     Header h;
-    ASSERT_FALSE(h.period());
+    ASSERT_FALSE(h.period().is_set());
     h.period(p);
-    ASSERT_TRUE(h.period());
+    ASSERT_TRUE(h.period().is_set());
     ASSERT_EQ(h.period(), p);
     Header h2 = save_restore(h);
     ASSERT_EQ(h2.period(), h.period());
     ASSERT_TRUE(h == h2);
     h.reset();
-    ASSERT_FALSE(h.period());
+    ASSERT_FALSE(h.period().is_set());
 }
 
 TEST_F(HeaderTest, info_adapter_write)

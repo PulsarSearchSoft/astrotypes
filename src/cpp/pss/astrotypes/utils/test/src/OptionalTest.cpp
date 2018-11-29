@@ -54,13 +54,9 @@ TEST_F(OptionalTest, test_int)
     if(opt.is_set()) {
         FAIL() << "expected to be marked unset";
     }
-    if(opt) {
-        FAIL() << "expected to be marked unset";
-    }
 
     opt = 10;
     ASSERT_TRUE(opt.is_set());
-    ASSERT_TRUE(opt);
     ASSERT_EQ(opt, 10);
     ASSERT_NE(opt, 11);
 
@@ -76,7 +72,6 @@ TEST_F(OptionalTest, test_const_int)
 {
     const Optional<int> const_opt(100); 
     ASSERT_TRUE(const_opt.is_set());
-    ASSERT_TRUE(const_opt);
     ASSERT_EQ(*const_opt, 100);
     ASSERT_EQ(const_opt, 100);
     ASSERT_NE(const_opt, 11);

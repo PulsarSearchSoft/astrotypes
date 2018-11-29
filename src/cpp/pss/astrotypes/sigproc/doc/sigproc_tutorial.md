@@ -51,7 +51,7 @@ Now we have all the information of the header encapsulated in the header object.
 Note that many of the headers are optional, and to relflect this they are returned as
 utils::Optional types. To use such a variable you must check it is valid first like this:
 ~~~~.cpp
-if(header.telescope_id()) {
+if(header.telescope_id().is_set()) {
     std::cout << "telescope_id=" << *header.telescope_id() << "\n";
 }
 ~~~~

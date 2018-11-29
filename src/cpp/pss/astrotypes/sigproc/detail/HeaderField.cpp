@@ -95,8 +95,7 @@ void HeaderField<T>::reset()
 template<typename T>
 bool HeaderField<T>::is_set() const
 {
-    if(_var) return true;
-    return false;
+    return _var.is_set();
 }
 
 template<typename T>

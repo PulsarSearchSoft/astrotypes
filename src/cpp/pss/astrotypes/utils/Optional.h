@@ -43,8 +43,6 @@ class Optional
         Optional(T&&);
         ~Optional();
 
-        inline operator bool&() { return _is_set; } 
-        inline operator bool const&() const { return _is_set; } 
         inline operator T&() { return _val; }
 
         /**

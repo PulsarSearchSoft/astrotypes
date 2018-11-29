@@ -51,15 +51,15 @@ namespace sigproc {
  *    or not.
  *    e.g.
  * @code
- *      if(!header.source_name()) {
+ *      if(!header.source_name().is_set()) {
  *          // oh oh no source name,  better deal with it
  *          ...
  *      }
- *      // once tested you can get the underlying vaiable with the dereference operator *
+ *      // once tested you can get the underlying variable with the dereference operator *
  *      std::string const& source = *header.source_name();
  * @endcode
  *
- *    note also that many of the types returned as types with specific units. If your writting new code
+ *    note also that many of the types returned as types with specific units. If your writing new code
  *    its a good idea to keep this type information when you pass this value around, but for compatibility
  *    with less type safe codes and you need just the numerical valuem you can call the value() mehtod
  * @code
