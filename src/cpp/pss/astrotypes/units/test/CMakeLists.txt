@@ -5,6 +5,7 @@ set(gtest_astrotypes_units_src
     src/UnitsTest.cpp
     src/UtilitiesTest.cpp
     src/TimeTest.cpp
+    src/TimePointTest.cpp
     src/JulianClockTest.cpp
     src/ModifiedJulianClockTest.cpp
 )

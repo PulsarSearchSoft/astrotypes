@@ -121,7 +121,27 @@ TimePoint<ClockType, Duration> operator+(TimePoint<ClockType, Duration> const& l
 template<typename ClockType, typename DurationType, typename Rep>
 TimePoint<ClockType, DurationType> operator+(TimePoint<ClockType, DurationType> const& lhs, boost::units::quantity<boost::units::si::time, Rep> const& rhs) {
     typedef typename ClockType::duration Duration;
-    return lhs + Duration(boost::units::quantity_cast<typename Duration::rep>(rhs));
+    return lhs + duration_cast<Duration>(rhs);
+}
+
+template<typename ClockType, typename DurationType, typename Rep>
+TimePoint<ClockType, DurationType>& operator+=(TimePoint<ClockType, DurationType>& lhs, boost::units::quantity<boost::units::si::time, Rep> const& rhs)
+{
+    typedef typename ClockType::duration Duration;
+    return lhs += duration_cast<Duration>(rhs);
+}
+
+template<typename ClockType, typename DurationType, typename Rep>
+TimePoint<ClockType, DurationType> operator-(TimePoint<ClockType, DurationType> const& lhs, boost::units::quantity<boost::units::si::time, Rep> const& rhs) {
+    typedef typename ClockType::duration Duration;
+    return lhs - duration_cast<Duration>(rhs);
+}
+
+template<typename ClockType, typename DurationType, typename Rep>
+TimePoint<ClockType, DurationType>& operator-=(TimePoint<ClockType, DurationType>& lhs, boost::units::quantity<boost::units::si::time, Rep> const& rhs)
+{
+    typedef typename ClockType::duration Duration;
+    return lhs -= duration_cast<Duration>(rhs);
 }
 
 template<typename ClockType, typename Duration, typename Duration2>
