@@ -81,7 +81,7 @@ template<typename ClockType, typename Duration, typename Duration2>
 TimePoint<ClockType, Duration> operator-(TimePoint<ClockType, Duration> const& lhs, Duration2 const& rhs);
 
 template<typename ClockType, typename Duration, typename Duration2>
-Duration operator-(TimePoint<ClockType, Duration> const& lhs, TimePoint<ClockType, Duration> const& rhs);
+Duration operator-(TimePoint<ClockType, Duration> const& lhs, TimePoint<ClockType, Duration2> const& rhs);
 
 /**
  * @brief output a TimePoint as a string to the ostream

@@ -60,6 +60,55 @@ TEST(TimeTest, operator_equal_chrono_quantity)
 
 }
 
+TEST(TimeTest, chrono_duration_operator_less_than_quantity)
+{
+    boost::units::quantity<Seconds, double> b(10 * seconds);
+    ASSERT_FALSE(std::chrono::milliseconds(10001) < b);
+    ASSERT_FALSE(std::chrono::milliseconds(10000) < b);
+    ASSERT_TRUE(std::chrono::milliseconds(9999) < b);
+
+    ASSERT_FALSE(std::chrono::seconds(11) < b);
+    ASSERT_FALSE(std::chrono::seconds(10) < b);
+    ASSERT_TRUE(std::chrono::seconds(9) < b);
+}
+
+TEST(TimeTest, chrono_duration_operator_less_than_equal_quantity)
+{
+    boost::units::quantity<Seconds, double> b(10 * seconds);
+    ASSERT_FALSE(std::chrono::milliseconds(10001) <= b);
+    ASSERT_TRUE(std::chrono::milliseconds(10000) <= b);
+    ASSERT_TRUE(std::chrono::milliseconds(9999) <= b);
+
+    ASSERT_FALSE(std::chrono::seconds(11) <= b);
+    ASSERT_TRUE(std::chrono::seconds(10) <= b);
+    ASSERT_TRUE(std::chrono::seconds(9) <= b);
+}
+
+TEST(TimeTest, chrono_duration_operator_greater_than_quantity)
+{
+    boost::units::quantity<Seconds, double> b(10 * seconds);
+    ASSERT_TRUE(std::chrono::milliseconds(10001) > b);
+    ASSERT_FALSE(std::chrono::milliseconds(10000) > b);
+    ASSERT_FALSE(std::chrono::milliseconds(9999) > b);
+
+    ASSERT_TRUE(std::chrono::seconds(11) > b);
+    ASSERT_FALSE(std::chrono::seconds(10) > b);
+    ASSERT_FALSE(std::chrono::seconds(9) > b);
+}
+
+TEST(TimeTest, chrono_duration_operator_greater_than_equal_quantity)
+{
+    boost::units::quantity<Seconds, double> b(10 * seconds);
+    ASSERT_TRUE(std::chrono::milliseconds(10001) >= b);
+    ASSERT_TRUE(std::chrono::milliseconds(10000) >= b);
+    ASSERT_FALSE(std::chrono::milliseconds(9999) >= b);
+
+    ASSERT_TRUE(std::chrono::seconds(11) >= b);
+    ASSERT_TRUE(std::chrono::seconds(10) >= b);
+    ASSERT_FALSE(std::chrono::seconds(9) >= b);
+}
+
+
 TEST(TimeTest, quantity_operator_plus)
 {
     typedef boost::units::quantity<Seconds, double> BoostType;

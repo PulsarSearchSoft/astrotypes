@@ -53,6 +53,22 @@ struct TestClock : public std::chrono::system_clock
     static constexpr const char* symbol = "TestClock";
 };
 
+TEST_F(TimePointTest, test_time_point_minus_time_point)
+{
+    typedef std::chrono::duration<double, std::ratio<100000>> Duration;
+    typedef TimePoint<TestClock, Duration> TimePoint;
+    TimePoint time_point_1(Duration(4000));
+    TimePoint time_point_2(Duration(3999));
+    auto res = time_point_1 - time_point_2;
+    ASSERT_EQ(res, Duration(1));
+
+    TimePoint time_point_3(Duration(3999.999999999999));
+    double res_val = 4000.0 - 3999.999999999999;
+    auto res2 = time_point_1 - time_point_3;
+    ASSERT_EQ(res2, Duration(res_val));
+
+}
+
 TEST_F(TimePointTest, test_time_point_plus_boost_quantity)
 {
     typedef std::chrono::duration<double, std::ratio<100>> Duration;
@@ -78,9 +94,9 @@ TEST_F(TimePointTest, test_time_point_minus_boost_quantity)
     typedef std::chrono::duration<double, std::ratio<100>> Duration;
     typedef TimePoint<TestClock, Duration> TimePoint;
     TimePoint time_point(Duration(4000));
-    boost::units::quantity<boost::units::si::time, double> boost_type(100 * boost::units::si::seconds);
+    boost::units::quantity<boost::units::si::time, double> boost_type(200 * boost::units::si::seconds);
     TimePoint res = time_point - boost_type;
-    ASSERT_EQ(res, TimePoint(Duration(3999))); 
+    ASSERT_EQ(res, TimePoint(Duration(3998))); 
 }
 
 TEST_F(TimePointTest, test_time_point_minus_equal_boost_quantity)
