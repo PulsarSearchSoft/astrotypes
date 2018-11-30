@@ -120,13 +120,13 @@ namespace chrono {
 template<typename Ratio, typename Rep, typename Unit, typename Rep2>
 inline bool operator<(std::chrono::duration<Rep, Ratio> const& c, boost::units::quantity<Unit, Rep2> const& b)
 {
-    return pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c) < b;
+    return c < pss::astrotypes::units::duration_cast<std::chrono::duration<Rep, Ratio>>(b);
 }
 
 template<typename Ratio, typename Rep, typename Unit, typename Rep2>
 inline bool operator>(std::chrono::duration<Rep, Ratio> const& c, boost::units::quantity<Unit, Rep2> const& b)
 {
-    return pss::astrotypes::units::duration_cast<boost::units::quantity<Unit, Rep2>>(c) > b;
+    return c > pss::astrotypes::units::duration_cast<std::chrono::duration<Rep, Ratio>>(b);
 }
 
 template<typename Ratio, typename Rep, typename Unit, typename Rep2>
