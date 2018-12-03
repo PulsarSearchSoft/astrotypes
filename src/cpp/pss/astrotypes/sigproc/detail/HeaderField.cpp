@@ -83,7 +83,7 @@ unsigned HeaderField<T>::write(std::ostream& stream) const
 template<typename T>
 void HeaderField<T>::write_info(std::ostream& stream) const
 {
-    stream << std::setprecision(12) << *_var;
+    stream << std::setprecision(16) << *_var;
 }
 
 template<typename T>
