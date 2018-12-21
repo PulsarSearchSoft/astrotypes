@@ -95,12 +95,12 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
          * @details useful for e.g std::copy of the entire structure
          *          without inspection
          */
-        iterator begin();
-        iterator end();
-        const_iterator begin() const;
-        const_iterator end() const;
-        const_iterator cbegin() const;
-        const_iterator cend() const;
+        inline iterator begin();
+        inline iterator end();
+        inline const_iterator begin() const;
+        inline const_iterator end() const;
+        inline const_iterator cbegin() const;
+        inline const_iterator cend() const;
 
         /**
          * @brief take a slice of width 1 data at the specified index of the first dimension
@@ -293,12 +293,12 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         bool equal_size(MultiArray const&) const;
 
         /// bulk iterators
-        iterator begin();
-        const_iterator begin() const;
-        const_iterator cbegin() const;
-        iterator end();
-        const_iterator end() const;
-        const_iterator cend() const;
+        inline iterator begin();
+        inline const_iterator begin() const;
+        inline const_iterator cbegin() const;
+        inline iterator end();
+        inline const_iterator end() const;
+        inline const_iterator cend() const;
 
     protected:
         template<typename... Dims>
