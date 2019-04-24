@@ -5,8 +5,9 @@
 Do not introduce any new dependencies on any other product without consultation
 
 ## Build Products
-The product is a header only library, but the project will build a number of unit tests to support this header.
-It is not necessary to build these unit tests to use the header, but all develoipment should ensure that all these unit tests pass.
+The product is a header only library, but the project will build a number of unit tests to support this header as well as some examples
+and generated documentation.
+It is not necessary to build these unit tests, documentation, or examples to use the header, but all develoipment should ensure that all these unit tests pass.
 (i.e. all executables triggered by make test should PASS)
 
 # Repository
