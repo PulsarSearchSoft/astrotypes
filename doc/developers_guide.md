@@ -5,13 +5,12 @@
 Do not introduce any new dependencies on any other product without consultation
 
 ## Build Products
-The project will build the pipeline executable, two c++ libraries, and their associated header files.
-One library will support the main product and the second a library is a set of utilities to aid in unit testing code
-that uses the main library.
+The product is a header only library, but the project will build a number of unit tests to support this header.
+It is not necessary to build these unit tests to use the header, but all develoipment should ensure that all these unit tests pass.
+(i.e. all executables triggered by make test should PASS)
 
 # Repository
 ## Workflow and Branches
-    - Use the gitlab workflow (https://repo.oerc.ox.ac.uk/help/workflow) as much as possible.
     - Never work directly on the master branch - this is the "stable release" and is tightly controlled
         - The master shall compile and pass all unit tests at all times.
         - Commits to the master must only be done after code review and from a working dev branch
@@ -19,14 +18,16 @@ that uses the main library.
         - The dev shuold compile and pass all unit tests. Any build breaks should receive top priority.
     - Only merge from a feature branch that is already synced with the dev branch.
         - Commits to the dev should usually only be done after code review and from a working feature branch
-        - use the gitlab merge request feature for feature->dev branch merges
+        - use the github merge request feature for feature->dev branch merges
 
 ## Repository Structure
-cmake          : project specific files for configuring the build system
+The astrotypes library is envisioned to support languages used in astro development. Each language has its own subdirectory
+below src. Each language directory will have specifics to the language but will usually contain:
+
+cmake          : specific files for configuring the build system to the specific language
 tools          : useful things to aid the developer such as a class template generator
-doc            : documentation & doc templates, with the exception of the API doc of the classess. Also see module doc directoy.
-astrotypes     : this is the src code for the astrotypes library. It is organised as a set of modules with
-                 the following minimal structure (following the boost conventions for templates)
+doc            : documentation & doc templates, with the exception of the API doc of the classess.
+astrotypes     : this is the actual src code. It may have a substructure e.g. for c++
 
                  astrotypes +
                          + <module_name> +                      In this directory only put header files that you wish exposed to module users
