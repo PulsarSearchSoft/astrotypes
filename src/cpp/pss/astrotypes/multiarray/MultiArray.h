@@ -137,10 +137,10 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
          * @brief return a slice of the specified dimension spanning the index_range provided
          */
         template<typename Dim, typename... Dims>
-        SliceType slice(DimensionSpan<Dim>&& range, DimensionSpan<Dims>&&...);
+        SliceType slice(DimensionSpan<Dim> const& range, DimensionSpan<Dims> const&...);
 
         template<typename Dim, typename... Dims>
-        ConstSliceType slice(DimensionSpan<Dim>&& range, DimensionSpan<Dims>&&...) const;
+        ConstSliceType slice(DimensionSpan<Dim> const& range, DimensionSpan<Dims> const&...) const;
 
         /**
          * @brief resize the array in the specified dimension

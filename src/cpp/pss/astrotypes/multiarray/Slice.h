@@ -213,19 +213,19 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
          */
         template<typename... Dims>
         typename std::enable_if<arg_helper<Dimension, Dims...>::value, SliceType>::type
-        slice(DimensionSpan<Dims>&&... spans);
+        slice(DimensionSpan<Dims> const&... spans);
 
         template<typename... Dims>
         typename std::enable_if<!arg_helper<Dimension, Dims...>::value, SliceType>::type
-        slice(DimensionSpan<Dims>&&... spans);
+        slice(DimensionSpan<Dims> const&... spans);
 
         template<typename... Dims>
         typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice<true, SliceTraitsT, SliceMixin, Dimension, Dimensions...>>::type
-        slice(DimensionSpan<Dims>&&... spans) const;
+        slice(DimensionSpan<Dims> const&... spans) const;
 
         template<typename... Dims>
         typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice<true, SliceTraitsT, SliceMixin, Dimension, Dimensions...>>::type
-        slice(DimensionSpan<Dims>&&... spans) const;
+        slice(DimensionSpan<Dims> const&... spans) const;
 
 
         /**
@@ -290,22 +290,22 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         template<typename... Dims>
         Slice( copy_resize_construct_tag const&
              , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
-             , DimensionSpan<Dims>&&... spans );
+             , DimensionSpan<Dims> const&... spans );
 
         template<typename... Dims>
         Slice( copy_resize_construct_base_tag const&
              , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
-             , DimensionSpan<Dims>&&... spans );
+             , DimensionSpan<Dims> const&... spans );
 
         template<typename... Dims>
         Slice( copy_resize_construct_tag const&
              , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
-             , DimensionSpan<Dims>&&... spans );
+             , DimensionSpan<Dims> const&... spans );
 
         template<typename... Dims>
         Slice( copy_resize_construct_base_tag const&
              , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
-             , DimensionSpan<Dims>&&... spans );
+             , DimensionSpan<Dims> const&... spans );
 
         // increment pointer by a n * span length
         SelfType& operator+=(std::size_t n);
@@ -515,12 +515,12 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
         template<typename... Dims>
         Slice( typename std::enable_if<!arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type
              , Slice const& copy
-             , DimensionSpan<Dims>&&... spans );
+             , DimensionSpan<Dims> const&... spans );
 
         template<typename... Dims>
         Slice( typename std::enable_if<arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type
              , Slice const& copy
-             , DimensionSpan<Dims>&&... spans );
+             , DimensionSpan<Dims> const&... spans );
 
     private:
         DimensionSpan<Dimension> _span;

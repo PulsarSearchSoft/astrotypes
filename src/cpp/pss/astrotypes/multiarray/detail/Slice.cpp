@@ -195,9 +195,9 @@ template<bool is_const, typename Parent, template<typename> class SliceMixin, ty
 template<typename... Dims>
 Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::Slice( copy_resize_construct_tag const&
                                                         , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
-                                                        , DimensionSpan<Dims>&&... spans
+                                                        , DimensionSpan<Dims> const&... spans
                                                         )
-    : BaseT(copy_resize_construct_base_tag(), static_cast<BaseT const&>(copy), std::forward<DimensionSpan<Dims>>(spans)...)
+    : BaseT(copy_resize_construct_base_tag(), static_cast<BaseT const&>(copy), spans...)
     , _span(copy._span)
     , _base_span(copy._base_span) // not used (yet) so don't bother calculating it
     , _ptr(copy._ptr)
@@ -209,9 +209,9 @@ template<bool is_const, typename Parent, template<typename> class SliceMixin, ty
 template<typename... Dims>
 Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::Slice( copy_resize_construct_base_tag const&
                                                         , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
-                                                        , DimensionSpan<Dims>&&... spans
+                                                        , DimensionSpan<Dims> const&... spans
                                                         )
-    : BaseT(copy_resize_construct_base_tag(), static_cast<BaseT const&>(copy), std::forward<DimensionSpan<Dims>>(spans)...)
+    : BaseT(copy_resize_construct_base_tag(), static_cast<BaseT const&>(copy), spans...)
     , _span(copy._span)
     , _base_span(copy._base_span) // not used (yet) so don't bother calculating it
 {
@@ -222,15 +222,15 @@ template<bool is_const, typename Parent, template<typename> class SliceMixin, ty
 template<typename... Dims>
 Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::Slice(copy_resize_construct_tag const&
                                                         , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
-                                                        , DimensionSpan<Dims>&&... spans
+                                                        , DimensionSpan<Dims> const&... spans
                                               )
-    : BaseT(copy_resize_construct_base_tag(), static_cast<BaseT const&>(copy), std::forward<DimensionSpan<Dims>>(spans)...)
+    : BaseT(copy_resize_construct_base_tag(), static_cast<BaseT const&>(copy), spans...)
     , _span(DimensionSpan<Dimension>(DimensionIndex<Dimension>(copy._span.start()
-                           + arg_helper<DimensionSpan<Dimension>, DimensionSpan<Dims>...>::arg(std::forward<DimensionSpan<Dims>>(spans)...).start())
-                           , arg_helper<DimensionSpan<Dimension>, DimensionSpan<Dims>...>::arg(std::forward<DimensionSpan<Dims>>(spans)...).span()))
+                           + arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...).start())
+                           , arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...).span()))
     , _base_span(copy._base_span) // not used (yet) so don't bother calculating it
     , _ptr(copy._ptr + static_cast<std::size_t>(
-                           arg_helper<DimensionSpan<Dimension>, DimensionSpan<Dims>...>::arg(std::forward<DimensionSpan<Dims>>(spans)...).start())
+                           arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...).start())
                      * BaseT::_base_span)
 {
     BaseT::offset(_ptr);
@@ -240,10 +240,10 @@ template<bool is_const, typename Parent, template<typename> class SliceMixin, ty
 template<typename... Dims>
 Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::Slice( copy_resize_construct_base_tag const&
                                                         , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
-                                                        , DimensionSpan<Dims>&&... spans
+                                                        , DimensionSpan<Dims> const&... spans
                                                         )
-    : BaseT(copy_resize_construct_base_tag(), static_cast<BaseT const&>(copy), std::forward<DimensionSpan<Dims>>(spans)...)
-    , _span(arg_helper<DimensionSpan<Dimension>, DimensionSpan<Dims>...>::arg(std::forward<DimensionSpan<Dims>>(spans)...))
+    : BaseT(copy_resize_construct_base_tag(), static_cast<BaseT const&>(copy), spans...)
+    , _span(arg_helper<DimensionSpan<Dimension>, DimensionSpan<Dims>...>::arg(spans...))
     , _base_span(copy._base_span) // not used (yet) so don't bother calculating it
 {
 }
@@ -403,34 +403,34 @@ Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>& Slice<is_const, P
 template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename... Dims>
 typename std::enable_if<arg_helper<Dimension, Dims...>::value, typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::SliceType>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims>&&... spans)
+Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims> const&... spans)
 {
-    return Slice(copy_resize_construct_tag(), *this, std::forward<DimensionSpan<Dims>>(spans)...);
+    return Slice(copy_resize_construct_tag(), *this, spans...);
 }
 
 template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename... Dims>
 typename std::enable_if<!arg_helper<Dimension, Dims...>::value, typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::SliceType>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims>&&... spans)
+Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims> const&... spans)
 {
-    return Slice(copy_resize_construct_tag(), *this, std::forward<DimensionSpan<Dims>>(spans)...);
+    return Slice(copy_resize_construct_tag(), *this, spans...);
 }
 
 
 template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename... Dims>
 typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice<true, Parent, SliceMixin, Dimension, Dimensions...>>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims>&&... spans) const
+Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims> const&... spans) const
 {
-    return ConstSliceType(copy_resize_construct_tag(), reinterpret_cast<ConstSliceType const&>(*this), std::forward<DimensionSpan<Dims>>(spans)...);
+    return ConstSliceType(copy_resize_construct_tag(), reinterpret_cast<ConstSliceType const&>(*this), spans...);
 }
 
 template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename... Dims>
 typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice<true, Parent, SliceMixin, Dimension, Dimensions...>>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims>&&... spans) const
+Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims> const&... spans) const
 {
-    return ConstSliceType(copy_resize_construct_tag(), reinterpret_cast<ConstSliceType const&>(*this), std::forward<DimensionSpan<Dims>>(spans)...);
+    return ConstSliceType(copy_resize_construct_tag(), reinterpret_cast<ConstSliceType const&>(*this), spans...);
 }
 
 template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
@@ -578,7 +578,7 @@ template<bool is_const, typename SliceTraitsT, template<typename> class SliceMix
 template<typename... Dims>
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( typename std::enable_if<!arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type
      , Slice const& copy
-     , DimensionSpan<Dims>&&...)
+     , DimensionSpan<Dims> const&...)
     : _span(copy._span)
     , _base_span(copy._base_span)
 {
@@ -588,10 +588,10 @@ template<bool is_const, typename SliceTraitsT, template<typename> class SliceMix
 template<typename... Dims>
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( typename std::enable_if<arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type
      , Slice const& copy
-     , DimensionSpan<Dims>&&... spans)
+     , DimensionSpan<Dims> const&... spans)
     : _span(DimensionSpan<Dimension>(DimensionIndex<Dimension>(copy._span.start()
-                           + arg_helper<DimensionSpan<Dimension>, DimensionSpan<Dims>...>::arg(std::forward<DimensionSpan<Dims>>(spans)...).start())
-                           , arg_helper<DimensionSpan<Dimension>, DimensionSpan<Dims>...>::arg(std::forward<DimensionSpan<Dims>>(spans)...).span()))
+                           + arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...).start())
+                           , arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...).span()))
     , _base_span(copy._base_span)
 {
 }
