@@ -54,6 +54,9 @@ static const SigProcLabel nchans_label("nchans");
 static const SigProcLabel nifs_label("nifs");
 static const SigProcLabel refdm_label("refdm");
 static const SigProcLabel period_label("period");
+// non-standard, but common headers
+static const SigProcLabel ibeam_label("ibeam");
+static const SigProcLabel nbeams_label("nbeams");
 
 inline Header::Header()
     : _telescope_id(telescope_id_label, *this)
@@ -78,6 +81,8 @@ inline Header::Header()
     , _nifs(nifs_label, *this)
     , _refdm(refdm_label, *this)
     , _period(period_label, *this)
+    , _ibeam(ibeam_label, *this)
+    , _nbeams(nbeams_label, *this)
 {
 }
 
@@ -105,6 +110,8 @@ inline Header::Header(Header const& h)
     , _nifs(nifs_label, *this, h._nifs)
     , _refdm(refdm_label, *this, h._refdm)
     , _period(period_label, *this, h._period)
+    , _ibeam(ibeam_label, *this, h._ibeam)
+    , _nbeams(nbeams_label, *this, h._nbeams)
 {
 }
 
@@ -364,6 +371,17 @@ inline unsigned Header::number_of_ifs() const
     if(_nifs) return _nifs;
     return 2;
 }
+
+inline utils::Optional<unsigned> Header::ibeam() const
+{
+    return _ibeam;
+}
+
+inline utils::Optional<unsigned> Header::nbeams() const
+{
+    return _nbeams;
+}
+
 
 inline void Header::info(std::ostream& os) const
 {

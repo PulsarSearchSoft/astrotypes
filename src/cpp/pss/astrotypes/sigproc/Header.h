@@ -312,6 +312,18 @@ class Header : public HeaderBase<Header>
         void period(boost::units::quantity<units::Seconds, double>);
 
         /**
+         * @brief return the beam index number
+         * @details This is a common, but non-standard header item
+         */
+        utils::Optional<unsigned> ibeam() const;
+
+        /**
+         * @brief return the number of beams used in an abservation
+         * @details This is a common, but non-standard header item
+         */
+        utils::Optional<unsigned> nbeams() const;
+
+        /**
          * @brief write header data to the provided object, resizing appropriately
          */
         template<typename T, typename Alloc>
@@ -367,6 +379,10 @@ class Header : public HeaderBase<Header>
         HeaderField<unsigned>                                              _nifs;        // number of seperate IF channels
         HeaderField<units::DispersionMeasure<double>>                      _refdm;       // parsecs_per_cm_cubed
         HeaderField<boost::units::quantity<units::Seconds, double>>        _period;      // folding period seconds
+
+        // these fielde are not standard but added here to allow parsing
+        HeaderField<unsigned>       _ibeam;      // the beam index
+        HeaderField<unsigned>       _nbeams;     // the total number of beams in the observation
 };
 
 template<typename Stream>
