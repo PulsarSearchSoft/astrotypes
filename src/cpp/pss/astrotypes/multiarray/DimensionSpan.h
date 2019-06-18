@@ -53,6 +53,9 @@ class DimensionSpan
         inline DimensionSize<Dimension> const&    span() const { return _span; };
         inline void                               span(DimensionSize<Dimension> s) { _span = s; }
 
+        /// ensure the span fits within the size provided
+        inline DimensionSpan<Dimension>&          trim(DimensionSize<Dimension> bounds);
+
     private:
         DimensionIndex<Dimension> _start_index;
         DimensionSize<Dimension>  _span;

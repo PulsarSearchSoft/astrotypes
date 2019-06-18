@@ -94,6 +94,11 @@ struct ParentType {
         return DimensionSize<Dimension>(_size);
     }
 
+    template<typename Dimension>
+    DimensionSize<Dimension> dimension() const {
+        return DimensionSize<Dimension>(_size);
+    }
+
     std::vector<value_type> _vec;
     std::size_t _size;
 };

@@ -46,5 +46,18 @@ DimensionSpan<Dimension>::DimensionSpan(DimensionSize<Dimension> size)
 {
 }
 
+template<typename Dimension>
+DimensionSpan<Dimension>& DimensionSpan<Dimension>::trim(DimensionSize<Dimension> bounds)
+{
+    if(_start_index >= bounds) {
+        _start_index = DimensionIndex<Dimension>((std::size_t)bounds);
+        _span = DimensionSize<Dimension>(0);
+        return *this;
+    }
+    DimensionSize<Dimension> delta = bounds - _start_index;
+    if(_span > delta) _span = delta;
+    return *this;
+}
+
 } // namespace astrotypes
 } // namespace pss

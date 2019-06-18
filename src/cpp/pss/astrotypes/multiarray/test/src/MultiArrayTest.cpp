@@ -113,6 +113,30 @@ TEST_F(MultiArrayTest, test_two_dimension_1_slice_DimensionA_const_iterator)
     ASSERT_EQ(n-(unsigned)size_b, (unsigned)size_b);
 }
 
+TEST_F(MultiArrayTest, test_two_dimension_slice_range_outside_of_array)
+{
+    DimensionSize<DimensionA> size_a(30);
+    DimensionSize<DimensionB> size_b(20);
+    TestMultiArray<int, DimensionA, DimensionB> ab(size_a, size_b);
+
+    auto slice = ab.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(31), DimensionSize<DimensionA>(2)));
+    ASSERT_EQ(slice.dimension<DimensionA>(), DimensionSize<DimensionA>(0));
+    ASSERT_EQ(slice.begin(), slice.end());
+}
+
+TEST_F(MultiArrayTest, test_two_dimension_slice_range_extends_beyond_array)
+{
+    DimensionSize<DimensionA> size_a(20);
+    DimensionSize<DimensionB> size_b(20);
+    TestMultiArray<int, DimensionA, DimensionB> ab(size_a, size_b);
+
+    auto slice = ab.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionSize<DimensionA>(30)));
+    ASSERT_EQ(slice.dimension<DimensionA>(), DimensionSize<DimensionA>(10));
+    ASSERT_NE(slice.begin(), slice.end());
+    ASSERT_EQ(&*ab.end(), &*slice.end());
+}
+
+
 TEST_F(MultiArrayTest, test_two_dimension_transpose_constructor)
 {
     DimensionSize<DimensionA> size_a(30);
@@ -181,8 +205,10 @@ TEST_F(MultiArrayTest, test_three_dimension_slice_operator)
     TestMultiArray<unsigned, DimensionA, DimensionB, DimensionC> ma( size_a, size_b, size_c);
     for(DimensionIndex<DimensionA> index(0); index < size_a; ++index)
     {
-        for(DimensionIndex<DimensionA> index_2(index + DimensionSize<DimensionA>(1)); index_2 <= size_a; ++index_2)
+        SCOPED_TRACE(index);
+        for(DimensionIndex<DimensionA> index_2(index + DimensionSize<DimensionA>(1)); index_2 < size_a; ++index_2)
         {
+            SCOPED_TRACE(index_2);
             auto slice = ma.slice(DimensionSpan<DimensionA>(index, index_2 ));
             ASSERT_EQ(static_cast<std::size_t>(slice.dimension<DimensionA>()), (index_2 - index) + 1 );
             ASSERT_EQ(slice.dimension<DimensionB>(), size_b);
@@ -199,7 +225,7 @@ TEST_F(MultiArrayTest, test_const_three_dimension_slice_operator)
     TestMultiArray<unsigned, DimensionA, DimensionB, DimensionC> const ma( size_a, size_b, size_c);
     for(DimensionIndex<DimensionA> index(0); index < size_a; ++index)
     {
-        for(DimensionIndex<DimensionA> index_2(index + DimensionSize<DimensionA>(1)); index_2 <= size_a; ++index_2)
+        for(DimensionIndex<DimensionA> index_2(index + DimensionSize<DimensionA>(1)); index_2 < size_a; ++index_2)
         {
             auto slice = ma.slice(DimensionSpan<DimensionA>(index, index_2 ));
             ASSERT_EQ(static_cast<std::size_t>(slice.dimension<DimensionA>()), (index_2 - index) + 1 );
