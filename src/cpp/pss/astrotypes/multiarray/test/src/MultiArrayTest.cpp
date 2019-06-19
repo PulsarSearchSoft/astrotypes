@@ -113,6 +113,25 @@ TEST_F(MultiArrayTest, test_two_dimension_1_slice_DimensionA_const_iterator)
     ASSERT_EQ(n-(unsigned)size_b, (unsigned)size_b);
 }
 
+TEST_F(MultiArrayTest, test_two_dimension_1_slice_operator_DimensionA_const_iterator)
+{
+    DimensionSize<DimensionA> size_a(30);
+    DimensionSize<DimensionB> size_b(20);
+    TestMultiArray<int, DimensionA, DimensionB> ma(size_a, size_b);
+    auto slice = ma.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionSize<DimensionA>(1)));
+    ASSERT_EQ(slice.dimension<DimensionB>(), size_b);
+    auto it = slice.cbegin();
+    auto end = slice.cend();
+    ASSERT_EQ(std::distance(it, end), (std::size_t)size_b);
+    unsigned n=(unsigned)size_b;
+    std::for_each(it, end, [&](int const& val) 
+                           {
+                                ASSERT_EQ(val, n);
+                                ++n;
+                           });
+    ASSERT_EQ(n-(unsigned)size_b, (unsigned)size_b);
+}
+
 TEST_F(MultiArrayTest, test_two_dimension_slice_range_outside_of_array)
 {
     DimensionSize<DimensionA> size_a(30);
