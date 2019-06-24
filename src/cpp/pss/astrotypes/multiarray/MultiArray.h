@@ -135,6 +135,23 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
 
         /**
          * @brief return a slice of the specified dimension spanning the index_range provided
+         * @details no bonuds checking is performed. Undefined behaviour can result from requests
+         *          for a slice outside the limits.
+         *          An example to test bounds using the @method trim method:
+         *          @code
+         *              DimensionSize<A> a_size(10);
+         *              DimensionSize<B> b_size(100);
+         *              MultiArray<A, B> ma(a_size, b_size);
+         *
+         *              // this span starts inside the array but extends beyond the bounds
+         *              DimensionSpan<A> span(DimensionIndex<A>(8), DimensionSize<A>(10));
+         *
+         *              // adjust the span so that it fits in bounds
+         *              span.trim(ma.template dimension<A>());
+         *              if(span.span() > DimensionSize<A>(0)) {
+         *                  // the span is valid and adjusted to fit.
+         *              }
+         *          @endocde
          */
         template<typename Dim, typename... Dims>
         SliceType slice(DimensionSpan<Dim> const& range, DimensionSpan<Dims> const&...);

@@ -146,6 +146,7 @@ TEST_F(MultiArrayTest, test_two_dimension_1_slice_operator_DimensionA_const_iter
     ASSERT_EQ(n-(unsigned)size_b, (unsigned)size_b);
 }
 
+/*
 TEST_F(MultiArrayTest, test_two_dimension_slice_range_outside_of_array_DimensionA)
 {
     DimensionSize<DimensionA> size_a(30);
@@ -157,7 +158,6 @@ TEST_F(MultiArrayTest, test_two_dimension_slice_range_outside_of_array_Dimension
     ASSERT_EQ(slice.begin(), slice.end());
 }
 
-/*
 TEST_F(MultiArrayTest, test_two_dimension_slice_range_outside_of_array_DimensionB)
 {
     DimensionSize<DimensionA> size_a(6);
@@ -170,7 +170,6 @@ TEST_F(MultiArrayTest, test_two_dimension_slice_range_outside_of_array_Dimension
     ASSERT_EQ(&*slice.begin(), &*ab.end()) << "begin=" << (void*) &*slice.begin() << " ab.begin=" << &*ab.begin() << " ab.end=" << (void*)&*ab.end();
     ASSERT_EQ(slice.begin(), slice.end()) << "begin=" << (void*) &*slice.begin() << " end=" << (void*)&*slice.end();
 }
-*/
 
 TEST_F(MultiArrayTest, test_two_dimension_slice_range_extends_beyond_array)
 {
@@ -183,6 +182,7 @@ TEST_F(MultiArrayTest, test_two_dimension_slice_range_extends_beyond_array)
     ASSERT_NE(slice.begin(), slice.end());
     ASSERT_EQ(&*ab.end(), &*slice.end());
 }
+*/
 
 
 TEST_F(MultiArrayTest, test_two_dimension_transpose_constructor)

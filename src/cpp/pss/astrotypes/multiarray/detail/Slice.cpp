@@ -169,7 +169,7 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice(
        , DimensionSpan<Dim> const& span
        , DimensionSpan<Dims> const&... spans)
     : BaseT(internal_construct_tag(), parent, span, spans... )
-    , _span(DimensionSpan<Dimension>(arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dim> const&, DimensionSpan<Dims> const&...>::arg(span, spans...)).trim(parent.template dimension<Dimension>()))
+    , _span(arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dim> const&, DimensionSpan<Dims> const&...>::arg(span, spans...))
     , _base_span(0U) // not used (yet) so don't bother calculating it
     , _ptr(parent.begin() + static_cast<std::size_t>(_span.start()) * BaseT::_base_span)
 {
@@ -183,7 +183,7 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice(
        , DimensionSpan<Dim> const& span
        , DimensionSpan<Dims> const&... spans)
     : BaseT(internal_construct_tag(), parent, span, spans... )
-    , _span(DimensionSpan<Dimension>(DimensionIndex<Dimension>(0), DimensionSize<Dimension>(parent.template size<Dimension>())).trim(parent.template dimension<Dimension>()))
+    , _span(DimensionSpan<Dimension>(DimensionIndex<Dimension>(0), parent.template dimension<Dimension>()))
     , _base_span(0U) // not used (yet) so don't bother calculating it
     , _ptr(parent.begin())
 {
@@ -546,7 +546,7 @@ bool Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::operat
 // -------------------- single dimension specialisation -------------------
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice(Parent& parent, DimensionSpan<Dimension> const& d)
-    : _span(DimensionSpan<Dimension>(d).trim(parent.template dimension<Dimension>()))
+    : _span(d)
     , _base_span(parent.template size<Dimension>())
     , _ptr(parent.begin() + static_cast<std::size_t>(_span.start()))
 {
@@ -558,7 +558,7 @@ template<typename... Dims>
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( internal_construct_tag const&
        , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Parent&>::type parent
        , DimensionSpan<Dims> const& ... spans)
-    : _span(DimensionSpan<Dimension>(arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...)).trim(parent.template dimension<Dimension>()))
+    : _span(arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...))
     , _base_span(parent.template size<Dimension>())
 {
 }
