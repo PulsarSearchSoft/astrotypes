@@ -2,5 +2,5 @@
 <area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1MultiArray.html#a5a9ef3fef9929d2fd15329b2719af0b2" title="iterators acting over he entire data structure " alt="" coords="214,5,411,71"/>
 <area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1MultiArray.html#a999f2999c0ab9d93b8a923b65198ff49" title="pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Time, units::Frequency \&gt;::end" alt="" coords="194,95,431,147"/>
 <area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1TimeFreqCommon.html#a0598e7989a847c163aeecdb81cfd3052" title="retrun a single channel across all time samples " alt="" coords="217,171,408,249"/>
-<area shape="rect" id="node5" href="$classpss_1_1astrotypes_1_1MultiArray.html#a3f2d3f180dc0cbcf5f31051dc7c7af6a" title="resize the array in the specified dimension " alt="" coords="193,273,432,325"/>
+<area shape="rect" id="node5" href="$classpss_1_1astrotypes_1_1MultiArray.html#a3f2d3f180dc0cbcf5f31051dc7c7af6a" title="return a slice of the specified dimension spanning the index_range provided " alt="" coords="193,273,432,325"/>
 </map>

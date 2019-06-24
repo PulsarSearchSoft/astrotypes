@@ -168,19 +168,19 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a91fdafe4ef7127efdec90ba287283963"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
 <tr class="memitem:a91fdafe4ef7127efdec90ba287283963"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dim, Dimensions...&gt;::value &amp;&amp;!std::is_same&lt; Dim, Dimension &gt;::value, typename <a class="el" href="structpss_1_1astrotypes_1_1Slice_1_1OperatorSliceType.html">OperatorSliceType</a>&lt; Dim &gt;::type &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a91fdafe4ef7127efdec90ba287283963">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; const &amp;)</td></tr>
 <tr class="separator:a91fdafe4ef7127efdec90ba287283963"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a627f076fa26a64bf1310f29a3fa5c67a"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
-<tr class="memitem:a627f076fa26a64bf1310f29a3fa5c67a"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a6d1aa65ca4fb784088e105e0e57a4244">SliceType</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a627f076fa26a64bf1310f29a3fa5c67a">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...spans)</td></tr>
-<tr class="memdesc:a627f076fa26a64bf1310f29a3fa5c67a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take a sub-slice from this slice  pass a DimensionSpan&lt;Dimension&gt; object for each dimension you wish to restrict. Span indexes are relative to <a class="el" href="classpss_1_1astrotypes_1_1Slice.html" title="Representation of a Slice through a Data Array. ">Slice</a> boundary, not the parent.  <a href="#a627f076fa26a64bf1310f29a3fa5c67a">More...</a><br /></td></tr>
-<tr class="separator:a627f076fa26a64bf1310f29a3fa5c67a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69dbdc55be01925dcbca70d2b9d3543d"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
-<tr class="memitem:a69dbdc55be01925dcbca70d2b9d3543d"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a6d1aa65ca4fb784088e105e0e57a4244">SliceType</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a69dbdc55be01925dcbca70d2b9d3543d">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...spans)</td></tr>
-<tr class="separator:a69dbdc55be01925dcbca70d2b9d3543d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ab5edc33a645eca652af6d99bfcc89a"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
-<tr class="memitem:a3ab5edc33a645eca652af6d99bfcc89a"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; true, SliceTraitsT, SliceMixin, Dimension, Dimensions...&gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a3ab5edc33a645eca652af6d99bfcc89a">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...spans) const </td></tr>
-<tr class="separator:a3ab5edc33a645eca652af6d99bfcc89a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30af3ede583677fe07712b17657b89be"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
-<tr class="memitem:a30af3ede583677fe07712b17657b89be"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; true, SliceTraitsT, SliceMixin, Dimension, Dimensions...&gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a30af3ede583677fe07712b17657b89be">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...spans) const </td></tr>
-<tr class="separator:a30af3ede583677fe07712b17657b89be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28e909440b809db3f593e659661fcea2"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
+<tr class="memitem:a28e909440b809db3f593e659661fcea2"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a6d1aa65ca4fb784088e105e0e57a4244">SliceType</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a28e909440b809db3f593e659661fcea2">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...spans)</td></tr>
+<tr class="memdesc:a28e909440b809db3f593e659661fcea2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Take a sub-slice from this slice  pass a DimensionSpan&lt;Dimension&gt; object for each dimension you wish to restrict. Span indexes are relative to <a class="el" href="classpss_1_1astrotypes_1_1Slice.html" title="Representation of a Slice through a Data Array. ">Slice</a> boundary, not the parent.  <a href="#a28e909440b809db3f593e659661fcea2">More...</a><br /></td></tr>
+<tr class="separator:a28e909440b809db3f593e659661fcea2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8d84072f2c19e1c78a61f465e00f92b"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
+<tr class="memitem:ad8d84072f2c19e1c78a61f465e00f92b"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a6d1aa65ca4fb784088e105e0e57a4244">SliceType</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#ad8d84072f2c19e1c78a61f465e00f92b">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...spans)</td></tr>
+<tr class="separator:ad8d84072f2c19e1c78a61f465e00f92b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7e16a508e2133a3bde01bf7ff980194"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
+<tr class="memitem:ad7e16a508e2133a3bde01bf7ff980194"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; true, SliceTraitsT, SliceMixin, Dimension, Dimensions...&gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#ad7e16a508e2133a3bde01bf7ff980194">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...spans) const </td></tr>
+<tr class="separator:ad7e16a508e2133a3bde01bf7ff980194"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49d320717f7f8f2c98ff00f5ff0c4688"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
+<tr class="memitem:a49d320717f7f8f2c98ff00f5ff0c4688"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; true, SliceTraitsT, SliceMixin, Dimension, Dimensions...&gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a49d320717f7f8f2c98ff00f5ff0c4688">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...spans) const </td></tr>
+<tr class="separator:a49d320717f7f8f2c98ff00f5ff0c4688"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c0544a8fc90cc2529e39cfd5c940a0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#abb7cc574e9e68fdecff46be65c097dd1">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a8c0544a8fc90cc2529e39cfd5c940a0a">begin</a> ()</td></tr>
 <tr class="memdesc:a8c0544a8fc90cc2529e39cfd5c940a0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">iterator pointing to the first element in the slice  <a href="#a8c0544a8fc90cc2529e39cfd5c940a0a">More...</a><br /></td></tr>
 <tr class="separator:a8c0544a8fc90cc2529e39cfd5c940a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -223,18 +223,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a5268afbdd0edd5bb9d9c6f4cb82a43ea"><td class="memTemplParams" colspan="2">template&lt;typename Dim &gt; </td></tr>
 <tr class="memitem:a5268afbdd0edd5bb9d9c6f4cb82a43ea"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dim, Dimensions...&gt;::value &amp;&amp;!std::is_same&lt; Dim, Dimension &gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; is_const, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">Parent</a>, SliceMixin, Dimension, Dimensions...&gt;::template <a class="el" href="structpss_1_1astrotypes_1_1Slice_1_1ConstOperatorSliceType.html">ConstOperatorSliceType</a>&lt; Dim &gt;::type &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a5268afbdd0edd5bb9d9c6f4cb82a43ea">operator[]</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex</a>&lt; Dim &gt; const &amp;index) const </td></tr>
 <tr class="separator:a5268afbdd0edd5bb9d9c6f4cb82a43ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5530557448e2f4ad5f551f60471ab36d"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
-<tr class="memitem:a5530557448e2f4ad5f551f60471ab36d"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; is_const, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">Parent</a>, SliceMixin, Dimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a6d1aa65ca4fb784088e105e0e57a4244">SliceType</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a5530557448e2f4ad5f551f60471ab36d">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...spans)</td></tr>
-<tr class="separator:a5530557448e2f4ad5f551f60471ab36d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc33c1440b04f28777fead94e487014a"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
-<tr class="memitem:abc33c1440b04f28777fead94e487014a"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; is_const, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">Parent</a>, SliceMixin, Dimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a6d1aa65ca4fb784088e105e0e57a4244">SliceType</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#abc33c1440b04f28777fead94e487014a">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...spans)</td></tr>
-<tr class="separator:abc33c1440b04f28777fead94e487014a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aceef319775bff4eff3d9fb518e6287e2"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
-<tr class="memitem:aceef319775bff4eff3d9fb518e6287e2"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; true, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">Parent</a>, SliceMixin, Dimension, Dimensions...&gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#aceef319775bff4eff3d9fb518e6287e2">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...spans) const </td></tr>
-<tr class="separator:aceef319775bff4eff3d9fb518e6287e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a312b43ef0940adb1841beb498ffdf2fc"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
-<tr class="memitem:a312b43ef0940adb1841beb498ffdf2fc"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; true, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">Parent</a>, SliceMixin, Dimension, Dimensions...&gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a312b43ef0940adb1841beb498ffdf2fc">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...spans) const </td></tr>
-<tr class="separator:a312b43ef0940adb1841beb498ffdf2fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac876a41f4795b5aab6650e80494526b0"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
+<tr class="memitem:ac876a41f4795b5aab6650e80494526b0"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; is_const, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">Parent</a>, SliceMixin, Dimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a6d1aa65ca4fb784088e105e0e57a4244">SliceType</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#ac876a41f4795b5aab6650e80494526b0">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...spans)</td></tr>
+<tr class="separator:ac876a41f4795b5aab6650e80494526b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb232a72cab36938bbf130be75dbb22d"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
+<tr class="memitem:aeb232a72cab36938bbf130be75dbb22d"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; is_const, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">Parent</a>, SliceMixin, Dimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a6d1aa65ca4fb784088e105e0e57a4244">SliceType</a> &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#aeb232a72cab36938bbf130be75dbb22d">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...spans)</td></tr>
+<tr class="separator:aeb232a72cab36938bbf130be75dbb22d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57d1f2f1c48d8ba65df6e34dc15d4fc3"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
+<tr class="memitem:a57d1f2f1c48d8ba65df6e34dc15d4fc3"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; true, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">Parent</a>, SliceMixin, Dimension, Dimensions...&gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a57d1f2f1c48d8ba65df6e34dc15d4fc3">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...spans) const </td></tr>
+<tr class="separator:a57d1f2f1c48d8ba65df6e34dc15d4fc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04d5f95b74e55293c5f45285cc89cfa8"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
+<tr class="memitem:a04d5f95b74e55293c5f45285cc89cfa8"><td class="memTemplItemLeft" align="right" valign="top">std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt; true, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">Parent</a>, SliceMixin, Dimension, Dimensions...&gt; &gt;::type&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a04d5f95b74e55293c5f45285cc89cfa8">slice</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...spans) const </td></tr>
+<tr class="separator:a04d5f95b74e55293c5f45285cc89cfa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
@@ -278,18 +278,18 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a31ae23eccdb9ac0a90aeef737353238b"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
 <tr class="memitem:a31ae23eccdb9ac0a90aeef737353238b"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a31ae23eccdb9ac0a90aeef737353238b">Slice</a> (<a class="el" href="structpss_1_1astrotypes_1_1internal__construct__tag.html">internal_construct_tag</a> const &amp;, typename std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">Parent</a> &amp; &gt;::type parent, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...spans)</td></tr>
 <tr class="separator:a31ae23eccdb9ac0a90aeef737353238b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fb2e09a88e7d537363f48838ca8cec9"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
-<tr class="memitem:a9fb2e09a88e7d537363f48838ca8cec9"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a9fb2e09a88e7d537363f48838ca8cec9">Slice</a> (<a class="el" href="structpss_1_1astrotypes_1_1copy__resize__construct__tag.html">copy_resize_construct_tag</a> const &amp;, typename std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a> &gt;::type const &amp;copy, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...spans)</td></tr>
-<tr class="separator:a9fb2e09a88e7d537363f48838ca8cec9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b436c325ef3067c62e07ce2917a70ed"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
-<tr class="memitem:a7b436c325ef3067c62e07ce2917a70ed"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a7b436c325ef3067c62e07ce2917a70ed">Slice</a> (<a class="el" href="structpss_1_1astrotypes_1_1copy__resize__construct__base__tag.html">copy_resize_construct_base_tag</a> const &amp;, typename std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a> &gt;::type const &amp;copy, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...spans)</td></tr>
-<tr class="separator:a7b436c325ef3067c62e07ce2917a70ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:affe02db93ce5a498390f580d19341f3f"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
-<tr class="memitem:affe02db93ce5a498390f580d19341f3f"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#affe02db93ce5a498390f580d19341f3f">Slice</a> (<a class="el" href="structpss_1_1astrotypes_1_1copy__resize__construct__tag.html">copy_resize_construct_tag</a> const &amp;, typename std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a> &gt;::type const &amp;copy, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...spans)</td></tr>
-<tr class="separator:affe02db93ce5a498390f580d19341f3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa34c7b3471ba342a3d3f26df5da57253"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
-<tr class="memitem:aa34c7b3471ba342a3d3f26df5da57253"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#aa34c7b3471ba342a3d3f26df5da57253">Slice</a> (<a class="el" href="structpss_1_1astrotypes_1_1copy__resize__construct__base__tag.html">copy_resize_construct_base_tag</a> const &amp;, typename std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a> &gt;::type const &amp;copy, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...spans)</td></tr>
-<tr class="separator:aa34c7b3471ba342a3d3f26df5da57253"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a105110a6e4137467944747762ccf0ce2"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
+<tr class="memitem:a105110a6e4137467944747762ccf0ce2"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a105110a6e4137467944747762ccf0ce2">Slice</a> (<a class="el" href="structpss_1_1astrotypes_1_1copy__resize__construct__tag.html">copy_resize_construct_tag</a> const &amp;, typename std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a> &gt;::type const &amp;copy, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...spans)</td></tr>
+<tr class="separator:a105110a6e4137467944747762ccf0ce2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae62bef48b16cc48bcd8f39983fbe2572"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
+<tr class="memitem:ae62bef48b16cc48bcd8f39983fbe2572"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#ae62bef48b16cc48bcd8f39983fbe2572">Slice</a> (<a class="el" href="structpss_1_1astrotypes_1_1copy__resize__construct__base__tag.html">copy_resize_construct_base_tag</a> const &amp;, typename std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a> &gt;::type const &amp;copy, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...spans)</td></tr>
+<tr class="separator:ae62bef48b16cc48bcd8f39983fbe2572"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf5d1bd4e29fdda8ddc554ee26225b47"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
+<tr class="memitem:aaf5d1bd4e29fdda8ddc554ee26225b47"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#aaf5d1bd4e29fdda8ddc554ee26225b47">Slice</a> (<a class="el" href="structpss_1_1astrotypes_1_1copy__resize__construct__tag.html">copy_resize_construct_tag</a> const &amp;, typename std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a> &gt;::type const &amp;copy, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...spans)</td></tr>
+<tr class="separator:aaf5d1bd4e29fdda8ddc554ee26225b47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f1dfedaa64269fb690160980a99f21d"><td class="memTemplParams" colspan="2">template&lt;typename... Dims&gt; </td></tr>
+<tr class="memitem:a2f1dfedaa64269fb690160980a99f21d"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a2f1dfedaa64269fb690160980a99f21d">Slice</a> (<a class="el" href="structpss_1_1astrotypes_1_1copy__resize__construct__base__tag.html">copy_resize_construct_base_tag</a> const &amp;, typename std::enable_if&lt; <a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt; Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a> &gt;::type const &amp;copy, <a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...spans)</td></tr>
+<tr class="separator:a2f1dfedaa64269fb690160980a99f21d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1a8b42e96b5ade29ae724159c84cef4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html">SelfType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#aa1a8b42e96b5ade29ae724159c84cef4">operator+=</a> (std::size_t n)</td></tr>
 <tr class="separator:aa1a8b42e96b5ade29ae724159c84cef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a774fa76fe96bc38bfed7e654a19aa00d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html">SelfType</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a774fa76fe96bc38bfed7e654a19aa00d">operator+=</a> (<a class="el" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize</a>&lt; Dimension &gt; n)</td></tr>
@@ -704,7 +704,7 @@ template&lt;typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a9fb2e09a88e7d537363f48838ca8cec9"></a>
+<a class="anchor" id="a105110a6e4137467944747762ccf0ce2"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -730,7 +730,7 @@ template&lt;typename... Dims&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...&#160;</td>
           <td class="paramname"><em>spans</em>&#160;</td>
         </tr>
         <tr>
@@ -751,15 +751,15 @@ template&lt;typename... Dims&gt; </div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classpss_1_1astrotypes_1_1Slice_a9fb2e09a88e7d537363f48838ca8cec9_cgraph.png" border="0" usemap="#classpss_1_1astrotypes_1_1Slice_a9fb2e09a88e7d537363f48838ca8cec9_cgraph" alt=""/></div>
-<map name="classpss_1_1astrotypes_1_1Slice_a9fb2e09a88e7d537363f48838ca8cec9_cgraph" id="classpss_1_1astrotypes_1_1Slice_a9fb2e09a88e7d537363f48838ca8cec9_cgraph">
+<div class="center"><img src="classpss_1_1astrotypes_1_1Slice_a105110a6e4137467944747762ccf0ce2_cgraph.png" border="0" usemap="#classpss_1_1astrotypes_1_1Slice_a105110a6e4137467944747762ccf0ce2_cgraph" alt=""/></div>
+<map name="classpss_1_1astrotypes_1_1Slice_a105110a6e4137467944747762ccf0ce2_cgraph" id="classpss_1_1astrotypes_1_1Slice_a105110a6e4137467944747762ccf0ce2_cgraph">
 <area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1Slice.html#a4ca8bc538eb116598d224a2b8965954d" title="pss::astrotypes::Slice\l::offset" alt="" coords="201,5,348,44"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="a7b436c325ef3067c62e07ce2917a70ed"></a>
+<a class="anchor" id="ae62bef48b16cc48bcd8f39983fbe2572"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -785,7 +785,7 @@ template&lt;typename... Dims&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...&#160;</td>
           <td class="paramname"><em>spans</em>&#160;</td>
         </tr>
         <tr>
@@ -805,7 +805,7 @@ template&lt;typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="affe02db93ce5a498390f580d19341f3f"></a>
+<a class="anchor" id="aaf5d1bd4e29fdda8ddc554ee26225b47"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -831,7 +831,7 @@ template&lt;typename... Dims&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...&#160;</td>
           <td class="paramname"><em>spans</em>&#160;</td>
         </tr>
         <tr>
@@ -852,15 +852,15 @@ template&lt;typename... Dims&gt; </div>
 <p><div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
-<div class="center"><img src="classpss_1_1astrotypes_1_1Slice_affe02db93ce5a498390f580d19341f3f_cgraph.png" border="0" usemap="#classpss_1_1astrotypes_1_1Slice_affe02db93ce5a498390f580d19341f3f_cgraph" alt=""/></div>
-<map name="classpss_1_1astrotypes_1_1Slice_affe02db93ce5a498390f580d19341f3f_cgraph" id="classpss_1_1astrotypes_1_1Slice_affe02db93ce5a498390f580d19341f3f_cgraph">
+<div class="center"><img src="classpss_1_1astrotypes_1_1Slice_aaf5d1bd4e29fdda8ddc554ee26225b47_cgraph.png" border="0" usemap="#classpss_1_1astrotypes_1_1Slice_aaf5d1bd4e29fdda8ddc554ee26225b47_cgraph" alt=""/></div>
+<map name="classpss_1_1astrotypes_1_1Slice_aaf5d1bd4e29fdda8ddc554ee26225b47_cgraph" id="classpss_1_1astrotypes_1_1Slice_aaf5d1bd4e29fdda8ddc554ee26225b47_cgraph">
 <area shape="rect" id="node2" href="classpss_1_1astrotypes_1_1Slice.html#a4ca8bc538eb116598d224a2b8965954d" title="pss::astrotypes::Slice\l::offset" alt="" coords="201,5,348,44"/></map>
 </div>
 </p>
 
 </div>
 </div>
-<a class="anchor" id="aa34c7b3471ba342a3d3f26df5da57253"></a>
+<a class="anchor" id="a2f1dfedaa64269fb690160980a99f21d"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -886,7 +886,7 @@ template&lt;typename... Dims&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...&#160;</td>
           <td class="paramname"><em>spans</em>&#160;</td>
         </tr>
         <tr>
@@ -1850,9 +1850,9 @@ template&lt;typename Dim &gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>@ brief return the size of the slice in the specified dimension </p><div class="fragment"><div class="line">Slice&lt;DimesionA, DimensionB&gt; <a class="code" href="classpss_1_1astrotypes_1_1Slice.html#a627f076fa26a64bf1310f29a3fa5c67a">slice</a>(...some initialisers...);</div>
-<div class="line">DimensionSize&lt;DimensionA&gt; size_of_A = <a class="code" href="classpss_1_1astrotypes_1_1Slice.html#a627f076fa26a64bf1310f29a3fa5c67a">slice</a>.size&lt;DimensionA&gt;();</div>
-<div class="line">DimensionSize&lt;DimensionB&gt; size_of_B = <a class="code" href="classpss_1_1astrotypes_1_1Slice.html#a627f076fa26a64bf1310f29a3fa5c67a">slice</a>.size&lt;DimensionB&gt;();</div>
+<p>@ brief return the size of the slice in the specified dimension </p><div class="fragment"><div class="line">Slice&lt;DimesionA, DimensionB&gt; <a class="code" href="classpss_1_1astrotypes_1_1Slice.html#a28e909440b809db3f593e659661fcea2">slice</a>(...some initialisers...);</div>
+<div class="line">DimensionSize&lt;DimensionA&gt; size_of_A = <a class="code" href="classpss_1_1astrotypes_1_1Slice.html#a28e909440b809db3f593e659661fcea2">slice</a>.size&lt;DimensionA&gt;();</div>
+<div class="line">DimensionSize&lt;DimensionB&gt; size_of_B = <a class="code" href="classpss_1_1astrotypes_1_1Slice.html#a28e909440b809db3f593e659661fcea2">slice</a>.size&lt;DimensionB&gt;();</div>
 <div class="line"><span class="comment">// note you can remove the dimension tagging on the DimesionSize</span></div>
 <div class="line"><span class="comment">// objects for compatibilty with less strongly types libs</span></div>
 <div class="line"><span class="comment">// with a static_cast</span></div>
@@ -1860,7 +1860,7 @@ template&lt;typename Dim &gt; </div>
 </div><!-- fragment --><pre class="fragment"> If you intend to inherit from this class you may need to call this method with the
  template keyword.
  e,g,
-</pre> <div class="fragment"><div class="line"><a class="code" href="classpss_1_1astrotypes_1_1Slice.html#a627f076fa26a64bf1310f29a3fa5c67a">slice</a>.template size&lt;DimensionA&gt;();</div>
+</pre> <div class="fragment"><div class="line"><a class="code" href="classpss_1_1astrotypes_1_1Slice.html#a28e909440b809db3f593e659661fcea2">slice</a>.template size&lt;DimensionA&gt;();</div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -1925,7 +1925,7 @@ template&lt;typename Dim &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a627f076fa26a64bf1310f29a3fa5c67a"></a>
+<a class="anchor" id="a28e909440b809db3f593e659661fcea2"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -1936,7 +1936,7 @@ template&lt;typename... Dims&gt; </div>
         <tr>
           <td class="memname">std::enable_if&lt;<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt;Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a6d1aa65ca4fb784088e105e0e57a4244">SliceType</a>&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">pss::astrotypes::Slice</a>&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;::slice </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...&#160;</td>
           <td class="paramname"><em>spans</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1947,7 +1947,7 @@ template&lt;typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a69dbdc55be01925dcbca70d2b9d3543d"></a>
+<a class="anchor" id="ad8d84072f2c19e1c78a61f465e00f92b"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -1958,7 +1958,7 @@ template&lt;typename... Dims&gt; </div>
         <tr>
           <td class="memname">std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt;Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a6d1aa65ca4fb784088e105e0e57a4244">SliceType</a>&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">pss::astrotypes::Slice</a>&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;::slice </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...&#160;</td>
           <td class="paramname"><em>spans</em></td><td>)</td>
           <td></td>
         </tr>
@@ -1967,7 +1967,7 @@ template&lt;typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a3ab5edc33a645eca652af6d99bfcc89a"></a>
+<a class="anchor" id="ad7e16a508e2133a3bde01bf7ff980194"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -1978,7 +1978,7 @@ template&lt;typename... Dims&gt; </div>
         <tr>
           <td class="memname">std::enable_if&lt;<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt;Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt;true, SliceTraitsT, SliceMixin, Dimension, Dimensions...&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">pss::astrotypes::Slice</a>&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;::slice </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...&#160;</td>
           <td class="paramname"><em>spans</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -1987,7 +1987,7 @@ template&lt;typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a30af3ede583677fe07712b17657b89be"></a>
+<a class="anchor" id="a49d320717f7f8f2c98ff00f5ff0c4688"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -1998,7 +1998,7 @@ template&lt;typename... Dims&gt; </div>
         <tr>
           <td class="memname">std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt;Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt;true, SliceTraitsT, SliceMixin, Dimension, Dimensions...&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">pss::astrotypes::Slice</a>&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;::slice </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...&#160;</td>
           <td class="paramname"><em>spans</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -2007,7 +2007,7 @@ template&lt;typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a5530557448e2f4ad5f551f60471ab36d"></a>
+<a class="anchor" id="ac876a41f4795b5aab6650e80494526b0"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -2018,7 +2018,7 @@ template&lt;typename... Dims&gt; </div>
         <tr>
           <td class="memname">std::enable_if&lt;<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt;Dimension, Dims...&gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt;is_const, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">Parent</a>, SliceMixin, Dimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a6d1aa65ca4fb784088e105e0e57a4244">SliceType</a>&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">pss::astrotypes::Slice</a>&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;::slice </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...&#160;</td>
           <td class="paramname"><em>spans</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2029,7 +2029,7 @@ template&lt;typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="abc33c1440b04f28777fead94e487014a"></a>
+<a class="anchor" id="aeb232a72cab36938bbf130be75dbb22d"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -2040,7 +2040,7 @@ template&lt;typename... Dims&gt; </div>
         <tr>
           <td class="memname">std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt;Dimension, Dims...&gt;::value, typename <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt;is_const, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">Parent</a>, SliceMixin, Dimension, Dimensions...&gt;::<a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a6d1aa65ca4fb784088e105e0e57a4244">SliceType</a>&gt;::type <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">pss::astrotypes::Slice</a>&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;::slice </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...&#160;</td>
           <td class="paramname"><em>spans</em></td><td>)</td>
           <td></td>
         </tr>
@@ -2051,7 +2051,7 @@ template&lt;typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="aceef319775bff4eff3d9fb518e6287e2"></a>
+<a class="anchor" id="a57d1f2f1c48d8ba65df6e34dc15d4fc3"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -2062,7 +2062,7 @@ template&lt;typename... Dims&gt; </div>
         <tr>
           <td class="memname">std::enable_if&lt;<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt;Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt;true, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">Parent</a>, SliceMixin, Dimension, Dimensions...&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">pss::astrotypes::Slice</a>&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;::slice </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...&#160;</td>
           <td class="paramname"><em>spans</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -2073,7 +2073,7 @@ template&lt;typename... Dims&gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a312b43ef0940adb1841beb498ffdf2fc"></a>
+<a class="anchor" id="a04d5f95b74e55293c5f45285cc89cfa8"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
@@ -2084,7 +2084,7 @@ template&lt;typename... Dims&gt; </div>
         <tr>
           <td class="memname">std::enable_if&lt;!<a class="el" href="structpss_1_1astrotypes_1_1arg__helper.html">arg_helper</a>&lt;Dimension, Dims...&gt;::value, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">Slice</a>&lt;true, <a class="el" href="classpss_1_1astrotypes_1_1Slice.html#a101bc3b5ad3ed8142fda6f67791703e0">Parent</a>, SliceMixin, Dimension, Dimensions...&gt; &gt;::type <a class="el" href="classpss_1_1astrotypes_1_1Slice.html">pss::astrotypes::Slice</a>&lt; is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions &gt;::slice </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; &amp;&amp;...&#160;</td>
+          <td class="paramtype"><a class="el" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan</a>&lt; Dims &gt; const &amp;...&#160;</td>
           <td class="paramname"><em>spans</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -2150,7 +2150,7 @@ template&lt;bool is_const, typename SliceTraitsT, template&lt; typename &gt; cla
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 29 2018 14:30:19 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 24 2019 13:46:07 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

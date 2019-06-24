@@ -1,5 +1,5 @@
 <map id="pss::astrotypes::test::TEST_F" name="pss::astrotypes::test::TEST_F">
-<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1Slice.html#a627f076fa26a64bf1310f29a3fa5c67a" title="Take a sub&#45;slice from this slice &#160;pass a DimensionSpan&lt;Dimension&gt; object for each dimension you wish ..." alt="" coords="208,5,355,44"/>
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1Slice.html#a28e909440b809db3f593e659661fcea2" title="Take a sub&#45;slice from this slice &#160;pass a DimensionSpan&lt;Dimension&gt; object for each dimension you wish ..." alt="" coords="208,5,355,44"/>
 <area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1Slice.html#a8c0544a8fc90cc2529e39cfd5c940a0a" title="iterator pointing to the first element in the slice " alt="" coords="208,68,355,107"/>
 <area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1Slice.html#a47f8414d34f14f7bd4dc6e046b522071" title="iterator pointing to just after the last element " alt="" coords="193,131,370,156"/>
 <area shape="rect" id="node5" href="$classpss_1_1astrotypes_1_1Slice.html#a677461c9af52e2d11c826c87822b9bc2" title="pss::astrotypes::Slice\l::size" alt="" coords="208,180,355,219"/>

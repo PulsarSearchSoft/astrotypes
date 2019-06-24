@@ -140,16 +140,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;} <span class="comment">// namespace astrotypes</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;} <span class="comment">// namespace pss</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Dimension&gt;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1DimensionSpan.html#a5e0774061c3e37b63d10fab7377f2109">   50</a></span>&#160;<a class="code" href="classpss_1_1astrotypes_1_1DimensionSpan.html">DimensionSpan&lt;Dimension&gt;</a>&amp; <a class="code" href="classpss_1_1astrotypes_1_1DimensionSpan.html#a5e0774061c3e37b63d10fab7377f2109">DimensionSpan&lt;Dimension&gt;::trim</a>(<a class="code" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize&lt;Dimension&gt;</a> bounds)</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">if</span>(_start_index &gt;= bounds) {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        _start_index = <a class="code" href="classpss_1_1astrotypes_1_1DimensionIndex.html">DimensionIndex&lt;Dimension&gt;</a>((std::size_t)bounds);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        _span = <a class="code" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize&lt;Dimension&gt;</a>(0);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="classpss_1_1astrotypes_1_1DimensionSize.html">DimensionSize&lt;Dimension&gt;</a> delta = bounds - _start_index;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordflow">if</span>(_span &gt; delta) _span = delta;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;} <span class="comment">// namespace astrotypes</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;} <span class="comment">// namespace pss</span></div>
 <div class="ttc" id="namespacepss_html"><div class="ttname"><a href="namespacepss.html">pss</a></div><div class="ttdef"><b>Definition:</b> <a href="DataBuffer_8cpp_source.html#l00026">DataBuffer.cpp:26</a></div></div>
 <div class="ttc" id="classpss_1_1astrotypes_1_1DimensionIndex_html"><div class="ttname"><a href="classpss_1_1astrotypes_1_1DimensionIndex.html">pss::astrotypes::DimensionIndex</a></div><div class="ttdoc">A tagged dimensionIndex variable. </div><div class="ttdef"><b>Definition:</b> <a href="DimensionIndex_8h_source.html#l00040">DimensionIndex.h:40</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1DimensionSpan_html"><div class="ttname"><a href="classpss_1_1astrotypes_1_1DimensionSpan.html">pss::astrotypes::DimensionSpan</a></div><div class="ttdoc">Defines a contiguous range over dimension in index. </div><div class="ttdef"><b>Definition:</b> <a href="DimensionSpan_8h_source.html#l00041">DimensionSpan.h:41</a></div></div>
 <div class="ttc" id="classpss_1_1astrotypes_1_1DimensionSpan_html_aa96c984e8da3b55fa826e6ff559adb46"><div class="ttname"><a href="classpss_1_1astrotypes_1_1DimensionSpan.html#aa96c984e8da3b55fa826e6ff559adb46">pss::astrotypes::DimensionSpan::DimensionSpan</a></div><div class="ttdeci">DimensionSpan(DimensionIndex&lt; Dimension &gt; start_index, DimensionIndex&lt; Dimension &gt; end_index)</div><div class="ttdef"><b>Definition:</b> <a href="DimensionSpan_8cpp_source.html#l00029">DimensionSpan.cpp:29</a></div></div>
 <div class="ttc" id="classpss_1_1astrotypes_1_1DimensionSize_html"><div class="ttname"><a href="classpss_1_1astrotypes_1_1DimensionSize.html">pss::astrotypes::DimensionSize</a></div><div class="ttdoc">A compile time dimesion tagging of size_t. </div><div class="ttdef"><b>Definition:</b> <a href="DimensionSize_8h_source.html#l00039">DimensionSize.h:39</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1DimensionSpan_html_a5e0774061c3e37b63d10fab7377f2109"><div class="ttname"><a href="classpss_1_1astrotypes_1_1DimensionSpan.html#a5e0774061c3e37b63d10fab7377f2109">pss::astrotypes::DimensionSpan::trim</a></div><div class="ttdeci">DimensionSpan&lt; Dimension &gt; &amp; trim(DimensionSize&lt; Dimension &gt; bounds)</div><div class="ttdoc">ensure the span fits within the size provided </div><div class="ttdef"><b>Definition:</b> <a href="DimensionSpan_8cpp_source.html#l00050">DimensionSpan.cpp:50</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 29 2018 14:30:06 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 24 2019 13:46:05 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

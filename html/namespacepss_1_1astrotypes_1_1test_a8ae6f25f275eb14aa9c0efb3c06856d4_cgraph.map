@@ -1,7 +1,6 @@
 <map id="pss::astrotypes::test::TEST_F" name="pss::astrotypes::test::TEST_F">
 <area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1TimeFreqCommon.html#a0598e7989a847c163aeecdb81cfd3052" title="retrun a single channel across all time samples " alt="" coords="196,5,387,84"/>
-<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1MultiArray.html#a3f2d3f180dc0cbcf5f31051dc7c7af6a" title="resize the array in the specified dimension " alt="" coords="193,108,390,173"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1MultiArray.html#a3f2d3f180dc0cbcf5f31051dc7c7af6a" title="return a slice of the specified dimension spanning the index_range provided " alt="" coords="193,108,390,173"/>
 <area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1MultiArray.html#a5a9ef3fef9929d2fd15329b2719af0b2" title="iterators acting over he entire data structure " alt="" coords="193,197,390,263"/>
 <area shape="rect" id="node5" href="$classpss_1_1astrotypes_1_1MultiArray.html#a999f2999c0ab9d93b8a923b65198ff49" title="pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Frequency, units::\lTime \&gt;::end" alt="" coords="193,287,390,352"/>
-<area shape="rect" id="node6" href="$classpss_1_1astrotypes_1_1MultiArray.html#a3a3fe388c5f4f2ecb8ece7a250e6d773" title="return a slice of the specified dimension spanning the index_range provided " alt="" coords="193,376,390,441"/>
 </map>

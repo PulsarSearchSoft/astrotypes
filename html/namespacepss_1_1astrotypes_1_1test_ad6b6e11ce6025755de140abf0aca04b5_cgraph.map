@@ -2,5 +2,4 @@
 <area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1TimeFreqCommon.html#a9c523af641ceba14ef312ccb6d76f331" title="return a single spectrum from the specified offset " alt="" coords="196,5,387,84"/>
 <area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1MultiArray.html#a33b7d8e943526599302f4d35f715bde9" title="pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Frequency, units::\lTime \&gt;::cbegin" alt="" coords="193,108,390,173"/>
 <area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1MultiArray.html#aed783c7a841440e713f1721f2d64c0fe" title="pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Frequency, units::\lTime \&gt;::cend" alt="" coords="193,197,390,263"/>
-<area shape="rect" id="node5" href="$classpss_1_1astrotypes_1_1MultiArray.html#a3a3fe388c5f4f2ecb8ece7a250e6d773" title="return a slice of the specified dimension spanning the index_range provided " alt="" coords="193,287,390,352"/>
 </map>

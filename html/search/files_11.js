@@ -9,6 +9,8 @@ var searchData=
   ['timefrequencytest_2eh',['TimeFrequencyTest.h',['../TimeFrequencyTest_8h.html',1,'']]],
   ['timepoint_2ecpp',['TimePoint.cpp',['../TimePoint_8cpp.html',1,'']]],
   ['timepoint_2eh',['TimePoint.h',['../TimePoint_8h.html',1,'']]],
+  ['timepointtest_2ecpp',['TimePointTest.cpp',['../TimePointTest_8cpp.html',1,'']]],
+  ['timepointtest_2eh',['TimePointTest.h',['../TimePointTest_8h.html',1,'']]],
   ['timetest_2ecpp',['TimeTest.cpp',['../TimeTest_8cpp.html',1,'']]],
   ['timetest_2eh',['TimeTest.h',['../TimeTest_8h.html',1,'']]],
   ['timeunits_2eh',['TimeUnits.h',['../TimeUnits_8h.html',1,'']]],

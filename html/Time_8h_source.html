@@ -192,13 +192,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Ratio, <span class="keyword">typename</span> Rep, <span class="keyword">typename</span> Unit, <span class="keyword">typename</span> Rep2&gt;</div>
 <div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="namespacestd_1_1chrono.html#ae9972a4c5d93d64e888f8ba409f6eaed">  121</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> operator&lt;(std::chrono::duration&lt;Rep, Ratio&gt; <span class="keyword">const</span>&amp; c, boost::units::quantity&lt;Unit, Rep2&gt; <span class="keyword">const</span>&amp; b)</div>
 <div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;{</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacepss_1_1astrotypes_1_1units.html#a3394ca2076334f38c8468dbf77b3c12d">pss::astrotypes::units::duration_cast</a>&lt;boost::units::quantity&lt;Unit, Rep2&gt;&gt;(c) &lt; b;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    <span class="keywordflow">return</span> c &lt; pss::astrotypes::units::duration_cast&lt;std::chrono::duration&lt;Rep, Ratio&gt;&gt;(b);</div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;}</div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;</div>
 <div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Ratio, <span class="keyword">typename</span> Rep, <span class="keyword">typename</span> Unit, <span class="keyword">typename</span> Rep2&gt;</div>
 <div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="namespacestd_1_1chrono.html#adb6ce5bbf547b6778f38090ab8939284">  127</a></span>&#160;<span class="keyword">inline</span> <span class="keywordtype">bool</span> <a class="code" href="namespacestd_1_1chrono.html#adb6ce5bbf547b6778f38090ab8939284">operator&gt;</a>(std::chrono::duration&lt;Rep, Ratio&gt; <span class="keyword">const</span>&amp; c, boost::units::quantity&lt;Unit, Rep2&gt; <span class="keyword">const</span>&amp; b)</div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;{</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordflow">return</span> <a class="code" href="namespacepss_1_1astrotypes_1_1units.html#a3394ca2076334f38c8468dbf77b3c12d">pss::astrotypes::units::duration_cast</a>&lt;boost::units::quantity&lt;Unit, Rep2&gt;&gt;(c) &gt; b;</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <span class="keywordflow">return</span> c &gt; <a class="code" href="namespacepss_1_1astrotypes_1_1units.html#a3394ca2076334f38c8468dbf77b3c12d">pss::astrotypes::units::duration_cast</a>&lt;std::chrono::duration&lt;Rep, Ratio&gt;&gt;(b);</div>
 <div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;}</div>
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;</div>
 <div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Ratio, <span class="keyword">typename</span> Rep, <span class="keyword">typename</span> Unit, <span class="keyword">typename</span> Rep2&gt;</div>
@@ -394,7 +394,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 29 2018 14:30:07 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 24 2019 13:46:05 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

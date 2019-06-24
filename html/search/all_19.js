@@ -33,6 +33,7 @@ var searchData=
   ['_7estandardallocatortest',['~StandardAllocatorTest',['../classpss_1_1astrotypes_1_1test_1_1StandardAllocatorTest.html#ad09c15a1483e6008b1c6adcc19f0a1cb',1,'pss::astrotypes::test::StandardAllocatorTest']]],
   ['_7etimefrequency',['~TimeFrequency',['../classpss_1_1astrotypes_1_1TimeFrequency.html#a235fafda881e5a751c27574da950cc0b',1,'pss::astrotypes::TimeFrequency']]],
   ['_7etimefrequencytest',['~TimeFrequencyTest',['../classpss_1_1astrotypes_1_1test_1_1TimeFrequencyTest.html#a00dbda0de54d4c576fb34bd7ce6294a0',1,'pss::astrotypes::test::TimeFrequencyTest']]],
+  ['_7etimepointtest',['~TimePointTest',['../classpss_1_1astrotypes_1_1units_1_1test_1_1TimePointTest.html#a8956733c66e5842a67592cdd780f2477',1,'pss::astrotypes::units::test::TimePointTest']]],
   ['_7etimetest',['~TimeTest',['../classpss_1_1astrotypes_1_1units_1_1test_1_1TimeTest.html#a7b5ace25302119e83adf29fa4d253496',1,'pss::astrotypes::units::test::TimeTest']]],
   ['_7eunitstest',['~UnitsTest',['../classpss_1_1astrotypes_1_1units_1_1test_1_1UnitsTest.html#a8f038656d56e9114bbc4583c4916eb5c',1,'pss::astrotypes::units::test::UnitsTest']]],
   ['_7eutilitiestest',['~UtilitiesTest',['../classpss_1_1astrotypes_1_1units_1_1test_1_1UtilitiesTest.html#adcd1dba179c8753bfad4922ae9dd3ef0',1,'pss::astrotypes::units::test::UtilitiesTest']]],

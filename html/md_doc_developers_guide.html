@@ -86,11 +86,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h2>Dependencies</h2>
 <p>Do not introduce any new dependencies on any other product without consultation</p>
 <h2>Build Products</h2>
-<p>The project will build the pipeline executable, two c++ libraries, and their associated header files. One library will support the main product and the second a library is a set of utilities to aid in unit testing code that uses the main library.</p>
+<p>The product is a header only library, but the project will build a number of unit tests to support this header as well as some examples and generated documentation. It is not necessary to build these unit tests, documentation, or examples to use the header, but all develoipment should ensure that all these unit tests pass. (i.e. all executables triggered by make test should PASS)</p>
 <h1>Repository</h1>
 <h2>Workflow and Branches</h2>
 <ul>
-<li>Use the gitlab workflow (<a href="https://repo.oerc.ox.ac.uk/help/workflow">https://repo.oerc.ox.ac.uk/help/workflow</a>) as much as possible.</li>
 <li>Never work directly on the master branch - this is the "stable release" and is tightly controlled<ul>
 <li>The master shall compile and pass all unit tests at all times.</li>
 <li>Commits to the master must only be done after code review and from a working dev branch</li>
@@ -102,31 +101,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>Only merge from a feature branch that is already synced with the dev branch.<ul>
 <li>Commits to the dev should usually only be done after code review and from a working feature branch</li>
-<li>use the gitlab merge request feature for feature-&gt;dev branch merges</li>
+<li>use the github merge request feature for feature-&gt;dev branch merges</li>
 </ul>
 </li>
 </ul>
 <h2>Repository Structure</h2>
-<p>cmake : project specific files for configuring the build system tools : useful things to aid the developer such as a class template generator doc : documentation &amp; doc templates, with the exception of the API doc of the classess. Also see module doc directoy. astrotypes : this is the src code for the astrotypes library. It is organised as a set of modules with the following minimal structure (following the boost conventions for templates)</p>
-<p>astrotypes +</p><ul>
-<li>&lt;module_name&gt; + In this directory only put header files that you wish exposed to module users<ul>
-<li>doc Add additional doxygen documentation for tutorials etc here.</li>
-<li>examples src code example uses</li>
-<li>src All .cpp files for the library and internal headers</li>
-<li>detail All .cpp implementations details for template classes that cannot be precompiled</li>
-<li>test_utils + Include files for the supporting test library<ul>
-<li>src Implementation details (.cpp files) for the test library</li>
-<li>detail Template implementation details for the test support library</li>
-</ul>
-</li>
-<li>test The unit test directory. Header files for unit tests live here<ul>
-<li>src Implementation details (.cpp files) for unit tests</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<p>astrotypes/test : the location of tests and any public headers for the astrotypes integration tests astrotypes/test/src : the location of all test implementation coded</p>
+<p>The astrotypes library is envisioned to support languages used in astro development. Each language has its own subdirectory below src. Each language directory will have specifics to the language but will usually contain:</p>
+<p>cmake : specific files for configuring the build system to the specific language tools : useful things to aid the developer such as a class template generator doc : documentation &amp; doc templates, with the exception of the API doc of the classess. astrotypes : this is the actual src code. It may have a substructure e.g. for c++ </p><pre class="fragment">             astrotypes +
+                     + &lt;module_name&gt; +                      In this directory only put header files that you wish exposed to module users
+                                     + doc                  Add additional doxygen documentation for tutorials etc here.
+                                     + examples             src code example uses
+                                     + src                  All .cpp files for the library and internal headers
+                                     + detail               All .cpp implementations details for template classes that cannot be precompiled
+                                     + test_utils +         Include files for the supporting test library
+                                                  + src     Implementation details (.cpp files) for the test library
+                                                  + detail  Template implementation details for the test support library
+                                     + test                 The unit test directory. Header files for unit tests live here
+                                                  + src     Implementation details (.cpp files) for unit tests
+</pre><p>astrotypes/test : the location of tests and any public headers for the astrotypes integration tests astrotypes/test/src : the location of all test implementation coded</p>
 <h1>The Build System</h1>
 <p>This project uses cmake as is build system. See the notes in the CMakeLists.txt file in the top directory</p>
 <h2>Adding a src file/class</h2>
@@ -234,7 +226,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 29 2018 14:30:15 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jun 24 2019 13:46:07 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
