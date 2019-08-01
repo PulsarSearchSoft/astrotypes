@@ -193,6 +193,10 @@ TEST_F(SliceTest, test_two_dimensions)
                                               , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(19))
                                               , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(22))
                                               );
+    // check parent()
+    ASSERT_EQ(&p, &slice.parent());
+    ASSERT_EQ(&p, &const_slice.parent());
+
     // test size
     ASSERT_EQ(10U, static_cast<std::size_t>(slice.size<DimensionA>()));
     ASSERT_EQ(3U, static_cast<std::size_t>(slice.size<DimensionB>()));

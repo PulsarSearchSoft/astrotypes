@@ -470,6 +470,12 @@ typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::const_it
 }
 
 template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+inline typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::Parent& Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::parent() const
+{
+    return BaseT::parent();
+}
+
+template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::impl_iterator Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::impl_begin()
 {
     return impl_iterator(*this);
@@ -548,6 +554,7 @@ template<bool is_const, typename SliceTraitsT, template<typename> class SliceMix
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice(Parent& parent, DimensionSpan<Dimension> const& d)
     : _span(d)
     , _base_span(parent.template size<Dimension>())
+    , _parent(parent)
     , _ptr(parent.begin() + static_cast<std::size_t>(_span.start()))
 {
 }
@@ -560,6 +567,7 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( internal_construct_
        , DimensionSpan<Dims> const& ... spans)
     : _span(arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...))
     , _base_span(parent.template size<Dimension>())
+    , _parent(parent)
 {
 }
 
@@ -571,6 +579,7 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( internal_construct_
        , DimensionSpan<Dims> const& ...)
     : _span(DimensionSpan<Dimension>(DimensionIndex<Dimension>(0), DimensionSize<Dimension>(parent.template size<Dimension>())))
     , _base_span(parent.template size<Dimension>())
+    , _parent(parent)
 {
 }
 
@@ -581,6 +590,7 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( typename std::enabl
      , DimensionSpan<Dims> const&...)
     : _span(copy._span)
     , _base_span(copy._base_span)
+    , _parent(copy._parent)
 {
 }
 
@@ -593,6 +603,7 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( typename std::enabl
                            + arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...).start())
                            , arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...).span()))
     , _base_span(copy._base_span)
+    , _parent(copy._parent)
 {
 }
 
@@ -779,6 +790,12 @@ template<bool is_const, typename SliceTraitsT, template<typename> class SliceMix
 typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::parent_const_iterator Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::cend() const
 {
     return _ptr + static_cast<std::size_t>(_span.span());
+}
+
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
+inline typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Parent& Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::parent() const
+{
+    return _parent;
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>

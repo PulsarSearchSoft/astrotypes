@@ -243,6 +243,11 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         const_iterator cend() const;
 
         /**
+         * @brief return refernce to the parent object the Slice is based on
+         */
+        Parent& parent() const;
+
+        /**
          * @brief compare two arrays
          */
         template<bool const_type>
@@ -501,6 +506,8 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
         SelfType& operator+=(DimensionSize<Dimension> const&);
         SelfType& operator+=(std::size_t n);
 
+        Parent& parent() const;
+
     protected:
         template<typename... Dims>
         Slice( internal_construct_tag const&
@@ -525,6 +532,7 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
     private:
         DimensionSpan<Dimension> _span;
         DimensionSize<Dimension> _base_span;
+        Parent& _parent;
         parent_iterator _ptr;   // start, to extent _ptr + _span
 };
 
