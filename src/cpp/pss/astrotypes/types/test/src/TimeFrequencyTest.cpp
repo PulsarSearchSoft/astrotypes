@@ -98,6 +98,16 @@ TEST_F(TimeFrequencyTest, test_time_freq_slice)
     }
 }
 
+TEST_F(TimeFrequencyTest, test_time_freq_slice_copy)
+{
+    DimensionSize<Time> time_size(50);
+    DimensionSize<Frequency> freq_size(10);
+    const TimeFrequency<uint8_t> tf1(time_size, freq_size);
+    auto s = tf1.slice(DimensionSpan<Time>(DimensionSize<Time>(5)));
+    decltype(s) slice_copy = s;
+    ASSERT_TRUE(slice_copy.parent() == s.parent());
+}
+
 TEST_F(TimeFrequencyTest, test_time_freq_channel)
 {
     DimensionSize<Time> time_size(2);
@@ -111,6 +121,8 @@ TEST_F(TimeFrequencyTest, test_time_freq_channel)
         SCOPED_TRACE(channel_num);
         SCOPED_TRACE("channel_num:");
         Channel c = tf1.channel(channel_num);
+        Channel c_copy = c;
+        ASSERT_EQ(&*c.begin(), &*c_copy.begin());
 
         for(DimensionIndex<Time> num(0); num < time_size; ++num) {
             ASSERT_EQ(c[num], (int)((unsigned)num * freq_size) + channel_num) << num;

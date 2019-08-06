@@ -45,6 +45,7 @@ class TimeFreqCommon : public SliceType
 
     public:
         TimeFreqCommon();
+        TimeFreqCommon(TimeFreqCommon const&);
         TimeFreqCommon(SliceType const& t);
         TimeFreqCommon(SliceType&& t);
 
