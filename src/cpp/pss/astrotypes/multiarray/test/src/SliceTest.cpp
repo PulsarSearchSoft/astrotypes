@@ -62,9 +62,9 @@ class TestSliceMixin : public T
         using T::T;
 };
 
-template<int NDim>
+template<int NDim, typename ValueType=int>
 struct ParentType {
-    typedef int value_type;
+    typedef ValueType value_type;
     typedef int& reference_type;
     typedef typename std::vector<value_type>::iterator iterator;
     typedef typename std::vector<value_type>::const_iterator const_iterator;
@@ -268,6 +268,26 @@ TEST_F(SliceTest, test_two_dimensions_slice_iterators)
         }
     }
 
+}
+
+TEST_F(SliceTest, test_two_dimensions_slice_iterators_overlay)
+{
+    ParentType<2> p(50);
+    ParentType<2> overlay_p(50);
+    Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              );
+
+    auto it = slice.begin();
+    auto const_it = slice.cbegin();
+    ASSERT_EQ(&*it(overlay_p), &*overlay_p.begin() + 10 * overlay_p.size<DimensionB>() + 20);
+    ASSERT_EQ(&*const_it(p), &*p.begin() + 10 * p.size<DimensionB>() + 20);
+    ASSERT_EQ(&*const_it(overlay_p), &*overlay_p.begin() + 10 * p.size<DimensionB>() + 20) << "overlay begin=" << &*overlay_p.begin();
+
+    // if of a different type
+    ParentType<2, double> overlay_different_type(50);
+    ASSERT_EQ(&*const_it(overlay_different_type), &*overlay_different_type.begin() + 10 * p.size<DimensionB>() + 20);
 }
 
 TEST_F(SliceTest, test_two_dimensions_slice_of_slice)

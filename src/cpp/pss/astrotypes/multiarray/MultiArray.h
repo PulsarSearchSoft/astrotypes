@@ -141,7 +141,7 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
          *          @code
          *              DimensionSize<A> a_size(10);
          *              DimensionSize<B> b_size(100);
-         *              MultiArray<A, B> ma(a_size, b_size);
+         *              MultiArray<int, A, B> ma(a_size, b_size);
          *
          *              // this span starts inside the array but extends beyond the bounds
          *              DimensionSpan<A> span(DimensionIndex<A>(8), DimensionSize<A>(10));

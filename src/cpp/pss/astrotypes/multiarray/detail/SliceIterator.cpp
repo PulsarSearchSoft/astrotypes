@@ -48,6 +48,12 @@ DerivedType& SliceIteratorBase<DerivedType, SliceType, is_const, rank>::operator
 }
 
 template<typename DerivedType, typename SliceType, bool is_const, int rank>
+typename SliceIteratorBase<DerivedType, SliceType, is_const, rank>::SliceT const& SliceIteratorBase<DerivedType, SliceType, is_const, rank>::slice() const
+{
+    return _slice;
+}
+
+template<typename DerivedType, typename SliceType, bool is_const, int rank>
 typename SliceIteratorBase<DerivedType, SliceType, is_const, rank>::difference_type SliceIteratorBase<DerivedType, SliceType, is_const, rank>::operator-(SelfType const& f) const
 {
     return  _slice.diff_it(this->_current - f._current);
@@ -97,6 +103,13 @@ template<typename DerivedType, typename SliceType, bool is_const>
 const typename SliceIteratorBase<DerivedType, SliceType, is_const, 1>::reference SliceIteratorBase<DerivedType, SliceType, is_const, 1>::operator*() const
 {
     return *_current;
+}
+
+template<typename DerivedType, typename SliceType, bool is_const>
+template<typename DataT>
+OverlaySliceIterator<DataT, DerivedType> SliceIteratorBase<DerivedType, SliceType, is_const, 1>::operator()(DataT& obj) const
+{
+    return OverlaySliceIterator<DataT, DerivedType>(obj, static_cast<const DerivedType&>(*this));
 }
 
 template<typename DerivedType, typename SliceType, bool is_const>

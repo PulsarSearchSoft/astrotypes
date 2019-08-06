@@ -43,7 +43,7 @@ filterbank >> ResizeAdapter<units::Time, units::Frequency>() >> time_frequency;
 ~~~~
 See the \ref sigproc "sigproc" section for many more options.
 
-## Would you care for a slice?
+## Would you care for a slice\?
 You can extract parts of a TimeFrequency chunk as a slice. The Slice provides a view of the underlying
 data and does not make any copies.
 
@@ -67,6 +67,16 @@ auto slice_2 = time_frequency.slice(DimesionSpan<Time>(DimensionIndex<Time>(0), 
 // you can further slice of spectra in Frequency to select a subset of the channels
 auto reduced_channels_slice = slice_2.slice(DimensionIndex<Frequency>(10), DimensionSize<Frequency>(2));
 
+~~~~
+
+## Overlay slice iterators on other objects
+The slice iterator allows you to smoothly iterate across a slice, automatically calculating the position
+in the data structure. You can use the same iterator to access elements in alternative data structures
+(with the same dimensionality) using the slice iterator overlays.
+
+~~~~{.cpp}
+    uint16_t& first = *slice.begin();                     // the first element of the slice
+    uint8_t& uint8_first = *slice.begin()(my_uint8_data); // the first element of a corresponding slice in my_uint8_data
 ~~~~
 
 ## TimeFrequency or FrequencyTime?

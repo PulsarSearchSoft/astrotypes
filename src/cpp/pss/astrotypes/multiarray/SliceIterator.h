@@ -25,6 +25,7 @@
 #define PSS_ASTROTYPES_MULTIARRAY_SLICEITERATOR_H
 
 #include "Slice.h"
+#include "OverlaySliceIterator.h"
 #include "detail/SlicePosition.h"
 #include <utility>
 #include <iterator>
@@ -82,6 +83,8 @@ class SliceIteratorBase : public SliceIteratorBase<DerivedType, SliceType, is_co
 
         difference_type operator-(SelfType const&) const;
 
+        SliceT const& slice() const;
+
     protected:
         SliceT& _slice;
         SlicePosition<SliceT::rank>  _pos;
@@ -122,6 +125,22 @@ class SliceIteratorBase<DerivedType, SliceType, is_const, 1>
 
         /// dereference operator
         const reference operator*() const;
+
+        /** @brief return equivalent location in an alternative object to which the Slice corresponds
+         *  @code
+         *     DimensionSize<A> a_size(10);
+         *     DimensionSize<B> b_size(100);
+         *     MultiArray<int, A, B> my_object(a_size, b_size);
+         *     MultiArray<bool, A, B> my_other_object(a_size, b_size);
+         *
+         *     DimensionSpan<A> span(DimensionIndex<A>(8), DimensionSize<A>(10));
+         *     auto slice = my_object.slice(span);
+         *     *slice.begin() = 255;
+         *     *slice.begin()(my_other_object) = true;
+         *  @endcode
+         */
+        template<typename DataT>
+        inline OverlaySliceIterator<DataT, DerivedType> operator()(DataT&) const;
 
         /// create an end iterator for the given slice
         static DerivedType create_end(SliceT& slice);
