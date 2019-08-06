@@ -376,6 +376,7 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
 
     public:
         Slice(Parent& parent, DimensionSpan<Dimension> const&);
+        Slice(Slice const&);
         ~Slice();
 
         static constexpr std::size_t rank = 1;
@@ -481,6 +482,11 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
         template<bool is_const_>
         bool operator==(Slice<is_const_, SliceTraitsT, SliceMixin, Dimension> const&) const;
 
+        /**
+         * @brief return the parent object of which the slice is based on
+         */
+        Parent& parent() const;
+
     protected:
         template<bool, typename P, template<typename> class, typename D, typename... Ds> friend class Slice;
 
@@ -506,7 +512,6 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
         SelfType& operator+=(DimensionSize<Dimension> const&);
         SelfType& operator+=(std::size_t n);
 
-        Parent& parent() const;
 
     protected:
         template<typename... Dims>

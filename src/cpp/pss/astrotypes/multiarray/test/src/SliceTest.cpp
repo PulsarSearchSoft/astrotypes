@@ -182,6 +182,39 @@ TEST_F(SliceTest, test_single_dimension_equals)
     ASSERT_FALSE(slice==slice_2);
 }
 
+TEST_F(SliceTest, test_one_dimensions_slice_copy)
+{
+    ParentType<1> p(50);
+    const ParentType<1> const_p(50);
+    Slice<false, ParentType<1>, TestSliceMixin, DimensionA> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
+                                              );
+    Slice<false, ParentType<1>, TestSliceMixin, DimensionA> slice_copy = slice;
+    ASSERT_EQ(&slice_copy.parent(), &slice.parent());
+
+    Slice<true, ParentType<1>, TestSliceMixin, DimensionA> const_slice(const_p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
+                                              );
+    Slice<true, ParentType<1>, TestSliceMixin, DimensionA> const_slice_copy = const_slice;
+    ASSERT_EQ(&const_slice_copy.parent(), &const_slice.parent());
+}
+
+TEST_F(SliceTest, test_singe_dimension_slice_iterators_copy)
+{
+    ParentType<1> p(50);
+    Slice<false, ParentType<1>, TestSliceMixin, DimensionA> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
+                                              );
+    auto it = slice.begin();
+    decltype(it) copy_it = it;
+    ASSERT_TRUE(copy_it == it);
+
+    auto const_it = slice.cbegin();
+    decltype(const_it) copy_const_it = const_it;
+    ASSERT_TRUE(copy_const_it == const_it);
+}
+
+
 TEST_F(SliceTest, test_two_dimensions)
 {
     ParentType<2> p(50);
@@ -216,6 +249,7 @@ TEST_F(SliceTest, test_two_dimensions)
             ASSERT_EQ(const_slice[j][i], slice[i][j]) << "i=" << i << " j=" << j; // check we can read
         }
     }
+
 }
 
 TEST_F(SliceTest, test_two_dimensions_contructor_out_of_order_dims)
@@ -267,7 +301,42 @@ TEST_F(SliceTest, test_two_dimensions_slice_iterators)
             ++const_it;
         }
     }
+}
 
+TEST_F(SliceTest, test_two_dimensions_slice_copy)
+{
+    ParentType<2> p(50);
+    const ParentType<2> const_p(50);
+    Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              );
+    Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> slice_copy = slice;
+    ASSERT_EQ(&slice_copy.parent(), &slice.parent());
+
+    Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> const_slice(const_p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              );
+    Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> const_slice_copy = const_slice;
+    ASSERT_EQ(&const_slice_copy.parent(), &const_slice.parent());
+}
+
+
+TEST_F(SliceTest, test_two_dimensions_slice_iterators_copy)
+{
+    ParentType<2> p(50);
+    Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              );
+    auto it = slice.begin();
+    decltype(it) copy_it = it;
+    ASSERT_TRUE(it == copy_it);
+
+    auto const_it = slice.cbegin();
+    decltype(const_it) copy_const_it = const_it;
+    ASSERT_TRUE(const_it == copy_const_it);
 }
 
 TEST_F(SliceTest, test_two_dimensions_slice_iterators_overlay)

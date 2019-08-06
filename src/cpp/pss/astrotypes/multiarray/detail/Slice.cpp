@@ -559,6 +559,14 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice(Parent& parent, Dime
 {
 }
 
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice(Slice const& copy)
+    : _span(copy._span)
+    , _base_span(copy._base_span)
+    , _parent(copy._parent)
+    , _ptr(copy._ptr)
+{
+}
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
 template<typename... Dims>
