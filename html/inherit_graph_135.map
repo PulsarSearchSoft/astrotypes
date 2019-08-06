@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structpss_1_1astrotypes_1_1tuple__copy__helper_3_01Tuple_00_01SrcTuple_00_010_01_4.html" title="pss::astrotypes::tuple\l_copy_helper\&lt; Tuple, SrcTuple, 0 \&gt;" alt="" coords="5,5,237,44"/>
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1test_1_1TestMultiArrayMixin.html" title="An instantiation of the MutliArray template for unit tests. " alt="" coords="92,5,267,44"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1test_1_1TestSliceMixin.html" title="pss::astrotypes::test\l::TestSliceMixin\&lt; T \&gt;" alt="" coords="108,68,251,107"/>
 </map>

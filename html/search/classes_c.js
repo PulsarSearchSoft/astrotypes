@@ -22,6 +22,7 @@ var searchData=
   ['optional_3c_20units_3a_3amodifiedjuliandate_20_3e',['Optional&lt; units::ModifiedJulianDate &gt;',['../classpss_1_1astrotypes_1_1utils_1_1Optional.html',1,'pss::astrotypes::utils']]],
   ['optional_3c_20unsigned_20_3e',['Optional&lt; unsigned &gt;',['../classpss_1_1astrotypes_1_1utils_1_1Optional.html',1,'pss::astrotypes::utils']]],
   ['optionaltest',['OptionalTest',['../classpss_1_1astrotypes_1_1utils_1_1test_1_1OptionalTest.html',1,'pss::astrotypes::utils::test']]],
+  ['osigprocformat',['OSigProcFormat',['../classpss_1_1astrotypes_1_1sigproc_1_1SigProcFormat_3_01units_1_1Frequency_00_01units_1_1Time_01_4_1_1OSigProcFormat.html',1,'pss::astrotypes::sigproc::SigProcFormat&lt; units::Frequency, units::Time &gt;']]],
   ['osigprocformat',['OSigProcFormat',['../classpss_1_1astrotypes_1_1sigproc_1_1SigProcFormat_3_01units_1_1Time_00_01units_1_1Frequency_01_4_1_1OSigProcFormat.html',1,'pss::astrotypes::sigproc::SigProcFormat&lt; units::Time, units::Frequency &gt;']]],
-  ['osigprocformat',['OSigProcFormat',['../classpss_1_1astrotypes_1_1sigproc_1_1SigProcFormat_3_01units_1_1Frequency_00_01units_1_1Time_01_4_1_1OSigProcFormat.html',1,'pss::astrotypes::sigproc::SigProcFormat&lt; units::Frequency, units::Time &gt;']]]
+  ['overlaysliceiterator',['OverlaySliceIterator',['../classpss_1_1astrotypes_1_1OverlaySliceIterator.html',1,'pss::astrotypes']]]
 ];

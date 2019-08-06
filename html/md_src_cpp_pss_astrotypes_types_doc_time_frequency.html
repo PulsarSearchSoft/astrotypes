@@ -112,7 +112,7 @@ Time Frequency Data</h1>
 <div class="line"><span class="comment">// The ResizeAdapter resizes the time_frequency object according to the filterbank files parameters and file size</span></div>
 <div class="line">filterbank &gt;&gt; ResizeAdapter&lt;units::Time, units::Frequency&gt;() &gt;&gt; time_frequency;</div>
 </div><!-- fragment --><p> See the <a class="el" href="md_src_cpp_pss_astrotypes_sigproc_doc_sigproc_tutorial.html#sigproc">sigproc</a> section for many more options.</p>
-<h2>Would you care for a slice?</h2>
+<h2>Would you care for a slice\?</h2>
 <p>You can extract parts of a TimeFrequency chunk as a slice. The Slice provides a view of the underlying data and does not make any copies.</p>
 <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="TimeFrequency_8h.html">pss/astrotypes/types/TimeFrequency.h</a>&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
@@ -132,6 +132,10 @@ Time Frequency Data</h1>
 <div class="line"></div>
 <div class="line"><span class="comment">// you can further slice of spectra in Frequency to select a subset of the channels</span></div>
 <div class="line"><span class="keyword">auto</span> reduced_channels_slice = slice_2.slice(DimensionIndex&lt;Frequency&gt;(10), DimensionSize&lt;Frequency&gt;(2));</div>
+</div><!-- fragment --><h2>Overlay slice iterators on other objects</h2>
+<p>The slice iterator allows you to smoothly iterate across a slice, automatically calculating the position in the data structure. You can use the same iterator to access elements in alternative data structures (with the same dimensionality) using the slice iterator overlays.</p>
+<div class="fragment"><div class="line">uint16_t&amp; first = *slice.begin();                     <span class="comment">// the first element of the slice</span></div>
+<div class="line">uint8_t&amp; uint8_first = *slice.begin()(my_uint8_data); <span class="comment">// the first element of a corresponding slice in my_uint8_data</span></div>
 </div><!-- fragment --><h2>TimeFrequency or FrequencyTime?</h2>
 <p>The difference between the two classes is in the way the data is stored. The patterns of memory access are often a major factor in the speed of any algorithm you may write and so your choice of class will also be algorithm dependendent for maximal efficiency.</p>
 <p>But you don't have to commit to a specific type. By design the two classes have identical interfaces and so any code you write for one should work for the other seamlessly (if perhaps not at optimal efficiency).</p>
@@ -150,7 +154,7 @@ Time Frequency Data</h1>
 </div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 24 2019 13:46:07 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 6 2019 13:20:09 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

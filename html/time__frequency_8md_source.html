@@ -133,7 +133,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;~~~~</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;See the \ref sigproc &quot;sigproc&quot; section for many more options.</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;## Would you care for a slice?</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;## Would you care for a slice\?</div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;You can extract parts of a TimeFrequency chunk as a slice. The Slice provides a view of the underlying</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;data and does not make any copies.</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
@@ -159,37 +159,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;~~~~</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;## TimeFrequency or FrequencyTime?</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;The difference between the two classes is in the way the data is stored. The patterns of memory access </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;are often a major factor in the speed of any algorithm you may write and so your choice of class will also</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;be algorithm dependendent for maximal efficiency.</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;## Overlay slice iterators on other objects</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;The slice iterator allows you to smoothly iterate across a slice, automatically calculating the position</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;in the data structure. You can use the same iterator to access elements in alternative data structures</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;(with the same dimensionality) using the slice iterator overlays.</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;But you don&#39;t have to commit to a specific type. By design the two classes have identical interfaces and</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;so any code you write for one should work for the other seamlessly (if perhaps not at optimal efficiency).</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;You can convert between the two types using the tranpose constructor. e.g.</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;~~~~{.cpp}</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;// example conversion from TimeFrequency ordering to FrequencyTime ordering of 8bit data</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;TimeFrequency&lt;uint8_t&gt; time_frequency(DimensionSize&lt;Frequency&gt;(100), DimensionSize&lt;Time&gt;(10000));</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;FrequencyTime&lt;uint8_t&gt; frequency_time(time_frequency); // all the data will be copied from the time_frequency object</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;~~~~</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;~~~~{.cpp}</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    uint16_t&amp; first = *slice.begin();                     // the first element of the slice</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    uint8_t&amp; uint8_first = *slice.begin()(my_uint8_data); // the first element of a corresponding slice in my_uint8_data</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;~~~~</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;## TimeFrequency or FrequencyTime?</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;The difference between the two classes is in the way the data is stored. The patterns of memory access </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;are often a major factor in the speed of any algorithm you may write and so your choice of class will also</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;be algorithm dependendent for maximal efficiency.</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;A simple way to write a function that can work with either type is to use a template.</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;~~~~{.cpp}</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;#include &quot;pss/astrotypes/types/TimeFrequency.h&quot;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;template&lt;class TimeFrequencyType&gt;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;void fill_with_one(TimeFrequencyType const&amp; data)</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;{</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    // use any of the common TimeFrequency/FrequencyTime interface methods here</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;   std::fill(data.begin(), data.end(), 1U);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;}</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;~~~~</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;But you don&#39;t have to commit to a specific type. By design the two classes have identical interfaces and</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;so any code you write for one should work for the other seamlessly (if perhaps not at optimal efficiency).</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;You can convert between the two types using the tranpose constructor. e.g.</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;~~~~{.cpp}</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;// example conversion from TimeFrequency ordering to FrequencyTime ordering of 8bit data</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;TimeFrequency&lt;uint8_t&gt; time_frequency(DimensionSize&lt;Frequency&gt;(100), DimensionSize&lt;Time&gt;(10000));</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;FrequencyTime&lt;uint8_t&gt; frequency_time(time_frequency); // all the data will be copied from the time_frequency object</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;~~~~</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;A simple way to write a function that can work with either type is to use a template.</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;~~~~{.cpp}</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;#include &quot;pss/astrotypes/types/TimeFrequency.h&quot;</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;template&lt;class TimeFrequencyType&gt;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;void fill_with_one(TimeFrequencyType const&amp; data)</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;{</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    // use any of the common TimeFrequency/FrequencyTime interface methods here</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;   std::fill(data.begin(), data.end(), 1U);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;}</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;~~~~</div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 24 2019 13:46:05 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 6 2019 13:20:07 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

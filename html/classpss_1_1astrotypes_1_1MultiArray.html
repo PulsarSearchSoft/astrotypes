@@ -1368,7 +1368,7 @@ template&lt;typename Dim &gt; </div>
 <p>return a slice of the specified dimension spanning the index_range provided </p>
 <p>no bonuds checking is performed. Undefined behaviour can result from requests for a slice outside the limits. An example to test bounds using the  trim method: </p><div class="fragment"><div class="line">                DimensionSize&lt;A&gt; a_size(10);</div>
 <div class="line">                DimensionSize&lt;B&gt; b_size(100);</div>
-<div class="line">                MultiArray&lt;A, B&gt; ma(a_size, b_size);</div>
+<div class="line">                MultiArray&lt;int, A, B&gt; ma(a_size, b_size);</div>
 <div class="line">  </div>
 <div class="line">                <span class="comment">// this span starts inside the array but extends beyond the bounds</span></div>
 <div class="line">                DimensionSpan&lt;A&gt; span(DimensionIndex&lt;A&gt;(8), DimensionSize&lt;A&gt;(10));</div>
@@ -1456,7 +1456,7 @@ template&lt;typename Dim &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jun 24 2019 13:46:07 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Aug 6 2019 13:20:09 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

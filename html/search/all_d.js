@@ -6,7 +6,7 @@ var searchData=
   ['make_5findexmapper',['make_IndexMapper',['../namespacepss_1_1astrotypes.html#a25f52d838f9d833db7e56f2ee56c6310',1,'pss::astrotypes']]],
   ['maxnifs',['MaxNifs',['../structpss_1_1astrotypes_1_1sigproc_1_1DefaultDataFactoryTraits.html#a5a0350ee9b1fb0a0e8700d633cbcdce7',1,'pss::astrotypes::sigproc::DefaultDataFactoryTraits']]],
   ['megahertz',['MegaHertz',['../namespacepss_1_1astrotypes_1_1units.html#a35f8f949ffd4b846d3ca4c0a84a9e526',1,'pss::astrotypes::units']]],
-  ['megahertz_5fbase_5funit',['megahertz_base_unit',['../namespacepss_1_1astrotypes_1_1units_1_1dm__constant.html#a1b5c85d192208ec550356505fe09a553',1,'pss::astrotypes::units::dm_constant']]],
+  ['megahertz_5fbase_5funit',['megahertz_base_unit',['../namespacepss_1_1astrotypes_1_1units_1_1dm__constant.html#ac6d6c1a3d77000169c0fcb0854885876',1,'pss::astrotypes::units::dm_constant']]],
   ['merge_5ftuples',['merge_tuples',['../namespacepss_1_1astrotypes.html#a45f5debf659cdcc03e65fe3611dd3a33',1,'pss::astrotypes']]],
   ['merge_5ftuples_5ftype',['merge_tuples_type',['../structpss_1_1astrotypes_1_1merge__tuples__type.html',1,'pss::astrotypes']]],
   ['meter',['Meter',['../namespacepss_1_1astrotypes_1_1units.html#aca916d2dbde80ee628a71931bb584ef1',1,'pss::astrotypes::units']]],

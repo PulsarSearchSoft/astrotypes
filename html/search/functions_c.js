@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['parenttype',['ParentType',['../structpss_1_1astrotypes_1_1test_1_1ParentType.html#abdae407e7be46df75ef5471dd7d9d0b1',1,'pss::astrotypes::test::ParentType']]],
+  ['parent',['parent',['../classpss_1_1astrotypes_1_1Slice.html#a65f69104f13a6f216bd53a7698c6f581',1,'pss::astrotypes::Slice::parent()'],['../classpss_1_1astrotypes_1_1Slice_3_01is__const_00_01SliceTraitsT_00_01SliceMixin_00_01Dimension_01_4.html#a2e3f8e46cdce78179c5a5c0b742efc78',1,'pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension &gt;::parent()']]],
+  ['parenttype',['ParentType',['../structpss_1_1astrotypes_1_1test_1_1ParentType.html#a9231be37d3273dd0f394ea2a7a4a2207',1,'pss::astrotypes::test::ParentType']]],
   ['parse_5ferror',['parse_error',['../classpss_1_1astrotypes_1_1sigproc_1_1HeaderBase.html#a119108e456fb28e6343df934a81e78ce',1,'pss::astrotypes::sigproc::HeaderBase']]],
   ['period',['period',['../classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a1466ff43da2e55f0096044e4123e4424',1,'pss::astrotypes::sigproc::Header::period() const '],['../classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a18175d3bff16b6f774cb0772dd8b42f8',1,'pss::astrotypes::sigproc::Header::period(boost::units::quantity&lt; units::Seconds, double &gt;)']]],
   ['pointerallocator',['PointerAllocator',['../classpss_1_1astrotypes_1_1PointerAllocator.html#a3f86bc2cf2054275bb4b9108d420e53d',1,'pss::astrotypes::PointerAllocator']]],

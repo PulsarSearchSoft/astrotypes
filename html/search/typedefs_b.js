@@ -1,7 +1,7 @@
 var searchData=
 [
   ['megahertz',['MegaHertz',['../namespacepss_1_1astrotypes_1_1units.html#a35f8f949ffd4b846d3ca4c0a84a9e526',1,'pss::astrotypes::units']]],
-  ['megahertz_5fbase_5funit',['megahertz_base_unit',['../namespacepss_1_1astrotypes_1_1units_1_1dm__constant.html#a1b5c85d192208ec550356505fe09a553',1,'pss::astrotypes::units::dm_constant']]],
+  ['megahertz_5fbase_5funit',['megahertz_base_unit',['../namespacepss_1_1astrotypes_1_1units_1_1dm__constant.html#ac6d6c1a3d77000169c0fcb0854885876',1,'pss::astrotypes::units::dm_constant']]],
   ['meter',['Meter',['../namespacepss_1_1astrotypes_1_1units.html#aca916d2dbde80ee628a71931bb584ef1',1,'pss::astrotypes::units']]],
   ['meters',['Meters',['../namespacepss_1_1astrotypes_1_1units.html#af6fd2b5a4c37b0e6fe1d2d055f888c29',1,'pss::astrotypes::units']]],
   ['metre',['Metre',['../namespacepss_1_1astrotypes_1_1units.html#abafb32986b1d4c6f3d186a6a8ec2e85d',1,'pss::astrotypes::units']]],
