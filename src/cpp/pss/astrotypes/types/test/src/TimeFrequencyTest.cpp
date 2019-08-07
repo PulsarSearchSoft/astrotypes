@@ -84,6 +84,7 @@ TEST_F(TimeFrequencyTest, test_time_freq_spectrum)
     // test spectrum() on const object
     TimeFrequency<uint8_t> const& tf2 = tf1;
     typename TimeFrequency<uint8_t>::ConstSpectra s2 = tf2.spectrum(3);
+    s2 = tf2.spectrum(5);
 }
 
 TEST_F(TimeFrequencyTest, test_time_freq_slice)

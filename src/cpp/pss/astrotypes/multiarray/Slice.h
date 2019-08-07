@@ -542,7 +542,7 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
     private:
         DimensionSpan<Dimension> _span;
         DimensionSize<Dimension> _base_span;
-        Parent& _parent;
+        Parent* _parent;
         parent_iterator _ptr;   // start, to extent _ptr + _span
 };
 

@@ -554,7 +554,7 @@ template<bool is_const, typename SliceTraitsT, template<typename> class SliceMix
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice(Parent& parent, DimensionSpan<Dimension> const& d)
     : _span(d)
     , _base_span(parent.template size<Dimension>())
-    , _parent(parent)
+    , _parent(&parent)
     , _ptr(parent.begin() + static_cast<std::size_t>(_span.start()))
 {
 }
@@ -575,7 +575,7 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( internal_construct_
        , DimensionSpan<Dims> const& ... spans)
     : _span(arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...))
     , _base_span(parent.template size<Dimension>())
-    , _parent(parent)
+    , _parent(&parent)
 {
 }
 
@@ -587,7 +587,7 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( internal_construct_
        , DimensionSpan<Dims> const& ...)
     : _span(DimensionSpan<Dimension>(DimensionIndex<Dimension>(0), DimensionSize<Dimension>(parent.template size<Dimension>())))
     , _base_span(parent.template size<Dimension>())
-    , _parent(parent)
+    , _parent(&parent)
 {
 }
 
@@ -813,7 +813,7 @@ typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::parent_const_iter
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
 inline typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Parent& Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::parent() const
 {
-    return _parent;
+    return *_parent;
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
