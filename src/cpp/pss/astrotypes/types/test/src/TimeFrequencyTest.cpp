@@ -72,10 +72,16 @@ TEST_F(TimeFrequencyTest, test_time_freq_spectrum)
     {
         unsigned n=0;
         typename TimeFrequency<uint8_t>::Spectra s = tf1.spectrum(spectrum_num);
-        std::for_each(s.cbegin(), s.cend(), [&](uint8_t) { ++n; } );
+        std::for_each(s.begin(), s.end(), [&](uint8_t& v) { v = ++n; } );
         ASSERT_EQ(n, (unsigned)(freq_size));
     }
 
+    // test assignment operator
+    typename TimeFrequency<uint8_t>::Spectra s3 = tf1.spectrum(3);
+    s3 = tf1.spectrum(5);
+    ASSERT_TRUE(s3.begin() == tf1.spectrum(5).begin());
+
+    // test spectrum() on const object
     TimeFrequency<uint8_t> const& tf2 = tf1;
     typename TimeFrequency<uint8_t>::ConstSpectra s2 = tf2.spectrum(3);
 }

@@ -628,6 +628,16 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::~Slice()
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension>& Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::operator=(Slice const& copy)
+{
+    _span = copy._span;
+    _base_span = copy._base_span;
+    _parent = copy._parent;
+    _ptr = copy._ptr;
+    return *this;
+}
+
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
 std::size_t Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::data_size() const
 {
     return _span.span();

@@ -62,7 +62,7 @@ struct arg_helper<T, Dim, Dims...> : public arg_helper<T, Dims...>
  * @tparam ParnetT the data structure that the slice will be based on
  * @tparam is_const true if the ParentT is const, false otherwise
  * @tparam SliceMixin A template wrapper class around a slice that allows
- *         you to propagate a custom interface to any slice to be consistent 
+ *         you to propagate a custom interface to any slice to be consistent
  *         with your main data structure interface.
  * @details
  */
@@ -380,6 +380,11 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
         ~Slice();
 
         static constexpr std::size_t rank = 1;
+
+        /**
+         * @brief copy assignment operator
+         */
+         Slice& operator=(Slice const&);
 
         /**
          * @brief the total number of data members in this slice
