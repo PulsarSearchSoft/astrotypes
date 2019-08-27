@@ -28,44 +28,59 @@ namespace sigproc {
 
 namespace {
     //should work with any iterator
-    template<typename IteratorType, typename IteratorTag>
+    template<typename IteratorType, typename IteratorTag, typename ValueType>
     struct do_write {
         static void exec(IteratorType begin, IteratorType const end, std::ostream& os) {
             while(begin != end) {
-                os << *begin;
+                os.write(reinterpret_cast<const char*>(&(*begin)), sizeof(ValueType));
                 ++begin;
             }
         }
     };
 
-    template<typename IteratorType, typename IteratorTag>
+    // we can speed things up if the memory is contiguous
+    template<typename IteratorType, typename ValueType>
+    struct do_write<IteratorType, std::random_access_iterator_tag, ValueType>
+    {
+
+        static void exec(IteratorType begin, IteratorType const end, std::ostream& os) {
+            os.write(reinterpret_cast<const char*>(&(*begin)), std::distance(begin, end) * sizeof(ValueType));
+        }
+    };
+
+    template<typename IteratorType, typename IteratorTag, typename ValueType>
     struct do_read {
         static void exec(IteratorType begin, IteratorType const end, std::istream& is) {
             while(begin != end) {
-                //_file_stream.write(reinterpret_cast<const char*>(&(*it)), sizeof(data::TimeFrequencyDataType));
-                is >> *begin;
+                is.read(reinterpret_cast<char*>(&(*begin)), sizeof(ValueType));
                 ++begin;
             }
         }
     };
-    // we can speed things up if the memory is contiguous
-    template<typename IteratorType>
-    struct do_write<IteratorType, std::random_access_iterator_tag>
+
+    template<typename IteratorType, typename ValueType>
+    struct do_read<IteratorType, std::random_access_iterator_tag, ValueType>
     {
-        static void exec(IteratorType begin, IteratorType const end, std::ostream& os) {
-            os.write(reinterpret_cast<const char*>(&(*begin)), std::distance(begin, end) * sizeof(typename std::iterator_traits<typename std::remove_reference<IteratorType>::type>::value_type));
+        static void exec(IteratorType begin, IteratorType const end, std::istream& is) {
+            is.read(reinterpret_cast<char*>(&(*begin)), std::distance(begin, end) * sizeof(ValueType));
         }
     };
 
     // calls the correct specialization
     template<typename IteratorType>
     void write(IteratorType begin, IteratorType const end, std::ostream& os) {
-        do_write<IteratorType, typename std::iterator_traits<typename std::remove_reference<IteratorType>::type>::iterator_category>::exec(begin, end, os);
+        do_write<IteratorType
+                , typename std::iterator_traits<typename std::remove_reference<IteratorType>::type>::iterator_category
+                , typename std::iterator_traits<typename std::remove_reference<IteratorType>::type>::value_type
+                >::exec(begin, end, os);
     }
 
     template<typename IteratorType>
     void read(IteratorType begin, IteratorType const end, std::istream& is) {
-        do_read<IteratorType, typename std::iterator_traits<typename std::remove_reference<IteratorType>::type>::iterator_category>::exec(begin, end, is);
+        do_read<IteratorType
+               , typename std::iterator_traits<typename std::remove_reference<IteratorType>::type>::iterator_category
+               , typename std::iterator_traits<typename std::remove_reference<IteratorType>::type>::value_type
+               >::exec(begin, end, is);
     }
 }
 

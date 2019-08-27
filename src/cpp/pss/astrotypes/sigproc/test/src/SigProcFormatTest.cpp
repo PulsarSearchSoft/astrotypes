@@ -55,7 +55,7 @@ TEST_F(SigProcFormatTest, test_time_frequency_tf_data)
     TestType formatter;
     TimeFrequency<uint8_t> time_frequency(DimensionSize<units::Time>(10), DimensionSize<units::Frequency>(20));
     uint8_t n = 0;
-    std::generate(time_frequency.begin(), time_frequency.end(), [&]() { return n + 1;} );
+    std::generate(time_frequency.begin(), time_frequency.end(), [&]() { return ++n;} );
 
     // write out the data to  the strea,
     std::stringstream ss;
@@ -74,7 +74,7 @@ TEST_F(SigProcFormatTest, test_time_frequency_ft_data)
     TestType formatter;
     FrequencyTime<uint8_t> frequency_time(DimensionSize<units::Time>(10), DimensionSize<units::Frequency>(20));
     uint8_t n = 0;
-    std::generate(frequency_time.begin(), frequency_time.end(), [&]() { return n + 1;} );
+    std::generate(frequency_time.begin(), frequency_time.end(), [&]() { return ++n;} );
 
     // write out the data to  the strea,
     std::stringstream ss;
