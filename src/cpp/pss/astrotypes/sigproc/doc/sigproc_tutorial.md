@@ -6,7 +6,7 @@ This will autmoatically convert formats from/to TimeFrequecy or FrequencyTime fo
 as appropriate.
 
 ~~~~{.cpp}
-#include "pss/astrotypes/types/SigProc.h"
+#include "pss/astrotypes/sigproc/SigProc.h"
 sigproc::FileReader filterbank_file("my_filterbank_file.fil");
 TimeFrequency<uint8_t> time_frequency;
 
