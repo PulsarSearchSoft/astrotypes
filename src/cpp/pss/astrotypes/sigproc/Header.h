@@ -252,6 +252,7 @@ class Header : public HeaderBase<Header>
          * @brief set the number of channels
          */
         void number_of_channels(std::size_t);
+        void number_of_channels(DimensionSize<units::Frequency>);
 
         /**
          * @brief return the number of bits

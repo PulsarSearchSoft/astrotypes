@@ -340,6 +340,11 @@ inline void Header::number_of_channels(std::size_t n)
     _n_chans = n;
 }
 
+inline void Header::number_of_channels(DimensionSize<units::Frequency> n)
+{
+    _n_chans = static_cast<std::size_t>(n);
+}
+
 inline unsigned Header::number_of_bits() const
 {
     if(_n_bits.is_set()) return _n_bits;

@@ -238,6 +238,21 @@ TEST_F(HeaderTest, number_of_channels)
     ASSERT_EQ(0, h.number_of_channels());
 }
 
+TEST_F(HeaderTest, number_of_channels_with_DimensionSize)
+{
+    Header h;
+    h.number_of_channels(DimensionSize<units::Frequency>(338));
+    ASSERT_EQ(DimensionSize<units::Frequency>(338), h.number_of_channels());
+    Header h2 = save_restore(h);
+    ASSERT_EQ(h2.number_of_channels(), h.number_of_channels());
+    ASSERT_TRUE(h == h2);
+    ASSERT_FALSE(h != h2);
+
+    h.reset();
+    ASSERT_EQ(0, h.number_of_channels());
+}
+
+
 TEST_F(HeaderTest, number_of_bits)
 {
     Header h;
