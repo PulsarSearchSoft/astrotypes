@@ -46,7 +46,7 @@ namespace units {
 
 /**
  * @brief
- *     extension of std::chrono::time_point for chhetah clocks
+ *     extension of std::chrono::time_point for astrotypes clocks
  * @tparam ClockType must support the std::Clock conecpt as as weel as defining a duration type @member diff_from_system_epoch
  */
 template<typename ClockType, typename Duration = typename ClockType::duration>

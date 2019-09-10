@@ -166,6 +166,14 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         void resize(DimensionSize<Dimensions>... size);
 
         /**
+         * @brief resize the array in the specified dimension, setting any new elements to the specified value
+         * @details automatic deduction of Dimensions can be problematic so ensure you specifiy them explcitly
+         *          e.g. my_array.template resize<DimensionA, DimensionB>( size_a, size_b, value);
+         */
+        template<typename Dim, typename... Dimensions>
+        void resize(DimensionSize<Dim>, DimensionSize<Dimensions>... size, T const& value);
+
+        /**
          * @brief resize the array in the specified dimension
          *      @code
          *      multi_array.template size<DimensionA>();
@@ -216,10 +224,19 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>... sizes);
 
         template<typename Dimension, typename... Dims>
+        typename std::enable_if<!arg_helper<FirstDimension, Dimension, Dims...>::value, void>::type
+        do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>... sizes, T const& value);
+
+        template<typename Dimension, typename... Dims>
         typename std::enable_if<arg_helper<FirstDimension, Dimension, Dims...>::value, void>::type
         do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>... sizes);
 
+        template<typename Dimension, typename... Dims>
+        typename std::enable_if<arg_helper<FirstDimension, Dimension, Dims...>::value, void>::type
+        do_resize(std::size_t total, DimensionSize<Dimension> size, DimensionSize<Dims>... sizes, T const& value);
+
         void do_resize(std::size_t total);
+        void do_resize(std::size_t total, T const& value);
 
         template<typename SelfSlice, typename OtherSlice>
         void do_transpose(SelfSlice&, OtherSlice const&);
@@ -296,8 +313,17 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
          */
         std::size_t data_size() const;
 
+        /**
+         * @brief resize in the specified dimension
+         */
         template<typename Dimension>
         void resize(DimensionSize<Dimension> size);
+
+        /**
+         * @brief resize in the specified dimension, setting any new elements to value
+         */
+        template<typename Dimension>
+        void resize(DimensionSize<Dimension> size, T const& value);
 
         /**
          * @brief compare data in the two arrays
@@ -331,9 +357,17 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         typename std::enable_if<arg_helper<FirstDimension, Dimension, Dims...>::value, void>::type
         do_resize(std::size_t total_size, DimensionSize<Dimension> size, DimensionSize<Dims>...);
 
+        template<typename Dimension, typename... Dims>
+        typename std::enable_if<arg_helper<FirstDimension, Dimension, Dims...>::value, void>::type
+        do_resize(std::size_t total_size, DimensionSize<Dimension> size, DimensionSize<Dims>..., T const& value);
+
         template<typename... Dims>
         typename std::enable_if<!arg_helper<FirstDimension, Dims...>::value, void>::type
         do_resize(std::size_t total_size, DimensionSize<Dims>...);
+
+        template<typename... Dims>
+        typename std::enable_if<!arg_helper<FirstDimension, Dims...>::value, void>::type
+        do_resize(std::size_t total_size, DimensionSize<Dims>..., T const& value);
 
         template<typename SelfSlice, typename OtherSlice>
         void do_transpose(SelfSlice&, OtherSlice const&);

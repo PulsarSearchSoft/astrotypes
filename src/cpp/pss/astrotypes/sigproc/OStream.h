@@ -33,6 +33,24 @@ namespace pss {
 namespace astrotypes {
 namespace sigproc {
 
+template<typename HeaderT, typename Dim1, typename Dim2>
+class OStream {
+        typedef SigProcFormat<Dim1, Dim2> Adapter;
+
+    public:
+        template<typename Stream, typename DataType>
+        void write(Stream& s, DataType&);
+
+    protected:
+        /// inheriting class should call this every time a new sigproc stream is opened
+        //  in order to write out a header
+        template<typename Stream>
+        void new_header(Stream& stream);
+
+    protected:
+        HeaderT _header;
+};
+
 /*
 template<typename T>
 typename std::enable_if<pss::astrotypes::has_dimensions<T, pss::astrotypes::units::Time, pss::astrotypes::units::Frequency>::value,

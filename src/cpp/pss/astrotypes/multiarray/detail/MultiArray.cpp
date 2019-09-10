@@ -225,6 +225,13 @@ void MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::resize(Dim
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dim, typename... Dims>
+void MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::resize(DimensionSize<Dim> size_1, DimensionSize<Dims>... size, T const& value)
+{
+    this->do_resize<Dim, Dims...>(1, size_1,  std::forward<DimensionSize<Dims>>(size)..., value);
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<!std::is_same<Dim, FirstDimension>::value, DimensionSize<Dim>>::type
 MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::size() const
@@ -266,6 +273,14 @@ MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::do_resize(std::
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 template<typename Dim, typename... Dims>
+typename std::enable_if<!arg_helper<FirstDimension, Dim, Dims...>::value, void>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::do_resize(std::size_t total, DimensionSize<Dim> size, DimensionSize<Dims>... sizes, T const& value)
+{
+    BaseT::do_resize(total * static_cast<std::size_t>(_size), size, std::forward<DimensionSize<Dims>>(sizes)..., value);
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dim, typename... Dims>
 typename std::enable_if<arg_helper<FirstDimension, Dim, Dims...>::value, void>::type
 MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::do_resize(std::size_t total, DimensionSize<Dim> size, DimensionSize<Dims>... sizes)
 {
@@ -274,9 +289,24 @@ MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::do_resize(std::
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dim, typename... Dims>
+typename std::enable_if<arg_helper<FirstDimension, Dim, Dims...>::value, void>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::do_resize(std::size_t total, DimensionSize<Dim> size, DimensionSize<Dims>... sizes, T const& value)
+{
+    _size = arg_helper<DimensionSize<FirstDimension>, DimensionSize<Dim>, DimensionSize<Dims>...>::arg(std::forward<DimensionSize<Dim>>(size), std::forward<DimensionSize<Dims>>(sizes)...);
+    BaseT::template do_resize<Dim, Dims...>(total * static_cast<std::size_t>(_size), size, std::forward<DimensionSize<Dims>>(sizes)..., value);
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 void MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::do_resize(std::size_t total)
 {
     BaseT::do_resize(total * static_cast<std::size_t>(_size));
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+void MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::do_resize(std::size_t total, T const& value)
+{
+    BaseT::do_resize(total * static_cast<std::size_t>(_size), value);
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
@@ -378,6 +408,13 @@ void MultiArray<Alloc, T, SliceMixin, FirstDimension>::resize(DimensionSize<Dim>
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
+template<typename Dim>
+void MultiArray<Alloc, T, SliceMixin, FirstDimension>::resize(DimensionSize<Dim> size, T const& value)
+{
+    this->do_resize(1,  size, value);
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
 template<typename... Dims>
 typename std::enable_if<!arg_helper<FirstDimension, Dims...>::value, void>::type
 MultiArray<Alloc, T, SliceMixin, FirstDimension>::do_resize(std::size_t total, DimensionSize<Dims>...)
@@ -386,13 +423,29 @@ MultiArray<Alloc, T, SliceMixin, FirstDimension>::do_resize(std::size_t total, D
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
+template<typename... Dims>
+typename std::enable_if<!arg_helper<FirstDimension, Dims...>::value, void>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension>::do_resize(std::size_t total, DimensionSize<Dims>..., T const& value)
+{
+    _data.resize(total * static_cast<std::size_t>(_size), value);
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
 template<typename Dim, typename... Dims>
-//typename std::enable_if<std::is_same<Dim, FirstDimension>::value, void>::type
 typename std::enable_if<arg_helper<FirstDimension, Dim, Dims...>::value, void>::type
 MultiArray<Alloc, T, SliceMixin, FirstDimension>::do_resize(std::size_t total, DimensionSize<Dim> size, DimensionSize<Dims>... sizes)
 {
     _size = arg_helper<DimensionSize<FirstDimension>, DimensionSize<Dim>, DimensionSize<Dims>...>::arg(std::forward<DimensionSize<Dim>>(size), std::forward<DimensionSize<Dims>>(sizes)...);
     _data.resize(total * static_cast<std::size_t>(_size));
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
+template<typename Dim, typename... Dims>
+typename std::enable_if<arg_helper<FirstDimension, Dim, Dims...>::value, void>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension>::do_resize(std::size_t total, DimensionSize<Dim> size, DimensionSize<Dims>... sizes, T const& value)
+{
+    _size = arg_helper<DimensionSize<FirstDimension>, DimensionSize<Dim>, DimensionSize<Dims>...>::arg(std::forward<DimensionSize<Dim>>(size), std::forward<DimensionSize<Dims>>(sizes)...);
+    _data.resize(total * static_cast<std::size_t>(_size), value);
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>

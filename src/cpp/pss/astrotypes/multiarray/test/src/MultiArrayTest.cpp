@@ -1,18 +1,18 @@
 /*
  * MIT License
- * 
+ *
  * Copyright (c) 2018 PulsarSearchSoft
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -67,7 +67,7 @@ TEST_F(MultiArrayTest, test_single_dimension_const_iterator)
     auto end = ma.cend();
     ASSERT_EQ(std::distance(it, end), (std::size_t)size);
     unsigned n=0;
-    std::for_each(it, end, [&](int const& val) 
+    std::for_each(it, end, [&](int const& val)
                            {
                                 ASSERT_EQ(val, n);
                                 ++n;
@@ -93,7 +93,7 @@ TEST_F(MultiArrayTest, test_two_dimension_1_slice_operator_DimensionB_const_iter
     auto end = slice0.cend();
     ASSERT_EQ(std::distance(it, end), (std::size_t)size_a);
     unsigned n=0;
-    std::for_each(it, end, [&](int const& val) 
+    std::for_each(it, end, [&](int const& val)
                            {
                                 ASSERT_EQ(val, n);
                                 n += (std::size_t)size_b;
@@ -119,7 +119,7 @@ TEST_F(MultiArrayTest, test_two_dimension_1_slice_DimensionA_const_iterator)
     auto end = slice.cend();
     ASSERT_EQ(std::distance(it, end), (std::size_t)size_b);
     unsigned n=(unsigned)size_b;
-    std::for_each(it, end, [&](int const& val) 
+    std::for_each(it, end, [&](int const& val)
                            {
                                 ASSERT_EQ(val, n);
                                 ++n;
@@ -138,7 +138,7 @@ TEST_F(MultiArrayTest, test_two_dimension_1_slice_operator_DimensionA_const_iter
     auto end = slice.cend();
     ASSERT_EQ(std::distance(it, end), (std::size_t)size_b);
     unsigned n=(unsigned)size_b;
-    std::for_each(it, end, [&](int const& val) 
+    std::for_each(it, end, [&](int const& val)
                            {
                                 ASSERT_EQ(val, n);
                                 ++n;
@@ -292,7 +292,7 @@ TEST_F(MultiArrayTest, test_three_dimension_std_copy)
     std::vector<unsigned> data(size_a * size_b * size_c);
     unsigned val=0;
     std::generate(data.begin(), data.end(), [&]() { return val++; } );
-    
+
     TestMultiArray<unsigned, DimensionA, DimensionB, DimensionC> ma( size_a, size_b, size_c);
     std::copy(data.begin(), data.end(), ma.begin()); // copy in
 
@@ -321,11 +321,41 @@ TEST_F(MultiArrayTest, test_one_dimension_resize)
     DimensionSize<DimensionA> size_a(10);
 
     TestMultiArray<unsigned, DimensionA> ma( size_a);
-    
+
     size_a = DimensionSize<DimensionA>(5);
     ma.resize(size_a);
     ASSERT_EQ(ma.dimension<DimensionA>(), size_a);
     ASSERT_EQ(std::distance(ma.begin(), ma.end()), size_a);
+}
+
+TEST_F(MultiArrayTest, test_one_dimension_resize_with_value)
+{
+    DimensionSize<DimensionA> size_a(2);
+
+    TestMultiArray<unsigned, DimensionA> ma( size_a);
+
+    size_a = DimensionSize<DimensionA>(5);
+    ma.resize(size_a, 99);
+    ASSERT_EQ(ma.dimension<DimensionA>(), size_a);
+    ASSERT_EQ(std::distance(ma.begin(), ma.end()), size_a);
+    for(DimensionIndex<DimensionA> i = DimensionIndex<DimensionA>(2); i < size_a; ++i ) {
+        ASSERT_EQ(ma[i], 99U);
+    }
+}
+
+TEST_F(MultiArrayTest, test_two_dimension_resize_with_value)
+{
+    DimensionSize<DimensionA> size_a(1);
+    DimensionSize<DimensionB> size_b(2);
+    DimensionSize<DimensionA> new_size_a(10);
+    DimensionSize<DimensionB> new_size_b(20);
+    TestMultiArray<unsigned, DimensionA, DimensionB> ma( size_a, size_b);
+    ma.resize<DimensionA, DimensionB>(new_size_a, new_size_b, 199U);
+    for(DimensionIndex<DimensionA> i = DimensionIndex<DimensionA>(1); i < new_size_a; ++i ) {
+        for(DimensionIndex<DimensionB> j = DimensionIndex<DimensionB>(2); j < new_size_b; ++j ) {
+            ASSERT_EQ(ma[i][j], 199U);
+        }
+    }
 }
 
 TEST_F(MultiArrayTest, test_three_dimension_resize)
@@ -335,7 +365,7 @@ TEST_F(MultiArrayTest, test_three_dimension_resize)
     DimensionSize<DimensionC> size_c(30);
 
     TestMultiArray<unsigned, DimensionA, DimensionB, DimensionC> ma( size_a, size_b, size_c);
-    
+
     size_a = DimensionSize<DimensionA>(5);
     ma.resize(size_a);
     ASSERT_EQ(ma.dimension<DimensionA>(), size_a);
