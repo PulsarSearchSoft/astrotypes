@@ -2,8 +2,8 @@ var searchData=
 [
   ['operatorslicetype',['OperatorSliceType',['../structpss_1_1astrotypes_1_1MultiArray_1_1OperatorSliceType.html',1,'pss::astrotypes::MultiArray']]],
   ['operatorslicetype',['OperatorSliceType',['../structpss_1_1astrotypes_1_1Slice_1_1OperatorSliceType.html',1,'pss::astrotypes::Slice']]],
-  ['operatorslicetype',['OperatorSliceType',['../structpss_1_1astrotypes_1_1Slice_3_01is__const_00_01SliceTraitsT_00_01SliceMixin_00_01Dimension_01_4_1_1OperatorSliceType.html',1,'pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension &gt;']]],
   ['operatorslicetype',['OperatorSliceType',['../structpss_1_1astrotypes_1_1MultiArray_3_01Alloc_00_01T_00_01SliceMixin_00_01FirstDimension_01_4_1_1OperatorSliceType.html',1,'pss::astrotypes::MultiArray&lt; Alloc, T, SliceMixin, FirstDimension &gt;']]],
+  ['operatorslicetype',['OperatorSliceType',['../structpss_1_1astrotypes_1_1Slice_3_01is__const_00_01SliceTraitsT_00_01SliceMixin_00_01Dimension_01_4_1_1OperatorSliceType.html',1,'pss::astrotypes::Slice&lt; is_const, SliceTraitsT, SliceMixin, Dimension &gt;']]],
   ['operatorslicetypehelper',['OperatorSliceTypeHelper',['../structpss_1_1astrotypes_1_1OperatorSliceTypeHelper.html',1,'pss::astrotypes']]],
   ['operatorslicetypehelper_3c_20dim_2c_20slice_3c_20is_5fconst_2c_20slicetraitst_2c_20slicemixin_2c_20dim_20_3e_20_3e',['OperatorSliceTypeHelper&lt; Dim, Slice&lt; is_const, SliceTraitsT, SliceMixin, Dim &gt; &gt;',['../structpss_1_1astrotypes_1_1OperatorSliceTypeHelper_3_01Dim_00_01Slice_3_01is__const_00_01SliceTrca3abe13ea3d6da5bd5d9d9dd1b69508.html',1,'pss::astrotypes']]],
   ['operatorslicetypehelper_3c_20dim_2c_20slice_3c_20is_5fconst_2c_20slicetraitst_2c_20slicemixin_2c_20dim_2c_20dimensions_2e_2e_2e_3e_20_3e',['OperatorSliceTypeHelper&lt; Dim, Slice&lt; is_const, SliceTraitsT, SliceMixin, Dim, Dimensions...&gt; &gt;',['../structpss_1_1astrotypes_1_1OperatorSliceTypeHelper_3_01Dim_00_01Slice_3_01is__const_00_01SliceTrb5f5aa811976067cedad041a63164ad7.html',1,'pss::astrotypes']]],
@@ -24,5 +24,7 @@ var searchData=
   ['optionaltest',['OptionalTest',['../classpss_1_1astrotypes_1_1utils_1_1test_1_1OptionalTest.html',1,'pss::astrotypes::utils::test']]],
   ['osigprocformat',['OSigProcFormat',['../classpss_1_1astrotypes_1_1sigproc_1_1SigProcFormat_3_01units_1_1Frequency_00_01units_1_1Time_01_4_1_1OSigProcFormat.html',1,'pss::astrotypes::sigproc::SigProcFormat&lt; units::Frequency, units::Time &gt;']]],
   ['osigprocformat',['OSigProcFormat',['../classpss_1_1astrotypes_1_1sigproc_1_1SigProcFormat_3_01units_1_1Time_00_01units_1_1Frequency_01_4_1_1OSigProcFormat.html',1,'pss::astrotypes::sigproc::SigProcFormat&lt; units::Time, units::Frequency &gt;']]],
+  ['ostream',['OStream',['../classpss_1_1astrotypes_1_1sigproc_1_1OStream.html',1,'pss::astrotypes::sigproc']]],
+  ['ostream_3c_20headertype_2c_20dim1_2c_20dim2_20_3e',['OStream&lt; HeaderType, Dim1, Dim2 &gt;',['../classpss_1_1astrotypes_1_1sigproc_1_1OStream.html',1,'pss::astrotypes::sigproc']]],
   ['overlaysliceiterator',['OverlaySliceIterator',['../classpss_1_1astrotypes_1_1OverlaySliceIterator.html',1,'pss::astrotypes']]]
 ];

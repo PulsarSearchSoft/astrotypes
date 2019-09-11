@@ -1,18 +1,20 @@
 <map id="src/cpp/pss/astrotypes/types/TimeFrequency.h" name="src/cpp/pss/astrotypes/types/TimeFrequency.h">
-<area shape="rect" id="node2" href="$Header_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/Header.h" alt="" coords="772,99,926,137"/>
-<area shape="rect" id="node5" href="$sigproc__cat_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/src\l/sigproc_cat.cpp" alt="" coords="106,579,260,631"/>
-<area shape="rect" id="node10" href="$FileReaderTest_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/test/src/FileReader\lTest.cpp" alt="" coords="663,479,846,531"/>
-<area shape="rect" id="node13" href="$HeaderTest_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/test/src/HeaderTest.cpp" alt="" coords="1154,199,1366,237"/>
-<area shape="rect" id="node14" href="$SigProcFormat_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/SigProcFormat.h" alt="" coords="277,99,449,137"/>
-<area shape="rect" id="node17" href="$TimeFrequencyTest_8cpp.html" title="src/cpp/pss/astrotypes\l/types/test/src/TimeFrequency\lTest.cpp" alt="" coords="1440,92,1640,144"/>
-<area shape="rect" id="node3" href="$DataFactory_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/DataFactory.h" alt="" coords="607,199,761,237"/>
-<area shape="rect" id="node4" href="$SigProc_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/SigProc.h" alt="" coords="456,485,610,524"/>
-<area shape="rect" id="node7" href="$ExtendedHeader_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/ExtendedHeader.h" alt="" coords="887,199,1129,237"/>
-<area shape="rect" id="node9" href="$FileReader_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/FileReader.h" alt="" coords="654,392,808,431"/>
-<area shape="rect" id="node11" href="$SigProcFormatAdapterSelector_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/SigProcFormatAdapter\lSelector.h" alt="" coords="375,192,582,244"/>
-<area shape="rect" id="node6" href="$sigproc__header_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/src\l/sigproc_header.cpp" alt="" coords="456,579,610,631"/>
-<area shape="rect" id="node8" href="$ExtendedHeader_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/src\l/ExtendedHeader.cpp" alt="" coords="931,292,1085,344"/>
-<area shape="rect" id="node12" href="$IStream_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/IStream.h" alt="" coords="404,299,558,337"/>
-<area shape="rect" id="node15" href="$OStream_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/OStream.h" alt="" coords="192,392,346,431"/>
-<area shape="rect" id="node16" href="$SigProcFormatTest_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/test/src/SigProcFormat\lTest.cpp" alt="" coords="144,192,352,244"/>
+<area shape="rect" id="node2" href="$Header_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/Header.h" alt="" coords="315,99,469,137"/>
+<area shape="rect" id="node5" href="$sigproc__cat_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/src\l/sigproc_cat.cpp" alt="" coords="52,579,206,631"/>
+<area shape="rect" id="node10" href="$FileReaderTest_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/test/src/FileReader\lTest.cpp" alt="" coords="95,479,278,531"/>
+<area shape="rect" id="node13" href="$HeaderTest_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/test/src/HeaderTest.cpp" alt="" coords="93,199,305,237"/>
+<area shape="rect" id="node14" href="$SigProcFormat_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/SigProcFormat.h" alt="" coords="919,99,1091,137"/>
+<area shape="rect" id="node19" href="$TimeFrequencyTest_8cpp.html" title="src/cpp/pss/astrotypes\l/types/test/src/TimeFrequency\lTest.cpp" alt="" coords="1115,92,1314,144"/>
+<area shape="rect" id="node3" href="$DataFactory_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/DataFactory.h" alt="" coords="928,199,1083,237"/>
+<area shape="rect" id="node4" href="$SigProc_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/SigProc.h" alt="" coords="354,485,508,524"/>
+<area shape="rect" id="node7" href="$ExtendedHeader_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/ExtendedHeader.h" alt="" coords="429,199,672,237"/>
+<area shape="rect" id="node9" href="$FileReader_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/FileReader.h" alt="" coords="200,392,354,431"/>
+<area shape="rect" id="node11" href="$SigProcFormatAdapterSelector_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/SigProcFormatAdapter\lSelector.h" alt="" coords="696,192,904,244"/>
+<area shape="rect" id="node6" href="$sigproc__header_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/src\l/sigproc_header.cpp" alt="" coords="354,579,508,631"/>
+<area shape="rect" id="node8" href="$ExtendedHeader_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/examples/src\l/ExtendedHeader.cpp" alt="" coords="474,292,628,344"/>
+<area shape="rect" id="node12" href="$IStream_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/IStream.h" alt="" coords="687,299,841,337"/>
+<area shape="rect" id="node15" href="$OStream_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/OStream.h" alt="" coords="1388,199,1542,237"/>
+<area shape="rect" id="node18" href="$SigProcFormatTest_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/test/src/SigProcFormat\lTest.cpp" alt="" coords="1158,192,1365,244"/>
+<area shape="rect" id="node16" href="$FileWriter_8h.html" title="src/cpp/pss/astrotypes\l/sigproc/FileWriter.h" alt="" coords="1388,299,1542,337"/>
+<area shape="rect" id="node17" href="$FileWriter_8cpp.html" title="src/cpp/pss/astrotypes\l/sigproc/detail/FileWriter.cpp" alt="" coords="1371,392,1560,431"/>
 </map>

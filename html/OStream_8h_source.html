@@ -127,31 +127,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">namespace </span>astrotypes {</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">namespace </span>sigproc {</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment">template&lt;typename T&gt;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">typename std::enable_if&lt;pss::astrotypes::has_dimensions&lt;T, pss::astrotypes::units::Time, pss::astrotypes::units::Frequency&gt;::value,</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">std::ostream&gt;::type&amp; operator&lt;&lt;(std::ostream&amp;, T&amp;)</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment">{</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">    // improve compile time erro messaging - we should never instantiate this function</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">    // as we need a SigProcFormat Adapter to know how to interpret the stream </span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">    static_assert(sizeof(T)==0, &quot;attempt to use operator&lt;&lt; on an ostream without a SigProcFormat Adapter.&quot;);</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">}</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;} <span class="comment">// namespace sigproc</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;} <span class="comment">// namespace astrotypes</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;} <span class="comment">// namespace pss</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif // PSS_ASTROTYPES_SIGPROC_SIGPROCSTREAM_H</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> HeaderT, <span class="keyword">typename</span> Dim1, <span class="keyword">typename</span> Dim2&gt;</div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1OStream.html">   37</a></span>&#160;<span class="keyword">class </span><a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1OStream.html">OStream</a> {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">typedef</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1SigProcFormat.html">SigProcFormat&lt;Dim1, Dim2&gt;</a> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1SigProcFormat.html">Adapter</a>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Stream, <span class="keyword">typename</span> DataType&gt;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1OStream.html#a4da83dbf90a616f86563c68b4d412e79">write</a>(Stream&amp; s, DataType&amp;);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="comment">//  in order to write out a header</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Stream&gt;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1OStream.html#a6e9cee6a64cea288f381ffcd91a53468">new_header</a>(Stream&amp; stream);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classpss_1_1astrotypes_1_1sigproc_1_1OStream.html#ac7c1ba63d58c80750a5477166ba6bdeb">   51</a></span>&#160;        HeaderT <a class="code" href="classpss_1_1astrotypes_1_1sigproc_1_1OStream.html#ac7c1ba63d58c80750a5477166ba6bdeb">_header</a>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;};</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">/*</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">template&lt;typename T&gt;</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="comment">typename std::enable_if&lt;pss::astrotypes::has_dimensions&lt;T, pss::astrotypes::units::Time, pss::astrotypes::units::Frequency&gt;::value,</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="comment">std::ostream&gt;::type&amp; operator&lt;&lt;(std::ostream&amp;, T&amp;)</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment">{</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">    // improve compile time erro messaging - we should never instantiate this function</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">    // as we need a SigProcFormat Adapter to know how to interpret the stream </span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">    static_assert(sizeof(T)==0, &quot;attempt to use operator&lt;&lt; on an ostream without a SigProcFormat Adapter.&quot;);</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">}</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">*/</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;} <span class="comment">// namespace sigproc</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;} <span class="comment">// namespace astrotypes</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;} <span class="comment">// namespace pss</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif // PSS_ASTROTYPES_SIGPROC_SIGPROCSTREAM_H</span></div>
 <div class="ttc" id="namespacepss_html"><div class="ttname"><a href="namespacepss.html">pss</a></div><div class="ttdef"><b>Definition:</b> <a href="DataBuffer_8cpp_source.html#l00026">DataBuffer.cpp:26</a></div></div>
 <div class="ttc" id="TypeTraits_8h_html"><div class="ttname"><a href="TypeTraits_8h.html">TypeTraits.h</a></div></div>
 <div class="ttc" id="Time_8h_html"><div class="ttname"><a href="Time_8h.html">Time.h</a></div></div>
 <div class="ttc" id="Frequency_8h_html"><div class="ttname"><a href="Frequency_8h.html">Frequency.h</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1OStream_html_a4da83dbf90a616f86563c68b4d412e79"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1OStream.html#a4da83dbf90a616f86563c68b4d412e79">pss::astrotypes::sigproc::OStream::write</a></div><div class="ttdeci">void write(Stream &amp;s, DataType &amp;)</div><div class="ttdef"><b>Definition:</b> <a href="OStream_8cpp_source.html#l00030">OStream.cpp:30</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1OStream_html"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1OStream.html">pss::astrotypes::sigproc::OStream</a></div><div class="ttdef"><b>Definition:</b> <a href="OStream_8h_source.html#l00037">OStream.h:37</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1OStream_html_ac7c1ba63d58c80750a5477166ba6bdeb"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1OStream.html#ac7c1ba63d58c80750a5477166ba6bdeb">pss::astrotypes::sigproc::OStream::_header</a></div><div class="ttdeci">HeaderT _header</div><div class="ttdef"><b>Definition:</b> <a href="OStream_8h_source.html#l00051">OStream.h:51</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1SigProcFormat_html"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1SigProcFormat.html">pss::astrotypes::sigproc::SigProcFormat</a></div><div class="ttdoc">stream adapter to convert TimeFrequency or FrequencyTime types to filterbank output ...</div><div class="ttdef"><b>Definition:</b> <a href="SigProcFormat_8h_source.html#l00039">SigProcFormat.h:39</a></div></div>
 <div class="ttc" id="SigProcFormat_8h_html"><div class="ttname"><a href="SigProcFormat_8h.html">SigProcFormat.h</a></div></div>
+<div class="ttc" id="classpss_1_1astrotypes_1_1sigproc_1_1OStream_html_a6e9cee6a64cea288f381ffcd91a53468"><div class="ttname"><a href="classpss_1_1astrotypes_1_1sigproc_1_1OStream.html#a6e9cee6a64cea288f381ffcd91a53468">pss::astrotypes::sigproc::OStream::new_header</a></div><div class="ttdeci">void new_header(Stream &amp;stream)</div><div class="ttdoc">inheriting class should call this every time a new sigproc stream is opened </div><div class="ttdef"><b>Definition:</b> <a href="OStream_8cpp_source.html#l00023">OStream.cpp:23</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Aug 6 2019 13:20:07 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 11 2019 10:11:45 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>

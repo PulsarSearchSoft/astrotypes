@@ -2,7 +2,7 @@ var searchData=
 [
   ['_5fcurrent',['_current',['../classpss_1_1astrotypes_1_1SliceIteratorBase_3_01DerivedType_00_01SliceType_00_01is__const_00_011_01_4.html#ae44389fa36a0a6f79a234216a8efd224',1,'pss::astrotypes::SliceIteratorBase&lt; DerivedType, SliceType, is_const, 1 &gt;']]],
   ['_5ffile',['_file',['../classpss_1_1astrotypes_1_1sigproc_1_1test_1_1SigProcTestFile.html#aaa27cf2f6f385de8476ae2e907a5a170',1,'pss::astrotypes::sigproc::test::SigProcTestFile']]],
-  ['_5fheader',['_header',['../classpss_1_1astrotypes_1_1sigproc_1_1IStream.html#a09dd981d7b6f9de1ed78a383a518aca9',1,'pss::astrotypes::sigproc::IStream']]],
+  ['_5fheader',['_header',['../classpss_1_1astrotypes_1_1sigproc_1_1IStream.html#a09dd981d7b6f9de1ed78a383a518aca9',1,'pss::astrotypes::sigproc::IStream::_header()'],['../classpss_1_1astrotypes_1_1sigproc_1_1OStream.html#ac7c1ba63d58c80750a5477166ba6bdeb',1,'pss::astrotypes::sigproc::OStream::_header()']]],
   ['_5fis',['_is',['../classpss_1_1astrotypes_1_1sigproc_1_1SigProcFormat_3_01units_1_1Time_00_01units_1_1Frequency_01_4_1_1ISigProcFormat.html#afabb4193904dd124499190d280f7d0dc',1,'pss::astrotypes::sigproc::SigProcFormat&lt; units::Time, units::Frequency &gt;::ISigProcFormat::_is()'],['../classpss_1_1astrotypes_1_1sigproc_1_1SigProcFormat_3_01units_1_1Frequency_00_01units_1_1Time_01_4_1_1ISigProcFormat.html#aacf5e1e207a8d7d794f31cc95ed26a52',1,'pss::astrotypes::sigproc::SigProcFormat&lt; units::Frequency, units::Time &gt;::ISigProcFormat::_is()']]],
   ['_5fm_5fend_5fof_5fstorage',['_m_end_of_storage',['../DataBuffer_8h.html#aca77c49b7019a3ede7615d9b67dcbf7c',1,'DataBuffer.h']]],
   ['_5fm_5ffinish',['_m_finish',['../DataBuffer_8h.html#a852e97114707e005495a2aab0d1a9f74',1,'DataBuffer.h']]],

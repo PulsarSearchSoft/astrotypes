@@ -1,5 +1,5 @@
 <map id="pss::astrotypes::test::TEST_F" name="pss::astrotypes::test::TEST_F">
-<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1TimeFreqCommon.html#a9c523af641ceba14ef312ccb6d76f331" title="return a single spectrum from the specified offset " alt="" coords="220,5,410,84"/>
-<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1MultiArray.html#a33b7d8e943526599302f4d35f715bde9" title="pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Time, units::Frequency\l \&gt;::cbegin" alt="" coords="217,108,413,173"/>
-<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1MultiArray.html#aed783c7a841440e713f1721f2d64c0fe" title="pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Time, units::Frequency \&gt;::cend" alt="" coords="193,197,437,249"/>
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1TimeFreqCommon.html#a9c523af641ceba14ef312ccb6d76f331" title="return a single spectrum from the specified offset " alt="" coords="217,5,407,84"/>
+<area shape="rect" id="node3" href="$classpss_1_1astrotypes_1_1MultiArray.html#a5a9ef3fef9929d2fd15329b2719af0b2" title="iterators acting over he entire data structure " alt="" coords="213,108,410,173"/>
+<area shape="rect" id="node4" href="$classpss_1_1astrotypes_1_1MultiArray.html#a999f2999c0ab9d93b8a923b65198ff49" title="pss::astrotypes::MultiArray\l\&lt; Alloc, T, TimeFreqCommon,\l units::Time, units::Frequency \&gt;::end" alt="" coords="193,197,430,249"/>
 </map>

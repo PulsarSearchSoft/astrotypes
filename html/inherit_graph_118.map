@@ -1,3 +1,4 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$structpss_1_1astrotypes_1_1SliceIteratorHelper.html" title="pss::astrotypes::SliceIterator\lHelper\&lt; ReplacementSliceType,\l SliceIterator \&gt;" alt="" coords="5,5,218,57"/>
+<area shape="rect" id="node1" href="$classpss_1_1astrotypes_1_1SliceIteratorBase.html" title="pss::astrotypes::SliceIterator\lBase\&lt; SliceIterator\&lt; Slice\l\&lt; is_const2, ParentT, SliceMixin,\l Dimension, Dimensions...\&gt;, is\l_const \&gt;, Slice\&lt; is_const2, ParentT,\l SliceMixin, Dimension, Dimensions...\&gt;\l, is_const, Slice\&lt; is_const2, ParentT,\l SliceMixin, Dimension, Dimensions...\&gt;::rank \&gt;" alt="" coords="5,5,302,124"/>
+<area shape="rect" id="node2" href="$classpss_1_1astrotypes_1_1SliceIterator_3_01Slice_3_01is__const2_00_01ParentT_00_01SliceMixin_002013a057c174d7af20b4cdfe1cc3ab6c.html" title="pss::astrotypes::SliceIterator\l\&lt; Slice\&lt; is_const2, ParentT,\l SliceMixin, Dimension, Dimensions...\&gt;\l, is_const \&gt;" alt="" coords="350,32,601,97"/>
 </map>

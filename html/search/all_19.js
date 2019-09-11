@@ -8,6 +8,7 @@ var searchData=
   ['_7eextendedheader',['~ExtendedHeader',['../classpss_1_1astrotypes_1_1sigproc_1_1examples_1_1ExtendedHeader.html#a8600d901ccca8dd3db5c9478c96b7b90',1,'pss::astrotypes::sigproc::examples::ExtendedHeader']]],
   ['_7efilereader',['~FileReader',['../classpss_1_1astrotypes_1_1sigproc_1_1FileReader.html#af476f02325f3766d8d68ea915bac4ad4',1,'pss::astrotypes::sigproc::FileReader']]],
   ['_7efilereadertest',['~FileReaderTest',['../classpss_1_1astrotypes_1_1sigproc_1_1test_1_1FileReaderTest.html#ae101ee1abb57684df1d6fe1d31d35de6',1,'pss::astrotypes::sigproc::test::FileReaderTest']]],
+  ['_7efilewriter',['~FileWriter',['../classpss_1_1astrotypes_1_1sigproc_1_1FileWriter_3_01Dim1_00_01Dim2_01_4.html#a07dd4ea93108f94e71098078c30c9717',1,'pss::astrotypes::sigproc::FileWriter&lt; Dim1, Dim2 &gt;']]],
   ['_7efrequencytime',['~FrequencyTime',['../classpss_1_1astrotypes_1_1FrequencyTime.html#aa0b69db9131f437425d0020f474c9a81',1,'pss::astrotypes::FrequencyTime']]],
   ['_7eheader',['~Header',['../classpss_1_1astrotypes_1_1sigproc_1_1Header.html#a6602f8a61df272130133b1aa985078d3',1,'pss::astrotypes::sigproc::Header']]],
   ['_7eheaderfieldbase',['~HeaderFieldBase',['../classpss_1_1astrotypes_1_1sigproc_1_1HeaderFieldBase.html#a91b41045b0ec589d1024342f7b189765',1,'pss::astrotypes::sigproc::HeaderFieldBase']]],
