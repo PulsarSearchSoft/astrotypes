@@ -135,12 +135,16 @@ The Sigproc file format (FilterBank and TimeSeries)</h1>
 </div><!-- fragment --><h2>More Generic Applications</h2>
 <p>If you are writing an application that needs to handle all types of sigproc files then you will need to generate code for each different possibilty. This is because our TimeFrequency data types do not, for reasons of runtime speed, inherit from a common base class.</p>
 <p>Fortunately this is easier than it sounds. astrotypes::sigproc provides helpers to do this for you and all you need to do is provide a template class for your code. See the <a class="el" href="sigproc__cat_8cpp.html">sigproc_cat.cpp</a> in the examples directory.</p>
-<div class="fragment"></div><!-- fragment --><h2>Non-Standard Sigproc Headers</h2>
-<p>The Sigproc format has been much abused, and people have added many non-standard headers. A limited format such as sigproc cannot handle this in a generic way, and so if you need to read in such custom files you will need to create your own header class. To do so just inherit from the <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html" title="Store SigProc header information. ">pss::astrotypes::sigproc::Header</a> as in the example&gt; </p>
-</div></div><!-- contents -->
+<p>[sigproc_cat example]("../examples/src/sigproc_cat.cpp")</p>
+<h2>Non-Standard Sigproc Headers</h2>
+<p>The Sigproc format has been much abused, and people have added many non-standard headers. A limited format such as sigproc cannot handle this in a generic way, and so if you need to read in such custom files you will need to create your own header class. To do so just inherit from the <a class="el" href="classpss_1_1astrotypes_1_1sigproc_1_1Header.html" title="Store SigProc header information. ">pss::astrotypes::sigproc::Header</a> as in the example&gt;</p>
+<p>[ExtendeHeader example]("../examples/ExtendedHeader.h")</p>
+<p>Using this new header is as simple as passing its type as a template argument to the FileReader. </p><div class="fragment"><div class="line"><span class="comment">// Use the custom MyHeaderType class to interpret a custom sigproc header</span></div>
+<div class="line">sigproc::FileReader&lt;MyHeaderType&gt; filterbank_file(<span class="stringliteral">&quot;my_custom_filterbank_file.fil&quot;</span>);</div>
+</div><!-- fragment --> </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 13 2019 10:23:00 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Sep 13 2019 10:36:11 for astrotypes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.9.1
 </small></address>
