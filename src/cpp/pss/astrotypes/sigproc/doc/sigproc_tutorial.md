@@ -110,3 +110,9 @@ read in such custom files you will need to create your own header class.
 To do so just inherit from the pss::astrotypes::sigproc::Header as in the example>
 
 @example "ExtendedHeader.cpp"
+
+Using this new header is as simple as passing its type as a template argument to the FileReader.
+~~~~{.cpp}
+// Use the custom MyHeaderType class to interpret a custom sigproc header
+sigproc::FileReader<MyHeaderType> filterbank_file("my_custom_filterbank_file.fil");
+~~~~

@@ -23,6 +23,7 @@
  */
 
 #include "sigproc/HardCodedDataPath.h"
+#include "pss/astrotypes/units/ModifiedJulianClock.h"
 
 namespace pss {
 namespace astrotypes {
@@ -55,12 +56,18 @@ inline std::size_t SigProcTestFile::number_of_ifs() const
     return _nifs;
 }
 
+inline units::ModifiedJulianClock::time_point SigProcTestFile::start_time() const
+{
+    return _start_time;
+}
+
 inline SigProcFilterBankTestFile::SigProcFilterBankTestFile()
     : BaseT("filterbank_8bit.fil")
 {
     this->_nchans=2;
     this->_nsamples=2560;
     this->_nifs=1;
+    this->_start_time=typename units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
 }
 
 } // namespace test

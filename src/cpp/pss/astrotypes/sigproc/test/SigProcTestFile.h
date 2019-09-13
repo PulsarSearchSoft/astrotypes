@@ -50,12 +50,15 @@ class SigProcTestFile
         DimensionSize<units::Frequency> number_of_channels() const;
         DimensionSize<units::Time> number_of_spectra() const;
         std::size_t number_of_ifs() const;
+        units::ModifiedJulianClock::time_point start_time() const;
+
 
     protected:
         std::string _file;
         DimensionSize<units::Frequency> _nchans;
         DimensionSize<units::Time> _nsamples;
         unsigned _nifs;
+        units::ModifiedJulianClock::time_point _start_time;
 };
 
 class SigProcFilterBankTestFile : public SigProcTestFile
