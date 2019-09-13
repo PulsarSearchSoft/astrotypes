@@ -101,7 +101,7 @@ Fortunately this is easier than it sounds. astrotypes::sigproc provides helpers 
 and all you need to do is provide a template class for your code. See the sigproc_cat.cpp in the examples
 directory.
 
-\include "../examples/src/sigproc_cat.cpp"
+[sigproc_cat example]("../examples/src/sigproc_cat.cpp")
 
 ## Non-Standard Sigproc Headers
 The Sigproc format has been much abused, and people have added many non-standard headers.
@@ -109,7 +109,7 @@ A limited format such as sigproc cannot handle this in a generic way, and so if 
 read in such custom files you will need to create your own header class.
 To do so just inherit from the pss::astrotypes::sigproc::Header as in the example>
 
-@example "ExtendedHeader.cpp"
+[ExtendeHeader example]("../examples/ExtendedHeader.h")
 
 Using this new header is as simple as passing its type as a template argument to the FileReader.
 ~~~~{.cpp}
