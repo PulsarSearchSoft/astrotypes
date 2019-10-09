@@ -28,7 +28,7 @@ namespace astrotypes {
 template<typename DerivedType, typename SliceType, bool is_const, int rank>
 SliceIteratorBase<DerivedType, SliceType, is_const, rank>::SliceIteratorBase(SliceT& slice)
     : BaseT(slice)
-    , _slice(slice)
+    , _slice(&slice)
     , _pos()
 {
 }
@@ -41,8 +41,8 @@ SliceIteratorBase<DerivedType, SliceType, is_const, rank>::~SliceIteratorBase()
 template<typename DerivedType, typename SliceType, bool is_const, int rank>
 DerivedType& SliceIteratorBase<DerivedType, SliceType, is_const, rank>::operator++()
 {
-    if(!_slice.increment_it(this->_current, _pos)) {
-        this->_current = this->_slice.end()._current;
+    if(!_slice->increment_it(this->_current, _pos)) {
+        this->_current = this->_slice->end()._current;
     }
     return static_cast<DerivedType&>(*this);
 }
@@ -50,13 +50,13 @@ DerivedType& SliceIteratorBase<DerivedType, SliceType, is_const, rank>::operator
 template<typename DerivedType, typename SliceType, bool is_const, int rank>
 typename SliceIteratorBase<DerivedType, SliceType, is_const, rank>::SliceT const& SliceIteratorBase<DerivedType, SliceType, is_const, rank>::slice() const
 {
-    return _slice;
+    return *_slice;
 }
 
 template<typename DerivedType, typename SliceType, bool is_const, int rank>
 typename SliceIteratorBase<DerivedType, SliceType, is_const, rank>::difference_type SliceIteratorBase<DerivedType, SliceType, is_const, rank>::operator-(SelfType const& f) const
 {
-    return  _slice.diff_it(this->_current - f._current);
+    return  _slice->diff_it(this->_current - f._current);
 }
 
 template<typename DerivedType, typename SliceType, bool is_const>

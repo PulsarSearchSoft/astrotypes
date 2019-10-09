@@ -86,7 +86,7 @@ class SliceIteratorBase : public SliceIteratorBase<DerivedType, SliceType, is_co
         SliceT const& slice() const;
 
     protected:
-        SliceT& _slice;
+        SliceT* _slice;
         SlicePosition<SliceT::rank>  _pos;
 };
 

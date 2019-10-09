@@ -156,6 +156,9 @@ TEST_F(SliceTest, test_single_dimension_iterators)
     ASSERT_TRUE(it == slice.end()) << "end=" << *slice.end() << " it=" << *it;
     ASSERT_TRUE(it2 == slice.end()) << "end=" << *slice.cend() << " it2=" << *it2;
     ASSERT_TRUE(it3 == slice.cend()) << "end=" << *slice.cend() << " it3=" << *it3;
+
+    // test copy assignment operator
+    it = slice.begin();
 }
 
 TEST_F(SliceTest, test_single_dimension_iterators_diff)
@@ -301,6 +304,9 @@ TEST_F(SliceTest, test_two_dimensions_slice_iterators)
             ++const_it;
         }
     }
+
+    // test copy assignment operator
+    it = slice.begin();
 }
 
 TEST_F(SliceTest, test_two_dimensions_slice_copy)
