@@ -76,6 +76,8 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         typedef T const& const_reference_type;
 
     public:
+        MultiArray();
+
         template<typename Dim, typename... Dims>
         MultiArray(DimensionSize<Dim> size, DimensionSize<Dims>... sizes);
 
@@ -279,6 +281,8 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         typedef T value_type;
 
     public:
+        MultiArray();
+
         template<typename Dim, typename... Dims>
         MultiArray(DimensionSize<Dim> const& size, DimensionSize<Dims> const&... sizes);
         explicit MultiArray(MultiArray const&) = default;

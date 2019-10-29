@@ -84,6 +84,13 @@ struct MultiArray<Alloc, T, SliceMixin, Dimension>::ConstOperatorSliceType
 ////////////////////////////////////////////////
 // public interface for ensuring all is correctly sized up
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::MultiArray()
+    : BaseT()
+    , _size(DimensionSize<FirstDimension>(0))
+{
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 template<typename Dim, typename... Dims>
 MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::MultiArray(DimensionSize<Dim> size, DimensionSize<Dims>... sizes)
     : BaseT(false, size, sizes...)
@@ -330,6 +337,13 @@ bool MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::operator==
 /////////////////////////////////////////////////////////////
 // Single Dimension specialisation
 /////////////////////////////////////////////////////////////
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
+MultiArray<Alloc, T, SliceMixin, FirstDimension>::MultiArray()
+    : _size(DimensionSize<FirstDimension>(0))
+{
+    _data.resize(_size);
+}
+
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
 template<typename Dim, typename... Dims>
 MultiArray<Alloc, T, SliceMixin, FirstDimension>::MultiArray(DimensionSize<Dim> const& size, DimensionSize<Dims> const&... sizes)

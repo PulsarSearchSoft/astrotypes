@@ -59,6 +59,15 @@ TEST_F(MultiArrayTest, test_single_dimension_size)
     ASSERT_EQ(std::distance(ma.begin(), ma.end()), size);
 }
 
+TEST_F(MultiArrayTest, test_single_dimension_empty_constructor)
+{
+    TestMultiArray<int, DimensionA> ma;
+    ASSERT_EQ(ma.dimension<DimensionA>(), DimensionSize<DimensionA>(0U));
+    ASSERT_EQ(ma.dimension<DimensionB>(), DimensionSize<DimensionB>(0U));
+    ASSERT_EQ(ma.dimension<DimensionC>(), DimensionSize<DimensionC>(0U));
+    ASSERT_EQ(std::distance(ma.begin(), ma.end()), DimensionSize<DimensionA>(0));
+}
+
 TEST_F(MultiArrayTest, test_single_dimension_const_iterator)
 {
     DimensionSize<DimensionA> size(30);
@@ -73,6 +82,15 @@ TEST_F(MultiArrayTest, test_single_dimension_const_iterator)
                                 ++n;
                            });
     ASSERT_EQ(n, (unsigned)size);
+}
+
+TEST_F(MultiArrayTest, test_two_dimension_empty_constructor)
+{
+    TestMultiArray<int, DimensionA, DimensionB> ma;
+    ASSERT_EQ(ma.dimension<DimensionA>(), DimensionSize<DimensionA>(0U));
+    ASSERT_EQ(ma.dimension<DimensionB>(), DimensionSize<DimensionB>(0U));
+    ASSERT_EQ(ma.dimension<DimensionC>(), DimensionSize<DimensionC>(0U));
+    ASSERT_EQ(std::distance(ma.begin(), ma.end()), DimensionSize<DimensionA>(0));
 }
 
 TEST_F(MultiArrayTest, test_two_dimension_1_slice_operator_DimensionB_const_iterator)
