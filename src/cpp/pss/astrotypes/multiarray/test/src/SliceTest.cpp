@@ -217,6 +217,28 @@ TEST_F(SliceTest, test_singe_dimension_slice_iterators_copy)
     ASSERT_TRUE(copy_const_it == const_it);
 }
 
+TEST_F(SliceTest, test_one_dimensions_empty_constructor)
+{
+    ParentType<1> p(50);
+    Slice<false, ParentType<1>, TestSliceMixin, DimensionA> empty_slice;
+    ASSERT_EQ(&empty_slice.parent(), nullptr);
+    ASSERT_EQ(empty_slice.data_size(), 0U);
+    ASSERT_EQ(empty_slice.template dimension<DimensionA>(), DimensionSize<DimensionA>(0U));
+    ASSERT_TRUE(empty_slice.begin() == empty_slice.end());
+    ASSERT_TRUE(empty_slice.cbegin() == empty_slice.cend());
+}
+
+TEST_F(SliceTest, test_two_dimensions_empty_constructor)
+{
+    ParentType<2> p(50);
+    Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> empty_slice;
+    ASSERT_EQ(&empty_slice.parent(), nullptr);
+    ASSERT_EQ(empty_slice.template dimension<DimensionA>(), DimensionSize<DimensionA>(0U));
+    ASSERT_EQ(empty_slice.template dimension<DimensionB>(), DimensionSize<DimensionB>(0U));
+    ASSERT_EQ(empty_slice.data_size(), 0U);
+    ASSERT_TRUE(empty_slice.begin() == empty_slice.end());
+    ASSERT_TRUE(empty_slice.cbegin() == empty_slice.cend());
+}
 
 TEST_F(SliceTest, test_two_dimensions)
 {

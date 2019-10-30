@@ -163,6 +163,13 @@ struct Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::ConstOperatorSliceT
 };
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice()
+    : _span(DimensionSize<Dimension>(0u))
+    , _base_span(0U)
+{
+}
+
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename Dim, typename... Dims>
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice(
           typename std::enable_if<arg_helper<Dimension, Dim, Dims...>::value, Parent&>::type parent
@@ -550,6 +557,15 @@ bool Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::operat
 }
 
 // -------------------- single dimension specialisation -------------------
+// constructors
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice()
+    : _span(DimensionSpan<Dimension>(0U))
+    , _base_span(DimensionSize<Dimension>(0U))
+    , _parent(nullptr)
+{
+}
+
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice(Parent& parent, DimensionSpan<Dimension> const& d)
     : _span(d)

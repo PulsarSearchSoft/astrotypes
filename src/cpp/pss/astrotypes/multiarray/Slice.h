@@ -136,6 +136,8 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         typedef SliceMixin<Slice<true, InternalSliceTraits<SliceTraitsT, Dimension>, SliceMixin, Dimensions...>> ConstReducedSliceType;
 
     public:
+        Slice();
+
         template<typename Dim, typename... Dims>
         Slice( typename std::enable_if<arg_helper<Dimension, Dim, Dims...>::value, Parent&>::type parent
              , DimensionSpan<Dim> const&
@@ -375,6 +377,7 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
         typedef parent_const_iterator const_iterator;
 
     public:
+        Slice();
         Slice(Parent& parent, DimensionSpan<Dimension> const&);
         Slice(Slice const&);
         ~Slice();
