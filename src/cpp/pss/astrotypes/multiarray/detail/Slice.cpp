@@ -185,7 +185,7 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice(
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2>
-Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( Parent& parent, Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimension, Dimensions...> const& slice)
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( Parent& parent, SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimension, Dimensions...>> const& slice)
     : BaseT(internal_construct_tag(), parent, slice)
     , _span(slice.template span<Dimension>())
     , _base_span(0U)
@@ -292,7 +292,7 @@ template<bool is_const, typename SliceTraitsT, template<typename> class SliceMix
 template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename... Dimensions2>
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( internal_construct_tag const&
                                                                           , Parent& parent
-                                                                          , Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimensions2...> const& slice)
+                                                                          , SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimensions2...>> const& slice)
     : BaseT(internal_construct_tag(), parent, slice)
     , _span(slice.template span<Dimension>())
     , _base_span(parent.template dimension<Dimension>() * BaseT::_base_span)
@@ -650,7 +650,7 @@ template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceM
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice(
                internal_construct_tag const&
              , Parent& parent
-             , Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimensions2...> const& slice)
+             , SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimensions2...>> const& slice)
     : _span(slice.template span<Dimension>())
     , _base_span(parent.template size<Dimension>())
     , _parent(&parent)
