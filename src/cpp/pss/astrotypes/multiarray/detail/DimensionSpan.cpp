@@ -59,5 +59,17 @@ DimensionSpan<Dimension>& DimensionSpan<Dimension>::trim(DimensionSize<Dimension
     return *this;
 }
 
+template<typename Dimension>
+bool DimensionSpan<Dimension>::operator==(DimensionSpan<Dimension> const& span) const
+{
+    return _start_index == span._start_index && _span == span._span;
+}
+
+template<typename Dimension>
+bool DimensionSpan<Dimension>::operator!=(DimensionSpan<Dimension> const& span) const
+{
+    return !(*this == span);
+}
+
 } // namespace astrotypes
 } // namespace pss

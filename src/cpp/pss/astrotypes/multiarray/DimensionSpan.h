@@ -56,6 +56,9 @@ class DimensionSpan
         /// ensure the span fits within the size provided
         inline DimensionSpan<Dimension>&          trim(DimensionSize<Dimension> bounds);
 
+        bool operator==(DimensionSpan<Dimension> const&) const;
+        bool operator!=(DimensionSpan<Dimension> const&) const;
+
     private:
         DimensionIndex<Dimension> _start_index;
         DimensionSize<Dimension>  _span;
