@@ -225,6 +225,20 @@ typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::SliceT
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... SliceDimensions>
+typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::SliceType MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::overlay(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDimensions...>> const& slice)
+{
+    return SliceType(*this, slice);
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... SliceDimensions>
+typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::ConstSliceType MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::overlay(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDimensions...>> const& slice) const
+{
+    return ConstSliceType(*this, slice);
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 template<typename... Dims>
 void MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::resize(DimensionSize<Dims>... size)
 {

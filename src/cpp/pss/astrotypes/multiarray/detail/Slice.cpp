@@ -184,6 +184,17 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice(
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2>
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( Parent& parent, Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimension, Dimensions...> const& slice)
+    : BaseT(internal_construct_tag(), parent, slice)
+    , _span(slice.template span<Dimension>())
+    , _base_span(0U)
+    , _ptr(parent.begin())
+{
+    BaseT::offset(_ptr);
+}
+
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename Dim, typename... Dims>
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice(
         typename std::enable_if<!arg_helper<Dimension, Dim, Dims...>::value, Parent&>::type parent
@@ -277,6 +288,17 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( inte
 {
 }
 
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename... Dimensions2>
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( internal_construct_tag const&
+                                                                          , Parent& parent
+                                                                          , Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimensions2...> const& slice)
+    : BaseT(internal_construct_tag(), parent, slice)
+    , _span(slice.template span<Dimension>())
+    , _base_span(parent.template dimension<Dimension>() * BaseT::_base_span)
+{
+}
+
 template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::parent_iterator const& Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::offset(parent_iterator const& it)
 {
@@ -350,6 +372,22 @@ typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSize<Dim>
 Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::dimension() const
 {
     return BaseT::template dimension<Dim>();
+}
+
+template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<typename Dim>
+typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSpan<Dimension>>::type
+Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::span() const
+{
+    return _span;
+}
+
+template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<typename Dim>
+typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSpan<Dim>>::type
+Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::span() const
+{
+    return BaseT::template span<Dim>();
 }
 
 template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
@@ -608,6 +646,19 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( internal_construct_
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
+template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename... Dimensions2>
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice(
+               internal_construct_tag const&
+             , Parent& parent
+             , Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimensions2...> const& slice)
+    : _span(slice.template span<Dimension>())
+    , _base_span(parent.template size<Dimension>())
+    , _parent(&parent)
+{
+}
+
+
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
 template<typename... Dims>
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( typename std::enable_if<!arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type
      , Slice const& copy
@@ -711,6 +762,23 @@ typename std::enable_if<(!std::is_same<Dim, Dimension>::value)
                        , DimensionSize<Dim>>::type Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::dimension() const
 {
     return DimensionSize<Dim>(1);
+}
+
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
+template<typename Dim>
+typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSpan<Dimension>>::type Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::span() const
+{
+    return _span;
+}
+
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
+template<typename Dim>
+constexpr
+typename std::enable_if<((!std::is_same<Dim, Dimension>::value)
+                          && (!has_dimension<typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Parent, Dim>::value))
+                        , DimensionSpan<Dim>>::type Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::span() const
+{
+    return DimensionSpan<Dim>(DimensionSize<Dim>(0));;
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>

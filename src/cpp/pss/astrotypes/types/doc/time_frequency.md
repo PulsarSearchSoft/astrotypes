@@ -69,10 +69,17 @@ auto reduced_channels_slice = slice_2.slice(DimensionIndex<Frequency>(10), Dimen
 
 ~~~~
 
+## Overlay slices onto other objects
+Use the overlay method when you have a slice from one data structure and you want the equivalent slice from another data structure.
+~~~~{.cpp}
+// where slice is a Slice object from another data structure
+auto equivalent_slice = my_data_structure.overlay(slice);
+~~~~
+
 ## Overlay slice iterators on other objects
 The slice iterator allows you to smoothly iterate across a slice, automatically calculating the position
 in the data structure. You can use the same iterator to access elements in alternative data structures
-(with the same dimensionality) using the slice iterator overlays.
+(with the same dimensionality - n.b. must also be of the same type, a temporary restriction) using the slice iterator overlays.
 
 ~~~~{.cpp}
     uint16_t& first = *slice.begin();                     // the first element of the slice

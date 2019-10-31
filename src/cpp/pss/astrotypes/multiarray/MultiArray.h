@@ -162,6 +162,16 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         ConstSliceType slice(DimensionSpan<Dim> const& range, DimensionSpan<Dims> const&...) const;
 
         /**
+         * @brief overlay the Slice from another data structure creqting the equivalent slice for this structure
+         */
+        template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... Dimensions>
+        SliceType overlay(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, Dimensions...>> const&);
+
+        template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... Dimensions>
+        ConstSliceType overlay(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, Dimensions...>> const&) const;
+
+
+        /**
          * @brief resize the array in the specified dimension
          */
         template<typename... Dimensions>

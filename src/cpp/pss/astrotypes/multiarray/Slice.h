@@ -138,15 +138,21 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
     public:
         Slice();
 
+        /// constructor - span matching Dimension provided
         template<typename Dim, typename... Dims>
         Slice( typename std::enable_if<arg_helper<Dimension, Dim, Dims...>::value, Parent&>::type parent
              , DimensionSpan<Dim> const&
              , DimensionSpan<Dims> const& ...);
 
+        /// constructor - default span for Dimension
         template<typename Dim, typename... Dims>
         Slice( typename std::enable_if<!arg_helper<Dimension, Dim, Dims...>::value, Parent&>::type parent
              , DimensionSpan<Dim> const&
              , DimensionSpan<Dims> const& ...);
+
+        /// constructor - spans extracted from provided Slice with exact same dimensions as this slice
+        template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2>
+        Slice( Parent&, Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimension, Dimensions...> const& slice);
 
         static constexpr std::size_t rank = 1 + sizeof...(Dimensions);
 
@@ -189,6 +195,18 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         template<typename Dim>
         typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSize<Dim>>::type
         dimension() const;
+
+        /**
+         * @brief the span of the slice in the specified dimension
+         * @details the offset and the size of the specified dimension
+         */
+        template<typename Dim>
+        typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSpan<Dimension>>::type
+        span() const;
+
+        template<typename Dim>
+        typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSpan<Dim>>::type
+        span() const;
 
         /**
          * @brief Take a slice in the specified dimension with a span of 1
@@ -293,6 +311,11 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         Slice( internal_construct_tag const&
              , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Parent&>::type parent
              , DimensionSpan<Dims> const& ... spans);
+
+        template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename... Dimensions2>
+        Slice( internal_construct_tag const&
+             , Parent&
+             , Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimensions2...> const& slice);
 
         template<typename... Dims>
         Slice( copy_resize_construct_tag const&
@@ -439,7 +462,7 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
 
         /**
          * @brief return the size of the slice in the specified dimension (will always be one)
-         * @detials case where the Dim is not represented ecxplicitly by the Slice, but by the Parent
+         * @detials case where the Dim is not represented explicitly by the Slice, but by the Parent
          */
         template<typename Dim>
         constexpr
@@ -447,6 +470,22 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
                                && has_dimension<Parent, Dim>::value
                                , DimensionSize<Dim>>::type
         dimension() const;
+
+        /**
+         * @ brief return the size of the slice in the specified span
+         */
+        template<typename Dim>
+        typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSpan<Dimension>>::type
+        span() const;
+
+        /**
+         * @ brief return the span of the slice in the specified dimension that is not supported (will always be zero)
+         */
+        template<typename Dim>
+        constexpr
+        typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (!has_dimension<Parent, Dim>::value))
+                               , DimensionSpan<Dim>>::type
+        span() const;
 
         /**
          * @brief return the value at the position specified in this Dimension
@@ -531,6 +570,11 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
         Slice( internal_construct_tag const&
              , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Parent&>::type parent
              , DimensionSpan<Dims> const&... spans);
+
+        template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename... Dimensions2>
+        Slice( internal_construct_tag const&
+             , Parent&
+             , Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimensions2...> const& slice);
 
         template<typename... Dims>
         Slice( typename std::enable_if<!arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type

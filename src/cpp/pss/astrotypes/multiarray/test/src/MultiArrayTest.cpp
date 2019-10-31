@@ -220,6 +220,78 @@ TEST_F(MultiArrayTest, test_two_dimension_transpose_constructor)
     }
 }
 
+
+namespace {
+template<typename NumericalRep1, typename NumericalRep2>
+struct OverlayTester
+{
+    static inline void exec()
+    {
+        DimensionSize<DimensionA> size_a(6);
+        DimensionSize<DimensionB> size_b(10);
+        TestMultiArray<NumericalRep1, DimensionA, DimensionB> ab(size_a, size_b);
+        const TestMultiArray<NumericalRep1, DimensionA, DimensionB> ab_const(size_a, size_b);
+
+        for(DimensionSize<DimensionA> test_size_a(0); test_size_a < size_a; ++test_size_a) {
+            for(DimensionSize<DimensionB> test_size_b(0); test_size_b < size_b; ++test_size_b) {
+                auto const slice = ab.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(0), test_size_a)
+                        , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(0), test_size_b));
+                auto const const_slice = ab_const.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(0), test_size_a)
+                                                 ,DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(0), test_size_b));
+
+                TestMultiArray<NumericalRep2, DimensionA, DimensionB> ab_2(size_a, size_b);
+                {
+                    // non const type with SliceType
+                    auto overlay = ab_2.overlay(slice);
+                    ASSERT_EQ(&overlay.parent(), &ab_2);
+                    ASSERT_EQ(overlay.data_size(), slice.data_size());
+                    ASSERT_EQ(overlay.template dimension<DimensionA>(), slice.template dimension<DimensionA>());
+                    ASSERT_EQ(overlay.template dimension<DimensionB>(), slice.template dimension<DimensionB>());
+                }
+                {
+                    // verify non const type with ConstSlice
+                    auto const_overlay = ab_2.overlay(const_slice);
+                    ASSERT_EQ(&const_overlay.parent(), &ab_2);
+                    ASSERT_EQ(const_overlay.data_size(), const_slice.data_size());
+                    ASSERT_EQ(const_overlay.template dimension<DimensionA>(), const_slice.template dimension<DimensionA>());
+                    ASSERT_EQ(const_overlay.template dimension<DimensionB>(), const_slice.template dimension<DimensionB>());
+                }
+
+                const TestMultiArray<NumericalRep2, DimensionA, DimensionB> ab_2_const(size_a, size_b);
+                {
+                    // verify we can overlay a SliceType onto a const type
+                    auto const_overlay = ab_2_const.overlay(slice);
+                    ASSERT_EQ(&const_overlay.parent(), &ab_2_const);
+                    ASSERT_EQ(const_overlay.data_size(), slice.data_size());
+                    ASSERT_EQ(const_overlay.template dimension<DimensionA>(), slice.template dimension<DimensionA>());
+                    ASSERT_EQ(const_overlay.template dimension<DimensionB>(), slice.template dimension<DimensionB>());
+                }
+                {
+                    // verify we can overlay a ConstSliceType onto a const type
+                    auto const_overlay = ab_2_const.overlay(const_slice);
+                    ASSERT_EQ(&const_overlay.parent(), &ab_2_const);
+                    ASSERT_EQ(const_overlay.data_size(), const_slice.data_size());
+                    ASSERT_EQ(const_overlay.template dimension<DimensionA>(), const_slice.template dimension<DimensionA>());
+                    ASSERT_EQ(const_overlay.template dimension<DimensionB>(), const_slice.template dimension<DimensionB>());
+                    ASSERT_EQ(const_overlay.template span<DimensionA>(), const_slice.template span<DimensionA>());
+                    ASSERT_EQ(const_overlay.template span<DimensionB>(), const_slice.template span<DimensionB>());
+                }
+            }
+        }
+    }
+};
+} // namespace
+
+TEST_F(MultiArrayTest, test_two_dimension_overlay_slice_same_types)
+{
+    OverlayTester<int, int>::exec();
+}
+
+TEST_F(MultiArrayTest, test_two_dimension_overlay_slice_different_numerical_types)
+{
+    OverlayTester<int, float>::exec();
+}
+
 TEST_F(MultiArrayTest, test_three_dimension_size)
 {
     DimensionSize<DimensionA> size_a(10);
