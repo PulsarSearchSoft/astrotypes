@@ -111,7 +111,7 @@ class ReducedRankSlice<SliceType, ExcludedDim, 1> : public SliceType
 
     public:
         ReducedRankSlice(SliceType const& s) : BaseT(s) {}
-        ReducedRankSlice(SliceType&& s) : BaseT(std::forward<SliceType>(s)) {}
+        ReducedRankSlice(SliceType&& s) : BaseT(std::move(s)) {}
 
         /**
          * @brief iterator pointing to the first element in the slice

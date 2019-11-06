@@ -56,6 +56,16 @@ struct arg_helper<T, Dim, Dims...> : public arg_helper<T, Dims...>
 };
 
 /**
+ * @brief struct ot help determine if a sepcied type is a slice
+ * @details
+ * @code
+ * typename std::enable_if<is_slice, SomeType>::type
+ * @endcode
+ */
+template<typename T>
+struct is_slice;
+
+/**
  * @class Slice
  * @brief
  *      Representation of a Slice through a Data Array
@@ -100,6 +110,14 @@ struct SliceTraitsHelper<InternalSliceTraits<TraitsT, D>>
     typedef typename InternalSliceTraits<TraitsT, D>::Parent Parent;
 };
 
+template<bool Value>
+struct Flip
+{
+    constexpr static bool const value = !Value;
+};
+static_assert(Flip<true>::value==false, "Flip broken");
+static_assert(Flip<false>::value==true, "Flip broken");
+
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 //class Slice : private Slice<is_const, SliceTraitsT, SliceMixin, Dimensions...>
 class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimension>, SliceMixin, Dimensions...>
@@ -107,6 +125,8 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         typedef typename SliceTraitsHelper<SliceTraitsT>::Parent ParentT;
         typedef Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimension>, SliceMixin, Dimensions...> BaseT;
         typedef Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...> SelfType;
+        typedef Slice<Flip<is_const>::value, SliceTraitsT, SliceMixin, Dimension, Dimensions...> FlipConstSelfType;
+        friend FlipConstSelfType;
         typedef typename ParentT::value_type value_type;
         typedef Dimension SelfDimension;
 
@@ -151,8 +171,8 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
              , DimensionSpan<Dims> const& ...);
 
         /// constructor - spans extracted from provided Slice with exact same dimensions as this slice
-        template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2>
-        Slice( Parent&, SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimension, Dimensions...>> const& slice);
+        template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename... SliceDimensions>
+        Slice( Parent&, SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDimensions...>> const& slice);
 
         static constexpr std::size_t rank = 1 + sizeof...(Dimensions);
 
@@ -240,13 +260,12 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         slice(DimensionSpan<Dims> const&... spans);
 
         template<typename... Dims>
-        typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice<true, SliceTraitsT, SliceMixin, Dimension, Dimensions...>>::type
+        typename std::enable_if<arg_helper<Dimension, Dims...>::value, ConstSliceType>::type
         slice(DimensionSpan<Dims> const&... spans) const;
 
         template<typename... Dims>
-        typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice<true, SliceTraitsT, SliceMixin, Dimension, Dimensions...>>::type
+        typename std::enable_if<!arg_helper<Dimension, Dims...>::value, ConstSliceType>::type
         slice(DimensionSpan<Dims> const&... spans) const;
-
 
         /**
          * @brief iterator pointing to the first element in the slice
@@ -287,6 +306,14 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
 
         template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
         template<typename IteratorDifferenceT> IteratorDifferenceT diff_it(IteratorDifferenceT const& diff) const;
+
+        template<typename Dim>
+        typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSpan<Dimension>>::type
+        parent_span() const;
+
+        template<typename Dim>
+        typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSpan<Dim>>::type
+        parent_span() const;
 
         // return the size of memory occupied by the lowest dimension
         std::size_t contiguous_span() const;
@@ -364,7 +391,7 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         friend typename const_iterator::ImplT;
 
     private:
-        DimensionSpan<Dimension> _span;
+        DimensionSpan<Dimension> _span; // local span
         DimensionSize<Dimension> _base_span;
         parent_iterator _ptr;  // start of block
 };
@@ -375,6 +402,10 @@ template<bool is_const, typename SliceTraitsT, template<typename> class SliceMix
 class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
 {
         typedef Slice<is_const, SliceTraitsT, SliceMixin, Dimension> SelfType;
+        typedef Slice<Flip<is_const>::value, SliceTraitsT, SliceMixin, Dimension> FlipConstSelfType;
+        friend FlipConstSelfType;
+        friend SliceMixin<FlipConstSelfType>;
+
         typedef typename SliceTraitsHelper<SliceTraitsT>::Parent ParentT;
         typedef typename ParentT::const_iterator parent_const_iterator;
         typedef typename std::conditional<is_const, parent_const_iterator, typename ParentT::iterator>::type parent_iterator;
@@ -472,19 +503,10 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
         dimension() const;
 
         /**
-         * @ brief return the size of the slice in the specified span
+         * @brief return the size of the slice in the specified span relative to the parent
          */
         template<typename Dim>
         typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSpan<Dimension>>::type
-        span() const;
-
-        /**
-         * @ brief return the span of the slice in the specified dimension that is not supported (will always be zero)
-         */
-        template<typename Dim>
-        constexpr
-        typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (!has_dimension<Parent, Dim>::value))
-                               , DimensionSpan<Dim>>::type
         span() const;
 
         /**
@@ -540,8 +562,6 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
         template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
         template<typename IteratorDifferenceT> static IteratorDifferenceT diff_it(IteratorDifferenceT const& diff);
 
-        // return the size of memory occupied by the lowest dimension
-        std::size_t contiguous_span() const;
 
         // same as size() - to support base_span calls from higher dimensions
         std::size_t base_span() const;
@@ -559,6 +579,19 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
         SelfType& operator+=(DimensionSize<Dimension> const&);
         SelfType& operator+=(std::size_t n);
 
+        template<typename Dim>
+        typename std::enable_if<std::is_same<Dim, Dimension>::value , DimensionSpan<Dim>>::type
+        parent_span() const;
+
+        /**
+         * @ brief return the span of the slice in the specified dimension relative to the parent
+         * @details  specialisation for a slice that
+         *           does not have this Dimension, but come from a parent class that does
+         */
+        template<typename Dim>
+        typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (has_dimension<Parent, Dim>::value))
+                               , DimensionSpan<Dim>>::type
+        parent_span() const;
 
     protected:
         template<typename... Dims>
@@ -585,6 +618,10 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
         Slice( typename std::enable_if<arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type
              , Slice const& copy
              , DimensionSpan<Dims> const&... spans );
+
+    private: //deprecated
+        // return the size of memory occupied by the lowest dimension
+        std::size_t contiguous_span() const;
 
     private:
         DimensionSpan<Dimension> _span;

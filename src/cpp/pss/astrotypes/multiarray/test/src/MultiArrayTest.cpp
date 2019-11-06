@@ -164,6 +164,48 @@ TEST_F(MultiArrayTest, test_two_dimension_1_slice_operator_DimensionA_const_iter
     ASSERT_EQ(n-(unsigned)size_b, (unsigned)size_b);
 }
 
+TEST_F(MultiArrayTest, test_two_dimension_slice_offset)
+{
+    DimensionSize<DimensionA> size_a(30);
+    DimensionSize<DimensionB> size_b(20);
+    TestMultiArray<int, DimensionA, DimensionB> ma(size_a, size_b);
+    const TestMultiArray<int, DimensionA, DimensionB> ma_const(size_a, size_b);
+
+    for(DimensionIndex<DimensionA> test_index_a(0); test_index_a < ma.template dimension<DimensionA>(); ++test_index_a)
+    {
+        for(DimensionIndex<DimensionB> test_index_b(0); test_index_b < ma.template dimension<DimensionB>(); ++test_index_b)
+        {
+            SCOPED_TRACE(test_index_a);
+            SCOPED_TRACE(test_index_b);
+            auto slice = ma.slice(DimensionSpan<DimensionA>(test_index_a, DimensionSize<DimensionA>(1))
+                                 ,DimensionSpan<DimensionB>(test_index_b, DimensionSize<DimensionB>(1)));
+
+            ASSERT_EQ(ma.template offset<DimensionA>(slice), test_index_a);
+            ASSERT_EQ(ma.template offset<DimensionB>(slice), test_index_b);
+            auto const_slice = ma_const.slice(DimensionSpan<DimensionA>(test_index_a, DimensionSize<DimensionA>(1))
+                                             ,DimensionSpan<DimensionB>(test_index_b, DimensionSize<DimensionB>(1)));
+            ASSERT_EQ(ma.template offset<DimensionA>(const_slice), test_index_a);
+            ASSERT_EQ(ma.template offset<DimensionB>(const_slice), test_index_b);
+
+            auto red_dim_slice=ma[test_index_a];
+            ASSERT_EQ(ma.template offset<DimensionA>(red_dim_slice), test_index_a);
+            ASSERT_EQ(ma.template offset<DimensionB>(red_dim_slice), DimensionIndex<DimensionB>(0));
+
+            auto const_red_dim_slice=ma_const[test_index_a];
+            ASSERT_EQ(ma.template offset<DimensionA>(const_red_dim_slice), test_index_a);
+            ASSERT_EQ(ma.template offset<DimensionB>(const_red_dim_slice), DimensionIndex<DimensionB>(0));
+
+            auto red_dim_slice_b=ma[test_index_b];
+            ASSERT_EQ(ma.template offset<DimensionA>(red_dim_slice_b), DimensionIndex<DimensionA>(0));
+            ASSERT_EQ(ma.template offset<DimensionB>(red_dim_slice_b), test_index_b);
+
+            auto const_red_dim_slice_b=ma_const[test_index_b];
+            ASSERT_EQ(ma.template offset<DimensionA>(const_red_dim_slice_b), DimensionIndex<DimensionA>(0));
+            ASSERT_EQ(ma.template offset<DimensionB>(const_red_dim_slice_b), test_index_b);
+        }
+    }
+}
+
 /*
 TEST_F(MultiArrayTest, test_two_dimension_slice_range_outside_of_array_DimensionA)
 {
@@ -223,12 +265,12 @@ TEST_F(MultiArrayTest, test_two_dimension_transpose_constructor)
 
 namespace {
 template<typename NumericalRep1, typename NumericalRep2>
-struct OverlayTester
+struct OverlayTester2D
 {
     static inline void exec()
     {
-        DimensionSize<DimensionA> size_a(6);
-        DimensionSize<DimensionB> size_b(10);
+        DimensionSize<DimensionA> size_a(3);
+        DimensionSize<DimensionB> size_b(4);
         TestMultiArray<NumericalRep1, DimensionA, DimensionB> ab(size_a, size_b);
         const TestMultiArray<NumericalRep1, DimensionA, DimensionB> ab_const(size_a, size_b);
 
@@ -241,55 +283,104 @@ struct OverlayTester
 
                 TestMultiArray<NumericalRep2, DimensionA, DimensionB> ab_2(size_a, size_b);
                 {
-                    // non const type with SliceType
+                    SCOPED_TRACE("non const type with SliceType");
                     auto overlay = ab_2.overlay(slice);
                     ASSERT_EQ(&overlay.parent(), &ab_2);
-                    ASSERT_EQ(overlay.data_size(), slice.data_size());
-                    ASSERT_EQ(overlay.template dimension<DimensionA>(), slice.template dimension<DimensionA>());
-                    ASSERT_EQ(overlay.template dimension<DimensionB>(), slice.template dimension<DimensionB>());
+                    verify_dimensions(overlay, slice);
                 }
                 {
-                    // verify non const type with ConstSlice
+                    SCOPED_TRACE("verify non const type with ConstSlice");
                     auto const_overlay = ab_2.overlay(const_slice);
                     ASSERT_EQ(&const_overlay.parent(), &ab_2);
-                    ASSERT_EQ(const_overlay.data_size(), const_slice.data_size());
-                    ASSERT_EQ(const_overlay.template dimension<DimensionA>(), const_slice.template dimension<DimensionA>());
-                    ASSERT_EQ(const_overlay.template dimension<DimensionB>(), const_slice.template dimension<DimensionB>());
+                    verify_dimensions(const_overlay, const_slice);
                 }
 
                 const TestMultiArray<NumericalRep2, DimensionA, DimensionB> ab_2_const(size_a, size_b);
                 {
-                    // verify we can overlay a SliceType onto a const type
+                    SCOPED_TRACE("verify we can overlay a SliceType onto a const type");
                     auto const_overlay = ab_2_const.overlay(slice);
                     ASSERT_EQ(&const_overlay.parent(), &ab_2_const);
-                    ASSERT_EQ(const_overlay.data_size(), slice.data_size());
-                    ASSERT_EQ(const_overlay.template dimension<DimensionA>(), slice.template dimension<DimensionA>());
-                    ASSERT_EQ(const_overlay.template dimension<DimensionB>(), slice.template dimension<DimensionB>());
+                    verify_dimensions(const_overlay, slice);
                 }
                 {
-                    // verify we can overlay a ConstSliceType onto a const type
+                    SCOPED_TRACE("verify we can overlay a ConstSliceType onto a const type");
                     auto const_overlay = ab_2_const.overlay(const_slice);
                     ASSERT_EQ(&const_overlay.parent(), &ab_2_const);
-                    ASSERT_EQ(const_overlay.data_size(), const_slice.data_size());
-                    ASSERT_EQ(const_overlay.template dimension<DimensionA>(), const_slice.template dimension<DimensionA>());
-                    ASSERT_EQ(const_overlay.template dimension<DimensionB>(), const_slice.template dimension<DimensionB>());
-                    ASSERT_EQ(const_overlay.template span<DimensionA>(), const_slice.template span<DimensionA>());
-                    ASSERT_EQ(const_overlay.template span<DimensionB>(), const_slice.template span<DimensionB>());
+                    verify_dimensions(const_overlay, const_slice);
+                }
+
+                // slice of slice
+                for(DimensionIndex<DimensionA> test_index_a(0); test_index_a < slice.template dimension<DimensionA>(); ++test_index_a)
+                {
+                    SCOPED_TRACE("test_index_a = " + std::to_string(test_index_a));
+                    for(DimensionIndex<DimensionB> test_index_b(0); test_index_b < slice.template dimension<DimensionB>(); ++test_index_b)
+                    {
+                        SCOPED_TRACE("test_index_b = " + std::to_string(test_index_b));
+                        {
+                            SCOPED_TRACE("2D slice of a 2d slice");
+                            auto slice_of_slice = slice.slice(DimensionSpan<DimensionA>(test_index_a, slice.template dimension<DimensionA>())
+                                                       ,DimensionSpan<DimensionB>(test_index_b, slice.template dimension<DimensionB>()));
+                            auto overlay = ab_2.overlay(slice_of_slice);
+                            verify_dimensions(overlay, slice_of_slice);
+                        }
+
+                        // reduced dimension slices
+                        auto slice_of_slice = slice[test_index_a];
+                        auto slice_of_const_slice = const_slice[test_index_a];
+                        {
+                            SCOPED_TRACE("non const type with reduced dimension slice of slice");
+                            auto overlay = ab_2.overlay(slice_of_slice);
+                            ASSERT_EQ(&overlay.parent(), &ab_2);
+                            verify_dimensions(overlay, slice_of_slice);
+                        }
+                        {
+                            SCOPED_TRACE("non const type with const reduced dimension slice of slice");
+                            auto overlay = ab_2.overlay(slice_of_const_slice);
+                            ASSERT_EQ(&overlay.parent(), &ab_2);
+                            verify_dimensions(overlay, slice_of_const_slice);
+                        }
+                        {
+                            SCOPED_TRACE("const type with reduced dimension slice of slice");
+                            auto overlay = ab_2_const.overlay(slice_of_slice);
+                            ASSERT_EQ(&overlay.parent(), &ab_2_const);
+                            verify_dimensions(overlay, slice_of_slice);
+                        }
+                        {
+                            SCOPED_TRACE("const type with const reduced dimension slice of slice");
+                            auto overlay = ab_2_const.overlay(slice_of_const_slice);
+                            ASSERT_EQ(&overlay.parent(), &ab_2_const);
+                            verify_dimensions(overlay, slice_of_const_slice);
+                        }
+                    }
                 }
             }
         }
+    }
+
+    template<typename T1, typename T2>
+    static
+    void verify_dimensions(T1 const& t1, T2 const& t2) {
+        ASSERT_EQ(t1.data_size(), t2.data_size());
+        ASSERT_EQ(t1.template dimension<DimensionA>(), t2.template dimension<DimensionA>());
+        ASSERT_EQ(t1.template dimension<DimensionB>(), t2.template dimension<DimensionB>());
+        //ASSERT_EQ(t1.template span<DimensionA>(), t2.template span<DimensionA>());
+        ASSERT_EQ(t1.template span<DimensionB>(), t2.template span<DimensionB>());
+        ASSERT_EQ(std::distance(t1.begin(), t1.end())
+                 ,std::distance(t2.begin(), t2.end()));
+        EXPECT_EQ(&*t1.begin() - &*t1.parent().begin()
+                 ,&*t2.begin() - &*t2.parent().begin());
     }
 };
 } // namespace
 
 TEST_F(MultiArrayTest, test_two_dimension_overlay_slice_same_types)
 {
-    OverlayTester<int, int>::exec();
+    OverlayTester2D<int, int>::exec();
 }
 
 TEST_F(MultiArrayTest, test_two_dimension_overlay_slice_different_numerical_types)
 {
-    OverlayTester<int, float>::exec();
+    OverlayTester2D<int, float>::exec();
 }
 
 TEST_F(MultiArrayTest, test_three_dimension_size)

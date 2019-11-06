@@ -222,7 +222,7 @@ TEST_F(TimeFrequencyTest, test_freq_time_channel)
 
     FrequencyTime<uint8_t> const& tf2 = ft1;
     typename FrequencyTime<uint8_t>::ConstChannel c2 = tf2.channel(5);
-    ASSERT_EQ(c2.size<Frequency>(), DimensionSize<Frequency>(0));
+    ASSERT_EQ(c2.size<Frequency>(), DimensionSize<Frequency>(1));
     ASSERT_EQ(c2.size<Time>(), time_size);
 
     // verify channel interface works for slices

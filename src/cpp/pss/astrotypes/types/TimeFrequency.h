@@ -171,7 +171,6 @@ class FrequencyTime : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon,
         template<typename TimeFrequencyType, typename Enable=typename std::enable_if<
                    has_exact_dimensions<TimeFrequencyType, units::Time, units::Frequency>::value>::type>
         FrequencyTime(TimeFrequencyType const&);
-
         ~FrequencyTime();
 };
 

@@ -38,6 +38,7 @@ namespace astrotypes {
  * @tparam T the type of object to be stored in the array (e.g. float, int, Stokes, etc)
  *
  */
+
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... OtherDimensions>
 class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
 {
@@ -66,6 +67,16 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
           */
         template<typename Dim>
         struct ConstOperatorSliceType;
+
+        /**
+          * @brief provides a template to determine the returned type of overlay slices
+          *  @tparam SliceInputType the type of slice used to generate the overlay slice
+          *  @param type The type that will we returned by the overlap(T) method.
+          */
+        template<typename SliceInputType>
+        struct SliceReturnType;
+        template<typename SliceInputType>
+        struct ConstSliceReturnType;
 
         typedef SliceMixin<Slice<false, SelfType, SliceMixin, FirstDimension, OtherDimensions...>> SliceType;
         typedef SliceMixin<Slice<true, SelfType, SliceMixin, FirstDimension, OtherDimensions...>> ConstSliceType;
@@ -163,13 +174,35 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
 
         /**
          * @brief overlay the Slice from another data structure creqting the equivalent slice for this structure
+         * @detials specialisation where Dimensions match that of the slice.
          */
-        template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... Dimensions>
-        SliceType overlay(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, Dimensions...>> const&);
+        template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2>
+        SliceType overlay(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, FirstDimension, OtherDimensions...>> const&);
 
-        template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... Dimensions>
-        ConstSliceType overlay(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, Dimensions...>> const&) const;
+        template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2>
+        SliceType overlay(Slice<is_const, SliceTraitsT, SliceMixin2, FirstDimension, OtherDimensions...> const&);
 
+        template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2>
+        ConstSliceType overlay(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, FirstDimension, OtherDimensions...>> const&) const;
+
+        template<typename SliceArgType>
+        typename SliceReturnType<SliceArgType>::type overlay(SliceArgType const& slice);
+
+        template<typename SliceArgType>
+        typename ConstSliceReturnType<SliceArgType>::type overlay(SliceArgType const& slice) const;
+
+        /**
+         * @brief The offset position of the beginning of the provided slice
+         */
+        template<typename Dimension, typename SliceArgumentType>
+        typename std::enable_if<is_slice<SliceArgumentType>::value, DimensionIndex<Dimension>>::type
+        offset(SliceArgumentType const&) const;
+
+        /**
+         * @brief The offset position of the beginning of the provided slice - mixin specialisation
+         */
+        template<typename Dimension, bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... SliceDimensions>
+        DimensionIndex<Dimension> offset(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDimensions...>> const& slice) const;
 
         /**
          * @brief resize the array in the specified dimension
@@ -253,6 +286,29 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         template<typename SelfSlice, typename OtherSlice>
         void do_transpose(SelfSlice&, OtherSlice const&);
 
+        template<typename Dimension, typename SliceArgumentType>
+        typename std::enable_if<has_dimension_strict<SliceArgumentType, Dimension>::value
+                               && is_slice<SliceArgumentType>::value
+                               , DimensionIndex<Dimension>>::type
+        do_offset(SliceArgumentType const& slice) const;
+
+        template<typename Dimension, typename SliceArgumentType>
+        typename std::enable_if<!has_dimension_strict<SliceArgumentType, Dimension>::value
+                               && is_slice<SliceArgumentType>::value
+                               , DimensionIndex<Dimension>>::type
+        do_offset(SliceArgumentType const& slice) const;
+
+
+        template<typename Dimension>
+        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, DimensionIndex<Dimension>>::type
+        calculate_offset(std::size_t delta) const;
+
+        template<typename Dimension>
+        typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, DimensionIndex<Dimension>>::type
+        calculate_offset(std::size_t delta) const;
+
+        std::size_t block_size() const;
+
     private:
         DimensionSize<FirstDimension>     _size;
 };
@@ -281,6 +337,11 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         template<typename Dim>
         struct ConstOperatorSliceType;
 
+        /**
+          * @brief provides a template to determine the returned type of overlay slices
+          *  @tparam SliceInputType the type of slice used to generate the overlay slice
+          *  @param type The type that will we returned by the overlap(T) method.
+          */
         typedef SliceMixin<Slice<false, SelfType, SliceMixin, FirstDimension>> SliceType;
         typedef SliceMixin<Slice<true, SelfType, SliceMixin, FirstDimension>> ConstSliceType;
         typedef typename Container::iterator iterator;
@@ -304,6 +365,15 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
          */
         reference_type operator[](DimensionIndex<FirstDimension> index);
         const_reference_type operator[](DimensionIndex<FirstDimension> index) const;
+
+        /**
+         * @brief The offset position of the beginning of the provided slice
+         */
+        template<typename Dimension, bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... SliceDimensions>
+        DimensionIndex<Dimension> offset(Slice<is_const, SliceTraitsT, SliceMixin2, SliceDimensions...> const& slice) const;
+
+        template<typename Dimension, bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... SliceDimensions>
+        DimensionIndex<Dimension> offset(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDimensions...>> const& slice) const;
 
         /// size
         template<typename Dim>
@@ -385,6 +455,11 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
 
         template<typename SelfSlice, typename OtherSlice>
         void do_transpose(SelfSlice&, OtherSlice const&);
+
+        template<typename Dimension>
+        DimensionIndex<Dimension> calculate_offset(std::size_t delta) const;
+
+        std::size_t block_size() const;
 
     private:
         DimensionSize<FirstDimension> _size;

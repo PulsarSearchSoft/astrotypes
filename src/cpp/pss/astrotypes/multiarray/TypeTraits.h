@@ -26,9 +26,6 @@
 #include <type_traits>
 #include <tuple>
 
-#include <type_traits>
-
-
 namespace pss {
 namespace astrotypes {
 
@@ -56,7 +53,7 @@ static_assert(!logical_and<std::true_type, std::true_type, std::false_type>::val
 
 /**
  * @brief return true if the Dimension is represented in the structure @tparam T
- * @tparam Dimension  : the dimension to find 
+ * @tparam Dimension  : the dimension to find
  * @param T : the structure to search for the Dimension
  * @code
  * /// example of a definition for a function that only supports types that support the Time dimension
@@ -74,6 +71,24 @@ struct has_dimension : public std::false_type
 
 template<typename T >
 struct has_dimension<T, T> : public std::true_type
+{
+};
+
+/**
+ * @brief return true if the Dimension is explicitly represented in the structure @tparam T
+ * @tparam Dimension  : the dimension to find
+ * @param T : the structure to search for the Dimension
+ * @details :
+ *          this differs from has_dimension in that it will return false when the Dimension is implied
+ *          by its type rather than being a core part of the implementation
+ */
+template<typename T, typename Dimension>
+struct has_dimension_strict : public has_dimension<T, Dimension>
+{
+};
+
+template<typename T, typename Dimension, template<typename> class Mixin>
+struct has_dimension_strict<Mixin<T>, Dimension> : public has_dimension_strict<T, Dimension>
 {
 };
 
@@ -171,7 +186,7 @@ struct find_type<std::tuple<T2, Ts...>, T>
 };
 
 /**
- * @brief insert values into a tuple 
+ * @brief insert values into a tuple
  * @details tuple must not repeat types
  * @code
  * std::tuple<A, B> tuple;

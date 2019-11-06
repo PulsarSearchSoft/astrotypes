@@ -202,6 +202,22 @@ MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::operator[](Dime
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename SliceType>
+struct MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::SliceReturnType
+{
+    typedef typename SliceReturnTypeHelper<false, MultiArray, SliceType>::type type;
+    typedef typename SliceReturnTypeHelper<false, MultiArray, SliceType>::slice_type slice_type;
+};
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename SliceType>
+struct MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::ConstSliceReturnType
+{
+    typedef typename SliceReturnTypeHelper<true, MultiArray, SliceType>::type type;
+    typedef typename SliceReturnTypeHelper<true, MultiArray, SliceType>::slice_type slice_type;
+};
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<has_dimension<MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>, Dim>::value
 && !std::is_same<Dim, FirstDimension>::value, typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::template OperatorSliceType<Dim>::type>::type
@@ -225,17 +241,110 @@ typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::SliceT
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... SliceDimensions>
-typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::SliceType MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::overlay(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDimensions...>> const& slice)
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2>
+typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::SliceType MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::overlay(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, FirstDimension, Dimensions...>> const& slice)
 {
     return SliceType(*this, slice);
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... SliceDimensions>
-typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::ConstSliceType MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::overlay(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDimensions...>> const& slice) const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2>
+typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::SliceType MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::overlay(Slice<is_const, SliceTraitsT, SliceMixin2, FirstDimension, Dimensions...> const& slice)
+{
+    return SliceType(*this, slice);
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2>
+typename MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::ConstSliceType MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::overlay(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, FirstDimension, Dimensions...>> const& slice) const
 {
     return ConstSliceType(*this, slice);
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... OtherDimensions>
+template<typename SliceArgType>
+typename MultiArray<Alloc, T, SliceMixin, FirstDimension, OtherDimensions...>::template SliceReturnType<SliceArgType>::type MultiArray<Alloc, T, SliceMixin, FirstDimension, OtherDimensions...>::overlay(SliceArgType const& slice)
+{
+    typedef typename SliceReturnType<SliceArgType>::type ReturnType;
+    typedef typename SliceReturnType<SliceArgType>::slice_type IntSliceType;
+    return ReturnType(IntSliceType(*this, slice));
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... OtherDimensions>
+template<typename SliceArgType>
+typename MultiArray<Alloc, T, SliceMixin, FirstDimension, OtherDimensions...>::template ConstSliceReturnType<SliceArgType>::type MultiArray<Alloc, T, SliceMixin, FirstDimension, OtherDimensions...>::overlay(SliceArgType const& slice) const
+{
+    typedef typename ConstSliceReturnType<SliceArgType>::type ReturnType;
+    typedef typename ConstSliceReturnType<SliceArgType>::slice_type IntSliceType;
+    return ReturnType(IntSliceType(*this, slice));
+}
+/*
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... OtherDimensions>
+template<typename SliceType>
+typename MultiArray<Alloc, T, SliceMixin, FirstDimension, OtherDimensions...>::template SliceReturnType<SliceType>::type MultiArray<Alloc, T, SliceMixin, FirstDimension, OtherDimensions...>::overlay(SliceType const& slice)
+{
+    typename SliceReturnType<SliceType>::type ReturnType;
+    return ReturnType(*this, slice);
+}
+*/
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dimension, typename SliceArgumentType>
+typename std::enable_if<has_dimension_strict<SliceArgumentType, Dimension>::value
+                     && is_slice<SliceArgumentType>::value
+                      , DimensionIndex<Dimension>>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::do_offset(SliceArgumentType const& slice) const
+{
+    return slice.template span<Dimension>().start();
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dimension, typename SliceArgumentType>
+typename std::enable_if<!has_dimension_strict<SliceArgumentType, Dimension>::value
+                     && is_slice<SliceArgumentType>::value
+                      , DimensionIndex<Dimension>>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::do_offset(SliceArgumentType const& slice) const
+{
+    auto delta = &*slice.cbegin() - &*slice.parent().cbegin();
+    return this->template calculate_offset<Dimension>(delta);
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dimension, typename SliceArgumentType>
+inline typename std::enable_if<is_slice<SliceArgumentType>::value, DimensionIndex<Dimension>>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::offset(SliceArgumentType const& slice) const
+{
+    return this->do_offset<Dimension>(slice);
+}
+
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dimension, bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... SliceDimensions>
+inline DimensionIndex<Dimension> MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::offset(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDimensions...>> const& slice) const
+{
+    return this->template offset<Dimension>(static_cast<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDimensions...> const&>(slice));
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dimension>
+typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, DimensionIndex<Dimension>>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::calculate_offset(std::size_t delta) const
+{
+    return DimensionIndex<Dimension>(delta / (std::size_t)this->BaseT::block_size());
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dimension>
+typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, DimensionIndex<Dimension>>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::calculate_offset(std::size_t delta) const
+{
+    return BaseT::template calculate_offset<Dimension>(delta % (std::size_t)this->BaseT::block_size());
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+std::size_t MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::block_size() const
+{
+    return this->template dimension<FirstDimension>() * BaseT::block_size();
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
@@ -477,6 +586,14 @@ MultiArray<Alloc, T, SliceMixin, FirstDimension>::do_resize(std::size_t total, D
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
+template<typename Dimension>
+DimensionIndex<Dimension> MultiArray<Alloc, T, SliceMixin, FirstDimension>::calculate_offset(std::size_t delta) const
+{
+    static_assert(std::is_same<Dimension, FirstDimension>::value, "Request for offset for a dimension not supported by this structure");
+    return DimensionIndex<Dimension>(delta / (std::size_t)this->template dimension<FirstDimension>());
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
 typename MultiArray<Alloc, T, SliceMixin, FirstDimension>::reference_type MultiArray<Alloc, T, SliceMixin, FirstDimension>::operator[](DimensionIndex<FirstDimension> index)
 {
     return *(begin() + static_cast<std::size_t>(index));
@@ -540,5 +657,10 @@ void MultiArray<Alloc, T, SliceMixin, FirstDimension>::do_transpose(MultiArrayTy
     }
 }
 
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
+std::size_t MultiArray<Alloc, T, SliceMixin, FirstDimension>::block_size() const
+{
+    return static_cast<std::size_t>(_size);
+}
 } // namespace astrotypes
 } // namespace pss
