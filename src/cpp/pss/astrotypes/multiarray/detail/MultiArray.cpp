@@ -278,15 +278,6 @@ typename MultiArray<Alloc, T, SliceMixin, FirstDimension, OtherDimensions...>::t
     typedef typename ConstSliceReturnType<SliceArgType>::slice_type IntSliceType;
     return ReturnType(IntSliceType(*this, slice));
 }
-/*
-template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... OtherDimensions>
-template<typename SliceType>
-typename MultiArray<Alloc, T, SliceMixin, FirstDimension, OtherDimensions...>::template SliceReturnType<SliceType>::type MultiArray<Alloc, T, SliceMixin, FirstDimension, OtherDimensions...>::overlay(SliceType const& slice)
-{
-    typename SliceReturnType<SliceType>::type ReturnType;
-    return ReturnType(*this, slice);
-}
-*/
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 template<typename Dimension, typename SliceArgumentType>
@@ -317,6 +308,13 @@ MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::offset(SliceArg
     return this->do_offset<Dimension>(slice);
 }
 
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Job>
+void MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::for_each_dimension(Job& job) const
+{
+    job.template exec<FirstDimension>(*this);
+    BaseT::for_each_dimension(job);
+}
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 template<typename Dimension, bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename SliceDim, typename... SliceDimensions>
@@ -455,6 +453,22 @@ template<typename Alloc, typename T, template<typename> class SliceMixin, typena
 bool MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::operator==(MultiArray const& o) const
 {
     return equal_size(o) && std::equal(o.cbegin(), o.cend(), cbegin());
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dimension>
+typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, std::size_t>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::block_size_t() const
+{
+    return this->BaseT::block_size();
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
+template<typename Dimension>
+typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, std::size_t>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::block_size_t() const
+{
+    return BaseT::template block_size_t<Dimension>();
 }
 
 /////////////////////////////////////////////////////////////
@@ -646,6 +660,30 @@ template<typename Alloc, typename T, template<typename> class SliceMixin, typena
 bool MultiArray<Alloc, T, SliceMixin, FirstDimension>::equal_size(MultiArray const& o) const
 {
     return _size == o.dimension<FirstDimension>();
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
+template<typename Dimension>
+constexpr
+typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, std::size_t>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension>::block_size_t() const
+{
+    return 1;
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
+template<typename Dimension>
+typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, std::size_t>::type
+MultiArray<Alloc, T, SliceMixin, FirstDimension>::block_size_t() const
+{
+    static_assert(!std::is_same<Dimension, FirstDimension>::value, "programming error - you shouldn't be calling this");
+}
+
+template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
+template<typename Job>
+void MultiArray<Alloc, T, SliceMixin, FirstDimension>::for_each_dimension(Job& job) const
+{
+    job.template exec<FirstDimension>(*this);
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>

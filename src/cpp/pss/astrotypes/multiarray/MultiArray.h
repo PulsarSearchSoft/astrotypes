@@ -255,7 +255,47 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
          */
         bool equal_size(MultiArray const&) const;
 
+        /**
+         * @brief the size of a block (span) at the specified Dimension
+         */
+        template<typename Dimension>
+        typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, std::size_t>::type
+        block_size_t() const;
+
+        /**
+         * @brief the size of a block (span) at the specified Dimension
+         */
+        template<typename Dimension>
+        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, std::size_t>::type
+        block_size_t() const;
+
+        /**
+         * @brief iterate over each dimension layer of the structure and execute a callback on Job for each layer
+         * @details Job should have a templated method on dimension for the callback:
+         * @code
+         * template<typename Dimension> void exec(MultiArray<...Dimension> const& multi_array_layer);
+         * @endcode
+         * e.g
+         * @code
+         *
+         * struct Job {
+         *    static inline void
+         *    template<typename Dimension, typnename DataStruct>
+         *    void exec(DataStruct const& array) {
+         *        std::cout << array.dimension<Dimension>() << "\n";
+         *    }
+         * };
+         *
+         * Job job;
+         * my_data.for_each_dimension(jon);
+         *
+         * @endcode
+         */
+        template<typename Job>
+        void for_each_dimension(Job& job) const;
+
     protected:
+
         template<typename... Dims>
         MultiArray(typename std::enable_if<arg_helper<FirstDimension, Dims...>::value, bool>::type disable_resize_tag
                   , DimensionSize<Dims> const&...);
@@ -307,6 +347,9 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, DimensionIndex<Dimension>>::type
         calculate_offset(std::size_t delta) const;
 
+        /**
+         * @brief the size of a complete block (span) at dimension FirstDimension
+         */
         std::size_t block_size() const;
 
     private:
@@ -426,6 +469,25 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         inline iterator end();
         inline const_iterator end() const;
         inline const_iterator cend() const;
+
+        /**
+         * @brief the size of a block (span) at the specified Dimension
+         */
+        template<typename Dimension>
+        constexpr
+        typename std::enable_if<std::is_same<Dimension, FirstDimension>::value, std::size_t>::type
+        block_size_t() const;
+
+        /**
+         * @brief specialisation to give an error message.
+         * @details  you should be able to eliminate this call using template magic
+         */
+        template<typename Dimension>
+        typename std::enable_if<!std::is_same<Dimension, FirstDimension>::value, std::size_t>::type
+        block_size_t() const;
+
+        template<typename Job>
+        void for_each_dimension(Job& job) const;
 
     protected:
         template<typename... Dims>
