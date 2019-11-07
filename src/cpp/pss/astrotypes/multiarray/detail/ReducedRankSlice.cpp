@@ -28,14 +28,6 @@
 namespace pss {
 namespace astrotypes {
 
-template<typename SliceType, typename ExcludedDim, std::size_t RankT>
-struct is_slice<multiarray::ReducedRankSlice<SliceType, ExcludedDim, RankT>> : public std::true_type
-{};
-
-template<typename SliceType, typename ExcludedDim, std::size_t RankT, template<typename> class SliceMixin>
-struct is_slice<SliceMixin<multiarray::ReducedRankSlice<SliceType, ExcludedDim, RankT>>> : public std::true_type
-{};
-
 template<typename SliceType, typename ExcludedDim, std::size_t RankT, typename Dimension>
 struct has_dimension_strict<multiarray::ReducedRankSlice<SliceType, ExcludedDim, RankT>, Dimension>
     : public has_dimension_strict<SliceType, Dimension>

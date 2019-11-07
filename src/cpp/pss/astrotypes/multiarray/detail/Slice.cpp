@@ -30,23 +30,7 @@ namespace astrotypes {
 
 // type traits helper structs
 template<typename T>
-struct is_slice : public std::false_type {};
-
-// unpack const types
-template<typename T>
-struct is_slice<const T> : public is_slice<typename std::decay<T>::type> {};
-
-// unpack mixins
-template<template<typename> class T, typename S>
-struct is_slice<T<S>> : public is_slice<S> {};
-
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename... Dimensions>
-struct is_slice<Slice<is_const, SliceTraitsT, SliceMixin, Dimensions...>> : public std::true_type
-{};
-
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename... Dimensions>
-struct is_slice<SliceMixin<Slice<is_const, SliceTraitsT, SliceMixin, Dimensions...>>> : public std::true_type
-{};
+struct is_slice : public std::is_base_of<SliceTag, typename std::decay<T>::type> {};
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
 struct has_dimension<Slice<is_const, SliceTraitsT, SliceMixin, Dimension>, Dimension> : public std::true_type
@@ -189,17 +173,17 @@ struct SliceReturnTypeHelper {
 };
 
 // specialisation for all Mixin types - calls down to underylying Slice type
-template<bool is_const, typename Parent, bool is_const2, typename SliceTraitsT, template<typename> class SliceMixin, typename... Dimensions>
-struct SliceReturnTypeHelper<is_const, Parent, SliceMixin<Slice<is_const2, SliceTraitsT, SliceMixin, Dimensions...>>>
+template<bool is_const, typename Parent, bool is_const2, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+struct SliceReturnTypeHelper<is_const, Parent, SliceMixin<Slice<is_const2, SliceTraitsT, SliceMixin, Dimension, Dimensions...>>>
 {
-    typedef typename SliceReturnTypeHelper<is_const, Parent, Slice<is_const2, SliceTraitsT, SliceMixin, Dimensions...>>::type slice_type;
+    typedef typename SliceReturnTypeHelper<is_const, Parent, Slice<is_const2, SliceTraitsT, SliceMixin, Dimension, Dimensions...>>::type slice_type;
     typedef SliceMixin<slice_type> type;
 };
 
-template<bool is_const, typename Parent, bool is_const2, template<typename> class SliceMixin2, typename SliceTraitsT, typename... Dimensions>
-struct SliceReturnTypeHelper<is_const, Parent, Slice<is_const2, SliceTraitsT, SliceMixin2, Dimensions...>>
+template<bool is_const, typename Parent, bool is_const2, template<typename> class SliceMixin2, typename SliceTraitsT, typename Dimension, typename... Dimensions>
+struct SliceReturnTypeHelper<is_const, Parent, Slice<is_const2, SliceTraitsT, SliceMixin2, Dimension, Dimensions...>>
 {
-    typedef Slice<is_const, typename SliceTraitsParentChangeHelper<SliceTraitsT, Parent>::type, SliceMixin2, Dimensions...> slice_type;
+    typedef Slice<is_const, typename SliceTraitsParentChangeHelper<SliceTraitsT, Parent>::type, SliceMixin2, Dimension, Dimensions...> slice_type;
     typedef slice_type type;
 };
 
@@ -255,8 +239,8 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice(
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename... SliceDimensions>
-Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( Parent& parent, SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDimensions...>> const& slice)
+template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename SliceDim, typename... SliceDimensions>
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( Parent& parent, SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, SliceDimensions...>> const& slice)
     : BaseT(internal_construct_tag(), parent, slice)
     , _span(slice.template parent_span<Dimension>())
     , _base_span(0U)
@@ -360,10 +344,10 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( inte
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename... Dimensions2>
+template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename SliceDim, typename... Dimensions2>
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( internal_construct_tag const&
                                                                           , Parent& parent
-                                                                          , SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimensions2...>> const& slice)
+                                                                          , SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, Dimensions2...>> const& slice)
     : BaseT(internal_construct_tag(), parent, slice)
     , _span(slice.template parent_span<Dimension>())
     , _base_span(parent.template dimension<Dimension>() * BaseT::_base_span)

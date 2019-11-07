@@ -319,10 +319,10 @@ MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::offset(SliceArg
 
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
-template<typename Dimension, bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... SliceDimensions>
-inline DimensionIndex<Dimension> MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::offset(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDimensions...>> const& slice) const
+template<typename Dimension, bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename SliceDim, typename... SliceDimensions>
+inline DimensionIndex<Dimension> MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::offset(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDim, SliceDimensions...>> const& slice) const
 {
-    return this->template offset<Dimension>(static_cast<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDimensions...> const&>(slice));
+    return this->template offset<Dimension>(static_cast<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDim, SliceDimensions...> const&>(slice));
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>

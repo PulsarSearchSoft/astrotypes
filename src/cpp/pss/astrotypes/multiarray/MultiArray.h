@@ -201,8 +201,8 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         /**
          * @brief The offset position of the beginning of the provided slice - mixin specialisation
          */
-        template<typename Dimension, bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... SliceDimensions>
-        DimensionIndex<Dimension> offset(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDimensions...>> const& slice) const;
+        template<typename Dimension, bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename SliceDim, typename... SliceDimensions>
+        DimensionIndex<Dimension> offset(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDim, SliceDimensions...>> const& slice) const;
 
         /**
          * @brief resize the array in the specified dimension
@@ -369,11 +369,11 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         /**
          * @brief The offset position of the beginning of the provided slice
          */
-        template<typename Dimension, bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... SliceDimensions>
-        DimensionIndex<Dimension> offset(Slice<is_const, SliceTraitsT, SliceMixin2, SliceDimensions...> const& slice) const;
+        template<typename Dimension, bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename SliceDim, typename... SliceDimensions>
+        DimensionIndex<Dimension> offset(Slice<is_const, SliceTraitsT, SliceMixin2, SliceDim, SliceDimensions...> const& slice) const;
 
-        template<typename Dimension, bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename... SliceDimensions>
-        DimensionIndex<Dimension> offset(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDimensions...>> const& slice) const;
+        template<typename Dimension, bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2, typename SliceDim, typename... SliceDimensions>
+        DimensionIndex<Dimension> offset(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, SliceDim, SliceDimensions...>> const& slice) const;
 
         /// size
         template<typename Dim>
