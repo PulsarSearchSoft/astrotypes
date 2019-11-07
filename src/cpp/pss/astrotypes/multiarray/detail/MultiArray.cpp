@@ -305,7 +305,7 @@ typename std::enable_if<!has_dimension_strict<SliceArgumentType, Dimension>::val
                       , DimensionIndex<Dimension>>::type
 MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::do_offset(SliceArgumentType const& slice) const
 {
-    auto delta = &*slice.cbegin() - &*slice.parent().cbegin();
+    auto delta = &*slice.begin() - &*slice.parent().cbegin();
     return this->template calculate_offset<Dimension>(delta);
 }
 

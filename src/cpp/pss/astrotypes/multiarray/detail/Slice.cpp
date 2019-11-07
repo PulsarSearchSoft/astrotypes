@@ -260,7 +260,7 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( Pare
     : BaseT(internal_construct_tag(), parent, slice)
     , _span(slice.template parent_span<Dimension>())
     , _base_span(0U)
-    , _ptr(parent.begin())
+    , _ptr(parent.begin() + static_cast<std::size_t>(_span.start() * BaseT::_base_span))
 {
     BaseT::offset(_ptr);
 }
@@ -387,12 +387,6 @@ template<bool is_const, typename Parent, template<typename> class SliceMixin, ty
 std::size_t Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::diff_base_span() const
 {
     return static_cast<std::size_t>(BaseT::_base_span) * (_span.span() - 1);
-}
-
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-std::size_t Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::contiguous_span() const
-{
-    return BaseT::contiguous_span();
 }
 
 template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
@@ -740,7 +734,7 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice(
              , Parent& parent
              , SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimensions2...>> const& slice)
     : _span(slice.template parent_span<Dimension>())
-    , _base_span(parent.template size<Dimension>())
+    , _base_span(parent.template dimension<Dimension>())
     , _parent(&parent)
 {
 }
@@ -928,12 +922,6 @@ std::size_t Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::base_span() co
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
 std::size_t Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::diff_base_span() const
-{
-    return static_cast<std::size_t>(_span.span());
-}
-
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
-std::size_t Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::contiguous_span() const
 {
     return static_cast<std::size_t>(_span.span());
 }

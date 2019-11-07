@@ -315,9 +315,6 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSpan<Dim>>::type
         parent_span() const;
 
-        // return the size of memory occupied by the lowest dimension
-        std::size_t contiguous_span() const;
-
         // return the span of all lower dimensions than this one (i.e an index of +1 in this dimension)
         std::size_t base_span() const;
         std::size_t diff_base_span() const;
@@ -618,10 +615,6 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension>
         Slice( typename std::enable_if<arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type
              , Slice const& copy
              , DimensionSpan<Dims> const&... spans );
-
-    private: //deprecated
-        // return the size of memory occupied by the lowest dimension
-        std::size_t contiguous_span() const;
 
     private:
         DimensionSpan<Dimension> _span;

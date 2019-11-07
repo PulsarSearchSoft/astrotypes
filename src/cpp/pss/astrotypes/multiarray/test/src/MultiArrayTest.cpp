@@ -173,9 +173,9 @@ TEST_F(MultiArrayTest, test_two_dimension_slice_offset)
 
     for(DimensionIndex<DimensionA> test_index_a(0); test_index_a < ma.template dimension<DimensionA>(); ++test_index_a)
     {
+        SCOPED_TRACE(test_index_a);
         for(DimensionIndex<DimensionB> test_index_b(0); test_index_b < ma.template dimension<DimensionB>(); ++test_index_b)
         {
-            SCOPED_TRACE(test_index_a);
             SCOPED_TRACE(test_index_b);
             auto slice = ma.slice(DimensionSpan<DimensionA>(test_index_a, DimensionSize<DimensionA>(1))
                                  ,DimensionSpan<DimensionB>(test_index_b, DimensionSize<DimensionB>(1)));
@@ -202,6 +202,30 @@ TEST_F(MultiArrayTest, test_two_dimension_slice_offset)
             auto const_red_dim_slice_b=ma_const[test_index_b];
             ASSERT_EQ(ma.template offset<DimensionA>(const_red_dim_slice_b), DimensionIndex<DimensionA>(0));
             ASSERT_EQ(ma.template offset<DimensionB>(const_red_dim_slice_b), test_index_b);
+
+            // slice of slice
+            for(DimensionIndex<DimensionA> slice_index_a(0); slice_index_a < slice.template dimension<DimensionA>(); ++slice_index_a)
+            {
+                SCOPED_TRACE("slice_index_a=" + std::to_string(slice_index_a));
+                for(DimensionIndex<DimensionB> slice_index_b(0); slice_index_b < slice.template dimension<DimensionB>(); ++slice_index_b)
+                {
+                    SCOPED_TRACE("slice_index_b=" + std::to_string(slice_index_b));
+                    {
+                        SCOPED_TRACE("2D slice of 2D slice");
+                        auto slice_of_slice = slice.slice(DimensionSpan<DimensionA>(slice_index_a, DimensionSize<DimensionA>(1))
+                                                   ,DimensionSpan<DimensionB>(slice_index_b, DimensionSize<DimensionB>(1)));
+                        ASSERT_EQ(ma.template offset<DimensionA>(slice_of_slice), test_index_a + slice_index_a);
+                        ASSERT_EQ(ma.template offset<DimensionB>(slice_of_slice), test_index_b + slice_index_b);
+                    }
+                    {
+                        SCOPED_TRACE("2D slice of const 2D slice");
+                        auto slice_of_slice = const_slice.slice(DimensionSpan<DimensionA>(slice_index_a, DimensionSize<DimensionA>(1))
+                                                   ,DimensionSpan<DimensionB>(slice_index_b, DimensionSize<DimensionB>(1)));
+                        ASSERT_EQ(ma_const.template offset<DimensionA>(slice_of_slice), test_index_a + slice_index_a);
+                        ASSERT_EQ(ma_const.template offset<DimensionB>(slice_of_slice), test_index_b + slice_index_b);
+                    }
+                }
+            }
         }
     }
 }
@@ -269,13 +293,15 @@ struct OverlayTester2D
 {
     static inline void exec()
     {
-        DimensionSize<DimensionA> size_a(3);
+        DimensionSize<DimensionA> size_a(4);
         DimensionSize<DimensionB> size_b(4);
         TestMultiArray<NumericalRep1, DimensionA, DimensionB> ab(size_a, size_b);
         const TestMultiArray<NumericalRep1, DimensionA, DimensionB> ab_const(size_a, size_b);
 
         for(DimensionSize<DimensionA> test_size_a(0); test_size_a < size_a; ++test_size_a) {
+            SCOPED_TRACE("from index=0 to test_size_a = " + std::to_string(test_size_a));
             for(DimensionSize<DimensionB> test_size_b(0); test_size_b < size_b; ++test_size_b) {
+                SCOPED_TRACE("from index=0 to test_size_b = " + std::to_string(test_size_b));
                 auto const slice = ab.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(0), test_size_a)
                         , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(0), test_size_b));
                 auto const const_slice = ab_const.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(0), test_size_a)
@@ -318,9 +344,12 @@ struct OverlayTester2D
                         SCOPED_TRACE("test_index_b = " + std::to_string(test_index_b));
                         {
                             SCOPED_TRACE("2D slice of a 2d slice");
-                            auto slice_of_slice = slice.slice(DimensionSpan<DimensionA>(test_index_a, slice.template dimension<DimensionA>())
-                                                       ,DimensionSpan<DimensionB>(test_index_b, slice.template dimension<DimensionB>()));
+                            auto slice_of_slice = slice.slice(DimensionSpan<DimensionA>(test_index_a, slice.template dimension<DimensionA>() - test_index_a)
+                                                       ,DimensionSpan<DimensionB>(test_index_b, slice.template dimension<DimensionB>() - test_index_b));
                             auto overlay = ab_2.overlay(slice_of_slice);
+                            ASSERT_EQ(overlay.template span<DimensionA>().start(), test_index_a);
+                            ASSERT_EQ(overlay.template span<DimensionB>().start(), test_index_b);
+                            ASSERT_EQ(&overlay.parent(), &ab_2);
                             verify_dimensions(overlay, slice_of_slice);
                         }
 
