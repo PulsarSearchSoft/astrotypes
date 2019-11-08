@@ -64,6 +64,8 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         typedef typename BaseT::value_type value_type;
 
     public:
+         typedef std::tuple<FirstDimension, OtherDimensions...> DimensionTuple;
+
         /**
           * @brief provides a template to determine the returned type of an operator[]
           *  @tparam Dim  the dimension that will be called
@@ -386,6 +388,8 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension> : public MultiArrayTag
         typedef std::vector<T, Alloc> Container;
 
     public:
+         typedef std::tuple<FirstDimension> DimensionTuple;
+
         /**
           * @brief provides a template to determine the returned type of an operator[]
           *  @tparam Dim  the dimension that will be called

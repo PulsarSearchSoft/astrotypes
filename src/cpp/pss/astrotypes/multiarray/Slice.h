@@ -136,9 +136,10 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
 
     protected:
         typedef typename SliceTraitsHelper<SliceTraitsT>::ExcludeTuple ExcludeTuple;
-        typedef std::tuple<Dimension, Dimensions...> DimensionTuple;
 
     public:
+        typedef std::tuple<Dimension, Dimensions...> DimensionTuple;
+
         /// provides a template to determine the returned type of an operator[]
         //  @tparam Dim  the dimension that will be called
         //  @param type The type that will we returned by the operator[DimensionIndex<Dim>]
@@ -424,9 +425,10 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
 
     protected:
         typedef typename SliceTraitsHelper<SliceTraitsT>::ExcludeTuple ExcludeTuple;
-        typedef std::tuple<Dimension> DimensionTuple;
 
     public:
+        typedef std::tuple<Dimension> DimensionTuple;
+
         template<typename Dim>
         struct OperatorSliceType;
 

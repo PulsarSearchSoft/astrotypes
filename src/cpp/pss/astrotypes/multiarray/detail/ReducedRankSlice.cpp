@@ -27,25 +27,6 @@
 
 namespace pss {
 namespace astrotypes {
-
-template<typename SliceType, typename ExcludedDim, std::size_t RankT, typename Dimension>
-struct has_dimension_strict<multiarray::ReducedRankSlice<SliceType, ExcludedDim, RankT>, Dimension>
-    : public has_dimension_strict<SliceType, Dimension>
-{
-};
-
-template<typename SliceType, typename ExcludedDim, std::size_t RankT, typename Dimension, typename... Dimensions>
-struct has_exact_dimensions<multiarray::ReducedRankSlice<SliceType, ExcludedDim, RankT>, Dimension, Dimensions...>
-    : public std::is_same<typename multiarray::ReducedRankSlice<SliceType, ExcludedDim, RankT>::DimensionTuple, std::tuple<Dimension, Dimensions...>>::type
-{
-};
-
-template<typename SliceType, typename ExcludedDim, std::size_t RankT, typename Dimension, typename... Dimensions, template<typename> class SliceMixin>
-struct has_exact_dimensions<SliceMixin<multiarray::ReducedRankSlice<SliceType, ExcludedDim, RankT>>, Dimension, Dimensions...>
-    : public has_exact_dimensions<multiarray::ReducedRankSlice<SliceType, ExcludedDim, RankT>, Dimension, Dimensions...>::type
-{
-};
-
 namespace multiarray {
 
 template<typename SliceType, typename ExcludedDim, std::size_t RankT>

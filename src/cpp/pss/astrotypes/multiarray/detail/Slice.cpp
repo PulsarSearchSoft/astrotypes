@@ -43,30 +43,15 @@ struct enabler2<has_dimension, T, Dimension, typename std::enable_if<is_slice<T>
 
 // for any slice type we can ask the object directly
 template<typename T, typename Dimension>
-struct enabler2<has_dimension_strict, T, Dimension, typename std::enable_if<is_slice<T>::value>::type> : public std::conditional<T::template has_dimension<Dimension>(), std::true_type, std::false_type>::type
+struct enabler2<has_dimension_strict, T, Dimension, typename std::enable_if<is_slice<T>::value>::type>
+    : public std::conditional<T::template has_dimension<Dimension>(), std::true_type, std::false_type>::type
 {
 };
 
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename D1, typename D2, typename... Dimensions>
-struct has_exact_dimensions<multiarray::Slice<is_const, SliceTraitsT, SliceMixin, D1, D2, Dimensions...>, D1, D2, Dimensions...> : public std::true_type
-{
-};
-
-template<typename T, typename... Dimensions>
-struct has_exact_dimensions<const T, Dimensions...> : public has_exact_dimensions<typename std::decay<T>::type, Dimensions...> {};
-
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
-struct has_exact_dimensions<multiarray::Slice<is_const, SliceTraitsT, SliceMixin, Dimension>, Dimension> : public std::true_type //has_exact_dimensions<ParentT>
-{
-};
-
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
-struct has_exact_dimensions<SliceMixin<multiarray::Slice<is_const, SliceTraitsT, SliceMixin, Dimension>>, Dimension> : public has_exact_dimensions<multiarray::Slice<is_const, SliceTraitsT, SliceMixin, Dimension>, Dimension>::type
-{
-};
-
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename D1, typename D2, typename... Dimensions>
-struct has_exact_dimensions<SliceMixin<multiarray::Slice<is_const, SliceTraitsT, SliceMixin, D1, D2, Dimensions...>>, D1, D2, Dimensions...> : public has_exact_dimensions<multiarray::Slice<is_const, SliceTraitsT, SliceMixin, D1, D2, Dimensions...>, D1, D2, Dimensions...>::type
+// has_exact_dimensions
+template<typename T, typename DimensionTuple>
+struct enabler2<has_exact_dimensions, T, DimensionTuple, typename std::enable_if<is_slice<T>::value>::type>
+    : public std::is_same<DimensionTuple, typename T::DimensionTuple>
 {
 };
 

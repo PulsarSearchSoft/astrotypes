@@ -39,14 +39,11 @@ struct enabler2<has_dimension, T, Dimension, typename std::enable_if<is_multiarr
 {
 };
 
-template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension>
-struct has_exact_dimensions<multiarray::MultiArray<Alloc, T, SliceMixin, Dimension>, Dimension> : public std::true_type
-{};
-
-template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension1, typename Dimension2, typename... Dimensions>
-struct has_exact_dimensions<multiarray::MultiArray<Alloc, T, SliceMixin, Dimension1, Dimension2, Dimensions...>, Dimension1, Dimension2, Dimensions...> : public std::true_type
-{};
-
+template<typename T, typename DimensionTuple>
+struct enabler2<has_exact_dimensions, T, DimensionTuple, typename std::enable_if<is_multiarray<T>::value>::type>
+    : public std::is_same<DimensionTuple, typename T::DimensionTuple>
+{
+};
 
 ////////////////////////////////////////////////
 // type deduction helpers

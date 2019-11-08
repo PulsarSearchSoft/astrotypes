@@ -73,6 +73,15 @@ struct enabler2 : public std::false_type
 };
 
 /**
+ * @brief enable_if semantics without exposing them to the top level interface
+ * @details this one supports templates with two parameters
+ */
+template<template<typename...> class, typename T1, typename T2, typename T3, class Enable=void>
+struct enabler3 : public std::false_type
+{
+};
+
+/**
  * @brief return true if the Dimension is represented in the structure @tparam T
  * @tparam Dimension  : the dimension to find
  * @param T : the structure to search for the Dimension
@@ -140,11 +149,11 @@ struct has_dimensions<T, Dimension> : public has_dimension<T, Dimension>
  * @code
  * /// example of a definition for a function that only supports types that are Time and Frequency ordered
  * template<typename T>
- * void do_something(std::enable_if<has_exact_dimension<units::Time, units::Frequency>::value, T>::type const&);
+ * void do_something(std::enable_if<has_exact_dimensions<units::Time, units::Frequency>::value, T>::type const&);
  * @endcode
  */
 template<typename T, typename... Dimensions>
-struct has_exact_dimensions : public std::false_type
+struct has_exact_dimensions : public enabler2<has_exact_dimensions, T, std::tuple<Dimensions...>>
 {
 };
 
