@@ -184,26 +184,6 @@ struct has_exact_dimensions<FrequencyTime<T, Alloc>, units::Frequency, units::Ti
 {
 };
 
-template<typename Alloc, typename T>
-struct has_dimension<TimeFrequency<T, Alloc>, units::Time> : public std::true_type
-{
-};
-
-template<typename Alloc, typename T>
-struct has_dimension<TimeFrequency<T, Alloc>, units::Frequency> : public std::true_type
-{
-};
-
-template<typename Alloc, typename T>
-struct has_dimension<FrequencyTime<T, Alloc>, units::Time> : public std::true_type
-{
-};
-
-template<typename Alloc, typename T>
-struct has_dimension<FrequencyTime<T, Alloc>, units::Frequency> : public std::true_type
-{
-};
-
 } // namespace astrotypes
 } // namespace pss
 #include "detail/TimeFrequency.cpp"
