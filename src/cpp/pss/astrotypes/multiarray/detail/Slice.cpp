@@ -129,22 +129,36 @@ struct SliceTraitsParentChangeHelper<InternalSliceTraits<TraitsT, D>, NewParentT
 };
 
 // This helper will transform an incoming slice to the equivalent slice in a different parent
-template<bool is_const, typename Parent, typename T>
-struct SliceReturnTypeHelper {
-};
+template<bool is_const, typename Parent, typename TargetDimensionTuple, typename T>
+struct SliceReturnTypeHelper;
 
-template<bool is_const, typename Parent, typename T, template<typename> class Mixin>
-struct SliceReturnTypeHelper<is_const, Parent, Mixin<T>>
+template<bool is_const, typename Parent, typename T, template<typename> class Mixin, typename TargetDimensionTuple>
+struct SliceReturnTypeHelper<is_const, Parent, TargetDimensionTuple, Mixin<T> >
 {
-    typedef typename SliceReturnTypeHelper<is_const, Parent, T>::type slice_type;
+    typedef typename SliceReturnTypeHelper<is_const, Parent, TargetDimensionTuple, T>::type slice_type;
     typedef Mixin<slice_type> type;
 };
 
-template<bool is_const, typename Parent, bool is_const2, template<typename> class SliceMixin2, typename SliceTraitsT, typename Dimension, typename... Dimensions>
-struct SliceReturnTypeHelper<is_const, Parent, Slice<is_const2, SliceTraitsT, SliceMixin2, Dimension, Dimensions...>>
+template<bool is_const, typename Parent, bool is_const2, template<typename> class SliceMixin2, typename SliceTraitsT, typename TargetDimensionTuple,typename Dimension, typename... Dimensions>
+struct SliceReturnTypeHelper<is_const, Parent, TargetDimensionTuple, Slice<is_const2, SliceTraitsT, SliceMixin2, Dimension, Dimensions...>>
 {
-    typedef Slice<is_const, typename SliceTraitsParentChangeHelper<SliceTraitsT, Parent>::type, SliceMixin2, Dimension, Dimensions...> slice_type;
-    typedef slice_type type;
+    private:
+        template<typename Tuple>
+        struct UnpackTuple;
+
+        template<typename... TupleArgs>
+        struct UnpackTuple<std::tuple<TupleArgs...>>
+        {
+            typedef Slice<is_const
+                         , typename SliceTraitsParentChangeHelper<SliceTraitsT, Parent>::type
+                         , SliceMixin2, TupleArgs...> type;
+        };
+
+    public:
+        typedef typename minimal_dimension_list<std::tuple<Dimension, Dimensions...>
+                                              , TargetDimensionTuple>::type MinimumOrderedTargetDimensionSet;
+        typedef typename UnpackTuple<MinimumOrderedTargetDimensionSet>::type slice_type;
+        typedef slice_type type;
 };
 
 

@@ -89,6 +89,7 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
           */
         template<typename SliceInputType>
         struct SliceReturnType;
+
         template<typename SliceInputType>
         struct ConstSliceReturnType;
 

@@ -342,6 +342,18 @@ merge_tuples(Tuple1 const& tuple1, Tuple2 const& tuple2)
 template<typename Tuple1, typename... Tuples>
 struct join_tuples;
 
+template<typename T, typename... Tuple2>
+struct join_tuples<T, std::tuple<Tuple2...>>
+{
+    typedef std::tuple<T, Tuple2...> type;
+};
+
+template<typename... Tuple1, typename T>
+struct join_tuples<std::tuple<Tuple1...>, T>
+{
+    typedef std::tuple<Tuple1..., T > type;
+};
+
 template<typename... Tuple1, typename... Tuple2>
 struct join_tuples<std::tuple<Tuple1...>, std::tuple<Tuple2...>>
 {
@@ -379,6 +391,53 @@ struct tuple_diff<std::tuple<T, Tuple1...>, std::tuple<Tuple2...>>
                             typename Next::type,
                             typename join_tuples<std::tuple<T>, typename Next::type>::type>::type type;
 };
+
+///--------------------------------------------------------------------
+// @brief produce the minimal ordered dimesion set for a MultiArray
+//        or Slice that can represent the passed dims
+// --------------------------------------------------------------------
+
+template<typename DimensionTupleSrc, typename DimensionTupleDst>
+struct minimal_dimension_list;
+
+template<typename Dim1, typename... SrcDims>
+struct minimal_dimension_list<std::tuple<SrcDims...>, std::tuple<Dim1>>
+{
+    typedef typename std::conditional<has_type<std::tuple<SrcDims...>, Dim1>::value,
+                                      std::tuple<Dim1>,
+                                      std::tuple<>>::type type;
+};
+
+template<typename Dim1, typename... SrcDims, typename... DstDims>
+struct minimal_dimension_list<std::tuple<SrcDims...>, std::tuple<Dim1, DstDims...>>
+{
+    private:
+        typedef minimal_dimension_list<std::tuple<SrcDims...>, std::tuple<DstDims...>> NextLayer;
+
+    public:
+        typedef typename std::conditional<
+                                    has_type<std::tuple<SrcDims...>, Dim1>::value
+                                    ,std::tuple<Dim1, DstDims...>
+                                    ,typename NextLayer::type
+                                    >::type type;
+};
+
+static_assert(std::is_same<minimal_dimension_list<std::tuple<int, float>, std::tuple<int, float>>::type, std::tuple<int, float>>::value
+           , "same types should be identical");
+static_assert(std::is_same<minimal_dimension_list<std::tuple<int, float>, std::tuple<float, int>>::type, std::tuple<float, int>>::value
+           , "reversed types should be maximal");
+static_assert(std::is_same<minimal_dimension_list<std::tuple<float>, std::tuple<int, float>>::type, std::tuple<float>>::value
+           , "inner types src should be identical");
+static_assert(std::is_same<minimal_dimension_list<std::tuple<int>, std::tuple<int, float>>::type, std::tuple<int, float>>::value
+           , "inner types src should be identical");
+static_assert(std::is_same<minimal_dimension_list<std::tuple<int, float>, std::tuple<int>>::type, std::tuple<int>>::value
+           , "inner type from src should be identical");
+static_assert(std::is_same<minimal_dimension_list<std::tuple<int, float>, std::tuple<float>>::type, std::tuple<float>>::value
+           , "inner type from src should be identical");
+static_assert(std::is_same<minimal_dimension_list<std::tuple<int, double>, std::tuple<float>>::type, std::tuple<>>::value
+           , "inner type from src should be identical");
+static_assert(std::is_same<minimal_dimension_list<std::tuple<int, double>, std::tuple<float, double, int>>::type, std::tuple<double, int>>::value
+           , "inner type from src should be identical");
 
 } // namespace astrotypes
 } // namespace pss

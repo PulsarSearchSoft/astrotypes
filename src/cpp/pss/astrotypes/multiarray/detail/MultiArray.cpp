@@ -203,16 +203,18 @@ template<typename Alloc, typename T, template<typename> class SliceMixin, typena
 template<typename SliceType>
 struct MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::SliceReturnType
 {
-    typedef typename SliceReturnTypeHelper<false, MultiArray, SliceType>::type type;
-    typedef typename SliceReturnTypeHelper<false, MultiArray, SliceType>::slice_type slice_type;
+    typedef SliceReturnTypeHelper<false, MultiArray, DimensionTuple, SliceType> Helper;
+    typedef typename Helper::type type;
+    typedef typename Helper::slice_type slice_type;
 };
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
 template<typename SliceType>
 struct MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::ConstSliceReturnType
 {
-    typedef typename SliceReturnTypeHelper<true, MultiArray, SliceType>::type type;
-    typedef typename SliceReturnTypeHelper<true, MultiArray, SliceType>::slice_type slice_type;
+    typedef SliceReturnTypeHelper<true, MultiArray, DimensionTuple, SliceType> Helper;
+    typedef typename Helper::type type;
+    typedef typename Helper::slice_type slice_type;
 };
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
