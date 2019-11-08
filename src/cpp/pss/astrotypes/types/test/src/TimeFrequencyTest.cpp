@@ -138,8 +138,8 @@ TEST_F(TimeFrequencyTest, test_time_freq_channel)
         }
         ASSERT_EQ(c.size<Frequency>(), DimensionSize<Frequency>(1));
         ASSERT_EQ(c.size<Time>(), time_size);
-        SliceIterator<Channel, false> it=c.begin();
-        SliceIterator<Channel, true> it_const=c.cbegin();
+        multiarray::SliceIterator<Channel, false> it=c.begin();
+        multiarray::SliceIterator<Channel, true> it_const=c.cbegin();
         ASSERT_EQ(c[DimensionIndex<Time>(0)], *it);
         ASSERT_EQ(it, it_const);
         unsigned count=0;

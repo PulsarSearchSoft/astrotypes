@@ -28,6 +28,7 @@
 
 namespace pss {
 namespace astrotypes {
+namespace multiarray {
 namespace test {
 
 /**
@@ -51,6 +52,7 @@ class ResizeAdapterTest : public ::testing::Test
 
 
 } // namespace test
+} // namespace multiarray
 } // namespace astrotypes
 } // namespace pss
 

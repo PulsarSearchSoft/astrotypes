@@ -30,50 +30,25 @@ namespace astrotypes {
 
 // type traits helper structs
 template<typename T>
-struct is_slice : public std::is_base_of<SliceTag, typename std::decay<T>::type> {};
+struct is_slice : public std::is_base_of<multiarray::SliceTag, typename std::decay<T>::type> {};
 
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
-struct has_dimension<Slice<is_const, SliceTraitsT, SliceMixin, Dimension>, Dimension> : public std::true_type
-{};
-
-// consider const types to be the same as non const types
+// for any slice type we can ask the object directly or search its parent for implied Dimensions
 template<typename T, typename Dimension>
-struct has_dimension<const T, Dimension> : public has_dimension<typename std::decay<T>::type, Dimension> {};
-
-// has_dimension is taken to be true if the parent object has that dimension i.e. implied dimensions count
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension1, typename Dimension>
-struct has_dimension<Slice<is_const, SliceTraitsT, SliceMixin, Dimension1>, Dimension> : public has_dimension<typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension1>::Parent, Dimension>
-{};
-
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-struct has_dimension<Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>, Dimension> : public std::true_type
+struct enabler2<has_dimension, T, Dimension, typename std::enable_if<is_slice<T>::value>::type>
+    : public std::conditional<has_dimension_strict<T,Dimension>::value | has_dimension<typename T::Parent, Dimension>::value
+                             , std::true_type
+                             , std::false_type>::type
 {
 };
 
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension1, typename Dimension, typename... Dimensions>
-struct has_dimension<Slice<is_const, SliceTraitsT, SliceMixin, Dimension1, Dimensions...>, Dimension>
-    : public has_dimension<Slice<is_const, SliceTraitsT, SliceMixin, Dimensions...>, Dimension>
-{
-};
-
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-struct has_dimension<SliceMixin<Slice<is_const, SliceTraitsT, SliceMixin, Dimensions...>>, Dimension> : public has_dimension<Slice<is_const, SliceTraitsT, SliceMixin, Dimensions...>, Dimension>
-{
-};
-
-// recursive search of Dimension list
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename Dim, typename... Dimensions>
-struct has_dimension_strict<Slice<is_const, SliceTraitsT, SliceMixin, Dim, Dimensions...>, Dimension> : public has_type<std::tuple<Dim, Dimensions...>, Dimension>
-{};
-
-// handle single level mixin types
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename Dim, typename... Dimensions>
-struct has_dimension_strict<SliceMixin<Slice<is_const, SliceTraitsT, SliceMixin, Dim, Dimensions...>>, Dimension> : public has_dimension_strict<Slice<is_const, SliceTraitsT, SliceMixin, Dim, Dimensions...>, Dimension>
+// for any slice type we can ask the object directly
+template<typename T, typename Dimension>
+struct enabler2<has_dimension_strict, T, Dimension, typename std::enable_if<is_slice<T>::value>::type> : public std::conditional<T::template has_dimension<Dimension>(), std::true_type, std::false_type>::type
 {
 };
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename D1, typename D2, typename... Dimensions>
-struct has_exact_dimensions<Slice<is_const, SliceTraitsT, SliceMixin, D1, D2, Dimensions...>, D1, D2, Dimensions...> : public std::true_type
+struct has_exact_dimensions<multiarray::Slice<is_const, SliceTraitsT, SliceMixin, D1, D2, Dimensions...>, D1, D2, Dimensions...> : public std::true_type
 {
 };
 
@@ -81,20 +56,21 @@ template<typename T, typename... Dimensions>
 struct has_exact_dimensions<const T, Dimensions...> : public has_exact_dimensions<typename std::decay<T>::type, Dimensions...> {};
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
-struct has_exact_dimensions<Slice<is_const, SliceTraitsT, SliceMixin, Dimension>, Dimension> : public std::true_type //has_exact_dimensions<ParentT>
+struct has_exact_dimensions<multiarray::Slice<is_const, SliceTraitsT, SliceMixin, Dimension>, Dimension> : public std::true_type //has_exact_dimensions<ParentT>
 {
 };
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
-struct has_exact_dimensions<SliceMixin<Slice<is_const, SliceTraitsT, SliceMixin, Dimension>>, Dimension> : public has_exact_dimensions<Slice<is_const, SliceTraitsT, SliceMixin, Dimension>, Dimension>::type
+struct has_exact_dimensions<SliceMixin<multiarray::Slice<is_const, SliceTraitsT, SliceMixin, Dimension>>, Dimension> : public has_exact_dimensions<multiarray::Slice<is_const, SliceTraitsT, SliceMixin, Dimension>, Dimension>::type
 {
 };
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename D1, typename D2, typename... Dimensions>
-struct has_exact_dimensions<SliceMixin<Slice<is_const, SliceTraitsT, SliceMixin, D1, D2, Dimensions...>>, D1, D2, Dimensions...> : public has_exact_dimensions<Slice<is_const, SliceTraitsT, SliceMixin, D1, D2, Dimensions...>, D1, D2, Dimensions...>::type
+struct has_exact_dimensions<SliceMixin<multiarray::Slice<is_const, SliceTraitsT, SliceMixin, D1, D2, Dimensions...>>, D1, D2, Dimensions...> : public has_exact_dimensions<multiarray::Slice<is_const, SliceTraitsT, SliceMixin, D1, D2, Dimensions...>, D1, D2, Dimensions...>::type
 {
 };
 
+namespace multiarray {
 // -- determine the rwturn types of the various dimension reducing operators
 template<typename Dim, typename SliceType>
 struct OperatorSliceTypeHelper;
@@ -1037,5 +1013,6 @@ bool Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::operator==(Slice<is_c
         && std::equal(s.begin(), s.end(), begin());
 }
 
+} // namespace multiarray
 } // namespace astrotypes
 } // namespace pss

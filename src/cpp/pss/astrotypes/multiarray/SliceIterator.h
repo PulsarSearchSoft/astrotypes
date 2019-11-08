@@ -32,21 +32,21 @@
 
 namespace pss {
 namespace astrotypes {
+namespace multiarray {
     // pre declarations
     template<bool is_const, typename ParentT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
     class Slice;
 
     template<typename SliceType, bool is_const> class SliceIterator;
 
-    namespace multiarray {
-        template<typename T, typename D, std::size_t> class ReducedRankSlice;
-    } // namespace multiarray
-
+    template<typename T, typename D, std::size_t> class ReducedRankSlice;
+} // namespace multiarray
 } // namespace pss
 } // namespace astrotypes
 
 namespace pss {
 namespace astrotypes {
+namespace multiarray {
 
 /**
  * @brief Class to Iterate over a Slice
@@ -284,6 +284,7 @@ struct SliceIteratorHelper<ReplacementSliceType, SliceIterator<SliceMixin<SliceT
     typedef SliceIterator<SliceMixin<ReplacementSliceType>, is_const> type;
 };
 
+} // namespace multiarray
 } // namespace astrotypes
 } // namespace pss
 #include "detail/SliceIterator.cpp"

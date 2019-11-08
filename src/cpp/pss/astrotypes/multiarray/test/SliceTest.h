@@ -28,6 +28,7 @@
 
 namespace pss {
 namespace astrotypes {
+namespace multiarray {
 namespace test {
 
 /**
@@ -43,7 +44,6 @@ class SliceTest : public ::testing::Test
 
     public:
         SliceTest();
-
         ~SliceTest();
 
     private:
@@ -51,6 +51,7 @@ class SliceTest : public ::testing::Test
 
 
 } // namespace test
+} // namespace multiarray
 } // namespace astrotypes
 } // namespace pss
 

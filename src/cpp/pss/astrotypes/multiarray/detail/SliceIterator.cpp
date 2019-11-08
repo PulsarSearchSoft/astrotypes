@@ -24,6 +24,7 @@
 
 namespace pss {
 namespace astrotypes {
+namespace multiarray {
 
 template<typename DerivedType, typename SliceType, bool is_const, int rank>
 SliceIteratorBase<DerivedType, SliceType, is_const, rank>::SliceIteratorBase(SliceT& slice)
@@ -154,5 +155,6 @@ SliceIterator<Mixin<SliceType, Ts...>, is_const>& SliceIterator<Mixin<SliceType,
     return static_cast<ActualBaseT&>(*this)++;
 }
 
+} // namespace multiarray
 } // namespace astrotypes
 } // namespace pss

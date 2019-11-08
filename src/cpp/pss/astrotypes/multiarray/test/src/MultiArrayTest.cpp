@@ -29,6 +29,7 @@
 
 namespace pss {
 namespace astrotypes {
+namespace multiarray {
 namespace test {
 
 
@@ -679,5 +680,6 @@ TEST_F(MultiArrayTest, test_has_exact_dimensions)
 }
 
 } // namespace test
+} // namespace multiarray
 } // namespace astrotypes
 } // namespace pss

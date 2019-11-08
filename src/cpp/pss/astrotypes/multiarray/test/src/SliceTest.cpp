@@ -30,6 +30,7 @@
 
 namespace pss {
 namespace astrotypes {
+namespace multiarray {
 namespace test {
 
 
@@ -626,30 +627,48 @@ TEST_F(SliceTest, test_three_dimensions_equals)
 TEST_F(SliceTest, test_has_dimension)
 {
     typedef Slice<true, ParentType<1>, TestSliceMixin, DimensionA> TestSlice1d;
-    static_assert(std::is_same<typename has_dimension<TestSlice1d, DimensionA>::type, std::true_type>::value, "expecting true");
-    static_assert(std::is_same<typename has_dimension<TestSlice1d, DimensionB>::type, std::false_type>::value, "expecting false");
+    static_assert(std::is_same<typename astrotypes::has_dimension<TestSlice1d, DimensionA>::type, std::true_type>::value, "expecting true");
+    static_assert(std::is_same<typename astrotypes::has_dimension<TestSlice1d, DimensionB>::type, std::false_type>::value, "expecting false");
+    static_assert(TestSlice1d::has_dimension<DimensionA>(), "expecting true");
+
+    typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> TestSlice2d;
+    static_assert(TestSlice2d::has_dimension<DimensionA>(), "expecting true");
+    static_assert(TestSlice2d::has_dimension<DimensionB>(), "expecting true");
+    static_assert(!TestSlice2d::has_dimension<DimensionC>(), "expecting not to find C");
+    static_assert(std::is_same<typename astrotypes::has_dimension<TestSlice2d, DimensionA>::type, std::true_type>::value, "expecting true");
+    static_assert(std::is_same<typename astrotypes::has_dimension<TestSlice2d, DimensionB>::type, std::true_type>::value, "expecting false");
+    static_assert(std::is_same<typename astrotypes::has_dimension<TestSlice2d, DimensionC>::type, std::false_type>::value, "expecting false");
+
+    typedef TestSliceMixin<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>> MTestSlice2d;
+    static_assert(MTestSlice2d::has_dimension<DimensionA>(), "expecting true");
+    static_assert(MTestSlice2d::has_dimension<DimensionB>(), "expecting true");
+    static_assert(!MTestSlice2d::has_dimension<DimensionC>(), "expecting not to find C");
+    static_assert(std::is_same<typename astrotypes::has_dimension<MTestSlice2d, DimensionA>::type, std::true_type>::value, "expecting true");
+    static_assert(std::is_same<typename astrotypes::has_dimension<MTestSlice2d, DimensionB>::type, std::true_type>::value, "expecting true");
+    static_assert(std::is_same<typename astrotypes::has_dimension<MTestSlice2d, DimensionC>::type, std::false_type>::value, "expecting false");
 }
 
 TEST_F(SliceTest, test_is_multi_dimension)
 {
     typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA> TestSlice1d;
-    static_assert(std::is_same<typename has_exact_dimensions<TestSlice1d, DimensionA>::type, std::true_type>::value, "expecting true");
-    static_assert(std::is_same<typename has_exact_dimensions<TestSlice1d, DimensionB>::type, std::false_type>::value, "expecting false");
+    static_assert(std::is_same<typename astrotypes::has_exact_dimensions<TestSlice1d, DimensionA>::type, std::true_type>::value, "expecting true");
+    static_assert(std::is_same<typename astrotypes::has_exact_dimensions<TestSlice1d, DimensionB>::type, std::false_type>::value, "expecting false");
 
     typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> TestSlice2d;
-    bool r = has_exact_dimensions<TestSlice2d, DimensionA, DimensionB>::value;
+    bool r = astrotypes::has_exact_dimensions<TestSlice2d, DimensionA, DimensionB>::value;
     static_assert(std::is_same<typename has_exact_dimensions<TestSlice2d, DimensionA, DimensionB>::type, std::true_type>::value, "expecting true");
     ASSERT_TRUE(r);
-    r = has_exact_dimensions<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>, DimensionA, DimensionB>::value;
+    r = astrotypes::has_exact_dimensions<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>, DimensionA, DimensionB>::value;
     ASSERT_TRUE(r);
-    r = has_exact_dimensions<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>, DimensionA>::value;
+    r = astrotypes::has_exact_dimensions<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>, DimensionA>::value;
     ASSERT_FALSE(r);
-    r = has_exact_dimensions<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>, DimensionB>::value;
+    r = astrotypes::has_exact_dimensions<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>, DimensionB>::value;
     ASSERT_FALSE(r);
-    r = has_exact_dimensions<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>, DimensionB, DimensionA>::value;
+    r = astrotypes::has_exact_dimensions<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>, DimensionB, DimensionA>::value;
     ASSERT_FALSE(r);
 }
 
 } // namespace test
+} // namespace multiarray
 } // namespace astrotypes
 } // namespace pss

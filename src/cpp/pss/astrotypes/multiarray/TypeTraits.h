@@ -52,6 +52,27 @@ static_assert(!logical_and<std::false_type, std::true_type, std::true_type>::val
 static_assert(!logical_and<std::true_type, std::true_type, std::false_type>::value, "oh oh");
 
 /**
+ * @brief enable_if semantics without exposing them to the top level interface
+ * @details this one supports templates with a single parameter
+ * inherit from this class in the template declaration.
+ * specialisations can be done in the normal way or via the enabler object which
+ * allows the use of std::enable_if in the last param position
+ */
+template<template<typename> class, typename T1, class Enable=void>
+struct enabler : public std::false_type
+{
+};
+
+/**
+ * @brief enable_if semantics without exposing them to the top level interface
+ * @details this one supports templates with two parameters
+ */
+template<template<typename...> class, typename T1, typename T2, class Enable=void>
+struct enabler2 : public std::false_type
+{
+};
+
+/**
  * @brief return true if the Dimension is represented in the structure @tparam T
  * @tparam Dimension  : the dimension to find
  * @param T : the structure to search for the Dimension
@@ -65,14 +86,18 @@ static_assert(!logical_and<std::true_type, std::true_type, std::false_type>::val
  * provide a specialisation of this class to inherit from std::true_type if it has the specified dimension
  */
 template<typename T, typename Dimension>
-struct has_dimension : public std::false_type
+struct has_dimension : public enabler2<has_dimension, T, Dimension>
 {
 };
 
-template<typename T >
+template<typename T>
 struct has_dimension<T, T> : public std::true_type
 {
 };
+
+// consider const types to be the same as non const types
+template<typename T, typename Dimension>
+struct has_dimension<const T, Dimension> : public has_dimension<typename std::decay<T>::type, Dimension> {};
 
 /**
  * @brief return true if the Dimension is explicitly represented in the structure @tparam T
@@ -83,7 +108,7 @@ struct has_dimension<T, T> : public std::true_type
  *          by its type rather than being a core part of the implementation
  */
 template<typename T, typename Dimension>
-struct has_dimension_strict : public has_dimension<T, Dimension>
+struct has_dimension_strict : public enabler2<has_dimension_strict, T, Dimension>
 {
 };
 

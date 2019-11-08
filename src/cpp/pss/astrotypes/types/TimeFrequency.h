@@ -110,10 +110,10 @@ class TimeFreqCommon : public SliceType
  */
 
 template<typename T, typename Alloc=std::allocator<T>>
-class TimeFrequency : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Time, units::Frequency>>
+class TimeFrequency : public TimeFreqCommon<multiarray::MultiArray<Alloc, T, TimeFreqCommon, units::Time, units::Frequency>>
 {
     private:
-        typedef TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Time, units::Frequency>> BaseT;
+        typedef TimeFreqCommon<multiarray::MultiArray<Alloc, T, TimeFreqCommon, units::Time, units::Frequency>> BaseT;
 
     public:
         typedef typename BaseT::Channel Channel;
@@ -148,10 +148,10 @@ class TimeFrequency : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon,
  *       without having to rewrite any code that uses this interface.
  */
 template<typename T, typename Alloc=std::allocator<T>>
-class FrequencyTime : public TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Frequency, units::Time>>
+class FrequencyTime : public TimeFreqCommon<multiarray::MultiArray<Alloc, T, TimeFreqCommon, units::Frequency, units::Time>>
 {
     private:
-        typedef TimeFreqCommon<MultiArray<Alloc, T, TimeFreqCommon, units::Frequency, units::Time>> BaseT;
+        typedef TimeFreqCommon<multiarray::MultiArray<Alloc, T, TimeFreqCommon, units::Frequency, units::Time>> BaseT;
 
     public:
         typedef typename BaseT::Channel Channel;

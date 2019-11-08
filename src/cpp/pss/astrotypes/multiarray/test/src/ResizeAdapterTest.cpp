@@ -29,6 +29,7 @@
 
 namespace pss {
 namespace astrotypes {
+namespace multiarray {
 namespace test {
 
 ResizeAdapterTest::ResizeAdapterTest()
@@ -131,5 +132,6 @@ TEST_F(ResizeAdapterTest, test_multi_dim_adapter)
 }
 
 } // namespace test
+} // namespace multiarray
 } // namespace astrotypes
 } // namespace pss

@@ -28,6 +28,7 @@
 
 namespace pss {
 namespace astrotypes {
+namespace multiarray {
 namespace test {
 
 struct DimensionA {};
@@ -68,18 +69,22 @@ class TestMultiArray : public MultiArray<std::allocator<T>, T, TestMultiArrayMix
 };
 
 } // namespace test
+} // namespace multiarray
 
 // this must be declared in the astrotypes namespace
 template<typename Dimension, typename T, typename... Dimensions>
-struct has_dimension<test::TestMultiArray<T, Dimensions...>, Dimension> : public list_has_type<Dimension, Dimensions...>::type
+struct has_dimension<multiarray::test::TestMultiArray<T, Dimensions...>, Dimension> : public list_has_type<Dimension, Dimensions...>::type
 {
 };
 
-static_assert(has_dimension<test::TestMultiArray<int, test::DimensionA>, test::DimensionA>::value, "oh oh");
-static_assert(!has_dimension<test::TestMultiArray<int, test::DimensionA>, test::DimensionB>::value, "oh oh");
-static_assert(has_dimension<test::TestMultiArray<int, test::DimensionA, test::DimensionB>, test::DimensionA>::value, "oh oh");
-static_assert(has_dimension<test::TestMultiArray<int, test::DimensionA, test::DimensionB>, test::DimensionB>::value, "oh oh");
-static_assert(!has_dimension<test::TestMultiArray<int, test::DimensionA, test::DimensionB>, test::DimensionC>::value, "oh oh");
+typedef multiarray::test::DimensionA DimensionA;
+typedef multiarray::test::DimensionB DimensionB;
+typedef multiarray::test::DimensionC DimensionC;
+static_assert(has_dimension<multiarray::test::TestMultiArray<int, DimensionA>, DimensionA>::value, "oh oh");
+static_assert(!has_dimension<multiarray::test::TestMultiArray<int, DimensionA>,DimensionB>::value, "oh oh");
+static_assert(has_dimension<multiarray::test::TestMultiArray<int, DimensionA, DimensionB>, DimensionA>::value, "oh oh");
+static_assert(has_dimension<multiarray::test::TestMultiArray<int, DimensionA, DimensionB>, DimensionB>::value, "oh oh");
+static_assert(!has_dimension<multiarray::test::TestMultiArray<int, DimensionA, DimensionB>, DimensionC>::value, "oh oh");
 
 } // namespace astrotypes
 } // namespace pss

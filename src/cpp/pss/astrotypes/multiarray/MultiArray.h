@@ -33,6 +33,18 @@ namespace pss {
 namespace astrotypes {
 
 /**
+ * @brief struct ot help determine if a specified type is a multiarray
+ * @details
+ * @code
+ * typename std::enable_if<is_multiarray<SomeType>::value>::type
+ * @endcode
+ */
+template<typename T>
+struct is_multiarray;
+
+namespace multiarray {
+
+/**
  * @brief
  *      template classes to specify multiple dimension arrays with explicit dimension types
  * @tparam T the type of object to be stored in the array (e.g. float, int, Stokes, etc)
@@ -103,6 +115,14 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
                 && !has_exact_dimensions<FirstDimension, OtherDimensions...>::value>::type>
         explicit MultiArray(DimensionType const&);
 
+        static constexpr std::size_t rank = 1 + sizeof...(OtherDimensions);
+
+        /**
+         * @brief return true if this slice has dimesion D
+         */
+        template<typename D>
+        static constexpr bool has_dimension() { return has_type<std::tuple<FirstDimension, OtherDimensions...>, D>::value; }
+
         /**
          * @brief iterators acting over he entire data structure
          * @details useful for e.g std::copy of the entire structure
@@ -135,13 +155,13 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         ConstReducedDimensionSliceType operator[](DimensionIndex<FirstDimension> index) const;
 
         template<typename Dim>
-        typename std::enable_if<has_dimension<MultiArray, Dim>::value
+        typename std::enable_if<astrotypes::has_dimension<MultiArray, Dim>::value
                             && !std::is_same<Dim, FirstDimension>::value
                             , typename OperatorSliceType<Dim>::type>::type
         operator[](DimensionIndex<Dim> const&);
 
         template<typename Dim>
-        typename std::enable_if<has_dimension<MultiArray, Dim>::value
+        typename std::enable_if<astrotypes::has_dimension<MultiArray, Dim>::value
                             && !std::is_same<Dim, FirstDimension>::value
                             , typename ConstOperatorSliceType<Dim>::type>::type
         operator[](DimensionIndex<Dim> const&) const;
@@ -356,9 +376,11 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         DimensionSize<FirstDimension>     _size;
 };
 
+class MultiArrayTag {}; // allows is_multiarray to work. Has no other function
+
 // specialisation for single dimension arrays
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
-class MultiArray<Alloc, T, SliceMixin, FirstDimension>
+class MultiArray<Alloc, T, SliceMixin, FirstDimension> : public MultiArrayTag
 {
         typedef MultiArray<Alloc, T, SliceMixin, FirstDimension> SelfType;
         typedef std::vector<T, Alloc> Container;
@@ -402,6 +424,13 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         explicit MultiArray(MultiArray const&) = default;
         ~MultiArray();
 
+        static constexpr std::size_t rank = 1;
+
+        /**
+         * @brief return true if this array has dimesion D
+         */
+        template<typename D>
+        static constexpr bool has_dimension() { return std::is_same<FirstDimension, D>::value; }
 
         /**
          * @brief
@@ -495,7 +524,7 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
                   , DimensionSize<Dims> const&...);
 
         template<typename DimensionType>
-        MultiArray(typename std::enable_if<has_dimension<DimensionType, FirstDimension>::value, bool>::type disable_transpose_tag
+        MultiArray(typename std::enable_if<astrotypes::has_dimension<DimensionType, FirstDimension>::value, bool>::type disable_transpose_tag
                   , DimensionType const& d);
 
         /// resize
@@ -528,18 +557,7 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension>
         std::vector<T> _data;
 };
 
-template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension>
-struct has_dimension<MultiArray<Alloc, T, SliceMixin, Dimension>, Dimension> : public std::true_type
-{};
-
-template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension>
-struct has_exact_dimensions<MultiArray<Alloc, T, SliceMixin, Dimension>, Dimension> : public std::true_type
-{};
-
-template<typename Alloc, typename T, template<typename> class SliceMixin, typename Dimension1, typename Dimension2, typename... Dimensions>
-struct has_exact_dimensions<MultiArray<Alloc, T, SliceMixin, Dimension1, Dimension2, Dimensions...>, Dimension1, Dimension2, Dimensions...> : public std::true_type
-{};
-
+} // namespace multiarray
 } // namespace astrotypes
 } // namespace pss
 

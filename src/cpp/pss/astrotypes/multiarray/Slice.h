@@ -32,6 +32,16 @@
 namespace pss {
 namespace astrotypes {
 
+/**
+ * @brief struct ot help determine if a specified type is a slice
+ * @details
+ * @code
+ * typename std::enable_if<is_slice<SomeType>::value>::type
+ * @endcode
+ */
+template<typename T>
+struct is_slice;
+
 template<typename T, typename... Dims>
 struct arg_helper : public std::false_type
 {
@@ -55,16 +65,7 @@ struct arg_helper<T, Dim, Dims...> : public arg_helper<T, Dims...>
     { return BaseT::arg(std::forward<Dims>(args)...); }
 };
 
-/**
- * @brief struct ot help determine if a sepcied type is a slice
- * @details
- * @code
- * typename std::enable_if<is_slice<SomeType>::value>::type
- * @endcode
- */
-template<typename T>
-struct is_slice;
-
+namespace multiarray {
 /**
  * @class Slice
  * @brief
@@ -180,6 +181,12 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
 */
 
         static constexpr std::size_t rank = 1 + sizeof...(Dimensions);
+
+        /**
+         * @brief return true if this slice has dimesion D
+         */
+        template<typename D>
+        static constexpr bool has_dimension() { return has_type<std::tuple<Dimension, Dimensions...>, D>::value; }
 
         /**
          * @brief the total number of data members in this slice
@@ -447,6 +454,12 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
         static constexpr std::size_t rank = 1;
 
         /**
+         * @brief return true if this slice has dimesion D
+         */
+        template<typename D>
+        static constexpr bool has_dimension() { return std::is_same<Dimension, D>::value; }
+
+        /**
          * @brief copy assignment operator
          */
          Slice& operator=(Slice const&);
@@ -468,7 +481,7 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
          */
         template<typename Dim>
         constexpr
-        typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (!has_dimension<Parent, Dim>::value))
+        typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (!astrotypes::has_dimension<Parent, Dim>::value))
                                , DimensionSize<Dim>>::type
         size() const;
 
@@ -479,7 +492,7 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
         template<typename Dim>
         constexpr
         typename std::enable_if<(!std::is_same<Dim, Dimension>::value)
-                               && has_dimension<Parent, Dim>::value
+                               && astrotypes::has_dimension<Parent, Dim>::value
                                , DimensionSize<Dim>>::type
         size() const;
 
@@ -495,7 +508,7 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
          */
         template<typename Dim>
         constexpr
-        typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (!has_dimension<Parent, Dim>::value))
+        typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (!astrotypes::has_dimension<Parent, Dim>::value))
                                , DimensionSize<Dim>>::type
         dimension() const;
 
@@ -506,7 +519,7 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
         template<typename Dim>
         constexpr
         typename std::enable_if<(!std::is_same<Dim, Dimension>::value)
-                               && has_dimension<Parent, Dim>::value
+                               && astrotypes::has_dimension<Parent, Dim>::value
                                , DimensionSize<Dim>>::type
         dimension() const;
 
@@ -524,12 +537,12 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
         reference_type operator[](DimensionIndex<Dimension> const& index) const;
 
         // specialisations for implicit (i.e Parent has dimension but Slice does not)
-        template<typename Dim, typename Enable=typename std::enable_if<has_dimension<Parent, Dim>::value
+        template<typename Dim, typename Enable=typename std::enable_if<astrotypes::has_dimension<Parent, Dim>::value
                                                             && !std::is_same<Dim, Dimension>::value>::type>
         SelfType const& operator[](DimensionIndex<Dim> const&) const { return *this; }
 
         // specialisations for implicit (i.e Parent has dimension but Slice does not)
-        template<typename Dim, typename Enable=typename std::enable_if<has_dimension<Parent, Dim>::value
+        template<typename Dim, typename Enable=typename std::enable_if<astrotypes::has_dimension<Parent, Dim>::value
                                                             && !std::is_same<Dim, Dimension>::value>::type>
         SelfType& operator[](DimensionIndex<Dim> const&) { return *this; }
 
@@ -597,7 +610,7 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
          *           does not have this Dimension, but come from a parent class that does
          */
         template<typename Dim>
-        typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (has_dimension<Parent, Dim>::value))
+        typename std::enable_if<((!std::is_same<Dim, Dimension>::value) && (astrotypes::has_dimension<Parent, Dim>::value))
                                , DimensionSpan<Dim>>::type
         parent_span() const;
 
@@ -638,6 +651,7 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
         parent_iterator _ptr;   // start, to extent _ptr + _span
 };
 
+} // namespace multiarray
 } // namespace astrotypes
 } // namespace pss
 
