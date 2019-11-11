@@ -158,7 +158,7 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         typedef SliceMixin<Slice<true, InternalSliceTraits<SliceTraitsT, Dimension>, SliceMixin, Dimensions...>> ConstReducedSliceType;
 
     public:
-        Slice();
+        explicit Slice();
 
         /// constructor - span matching Dimension provided
         template<typename Dim, typename... Dims>
@@ -406,7 +406,11 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         parent_iterator _ptr;  // start of block
 };
 
-class SliceTag {}; // allows is_slice to work. Has no other function
+class SliceTag {
+    protected:
+        SliceTag() {}
+        ~SliceTag() {} // protected to prevent polymorphic use of non-virtual destructor
+}; // allows is_slice to work. Has no other function
 
 // specialisation for 0 dimensional slice
 // which should return a single element
@@ -444,7 +448,7 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
         typedef parent_const_iterator const_iterator;
 
     public:
-        Slice();
+        explicit Slice();
         Slice(Parent& parent, DimensionSpan<Dimension> const&);
         Slice(Slice const&);
 

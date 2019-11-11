@@ -379,7 +379,12 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
         DimensionSize<FirstDimension>     _size;
 };
 
-class MultiArrayTag {}; // allows is_multiarray to work. Has no other function
+// allows is_multiarray to work. Has no other function
+class MultiArrayTag {
+    protected: // disable use as a polymorphic type base class
+        MultiArrayTag() {}
+        ~MultiArrayTag() {} // NOT virtual
+};
 
 // specialisation for single dimension arrays
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>

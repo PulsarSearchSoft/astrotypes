@@ -299,91 +299,98 @@ struct OverlayTester2D
         TestMultiArray<NumericalRep1, DimensionA, DimensionB> ab(size_a, size_b);
         const TestMultiArray<NumericalRep1, DimensionA, DimensionB> ab_const(size_a, size_b);
 
-        for(DimensionSize<DimensionA> test_size_a(0); test_size_a < size_a; ++test_size_a) {
-            SCOPED_TRACE("from index=0 to test_size_a = " + std::to_string(test_size_a));
-            for(DimensionSize<DimensionB> test_size_b(0); test_size_b < size_b; ++test_size_b) {
-                SCOPED_TRACE("from index=0 to test_size_b = " + std::to_string(test_size_b));
-                auto const slice = ab.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(0), test_size_a)
-                        , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(0), test_size_b));
-                auto const const_slice = ab_const.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(0), test_size_a)
-                                                 ,DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(0), test_size_b));
+        for(DimensionIndex<DimensionA> outer_index_a(0); outer_index_a < size_a; ++outer_index_a) {
+        SCOPED_TRACE("outer_index_a = " + std::to_string(outer_index_a));
+        for(DimensionIndex<DimensionB> outer_index_b(0); outer_index_b < size_b; ++outer_index_b) {
+            SCOPED_TRACE("outer_index_b = " + std::to_string(outer_index_b));
+            for(DimensionSize<DimensionA> test_size_a(0); test_size_a < DimensionSize<DimensionA>(size_a - outer_index_a); ++test_size_a) {
+                SCOPED_TRACE("test_size_a = " + std::to_string(test_size_a));
+                for(DimensionSize<DimensionB> test_size_b(0); test_size_b < DimensionSize<DimensionB>(size_b - outer_index_b); ++test_size_b) {
+                    SCOPED_TRACE("from index=0 to test_size_b = " + std::to_string(test_size_b));
+                    auto const slice = ab.slice(DimensionSpan<DimensionA>(outer_index_a, test_size_a)
+                                              , DimensionSpan<DimensionB>(outer_index_b, test_size_b));
+                    auto const const_slice = ab_const.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(0), test_size_a)
+                            ,DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(0), test_size_b));
 
-                TestMultiArray<NumericalRep2, DimensionA, DimensionB> ab_2(size_a, size_b);
-                {
-                    SCOPED_TRACE("non const type with SliceType");
-                    auto overlay = ab_2.overlay(slice);
-                    ASSERT_EQ(&overlay.parent(), &ab_2);
-                    verify_dimensions(overlay, slice);
-                }
-                {
-                    SCOPED_TRACE("verify non const type with ConstSlice");
-                    auto const_overlay = ab_2.overlay(const_slice);
-                    ASSERT_EQ(&const_overlay.parent(), &ab_2);
-                    verify_dimensions(const_overlay, const_slice);
-                }
-
-                const TestMultiArray<NumericalRep2, DimensionA, DimensionB> ab_2_const(size_a, size_b);
-                {
-                    SCOPED_TRACE("verify we can overlay a SliceType onto a const type");
-                    auto const_overlay = ab_2_const.overlay(slice);
-                    ASSERT_EQ(&const_overlay.parent(), &ab_2_const);
-                    verify_dimensions(const_overlay, slice);
-                }
-                {
-                    SCOPED_TRACE("verify we can overlay a ConstSliceType onto a const type");
-                    auto const_overlay = ab_2_const.overlay(const_slice);
-                    ASSERT_EQ(&const_overlay.parent(), &ab_2_const);
-                    verify_dimensions(const_overlay, const_slice);
-                }
-
-                // slice of slice
-                for(DimensionIndex<DimensionA> test_index_a(0); test_index_a < slice.template dimension<DimensionA>(); ++test_index_a)
-                {
-                    SCOPED_TRACE("test_index_a = " + std::to_string(test_index_a));
-                    for(DimensionIndex<DimensionB> test_index_b(0); test_index_b < slice.template dimension<DimensionB>(); ++test_index_b)
+                    TestMultiArray<NumericalRep2, DimensionA, DimensionB> ab_2(size_a, size_b);
                     {
-                        SCOPED_TRACE("test_index_b = " + std::to_string(test_index_b));
-                        {
-                            SCOPED_TRACE("2D slice of a 2d slice");
-                            auto slice_of_slice = slice.slice(DimensionSpan<DimensionA>(test_index_a, slice.template dimension<DimensionA>() - test_index_a)
-                                                       ,DimensionSpan<DimensionB>(test_index_b, slice.template dimension<DimensionB>() - test_index_b));
-                            auto overlay = ab_2.overlay(slice_of_slice);
-                            ASSERT_EQ(overlay.template span<DimensionA>().start(), test_index_a);
-                            ASSERT_EQ(overlay.template span<DimensionB>().start(), test_index_b);
-                            ASSERT_EQ(&overlay.parent(), &ab_2);
-                            verify_dimensions(overlay, slice_of_slice);
-                        }
+                        SCOPED_TRACE("non const type with SliceType");
+                        auto overlay = ab_2.overlay(slice);
+                        ASSERT_EQ(&overlay.parent(), &ab_2);
+                        verify_dimensions(overlay, slice);
+                    }
+                    {
+                        SCOPED_TRACE("verify non const type with ConstSlice");
+                        auto const_overlay = ab_2.overlay(const_slice);
+                        ASSERT_EQ(&const_overlay.parent(), &ab_2);
+                        verify_dimensions(const_overlay, const_slice);
+                    }
 
-                        // reduced dimension slices
-                        auto slice_of_slice = slice[test_index_a];
-                        auto slice_of_const_slice = const_slice[test_index_a];
+                    const TestMultiArray<NumericalRep2, DimensionA, DimensionB> ab_2_const(size_a, size_b);
+                    {
+                        SCOPED_TRACE("verify we can overlay a SliceType onto a const type");
+                        auto const_overlay = ab_2_const.overlay(slice);
+                        ASSERT_EQ(&const_overlay.parent(), &ab_2_const);
+                        verify_dimensions(const_overlay, slice);
+                    }
+                    {
+                        SCOPED_TRACE("verify we can overlay a ConstSliceType onto a const type");
+                        auto const_overlay = ab_2_const.overlay(const_slice);
+                        ASSERT_EQ(&const_overlay.parent(), &ab_2_const);
+                        verify_dimensions(const_overlay, const_slice);
+                    }
+
+                    // slice of slice
+                    for(DimensionIndex<DimensionA> test_index_a(0); test_index_a < slice.template dimension<DimensionA>(); ++test_index_a)
+                    {
+                        SCOPED_TRACE("test_index_a = " + std::to_string(test_index_a));
+                        for(DimensionIndex<DimensionB> test_index_b(0); test_index_b < slice.template dimension<DimensionB>(); ++test_index_b)
                         {
-                            SCOPED_TRACE("non const type with reduced dimension slice of slice");
-                            auto overlay = ab_2.overlay(slice_of_slice);
-                            ASSERT_EQ(&overlay.parent(), &ab_2);
-                            verify_dimensions(overlay, slice_of_slice);
-                        }
-                        {
-                            SCOPED_TRACE("non const type with const reduced dimension slice of slice");
-                            auto overlay = ab_2.overlay(slice_of_const_slice);
-                            ASSERT_EQ(&overlay.parent(), &ab_2);
-                            verify_dimensions(overlay, slice_of_const_slice);
-                        }
-                        {
-                            SCOPED_TRACE("const type with reduced dimension slice of slice");
-                            auto overlay = ab_2_const.overlay(slice_of_slice);
-                            ASSERT_EQ(&overlay.parent(), &ab_2_const);
-                            verify_dimensions(overlay, slice_of_slice);
-                        }
-                        {
-                            SCOPED_TRACE("const type with const reduced dimension slice of slice");
-                            auto overlay = ab_2_const.overlay(slice_of_const_slice);
-                            ASSERT_EQ(&overlay.parent(), &ab_2_const);
-                            verify_dimensions(overlay, slice_of_const_slice);
+                            SCOPED_TRACE("test_index_b = " + std::to_string(test_index_b));
+                            {
+                                SCOPED_TRACE("2D slice of a 2d slice");
+                                auto slice_of_slice = slice.slice(DimensionSpan<DimensionA>(test_index_a
+                                                                               , slice.template dimension<DimensionA>() - test_index_a)
+                                        ,DimensionSpan<DimensionB>(test_index_b, slice.template dimension<DimensionB>() - test_index_b));
+                                auto overlay = ab_2.overlay(slice_of_slice);
+                                ASSERT_EQ(overlay.template span<DimensionA>().start(), outer_index_a + test_index_a);
+                                ASSERT_EQ(overlay.template span<DimensionB>().start(), outer_index_b + test_index_b);
+                                ASSERT_EQ(&overlay.parent(), &ab_2);
+                                verify_dimensions(overlay, slice_of_slice);
+                            }
+
+                            // reduced dimension slices
+                            auto slice_of_slice = slice[test_index_a];
+                            auto slice_of_const_slice = const_slice[test_index_a];
+                            {
+                                SCOPED_TRACE("non const type with reduced dimension slice of slice");
+                                auto overlay = ab_2.overlay(slice_of_slice);
+                                ASSERT_EQ(&overlay.parent(), &ab_2);
+                                verify_dimensions(overlay, slice_of_slice);
+                            }
+                            {
+                                SCOPED_TRACE("non const type with const reduced dimension slice of slice");
+                                auto overlay = ab_2.overlay(slice_of_const_slice);
+                                ASSERT_EQ(&overlay.parent(), &ab_2);
+                                verify_dimensions(overlay, slice_of_const_slice);
+                            }
+                            {
+                                SCOPED_TRACE("const type with reduced dimension slice of slice");
+                                auto overlay = ab_2_const.overlay(slice_of_slice);
+                                ASSERT_EQ(&overlay.parent(), &ab_2_const);
+                                verify_dimensions(overlay, slice_of_slice);
+                            }
+                            {
+                                SCOPED_TRACE("const type with const reduced dimension slice of slice");
+                                auto overlay = ab_2_const.overlay(slice_of_const_slice);
+                                ASSERT_EQ(&overlay.parent(), &ab_2_const);
+                                verify_dimensions(overlay, slice_of_const_slice);
+                            }
                         }
                     }
                 }
             }
+        }
         }
     }
 
@@ -411,6 +418,52 @@ TEST_F(MultiArrayTest, test_two_dimension_overlay_slice_same_types)
 TEST_F(MultiArrayTest, test_two_dimension_overlay_slice_different_numerical_types)
 {
     OverlayTester2D<int, float>::exec();
+}
+
+TEST_F(MultiArrayTest, test_two_dimension_overlay_slice_transpose)
+{
+    DimensionSize<DimensionA> size_a(4);
+    DimensionSize<DimensionB> size_b(4);
+
+    typedef int NumericalRep;
+
+    TestMultiArray<NumericalRep, DimensionA, DimensionB> ab(size_a, size_b);
+    TestMultiArray<NumericalRep, DimensionA, DimensionB> const& ab_const = ab;
+
+    TestMultiArray<NumericalRep, DimensionB, DimensionA> ba(ab);
+
+    for(DimensionSize<DimensionA> test_size_a(0); test_size_a < size_a; ++test_size_a) {
+        SCOPED_TRACE("from index=0 to test_size_a = " + std::to_string(test_size_a));
+        for(DimensionSize<DimensionB> test_size_b(0); test_size_b < size_b; ++test_size_b) {
+            SCOPED_TRACE("from index=0 to test_size_b = " + std::to_string(test_size_b));
+            auto const slice = ab.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(0), test_size_a)
+                                       , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(0), test_size_b));
+            auto const const_slice = ab_const.slice(DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(0), test_size_a)
+                                                 ,DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(0), test_size_b));
+
+            {
+                SCOPED_TRACE("non const type with SliceType");
+                TestMultiArray<NumericalRep, DimensionB, DimensionA>::SliceType overlay = ba.overlay(slice);
+                ASSERT_EQ(overlay.template dimension<DimensionA>(), slice.template dimension<DimensionA>());
+                ASSERT_EQ(overlay.template dimension<DimensionB>(), slice.template dimension<DimensionB>());
+                ASSERT_EQ(overlay.template span<DimensionA>(), slice.template span<DimensionA>());
+                ASSERT_EQ(overlay.template span<DimensionB>(), slice.template span<DimensionB>());
+                ASSERT_EQ(&overlay.parent(), &ba);
+                ASSERT_EQ(overlay.data_size(), slice.data_size());
+                for(DimensionIndex<DimensionA> i(0); i < slice.dimension<DimensionA>(); ++i) {
+                    for(DimensionIndex<DimensionB> j(0); j < slice.dimension<DimensionB>(); ++j) {
+                        ASSERT_EQ(overlay[j][i], slice[i][j]) << " i=" << i << " j=" << j << " " << &overlay[j][i];
+                    }
+                }
+            }
+            {
+                SCOPED_TRACE("verify non const type with ConstSlice");
+                auto const_overlay = ba.overlay(const_slice);
+                ASSERT_EQ(&const_overlay.parent(), &ba);
+                ASSERT_EQ(const_overlay.data_size(), const_slice.data_size());
+            }
+        }
+    }
 }
 
 TEST_F(MultiArrayTest, test_three_dimension_size)
