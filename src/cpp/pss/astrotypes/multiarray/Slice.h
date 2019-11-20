@@ -173,13 +173,8 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
              , DimensionSpan<Dims> const& ...);
 
         /// constructor - spans extracted from provided Slice with exact same dimensions as this slice
-        template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename SliceDim, typename... SliceDimensions>
-        Slice( Parent&, SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, SliceDimensions...>> const& slice);
-
-/*
-        template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename SliceDim>
-        Slice( Parent&, SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim>> const& slice);
-*/
+        template<typename SliceT>
+        Slice( typename std::enable_if<is_slice<SliceT>::value, Parent>::type &, SliceT const& slice);
 
         static constexpr std::size_t rank = 1 + sizeof...(Dimensions);
 
@@ -313,7 +308,6 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         friend typename impl_const_iterator::BaseT;
         friend typename impl_const_iterator::ImplT;
 
-
     protected:
         template<bool, typename P, template<typename> class, typename D, typename... Ds> friend class Slice;
 
@@ -349,10 +343,10 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
              , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Parent&>::type parent
              , DimensionSpan<Dims> const& ... spans);
 
-        template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename SliceDim, typename... Dimensions2>
+        template<typename SliceT>
         Slice( internal_construct_tag const&
-             , Parent&
-             , SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, Dimensions2...>> const& slice);
+             , typename std::enable_if<is_slice<SliceT>::value, Parent&>::type parent
+             , SliceT const& slice);
 
         template<typename... Dims>
         Slice( copy_resize_construct_tag const&
@@ -454,7 +448,6 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
 
         template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename SliceDim, typename... SliceDimensions>
         Slice( Parent&, SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, SliceDimensions...>> const& slice);
-
         ~Slice();
 
         static constexpr std::size_t rank = 1;
@@ -631,10 +624,10 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
              , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Parent&>::type parent
              , DimensionSpan<Dims> const&... spans);
 
-        template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename SliceDim, typename... Dimensions2>
+        template<typename SliceT>
         Slice( internal_construct_tag const&
-             , Parent&
-             , Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, Dimensions2...> const& slice);
+             , typename std::enable_if<is_slice<SliceT>::value, Parent&>::type
+             , SliceT const& slice);
 
         template<typename... Dims>
         Slice( typename std::enable_if<!arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type

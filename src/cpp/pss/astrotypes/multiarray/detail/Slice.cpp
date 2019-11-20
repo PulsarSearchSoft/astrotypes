@@ -113,7 +113,7 @@ struct ConstOperatorSliceTypeHelper<Dim, Slice<is_const, SliceTraitsT, SliceMixi
 
 template<typename Dim, bool is_const, typename SliceTraitsT, template<typename> class SliceMixin>
 struct ConstOperatorSliceTypeHelper<Dim, Slice<is_const, SliceTraitsT, SliceMixin, Dim>> {
-    typedef typename Slice<true, SliceTraitsT, SliceMixin, Dim>::reference_type type;
+    typedef typename Slice<true, SliceTraitsT, SliceMixin, Dim>::const_reference_type type;
 };
 
 template<typename TraitsT, typename NewParentT>
@@ -129,18 +129,30 @@ struct SliceTraitsParentChangeHelper<InternalSliceTraits<TraitsT, D>, NewParentT
 };
 
 // This helper will transform an incoming slice to the equivalent slice in a different parent
-template<bool is_const, typename Parent, typename TargetDimensionTuple, typename T>
+template<bool is_const, typename SliceTraitsT, typename TargetDimensionTuple, typename T>
 struct SliceReturnTypeHelper;
 
-template<bool is_const, typename Parent, typename T, template<typename> class Mixin, typename TargetDimensionTuple>
-struct SliceReturnTypeHelper<is_const, Parent, TargetDimensionTuple, Mixin<T> >
+template<bool is_const, typename SliceTraitsT, typename T, typename TargetDimensionTuple, std::size_t Rank, typename ExcludedDim>
+struct SliceReturnTypeHelper<is_const, SliceTraitsT, TargetDimensionTuple, ReducedRankSlice<T, ExcludedDim, Rank> >
+    : public SliceReturnTypeHelper<is_const, SliceTraitsT, TargetDimensionTuple, T>
 {
-    typedef typename SliceReturnTypeHelper<is_const, Parent, TargetDimensionTuple, T>::type slice_type;
-    typedef Mixin<slice_type> type;
+    typedef SliceReturnTypeHelper<is_const, SliceTraitsT, TargetDimensionTuple, T> BaseT;
+    typedef typename BaseT::slice_type slice_type;
+    typedef ReducedRankSlice<typename BaseT::type, ExcludedDim, Rank> type;
 };
 
-template<bool is_const, typename Parent, bool is_const2, template<typename> class SliceMixin2, typename SliceTraitsT, typename TargetDimensionTuple,typename Dimension, typename... Dimensions>
-struct SliceReturnTypeHelper<is_const, Parent, TargetDimensionTuple, Slice<is_const2, SliceTraitsT, SliceMixin2, Dimension, Dimensions...>>
+
+template<bool is_const, typename SliceTraitsT, typename T, template<typename> class Mixin, typename TargetDimensionTuple>
+struct SliceReturnTypeHelper<is_const, SliceTraitsT, TargetDimensionTuple, Mixin<T> >
+    : public SliceReturnTypeHelper<is_const, SliceTraitsT, TargetDimensionTuple, T>
+{
+    typedef SliceReturnTypeHelper<is_const, SliceTraitsT, TargetDimensionTuple, T> BaseT;
+    typedef typename BaseT::slice_type slice_type;
+    typedef Mixin<typename BaseT::type> type;
+};
+
+template<bool is_const, typename SliceTraitsT, bool is_const2, template<typename> class SliceMixin2, typename SliceTraitsT2, typename TargetDimensionTuple,typename Dimension, typename... Dimensions>
+struct SliceReturnTypeHelper<is_const, SliceTraitsT, TargetDimensionTuple, Slice<is_const2, SliceTraitsT2, SliceMixin2, Dimension, Dimensions...>>
 {
     private:
         template<typename Tuple>
@@ -150,7 +162,7 @@ struct SliceReturnTypeHelper<is_const, Parent, TargetDimensionTuple, Slice<is_co
         struct UnpackTuple<std::tuple<TupleArgs...>>
         {
             typedef Slice<is_const
-                         , typename SliceTraitsParentChangeHelper<SliceTraitsT, Parent>::type
+                         , typename SliceTraitsParentChangeHelper<SliceTraitsT2, SliceTraitsT>::type
                          , SliceMixin2, TupleArgs...> type;
         };
 
@@ -213,9 +225,10 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice(
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename SliceDim, typename... SliceDimensions>
-Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( Parent& parent, SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, SliceDimensions...>> const& slice)
-    : BaseT(internal_construct_tag(), parent, static_cast<Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, SliceDimensions...> const&>(slice))
+template<typename SliceT>
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( typename std::enable_if<is_slice<SliceT>::value, Parent>::type& parent
+                                                                          , SliceT const& slice)
+    : BaseT(internal_construct_tag(), parent, static_cast<typename SliceT::SliceType const&>(slice))
     , _span(slice.template parent_span<Dimension>())
     , _base_span(0U)
     , _ptr(parent.begin() + static_cast<std::size_t>(_span.start() * BaseT::_base_span))
@@ -238,9 +251,9 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice(
 }
 
 // SLice changed dim constructor - case Dim not provided bu constructor args
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename... Dims>
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::Slice( copy_resize_construct_tag const&
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( copy_resize_construct_tag const&
                                                         , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
                                                         , DimensionSpan<Dims> const&... spans
                                                         )
@@ -252,9 +265,9 @@ Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::Slice( copy_resiz
     _ptr = BaseT::offset(_ptr);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename... Dims>
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::Slice( copy_resize_construct_base_tag const&
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( copy_resize_construct_base_tag const&
                                                         , typename std::enable_if<!arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
                                                         , DimensionSpan<Dims> const&... spans
                                                         )
@@ -265,9 +278,9 @@ Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::Slice( copy_resiz
 }
 
 // SLice changed dim constructor - case Dim provided bu constructor args
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename... Dims>
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::Slice(copy_resize_construct_tag const&
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice(copy_resize_construct_tag const&
                                                         , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
                                                         , DimensionSpan<Dims> const&... spans
                                               )
@@ -283,9 +296,9 @@ Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::Slice(copy_resize
     BaseT::offset(_ptr);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename... Dims>
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::Slice( copy_resize_construct_base_tag const&
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( copy_resize_construct_base_tag const&
                                                         , typename std::enable_if<arg_helper<Dimension, Dims...>::value, Slice>::type const& copy
                                                         , DimensionSpan<Dims> const&... spans
                                                         )
@@ -318,287 +331,288 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( inte
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename SliceDim, typename... Dimensions2>
+template<typename SliceT>
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( internal_construct_tag const&
-                                                                          , Parent& parent
-                                                                          , SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, Dimensions2...>> const& slice)
+                                                    , typename std::enable_if<is_slice<SliceT>::value, Parent&>::type parent
+                                                    , SliceT const& slice)
     : BaseT(internal_construct_tag(), parent, slice)
     , _span(slice.template parent_span<Dimension>())
     , _base_span(parent.template dimension<Dimension>() * BaseT::_base_span)
 {
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::parent_iterator const& Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::offset(parent_iterator const& it)
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::parent_iterator const& Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::offset(parent_iterator const& it)
 {
     _ptr=it + static_cast<std::size_t>(_span.start()) * BaseT::_base_span;
     return BaseT::offset(_ptr);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-std::size_t Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::base_span() const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+std::size_t Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::base_span() const
 {
     return static_cast<std::size_t>(BaseT::_base_span * (_span.span() - 1)) + BaseT::base_span();
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-std::size_t Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::diff_base_span() const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+std::size_t Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::diff_base_span() const
 {
     return static_cast<std::size_t>(BaseT::_base_span) * (_span.span() - 1);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::parent_iterator& Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::base_ptr()
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::parent_iterator& Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::base_ptr()
 {
     return BaseT::base_ptr();
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::parent_iterator const& Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::base_ptr() const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::parent_iterator const& Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::base_ptr() const
 {
     return BaseT::base_ptr();
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-std::size_t Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::data_size() const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+std::size_t Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::data_size() const
 {
     return _span.span() * BaseT::data_size();;
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimension>>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::size() const
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::size() const
 {
     return _span.span();
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSize<Dim>>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::size() const
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::size() const
 {
     return BaseT::template size<Dim>();
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSize<Dimension>>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::dimension() const
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::dimension() const
 {
     return _span.span();
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSize<Dim>>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::dimension() const
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::dimension() const
 {
     return BaseT::template dimension<Dim>();
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSpan<Dimension>>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::span() const
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::span() const
 {
     return _span;
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSpan<Dim>>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::span() const
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::span() const
 {
     return BaseT::template span<Dim>();
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<std::is_same<Dim, Dimension>::value, DimensionSpan<Dimension>>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::parent_span() const
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::parent_span() const
 {
     return _span;
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<!std::is_same<Dim, Dimension>::value, DimensionSpan<Dim>>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::parent_span() const
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::parent_span() const
 {
     return BaseT::template parent_span<Dim>();
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::template OperatorSliceType<Dimension>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::operator[](DimensionIndex<Dimension> offset)
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::template OperatorSliceType<Dimension>::type
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::operator[](DimensionIndex<Dimension> offset)
 {
     typedef typename OperatorSliceType<Dimension>::type ReducedSliceType;
     return ReducedSliceType(static_cast<BaseT const&>(*this)) += static_cast<std::size_t>(offset);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::template ConstOperatorSliceType<Dimension>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::operator[](DimensionIndex<Dimension> offset) const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::template ConstOperatorSliceType<Dimension>::type
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::operator[](DimensionIndex<Dimension> offset) const
 {
     typedef typename ConstOperatorSliceType<Dimension>::type ReturnSliceType;
     return ReturnSliceType(reinterpret_cast<ReturnSliceType const&>(*this)) += static_cast<std::size_t>(offset);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<arg_helper<Dim, Dimensions...>::value
-&& !std::is_same<Dim, Dimension>::value, typename Slice<is_const, Parent
+&& !std::is_same<Dim, Dimension>::value, typename Slice<is_const, SliceTraitsT
                 , SliceMixin, Dimension, Dimensions...>::template OperatorSliceType<Dim>::type>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::operator[](DimensionIndex<Dim> const& index)
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::operator[](DimensionIndex<Dim> const& index)
 {
     return Slice(copy_resize_construct_tag(), *this, DimensionSpan<Dim>(index, DimensionSize<Dim>(1)));
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename Dim>
 typename std::enable_if<arg_helper<Dim, Dimensions...>::value
-&& !std::is_same<Dim, Dimension>::value, typename Slice<is_const, Parent
-                , SliceMixin, Dimension, Dimensions...>::template ConstOperatorSliceType<Dim>::type>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::operator[](DimensionIndex<Dim> const& index) const
+                    && !std::is_same<Dim, Dimension>::value, typename Slice<is_const, SliceTraitsT
+                     , SliceMixin, Dimension, Dimensions...>::template ConstOperatorSliceType<Dim>::type>::type
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::operator[](DimensionIndex<Dim> const& index) const
 {
-    typedef Slice<true, Parent, SliceMixin, Dimension, Dimensions...> SliceType;
-    return SliceType(copy_resize_construct_tag(), reinterpret_cast<SliceType const&>(*this), DimensionSpan<Dim>(index, DimensionSize<Dim>(1)));
+    typedef Slice<true, SliceTraitsT, SliceMixin, Dimension, Dimensions...> _SliceType;
+    typedef typename Slice::ConstOperatorSliceType<Dim>::type ReturnSliceType;
+    return ReturnSliceType(_SliceType(copy_resize_construct_tag(), reinterpret_cast<_SliceType const&>(*this), DimensionSpan<Dim>(index, DimensionSize<Dim>(1))));
 }
 
 
 // n.b offset refers to the dimension in the level above (i.e a full _base_span)
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>& Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::operator+=(std::size_t offset)
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>& Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::operator+=(std::size_t offset)
 {
     _ptr += (offset * _base_span);
     BaseT::offset(_ptr);
     return *this;
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>& Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::operator+=(DimensionSize<Dimension> offset)
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>& Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::operator+=(DimensionSize<Dimension> offset)
 {
     _ptr += (offset * BaseT::_base_span);
     BaseT::offset(_ptr);
     return *this;
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename... Dims>
-typename std::enable_if<arg_helper<Dimension, Dims...>::value, typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::SliceType>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims> const&... spans)
+typename std::enable_if<arg_helper<Dimension, Dims...>::value, typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::SliceType>::type
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims> const&... spans)
 {
     return Slice(copy_resize_construct_tag(), *this, spans...);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename... Dims>
-typename std::enable_if<!arg_helper<Dimension, Dims...>::value, typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::SliceType>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims> const&... spans)
+typename std::enable_if<!arg_helper<Dimension, Dims...>::value, typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::SliceType>::type
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims> const&... spans)
 {
     return Slice(copy_resize_construct_tag(), *this, spans...);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename... Dims>
 typename std::enable_if<arg_helper<Dimension, Dims...>::value
-                       , typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::ConstSliceType>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims> const&... spans) const
+                       , typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::ConstSliceType>::type
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims> const&... spans) const
 {
     return ConstSliceType(Slice<true, Parent, SliceMixin, Dimension, Dimensions...>(copy_resize_construct_tag(), reinterpret_cast<ConstSliceType const&>(*this), spans...));
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename... Dims>
 typename std::enable_if<!arg_helper<Dimension, Dims...>::value
-                       , typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::ConstSliceType>::type
-Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims> const&... spans) const
+                       , typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::ConstSliceType>::type
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::slice(DimensionSpan<Dims> const&... spans) const
 {
     return ConstSliceType(Slice<true, Parent, SliceMixin, Dimension, Dimensions...>(copy_resize_construct_tag(), reinterpret_cast<ConstSliceType const&>(*this), spans...));
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::iterator Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::begin()
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::iterator Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::begin()
 {
     return iterator(*this);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::const_iterator Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::begin() const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::const_iterator Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::begin() const
 {
     return const_iterator(*this);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::const_iterator Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::cbegin() const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::const_iterator Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::cbegin() const
 {
     return const_iterator(*this);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::iterator Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::end()
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::iterator Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::end()
 {
     return iterator::create_end(*this);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::const_iterator Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::end() const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::const_iterator Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::end() const
 {
     return const_iterator::create_end(*this);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::const_iterator Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::cend() const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::const_iterator Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::cend() const
 {
     return const_iterator::create_end(*this);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-inline typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::Parent& Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::parent() const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+inline typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Parent& Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::parent() const
 {
     return BaseT::parent();
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::impl_iterator Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::impl_begin()
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::impl_iterator Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::impl_begin()
 {
     return impl_iterator(*this);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::impl_const_iterator Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::impl_begin() const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::impl_const_iterator Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::impl_begin() const
 {
     return impl_const_iterator(*this);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::impl_const_iterator Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::impl_cbegin() const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::impl_const_iterator Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::impl_cbegin() const
 {
     return impl_const_iterator(*this);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::impl_iterator Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::impl_end()
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::impl_iterator Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::impl_end()
 {
     return impl_iterator::create_end(*this);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::impl_const_iterator Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::impl_end() const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::impl_const_iterator Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::impl_end() const
 {
     return impl_const_iterator::create_end(*this);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-typename Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::impl_const_iterator Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::impl_cend() const
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::impl_const_iterator Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::impl_cend() const
 {
     return impl_const_iterator::create_end(*this);
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename IteratorT>
-bool Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::increment_it(IteratorT& current, SlicePosition<rank>& pos) const
+bool Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::increment_it(IteratorT& current, SlicePosition<rank>& pos) const
 {
     if(!BaseT::increment_it(current, pos)) {
         current -= BaseT::diff_base_span(); // return pointer to beginning of BaseT block
@@ -614,9 +628,9 @@ bool Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::increment_it
     return true;
 }
 
-template<bool is_const, typename Parent, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename IteratorDifferenceT>
-IteratorDifferenceT Slice<is_const, Parent, SliceMixin, Dimension, Dimensions...>::diff_it(IteratorDifferenceT const& diff) const
+IteratorDifferenceT Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::diff_it(IteratorDifferenceT const& diff) const
 {
     if(diff < (IteratorDifferenceT)BaseT::_base_span) {
         return BaseT::diff_it(diff);
@@ -663,10 +677,10 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice(Slice const& copy)
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
-template<typename SliceType, typename IteratorType>
+template<typename SliceT, typename IteratorType>
 struct Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::OffsetJob
 {
-    OffsetJob(SliceType const& slice, IteratorType& ptr)
+    OffsetJob(SliceT const& slice, IteratorType& ptr)
         : _slice(slice)
         , _ptr(ptr)
     {}
@@ -678,7 +692,7 @@ struct Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::OffsetJob
     }
 
     private:
-        SliceType const& _slice;
+        SliceT const& _slice;
         IteratorType& _ptr;
 };
 
@@ -690,7 +704,8 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( Parent& parent, Sli
     , _parent(&parent)
     , _ptr(parent.begin())
 {
-    OffsetJob<Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, SliceDimensions...>, decltype(_ptr)> job(slice, _ptr);
+    typedef Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, SliceDimensions...> SliceT_;
+    OffsetJob<SliceT_, decltype(_ptr)> job(static_cast<SliceT_ const&>(slice), _ptr);
     parent.for_each_dimension(job);
 }
 
@@ -718,11 +733,11 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( internal_construct_
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
-template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename SliceDim, typename... Dimensions2>
+template<typename SliceT>
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice(
                internal_construct_tag const&
-             , Parent& parent
-             , Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, Dimensions2...> const& slice)
+             , typename std::enable_if<is_slice<SliceT>::value, Parent&>::type parent
+             , SliceT const& slice)
     : _span(slice.template parent_span<Dimension>())
     , _base_span(parent.template dimension<Dimension>())
     , _parent(&parent)

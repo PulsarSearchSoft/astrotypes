@@ -200,19 +200,19 @@ MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::operator[](Dime
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
-template<typename SliceType>
+template<typename SliceT>
 struct MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::SliceReturnType
 {
-    typedef SliceReturnTypeHelper<false, MultiArray, DimensionTuple, SliceType> Helper;
+    typedef SliceReturnTypeHelper<false, MultiArray, DimensionTuple, typename std::decay<SliceT>::type> Helper;
     typedef typename Helper::type type;
     typedef typename Helper::slice_type slice_type;
 };
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension, typename... Dimensions>
-template<typename SliceType>
+template<typename SliceT>
 struct MultiArray<Alloc, T, SliceMixin, FirstDimension, Dimensions...>::ConstSliceReturnType
 {
-    typedef SliceReturnTypeHelper<true, MultiArray, DimensionTuple, SliceType> Helper;
+    typedef SliceReturnTypeHelper<true, MultiArray, DimensionTuple, typename std::decay<SliceT>::type> Helper;
     typedef typename Helper::type type;
     typedef typename Helper::slice_type slice_type;
 };

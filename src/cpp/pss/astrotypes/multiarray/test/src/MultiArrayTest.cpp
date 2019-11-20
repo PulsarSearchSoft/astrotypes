@@ -359,32 +359,63 @@ struct OverlayTester2D
                                 verify_dimensions(overlay, slice_of_slice);
                             }
 
-                            // reduced dimension slices
-                            auto slice_of_slice = slice[test_index_a];
-                            auto slice_of_const_slice = const_slice[test_index_a];
                             {
-                                SCOPED_TRACE("non const type with reduced dimension slice of slice");
-                                auto overlay = ab_2.overlay(slice_of_slice);
-                                ASSERT_EQ(&overlay.parent(), &ab_2);
-                                verify_dimensions(overlay, slice_of_slice);
+                                // reduced dimension slices - DimensionA
+                                auto slice_of_slice = slice[test_index_a];
+                                auto slice_of_const_slice = const_slice[test_index_a];
+                                {
+                                    SCOPED_TRACE("non const type with reduced dimension slice of slice");
+                                    auto overlay = ab_2.overlay(slice_of_slice);
+                                    ASSERT_EQ(&overlay.parent(), &ab_2);
+                                    verify_dimensions(overlay, slice_of_slice);
+                                }
+                                {
+                                    SCOPED_TRACE("non const type with const reduced dimension slice of slice");
+                                    auto overlay = ab_2.overlay(slice_of_const_slice);
+                                    ASSERT_EQ(&overlay.parent(), &ab_2);
+                                    verify_dimensions(overlay, slice_of_const_slice);
+                                }
+                                {
+                                    SCOPED_TRACE("const type with reduced dimension slice of slice");
+                                    auto overlay = ab_2_const.overlay(slice_of_slice);
+                                    ASSERT_EQ(&overlay.parent(), &ab_2_const);
+                                    verify_dimensions(overlay, slice_of_slice);
+                                }
+                                {
+                                    SCOPED_TRACE("const type with const reduced dimension slice of slice");
+                                    auto overlay = ab_2_const.overlay(slice_of_const_slice);
+                                    ASSERT_EQ(&overlay.parent(), &ab_2_const);
+                                    verify_dimensions(overlay, slice_of_const_slice);
+                                }
                             }
                             {
-                                SCOPED_TRACE("non const type with const reduced dimension slice of slice");
-                                auto overlay = ab_2.overlay(slice_of_const_slice);
-                                ASSERT_EQ(&overlay.parent(), &ab_2);
-                                verify_dimensions(overlay, slice_of_const_slice);
-                            }
-                            {
-                                SCOPED_TRACE("const type with reduced dimension slice of slice");
-                                auto overlay = ab_2_const.overlay(slice_of_slice);
-                                ASSERT_EQ(&overlay.parent(), &ab_2_const);
-                                verify_dimensions(overlay, slice_of_slice);
-                            }
-                            {
-                                SCOPED_TRACE("const type with const reduced dimension slice of slice");
-                                auto overlay = ab_2_const.overlay(slice_of_const_slice);
-                                ASSERT_EQ(&overlay.parent(), &ab_2_const);
-                                verify_dimensions(overlay, slice_of_const_slice);
+                                // reduced dimension slices - DimensionB
+                                auto slice_of_slice = slice[test_index_b];
+                                auto slice_of_const_slice = const_slice[test_index_b];
+                                {
+                                    SCOPED_TRACE("non const type with reduced dimension slice of slice");
+                                    auto overlay = ab_2.overlay(slice_of_slice);
+                                    ASSERT_EQ(&overlay.parent(), &ab_2);
+                                    //verify_dimensions(overlay, slice_of_slice);
+                                }
+                                {
+                                    SCOPED_TRACE("non const type with const reduced dimension slice of slice");
+                                    auto overlay = ab_2.overlay(slice_of_const_slice);
+                                    ASSERT_EQ(&overlay.parent(), &ab_2);
+                                    //verify_dimensions(overlay, slice_of_const_slice);
+                                }
+                                {
+                                    SCOPED_TRACE("const type with reduced dimension slice of slice");
+                                    auto overlay = ab_2_const.overlay(slice_of_slice);
+                                    ASSERT_EQ(&overlay.parent(), &ab_2_const);
+                                    //verify_dimensions(overlay, slice_of_slice);
+                                }
+                                {
+                                    SCOPED_TRACE("const type with const reduced dimension slice of slice");
+                                    auto overlay = ab_2_const.overlay(slice_of_const_slice);
+                                    ASSERT_EQ(&overlay.parent(), &ab_2_const);
+                                    //verify_dimensions(overlay, slice_of_const_slice);
+                                }
                             }
                         }
                     }
