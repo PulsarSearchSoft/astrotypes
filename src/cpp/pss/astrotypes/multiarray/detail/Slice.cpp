@@ -476,7 +476,7 @@ typename std::enable_if<arg_helper<Dim, Dimensions...>::value
 Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::operator[](DimensionIndex<Dim> const& index) const
 {
     typedef Slice<true, SliceTraitsT, SliceMixin, Dimension, Dimensions...> _SliceType;
-    typedef typename Slice::ConstOperatorSliceType<Dim>::type ReturnSliceType;
+    typedef typename ConstOperatorSliceType<Dim>::type ReturnSliceType;
     return ReturnSliceType(_SliceType(copy_resize_construct_tag(), reinterpret_cast<_SliceType const&>(*this), DimensionSpan<Dim>(index, DimensionSize<Dim>(1))));
 }
 
