@@ -29,137 +29,153 @@ namespace pss {
 namespace astrotypes {
 namespace multiarray {
 
-template<typename SliceType, typename ExcludedDim, std::size_t RankT>
+template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
 template<typename Dim>
-typename std::enable_if<std::is_same<Dim, ExcludedDim>::value, std::size_t>::type
-ReducedRankSlice<SliceType, ExcludedDim, RankT>::dimension()
+typename std::enable_if<std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
+ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::dimension()
 {
     return 1;
 }
 
-template<typename SliceType, typename ExcludedDim, std::size_t RankT>
+template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
+template<typename Dim>
+typename std::enable_if<!std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
+ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::dimension() const
+{
+    return BaseT::template dimension<Dim>();
+}
+
+template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
 template<typename Dim>
 typename std::enable_if<!std::is_same<Dim, ExcludedDim>::value
-                      , ReducedRankSlice<typename SliceMixinRemover<typename SliceType::template OperatorSliceType<Dim>::type>::type, ExcludedDim>>::type
-ReducedRankSlice<SliceType, ExcludedDim, RankT>::operator[](DimensionIndex<Dim> dimension)
+                      , ReducedRankSlice<typename SliceMixinRemover<typename SliceBaseType::template OperatorSliceBaseType<Dim>::type>::type, ExcludedDim>>::type
+ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::operator[](DimensionIndex<Dim> dimension)
 {
     static_assert(RankT == 0, "not yet implemented");
     return static_cast<BaseT&>(*this)[dimension];
 }
 
-template<typename SliceType, typename ExcludedDim, std::size_t RankT>
+template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
 template<typename Dim>
 typename std::enable_if<!std::is_same<Dim, ExcludedDim>::value
-                      , ReducedRankSlice<typename SliceMixinRemover<typename SliceType::template ConstOperatorSliceType<Dim>::type>::type, ExcludedDim>>::type
-ReducedRankSlice<SliceType, ExcludedDim, RankT>::operator[](DimensionIndex<Dim> dimension) const
+                      , ReducedRankSlice<typename SliceMixinRemover<typename SliceBaseType::template ConstOperatorSliceBaseType<Dim>::type>::type, ExcludedDim>>::type
+ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::operator[](DimensionIndex<Dim> dimension) const
 {
     static_assert(RankT == 0, "not yet implemented");
     return static_cast<BaseT const&>(*this)[dimension];
 }
 
-template<typename SliceType, typename ExcludedDim, std::size_t RankT>
-typename ReducedRankSlice<SliceType, ExcludedDim, RankT>::iterator ReducedRankSlice<SliceType, ExcludedDim, RankT>::begin()
+template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
+typename ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::iterator ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::begin()
 {
     static_assert(RankT == 0, "not yet implemented");
     return BaseT::impl_begin();
 }
 
-template<typename SliceType, typename ExcludedDim, std::size_t RankT>
-typename ReducedRankSlice<SliceType, ExcludedDim, RankT>::const_iterator ReducedRankSlice<SliceType, ExcludedDim, RankT>::begin() const
+template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
+typename ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::const_iterator ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::begin() const
 {
     static_assert(RankT == 0, "not yet implemented");
     return BaseT::impl_begin();
 }
 
-template<typename SliceType, typename ExcludedDim, std::size_t RankT>
-typename ReducedRankSlice<SliceType, ExcludedDim, RankT>::const_iterator ReducedRankSlice<SliceType, ExcludedDim, RankT>::cbegin() const
+template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
+typename ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::const_iterator ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::cbegin() const
 {
     static_assert(RankT == 0, "not yet implemented");
     return BaseT::impl_cbegin();
 }
 
-template<typename SliceType, typename ExcludedDim, std::size_t RankT>
-typename ReducedRankSlice<SliceType, ExcludedDim, RankT>::iterator ReducedRankSlice<SliceType, ExcludedDim, RankT>::end()
+template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
+typename ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::iterator ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::end()
 {
     static_assert(RankT == 0, "not yet implemented");
     return BaseT::impl_end();
 }
 
-template<typename SliceType, typename ExcludedDim, std::size_t RankT>
-typename ReducedRankSlice<SliceType, ExcludedDim, RankT>::const_iterator ReducedRankSlice<SliceType, ExcludedDim, RankT>::end() const
+template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
+typename ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::const_iterator ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::end() const
 {
     static_assert(RankT == 0, "not yet implemented");
     return BaseT::impl_end();
 }
 
-template<typename SliceType, typename ExcludedDim, std::size_t RankT>
-typename ReducedRankSlice<SliceType, ExcludedDim, RankT>::const_iterator ReducedRankSlice<SliceType, ExcludedDim, RankT>::cend() const
+template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
+typename ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::const_iterator ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::cend() const
 {
     static_assert(RankT == 0, "not yet implemented");
     return BaseT::impl_cend();
 }
 
 ///// ------------ Rank 1 ----------------------------------------------------------------
-template<typename SliceType, typename ExcludedDim>
+template<typename SliceBaseType, typename ExcludedDim>
 template<typename Dim>
-typename std::enable_if<!has_type<typename ReducedRankSlice<SliceType, ExcludedDim, 1>::ExcludeTuple, Dim>::value
-                      , typename ReducedRankSlice<SliceType, ExcludedDim, 1>::reference_type>::type
-ReducedRankSlice<SliceType, ExcludedDim, 1>::operator[](DimensionIndex<Dim> dimension)
+typename std::enable_if<!has_type<typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::ExcludeTuple, Dim>::value
+                      , typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::reference_type>::type
+ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::operator[](DimensionIndex<Dim> dimension)
 {
    return *static_cast<BaseT&>(*this)[dimension].begin();
 }
 
-template<typename SliceType, typename ExcludedDim>
+template<typename SliceBaseType, typename ExcludedDim>
 template<typename Dim>
-typename std::enable_if<!has_type<typename ReducedRankSlice<SliceType, ExcludedDim, 1>::ExcludeTuple, Dim>::value
-                      , typename ReducedRankSlice<SliceType, ExcludedDim, 1>::const_reference_type>::type
-ReducedRankSlice<SliceType, ExcludedDim, 1>::operator[](DimensionIndex<Dim> dimension) const
+typename std::enable_if<!has_type<typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::ExcludeTuple, Dim>::value
+                      , typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::const_reference_type>::type
+ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::operator[](DimensionIndex<Dim> dimension) const
 {
    return *static_cast<BaseT const&>(*this)[dimension].begin();
 }
 
-template<typename SliceType, typename ExcludedDim>
-typename ReducedRankSlice<SliceType, ExcludedDim, 1>::iterator ReducedRankSlice<SliceType, ExcludedDim, 1>::begin()
+template<typename SliceBaseType, typename ExcludedDim>
+typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::iterator ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::begin()
 {
     return BaseT::impl_begin();
 }
 
-template<typename SliceType, typename ExcludedDim>
-typename ReducedRankSlice<SliceType, ExcludedDim, 1>::const_iterator ReducedRankSlice<SliceType, ExcludedDim, 1>::begin() const
+template<typename SliceBaseType, typename ExcludedDim>
+typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::const_iterator ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::begin() const
 {
     return BaseT::impl_begin();
 }
 
-template<typename SliceType, typename ExcludedDim>
-typename ReducedRankSlice<SliceType, ExcludedDim, 1>::const_iterator ReducedRankSlice<SliceType, ExcludedDim, 1>::cbegin() const
+template<typename SliceBaseType, typename ExcludedDim>
+typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::const_iterator ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::cbegin() const
 {
     return BaseT::impl_cbegin();
 }
 
-template<typename SliceType, typename ExcludedDim>
-typename ReducedRankSlice<SliceType, ExcludedDim, 1>::iterator ReducedRankSlice<SliceType, ExcludedDim, 1>::end()
+template<typename SliceBaseType, typename ExcludedDim>
+typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::iterator ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::end()
 {
     return BaseT::impl_end();
 }
 
-template<typename SliceType, typename ExcludedDim>
-typename ReducedRankSlice<SliceType, ExcludedDim, 1>::const_iterator ReducedRankSlice<SliceType, ExcludedDim, 1>::end() const
+template<typename SliceBaseType, typename ExcludedDim>
+typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::const_iterator ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::end() const
 {
     return BaseT::impl_end();
 }
 
-template<typename SliceType, typename ExcludedDim>
-typename ReducedRankSlice<SliceType, ExcludedDim, 1>::const_iterator ReducedRankSlice<SliceType, ExcludedDim, 1>::cend() const
+template<typename SliceBaseType, typename ExcludedDim>
+typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::const_iterator ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::cend() const
 {
     return BaseT::impl_cend();
 }
 
-template<typename SliceType, typename ExcludedDim>
+template<typename SliceBaseType, typename ExcludedDim>
 template<typename Dim>
-typename std::enable_if<std::is_same<Dim, ExcludedDim>::value, std::size_t>::type
-ReducedRankSlice<SliceType, ExcludedDim, 1>::dimension()
+typename std::enable_if<std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
+ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::dimension()
 {
-    return 1;
+    return DimensionSize<Dim>(1);
+}
+
+template<typename SliceBaseType, typename ExcludedDim>
+template<typename Dim>
+typename std::enable_if<!std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
+ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::dimension() const
+{
+    return BaseT::template dimension<Dim>();
 }
 
 } // namespace multiarray

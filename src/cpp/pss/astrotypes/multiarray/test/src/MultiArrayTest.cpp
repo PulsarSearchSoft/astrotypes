@@ -396,25 +396,25 @@ struct OverlayTester2D
                                     SCOPED_TRACE("non const type with reduced dimension slice of slice");
                                     auto overlay = ab_2.overlay(slice_of_slice);
                                     ASSERT_EQ(&overlay.parent(), &ab_2);
-                                    //verify_dimensions(overlay, slice_of_slice);
+                                    verify_dimensions(overlay, slice_of_slice);
                                 }
                                 {
                                     SCOPED_TRACE("non const type with const reduced dimension slice of slice");
                                     auto overlay = ab_2.overlay(slice_of_const_slice);
                                     ASSERT_EQ(&overlay.parent(), &ab_2);
-                                    //verify_dimensions(overlay, slice_of_const_slice);
+                                    verify_dimensions(overlay, slice_of_const_slice);
                                 }
                                 {
                                     SCOPED_TRACE("const type with reduced dimension slice of slice");
                                     auto overlay = ab_2_const.overlay(slice_of_slice);
                                     ASSERT_EQ(&overlay.parent(), &ab_2_const);
-                                    //verify_dimensions(overlay, slice_of_slice);
+                                    verify_dimensions(overlay, slice_of_slice);
                                 }
                                 {
                                     SCOPED_TRACE("const type with const reduced dimension slice of slice");
                                     auto overlay = ab_2_const.overlay(slice_of_const_slice);
                                     ASSERT_EQ(&overlay.parent(), &ab_2_const);
-                                    //verify_dimensions(overlay, slice_of_const_slice);
+                                    verify_dimensions(overlay, slice_of_const_slice);
                                 }
                             }
                         }
@@ -426,17 +426,37 @@ struct OverlayTester2D
     }
 
     template<typename T1, typename T2>
+    struct VerifyDimEqual {
+        template<typename Dim>
+        static inline
+        typename std::enable_if<has_dimension<T1, Dim>::value, void>::type
+        exec(T1 const& t1, T2 const& t2)
+        {
+            ASSERT_EQ(t1.template dimension<Dim>(), t2.template dimension<Dim>());
+        }
+
+        template<typename Dim>
+        static inline
+        typename std::enable_if<!has_dimension<T1, Dim>::value, void>::type
+        exec(T1 const&, T2 const&)
+        {
+        }
+    };
+
+    template<typename T1, typename T2>
     static
     void verify_dimensions(T1 const& t1, T2 const& t2) {
         ASSERT_EQ(t1.data_size(), t2.data_size());
-        ASSERT_EQ(t1.template dimension<DimensionA>(), t2.template dimension<DimensionA>());
-        ASSERT_EQ(t1.template dimension<DimensionB>(), t2.template dimension<DimensionB>());
+        VerifyDimEqual<T1,T2>::template exec<DimensionA>(t1, t2);
+        VerifyDimEqual<T1,T2>::template exec<DimensionB>(t1, t2);
         //ASSERT_EQ(t1.template span<DimensionA>(), t2.template span<DimensionA>());
-        ASSERT_EQ(t1.template span<DimensionB>(), t2.template span<DimensionB>());
+        if(has_dimension<T2, DimensionB>::value)
+            ASSERT_EQ(t1.template span<DimensionB>(), t2.template span<DimensionB>());
         ASSERT_EQ(std::distance(t1.begin(), t1.end())
                  ,std::distance(t2.begin(), t2.end()));
         EXPECT_EQ(&*t1.begin() - &*t1.parent().begin()
                  ,&*t2.begin() - &*t2.parent().begin());
+        std::equal(t1.begin(), t1.end(), t2.begin());
     }
 };
 } // namespace

@@ -34,27 +34,27 @@ namespace multiarray {
  * @details not intended for public use
  */
 
-template<typename SliceType, typename ExcludedDim, std::size_t RankT=SliceType::rank - 1>
-class ReducedRankSlice : public SliceType
+template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT=SliceBaseType::rank - 1>
+class ReducedRankSlice : public SliceBaseType
 {
-        typedef SliceType BaseT;
+        typedef SliceBaseType BaseT;
 
     protected:
         typedef typename join_tuples<typename BaseT::ExcludeTuple, std::tuple<ExcludedDim>>::type ExcludeTuple;
-        typedef typename tuple_diff<typename SliceType::DimensionTuple, ExcludeTuple>::type DimensionTuple;
-        typedef typename SliceIteratorHelper<ReducedRankSlice, typename SliceType::iterator>::type iterator;
-        typedef typename SliceIteratorHelper<ReducedRankSlice, typename SliceType::const_iterator>::type const_iterator;
+        typedef typename tuple_diff<typename SliceBaseType::DimensionTuple, ExcludeTuple>::type DimensionTuple;
+        typedef typename SliceIteratorHelper<ReducedRankSlice, typename SliceBaseType::iterator>::type iterator;
+        typedef typename SliceIteratorHelper<ReducedRankSlice, typename SliceBaseType::const_iterator>::type const_iterator;
         friend typename iterator::BaseT;
         friend typename iterator::ImplT;
         friend typename const_iterator::BaseT;
         friend typename const_iterator::ImplT;
 
     public:
-        static constexpr std::size_t rank = SliceType::rank - 1;
+        static constexpr std::size_t rank = SliceBaseType::rank - 1;
 
     public:
-        ReducedRankSlice(SliceType const& s) : SliceType(s) {}
-        ReducedRankSlice(SliceType&& s) : SliceType(std::forward<SliceType>(s)) {}
+        ReducedRankSlice(SliceBaseType const& s) : SliceBaseType(s) {}
+        ReducedRankSlice(SliceBaseType&& s) : SliceBaseType(std::forward<SliceBaseType>(s)) {}
 
         /**
          * @brief iterator pointing to the first element in the slice
@@ -72,12 +72,12 @@ class ReducedRankSlice : public SliceType
 
         template<typename Dim>
         typename std::enable_if<!std::is_same<Dim, ExcludedDim>::value
-                               , ReducedRankSlice<typename SliceMixinRemover<typename SliceType::template OperatorSliceType<Dim>::type>::type, ExcludedDim>>::type
+                               , ReducedRankSlice<typename SliceMixinRemover<typename SliceBaseType::template OperatorSliceBaseType<Dim>::type>::type, ExcludedDim>>::type
         operator[](DimensionIndex<Dim>);
 
         template<typename Dim>
         typename std::enable_if<!std::is_same<Dim, ExcludedDim>::value
-                               , ReducedRankSlice<typename SliceMixinRemover<typename SliceType::template ConstOperatorSliceType<Dim>::type>::type, ExcludedDim>>::type
+                               , ReducedRankSlice<typename SliceMixinRemover<typename SliceBaseType::template ConstOperatorSliceBaseType<Dim>::type>::type, ExcludedDim>>::type
         operator[](DimensionIndex<Dim>) const;
 
         /**
@@ -85,22 +85,26 @@ class ReducedRankSlice : public SliceType
          */
         template<typename Dim>
         static
-        typename std::enable_if<std::is_same<Dim, ExcludedDim>::value, std::size_t>::type
+        typename std::enable_if<std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
         dimension();
+
+        template<typename Dim>
+        typename std::enable_if<!std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
+        dimension() const;
 };
 
-template<typename SliceType, typename ExcludedDim>
-class ReducedRankSlice<SliceType, ExcludedDim, 1> : public SliceType
+template<typename SliceBaseType, typename ExcludedDim>
+class ReducedRankSlice<SliceBaseType, ExcludedDim, 1> : public SliceBaseType
 {
-        typedef SliceType BaseT;
+        typedef SliceBaseType BaseT;
         typedef typename join_tuples<typename BaseT::ExcludeTuple, std::tuple<ExcludedDim>>::type ExcludeTuple;
 
     public:
-        typedef typename astrotypes::tuple_diff<typename SliceType::DimensionTuple, ExcludeTuple>::type DimensionTuple;
-        typedef typename std::iterator_traits<typename SliceType::iterator>::reference reference_type;
-        typedef typename std::iterator_traits<typename SliceType::Parent::const_iterator>::reference const_reference_type;
-        typedef typename SliceIteratorHelper<ReducedRankSlice, typename SliceType::iterator>::type iterator;
-        typedef typename SliceIteratorHelper<ReducedRankSlice, typename SliceType::const_iterator>::type const_iterator;
+        typedef typename astrotypes::tuple_diff<typename SliceBaseType::DimensionTuple, ExcludeTuple>::type DimensionTuple;
+        typedef typename std::iterator_traits<typename SliceBaseType::iterator>::reference reference_type;
+        typedef typename std::iterator_traits<typename SliceBaseType::Parent::const_iterator>::reference const_reference_type;
+        typedef typename SliceIteratorHelper<ReducedRankSlice, typename SliceBaseType::iterator>::type iterator;
+        typedef typename SliceIteratorHelper<ReducedRankSlice, typename SliceBaseType::const_iterator>::type const_iterator;
 
     private:
         friend typename iterator::BaseT;
@@ -109,8 +113,8 @@ class ReducedRankSlice<SliceType, ExcludedDim, 1> : public SliceType
         friend typename const_iterator::ImplT;
 
     public:
-        ReducedRankSlice(SliceType const& s) : BaseT(s) {}
-        ReducedRankSlice(SliceType&& s) : BaseT(std::move(s)) {}
+        ReducedRankSlice(SliceBaseType const& s) : BaseT(s) {}
+        ReducedRankSlice(SliceBaseType&& s) : BaseT(std::move(s)) {}
 
         /**
          * @brief iterator pointing to the first element in the slice
@@ -144,8 +148,12 @@ class ReducedRankSlice<SliceType, ExcludedDim, 1> : public SliceType
          */
         template<typename Dim>
         static
-        typename std::enable_if<std::is_same<Dim, ExcludedDim>::value, std::size_t>::type
+        typename std::enable_if<std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
         dimension();
+
+        template<typename Dim>
+        typename std::enable_if<!std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
+        dimension() const;
 };
 
 } // namespace multiarray
