@@ -446,8 +446,9 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
         Slice(Parent& parent, DimensionSpan<Dimension> const&);
         Slice(Slice const&);
 
-        template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename SliceDim, typename... SliceDimensions>
-        Slice( Parent&, SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, SliceDimensions...>> const& slice);
+        template<typename SliceT>
+        Slice( typename std::enable_if<is_slice<SliceT>::value, Parent&>::type
+             , SliceT const& slice);
         ~Slice();
 
         static constexpr std::size_t rank = 1;
@@ -581,7 +582,6 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
 
         template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
         template<typename IteratorDifferenceT> static IteratorDifferenceT diff_it(IteratorDifferenceT const& diff);
-
 
         // same as size() - to support base_span calls from higher dimensions
         std::size_t base_span() const;

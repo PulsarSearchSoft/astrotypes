@@ -697,14 +697,15 @@ struct Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::OffsetJob
 };
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
-template<bool is_const2, typename SliceTraitsT2, template<typename> class SliceMixin2, typename SliceDim, typename... SliceDimensions>
-Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( Parent& parent, SliceMixin2<Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, SliceDimensions...>> const& slice)
+template<typename SliceT>
+Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::Slice( typename std::enable_if<is_slice<SliceT>::value, Parent&>::type parent
+                                                           , SliceT const& slice)
     : _span(slice.template parent_span<Dimension>())
     , _base_span(parent.template dimension<Dimension>())
     , _parent(&parent)
     , _ptr(parent.begin())
 {
-    typedef Slice<is_const2, SliceTraitsT2, SliceMixin2, SliceDim, SliceDimensions...> SliceT_;
+    typedef typename SliceT::SliceType SliceT_;
     OffsetJob<SliceT_, decltype(_ptr)> job(static_cast<SliceT_ const&>(slice), _ptr);
     parent.for_each_dimension(job);
 }
