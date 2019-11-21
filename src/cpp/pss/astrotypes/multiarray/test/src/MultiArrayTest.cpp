@@ -450,8 +450,7 @@ struct OverlayTester2D
         VerifyDimEqual<T1,T2>::template exec<DimensionA>(t1, t2);
         VerifyDimEqual<T1,T2>::template exec<DimensionB>(t1, t2);
         //ASSERT_EQ(t1.template span<DimensionA>(), t2.template span<DimensionA>());
-        if(has_dimension<T2, DimensionB>::value)
-            ASSERT_EQ(t1.template span<DimensionB>(), t2.template span<DimensionB>());
+        ASSERT_EQ(t1.template span<DimensionB>(), t2.template span<DimensionB>());
         ASSERT_EQ(std::distance(t1.begin(), t1.end())
                  ,std::distance(t2.begin(), t2.end()));
         EXPECT_EQ(&*t1.begin() - &*t1.parent().begin()
