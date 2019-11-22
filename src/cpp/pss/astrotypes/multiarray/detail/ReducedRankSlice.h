@@ -98,6 +98,8 @@ class ReducedRankSlice<SliceBaseType, ExcludedDim, 1> : public SliceBaseType
 {
         typedef SliceBaseType BaseT;
         typedef typename join_tuples<typename BaseT::ExcludeTuple, std::tuple<ExcludedDim>>::type ExcludeTuple;
+        template<typename T>
+        struct SliceMixinType :  BaseT::template SliceMixinType<T> {};
 
     public:
         typedef typename astrotypes::tuple_diff<typename SliceBaseType::DimensionTuple, ExcludeTuple>::type DimensionTuple;
@@ -105,6 +107,7 @@ class ReducedRankSlice<SliceBaseType, ExcludedDim, 1> : public SliceBaseType
         typedef typename std::iterator_traits<typename SliceBaseType::Parent::const_iterator>::reference const_reference_type;
         typedef typename SliceIteratorHelper<ReducedRankSlice, typename SliceBaseType::iterator>::type iterator;
         typedef typename SliceIteratorHelper<ReducedRankSlice, typename SliceBaseType::const_iterator>::type const_iterator;
+        typedef SliceMixinType<ReducedRankSlice<SliceBaseType, ExcludedDim, 1>> SelfType;
 
     private:
         friend typename iterator::BaseT;
@@ -141,6 +144,16 @@ class ReducedRankSlice<SliceBaseType, ExcludedDim, 1> : public SliceBaseType
         template<typename Dim>
         typename std::enable_if<!has_type<ExcludeTuple, Dim>::value
                                , const_reference_type>::type
+        operator[](DimensionIndex<Dim>) const;
+
+        template<typename Dim>
+        typename std::enable_if<has_type<ExcludeTuple, Dim>::value
+                               , SelfType&>::type
+        operator[](DimensionIndex<Dim>);
+
+        template<typename Dim>
+        typename std::enable_if<has_type<ExcludeTuple, Dim>::value
+                               , SelfType const&>::type
         operator[](DimensionIndex<Dim>) const;
 
         /**

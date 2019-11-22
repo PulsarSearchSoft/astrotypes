@@ -136,6 +136,7 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
 
     protected:
         typedef typename SliceTraitsHelper<SliceTraitsT>::ExcludeTuple ExcludeTuple;
+        template<typename T> using SliceMixinType = SliceMixin<T>;
 
     public:
         typedef std::tuple<Dimension, Dimensions...> DimensionTuple;
@@ -411,7 +412,7 @@ class SliceTag {
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
 class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
 {
-        typedef Slice<is_const, SliceTraitsT, SliceMixin, Dimension> SelfType;
+        typedef SliceMixin<Slice<is_const, SliceTraitsT, SliceMixin, Dimension>> SelfType;
         typedef Slice<Flip<is_const>::value, SliceTraitsT, SliceMixin, Dimension> FlipConstSelfType;
         friend FlipConstSelfType;
         friend SliceMixin<FlipConstSelfType>;
@@ -423,6 +424,7 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
 
     protected:
         typedef typename SliceTraitsHelper<SliceTraitsT>::ExcludeTuple ExcludeTuple;
+        template<typename T> using SliceMixinType = SliceMixin<T>;
 
     public:
         typedef std::tuple<Dimension> DimensionTuple;
@@ -539,12 +541,12 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
         // specialisations for implicit (i.e Parent has dimension but Slice does not)
         template<typename Dim, typename Enable=typename std::enable_if<astrotypes::has_dimension<Parent, Dim>::value
                                                             && !std::is_same<Dim, Dimension>::value>::type>
-        SelfType const& operator[](DimensionIndex<Dim> const&) const { return *this; }
+        SelfType const& operator[](DimensionIndex<Dim> const&) const { return static_cast<SelfType const&>(*this); }
 
         // specialisations for implicit (i.e Parent has dimension but Slice does not)
         template<typename Dim, typename Enable=typename std::enable_if<astrotypes::has_dimension<Parent, Dim>::value
                                                             && !std::is_same<Dim, Dimension>::value>::type>
-        SelfType& operator[](DimensionIndex<Dim> const&) { return *this; }
+        SelfType& operator[](DimensionIndex<Dim> const&) { return static_cast<SelfType&>(*this); }
 
         /**
          * @brief return a sub window on the slice

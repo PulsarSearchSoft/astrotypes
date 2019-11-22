@@ -945,17 +945,17 @@ typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::parent_iterator& 
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
-Slice<is_const, SliceTraitsT, SliceMixin, Dimension>& Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::operator+=(DimensionSize<Dimension> const& offset)
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::SelfType& Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::operator+=(DimensionSize<Dimension> const& offset)
 {
     _ptr += static_cast<std::size_t>(offset) * _base_span;
-    return *this;
+    return static_cast<SelfType&>(*this);
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
-Slice<is_const, SliceTraitsT, SliceMixin, Dimension>& Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::operator+=(std::size_t offset)
+typename Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::SelfType& Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::operator+=(std::size_t offset)
 {
     _ptr += offset * _base_span;
-    return *this;
+    return static_cast<SelfType&>(*this);
 }
 
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>

@@ -30,6 +30,21 @@
 
 namespace pss {
 namespace astrotypes {
+
+namespace multiarray {
+namespace test {
+
+template<int NDim, typename DimTuple>
+struct ParentType;
+
+} // namespace multiarray
+} // namespace test
+
+template<typename Dimension, typename DimTuple, int NDim>
+struct has_dimension<multiarray::test::ParentType<NDim, DimTuple>, Dimension> : public has_type<DimTuple, Dimension>::type
+{
+};
+
 namespace multiarray {
 namespace test {
 
@@ -54,6 +69,7 @@ void SliceTest::TearDown()
 struct DimensionA {};
 struct DimensionB {};
 struct DimensionC {};
+typedef std::tuple<DimensionA, DimensionB, DimensionC> DimensionTuple;
 
 template<typename T>
 class TestSliceMixin : public T
@@ -63,9 +79,9 @@ class TestSliceMixin : public T
         using T::T;
 };
 
-template<int NDim, typename ValueType=int>
+template<int NDim, typename DimTuple=typename tuple_slice<DimensionTuple, 0, NDim-1>::type>
 struct ParentType {
-    typedef ValueType value_type;
+    typedef int value_type;
     typedef int& reference_type;
     typedef typename std::vector<value_type>::iterator iterator;
     typedef typename std::vector<value_type>::const_iterator const_iterator;
@@ -275,7 +291,6 @@ TEST_F(SliceTest, test_two_dimensions)
             ASSERT_EQ(const_slice[j][i], slice[i][j]) << "i=" << i << " j=" << j; // check we can read
         }
     }
-
 }
 
 TEST_F(SliceTest, test_two_dimensions_contructor_out_of_order_dims)
@@ -307,6 +322,56 @@ TEST_F(SliceTest, test_two_dimensions_contructor_out_of_order_dims)
 
     ASSERT_EQ(10U, static_cast<std::size_t>(slice_d.size<DimensionA>()));
     ASSERT_EQ(50U, static_cast<std::size_t>(slice_d.size<DimensionB>()));
+}
+
+TEST_F(SliceTest, test_two_dimensions_inner_one_dimensional_slice)
+{
+    ParentType<2> p(50);
+    Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> slice_a(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(19))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(22))
+                                              );
+
+    for(DimensionIndex<DimensionA> index_a(0); index_a < slice_a.template dimension<DimensionA>(); ++index_a)
+    {
+        auto slice_1D = slice_a[index_a];
+        static_assert(std::is_same<has_dimension<typename decltype(slice_1D)::Parent, DimensionB>
+                                 , has_dimension<typename decltype(slice_a)::Parent, DimensionB>>::value, "parent type not as expected");
+        static_assert(std::is_same<has_dimension<typename decltype(slice_1D)::Parent, DimensionA>
+                                 , has_dimension<typename decltype(slice_a)::Parent, DimensionA>>::value, "parent type not as expected");
+        static_assert(is_slice<decltype(slice_1D)>::value, "expecting slice");
+        ASSERT_EQ(slice_1D.template dimension<DimensionB>(), slice_a.template dimension<DimensionB>());
+        static_assert(has_dimension<typename decltype(slice_1D)::Parent, DimensionA>::value, " type");
+        static_assert(has_dimension<ParentType<2>, DimensionA>::value, " type");
+        ASSERT_EQ(slice_1D.template dimension<DimensionA>(), DimensionSize<DimensionA>(1));
+
+        // further slices
+        auto& slice_a_of_slice = slice_1D[DimensionIndex<DimensionA>(0)];
+        static_assert(std::is_same<typename std::remove_reference<decltype(slice_a_of_slice)>::type, decltype(slice_1D)>::value, "expecting same type");
+        ASSERT_EQ(&slice_1D, &slice_a_of_slice);
+
+        auto& slice_b_of_slice = slice_1D[DimensionIndex<DimensionB>(0)];
+        static_assert(std::is_same<typename std::remove_reference<decltype(slice_b_of_slice)>::type, int>::value, "expecting an int&");
+        ASSERT_EQ(slice_b_of_slice, *slice_1D.begin());
+    }
+    for(DimensionIndex<DimensionB> index_b(0); index_b < slice_a.template dimension<DimensionB>(); ++index_b)
+    {
+        auto slice_1D = slice_a[index_b];
+        static_assert(std::is_same<has_dimension<typename decltype(slice_1D)::Parent, DimensionB>
+                                 , has_dimension<typename decltype(slice_a)::Parent, DimensionB>>::value, "parent type not as expected");
+        static_assert(std::is_same<has_dimension<typename decltype(slice_1D)::Parent, DimensionA>
+                                 , has_dimension<typename decltype(slice_a)::Parent, DimensionA>>::value, "parent type not as expected");
+        static_assert(is_slice<decltype(slice_1D)>::value, "expecting slice");
+        ASSERT_EQ(slice_1D.template dimension<DimensionB>(), DimensionSize<DimensionB>(1));
+        ASSERT_EQ(slice_1D.template dimension<DimensionA>(), slice_a.template dimension<DimensionA>());
+
+        // further slices
+        auto& slice_b_of_slice = slice_1D[DimensionIndex<DimensionB>(0)];
+        ASSERT_EQ(&slice_1D, &slice_b_of_slice); // can't further divide by type so just returns the same object
+        auto& slice_a_of_slice = slice_1D[DimensionIndex<DimensionA>(0)];
+        static_assert(std::is_same<typename std::remove_reference<decltype(slice_a_of_slice)>::type, int>::value, "expecting an int&");
+        ASSERT_EQ(slice_a_of_slice, *slice_1D.begin());
+    }
 }
 
 TEST_F(SliceTest, test_two_dimensions_slice_iterators)

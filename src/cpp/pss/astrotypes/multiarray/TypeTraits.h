@@ -393,6 +393,27 @@ struct tuple_diff<std::tuple<T, Tuple1...>, std::tuple<Tuple2...>>
 };
 
 ///--------------------------------------------------------------------
+// @brief creates a new tuple from the first Start to End elements of another
+// --------------------------------------------------------------------
+template<typename Tuple, std::size_t Start, std::size_t End>
+struct tuple_slice;
+
+template<std::size_t Start, typename...Ts>
+struct tuple_slice<std::tuple<Ts...>, Start, Start>
+{
+    typedef std::tuple<typename std::tuple_element<Start, std::tuple<Ts...>>::type> type;
+};
+
+template<std::size_t Start, std::size_t End, typename...Ts>
+struct tuple_slice<std::tuple<Ts...>, Start, End>
+{
+    typedef typename join_tuples<std::tuple<typename std::tuple_element<Start, std::tuple<Ts...>>::type>
+                                , typename tuple_slice<std::tuple<Ts...>, Start+1, End>::type
+                                >::type type;
+};
+
+
+///--------------------------------------------------------------------
 // @brief produce the minimal ordered dimesion set for a MultiArray
 //        or Slice that can represent the passed dims
 // --------------------------------------------------------------------

@@ -127,6 +127,26 @@ ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::operator[](DimensionIndex<Dim> 
 }
 
 template<typename SliceBaseType, typename ExcludedDim>
+template<typename Dim>
+inline
+typename std::enable_if<has_type<typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::ExcludeTuple, Dim>::value
+                      , typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::SelfType&>::type
+ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::operator[](DimensionIndex<Dim>)
+{
+   return static_cast<SelfType&>(*this);
+}
+
+template<typename SliceBaseType, typename ExcludedDim>
+template<typename Dim>
+inline
+typename std::enable_if<has_type<typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::ExcludeTuple, Dim>::value
+                      , typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::SelfType const&>::type
+ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::operator[](DimensionIndex<Dim>) const
+{
+   return static_cast<SelfType const&>(*this);
+}
+
+template<typename SliceBaseType, typename ExcludedDim>
 typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::iterator ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::begin()
 {
     return BaseT::impl_begin();
