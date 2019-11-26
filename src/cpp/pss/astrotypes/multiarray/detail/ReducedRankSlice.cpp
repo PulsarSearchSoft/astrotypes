@@ -30,10 +30,9 @@ namespace astrotypes {
 namespace multiarray {
 
 template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
-template<typename Dim>
+template<typename Dim, typename>
 constexpr
-typename std::enable_if<std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
-ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::dimension() const
+DimensionSize<ExcludedDim> ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::dimension()
 {
     return DimensionSize<Dim>(1);
 }
@@ -184,12 +183,11 @@ typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::const_iterator Reduced
 }
 
 template<typename SliceBaseType, typename ExcludedDim>
-template<typename Dim>
+template<typename Dim, typename>
 constexpr
-typename std::enable_if<std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
-ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::dimension() const
+DimensionSize<ExcludedDim> ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::dimension()
 {
-    return DimensionSize<Dim>(1);
+    return DimensionSize<ExcludedDim>(1);
 }
 
 template<typename SliceBaseType, typename ExcludedDim>

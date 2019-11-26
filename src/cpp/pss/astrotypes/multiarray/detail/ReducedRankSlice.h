@@ -83,10 +83,9 @@ class ReducedRankSlice : public SliceBaseType
         /**
          * @brief the width of the slice in this dimesnion has been reduced to 1
          */
-        template<typename Dim>
-        constexpr
-        typename std::enable_if<std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
-        dimension() const;
+        template<typename Dim, typename = typename std::enable_if<std::is_same<Dim, ExcludedDim>::value>::type >
+        static constexpr
+        DimensionSize<ExcludedDim> dimension();
 
         template<typename Dim>
         typename std::enable_if<!std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
@@ -159,10 +158,9 @@ class ReducedRankSlice<SliceBaseType, ExcludedDim, 1> : public SliceBaseType
         /**
          * @brief the width of the slice in this dimesnion has been reduced to 1
          */
-        template<typename Dim>
-        constexpr
-        typename std::enable_if<std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
-        dimension() const;
+        template<typename Dim, typename = typename std::enable_if<std::is_same<Dim, ExcludedDim>::value>::type >
+        static constexpr
+        DimensionSize<ExcludedDim> dimension();
 
         template<typename Dim>
         typename std::enable_if<!std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
