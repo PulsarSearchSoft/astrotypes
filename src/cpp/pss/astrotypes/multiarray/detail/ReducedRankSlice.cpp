@@ -31,10 +31,11 @@ namespace multiarray {
 
 template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
 template<typename Dim>
+constexpr
 typename std::enable_if<std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
-ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::dimension()
+ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::dimension() const
 {
-    return 1;
+    return DimensionSize<Dim>(1);
 }
 
 template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
@@ -184,8 +185,9 @@ typename ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::const_iterator Reduced
 
 template<typename SliceBaseType, typename ExcludedDim>
 template<typename Dim>
+constexpr
 typename std::enable_if<std::is_same<Dim, ExcludedDim>::value, DimensionSize<Dim>>::type
-ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::dimension()
+ReducedRankSlice<SliceBaseType, ExcludedDim, 1>::dimension() const
 {
     return DimensionSize<Dim>(1);
 }
