@@ -25,6 +25,7 @@
 #define PSS_ASTROTYPES_TYPES_EXTENDEDTIMEFREQUENCY_H
 
 #include "TimeFrequency.h"
+#include "pss/astrotypes/multiarray/ExtendedMultiArray.h"
 #include "pss/astrotypes/utils/TypeTraits.h"
 #include <type_traits>
 
@@ -39,16 +40,17 @@ namespace types {
  */
 
 template<typename TimeFrequencyType>
-class ExtendedTimeFrequency
+class ExtendedTimeFrequency : public multiarray::ExtendedMultiArray<ExtendedTimeFrequency<TimeFrequencyType>
+                                                                  , TimeFrequencyType>
 {
+        typedef multiarray::ExtendedMultiArray<ExtendedTimeFrequency<TimeFrequencyType>, TimeFrequencyType> BaseT;
+
     protected:
         typedef is_pointer_wrapper<typename std::remove_reference<TimeFrequencyType>::type> IsWrapped;
         typedef typename IsWrapped::type Type; // unwrapped from any pointer wrapping
         typedef is_pointer_wrapper<const typename std::remove_reference<TimeFrequencyType>::type> ConstIsWrapped;
         template<typename T>
         using IsNotRefType = typename std::enable_if<!std::is_reference<TimeFrequencyType>::value, T>::type;
-        template<typename T>
-        using HasCopyConstructor = typename std::enable_if<std::is_copy_constructible<TimeFrequencyType>::value, T>::type;
 
     public:
         typedef typename Type::Channel Channel;
@@ -74,11 +76,6 @@ class ExtendedTimeFrequency
         std::size_t number_of_spectra() const;
 
     protected:
-        Type& get();
-        Type const& get() const;
-
-    protected:
-        TimeFrequencyType _tf;
 };
 
 

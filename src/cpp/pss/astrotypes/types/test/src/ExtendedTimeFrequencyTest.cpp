@@ -59,30 +59,46 @@ class TestExtendedTimeFrequency : public ExtendedTimeFrequency<T>
 };
 
 template<typename TimeFrequencyType, typename T>
-static void check_const_interface(TimeFrequencyType const& data, ExtendedTimeFrequency<T> const& ex_tf)
+static void check_const_interface(TimeFrequencyType const& data, ExtendedTimeFrequency<T> const& ex_tf, bool same_obj=true)
 {
     ASSERT_EQ(data.number_of_channels(), ex_tf.number_of_channels());
     ASSERT_EQ(data.number_of_spectra(), ex_tf.number_of_spectra());
     ASSERT_EQ(data.spectrum(1), ex_tf.spectrum(1));
     ASSERT_EQ(data.channel(1), ex_tf.channel(1));
-    //ASSERT_EQ(&*data.begin(), &*ex_tf.begin());
-    //ASSERT_EQ(&*data.end(), &*ex_tf.end());
+    if(same_obj) {
+        ASSERT_EQ(&*data.begin(), &*ex_tf.begin());
+        ASSERT_EQ(&*data.end(), &*ex_tf.end());
+    }
+    else {
+        ASSERT_NE(&*data.begin(), &*ex_tf.begin());
+        ASSERT_NE(&*data.end(), &*ex_tf.end());
+    }
+    ASSERT_EQ(data[DimensionIndex<units::Time>(1)], ex_tf[DimensionIndex<units::Time>(1)]);
 }
 
 template<typename TimeFrequencyType, typename T>
-static void check_interface(TimeFrequencyType& data, ExtendedTimeFrequency<T>& ex_tf)
+static void check_interface(TimeFrequencyType& data, ExtendedTimeFrequency<T>& ex_tf, bool same_obj = true)
 {
-    check_const_interface(data, ex_tf);
+    check_const_interface(data, ex_tf, same_obj);
     ASSERT_EQ(data.spectrum(1), ex_tf.spectrum(1));
     ASSERT_EQ(data.channel(1), ex_tf.channel(1));
+    if(same_obj) {
+        ASSERT_EQ(&*data.begin(), &*ex_tf.begin());
+        ASSERT_EQ(&*data.end(), &*ex_tf.end());
+    }
+    else {
+        ASSERT_NE(&*data.begin(), &*ex_tf.begin());
+        ASSERT_NE(&*data.end(), &*ex_tf.end());
+    }
+    ASSERT_EQ(data[DimensionIndex<units::Time>(1)], ex_tf[DimensionIndex<units::Time>(1)]);
 }
 
-TEST_F(ExtendedTimeFrequencyTest, test__type)
+TEST_F(ExtendedTimeFrequencyTest, test_type)
 {
     typedef TimeFrequency<uint8_t> TimeFrequencyType;
     TimeFrequencyType data(DimensionSize<units::Time>(10), DimensionSize<units::Frequency>(12));
     TestExtendedTimeFrequency<TimeFrequencyType> ex_tf(data);
-    check_interface(data, ex_tf);
+    check_interface(data, ex_tf, false);
 }
 
 TEST_F(ExtendedTimeFrequencyTest, test_ref_type)
@@ -119,6 +135,8 @@ TEST_F(ExtendedTimeFrequencyTest, test_unique_ptr_type)
     TimeFrequencyPtrType data(new TimeFrequencyType(DimensionSize<units::Time>(10), DimensionSize<units::Frequency>(12)));
     TestExtendedTimeFrequency<std::unique_ptr<TimeFrequencyType>> ex_tf(data);
     check_interface(*data, ex_tf);
+    ASSERT_EQ(&*data->begin(), &*ex_tf.begin());
+    ASSERT_EQ(&*data->end(), &*ex_tf.end());
 }
 
 TEST_F(ExtendedTimeFrequencyTest, test_const_unique_ptr_type)
@@ -128,6 +146,10 @@ TEST_F(ExtendedTimeFrequencyTest, test_const_unique_ptr_type)
     TimeFrequencyPtrType data(new TimeFrequencyType(DimensionSize<units::Time>(10), DimensionSize<units::Frequency>(12)));
     TestExtendedTimeFrequency<std::unique_ptr<TimeFrequencyType>> ex_tf(data);
     check_const_interface(*data, ex_tf);
+    ASSERT_EQ(&*data.begin(), &*ex_tf.begin());
+    ASSERT_EQ(&*data.end(), &*ex_tf.end());
+    ASSERT_EQ(&*data->begin(), &*ex_tf.begin());
+    ASSERT_EQ(&*data->end(), &*ex_tf.end());
 }
 */
 } // namespace test

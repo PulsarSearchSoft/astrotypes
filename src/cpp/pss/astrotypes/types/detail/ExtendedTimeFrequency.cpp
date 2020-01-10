@@ -30,14 +30,14 @@ namespace types {
 
 template<typename TimeFrequencyType>
 ExtendedTimeFrequency<TimeFrequencyType>::ExtendedTimeFrequency(TimeFrequencyType const& tf)
-    : _tf(tf)
+    : BaseT(tf)
 {
 }
 
 template<typename TimeFrequencyType>
 template<typename, typename>
 ExtendedTimeFrequency<TimeFrequencyType>::ExtendedTimeFrequency(TimeFrequencyType&& tf)
-    : _tf(std::move(tf))
+    : BaseT(std::move(tf))
 {
 }
 
@@ -47,57 +47,45 @@ ExtendedTimeFrequency<TimeFrequencyType>::~ExtendedTimeFrequency()
 }
 
 template<typename TimeFrequencyType>
-inline typename ExtendedTimeFrequency<TimeFrequencyType>::Type& ExtendedTimeFrequency<TimeFrequencyType>::get()
-{
-    return IsWrapped::extract(_tf);
-}
-
-template<typename TimeFrequencyType>
-inline typename ExtendedTimeFrequency<TimeFrequencyType>::Type const& ExtendedTimeFrequency<TimeFrequencyType>::get() const
-{
-    return IsWrapped::extract(_tf);
-}
-
-template<typename TimeFrequencyType>
 inline
 typename ExtendedTimeFrequency<TimeFrequencyType>::Channel ExtendedTimeFrequency<TimeFrequencyType>::channel(std::size_t channel_number)
 {
-    return get().channel(channel_number);
+    return this->get().channel(channel_number);
 }
 
 template<typename TimeFrequencyType>
 inline
 typename ExtendedTimeFrequency<TimeFrequencyType>::ConstChannel ExtendedTimeFrequency<TimeFrequencyType>::channel(std::size_t channel_number) const
 {
-    return get().channel(channel_number);
+    return this->get().channel(channel_number);
 }
 
 template<typename TimeFrequencyType>
 inline
 typename ExtendedTimeFrequency<TimeFrequencyType>::Spectra ExtendedTimeFrequency<TimeFrequencyType>::spectrum(std::size_t offset)
 {
-    return get().spectrum(offset);
+    return this->get().spectrum(offset);
 }
 
 template<typename TimeFrequencyType>
 inline
 typename ExtendedTimeFrequency<TimeFrequencyType>::ConstSpectra ExtendedTimeFrequency<TimeFrequencyType>::spectrum(std::size_t offset) const
 {
-    return get().spectrum(offset);
+    return this->get().spectrum(offset);
 }
 
 template<typename TimeFrequencyType>
 inline
 std::size_t ExtendedTimeFrequency<TimeFrequencyType>::number_of_channels() const
 {
-    return get().number_of_channels();
+    return this->get().number_of_channels();
 }
 
 template<typename TimeFrequencyType>
 inline
 std::size_t ExtendedTimeFrequency<TimeFrequencyType>::number_of_spectra() const
 {
-    return get().number_of_spectra();
+    return this->get().number_of_spectra();
 }
 
 } // namespace types
