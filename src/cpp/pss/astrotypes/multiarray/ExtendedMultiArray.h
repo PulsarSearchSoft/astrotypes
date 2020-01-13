@@ -96,9 +96,14 @@ class ExtendedMultiArray
         MultiArrayType _ma;
 };
 
+template<typename T>
+using IsConstMultiArray = std::is_const<typename is_pointer_wrapper<typename std::remove_reference<T>::type>::type>;
+
 // specialisation for non-const methods
 template<typename DerivedType, typename MultiArrayType>
-class ExtendedMultiArray<DerivedType, MultiArrayType, typename std::enable_if<ExtendedMultiArray<DerivedType, MultiArrayType, void*>::is_const>::type>
+class ExtendedMultiArray<DerivedType
+                       , MultiArrayType
+                       , typename std::enable_if<IsConstMultiArray<MultiArrayType>::value, void*>::type>
     : public ExtendedMultiArray<DerivedType, MultiArrayType, void>
 {
         using ExtendedMultiArray<DerivedType, MultiArrayType, void>::ExtendedMultiArray;

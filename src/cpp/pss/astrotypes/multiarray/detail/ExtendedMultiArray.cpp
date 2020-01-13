@@ -53,15 +53,29 @@ inline typename ExtendedMultiArray<DerivedType, MultiArrayType, Enable>::Type co
 }
 
 template<typename DerivedType, typename MultiArrayType>
-inline typename ExtendedMultiArray<DerivedType, MultiArrayType, typename std::enable_if<ExtendedMultiArray<DerivedType, MultiArrayType, void*>::is_const>::type>::iterator
-ExtendedMultiArray<DerivedType, MultiArrayType, typename std::enable_if<ExtendedMultiArray<DerivedType, MultiArrayType, void*>::is_const>::type >::begin()
+inline typename ExtendedMultiArray<DerivedType, MultiArrayType
+                                 , typename std::enable_if<
+                                                IsConstMultiArray<MultiArrayType>::value
+                                                , void*>::type
+                                  >::iterator
+ExtendedMultiArray<DerivedType, MultiArrayType, typename std::enable_if<
+                                                IsConstMultiArray<MultiArrayType>::value
+                                                , void*>::type>
+::begin()
 {
     return this->get().begin();
 }
 
 template<typename DerivedType, typename MultiArrayType>
-inline typename ExtendedMultiArray<DerivedType, MultiArrayType, typename std::enable_if<ExtendedMultiArray<DerivedType, MultiArrayType, void*>::is_const>::type>::iterator
-ExtendedMultiArray<DerivedType, MultiArrayType, typename std::enable_if<ExtendedMultiArray<DerivedType, MultiArrayType, void*>::is_const>::type >::end()
+inline typename ExtendedMultiArray<DerivedType, MultiArrayType
+                                 , typename std::enable_if<
+                                                IsConstMultiArray<MultiArrayType>::value
+                                                , void*>::type
+                                  >::iterator
+ExtendedMultiArray<DerivedType, MultiArrayType, typename std::enable_if<
+                                                IsConstMultiArray<MultiArrayType>::value
+                                                , void*>::type>
+::end()
 {
     return this->get().end();
 }
@@ -92,8 +106,16 @@ inline typename ExtendedMultiArray<DerivedType, MultiArrayType, Enable>::const_i
 
 template<typename DerivedType, typename MultiArrayType>
 template<typename Dimension>
-inline typename ExtendedMultiArray<DerivedType, MultiArrayType, typename std::enable_if<ExtendedMultiArray<DerivedType, MultiArrayType, void*>::is_const>::type>::ReducedDimensionSliceType
-ExtendedMultiArray<DerivedType, MultiArrayType, typename std::enable_if<ExtendedMultiArray<DerivedType, MultiArrayType, void*>::is_const>::type>::operator[](DimensionIndex<Dimension> index)
+inline typename ExtendedMultiArray<DerivedType, MultiArrayType
+                                 , typename std::enable_if<
+                                                IsConstMultiArray<MultiArrayType>::value
+                                                , void*>::type
+                                  >::ReducedDimensionSliceType
+ExtendedMultiArray<DerivedType, MultiArrayType, typename std::enable_if<
+                                                IsConstMultiArray<MultiArrayType>::value
+                                                , void*>::type>
+
+::operator[](DimensionIndex<Dimension> index)
 {
     return this->get()[index];
 }
@@ -114,7 +136,15 @@ inline DimensionSize<Dim> ExtendedMultiArray<DerivedType, MultiArrayType, Enable
 
 template<typename DerivedType, typename MultiArrayType>
 template<typename... Dims>
-typename ExtendedMultiArray<DerivedType, MultiArrayType, typename std::enable_if<ExtendedMultiArray<DerivedType, MultiArrayType, void*>::is_const>::type>::SliceType ExtendedMultiArray<DerivedType, MultiArrayType, typename std::enable_if<ExtendedMultiArray<DerivedType, MultiArrayType, void*>::is_const>::type>::slice(DimensionSpan<Dims> const&... ranges)
+inline typename ExtendedMultiArray<DerivedType, MultiArrayType
+                                 , typename std::enable_if<
+                                                IsConstMultiArray<MultiArrayType>::value
+                                                , void*>::type
+                                  >::SliceType
+ExtendedMultiArray<DerivedType, MultiArrayType, typename std::enable_if<
+                                                IsConstMultiArray<MultiArrayType>::value
+                                                , void*>::type>
+::slice(DimensionSpan<Dims> const&... ranges)
 {
     return this->get().slice(ranges...);
 }
