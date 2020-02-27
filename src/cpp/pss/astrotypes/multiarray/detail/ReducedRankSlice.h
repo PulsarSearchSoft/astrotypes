@@ -51,6 +51,7 @@ class ReducedRankSlice : public SliceBaseType
 
     public:
         static constexpr std::size_t rank = SliceBaseType::rank - 1;
+        typedef ReducedRankSlice<typename BaseT::FlipSelfConstType, ExcludedDim, RankT> FlipSelfConstType;
 
     public:
         ReducedRankSlice(SliceBaseType const& s) : SliceBaseType(s) {}
@@ -72,12 +73,12 @@ class ReducedRankSlice : public SliceBaseType
 
         template<typename Dim>
         typename std::enable_if<!std::is_same<Dim, ExcludedDim>::value
-                               , ReducedRankSlice<typename SliceMixinRemover<typename SliceBaseType::template OperatorSliceBaseType<Dim>::type>::type, ExcludedDim>>::type
+                               , ReducedRankSlice<typename SliceMixinRemover<typename SliceBaseType::template OperatorSliceType<Dim>::type>::type, ExcludedDim>>::type
         operator[](DimensionIndex<Dim>);
 
         template<typename Dim>
         typename std::enable_if<!std::is_same<Dim, ExcludedDim>::value
-                               , ReducedRankSlice<typename SliceMixinRemover<typename SliceBaseType::template ConstOperatorSliceBaseType<Dim>::type>::type, ExcludedDim>>::type
+                               , ReducedRankSlice<typename SliceMixinRemover<typename SliceBaseType::template ConstOperatorSliceType<Dim>::type>::type, ExcludedDim>>::type
         operator[](DimensionIndex<Dim>) const;
 
         /**
@@ -107,6 +108,7 @@ class ReducedRankSlice<SliceBaseType, ExcludedDim, 1> : public SliceBaseType
         typedef typename SliceIteratorHelper<ReducedRankSlice, typename SliceBaseType::iterator>::type iterator;
         typedef typename SliceIteratorHelper<ReducedRankSlice, typename SliceBaseType::const_iterator>::type const_iterator;
         typedef SliceMixinType<ReducedRankSlice<SliceBaseType, ExcludedDim, 1>> SelfType;
+        typedef ReducedRankSlice<typename BaseT::FlipSelfConstType, ExcludedDim, 1> FlipSelfConstType;
 
     private:
         friend typename iterator::BaseT;

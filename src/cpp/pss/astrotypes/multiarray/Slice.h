@@ -26,6 +26,7 @@
 #include "DimensionSpan.h"
 #include "SliceIterator.h"
 #include "TypeTraits.h"
+#include "detail/SliceHelpers.h"
 #include "detail/SlicePosition.h"
 #include <utility>
 
@@ -42,30 +43,14 @@ namespace astrotypes {
 template<typename T>
 struct is_slice;
 
-template<typename T, typename... Dims>
-struct arg_helper : public std::false_type
-{
-};
-
-template<typename T, typename... Dims>
-struct arg_helper<T, T, Dims...> : public std::true_type
-{
-    static inline
-    T&& arg(T&& arg, Dims&&...)
-    { return std::forward<T>(arg); }
-};
-
-template<typename T, typename Dim, typename... Dims>
-struct arg_helper<T, Dim, Dims...> : public arg_helper<T, Dims...>
-{
-    typedef arg_helper<T, Dims...> BaseT;
-
-    static inline
-    T&& arg(Dim&&, Dims&&...args)
-    { return BaseT::arg(std::forward<Dims>(args)...); }
-};
-
 namespace multiarray {
+
+/**
+ * @brief const_cast between Slice and ConstSlice types
+ */
+template<typename SliceType, typename>
+auto flip_const(SliceType& slice) -> typename FlipConstType<SliceType>::type&;
+
 /**
  * @class Slice
  * @brief
@@ -81,53 +66,12 @@ struct copy_resize_construct_tag {};
 struct copy_resize_construct_base_tag {};
 struct internal_construct_tag{};
 
-template<typename ParentT, typename ExcludeDimension>
-struct InternalSliceTraits  {
-    typedef ParentT Parent;
-    typedef std::tuple<ExcludeDimension> ExcludeTuple;
-};
-
-template<typename Traits, typename ExcludeDimension, typename D>
-struct InternalSliceTraits<InternalSliceTraits<Traits, D>, ExcludeDimension> : public InternalSliceTraits<Traits, D>
-{
-    private:
-        typedef InternalSliceTraits<Traits, D> BaseT;
-    public:
-        typedef typename BaseT::Parent Parent;
-        typedef typename join_tuples<typename BaseT::ExcludeTuple, std::tuple<ExcludeDimension>>::type ExcludeTuple;
-};
-
-template<typename TraitsT>
-struct SliceTraitsHelper
-{
-    typedef std::tuple<> ExcludeTuple;
-    typedef TraitsT Parent;
-};
-
-template<typename TraitsT, typename D>
-struct SliceTraitsHelper<InternalSliceTraits<TraitsT, D>>
-{
-    typedef typename InternalSliceTraits<TraitsT, D>::ExcludeTuple ExcludeTuple;
-    typedef typename InternalSliceTraits<TraitsT, D>::Parent Parent;
-};
-
-template<bool Value>
-struct Flip
-{
-    constexpr static bool const value = !Value;
-};
-static_assert(Flip<true>::value==false, "Flip broken");
-static_assert(Flip<false>::value==true, "Flip broken");
-
 template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-//class Slice : private Slice<is_const, SliceTraitsT, SliceMixin, Dimensions...>
 class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimension>, SliceMixin, Dimensions...>
 {
         typedef typename SliceTraitsHelper<SliceTraitsT>::Parent ParentT;
         typedef Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimension>, SliceMixin, Dimensions...> BaseT;
         typedef Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...> SelfType;
-        typedef Slice<Flip<is_const>::value, SliceTraitsT, SliceMixin, Dimension, Dimensions...> FlipConstSelfType;
-        friend FlipConstSelfType;
         typedef typename ParentT::value_type value_type;
         typedef Dimension SelfDimension;
 
@@ -135,6 +79,7 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         typedef typename std::conditional<is_const, parent_const_iterator, typename ParentT::iterator>::type parent_iterator;
 
     protected:
+        typedef Slice<Flip<is_const>::value, SliceTraitsT, SliceMixin, Dimension, Dimensions...> FlipSelfConstType;
         typedef typename SliceTraitsHelper<SliceTraitsT>::ExcludeTuple ExcludeTuple;
         template<typename T> using SliceMixinType = SliceMixin<T>;
 
@@ -311,6 +256,9 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
 
     protected:
         template<bool, typename P, template<typename> class, typename D, typename... Ds> friend class Slice;
+        template<typename T> friend struct RemoveMixinWrapper;
+        template<typename T> friend struct RestoreMixinWrapper;
+        template<typename T, typename> friend struct FlipConstType;
 
         template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
         template<typename IteratorDifferenceT> IteratorDifferenceT diff_it(IteratorDifferenceT const& diff) const;
@@ -413,9 +361,6 @@ template<bool is_const, typename SliceTraitsT, template<typename> class SliceMix
 class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
 {
         typedef SliceMixin<Slice<is_const, SliceTraitsT, SliceMixin, Dimension>> SelfType;
-        typedef Slice<Flip<is_const>::value, SliceTraitsT, SliceMixin, Dimension> FlipConstSelfType;
-        friend FlipConstSelfType;
-        friend SliceMixin<FlipConstSelfType>;
 
         typedef typename SliceTraitsHelper<SliceTraitsT>::Parent ParentT;
         typedef typename ParentT::const_iterator parent_const_iterator;
@@ -424,7 +369,9 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
 
     protected:
         typedef typename SliceTraitsHelper<SliceTraitsT>::ExcludeTuple ExcludeTuple;
+        typedef Slice<Flip<is_const>::value, SliceTraitsT, SliceMixin, Dimension> FlipSelfConstType;
         template<typename T> using SliceMixinType = SliceMixin<T>;
+        template<typename T> static SliceMixin<T> slice_mixin_dummy(); // not implemented - used for type deduction only
 
     public:
         typedef std::tuple<Dimension> DimensionTuple;
@@ -581,6 +528,9 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
 
     protected:
         template<bool, typename P, template<typename> class, typename D, typename... Ds> friend class Slice;
+        template<typename T> friend struct RemoveMixinWrapper;
+        template<typename T> friend struct RestoreMixinWrapper;
+        template<typename T, typename> friend struct FlipConstType;
 
         template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
         template<typename IteratorDifferenceT> static IteratorDifferenceT diff_it(IteratorDifferenceT const& diff);

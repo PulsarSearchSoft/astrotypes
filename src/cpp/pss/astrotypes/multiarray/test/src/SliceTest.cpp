@@ -713,6 +713,89 @@ TEST_F(SliceTest, test_has_dimension)
     static_assert(std::is_same<typename astrotypes::has_dimension<MTestSlice2d, DimensionC>::type, std::false_type>::value, "expecting false");
 }
 
+TEST_F(SliceTest, test_flip_const_1d)
+{
+    typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA> ConstTestSlice1d;
+    typedef Slice<false, ParentType<2>, TestSliceMixin, DimensionA> TestSlice1d;
+    typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> ConstTestSlice2d;
+    typedef Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> TestSlice2d;
+
+    TestSlice1d test_slice_1d;
+    static_assert(is_slice<TestSlice1d>::value, "expecting a slice");
+    ConstTestSlice1d& const_test_slice_1d = multiarray::flip_const(test_slice_1d);
+    TestSlice1d& test_slice_1d_ref = multiarray::flip_const(const_test_slice_1d);
+    ASSERT_EQ((void*)&test_slice_1d_ref, (void*)&const_test_slice_1d);
+}
+
+TEST_F(SliceTest, test_flip_const_2d)
+{
+    typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> ConstTestSlice2d;
+    typedef Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> TestSlice2d;
+
+    TestSlice2d test_slice_2d;
+    static_assert(is_slice<TestSlice2d>::value, "expecting a slice");
+    ConstTestSlice2d& const_test_slice_2d = multiarray::flip_const(test_slice_2d);
+    TestSlice2d& test_slice_2d_ref = multiarray::flip_const(const_test_slice_2d);
+    ASSERT_EQ((void*)&test_slice_2d_ref, (void*)&const_test_slice_2d);
+}
+
+TEST_F(SliceTest, test_flip_const_2d_reduced_slice)
+{
+    typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> ConstTestSlice2d;
+    typedef Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> TestSlice2d;
+    typedef TestSliceMixin<Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>> TestSliceMixin2d;
+
+    TestSlice2d test_slice_2d;
+    typename TestSlice2d::OperatorSliceType<DimensionA>::type reduced_slice = test_slice_2d[DimensionIndex<DimensionA>(0)];
+    typename TestSlice2d::ConstOperatorSliceType<DimensionA>::type& const_reduced_slice_2d = multiarray::flip_const(reduced_slice);
+    typename TestSlice2d::OperatorSliceType<DimensionA>::type& reduced_slice_2d_ref = multiarray::flip_const(const_reduced_slice_2d);
+    ASSERT_EQ((void*)&reduced_slice_2d_ref, (void*)&reduced_slice);
+
+    typename TestSlice2d::OperatorSliceType<DimensionB>::type reduced_slice_b = test_slice_2d[DimensionIndex<DimensionB>(0)];
+    typename TestSlice2d::ConstOperatorSliceType<DimensionB>::type& const_reduced_slice_b = multiarray::flip_const(reduced_slice_b);
+    typename TestSlice2d::OperatorSliceType<DimensionB>::type reduced_slice_b_ref = multiarray::flip_const(const_reduced_slice_b);
+    ASSERT_EQ((void*)&const_reduced_slice_b, (void*)&reduced_slice_b);
+
+    TestSliceMixin2d test_slice_mixin_2d;
+    typename TestSliceMixin2d::OperatorSliceType<DimensionA>::type reduced_slice_mixin = test_slice_mixin_2d[DimensionIndex<DimensionA>(0)];
+    typename TestSliceMixin2d::ConstOperatorSliceType<DimensionA>::type& const_reduced_slice_mixin_2d = multiarray::flip_const(reduced_slice_mixin);
+    typename TestSliceMixin2d::OperatorSliceType<DimensionA>::type& reduced_slice_mixin_2d_ref = multiarray::flip_const(const_reduced_slice_mixin_2d);
+    ASSERT_EQ((void*)&reduced_slice_mixin_2d_ref, (void*)&reduced_slice_mixin);
+
+    typedef TestSliceMixin2d::OperatorSliceType<DimensionA>::type::OperatorSliceType<DimensionB>::type ReducedReducedType;
+    typedef TestSliceMixin2d::ConstOperatorSliceType<DimensionA>::type::ConstOperatorSliceType<DimensionB>::type ConstReducedReducedType;
+    ReducedReducedType reduced_2_slice_mixin = test_slice_mixin_2d[DimensionIndex<DimensionA>(0)][DimensionIndex<DimensionB>(0)];;
+    ConstReducedReducedType& const_reduced_2_slice_mixin_2d = multiarray::flip_const(reduced_2_slice_mixin);
+    static_assert(std::is_same<ConstReducedReducedType, int const&>::value, "oh oh");
+    static_assert(std::is_same<ReducedReducedType, int&>::value, "oh oh");
+    ReducedReducedType& reduced_2_slice_mixin_ref = multiarray::flip_const(const_reduced_2_slice_mixin_2d);
+    ASSERT_EQ(&const_reduced_2_slice_mixin_2d, &reduced_2_slice_mixin_ref);
+
+}
+
+TEST_F(SliceTest, test_flip_const_3d_reduced_slice)
+{
+    typedef Slice<true, ParentType<3>, TestSliceMixin, DimensionA, DimensionB, DimensionC> ConstTestSlice3d;
+    typedef Slice<false, ParentType<3>, TestSliceMixin, DimensionA, DimensionB, DimensionC> TestSlice3d;
+
+    ParentType<3> parent(20);
+    TestSlice3d test_slice_3d(parent, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(0), DimensionSize<DimensionA>(10)));
+    typename TestSlice3d::OperatorSliceType<DimensionA>::type reduced_slice = test_slice_3d[DimensionIndex<DimensionA>(0)];
+    typename TestSlice3d::ConstOperatorSliceType<DimensionA>::type& const_reduced_slice_3d = multiarray::flip_const(reduced_slice);
+    typename TestSlice3d::OperatorSliceType<DimensionA>::type& reduced_slice_3d_ref = multiarray::flip_const(const_reduced_slice_3d);
+    ASSERT_EQ((void*)&reduced_slice_3d_ref, (void*)&reduced_slice);
+
+    typename TestSlice3d::OperatorSliceType<DimensionB>::type reduced_slice_b = test_slice_3d[DimensionIndex<DimensionB>(0)];
+    typename TestSlice3d::ConstOperatorSliceType<DimensionB>::type& const_reduced_slice_b = multiarray::flip_const(reduced_slice_b);
+    typename TestSlice3d::OperatorSliceType<DimensionB>::type reduced_slice_b_ref = multiarray::flip_const(const_reduced_slice_b);
+    ASSERT_EQ((void*)&const_reduced_slice_b, (void*)&reduced_slice_b);
+
+    typename TestSlice3d::OperatorSliceType<DimensionC>::type reduced_slice_c = test_slice_3d[DimensionIndex<DimensionC>(0)];
+    typename TestSlice3d::ConstOperatorSliceType<DimensionC>::type& const_reduced_slice_c = multiarray::flip_const(reduced_slice_c);
+    typename TestSlice3d::OperatorSliceType<DimensionC>::type reduced_slice_c_ref = multiarray::flip_const(const_reduced_slice_c);
+    ASSERT_EQ((void*)&const_reduced_slice_c, (void*)&reduced_slice_c);
+}
+
 TEST_F(SliceTest, test_is_multi_dimension)
 {
     typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA> TestSlice1d;

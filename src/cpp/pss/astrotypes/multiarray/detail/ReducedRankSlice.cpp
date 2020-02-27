@@ -48,7 +48,7 @@ ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::dimension() const
 template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
 template<typename Dim>
 typename std::enable_if<!std::is_same<Dim, ExcludedDim>::value
-                      , ReducedRankSlice<typename SliceMixinRemover<typename SliceBaseType::template OperatorSliceBaseType<Dim>::type>::type, ExcludedDim>>::type
+                      , ReducedRankSlice<typename SliceMixinRemover<typename SliceBaseType::template OperatorSliceType<Dim>::type>::type, ExcludedDim>>::type
 ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::operator[](DimensionIndex<Dim> dimension)
 {
     static_assert(RankT == 0, "not yet implemented");
@@ -58,7 +58,7 @@ ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::operator[](DimensionIndex<D
 template<typename SliceBaseType, typename ExcludedDim, std::size_t RankT>
 template<typename Dim>
 typename std::enable_if<!std::is_same<Dim, ExcludedDim>::value
-                      , ReducedRankSlice<typename SliceMixinRemover<typename SliceBaseType::template ConstOperatorSliceBaseType<Dim>::type>::type, ExcludedDim>>::type
+                      , ReducedRankSlice<typename SliceMixinRemover<typename SliceBaseType::template ConstOperatorSliceType<Dim>::type>::type, ExcludedDim>>::type
 ReducedRankSlice<SliceBaseType, ExcludedDim, RankT>::operator[](DimensionIndex<Dim> dimension) const
 {
     static_assert(RankT == 0, "not yet implemented");

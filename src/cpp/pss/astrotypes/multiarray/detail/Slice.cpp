@@ -303,7 +303,7 @@ Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( copy
                                                         , DimensionSpan<Dims> const&... spans
                                                         )
     : BaseT(copy_resize_construct_base_tag(), static_cast<BaseT const&>(copy), spans...)
-    , _span(arg_helper<DimensionSpan<Dimension>, DimensionSpan<Dims>...>::arg(spans...))
+    , _span(arg_helper<DimensionSpan<Dimension> const&, DimensionSpan<Dims> const&...>::arg(spans...))
     , _base_span(copy._base_span) // not used (yet) so don't bother calculating it
 {
 }
@@ -1026,6 +1026,78 @@ bool Slice<is_const, SliceTraitsT, SliceMixin, Dimension>::operator==(Slice<is_c
 {
     return s.data_size() == data_size()
         && std::equal(s.begin(), s.end(), begin());
+}
+
+template<typename SliceType>
+struct RemoveMixinWrapper
+{
+    typedef SliceType type;
+};
+
+template<template<typename> class MixinT, bool is_const, typename SliceTraitsT, typename... Dimensions>
+struct RemoveMixinWrapper<MixinT<Slice<is_const, SliceTraitsT, MixinT, Dimensions...>>>
+{
+    typedef Slice<is_const, SliceTraitsT, MixinT, Dimensions...> type;
+};
+
+template<typename SliceType, template<typename> class MixinT>
+struct RemoveMixinWrapper<MixinT<SliceType>>
+{
+    typedef typename RemoveMixinWrapper<SliceType>::type type;
+};
+
+template<typename SliceType>
+struct RestoreMixinWrapper {
+    public:
+        typedef decltype(SliceType::template slice_mixin_dummy<SliceType>()) type;
+};
+
+template<typename SliceT, typename>
+struct FlipConstType {
+    typedef typename std::remove_reference<SliceT>::type SliceType;
+    typedef typename std::conditional<std::is_const<SliceType>::value
+                           , typename std::remove_const<SliceType>::type
+                           , SliceType const>::type type;
+};
+
+template<typename SliceT>
+struct FlipConstType<SliceT, typename std::enable_if<is_slice<SliceT>::value>::type>
+{
+    private:
+        typedef typename std::remove_reference<SliceT>::type SliceType;
+        typedef typename RemoveMixinWrapper<SliceType>::type InnerSliceType;
+    public:
+        typedef typename RestoreMixinWrapper<typename InnerSliceType::FlipSelfConstType>::type type;
+};
+
+template<typename T, typename = void>
+struct FlipConstHelper
+{
+    static inline typename FlipConstType<T>::type& exec(T& v) {
+        return const_cast<T const&>(v);
+    }
+};
+
+template<typename T>
+struct FlipConstHelper<T, typename std::enable_if<std::is_const<typename std::remove_reference<T>::type>::value && !is_slice<T>::value>::type>
+{
+    static inline typename FlipConstType<T>::type& exec(T& v) {
+        return const_cast<typename FlipConstType<T>::type&>(v);
+    }
+};
+
+template<typename SliceType>
+struct FlipConstHelper<SliceType, typename std::enable_if<is_slice<typename std::remove_reference<SliceType>::type>::value>::type>
+{
+    static inline typename FlipConstType<SliceType>::type& exec(SliceType& slice) {
+        return reinterpret_cast<typename FlipConstType<SliceType>::type&>(slice);
+    }
+};
+
+template<typename SliceType>
+auto flip_const(SliceType&& slice) -> typename FlipConstType<SliceType>::type&
+{
+    return FlipConstHelper<SliceType>::exec(std::forward<SliceType>(slice));
 }
 
 } // namespace multiarray
