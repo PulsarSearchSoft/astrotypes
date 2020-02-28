@@ -727,6 +727,19 @@ TEST_F(SliceTest, test_flip_const_1d)
     ASSERT_EQ((void*)&test_slice_1d_ref, (void*)&const_test_slice_1d);
 }
 
+TEST_F(SliceTest, test_flip_const_1d_const)
+{
+    typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA> ConstTestSlice1d;
+    typedef Slice<false, ParentType<2>, TestSliceMixin, DimensionA> TestSlice1d;
+    typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> ConstTestSlice2d;
+    typedef Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> TestSlice2d;
+
+    const TestSlice1d test_slice_1d;
+    ConstTestSlice1d const& const_test_slice_1d = multiarray::flip_const(test_slice_1d);
+    TestSlice1d const& test_slice_1d_ref = multiarray::flip_const(const_test_slice_1d);
+    ASSERT_EQ((void*)&test_slice_1d_ref, (void*)&const_test_slice_1d);
+}
+
 TEST_F(SliceTest, test_flip_const_2d)
 {
     typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> ConstTestSlice2d;

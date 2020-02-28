@@ -1066,8 +1066,9 @@ struct FlipConstType<SliceT, typename std::enable_if<is_slice<SliceT>::value>::t
     private:
         typedef typename std::remove_reference<SliceT>::type SliceType;
         typedef typename RemoveMixinWrapper<SliceType>::type InnerSliceType;
+        typedef typename RestoreMixinWrapper<typename InnerSliceType::FlipSelfConstType>::type FlippedType;
     public:
-        typedef typename RestoreMixinWrapper<typename InnerSliceType::FlipSelfConstType>::type type;
+        typedef typename std::conditional<std::is_const<SliceType>::value, const FlippedType, FlippedType>::type type;
 };
 
 template<typename T, typename = void>
