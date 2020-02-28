@@ -794,6 +794,13 @@ TEST_F(SliceTest, test_flip_const_3d_reduced_slice)
     typename TestSlice3d::ConstOperatorSliceType<DimensionC>::type& const_reduced_slice_c = multiarray::flip_const(reduced_slice_c);
     typename TestSlice3d::OperatorSliceType<DimensionC>::type reduced_slice_c_ref = multiarray::flip_const(const_reduced_slice_c);
     ASSERT_EQ((void*)&const_reduced_slice_c, (void*)&reduced_slice_c);
+
+    /*
+    typename TestSlice3d::OperatorSliceType<DimensionB>::type::OperatorSliceType<DimensionC>::type reduced_slice_b_c = test_slice_3d[DimensionIndex<DimensionB>(0)][DimensionIndex<DimensionC>(2)];
+    typename TestSlice3d::ConstOperatorSliceType<DimensionB>::type::ConstOperatorSliceType<DimensionC>::type& const_reduced_slice_b_c = multiarray::flip_const(reduced_slice_b_c);
+    typename TestSlice3d::OperatorSliceType<DimensionC>::type reduced_slice_b_c_ref = multiarray::flip_const(const_reduced_slice_b_c);
+    ASSERT_EQ((void*)&const_reduced_slice_b_c, (void*)&reduced_slice_b_c);
+    */
 }
 
 TEST_F(SliceTest, test_is_multi_dimension)
