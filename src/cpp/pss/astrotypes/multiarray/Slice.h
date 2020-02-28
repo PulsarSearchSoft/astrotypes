@@ -48,8 +48,8 @@ namespace multiarray {
 /**
  * @brief const_cast between Slice and ConstSlice types
  */
-template<typename SliceType, typename>
-auto flip_const(SliceType& slice) -> typename FlipConstType<SliceType>::type&;
+template<typename SliceType>
+auto flip_const(SliceType&& slice) -> typename FlipConstType<SliceType>::type&;
 
 /**
  * @class Slice
