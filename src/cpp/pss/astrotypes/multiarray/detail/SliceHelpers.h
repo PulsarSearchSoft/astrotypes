@@ -38,6 +38,10 @@ namespace multiarray {
 template<typename SliceType, typename Enable=void>
 struct FlipConstType;
 
+// internal helper class for FlipConstType
+template<typename SliceType>
+struct FlipConstTypeHelper;
+
 /**
  * @brief removes the Mixin wrapper decorator to get at the Slice type below
  */

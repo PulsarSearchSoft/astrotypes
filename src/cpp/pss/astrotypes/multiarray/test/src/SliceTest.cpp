@@ -816,6 +816,236 @@ TEST_F(SliceTest, test_flip_const_3d_reduced_slice)
     */
 }
 
+TEST_F(SliceTest, is_const)
+{
+    typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> ConstTestSlice;
+    static_assert(ConstTestSlice::is_const(), "expecting const");
+    typedef TestSliceMixin<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>> MixinConstTestSlice;
+    static_assert(MixinConstTestSlice::is_const(), "expecting const");
+    typedef Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> TestSlice;
+    static_assert(!TestSlice::is_const(), "expecting non const");
+    typedef TestSliceMixin<Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>> MixinTestSlice;
+    static_assert(!MixinTestSlice::is_const(), "expecting non const");
+}
+
+TEST_F(SliceTest, test_cast_to_non_const_slice_2d)
+{
+    typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> ConstTestSlice;
+    typedef ConstTestSlice::OperatorSliceType<DimensionA>::type ReducedAConstSliceType;
+    typedef ConstTestSlice::OperatorSliceType<DimensionB>::type ReducedBConstSliceType;
+    typedef TestSliceMixin<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>> MixinConstTestSlice;
+    typedef MixinConstTestSlice::OperatorSliceType<DimensionA>::type ReducedAMixinConstSliceType;
+    typedef MixinConstTestSlice::OperatorSliceType<DimensionB>::type ReducedBMixinConstSliceType;
+    typedef Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> TestSlice;
+    typedef TestSlice::OperatorSliceType<DimensionA>::type ReducedASliceType;
+    typedef TestSlice::OperatorSliceType<DimensionB>::type ReducedBSliceType;
+    typedef TestSliceMixin<Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>> MixinTestSlice;
+    typedef MixinTestSlice::OperatorSliceType<DimensionA>::type ReducedAMixinSliceType;
+    typedef MixinTestSlice::OperatorSliceType<DimensionB>::type ReducedBMixinSliceType;
+
+    { // cast from Const types
+        ConstTestSlice slice;
+        TestSlice& slice_ref =cast_to_non_const_slice(slice);
+        ASSERT_EQ((void*)&slice_ref, (void*)&slice);
+
+        MixinConstTestSlice mixin_slice;
+        MixinTestSlice& mixin_slice_ref = cast_to_non_const_slice(mixin_slice);
+        ASSERT_EQ((void*)&mixin_slice_ref, (void*)&mixin_slice);
+
+        ReducedAConstSliceType reduced_A_slice = slice[DimensionIndex<DimensionA>(0)];
+        ReducedASliceType& const_reduced_A_slice = cast_to_non_const_slice(reduced_A_slice);
+        ASSERT_EQ((void*)&const_reduced_A_slice, (void*)&reduced_A_slice);
+
+        ReducedBConstSliceType reduced_B_slice = slice[DimensionIndex<DimensionB>(0)];
+        ReducedBSliceType& const_reduced_B_slice = cast_to_non_const_slice(reduced_B_slice);
+        ASSERT_EQ((void*)&const_reduced_B_slice, (void*)&reduced_B_slice);
+
+        ReducedAMixinConstSliceType mixin_reduced_A_slice = mixin_slice[DimensionIndex<DimensionA>(0)];
+        ReducedAMixinSliceType& const_mixin_reduced_A_slice = cast_to_non_const_slice(mixin_reduced_A_slice);
+        ASSERT_EQ((void*)&const_mixin_reduced_A_slice, (void*)&mixin_reduced_A_slice);
+
+        ReducedBMixinConstSliceType mixin_reduced_B_slice = mixin_slice[DimensionIndex<DimensionB>(0)];
+        ReducedBMixinSliceType& const_mixin_reduced_B_slice = cast_to_non_const_slice(mixin_reduced_B_slice);
+        ASSERT_EQ((void*)&const_mixin_reduced_B_slice, (void*)&mixin_reduced_B_slice);
+    }
+    { // cast from const Const types
+        ConstTestSlice const slice;
+        TestSlice const& slice_ref =cast_to_non_const_slice(slice);
+        ASSERT_EQ((void*)&slice_ref, (void*)&slice);
+
+        MixinConstTestSlice const mixin_slice;
+        MixinTestSlice const& mixin_slice_ref = cast_to_non_const_slice(mixin_slice);
+        ASSERT_EQ((void*)&mixin_slice_ref, (void*)&mixin_slice);
+
+        ReducedAConstSliceType reduced_A_slice = slice[DimensionIndex<DimensionA>(0)];
+        ReducedASliceType& const_reduced_A_slice = cast_to_non_const_slice(reduced_A_slice);
+        ASSERT_EQ((void*)&const_reduced_A_slice, (void*)&reduced_A_slice);
+
+        ReducedBConstSliceType reduced_B_slice = slice[DimensionIndex<DimensionB>(0)];
+        ReducedBSliceType& const_reduced_B_slice = cast_to_non_const_slice(reduced_B_slice);
+        ASSERT_EQ((void*)&const_reduced_B_slice, (void*)&reduced_B_slice);
+
+        ReducedAMixinConstSliceType mixin_reduced_A_slice = mixin_slice[DimensionIndex<DimensionA>(0)];
+        ReducedAMixinSliceType& const_mixin_reduced_A_slice = cast_to_non_const_slice(mixin_reduced_A_slice);
+        ASSERT_EQ((void*)&const_mixin_reduced_A_slice, (void*)&mixin_reduced_A_slice);
+
+        ReducedBMixinConstSliceType mixin_reduced_B_slice = mixin_slice[DimensionIndex<DimensionB>(0)];
+        ReducedBMixinSliceType& const_mixin_reduced_B_slice = cast_to_non_const_slice(mixin_reduced_B_slice);
+        ASSERT_EQ((void*)&const_mixin_reduced_B_slice, (void*)&mixin_reduced_B_slice);
+    }
+    { // cast from non Const types
+        TestSlice slice;
+        TestSlice& slice_ref=cast_to_non_const_slice(slice);
+        ASSERT_EQ((void*)&slice_ref, (void*)&slice);
+
+        MixinTestSlice mixin_slice;
+        MixinTestSlice& mixin_slice_ref = cast_to_non_const_slice(mixin_slice);
+        ASSERT_EQ((void*)&mixin_slice_ref, (void*)&mixin_slice);
+
+        ReducedASliceType reduced_A_slice = slice[DimensionIndex<DimensionA>(0)];
+        ReducedASliceType& reduced_A_slice_ref = cast_to_non_const_slice(reduced_A_slice);
+        ASSERT_EQ((void*)&reduced_A_slice_ref, (void*)&reduced_A_slice);
+
+        ReducedBSliceType reduced_B_slice = slice[DimensionIndex<DimensionB>(0)];
+        ReducedBSliceType& reduced_B_slice_ref = cast_to_non_const_slice(reduced_B_slice);
+        ASSERT_EQ((void*)&reduced_B_slice_ref, (void*)&reduced_B_slice);
+
+        ReducedAMixinSliceType mixin_reduced_A_slice = mixin_slice[DimensionIndex<DimensionA>(0)];
+        ReducedAMixinSliceType& mixin_reduced_A_slice_ref = cast_to_non_const_slice(mixin_reduced_A_slice);
+        ASSERT_EQ((void*)&mixin_reduced_A_slice_ref, (void*)&mixin_reduced_A_slice);
+
+        ReducedBMixinSliceType mixin_reduced_B_slice = mixin_slice[DimensionIndex<DimensionB>(0)];
+        ReducedBMixinSliceType& mixin_reduced_B_slice_ref = cast_to_non_const_slice(mixin_reduced_B_slice);
+        ASSERT_EQ((void*)&mixin_reduced_B_slice_ref, (void*)&mixin_reduced_B_slice);
+    }
+    { // cast from const non Const types
+        TestSlice const slice;
+        TestSlice const& const_slice_ref=cast_to_non_const_slice(slice);
+        ASSERT_EQ((void*)&const_slice_ref, (void*)&slice);
+
+        MixinTestSlice const mixin_slice;
+        MixinTestSlice const& mixin_slice_ref = cast_to_non_const_slice(mixin_slice);
+        ASSERT_EQ((void*)&mixin_slice_ref, (void*)&mixin_slice);
+
+        ReducedAConstSliceType reduced_A_slice = slice[DimensionIndex<DimensionA>(0)];
+        ReducedASliceType& const_reduced_A_slice = cast_to_non_const_slice(reduced_A_slice);
+        ASSERT_EQ((void*)&const_reduced_A_slice, (void*)&reduced_A_slice);
+
+        ReducedBConstSliceType reduced_B_slice = slice[DimensionIndex<DimensionB>(0)];
+        ReducedBSliceType& const_reduced_B_slice = cast_to_non_const_slice(reduced_B_slice);
+        ASSERT_EQ((void*)&const_reduced_B_slice, (void*)&reduced_B_slice);
+    }
+}
+
+TEST_F(SliceTest, test_cast_to_const_slice_2d)
+{
+    typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> ConstTestSlice;
+    typedef ConstTestSlice::OperatorSliceType<DimensionA>::type ReducedAConstSliceType;
+    typedef ConstTestSlice::OperatorSliceType<DimensionB>::type ReducedBConstSliceType;
+    typedef TestSliceMixin<Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>> MixinConstTestSlice;
+    typedef MixinConstTestSlice::OperatorSliceType<DimensionA>::type ReducedAMixinConstSliceType;
+    typedef MixinConstTestSlice::OperatorSliceType<DimensionB>::type ReducedBMixinConstSliceType;
+    typedef Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> TestSlice;
+    typedef TestSlice::OperatorSliceType<DimensionA>::type ReducedASliceType;
+    typedef TestSlice::OperatorSliceType<DimensionB>::type ReducedBSliceType;
+    typedef TestSliceMixin<Slice<false, ParentType<2>, TestSliceMixin, DimensionA, DimensionB>> MixinTestSlice;
+    typedef MixinTestSlice::OperatorSliceType<DimensionA>::type ReducedAMixinSliceType;
+    typedef MixinTestSlice::OperatorSliceType<DimensionB>::type ReducedBMixinSliceType;
+
+    { // cast from Const types
+        ConstTestSlice slice;
+        ConstTestSlice& slice_ref =cast_to_const_slice(slice);
+        ASSERT_EQ((void*)&slice_ref, (void*)&slice);
+
+        MixinConstTestSlice mixin_slice;
+        MixinConstTestSlice& mixin_slice_ref = cast_to_const_slice(mixin_slice);
+        ASSERT_EQ((void*)&mixin_slice_ref, (void*)&mixin_slice);
+
+        ReducedAConstSliceType reduced_A_slice = slice[DimensionIndex<DimensionA>(0)];
+        ReducedAConstSliceType& const_reduced_A_slice = cast_to_const_slice(reduced_A_slice);
+        ASSERT_EQ((void*)&const_reduced_A_slice, (void*)&reduced_A_slice);
+
+        ReducedBConstSliceType reduced_B_slice = slice[DimensionIndex<DimensionB>(0)];
+        ReducedBConstSliceType& const_reduced_B_slice = cast_to_const_slice(reduced_B_slice);
+        ASSERT_EQ((void*)&const_reduced_B_slice, (void*)&reduced_B_slice);
+
+        ReducedAMixinConstSliceType mixin_reduced_A_slice = mixin_slice[DimensionIndex<DimensionA>(0)];
+        ReducedAMixinConstSliceType& const_mixin_reduced_A_slice = cast_to_const_slice(mixin_reduced_A_slice);
+        ASSERT_EQ((void*)&const_mixin_reduced_A_slice, (void*)&mixin_reduced_A_slice);
+
+        ReducedBMixinConstSliceType mixin_reduced_B_slice = mixin_slice[DimensionIndex<DimensionB>(0)];
+        ReducedBMixinConstSliceType& const_mixin_reduced_B_slice = cast_to_const_slice(mixin_reduced_B_slice);
+        ASSERT_EQ((void*)&const_mixin_reduced_B_slice, (void*)&mixin_reduced_B_slice);
+    }
+    { // cast from const Const types
+        ConstTestSlice const slice;
+        ConstTestSlice const& slice_ref =cast_to_const_slice(slice);
+        ASSERT_EQ((void*)&slice_ref, (void*)&slice);
+
+        MixinConstTestSlice const mixin_slice;
+        MixinConstTestSlice const& mixin_slice_ref = cast_to_const_slice(mixin_slice);
+        ASSERT_EQ((void*)&mixin_slice_ref, (void*)&mixin_slice);
+
+        ReducedAConstSliceType reduced_A_slice = slice[DimensionIndex<DimensionA>(0)];
+        ReducedAConstSliceType& const_reduced_A_slice = cast_to_const_slice(reduced_A_slice);
+        ASSERT_EQ((void*)&const_reduced_A_slice, (void*)&reduced_A_slice);
+
+        ReducedBConstSliceType reduced_B_slice = slice[DimensionIndex<DimensionB>(0)];
+        ReducedBConstSliceType& const_reduced_B_slice = cast_to_const_slice(reduced_B_slice);
+        ASSERT_EQ((void*)&const_reduced_B_slice, (void*)&reduced_B_slice);
+
+        ReducedAMixinConstSliceType mixin_reduced_A_slice = mixin_slice[DimensionIndex<DimensionA>(0)];
+        ReducedAMixinConstSliceType& const_mixin_reduced_A_slice = cast_to_const_slice(mixin_reduced_A_slice);
+        ASSERT_EQ((void*)&const_mixin_reduced_A_slice, (void*)&mixin_reduced_A_slice);
+
+        ReducedBMixinConstSliceType mixin_reduced_B_slice = mixin_slice[DimensionIndex<DimensionB>(0)];
+        ReducedBMixinConstSliceType& const_mixin_reduced_B_slice = cast_to_const_slice(mixin_reduced_B_slice);
+        ASSERT_EQ((void*)&const_mixin_reduced_B_slice, (void*)&mixin_reduced_B_slice);
+    }
+    { // cast from non Const types
+        TestSlice slice;
+        ConstTestSlice& const_slice_ref=cast_to_const_slice(slice);
+        ASSERT_EQ((void*)&const_slice_ref, (void*)&slice);
+
+        MixinTestSlice mixin_slice;
+        MixinConstTestSlice& mixin_slice_ref = cast_to_const_slice(mixin_slice);
+        ASSERT_EQ((void*)&mixin_slice_ref, (void*)&mixin_slice);
+
+        ReducedASliceType reduced_A_slice = slice[DimensionIndex<DimensionA>(0)];
+        ReducedAConstSliceType& const_reduced_A_slice = cast_to_const_slice(reduced_A_slice);
+        ASSERT_EQ((void*)&const_reduced_A_slice, (void*)&reduced_A_slice);
+
+        ReducedBSliceType reduced_B_slice = slice[DimensionIndex<DimensionB>(0)];
+        ReducedBConstSliceType& const_reduced_B_slice = cast_to_const_slice(reduced_B_slice);
+        ASSERT_EQ((void*)&const_reduced_B_slice, (void*)&reduced_B_slice);
+
+        ReducedAMixinSliceType mixin_reduced_A_slice = mixin_slice[DimensionIndex<DimensionA>(0)];
+        ReducedAMixinConstSliceType& const_mixin_reduced_A_slice = cast_to_const_slice(mixin_reduced_A_slice);
+        ASSERT_EQ((void*)&const_mixin_reduced_A_slice, (void*)&mixin_reduced_A_slice);
+
+        ReducedBMixinSliceType mixin_reduced_B_slice = mixin_slice[DimensionIndex<DimensionB>(0)];
+        ReducedBMixinConstSliceType& const_mixin_reduced_B_slice = cast_to_const_slice(mixin_reduced_B_slice);
+        ASSERT_EQ((void*)&const_mixin_reduced_B_slice, (void*)&mixin_reduced_B_slice);
+    }
+    { // cast from const non Const types
+        TestSlice const slice;
+        ConstTestSlice const& const_slice_ref=cast_to_const_slice(slice);
+        ASSERT_EQ((void*)&const_slice_ref, (void*)&slice);
+
+        MixinTestSlice const mixin_slice;
+        MixinConstTestSlice const& mixin_slice_ref = cast_to_const_slice(mixin_slice);
+        ASSERT_EQ((void*)&mixin_slice_ref, (void*)&mixin_slice);
+
+        ReducedAConstSliceType reduced_A_slice = slice[DimensionIndex<DimensionA>(0)];
+        ReducedAConstSliceType& const_reduced_A_slice = cast_to_const_slice(reduced_A_slice);
+        ASSERT_EQ((void*)&const_reduced_A_slice, (void*)&reduced_A_slice);
+
+        ReducedBConstSliceType reduced_B_slice = slice[DimensionIndex<DimensionB>(0)];
+        ReducedBConstSliceType& const_reduced_B_slice = cast_to_const_slice(reduced_B_slice);
+        ASSERT_EQ((void*)&const_reduced_B_slice, (void*)&reduced_B_slice);
+    }
+}
+
 TEST_F(SliceTest, test_is_multi_dimension)
 {
     typedef Slice<true, ParentType<2>, TestSliceMixin, DimensionA> TestSlice1d;

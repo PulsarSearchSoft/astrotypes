@@ -46,10 +46,14 @@ struct is_slice;
 namespace multiarray {
 
 /**
- * @brief const_cast between Slice and ConstSlice types
+ * @brief toggle between Slice and ConstSlice types
  */
 template<typename SliceType>
 auto flip_const(SliceType&& slice) -> typename FlipConstType<SliceType>::type&;
+
+/**
+ * @brief toggle between Slice and ConstSlice types
+ */
 
 /**
  * @class Slice
@@ -66,20 +70,20 @@ struct copy_resize_construct_tag {};
 struct copy_resize_construct_base_tag {};
 struct internal_construct_tag{};
 
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
-class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimension>, SliceMixin, Dimensions...>
+template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+class Slice : private Slice<IsConst, InternalSliceTraits<SliceTraitsT, Dimension>, SliceMixin, Dimensions...>
 {
         typedef typename SliceTraitsHelper<SliceTraitsT>::Parent ParentT;
-        typedef Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimension>, SliceMixin, Dimensions...> BaseT;
-        typedef Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...> SelfType;
+        typedef Slice<IsConst, InternalSliceTraits<SliceTraitsT, Dimension>, SliceMixin, Dimensions...> BaseT;
+        typedef Slice<IsConst, SliceTraitsT, SliceMixin, Dimension, Dimensions...> SelfType;
         typedef typename ParentT::value_type value_type;
         typedef Dimension SelfDimension;
 
         typedef typename ParentT::const_iterator parent_const_iterator;
-        typedef typename std::conditional<is_const, parent_const_iterator, typename ParentT::iterator>::type parent_iterator;
+        typedef typename std::conditional<IsConst, parent_const_iterator, typename ParentT::iterator>::type parent_iterator;
 
     protected:
-        typedef Slice<Flip<is_const>::value, SliceTraitsT, SliceMixin, Dimension, Dimensions...> FlipSelfConstType;
+        typedef Slice<Flip<IsConst>::value, SliceTraitsT, SliceMixin, Dimension, Dimensions...> FlipSelfConstType;
         typedef typename SliceTraitsHelper<SliceTraitsT>::ExcludeTuple ExcludeTuple;
         template<typename T> using SliceMixinType = SliceMixin<T>;
 
@@ -95,10 +99,10 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         template<typename Dim>
         struct ConstOperatorSliceType;
 
-        typedef typename std::conditional<is_const, const ParentT, ParentT>::type Parent;
-        typedef SliceIterator<SliceMixin<SelfType>, is_const> iterator;
+        typedef typename std::conditional<IsConst, const ParentT, ParentT>::type Parent;
+        typedef SliceIterator<SliceMixin<SelfType>, IsConst> iterator;
         typedef SliceIterator<SliceMixin<SelfType>, true> const_iterator;
-        typedef SliceMixin<Slice<is_const, SliceTraitsT, SliceMixin, Dimension, Dimensions...>> SliceType;
+        typedef SliceMixin<Slice<IsConst, SliceTraitsT, SliceMixin, Dimension, Dimensions...>> SliceType;
         typedef SliceMixin<BaseT> ReducedSliceType;
         typedef SliceMixin<Slice<true, SliceTraitsT, SliceMixin, Dimension, Dimensions...>> ConstSliceType;
         typedef SliceMixin<Slice<true, InternalSliceTraits<SliceTraitsT, Dimension>, SliceMixin, Dimensions...>> ConstReducedSliceType;
@@ -246,8 +250,13 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         template<bool const_type>
         bool operator==(Slice<const_type, SliceTraitsT, SliceMixin, Dimension, Dimensions...> const&) const;
 
+        /**
+         * @brief returns true it this is ConstSlice type
+         */
+        static constexpr bool is_const() { return IsConst; }
+
     protected:
-        typedef SliceIterator<SelfType, is_const> impl_iterator;
+        typedef SliceIterator<SelfType, IsConst> impl_iterator;
         typedef SliceIterator<SelfType, true> impl_const_iterator;
         friend typename impl_iterator::BaseT;
         friend typename impl_iterator::ImplT;
@@ -258,7 +267,7 @@ class Slice : private Slice<is_const, InternalSliceTraits<SliceTraitsT, Dimensio
         template<bool, typename P, template<typename> class, typename D, typename... Ds> friend class Slice;
         template<typename T> friend struct RemoveMixinWrapper;
         template<typename T> friend struct RestoreMixinWrapper;
-        template<typename T, typename> friend struct FlipConstType;
+        template<typename T> friend struct FlipConstTypeHelper;
 
         template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
         template<typename IteratorDifferenceT> IteratorDifferenceT diff_it(IteratorDifferenceT const& diff) const;
@@ -357,19 +366,19 @@ class SliceTag {
 
 // specialisation for 0 dimensional slice
 // which should return a single element
-template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
-class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
+template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
+class Slice<IsConst, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
 {
-        typedef SliceMixin<Slice<is_const, SliceTraitsT, SliceMixin, Dimension>> SelfType;
+        typedef SliceMixin<Slice<IsConst, SliceTraitsT, SliceMixin, Dimension>> SelfType;
 
         typedef typename SliceTraitsHelper<SliceTraitsT>::Parent ParentT;
         typedef typename ParentT::const_iterator parent_const_iterator;
-        typedef typename std::conditional<is_const, parent_const_iterator, typename ParentT::iterator>::type parent_iterator;
+        typedef typename std::conditional<IsConst, parent_const_iterator, typename ParentT::iterator>::type parent_iterator;
         typedef Dimension SelfDimension;
 
     protected:
         typedef typename SliceTraitsHelper<SliceTraitsT>::ExcludeTuple ExcludeTuple;
-        typedef Slice<Flip<is_const>::value, SliceTraitsT, SliceMixin, Dimension> FlipSelfConstType;
+        typedef Slice<Flip<IsConst>::value, SliceTraitsT, SliceMixin, Dimension> FlipSelfConstType;
         template<typename T> using SliceMixinType = SliceMixin<T>;
         template<typename T> static SliceMixin<T> slice_mixin_dummy(); // not implemented - used for type deduction only
 
@@ -384,8 +393,8 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
 
         typedef typename std::iterator_traits<parent_iterator>::reference reference_type;
         typedef typename std::iterator_traits<parent_const_iterator>::reference const_reference_type;
-        typedef typename std::conditional<is_const, const ParentT, ParentT>::type Parent;
-        typedef Slice<is_const, SliceTraitsT, SliceMixin, Dimension> SliceType;
+        typedef typename std::conditional<IsConst, const ParentT, ParentT>::type Parent;
+        typedef Slice<IsConst, SliceTraitsT, SliceMixin, Dimension> SliceType;
         typedef Slice<true, SliceTraitsT, SliceMixin, Dimension> ConstSliceType;
         typedef parent_iterator iterator;
         typedef parent_const_iterator const_iterator;
@@ -518,19 +527,24 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
         /**
          * @brief compare tow arrays
          */
-        template<bool is_const_>
-        bool operator==(Slice<is_const_, SliceTraitsT, SliceMixin, Dimension> const&) const;
+        template<bool IsConst_>
+        bool operator==(Slice<IsConst_, SliceTraitsT, SliceMixin, Dimension> const&) const;
 
         /**
          * @brief return the parent object of which the slice is based on
          */
         Parent& parent() const;
 
+        /**
+         * @brief returns true it this is ConstSlice type
+         */
+        static constexpr bool is_const() { return IsConst; }
+
     protected:
         template<bool, typename P, template<typename> class, typename D, typename... Ds> friend class Slice;
         template<typename T> friend struct RemoveMixinWrapper;
         template<typename T> friend struct RestoreMixinWrapper;
-        template<typename T, typename> friend struct FlipConstType;
+        template<typename T> friend struct FlipConstTypeHelper;
 
         template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
         template<typename IteratorDifferenceT> static IteratorDifferenceT diff_it(IteratorDifferenceT const& diff);
@@ -590,6 +604,7 @@ class Slice<is_const, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
         Slice( typename std::enable_if<arg_helper<Dimension, Dims...>::value, copy_resize_construct_base_tag const&>::type
              , Slice const& copy
              , DimensionSpan<Dims> const&... spans );
+
 
     protected:
         template<typename SliceType, typename IteratorType>
