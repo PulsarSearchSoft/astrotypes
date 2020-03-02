@@ -1170,13 +1170,13 @@ struct CastToNonConstHelper<SliceType, typename std::enable_if<is_slice<SliceTyp
 };
 
 template<typename SliceType>
-typename CastToConstSliceType<SliceType>::type& cast_to_const_slice(SliceType&& slice)
+inline typename CastToConstSliceType<SliceType>::type& cast_to_const_slice(SliceType&& slice)
 {
     return CastToConstHelper<typename std::remove_reference<SliceType>::type>::exec(std::forward<SliceType>(slice));
 }
 
 template<typename SliceType>
-typename CastToNonConstSliceType<SliceType>::type& cast_to_non_const_slice(SliceType&& slice)
+inline typename CastToNonConstSliceType<SliceType>::type& cast_to_non_const_slice(SliceType&& slice)
 {
     return CastToNonConstHelper<typename std::remove_reference<SliceType>::type>::exec(std::forward<SliceType>(slice));
 }

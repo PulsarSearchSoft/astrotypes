@@ -42,6 +42,12 @@ struct FlipConstType;
 template<typename SliceType>
 struct FlipConstTypeHelper;
 
+template<typename SliceT>
+struct CastToConstSliceType;
+
+template<typename SliceT>
+struct CastToNonConstSliceType;
+
 /**
  * @brief removes the Mixin wrapper decorator to get at the Slice type below
  */

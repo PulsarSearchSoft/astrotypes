@@ -52,8 +52,16 @@ template<typename SliceType>
 auto flip_const(SliceType&& slice) -> typename FlipConstType<SliceType>::type&;
 
 /**
- * @brief toggle between Slice and ConstSlice types
+ * @brief cast to a ConstSlice type
  */
+template<typename SliceType>
+typename CastToConstSliceType<SliceType>::type& cast_to_const_slice(SliceType&& slice);
+
+/**
+ * @brief cast to a non Const Slice type
+ */
+template<typename SliceType>
+typename CastToNonConstSliceType<SliceType>::type& cast_to_non_const_slice(SliceType&& slice);
 
 /**
  * @class Slice
