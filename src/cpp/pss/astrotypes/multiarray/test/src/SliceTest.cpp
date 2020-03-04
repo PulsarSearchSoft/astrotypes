@@ -75,6 +75,7 @@ template<typename T>
 class TestSliceMixin : public T
 {
     public:
+        TestSliceMixin() {}
         TestSliceMixin(T const& t) : T(t) {}
         using T::T;
 };
