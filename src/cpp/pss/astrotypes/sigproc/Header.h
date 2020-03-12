@@ -360,7 +360,7 @@ class Header : public HeaderBase<Header>
         // standard header data fields
         HeaderField<unsigned>           _telescope_id;
         HeaderField<unsigned>           _machine_id;
-        HeaderFieldDataType<unsigned>           _data_type;
+        HeaderFieldDataType<unsigned>   _data_type;
         HeaderField<std::string>        _raw_data_file;
         HeaderField<std::string>        _source_name;
         HeaderField<unsigned>           _barycentric;

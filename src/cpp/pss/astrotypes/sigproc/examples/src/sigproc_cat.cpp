@@ -1,18 +1,18 @@
 /*
  * MIT License
- * 
+ *
  * Copyright (c) 2018 PulsarSearchSoft
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -26,7 +26,7 @@
 #include <fstream>
 void usage(const char* program_name)
 {
-    std::cout << "Usage:\n" 
+    std::cout << "Usage:\n"
               << "\t" << program_name << " [options] input_filterbank_files... output_filterbank_file\n"
               << "Synopsis:\n"
               << "\tCatenates all input_filterbank_files to output_filterbank_file,\n"
@@ -49,10 +49,10 @@ struct CatData
                  , bool as_time_series)
     {
         // we choose to load in data 1000 samples at a time to keep down the memory requirements of the app
-        // Note that the number of samples in the file does not have to be a multiple of this value, the 
+        // Note that the number of samples in the file does not have to be a multiple of this value, the
         // streamer adapters will adjust the chunk size as necessary if there are insufficent data to fill a whole
         // data structure.
-        typename SigProcTraits::DataType data(number_of_channels, 
+        typename SigProcTraits::DataType data(number_of_channels,
                     pss::astrotypes::DimensionSize<pss::astrotypes::units::Time>(1000));
 
         typename SigProcTraits::Adapter sigproc_adapter;
@@ -79,7 +79,7 @@ struct CatData
                 pss::astrotypes::sigproc::Header header;
                 input_file >> header;
                 if(header.number_of_bits() != sizeof(typename decltype(data)::value_type)) {
-                    std::cerr << "Error: file " << files[file_index] 
+                    std::cerr << "Error: file " << files[file_index]
                               << " has " << header.number_of_bits() << " bit data."
                               << " (expecting " << sizeof(typename decltype(data)::value_type) << " bits)";
                     return 1;
@@ -119,7 +119,9 @@ int main(int argc, char** argv) {
                 return 1;
             }
         }
-        files.push_back(argv[a]);
+        else {
+            files.push_back(argv[a]);
+        }
     }
     if(files.size() <  2) {
         std::cerr << "Must specify one or more input files and an output file" << std::endl;
@@ -133,11 +135,11 @@ int main(int argc, char** argv) {
     files.pop_back();
 
     // read in a sigproc file
-    std::ifstream input_file_stream(argv[1], std::ios::binary);
-    
+    std::ifstream input_file_stream(files[0], std::ios::binary);
+
     pss::astrotypes::sigproc::Header header;
     input_file_stream >> header;
-    
+
     // dump header information to the screen in a human readable format
     std::cout << pss::astrotypes::sigproc::Header::Info() << header;
 
