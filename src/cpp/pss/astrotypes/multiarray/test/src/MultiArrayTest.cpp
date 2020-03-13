@@ -57,7 +57,7 @@ TEST_F(MultiArrayTest, test_single_dimension_size)
     ASSERT_EQ(ma.dimension<DimensionA>(), size);
     ASSERT_EQ(ma.dimension<DimensionB>(), DimensionSize<DimensionB>(0U));
     ASSERT_EQ(ma.dimension<DimensionC>(), DimensionSize<DimensionC>(0U));
-    ASSERT_EQ(std::distance(ma.begin(), ma.end()), size);
+    ASSERT_EQ(std::distance(ma.begin(), ma.end()), (std::size_t)size);
 }
 
 TEST_F(MultiArrayTest, test_single_dimension_empty_constructor)
@@ -82,7 +82,7 @@ TEST_F(MultiArrayTest, test_single_dimension_const_iterator)
                                 ASSERT_EQ(val, n);
                                 ++n;
                            });
-    ASSERT_EQ(n, (unsigned)size);
+    ASSERT_EQ(n, static_cast<std::size_t>(size));
 }
 
 TEST_F(MultiArrayTest, test_two_dimension_empty_constructor)
@@ -117,7 +117,7 @@ TEST_F(MultiArrayTest, test_two_dimension_1_slice_operator_DimensionB_const_iter
                                 ASSERT_EQ(val, n);
                                 n += (std::size_t)size_b;
                            });
-    ASSERT_EQ(n, (unsigned)size_b * size_a);
+    ASSERT_EQ(n, (unsigned)(size_b * size_a));
 
     // slice q - sanity checks for first slice
     auto slice1 = ma.slice(DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(1), DimensionSize<DimensionB>(1)));
@@ -137,13 +137,13 @@ TEST_F(MultiArrayTest, test_two_dimension_1_slice_DimensionA_const_iterator)
     auto it = slice.cbegin();
     auto end = slice.cend();
     ASSERT_EQ(std::distance(it, end), (std::size_t)size_b);
-    unsigned n=(unsigned)size_b;
+    unsigned n=(std::size_t)size_b;
     std::for_each(it, end, [&](int const& val)
                            {
                                 ASSERT_EQ(val, n);
                                 ++n;
                            });
-    ASSERT_EQ(n-(unsigned)size_b, (unsigned)size_b);
+    ASSERT_EQ(n-(std::size_t)size_b, (std::size_t)size_b);
 }
 
 TEST_F(MultiArrayTest, test_two_dimension_1_slice_operator_DimensionA_const_iterator)
@@ -156,13 +156,13 @@ TEST_F(MultiArrayTest, test_two_dimension_1_slice_operator_DimensionA_const_iter
     auto it = slice.cbegin();
     auto end = slice.cend();
     ASSERT_EQ(std::distance(it, end), (std::size_t)size_b);
-    unsigned n=(unsigned)size_b;
+    unsigned n=(std::size_t)size_b;
     std::for_each(it, end, [&](int const& val)
                            {
                                 ASSERT_EQ(val, n);
                                 ++n;
                            });
-    ASSERT_EQ(n-(unsigned)size_b, (unsigned)size_b);
+    ASSERT_EQ(n-(std::size_t)size_b, (std::size_t)size_b);
 }
 
 TEST_F(MultiArrayTest, test_two_dimension_slice_offset)
@@ -613,7 +613,7 @@ TEST_F(MultiArrayTest, test_three_dimension_std_copy)
     // ensure the [] operators return the correct values
     for(DimensionIndex<DimensionA> i(0); i < ma.dimension<DimensionA>(); ++i) {
         for(DimensionIndex<DimensionB> j(0); j < ma.dimension<DimensionB>(); ++j) {
-            ASSERT_EQ( i * size_b * size_c + j * size_c + 20, ma[i][j][DimensionIndex<DimensionC>(20)]) << "i=" << i
+            ASSERT_EQ( i * (std::size_t)size_b * (std::size_t)size_c + j * (std::size_t)size_c + 20, ma[i][j][DimensionIndex<DimensionC>(20)]) << "i=" << i
                                                                                                         << " j=" << j;
         }
     }

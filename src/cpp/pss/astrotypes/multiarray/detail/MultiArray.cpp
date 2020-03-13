@@ -478,7 +478,7 @@ template<typename Alloc, typename T, template<typename> class SliceMixin, typena
 MultiArray<Alloc, T, SliceMixin, FirstDimension>::MultiArray()
     : _size(DimensionSize<FirstDimension>(0))
 {
-    _data.resize(_size);
+    _data.resize(static_cast<std::size_t>(_size));
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>
@@ -486,7 +486,7 @@ template<typename Dim, typename... Dims>
 MultiArray<Alloc, T, SliceMixin, FirstDimension>::MultiArray(DimensionSize<Dim> const& size, DimensionSize<Dims> const&... sizes)
     : _size(arg_helper<DimensionSize<FirstDimension> const&, DimensionSize<Dim> const&, DimensionSize<Dims> const&...>::arg(size, sizes...))
 {
-    _data.resize(_size);
+    _data.resize(static_cast<std::size_t>(_size));
 }
 
 template<typename Alloc, typename T, template<typename> class SliceMixin, typename FirstDimension>

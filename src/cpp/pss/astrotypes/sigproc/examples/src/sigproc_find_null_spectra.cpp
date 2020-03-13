@@ -37,25 +37,75 @@ void usage(const char* program_name)
               << "\t--help,-h        : this message\n";
 }
 
+struct ResultsWriter
+{
+        typedef pss::astrotypes::units::Time Time;
+        typedef pss::astrotypes::DimensionSpan<Time> SpanType;
+
+    public:
+        ResultsWriter()
+            : _null_span(pss::astrotypes::DimensionSize<Time>(0))
+        {
+        }
+
+        ~ResultsWriter()
+        {
+            if(_null_span.span() != pss::astrotypes::DimensionSize<Time>(0))
+            {
+                write();
+            }
+        }
+
+        void mark(pss::astrotypes::DimensionIndex<Time> const& s_num) {
+            if(_null_span.span() == pss::astrotypes::DimensionSize<Time>(0))
+            {
+                _null_span=SpanType(s_num, pss::astrotypes::DimensionSize<Time>(1));
+            }
+            else if(_null_span.end() + 1 == s_num)
+            {
+                _null_span.span(_null_span.span() + pss::astrotypes::DimensionSize<Time>(1));
+            }
+            else {
+                write();
+                _null_span = SpanType(pss::astrotypes::DimensionSize<Time>(0));
+            }
+        }
+
+        void write() const
+        {
+            std::cout << "Null channel(s): ";
+            if(_null_span.span() == pss::astrotypes::DimensionSize<Time>(1))
+            {
+                std::cout << _null_span.start() << "\n";
+            } else
+            {
+                std::cout << _null_span.start() << "-" << _null_span.end() << "\n";
+            }
+        }
+
+    private:
+        SpanType _null_span;
+};
+
 template<typename SigProcTraits>
 struct SearchData
 {
     template<typename HeaderType>
-    static 
+    static
     void exec(HeaderType const& header, std::istream& input_file)
     {
+        typedef pss::astrotypes::units::Time Time;
+
         // read in data in 1024 spectral chunks
-        pss::astrotypes::DimensionSize<pss::astrotypes::units::Time> number_of_spectra(1024);
+        pss::astrotypes::DimensionSize<Time> number_of_spectra(1024);
         typename SigProcTraits::DataType data(header.number_of_channels(), number_of_spectra);
         typename SigProcTraits::Adapter sigproc_adapter;
 
-        typedef pss::astrotypes::units::Time Time;
         pss::astrotypes::DimensionIndex<Time> s_num(0);
         while(!input_file.eof()) {
             input_file >> sigproc_adapter >> data;
 
-            typedef pss::astrotypes::DimensionSpan<Time> SpanType; 
-            SpanType null_span(pss::astrotypes::DimensionSize<Time>(0));
+            ResultsWriter results;
             for(pss::astrotypes::DimensionIndex<Time> spectrum_number(0);
                 spectrum_number < data.template dimension<Time>();
                 ++spectrum_number)
@@ -66,25 +116,7 @@ struct SearchData
                     sum += sample;
                 }
                 if(sum == 0.0) {
-                    if(null_span.span() == pss::astrotypes::DimensionSize<Time>(0))
-                    {
-                        null_span=SpanType(s_num, 1); 
-                    }
-                    else if(null_span.end() + pss::astrotypes::DimensionSize<Time>(1) > s_num)
-                    {
-                        null_span.end(s_num);
-                    }
-                    else {
-                        std::cout << "Null channel(s):";
-                        if(null_span.span() == pss::astrotypes::DimensionSize<Time>(1))
-                        {
-                           std::cout << null_span.start() << "\n";
-                        } else
-                        {
-                           std::cout << null_span.start() << "-" << null_span.end() << "\n";
-                        }
-                        null_span = SpanType((pss::astrotypes::DimensionSize<Time>(0)));
-                    }
+                    results.mark(s_num);
                 }
                 ++s_num;
             }

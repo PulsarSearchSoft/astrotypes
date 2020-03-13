@@ -1,18 +1,18 @@
 /*
  * MIT License
- * 
+ *
  * Copyright (c) 2018 PulsarSearchSoft
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -42,15 +42,27 @@ class DimensionSize
         typedef Dimension dimension;
 
     public:
-        DimensionSize(std::size_t size = 0);
+        explicit DimensionSize(std::size_t size = 0);
         ~DimensionSize();
 
         operator std::size_t();
         operator std::size_t() const;
 
         bool operator<(DimensionSize<Dimension> const&) const;
-        bool operator==(DimensionSize<Dimension> const& s) const;
-        bool operator!=(DimensionSize<Dimension> const& s) const;
+        template<typename OtherDimension>
+        bool operator==(DimensionSize<OtherDimension> const& s) const;
+        template<typename OtherDimension>
+        bool operator!=(DimensionSize<OtherDimension> const& s) const;
+
+        DimensionSize& operator=(std::size_t s);
+
+        template<typename OtherDimension>
+        std::size_t operator*(DimensionSize<OtherDimension> const& s) const;
+        DimensionSize operator*(std::size_t s) const;
+        DimensionSize operator+(DimensionSize<Dimension> const& s) const;
+        DimensionSize operator+(std::size_t s) const;
+        DimensionSize operator-(DimensionSize<Dimension> const& s) const;
+        DimensionSize operator-(std::size_t s) const;
         DimensionSize& operator+=(DimensionSize<Dimension> const& s);
         DimensionSize& operator++();
         DimensionSize operator++(int);
@@ -64,4 +76,40 @@ class DimensionSize
 } // namespace pss
 #include "detail/DimensionSize.cpp"
 
+namespace std {
+    template<typename Dimension>
+    std::string to_string(pss::astrotypes::DimensionSize<Dimension> const& size) {
+        return std::to_string(static_cast<std::size_t>(size));
+    }
+}
+
+template<typename T, typename Dimension>
+T operator*(T s, pss::astrotypes::DimensionSize<Dimension> const& size)
+{
+    return s * static_cast<std::size_t>(size);
+}
+
+template<typename T, typename Dimension>
+pss::astrotypes::DimensionSize<Dimension> operator*(pss::astrotypes::DimensionSize<Dimension> const& size, T s)
+{
+    return size.pss::astrotypes::template DimensionSize<Dimension>::operator*(s);
+}
+
+template<typename T, typename Dimension>
+pss::astrotypes::DimensionSize<Dimension> operator/(pss::astrotypes::DimensionSize<Dimension> const& size, T s)
+{
+    return size.pss::astrotypes::template DimensionSize<Dimension>::operator/(s);
+}
+
+template<typename T, typename Dimension>
+pss::astrotypes::DimensionSize<Dimension> operator-(pss::astrotypes::DimensionSize<Dimension> const& size, T s)
+{
+    return size.pss::astrotypes::template DimensionSize<Dimension>::operator-(s);
+}
+
+template<typename T, typename Dimension>
+pss::astrotypes::DimensionSize<Dimension> operator+(pss::astrotypes::DimensionSize<Dimension> const& size, T s)
+{
+    return size.pss::astrotypes::template DimensionSize<Dimension>::operator+(s);
+}
 #endif // PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H

@@ -49,6 +49,12 @@ DimensionSize<Dimension>::operator std::size_t() const
     return _size;
 }
 
+template<typename Dimension>
+DimensionSize<Dimension>& DimensionSize<Dimension>::operator=(std::size_t s)
+{
+    _size = s;
+    return *this;
+}
 
 template<typename Dimension>
 bool DimensionSize<Dimension>::operator<(DimensionSize<Dimension> const& b) const
@@ -57,15 +63,17 @@ bool DimensionSize<Dimension>::operator<(DimensionSize<Dimension> const& b) cons
 }
 
 template<typename Dimension>
-bool DimensionSize<Dimension>::operator==(DimensionSize<Dimension> const& b) const
+template<typename OtherDimension>
+bool DimensionSize<Dimension>::operator==(DimensionSize<OtherDimension> const& b) const
 {
-    return _size == b._size;
+    return _size == static_cast<std::size_t>(b);
 }
 
 template<typename Dimension>
-bool DimensionSize<Dimension>::operator!=(DimensionSize<Dimension> const& b) const
+template<typename OtherDimension>
+bool DimensionSize<Dimension>::operator!=(DimensionSize<OtherDimension> const& b) const
 {
-    return _size != b._size;
+    return _size != static_cast<std::size_t>(b);
 }
 
 template<typename Dimension>
@@ -73,6 +81,43 @@ DimensionSize<Dimension>& DimensionSize<Dimension>::operator+=(DimensionSize<Dim
 {
     _size += b._size;
     return *this;
+}
+
+template<typename Dimension>
+template<typename OtherDimension>
+std::size_t DimensionSize<Dimension>::operator*(DimensionSize<OtherDimension> const& b) const
+{
+    return _size * static_cast<std::size_t>(b);
+}
+
+template<typename Dimension>
+DimensionSize<Dimension> DimensionSize<Dimension>::operator*(std::size_t b) const
+{
+    return DimensionSize<Dimension>(_size * b);
+}
+
+template<typename Dimension>
+DimensionSize<Dimension> DimensionSize<Dimension>::operator+(std::size_t b) const
+{
+    return DimensionSize<Dimension>(_size + b);
+}
+
+template<typename Dimension>
+DimensionSize<Dimension> DimensionSize<Dimension>::operator-(std::size_t b) const
+{
+    return DimensionSize<Dimension>(_size - b);
+}
+
+template<typename Dimension>
+DimensionSize<Dimension> DimensionSize<Dimension>::operator+(DimensionSize<Dimension> const& b) const
+{
+    return DimensionSize<Dimension>(_size + b._size);
+}
+
+template<typename Dimension>
+DimensionSize<Dimension> DimensionSize<Dimension>::operator-(DimensionSize<Dimension> const& b) const
+{
+    return DimensionSize<Dimension>(_size - b._size);
 }
 
 template<typename Dimension>

@@ -231,7 +231,7 @@ Slice<IsConst, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::Slice( typen
     : BaseT(internal_construct_tag(), parent, static_cast<typename SliceT::SliceType const&>(slice))
     , _span(slice.template parent_span<Dimension>())
     , _base_span(0U)
-    , _ptr(parent.begin() + static_cast<std::size_t>(_span.start() * BaseT::_base_span))
+    , _ptr(parent.begin() + static_cast<std::size_t>(_span.start() * static_cast<std::size_t>(BaseT::_base_span)))
 {
     BaseT::offset(_ptr);
 }
@@ -375,7 +375,7 @@ typename Slice<IsConst, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::par
 template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 std::size_t Slice<IsConst, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::data_size() const
 {
-    return _span.span() * BaseT::data_size();;
+    return BaseT::data_size() * _span.span();
 }
 
 template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
@@ -618,7 +618,7 @@ bool Slice<IsConst, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::increme
         current -= BaseT::diff_base_span(); // return pointer to beginning of BaseT block
         if(++pos.index < _span.span())
         {
-            current += BaseT::_base_span; // move up to next block
+            current += static_cast<std::size_t>(BaseT::_base_span); // move up to next block
             return true;
         }
         // reset end to the end of a first chunk
@@ -652,7 +652,7 @@ bool Slice<IsConst, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::operato
 // constructors
 template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
 Slice<IsConst, SliceTraitsT, SliceMixin, Dimension>::Slice()
-    : _span(DimensionSpan<Dimension>(0U))
+    : _span(DimensionSize<Dimension>(0U))
     , _base_span(DimensionSize<Dimension>(0U))
     , _parent(nullptr)
 {
@@ -795,7 +795,7 @@ Slice<IsConst, SliceTraitsT, SliceMixin, Dimension>& Slice<IsConst, SliceTraitsT
 template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
 std::size_t Slice<IsConst, SliceTraitsT, SliceMixin, Dimension>::data_size() const
 {
-    return _span.span();
+    return static_cast<std::size_t>(_span.span());
 }
 
 template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
