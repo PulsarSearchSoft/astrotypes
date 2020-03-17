@@ -74,7 +74,6 @@ class DimensionSize
 
 } // namespace astrotypes
 } // namespace pss
-#include "detail/DimensionSize.cpp"
 
 namespace std {
     template<typename Dimension>
@@ -84,21 +83,48 @@ namespace std {
 }
 
 template<typename T, typename Dimension>
-T operator*(T s, pss::astrotypes::DimensionSize<Dimension> const& size)
+typename std::enable_if<std::is_arithmetic<T>::value, T>::type
+operator*(T s, pss::astrotypes::DimensionSize<Dimension> const& size)
 {
     return s * static_cast<std::size_t>(size);
 }
 
 template<typename T, typename Dimension>
+typename std::enable_if<std::is_arithmetic<T>::value, bool>::type
+operator==(pss::astrotypes::DimensionSize<Dimension> const& size, T const& s)
+{
+    return s == static_cast<T const&>(static_cast<std::size_t>(size));
+}
+
+template<typename T, typename Dimension>
+typename std::enable_if<std::is_arithmetic<T>::value, bool>::type
+operator<(T s, pss::astrotypes::DimensionSize<Dimension> const& size)
+{
+    return s < static_cast<T const&>(static_cast<std::size_t>(size));
+}
+
+template<typename T, typename Dimension>
 pss::astrotypes::DimensionSize<Dimension> operator*(pss::astrotypes::DimensionSize<Dimension> const& size, T s)
 {
-    return size.pss::astrotypes::template DimensionSize<Dimension>::operator*(s);
+    return pss::astrotypes::DimensionSize<Dimension>(s * static_cast<std::size_t>(size));
 }
 
 template<typename T, typename Dimension>
 pss::astrotypes::DimensionSize<Dimension> operator/(pss::astrotypes::DimensionSize<Dimension> const& size, T s)
 {
-    return size.pss::astrotypes::template DimensionSize<Dimension>::operator/(s);
+    return pss::astrotypes::DimensionSize<Dimension>(static_cast<std::size_t>(size)/s);
+}
+
+template<typename T, typename Dimension>
+T operator/(T s, pss::astrotypes::DimensionSize<Dimension> const& size)
+{
+    return s/static_cast<T const&>(static_cast<std::size_t>(size));
+}
+
+template<typename T, typename Dimension>
+T operator%(T s, pss::astrotypes::DimensionSize<Dimension> const& size)
+{
+    return s%static_cast<T const&>(static_cast<std::size_t>(size));
 }
 
 template<typename T, typename Dimension>
@@ -112,4 +138,6 @@ pss::astrotypes::DimensionSize<Dimension> operator+(pss::astrotypes::DimensionSi
 {
     return size.pss::astrotypes::template DimensionSize<Dimension>::operator+(s);
 }
+
+#include "detail/DimensionSize.cpp"
 #endif // PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
