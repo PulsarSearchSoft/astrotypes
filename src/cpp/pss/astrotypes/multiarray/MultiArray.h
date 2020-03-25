@@ -56,7 +56,6 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
 {
         typedef MultiArray<Alloc, T, SliceMixin, OtherDimensions...> BaseT;
         typedef MultiArray<Alloc, T, SliceMixin, FirstDimension, OtherDimensions...> SelfType;
-        typedef std::vector<T, Alloc> Container;
 
     public:
         typedef typename BaseT::iterator iterator;
@@ -564,7 +563,7 @@ class MultiArray<Alloc, T, SliceMixin, FirstDimension> : public MultiArrayTag
 
     private:
         DimensionSize<FirstDimension> _size;
-        std::vector<T> _data;
+        Container _data;
 };
 
 } // namespace multiarray
