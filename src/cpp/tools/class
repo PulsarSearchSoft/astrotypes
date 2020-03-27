@@ -385,7 +385,12 @@ sub licence_text {
     my $text = "";
     open( my $lfh, '<', $license_filename ) or die "Can't open $license_filename: $!";
     while ( my $line = <$lfh> ) {
-        $text = $text . " * " . $line;
+        if($line !~ /^\s*$/)
+        {
+            $text = $text . " * " . $line;
+        } else {
+            $text = $text . " *\n";
+        }
     }
     close $lfh or die "can't close $license_filename: $!";
     chomp $text;
