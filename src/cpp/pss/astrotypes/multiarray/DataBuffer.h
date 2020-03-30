@@ -55,8 +55,8 @@ namespace detail {
                 AllocatedMemory& operator=(AllocatedMemory&&);
 
                 std::size_t capacity() const;
-                T* const start() const { return _m_start; }
-                T* const end() const   { return _m_end_of_storage; }
+                T* start() const { return _m_start; }
+                T* end() const   { return _m_end_of_storage; }
 
                 private:
                     void deallocate();
