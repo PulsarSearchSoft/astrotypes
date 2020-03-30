@@ -104,13 +104,15 @@ operator<(T s, pss::astrotypes::DimensionSize<Dimension> const& size)
 }
 
 template<typename T, typename Dimension>
-pss::astrotypes::DimensionSize<Dimension> operator*(pss::astrotypes::DimensionSize<Dimension> const& size, T s)
+typename std::enable_if<std::is_arithmetic<T>::value, pss::astrotypes::DimensionSize<Dimension>>::type
+operator*(pss::astrotypes::DimensionSize<Dimension> const& size, T s)
 {
     return pss::astrotypes::DimensionSize<Dimension>(s * static_cast<std::size_t>(size));
 }
 
 template<typename T, typename Dimension>
-pss::astrotypes::DimensionSize<Dimension> operator/(pss::astrotypes::DimensionSize<Dimension> const& size, T s)
+typename std::enable_if<std::is_arithmetic<T>::value, pss::astrotypes::DimensionSize<Dimension>>::type
+operator/(pss::astrotypes::DimensionSize<Dimension> const& size, T s)
 {
     return pss::astrotypes::DimensionSize<Dimension>(static_cast<std::size_t>(size)/s);
 }
