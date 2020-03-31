@@ -33,7 +33,7 @@ namespace sigproc {
 static const SigProcLabel telescope_id_label("telescope_id");
 static const SigProcLabel machine_id_label("machine_id");
 static const SigProcLabel data_type_label("data_type");
-static const SigProcLabel raw_data_file_label("raw_data_file");
+static const SigProcLabel raw_data_file_label("rawdatafile");
 static const SigProcLabel source_name_label("source_name");
 static const SigProcLabel barycentric_label("barycentric");
 static const SigProcLabel pulsarcentric_label("pulsarcentric");
