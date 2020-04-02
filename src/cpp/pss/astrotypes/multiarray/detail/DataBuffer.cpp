@@ -121,6 +121,44 @@ DataBufferImpl<T, Alloc, false>::DataBufferImpl(std::size_t size, T const& val, 
 }
 
 template<typename T, typename Alloc>
+DataBufferImpl<T, Alloc, false>::DataBufferImpl(DataBufferImpl const& vec)
+    : _allocator(vec._allocator)
+    , _m_alloc(_allocator.allocate(vec.size()))
+    , _m_finish(_m_alloc.end())
+{
+    std::copy(vec.begin(), vec.end(), this->begin());
+}
+
+template<typename T, typename Alloc>
+template<typename OtherAlloc>
+DataBufferImpl<T, Alloc, false>::DataBufferImpl(DataBufferImpl<T, OtherAlloc, false> const& vec)
+    : _allocator(Alloc())
+    , _m_alloc(_allocator.allocate(vec.size()))
+    , _m_finish(_m_alloc.end())
+{
+    std::copy(vec.begin(), vec.end(), this->begin());
+}
+
+template<typename T, typename Alloc>
+template<typename OtherAlloc>
+DataBufferImpl<T, Alloc, false>::DataBufferImpl(std::vector<T, OtherAlloc> const& vec)
+    : _allocator(Alloc())
+    , _m_alloc(_allocator.allocate(vec.size()))
+    , _m_finish(_m_alloc.end())
+{
+    std::copy(vec.begin(), vec.end(), this->begin());
+}
+
+template<typename T, typename Alloc>
+DataBufferImpl<T, Alloc, false>::DataBufferImpl(DataBufferImpl&& vec)
+    : _allocator(vec._allocator)
+    , _m_alloc(std::move(vec._m_alloc))
+    , _m_finish(vec._m_finish)
+{
+    vec._m_finish = nullptr;
+}
+
+template<typename T, typename Alloc>
 DataBufferImpl<T, Alloc, false>::DataBufferImpl(Alloc const& a)
     : _allocator(a)
     , _m_alloc(_allocator.allocate(0))

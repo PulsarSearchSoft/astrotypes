@@ -27,6 +27,7 @@
 #include "Slice.h"
 #include "DimensionSize.h"
 #include "DimensionIndex.h"
+#include "DataBuffer.h"
 #include <vector>
 
 namespace pss {
@@ -390,7 +391,8 @@ template<typename Alloc, typename T, template<typename> class SliceMixin, typena
 class MultiArray<Alloc, T, SliceMixin, FirstDimension> : public MultiArrayTag
 {
         typedef MultiArray<Alloc, T, SliceMixin, FirstDimension> SelfType;
-        typedef std::vector<T, Alloc> Container;
+        //typedef std::vector<T, Alloc> Container;
+        typedef DataBuffer<T, Alloc> Container;
 
     public:
          typedef std::tuple<FirstDimension> DimensionTuple;

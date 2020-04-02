@@ -93,6 +93,15 @@ namespace detail {
             DataBufferImpl(std::size_t n, const Alloc& = Alloc());
             DataBufferImpl(std::size_t n, T const& val, const Alloc& = Alloc());
             DataBufferImpl(const Alloc& = Alloc());
+
+            DataBufferImpl(DataBufferImpl const&);
+            template<typename OtherAlloc>
+            DataBufferImpl(DataBufferImpl<T, OtherAlloc, false> const&);
+
+            template<typename OtherAlloc>
+            DataBufferImpl(std::vector<T, OtherAlloc> const&);
+
+            DataBufferImpl(DataBufferImpl&&);
             ~DataBufferImpl();
 
             std::size_t capacity() const;

@@ -23,6 +23,7 @@
  */
 #include "pss/astrotypes/multiarray/test/DataBufferTest.h"
 #include "pss/astrotypes/multiarray/DataBuffer.h"
+#include <numeric>
 
 namespace pss {
 namespace astrotypes {
@@ -71,6 +72,80 @@ TEST_F(DataBufferTest, test_constructor_with_value)
     ASSERT_EQ(std::distance(buffer.begin(), buffer.end()), 10U);
     for(std::size_t i=5; i < buffer.size(); ++i) {
         ASSERT_EQ(buffer[i], 99);
+    }
+}
+
+TEST_F(DataBufferTest, test_copy_construct)
+{
+    DataBuffer<int> buffer(10U);
+    ASSERT_EQ(buffer.size(), 10U);
+    std::iota(buffer.begin(), buffer.end(), 76);
+    DataBuffer<int> buffer_copy(buffer);
+    ASSERT_EQ(buffer.size(), 10U);
+    ASSERT_EQ(buffer_copy.size(), 10U);
+    auto it = buffer.begin();
+    auto it_copy = buffer_copy.begin();
+    ASSERT_TRUE(it != it_copy);
+    while( it != buffer.end()) {
+        ASSERT_EQ(*it, *it_copy);
+        ++it;
+        ++it_copy;
+    }
+}
+
+template<typename T>
+struct TestAllocator : public std::allocator<T>
+{
+};
+
+TEST_F(DataBufferTest, test_copy_alternative_allocator_construct)
+{
+    DataBuffer<int, TestAllocator<int>> buffer(10U);
+    ASSERT_EQ(buffer.size(), 10U);
+    std::iota(buffer.begin(), buffer.end(), 76);
+    DataBuffer<int> buffer_copy(buffer);
+    ASSERT_EQ(buffer.size(), 10U);
+    ASSERT_EQ(buffer_copy.size(), 10U);
+    auto it = buffer.begin();
+    auto it_copy = buffer_copy.begin();
+    ASSERT_TRUE(it != it_copy);
+    while( it != buffer.end()) {
+        ASSERT_EQ(*it, *it_copy);
+        ++it;
+        ++it_copy;
+    }
+}
+
+TEST_F(DataBufferTest, test_move_construct)
+{
+    DataBuffer<int> buffer(10U);
+    ASSERT_EQ(buffer.size(), 10U);
+    auto it = buffer.begin();
+    auto it_end = buffer.end();
+    std::iota(buffer.begin(), buffer.end(), 76);
+    DataBuffer<int> buffer_copy(std::move(buffer));
+    ASSERT_EQ(buffer.size(), 0U);
+    ASSERT_EQ(buffer_copy.size(), 10U);
+    auto it_copy = buffer_copy.begin();
+    ASSERT_TRUE(it == it_copy);
+    ASSERT_TRUE(it_end == buffer_copy.end());
+}
+
+TEST_F(DataBufferTest, test_vector_copy_construct)
+{
+    std::vector<int> buffer(10U);
+    ASSERT_EQ(buffer.size(), 10U);
+    std::iota(buffer.begin(), buffer.end(), 76);
+    DataBuffer<int> buffer_copy(buffer);
+    ASSERT_EQ(buffer.size(), 10U);
+    ASSERT_EQ(buffer_copy.size(), 10U);
+    auto it = buffer.begin();
+    auto it_copy = buffer_copy.begin();
+    ASSERT_TRUE(&*it != it_copy);
+    while( it != buffer.end()) {
+        ASSERT_EQ(*it, *it_copy);
+        ++it;
+        ++it_copy;
     }
 }
 
