@@ -149,6 +149,100 @@ TEST_F(DataBufferTest, test_vector_copy_construct)
     }
 }
 
+TEST_F(DataBufferTest, test_assignment)
+{
+    DataBuffer<int> buffer(10U);
+    ASSERT_EQ(buffer.size(), 10U);
+    std::iota(buffer.begin(), buffer.end(), 76);
+    DataBuffer<int> buffer_copy(3U);
+
+    // call the assignment operator
+    auto const& rv = buffer_copy = buffer;
+    ASSERT_EQ(&rv, &buffer_copy);
+    static_assert(std::is_same<decltype(rv), DataBuffer<int> const&>::value, "wrong type returned");
+
+    ASSERT_EQ(buffer.size(), 10U);
+    ASSERT_EQ(buffer_copy.size(), 10U);
+    auto it = buffer.begin();
+    auto it_copy = buffer_copy.begin();
+    ASSERT_TRUE(it != it_copy);
+    while( it != buffer.end()) {
+        ASSERT_EQ(*it, *it_copy);
+        ++it;
+        ++it_copy;
+    }
+}
+
+TEST_F(DataBufferTest, test_std_vector_assignment)
+{
+    std::vector<int> buffer(10U);
+    ASSERT_EQ(buffer.size(), 10U);
+    std::iota(buffer.begin(), buffer.end(), 76);
+    DataBuffer<int> buffer_copy(3U);
+
+    // call the assignment operator
+    auto const& rv = buffer_copy = buffer;
+    ASSERT_EQ(&rv, &buffer_copy);
+    static_assert(std::is_same<decltype(rv), DataBuffer<int> const&>::value, "wrong type returned");
+
+    ASSERT_EQ(buffer.size(), 10U);
+    ASSERT_EQ(buffer_copy.size(), 10U);
+    auto it = buffer.begin();
+    auto it_copy = buffer_copy.begin();
+    ASSERT_TRUE(&*it != it_copy);
+    while( it != buffer.end()) {
+        ASSERT_EQ(*it, *it_copy);
+        ++it;
+        ++it_copy;
+    }
+}
+
+TEST_F(DataBufferTest, test_move_assignment)
+{
+    DataBuffer<int> buffer(10U);
+    ASSERT_EQ(buffer.size(), 10U);
+    std::iota(buffer.begin(), buffer.end(), 76);
+    auto it = buffer.begin();
+    auto it_end = buffer.end();
+
+    DataBuffer<int> buffer_copy(3U);
+
+    // call the move assignment operator
+    auto const& rv=buffer_copy = std::move(buffer);
+    ASSERT_EQ(&rv, &buffer_copy);
+    static_assert(std::is_same<decltype(rv), DataBuffer<int> const&>::value, "wrong type returned");
+
+    ASSERT_EQ(buffer.size(), 0U);
+    ASSERT_EQ(buffer_copy.size(), 10U);
+    auto it_copy = buffer_copy.begin();
+    ASSERT_TRUE(it == it_copy);
+    ASSERT_TRUE(it_end == buffer_copy.end());
+}
+
+TEST_F(DataBufferTest, test_alternative_allocator_assignment)
+{
+    DataBuffer<int, TestAllocator<int>> buffer(10U);
+    ASSERT_EQ(buffer.size(), 10U);
+    std::iota(buffer.begin(), buffer.end(), 76);
+    DataBuffer<int> buffer_copy(3U);
+
+    // call the assignment operator
+    auto const& rv = buffer_copy = buffer;
+    ASSERT_EQ(&rv, &buffer_copy);
+    static_assert(std::is_same<decltype(rv), DataBuffer<int> const&>::value, "wrong type returned");
+
+    ASSERT_EQ(buffer.size(), 10U);
+    ASSERT_EQ(buffer_copy.size(), 10U);
+    auto it = buffer.begin();
+    auto it_copy = buffer_copy.begin();
+    ASSERT_TRUE(it != it_copy);
+    while( it != buffer.end()) {
+        ASSERT_EQ(*it, *it_copy);
+        ++it;
+        ++it_copy;
+    }
+}
+
 TEST_F(DataBufferTest, test_size_resize_smaller)
 {
     DataBuffer<char> buffer(10);

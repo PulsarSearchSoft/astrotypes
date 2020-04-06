@@ -90,6 +90,7 @@ namespace detail {
             typedef const T& const_reference;
 
         public:
+            // constructors
             DataBufferImpl(std::size_t n, const Alloc& = Alloc());
             DataBufferImpl(std::size_t n, T const& val, const Alloc& = Alloc());
             DataBufferImpl(const Alloc& = Alloc());
@@ -104,6 +105,13 @@ namespace detail {
             DataBufferImpl(DataBufferImpl&&);
             ~DataBufferImpl();
 
+            // assignment
+            void operator=(DataBufferImpl const&);
+            void operator=(DataBufferImpl&&);
+            template<typename OtherAlloc>
+            void operator=(DataBufferImpl<T, OtherAlloc, false> const&);
+
+            // sizing
             std::size_t capacity() const;
             std::size_t size() const;
 
@@ -113,6 +121,7 @@ namespace detail {
             void resize(std::size_t size, T const& value);
             void reserve(std::size_t s);
 
+            // data access
             T& operator[](std::size_t n);
             T const& operator[](std::size_t n) const;
 
@@ -165,6 +174,11 @@ class DataBuffer : public detail::DataBufferImpl<T, Alloc>
         typedef typename BaseT::const_iterator const_iterator;
         typedef typename BaseT::value_type value_type;
         typedef typename BaseT::reference reference;
+
+        DataBuffer& operator=(DataBuffer const&);
+        DataBuffer& operator=(DataBuffer&&);
+        template<typename OtherAlloc>
+        DataBuffer& operator=(DataBuffer<T, OtherAlloc> const&);
 
     public:
         template<typename... Args>

@@ -171,6 +171,32 @@ DataBufferImpl<T, Alloc, false>::~DataBufferImpl()
 {
 }
 
+// assignment
+template<typename T, typename Alloc>
+void DataBufferImpl<T, Alloc, false>::operator=(DataBufferImpl const& other)
+{
+    this->resize(other.size());
+    std::copy(other.begin(), other.end(), this->begin());
+}
+
+template<typename T, typename Alloc>
+void DataBufferImpl<T, Alloc, false>::operator=(DataBufferImpl&& other)
+{
+    _m_alloc = std::move(other._m_alloc); // must ensure any existing _m_alloc is out of scope before
+                                          // replacing the allocator it is associated with
+    _allocator = std::move(other._allocator);
+    _m_finish = other._m_finish;
+    other._m_finish = nullptr;
+}
+
+template<typename T, typename Alloc>
+template<typename OtherAlloc>
+void DataBufferImpl<T, Alloc, false>::operator=(DataBufferImpl<T, OtherAlloc, false> const& other)
+{
+    this->resize(other.size());
+    std::copy(other.begin(), other.end(), this->begin());
+}
+
 template<typename T, typename Alloc>
 T& DataBufferImpl<T, Alloc, false>::operator[](std::size_t n)
 {
@@ -341,6 +367,28 @@ DataBuffer<T, Alloc>::DataBuffer(Args&&... args)
 template<typename T, typename Alloc>
 DataBuffer<T, Alloc>::~DataBuffer()
 {
+}
+
+template<typename T, typename Alloc>
+DataBuffer<T, Alloc>& DataBuffer<T, Alloc>::operator=(DataBuffer const& other)
+{
+    BaseT::operator=(other);
+    return *this;
+}
+
+template<typename T, typename Alloc>
+DataBuffer<T, Alloc>& DataBuffer<T, Alloc>::operator=(DataBuffer&& other)
+{
+    BaseT::operator=(std::move(other));
+    return *this;
+}
+
+template<typename T, typename Alloc>
+template<typename OtherAlloc>
+DataBuffer<T, Alloc>& DataBuffer<T, Alloc>::operator=(DataBuffer<T, OtherAlloc> const& other)
+{
+    BaseT::operator=(other);
+    return *this;
 }
 
 } // namespace astrotypes
