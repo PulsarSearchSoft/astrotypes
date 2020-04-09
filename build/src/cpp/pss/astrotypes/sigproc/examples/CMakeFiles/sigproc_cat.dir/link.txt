@@ -1,0 +1,1 @@
+/usr/bin/c++  -fPIC --std=c++11 -Werror -Wcast-align -march=native -O3 -DNDEBUG -Wall -Wno-unused-local-typedefs  -rdynamic CMakeFiles/sigproc_cat.dir/src/sigproc_cat.o  -o sigproc_cat 

@@ -1,0 +1,19 @@
+Start testing: Mar 31 10:49 EDT
+----------------------------------------------------------
+Unable to find executable: gtest_astrotypes_sigproc
+1/1 Testing: gtest_astrotypes_sigproc
+1/1 Test: gtest_astrotypes_sigproc
+Command: ""
+Directory: /home/arun/astrotypes/build/src/cpp/pss/astrotypes/sigproc/test
+"gtest_astrotypes_sigproc" start time: 
+Output:
+----------------------------------------------------------
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"gtest_astrotypes_sigproc" end time: Mar 31 10:49 EDT
+"gtest_astrotypes_sigproc" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Mar 31 10:49 EDT

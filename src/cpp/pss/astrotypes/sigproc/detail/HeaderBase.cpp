@@ -112,7 +112,7 @@ void HeaderBase<Derived>::do_read(std::istream & stream)
     //stream >> str;
     str.read(stream);
     _size = str.size();
-
+    
     //if (std::strcmp(str.c_str(),"HEADER_START") !=0) {
     if (str != "HEADER_START"){
         throw parse_error("expecting HEADER_START got ", str);
@@ -121,7 +121,8 @@ void HeaderBase<Derived>::do_read(std::istream & stream)
     while (1) {
         stream >> str;
         _size += str.size();
-
+        
+        //std::cout<<str.string()<<" \n";
         if( str.string().find(std::string("HEADER_END") ) != std::string::npos) {
             break;
         }

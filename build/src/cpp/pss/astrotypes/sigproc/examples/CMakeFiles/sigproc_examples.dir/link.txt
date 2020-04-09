@@ -1,0 +1,2 @@
+/usr/bin/ar qc libsigproc_examples.a  CMakeFiles/sigproc_examples.dir/src/ExtendedHeader.o
+/usr/bin/ranlib libsigproc_examples.a
