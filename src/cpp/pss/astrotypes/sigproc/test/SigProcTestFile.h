@@ -45,6 +45,7 @@ class SigProcTestFile
 
         // return the name of the file
         std::string file() const;
+        void file(std::string const& filename);
 
         // pamareters used in file generation
         DimensionSize<units::Frequency> number_of_channels() const;
@@ -64,9 +65,11 @@ class SigProcTestFile
 class SigProcFilterBankTestFile : public SigProcTestFile
 {
         typedef SigProcTestFile BaseT;
+        int i=0;
 
     public:
         SigProcFilterBankTestFile();
+        void operator ++();
 };
 
 } // namespace test

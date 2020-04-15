@@ -36,6 +36,11 @@ inline SigProcTestFile::SigProcTestFile(std::string const& file)
 {
 }
 
+inline void SigProcTestFile::file(std::string const& filename) 
+{
+   _file = filename;
+}
+
 inline std::string SigProcTestFile::file() const
 {
     return test_data_path() + "/" + _file;
@@ -64,10 +69,18 @@ inline units::ModifiedJulianClock::time_point SigProcTestFile::start_time() cons
 inline SigProcFilterBankTestFile::SigProcFilterBankTestFile()
     : BaseT("filterbank_8bit.fil")
 {
-    this->_nchans=2;
-    this->_nsamples=2560;
+    this->_nchans=8;
+    this->_nsamples=128;
     this->_nifs=1;
     this->_start_time=typename units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
+}
+
+inline void SigProcFilterBankTestFile::operator ++() 
+{ 
+  i++;
+  if(i==1) file("filterbank_16bit.fil");
+  if(i==2) file("filterbank_32bit.fil");
+  if(i==3) file("filterbank_8bit.fil");
 }
 
 } // namespace test
