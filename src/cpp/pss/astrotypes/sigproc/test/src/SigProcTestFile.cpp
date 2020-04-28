@@ -36,11 +36,6 @@ inline SigProcTestFile::SigProcTestFile(std::string const& file)
 {
 }
 
-inline void SigProcTestFile::file(std::string const& filename) 
-{
-   _file = filename;
-}
-
 inline std::string SigProcTestFile::file() const
 {
     return test_data_path() + "/" + _file;
@@ -61,12 +56,18 @@ inline std::size_t SigProcTestFile::number_of_ifs() const
     return _nifs;
 }
 
+inline std::size_t SigProcTestFile::number_of_bits() const
+{
+    return _nbits;
+}
+
 inline units::ModifiedJulianClock::time_point SigProcTestFile::start_time() const
 {
     return _start_time;
 }
 
-inline SigProcFilterBankTestFile::SigProcFilterBankTestFile()
+template <typename T>
+inline SigProcFilterBankTestFile<T>::SigProcFilterBankTestFile()
     : BaseT("filterbank_8bit.fil")
 {
     this->_nchans=8;
@@ -75,12 +76,35 @@ inline SigProcFilterBankTestFile::SigProcFilterBankTestFile()
     this->_start_time=typename units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
 }
 
-inline void SigProcFilterBankTestFile::operator ++() 
-{ 
-  i++;
-  if(i==1) file("filterbank_16bit.fil");
-  if(i==2) file("filterbank_32bit.fil");
-  if(i==3) file("filterbank_8bit.fil");
+template <>
+inline SigProcFilterBankTestFile<uint8_t>::SigProcFilterBankTestFile()
+    : BaseT("filterbank_8bit.fil")
+{
+    this->_nchans=8;
+    this->_nsamples=128;
+    this->_nifs=1;
+    this->_nbits=8;
+    this->_start_time=typename units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
+}
+
+template <>
+inline SigProcFilterBankTestFile<uint16_t>::SigProcFilterBankTestFile()
+    : BaseT("filterbank_16bit.fil")
+{
+    this->_nchans=8;
+    this->_nsamples=128;
+    this->_nifs=1;
+    this->_start_time=typename units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
+}
+
+template <>
+inline SigProcFilterBankTestFile<float>::SigProcFilterBankTestFile()
+    : BaseT("filterbank_32bit.fil")
+{
+    this->_nchans=8;
+    this->_nsamples=128;
+    this->_nifs=1;
+    this->_start_time=typename units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
 }
 
 } // namespace test

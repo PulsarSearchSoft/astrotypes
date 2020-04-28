@@ -37,6 +37,7 @@ namespace test {
 /**
  * @brief Interface for finding test files and the associated meta data used to gerneate them
  */
+
 class SigProcTestFile
 {
     public:
@@ -45,14 +46,13 @@ class SigProcTestFile
 
         // return the name of the file
         std::string file() const;
-        void file(std::string const& filename);
 
         // pamareters used in file generation
         DimensionSize<units::Frequency> number_of_channels() const;
         DimensionSize<units::Time> number_of_spectra() const;
         std::size_t number_of_ifs() const;
         units::ModifiedJulianClock::time_point start_time() const;
-
+        std::size_t number_of_bits() const;
 
     protected:
         std::string _file;
@@ -60,17 +60,18 @@ class SigProcTestFile
         DimensionSize<units::Time> _nsamples;
         unsigned _nifs;
         units::ModifiedJulianClock::time_point _start_time;
+        unsigned _nbits;
 };
 
+template <typename T>
 class SigProcFilterBankTestFile : public SigProcTestFile
 {
         typedef SigProcTestFile BaseT;
-        int i=0;
 
     public:
         SigProcFilterBankTestFile();
-        void operator ++();
 };
+
 
 } // namespace test
 } // namespace sigproc
