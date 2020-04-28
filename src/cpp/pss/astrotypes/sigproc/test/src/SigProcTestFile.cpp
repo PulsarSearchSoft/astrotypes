@@ -91,9 +91,10 @@ template <>
 inline SigProcFilterBankTestFile<uint16_t>::SigProcFilterBankTestFile()
     : BaseT("filterbank_16bit.fil")
 {
-    this->_nchans=8;
+    this->_nchans=4;
     this->_nsamples=128;
     this->_nifs=1;
+    this->_nbits=16;
     this->_start_time=typename units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
 }
 
@@ -101,9 +102,10 @@ template <>
 inline SigProcFilterBankTestFile<float>::SigProcFilterBankTestFile()
     : BaseT("filterbank_32bit.fil")
 {
-    this->_nchans=8;
+    this->_nchans=2;
     this->_nsamples=128;
     this->_nifs=1;
+    this->_nbits=32;
     this->_start_time=typename units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
 }
 
