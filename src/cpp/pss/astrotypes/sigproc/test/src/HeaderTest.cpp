@@ -466,6 +466,7 @@ TYPED_TEST(HeaderTypeTest,read_filterbank_file_test)
     ASSERT_EQ(header.number_of_bits(), test_file.number_of_bits());
     ASSERT_EQ(header.number_of_ifs(), test_file.number_of_ifs());
     ASSERT_EQ(header.number_of_channels(),test_file.number_of_channels());
+    ASSERT_EQ(header.tstart(),test_file.start_time());
     ASSERT_TRUE(header.raw_data_file().is_set());
     ASSERT_TRUE(header.az_start().is_set());
     ASSERT_TRUE(header.fch1().is_set());
