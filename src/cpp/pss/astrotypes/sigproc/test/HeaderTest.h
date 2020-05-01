@@ -25,6 +25,7 @@
 #define PSS_ASTROTYPES_SIGPROC_TEST_SIGPROCHEADERTEST_H
 
 #include <gtest/gtest.h>
+#include "gtest/gtest-typed-test.h"
 
 namespace pss {
 namespace astrotypes {
@@ -49,6 +50,11 @@ class HeaderTest : public ::testing::Test
     private:
 };
 
+
+template <typename T>
+class HeaderTypeTest : public ::testing::Test {};
+
+typedef testing::Types<unsigned char, unsigned short, float> HeaderTypes;
 
 } // namespace test
 } // namespace sigproc

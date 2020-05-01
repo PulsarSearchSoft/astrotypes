@@ -1,0 +1,62 @@
+Data file                        : filterbank_8bit.fil
+Header size (bytes)              : 326
+Data size (bytes)                : 1013
+Data type                        : filterbank (topocentric)
+Telescope                        : ???????
+Datataking Machine               : ?????
+Frequency of channel 1 (MHz)     : 750.000000
+Channel bandwidth      (MHz)     : -0.097656
+Number of channels               : 8
+Number of beams                  : 1
+Beam number                      : 0
+Time stamp of first sample (MJD) : 5000.000000000000
+Gregorian date (YYYY/MM/DD)      : 1872/07/26
+Sample time (us)                 : 983.04000
+Number of samples                : 126
+Observation length (seconds)     : 0.1
+Number of bits per sample        : 8
+Number of IFs                    : 1
+
+================================================================================
+
+Data file                        : filterbank_16bit.fil
+Header size (bytes)              : 326
+Data size (bytes)                : 1013
+Data type                        : filterbank (topocentric)
+Telescope                        : ???????
+Datataking Machine               : ?????
+Frequency of channel 1 (MHz)     : 750.000000
+Channel bandwidth      (MHz)     : -0.097656
+Number of channels               : 4
+Number of beams                  : 1
+Beam number                      : 0
+Time stamp of first sample (MJD) : 5000.000000000000
+Gregorian date (YYYY/MM/DD)      : 1872/07/26
+Sample time (us)                 : 983.04000
+Number of samples                : 126
+Observation length (seconds)     : 0.1
+Number of bits per sample        : 16
+Number of IFs                    : 1
+
+=================================================================================
+
+Data file                        : filterbank_32bit.fil
+Header size (bytes)              : 326
+Data size (bytes)                : 1013
+Data type                        : filterbank (topocentric)
+Telescope                        : ???????
+Datataking Machine               : ?????
+Frequency of channel 1 (MHz)     : 750.000000
+Channel bandwidth      (MHz)     : -0.097656
+Number of channels               : 2
+Number of beams                  : 1
+Beam number                      : 0
+Time stamp of first sample (MJD) : 5000.000000000000
+Gregorian date (YYYY/MM/DD)      : 1872/07/26
+Sample time (us)                 : 983.04000
+Number of samples                : 126
+Observation length (seconds)     : 0.1
+Number of bits per sample        : 32
+Number of IFs                    : 1
+
+================================================================================

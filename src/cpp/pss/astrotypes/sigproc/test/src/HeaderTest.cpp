@@ -27,7 +27,6 @@
 #include "pss/astrotypes/types/TimeFrequency.h"
 #include <sstream>
 #include <fstream>
-#include "gtest/gtest-typed-test.h"
 
 namespace pss {
 namespace astrotypes {
@@ -454,10 +453,6 @@ TEST_F(HeaderTest, info_adapter_write)
 }
 
 
-template <typename T>
-class HeaderTypeTest : public ::testing::Test {};
-
-typedef testing::Types<unsigned char, unsigned short, float> HeaderTypes;
 TYPED_TEST_CASE(HeaderTypeTest, HeaderTypes);
 
 TYPED_TEST(HeaderTypeTest,read_filterbank_file_test)

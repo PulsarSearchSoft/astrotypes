@@ -34,6 +34,7 @@ namespace test {
 inline SigProcTestFile::SigProcTestFile(std::string const& file)
     : _file(file)
 {
+   _start_time=typename units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
 }
 
 inline std::string SigProcTestFile::file() const
@@ -66,16 +67,6 @@ inline units::ModifiedJulianClock::time_point SigProcTestFile::start_time() cons
     return _start_time;
 }
 
-template <typename T>
-inline SigProcFilterBankTestFile<T>::SigProcFilterBankTestFile()
-    : BaseT("filterbank_8bit.fil")
-{
-    this->_nchans=8;
-    this->_nsamples=128;
-    this->_nifs=1;
-    this->_start_time=typename units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
-}
-
 template <>
 inline SigProcFilterBankTestFile<uint8_t>::SigProcFilterBankTestFile()
     : BaseT("filterbank_8bit.fil")
@@ -84,7 +75,6 @@ inline SigProcFilterBankTestFile<uint8_t>::SigProcFilterBankTestFile()
     this->_nsamples=128;
     this->_nifs=1;
     this->_nbits=8;
-    this->_start_time=typename units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
 }
 
 template <>
@@ -95,7 +85,6 @@ inline SigProcFilterBankTestFile<uint16_t>::SigProcFilterBankTestFile()
     this->_nsamples=128;
     this->_nifs=1;
     this->_nbits=16;
-    this->_start_time=typename units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
 }
 
 template <>
@@ -106,7 +95,6 @@ inline SigProcFilterBankTestFile<float>::SigProcFilterBankTestFile()
     this->_nsamples=128;
     this->_nifs=1;
     this->_nbits=32;
-    this->_start_time=typename units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
 }
 
 } // namespace test
