@@ -1,18 +1,18 @@
 /*
  * MIT License
- * 
+ *
  * Copyright (c) 2018 PulsarSearchSoft
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -77,15 +77,15 @@ TEST_F(HeaderTest, test_size)
 
 TEST_F(HeaderTest, test_write_read_default)
 {
-    Header header;    
+    Header header;
     Header read_header = save_restore(header);
     ASSERT_EQ(read_header, header);
 }
 
 TEST_F(HeaderTest, test_operator_eq_empty)
 {
-    Header header1;    
-    Header header2;    
+    Header header1;
+    Header header2;
     ASSERT_TRUE(header1 == header2);
     ASSERT_FALSE(header1 != header2);
 }
@@ -286,9 +286,9 @@ TEST_F(HeaderTest, test_data_type)
     //    should ignore different number of samples
     h1.number_of_samples(10);
     h2.number_of_samples(20);
-    ASSERT_EQ(h1, h2); 
+    ASSERT_EQ(h1, h2);
     h1.number_of_channels(10);
-    ASSERT_NE(h1, h2); 
+    ASSERT_NE(h1, h2);
     h2.number_of_channels(10);
 
     // Case TimeSeries
@@ -297,13 +297,13 @@ TEST_F(HeaderTest, test_data_type)
     h2.data_type(Header::DataType::TimeSeries);
     h1.number_of_samples(10);
     h2.number_of_samples(20);
-    ASSERT_NE(h1, h2); 
+    ASSERT_NE(h1, h2);
     h2.number_of_samples(10);
-    ASSERT_EQ(h1, h2); 
+    ASSERT_EQ(h1, h2);
 
     // didference in number of channels should be ignored
     h2.number_of_channels(h1.number_of_channels() + 1);
-    ASSERT_EQ(h1, h2); 
+    ASSERT_EQ(h1, h2);
 }
 
 TEST_F(HeaderTest, test_tstart)
@@ -380,7 +380,7 @@ TEST_F(HeaderTest, test_foff)
 TEST_F(HeaderTest, test_frequency_channels)
 {
     std::vector<boost::units::quantity<units::MegaHertz, double>> channels;
-    for(double i=100.0; i < 500.0; ++i) { 
+    for(double i=100.0; i < 500.0; ++i) {
         channels.push_back( boost::units::quantity<units::MegaHertz, double>(i * units::megahertz) );
     }
     Header h;
@@ -396,7 +396,7 @@ TEST_F(HeaderTest, test_frequency_channels)
 
 TEST_F(HeaderTest, test_extract_info_from_time_frequency)
 {
-    Header header;    
+    Header header;
     astrotypes::TimeFrequency<uint16_t> data(astrotypes::DimensionSize<units::Time>(2), astrotypes::DimensionSize<units::Frequency>(4));
     header << data;
     ASSERT_EQ(header.number_of_bits(), 16U);
@@ -443,7 +443,7 @@ TEST_F(HeaderTest, info_adapter_write)
     h.number_of_channels(100);
     h.sample_interval(boost::units::quantity<units::Seconds, double>(.01768888 * units::milliseconds));
     std::vector<boost::units::quantity<units::MegaHertz, double>> channels;
-    for(double i=100.0; i < 140.0; ++i) { 
+    for(double i=100.0; i < 140.0; ++i) {
         channels.push_back( boost::units::quantity<units::MegaHertz, double>(i * units::megahertz) );
     }
     h.frequency_channels(channels);
@@ -479,13 +479,13 @@ TEST_F(HeaderTest, copy_constructor_test)
     header1.number_of_channels(300);
     header1.number_of_bits(65);
     std::vector<boost::units::quantity<units::MegaHertz, double>> channels;
-    for(double i=100.0; i < 140.0; ++i) { 
+    for(double i=100.0; i < 140.0; ++i) {
         channels.push_back( boost::units::quantity<units::MegaHertz, double>(i * units::megahertz) );
     }
     header1.frequency_channels(channels);
 
     Header header2(header1);
-    
+
     ASSERT_TRUE(header1 == header2);
     Header header3;
     header3 = header2;
