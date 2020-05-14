@@ -1,5 +1,5 @@
-All the data files are created using the filterbank_header() function in sigproc code base. Users can also generate raw data using
-the 'fake' which is part of the sigproc software example usage is
+All the data files are created using the filterbank_header() function in sigproc code base (http://sigproc.sourceforge.net).
+Users can also generate raw data using the 'fake' which is part of the sigproc software example usage is
 
 'fake -period 10 -width 1 -snrpeak 12 -dm 0 -nbits 8 -nchans 2 -tsamp 4 -fch1 1625 -foff 0.109375 -tobs 0.01 > filterbank_8bit.fil'
 
