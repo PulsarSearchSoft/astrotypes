@@ -34,7 +34,7 @@ namespace test {
 inline SigProcTestFile::SigProcTestFile(std::string const& file)
     : _file(file)
 {
-   _start_time= units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
+   _start_time= units::ModifiedJulianClock::time_point(units::julian_day(5000.0));
 }
 
 inline std::string SigProcTestFile::file() const
