@@ -37,6 +37,7 @@ namespace test {
 /**
  * @brief Interface for finding test files and the associated meta data used to gerneate them
  */
+
 class SigProcTestFile
 {
     public:
@@ -51,7 +52,7 @@ class SigProcTestFile
         DimensionSize<units::Time> number_of_spectra() const;
         std::size_t number_of_ifs() const;
         units::ModifiedJulianClock::time_point start_time() const;
-
+        std::size_t number_of_bits() const;
 
     protected:
         std::string _file;
@@ -59,8 +60,10 @@ class SigProcTestFile
         DimensionSize<units::Time> _nsamples;
         unsigned _nifs;
         units::ModifiedJulianClock::time_point _start_time;
+        unsigned _nbits;
 };
 
+template <typename T>
 class SigProcFilterBankTestFile : public SigProcTestFile
 {
         typedef SigProcTestFile BaseT;
@@ -68,6 +71,7 @@ class SigProcFilterBankTestFile : public SigProcTestFile
     public:
         SigProcFilterBankTestFile();
 };
+
 
 } // namespace test
 } // namespace sigproc

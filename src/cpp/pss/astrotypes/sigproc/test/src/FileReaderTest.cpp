@@ -52,7 +52,7 @@ void FileReaderTest::TearDown()
 
 TEST_F(FileReaderTest, test_filterbank_file_tf_data)
 {
-    SigProcFilterBankTestFile test_file;
+    SigProcFilterBankTestFile<uint8_t> test_file;
     TimeFrequency<uint8_t> tf_data;
     sigproc::FileReader<> reader(test_file.file());
     ASSERT_EQ(test_file.number_of_ifs(), reader.header().number_of_ifs());
@@ -64,7 +64,7 @@ TEST_F(FileReaderTest, test_filterbank_file_tf_data)
 
 TEST_F(FileReaderTest, test_filterbank_file_ft_data)
 {
-    SigProcFilterBankTestFile test_file;
+    SigProcFilterBankTestFile<uint8_t> test_file;
     FrequencyTime<uint8_t> ft_data;
     sigproc::FileReader<> reader(test_file.file());
     ASSERT_EQ(test_file.number_of_ifs(), reader.header().number_of_ifs());
@@ -76,7 +76,7 @@ TEST_F(FileReaderTest, test_filterbank_file_ft_data)
 
 TEST_F(FileReaderTest, test_filterbank_file_resize_time_tf_data)
 {
-    SigProcFilterBankTestFile test_file;
+    SigProcFilterBankTestFile<uint8_t> test_file;
     TimeFrequency<uint8_t> tf_data(DimensionSize<units::Frequency>(0), DimensionSize<units::Time>(test_file.number_of_spectra()));
     sigproc::FileReader<> reader(test_file.file());
     reader >> ResizeAdapter<units::Time>() >> tf_data;
@@ -87,7 +87,7 @@ TEST_F(FileReaderTest, test_filterbank_file_resize_time_tf_data)
 
 TEST_F(FileReaderTest, test_filterbank_file_resize_frequency_tf_data)
 {
-    SigProcFilterBankTestFile test_file;
+    SigProcFilterBankTestFile<uint8_t> test_file;
     TimeFrequency<uint8_t> tf_data(test_file.number_of_spectra(), DimensionSize<units::Frequency>(0));
     sigproc::FileReader<> reader(test_file.file());
     reader >> ResizeAdapter<units::Frequency>() >> tf_data;

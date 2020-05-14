@@ -34,6 +34,7 @@ namespace test {
 inline SigProcTestFile::SigProcTestFile(std::string const& file)
     : _file(file)
 {
+   _start_time= units::ModifiedJulianClock::time_point(units::julian_day(5000.0));
 }
 
 inline std::string SigProcTestFile::file() const
@@ -56,18 +57,44 @@ inline std::size_t SigProcTestFile::number_of_ifs() const
     return _nifs;
 }
 
+inline std::size_t SigProcTestFile::number_of_bits() const
+{
+    return _nbits;
+}
+
 inline units::ModifiedJulianClock::time_point SigProcTestFile::start_time() const
 {
     return _start_time;
 }
 
-inline SigProcFilterBankTestFile::SigProcFilterBankTestFile()
+template <>
+inline SigProcFilterBankTestFile<uint8_t>::SigProcFilterBankTestFile()
     : BaseT("filterbank_8bit.fil")
 {
-    this->_nchans=2;
-    this->_nsamples=2560;
+    this->_nchans=8;
+    this->_nsamples=128;
     this->_nifs=1;
-    this->_start_time=typename units::ModifiedJulianClock::time_point() + units::julian_day(5000.0);
+    this->_nbits=8;
+}
+
+template <>
+inline SigProcFilterBankTestFile<uint16_t>::SigProcFilterBankTestFile()
+    : BaseT("filterbank_16bit.fil")
+{
+    this->_nchans=4;
+    this->_nsamples=128;
+    this->_nifs=1;
+    this->_nbits=16;
+}
+
+template <>
+inline SigProcFilterBankTestFile<float>::SigProcFilterBankTestFile()
+    : BaseT("filterbank_32bit.fil")
+{
+    this->_nchans=2;
+    this->_nsamples=128;
+    this->_nifs=1;
+    this->_nbits=32;
 }
 
 } // namespace test

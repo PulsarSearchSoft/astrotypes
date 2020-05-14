@@ -1,18 +1,69 @@
-fake -period 10 -width 1 -snrpeak 12 -dm 0 -nbits 8 -nchans 2 -tsamp 4 -fch1 1625 -foff 0.109375 -tobs 0.01 > filterbank_8bit.fil
+All the data files are created using the filterbank_header() function in sigproc code base (http://sigproc.sourceforge.net).
+Users can also generate raw data using the 'fake' which is part of the sigproc software example usage is
 
+'fake -period 10 -width 1 -snrpeak 12 -dm 0 -nbits 8 -nchans 2 -tsamp 4 -fch1 1625 -foff 0.109375 -tobs 0.01 > filterbank_8bit.fil'
+
+The files can be acessed using the SigProcFilterBankTestFile<Data_Type> (Data_Type should be uint8_t , uint16_t, float).
+
+Data file                        : filterbank_8bit.fil
+Header size (bytes)              : 326
+Data size (bytes)                : 1013
 Data type                        : filterbank (topocentric)
-Telescope                        : Parkes
-Datataking Machine               : BPSR
-Source Name                      : P: 10.000000000000 ms, DM: 0.000
-Frequency of channel 1 (MHz)     : 1625.000000
-Channel bandwidth      (MHz)     : -0.109375
-Number of channels               : 2
-Number of beams                  : 0
+Telescope                        : ???????
+Datataking Machine               : ?????
+Frequency of channel 1 (MHz)     : 750.000000
+Channel bandwidth      (MHz)     : -0.097656
+Number of channels               : 8
+Number of beams                  : 1
 Beam number                      : 0
-Time stamp of first sample (MJD) : 50000.000000000000
-Gregorian date (YYYY/MM/DD)      : 1995/10/10
-Sample time (us)                 : 4.00000
-Number of samples                : 2560
-Observation length (seconds)     : 0.0
+Time stamp of first sample (MJD) : 5000.000000000000
+Gregorian date (YYYY/MM/DD)      : 1872/07/26
+Sample time (us)                 : 983.04000
+Number of samples                : 126
+Observation length (seconds)     : 0.1
 Number of bits per sample        : 8
 Number of IFs                    : 1
+
+================================================================================
+
+Data file                        : filterbank_16bit.fil
+Header size (bytes)              : 326
+Data size (bytes)                : 1013
+Data type                        : filterbank (topocentric)
+Telescope                        : ???????
+Datataking Machine               : ?????
+Frequency of channel 1 (MHz)     : 750.000000
+Channel bandwidth      (MHz)     : -0.097656
+Number of channels               : 4
+Number of beams                  : 1
+Beam number                      : 0
+Time stamp of first sample (MJD) : 5000.000000000000
+Gregorian date (YYYY/MM/DD)      : 1872/07/26
+Sample time (us)                 : 983.04000
+Number of samples                : 126
+Observation length (seconds)     : 0.1
+Number of bits per sample        : 16
+Number of IFs                    : 1
+
+=================================================================================
+
+Data file                        : filterbank_32bit.fil
+Header size (bytes)              : 326
+Data size (bytes)                : 1013
+Data type                        : filterbank (topocentric)
+Telescope                        : ???????
+Datataking Machine               : ?????
+Frequency of channel 1 (MHz)     : 750.000000
+Channel bandwidth      (MHz)     : -0.097656
+Number of channels               : 2
+Number of beams                  : 1
+Beam number                      : 0
+Time stamp of first sample (MJD) : 5000.000000000000
+Gregorian date (YYYY/MM/DD)      : 1872/07/26
+Sample time (us)                 : 983.04000
+Number of samples                : 126
+Observation length (seconds)     : 0.1
+Number of bits per sample        : 32
+Number of IFs                    : 1
+
+================================================================================
