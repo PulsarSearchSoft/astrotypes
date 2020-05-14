@@ -114,10 +114,56 @@ TEST(TimeTest, quantity_operator_plus)
     typedef boost::units::quantity<Seconds, double> BoostType;
     const std::chrono::seconds chrono_seconds(10);
     const BoostType a(100 * seconds);
-    
+
     BoostType b = a + chrono_seconds;
     ASSERT_EQ( b, BoostType(110 * seconds) );
-    
+
+}
+
+TEST(TimeTest, time_point_plus_quantity)
+{
+    typedef boost::units::quantity<Seconds, double> BoostType;
+    typedef std::chrono::time_point<std::chrono::system_clock> TimePointT;
+    const TimePointT chrono_time;
+    const BoostType a(10 * seconds);
+
+    TimePointT c = chrono_time + a;
+    ASSERT_EQ( c, TimePointT(std::chrono::seconds(10)) );
+}
+
+TEST(TimeTest, time_point_plus_equal_quantity)
+{
+    typedef boost::units::quantity<Seconds, double> BoostType;
+    typedef std::chrono::time_point<std::chrono::system_clock> TimePointT;
+    TimePointT chrono_time;
+    const BoostType a(10 * seconds);
+
+    TimePointT const& c = chrono_time += a;
+    ASSERT_EQ(&c, &chrono_time);
+    ASSERT_EQ( c, TimePointT(std::chrono::seconds(10)) );
+}
+
+TEST(TimeTest, time_point_minus_quantity)
+{
+    typedef boost::units::quantity<Seconds, double> BoostType;
+    typedef std::chrono::time_point<std::chrono::system_clock> TimePointT;
+    const TimePointT chrono_time(std::chrono::seconds(100));
+    const BoostType a(10 * seconds);
+
+    TimePointT c = chrono_time - a;
+    ASSERT_EQ( c, TimePointT(std::chrono::seconds(90)) );
+}
+
+TEST(TimeTest, time_point_minus_equal_quantity)
+{
+    typedef boost::units::quantity<Seconds, double> BoostType;
+    typedef std::chrono::time_point<std::chrono::system_clock> TimePointT;
+    TimePointT chrono_time(std::chrono::seconds(100));
+    const BoostType a(10 * seconds);
+
+    TimePointT const& c = chrono_time -= a;
+    ASSERT_EQ(&c, &chrono_time);
+    ASSERT_EQ( c, TimePointT(std::chrono::seconds(90)) );
 }
 
 TEST(TimeTest, duration_operator_plus)
@@ -125,7 +171,7 @@ TEST(TimeTest, duration_operator_plus)
     typedef boost::units::quantity<Seconds, double> BoostType;
     const std::chrono::seconds chrono_seconds(100);
     const BoostType a(10 * seconds);
-    
+
     std::chrono::seconds c = chrono_seconds + a;
     ASSERT_EQ( c, std::chrono::seconds(110) );
 }
@@ -135,10 +181,10 @@ TEST(TimeTest, quantity_operator_minus)
     typedef boost::units::quantity<Seconds, double> BoostType;
     std::chrono::seconds chrono_seconds(10);
     BoostType a(100 * seconds);
-    
+
     BoostType b = a - chrono_seconds;
     ASSERT_EQ( b, BoostType(90 * seconds) );
-    
+
 }
 
 TEST(TimeTest, duration_operator_minus)
@@ -146,7 +192,7 @@ TEST(TimeTest, duration_operator_minus)
     typedef boost::units::quantity<Seconds, double> BoostType;
     std::chrono::seconds chrono_seconds(100);
     BoostType a(10 * seconds);
-    
+
     std::chrono::seconds c = chrono_seconds - a;
     ASSERT_EQ( c, std::chrono::seconds(90) );
 }
@@ -156,10 +202,10 @@ TEST(TimeTest, quantity_operator_plus_equal)
     typedef boost::units::quantity<Seconds, double> BoostType;
     std::chrono::seconds chrono_seconds(10);
     BoostType a(100 * seconds);
-    
+
     a += chrono_seconds;
     ASSERT_EQ( a, BoostType(110 * seconds) );
-    
+
 }
 
 TEST(TimeTest, duration_operator_plus_equal)
@@ -167,7 +213,7 @@ TEST(TimeTest, duration_operator_plus_equal)
     typedef boost::units::quantity<Seconds, double> BoostType;
     std::chrono::seconds chrono_seconds(10);
     BoostType b(100 * seconds);
-    
+
     chrono_seconds += b;
     ASSERT_EQ( chrono_seconds, std::chrono::seconds(110) );
 }
@@ -177,7 +223,7 @@ TEST(TimeTest, quantity_operator_minus_equal)
     typedef boost::units::quantity<Seconds, double> BoostType;
     std::chrono::seconds chrono_seconds(10);
     BoostType a(100 * seconds);
-    
+
     a -= chrono_seconds;
     ASSERT_EQ( a, BoostType(90 * seconds) );
 }
@@ -187,7 +233,7 @@ TEST(TimeTest, duration_operator_minus_equal)
     typedef boost::units::quantity<Seconds, double> BoostType;
     std::chrono::seconds chrono_seconds(100);
     BoostType b(10 * seconds);
-    
+
     chrono_seconds -= b;
     ASSERT_EQ( chrono_seconds, std::chrono::seconds(90) );
 }
@@ -197,7 +243,7 @@ TEST(TimeTest, quantity_operator_divide)
     typedef boost::units::quantity<MilliSeconds, double> BoostType;
     const std::chrono::seconds chrono_seconds(10);
     const BoostType a(100 * seconds);
-    
+
     auto res = a / chrono_seconds;
     ASSERT_EQ( res, 10.0 );
 }
@@ -207,7 +253,7 @@ TEST(TimeTest, duration_operator_divide)
     typedef boost::units::quantity<MilliSeconds, double> BoostType;
     const std::chrono::seconds chrono_seconds(100);
     const BoostType a(10 * seconds);
-    
+
     auto res = chrono_seconds / a;
     ASSERT_EQ( res, 10.0 );
 }
