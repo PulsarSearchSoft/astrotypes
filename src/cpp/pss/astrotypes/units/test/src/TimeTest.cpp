@@ -406,6 +406,32 @@ TEST(TimeTest, duration_cast_milliseconds_to_milliseconds)
     ASSERT_EQ(chrono_conversion.count(), q.value());
 }
 
+TEST(TimeTest, duration_cast_julian_day_milliseconds)
+{
+    // ensure we don't lose precision
+    std::chrono::milliseconds ms(64); // 7.407e-0-7 days
+    julian_day small_time_point(ms);
+    boost::units::quantity<units::MilliSeconds,double> millisecs =  units::duration_cast<boost::units::quantity<units::MilliSeconds,double>>(small_time_point);
+    ASSERT_EQ(64.0, millisecs.value());
+
+    std::chrono::duration<double> small_time_duration = small_time_point - julian_day(0);
+    boost::units::quantity<units::MilliSeconds,double> millisecs_duration =  units::duration_cast<boost::units::quantity<units::MilliSeconds,double>>(small_time_duration);
+    ASSERT_EQ(64.0, millisecs_duration.value());
+}
+
+TEST(TimeTest, duration_cast_julian_day_microseconds)
+{
+    // ensure we don't lose precision
+    std::chrono::microseconds ms(64);
+    julian_day small_time_point(ms);
+    boost::units::quantity<units::MicroSeconds,double> microsecs =  units::duration_cast<boost::units::quantity<units::MicroSeconds,double>>(small_time_point);
+    ASSERT_EQ(64.0, microsecs.value());
+
+    std::chrono::duration<double> small_time_duration = small_time_point - julian_day(0);
+    boost::units::quantity<units::MicroSeconds,double> microsecs_duration =  units::duration_cast<boost::units::quantity<units::MicroSeconds,double>>(small_time_duration);
+    ASSERT_EQ(64.0, microsecs_duration.value());
+}
+
 } // namespace test
 } // namespace units
 } // namespace astrotypes
