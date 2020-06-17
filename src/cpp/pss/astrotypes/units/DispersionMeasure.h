@@ -1,18 +1,18 @@
 /*
  * MIT License
- * 
+ *
  * Copyright (c) 2018 PulsarSearchSoft
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -59,13 +59,13 @@ namespace units {
  * DispersionMeasure<double> dm_dble(1.0 * parsec_per_cube_cm);  // a single parsec/cm^3 n.b.just syntactical sugar, it refers to the same unit
  *
  * @endcode
- * 
+ *
  */
 
 typedef boost::units::derived_dimension<boost::units::astronomical::parsec_base_unit, 1, boost::units::length_base_dimension, -3>::type DispersionMeasureDimensionType;
 typedef boost::units::unit<DispersionMeasureDimensionType, boost::units::cgs::system> DispersionMeasureUnit;
-BOOST_UNITS_STATIC_CONSTANT(parsecs_per_cube_cm, DispersionMeasureUnit); 
-BOOST_UNITS_STATIC_CONSTANT(parsec_per_cube_cm, DispersionMeasureUnit); 
+BOOST_UNITS_STATIC_CONSTANT(parsecs_per_cube_cm, DispersionMeasureUnit);
+BOOST_UNITS_STATIC_CONSTANT(parsec_per_cube_cm, DispersionMeasureUnit);
 
 template<typename T>
 using DispersionMeasure = boost::units::quantity<DispersionMeasureUnit, T>;
