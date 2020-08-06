@@ -91,7 +91,7 @@ struct ElementType<0, nbits, BitTypeMap> {
 };
 
 /**
- * @brief Default settings for iuse with the @class DataFactory
+ * @brief Default settings for use with the @class DataFactory
  */
 struct DefaultDataFactoryTraits {
 

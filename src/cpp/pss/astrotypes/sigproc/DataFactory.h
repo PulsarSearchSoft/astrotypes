@@ -158,7 +158,9 @@ class DataFactory
             static
             void exec(unsigned nifs, unsigned number_of_bits, Args&&... args) {
                 if(nifs != N) NifsRuntimeMap<DataType, N+1>::exec(nifs, number_of_bits, std::forward<Args>(args)...);
-                BitsRuntimeMap<DataType, N>::exec(number_of_bits, std::forward<Args>(args)...);
+                else {
+                    BitsRuntimeMap<DataType, N>::exec(number_of_bits, std::forward<Args>(args)...);
+                }
             }
         };
 
