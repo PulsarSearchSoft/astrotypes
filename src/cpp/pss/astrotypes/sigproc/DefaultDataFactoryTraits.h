@@ -1,18 +1,18 @@
 /*
  * MIT License
- * 
+ *
  * Copyright (c) 2018 PulsarSearchSoft
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in all
  * copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -42,7 +42,7 @@ struct BitToUnsignedInt {
 
 template<>
 struct BitToUnsignedInt<64> {
-    typedef uint32_t type;
+    typedef uint64_t type;
     static constexpr unsigned next = 0; // last one
 };
 
@@ -65,7 +65,7 @@ struct BitToUnsignedInt<8> {
 };
 
 /**
- * @brief Maps number_of_if_streams to the container or raw type 
+ * @brief Maps number_of_if_streams to the container or raw type
  * @param type        : the mapped type
  * @tparam nifs       : The number of if streams
  * @tparam nifs       : the number of bits (to be passed to BinTypeMap)
@@ -106,13 +106,13 @@ struct DefaultDataFactoryTraits {
     using AllocatorMap = std::allocator<T>;
 
     /**
-     * @brief Specifies the mapping from the type that is associated with the 
+     * @brief Specifies the mapping from the type that is associated with the
      *        different values of the number of seperate IF streams
      *        for each channel.
      */
     template<unsigned nifs, unsigned nbits>
-    using ElementTypeMap = ElementType<nifs, nbits, BitsTypeMap>; 
-    
+    using ElementTypeMap = ElementType<nifs, nbits, BitsTypeMap>;
+
 };
 
 
