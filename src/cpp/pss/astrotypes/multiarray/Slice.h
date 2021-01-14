@@ -340,6 +340,7 @@ class Slice : private Slice<IsConst, InternalSliceTraits<SliceTraitsT, Dimension
         // increment pointer by a n * base span length
         SelfType& operator+=(DimensionSize<Dimension> n);
 
+    protected:
         /**
          * @brief iterator pointing to the first element in the slice
          */
