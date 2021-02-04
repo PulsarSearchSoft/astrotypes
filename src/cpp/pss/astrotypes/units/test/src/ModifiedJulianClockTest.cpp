@@ -60,7 +60,7 @@ TEST_F(ModifiedJulianClockTest, test_time_since_epoch)
 {
     std::chrono::time_point<ModifiedJulianClock> epoc;
     ASSERT_EQ(julian_day(0), epoc.time_since_epoch());
-    
+
     std::chrono::time_point<ModifiedJulianClock> hundred = epoc + julian_day(100.0);
     ASSERT_EQ(julian_day(100.0), hundred.time_since_epoch());
 
