@@ -49,6 +49,8 @@ class TimeFreqCommon : public SliceType
         TimeFreqCommon(SliceType const& t);
         TimeFreqCommon(SliceType&& t);
 
+        TimeFreqCommon& operator=(TimeFreqCommon const&);
+
         /// retrun a single channel across all time samples
         //  @detials the type returned is a MultiArray @class Slice with all
         //           the features of that available;

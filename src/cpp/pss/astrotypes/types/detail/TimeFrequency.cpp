@@ -107,6 +107,13 @@ TimeFreqCommon<SliceType>::TimeFreqCommon(SliceType const& t)
 }
 
 template<typename SliceType>
+TimeFreqCommon<SliceType>& TimeFreqCommon<SliceType>::operator=(TimeFreqCommon const& t)
+{
+    static_cast<SliceType&>(*this) = static_cast<SliceType const&>(t);
+    return *this;
+}
+
+template<typename SliceType>
 TimeFreqCommon<SliceType>::TimeFreqCommon(SliceType&& t)
     : SliceType(std::move(t))
 {
