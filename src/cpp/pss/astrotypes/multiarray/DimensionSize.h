@@ -59,6 +59,7 @@ class DimensionSize
         template<typename OtherDimension>
         std::size_t operator*(DimensionSize<OtherDimension> const& s) const;
         DimensionSize operator*(std::size_t s) const;
+        DimensionSize operator/(std::size_t s) const;
         DimensionSize operator+(DimensionSize<Dimension> const& s) const;
         DimensionSize operator+(std::size_t s) const;
         DimensionSize operator-(DimensionSize<Dimension> const& s) const;
