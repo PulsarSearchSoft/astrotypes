@@ -91,6 +91,12 @@ std::size_t DimensionSize<Dimension>::operator*(DimensionSize<OtherDimension> co
 }
 
 template<typename Dimension>
+DimensionSize<Dimension> DimensionSize<Dimension>::operator*(std::size_t b) const
+{
+    return DimensionSize<Dimension>(_size * b);
+}
+
+template<typename Dimension>
 DimensionSize<Dimension> DimensionSize<Dimension>::operator+(std::size_t b) const
 {
     return DimensionSize<Dimension>(_size + b);
