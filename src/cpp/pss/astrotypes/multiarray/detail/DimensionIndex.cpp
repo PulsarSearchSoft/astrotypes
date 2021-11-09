@@ -69,6 +69,15 @@ DimensionIndex<Dimension> DimensionIndex<Dimension>::operator+(DimensionSize<Dim
 }
 
 template<typename Dimension>
+template<typename T
+        , typename std::enable_if<std::is_integral<T>::value, bool>::type
+        >
+DimensionIndex<Dimension> DimensionIndex<Dimension>::operator+(T s) const
+{
+    return DimensionIndex<Dimension>(_index + s);
+}
+
+template<typename Dimension>
 bool DimensionIndex<Dimension>::operator<(DimensionIndex<Dimension> const& b) const
 {
     return _index < b._index;

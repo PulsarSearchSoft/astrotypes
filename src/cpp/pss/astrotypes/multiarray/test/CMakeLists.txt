@@ -4,6 +4,7 @@ link_directories(${GTEST_LIBRARY_DIR})
 set(
    gtest_multiarray_src
    src/DataBufferTest.cpp
+   src/DimensionIndexTest.cpp
    src/DimensionSizeTest.cpp
    src/MultiArrayTest.cpp
    src/NumericalRepresentationTest.cpp

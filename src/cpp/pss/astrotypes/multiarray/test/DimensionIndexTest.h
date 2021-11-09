@@ -21,48 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef PSS_ASTROTYPES_MULTIARRAY_DIMENSIONINDEX_H
-#define PSS_ASTROTYPES_MULTIARRAY_DIMENSIONINDEX_H
+#ifndef PSS_ASTROTYPES_MULTIARRAY_TEST_DIMENSIONINDEXTEST_H
+#define PSS_ASTROTYPES_MULTIARRAY_TEST_DIMENSIONINDEXTEST_H
 
-#include "DimensionSize.h"
-
+#include <gtest/gtest.h>
 
 namespace pss {
 namespace astrotypes {
+namespace multiarray {
+namespace test {
 
 /**
  * @brief
- *      A tagged dimensionIndex variable
  * @details
  */
 
-template<typename Dimension>
-class DimensionIndex
+class DimensionIndexTest : public ::testing::Test
 {
+    protected:
+        void SetUp() override;
+        void TearDown() override;
+
     public:
-        explicit DimensionIndex(std::size_t);
-        ~DimensionIndex();
-        operator std::size_t& ();
-        operator std::size_t () const;
+        DimensionIndexTest();
 
-        inline DimensionSize<Dimension> operator-(DimensionIndex<Dimension> const&) const;
-        inline DimensionIndex<Dimension> operator+(DimensionSize<Dimension> const&) const;
-        template<typename T
-               , typename std::enable_if<std::is_integral<T>::value, bool>::type = true
-               >
-        DimensionIndex<Dimension> operator+(T) const;
-
-        bool operator<(DimensionIndex<Dimension> const&) const;
-        bool operator<(DimensionSize<Dimension> const&) const;
-        DimensionIndex<Dimension>& operator++();
+        ~DimensionIndexTest();
 
     private:
-        std::size_t _index;
-
 };
 
+
+} // namespace test
+} // namespace multiarray
 } // namespace astrotypes
 } // namespace pss
-#include "detail/DimensionIndex.cpp"
 
-#endif // PSS_ASTROTYPES_MULTIARRAY_DIMENSIONINDEX_H
+#endif // PSS_ASTROTYPES_MULTIARRAY_TEST_DIMENSIONINDEXTEST_H

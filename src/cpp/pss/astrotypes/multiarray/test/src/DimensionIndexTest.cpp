@@ -21,48 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef PSS_ASTROTYPES_MULTIARRAY_DIMENSIONINDEX_H
-#define PSS_ASTROTYPES_MULTIARRAY_DIMENSIONINDEX_H
-
-#include "DimensionSize.h"
+#include "pss/astrotypes/multiarray/test/DimensionIndexTest.h"
+#include "pss/astrotypes/multiarray/DimensionIndex.h"
 
 
 namespace pss {
 namespace astrotypes {
+namespace multiarray {
+namespace test {
 
-/**
- * @brief
- *      A tagged dimensionIndex variable
- * @details
- */
 
-template<typename Dimension>
-class DimensionIndex
+DimensionIndexTest::DimensionIndexTest()
+    : ::testing::Test()
 {
-    public:
-        explicit DimensionIndex(std::size_t);
-        ~DimensionIndex();
-        operator std::size_t& ();
-        operator std::size_t () const;
+}
 
-        inline DimensionSize<Dimension> operator-(DimensionIndex<Dimension> const&) const;
-        inline DimensionIndex<Dimension> operator+(DimensionSize<Dimension> const&) const;
-        template<typename T
-               , typename std::enable_if<std::is_integral<T>::value, bool>::type = true
-               >
-        DimensionIndex<Dimension> operator+(T) const;
+DimensionIndexTest::~DimensionIndexTest()
+{
+}
 
-        bool operator<(DimensionIndex<Dimension> const&) const;
-        bool operator<(DimensionSize<Dimension> const&) const;
-        DimensionIndex<Dimension>& operator++();
+void DimensionIndexTest::SetUp()
+{
+}
 
-    private:
-        std::size_t _index;
+void DimensionIndexTest::TearDown()
+{
+}
 
-};
+struct DimensionA;
 
+TEST_F(DimensionIndexTest, test_add_integer)
+{
+    DimensionIndex<DimensionA> i(10);
+    auto r = i + 1;
+    static_assert(std::is_same<DimensionIndex<DimensionA>, decltype(r)>::value, "wrong type returned from operator+");
+    ASSERT_EQ(r, DimensionIndex<DimensionA>(11));
+}
+
+} // namespace test
+} // namespace multiarray
 } // namespace astrotypes
 } // namespace pss
-#include "detail/DimensionIndex.cpp"
-
-#endif // PSS_ASTROTYPES_MULTIARRAY_DIMENSIONINDEX_H
