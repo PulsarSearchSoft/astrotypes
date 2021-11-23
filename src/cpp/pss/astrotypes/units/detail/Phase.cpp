@@ -34,7 +34,7 @@ Phase<T, Unit>::Phase()
 
 template<typename T, class Unit>
 Phase<T, Unit>::Phase(T val)
-    : BaseT(val)
+    : _quantity(val * boost::units::revolution::revolutions)
 {
 }
 

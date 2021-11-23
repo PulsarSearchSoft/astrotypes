@@ -47,6 +47,9 @@ typedef ModifiedJulianClock::time_point ModifiedJulianDate;
 typedef ModifiedJulianClock::time_point MJD;
 typedef J2000Clock::time_point J2000;
 
+template<typename T, typename Type=void>
+using EnableIfIsTimeUnit = typename std::enable_if<boost::units::is_unit_of_dimension<T, boost::units::time_dimension>::value, Type>::type;
+
 /**
  * @brief Specialisation of Quantity unit for time dimension types
  * @details all the functionality of the normal Quantity object plus extra functions

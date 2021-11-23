@@ -24,6 +24,8 @@
 #ifndef PSS_ASTROTYPES_UNITS_PHASE_H
 #define PSS_ASTROTYPES_UNITS_PHASE_H
 
+#include "pss/astrotypes/units/Time.h"
+#include "pss/astrotypes/units/Frequency.h"
 #include <boost/units/quantity.hpp>
 #include <boost/units/systems/angle/revolutions.hpp>
 
@@ -34,23 +36,50 @@ namespace units {
 /**
  * @brief representation of an angle as a real number between 0.0 and 1.0
  */
-class PhaseAngle : public boost::units::revolution::plane_angle
-{
-};
+typedef boost::units::revolution::plane_angle PhaseAngle;
+//class PhaseAngle : public boost::units::revolution::plane_angle
+//{
+//};
 
 /**
  * @brief Representation of phase
  * @details
  */
 template<typename T = double, class Unit=PhaseAngle>
-class Phase : public boost::units::quantity<PhaseAngle, T>
+class Phase
 {
-        typedef boost::units::quantity<PhaseAngle, T> BaseT;
 
     public:
         Phase();
         Phase(T);
 
+    private:
+        boost::units::quantity<PhaseAngle, T> _quantity;
+
+};
+
+template<typename UnitType1
+        , typename UnitType2
+        , typename DataType1
+        , typename DataType2
+        , EnableIfIsTimeUnit<UnitType1, bool> = true
+        , EnableIfIsFrequencyUnit<UnitType2, bool> = true
+        >
+Phase<DataType1> operator*(boost::units::quantity<UnitType1, DataType1> const& a, boost::units::quantity<UnitType2, DataType2> const& b)
+{
+    return Phase<DataType1>(a*b);
+};
+
+template<typename UnitType1
+        , typename UnitType2
+        , typename DataType1
+        , typename DataType2
+        , EnableIfIsFrequencyUnit<UnitType1, bool> = true
+        , EnableIfIsTimeUnit<UnitType2, bool> = true
+        >
+Phase<DataType1> operator*(boost::units::quantity<UnitType1, DataType1> const& a, boost::units::quantity<UnitType2, DataType2> const& b)
+{
+    return Phase<DataType1>(a*b);
 };
 
 
