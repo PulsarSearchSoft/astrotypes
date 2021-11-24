@@ -55,8 +55,8 @@ void PhaseTest::TearDown()
 
 TEST_F(PhaseTest, test_modulo)
 {
-    Phase<double> p1(1.0);
-    Phase<double> p2(0.0);
+    Phase<double> p1(1.0 * revolutions);
+    Phase<double> p2(0.0 * revolutions);
     ASSERT_EQ(p1, p2);
 }
 
@@ -70,36 +70,38 @@ TEST_F(PhaseTest, test_construction_from_time_freq)
     static_assert(std::is_same<decltype(phase2), Phase<double>>::value, "Expecting a phase type");
     ASSERT_EQ(phase1, phase2);
 }
-/*
+
 TEST_F(PhaseTest, test_conversion_from_radians)
 {
-    boost::units::quantity<boost::units::si::plane_angle, double> radians(boost::math::constants::pi<double>());
+    boost::units::quantity<boost::units::si::plane_angle, double> radians(boost::math::constants::pi<double>() * boost::units::si::radians);
     Phase<double> phase(radians);
-    ASSERT_EQ(phase, Phase<double>(0.5));
+    ASSERT_EQ(phase, Phase<double>(0.5 * revolutions));
 }
 
+/*
 TEST_F(PhaseTest, test_compatability_with_dimensionless)
 {
-    Phase<double> phase(0.5);
+    Phase<double> phase(0.5 * revolutions);
     ASSERT_EQ(phase, boost::units::quantity<boost::units::si::dimensionless, double>(0.5));
 }
+*/
 
 TEST_F(PhaseTest, test_operator_add)
 {
-    Phase<double> phase1(0.5);
-    Phase<double> phase2(0.7);
-    ASSERT_EQ(phase1 + phase2, Phase<double>(0.2));
-    ASSERT_EQ(phase2 + phase1, Phase<double>(0.2));
+    Phase<double> phase1(0.5 * revolutions);
+    Phase<double> phase2(0.7 * revolutions);
+    ASSERT_EQ(phase1 + phase2, Phase<double>(0.2 * revolutions));
+    ASSERT_EQ(phase2 + phase1, Phase<double>(0.2 * revolutions));
 }
 
 TEST_F(PhaseTest, test_operator_subtract)
 {
-    Phase<double> phase1(0.5);
-    Phase<double> phase2(0.7);
-    ASSERT_EQ(phase1 - phase2, Phase<double>(0.8));
-    ASSERT_EQ(phase2 - phase1, Phase<double>(0.2));
+    Phase<double> phase1(0.5 * revolutions);
+    Phase<double> phase2(0.7 * revolutions);
+    ASSERT_EQ(phase1 - phase2, Phase<double>(0.8 * revolutions));
+    ASSERT_EQ(phase2 - phase1, Phase<double>(0.2 * revolutions));
 }
-*/
+
 } // namespace test
 } // namespace units
 } // namespace astrotypes
