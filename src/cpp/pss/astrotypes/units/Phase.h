@@ -33,7 +33,8 @@ namespace pss {
 namespace astrotypes {
 namespace units {
 
-static constexpr decltype(boost::units::revolution::revolution) revolutions = boost::units::revolution::revolution;
+//static constexpr decltype(boost::units::revolution::revolution) revolutions = boost::units::revolution::revolution;
+static decltype(boost::units::revolution::revolution) revolutions = boost::units::revolution::revolution;
 
 /**
  * @brief representation of an angle as a real number between 0.0 and 1.0
@@ -66,16 +67,18 @@ template<typename T> using Phase = boost::units::quantity<PhaseAngle, T>;
 namespace boost {
 namespace units {
 
+// Multiplication helpers
 template< class X
         , class Y
         , class System
         >
-struct multiply_typeof_helper<boost::units::quantity<unit<frequency_dimension, System>,X>
-                            , boost::units::quantity<unit<time_dimension, System> ,Y>>
+struct multiply_typeof_helper< boost::units::quantity<unit<frequency_dimension, System>, X>
+                             , boost::units::quantity<unit<time_dimension, System>, Y>
+                             >
 {
     typedef typename multiply_typeof_helper<X,Y>::type          value_type;
     //typedef typename multiply_typeof_helper<Unit1,Unit2>::type  unit_type;
-    typedef pss::astrotypes::units::PhaseAngle  unit_type;
+    typedef pss::astrotypes::units::PhaseAngle                  unit_type;
     typedef quantity<unit_type,value_type>                      type;
 };
 
@@ -83,13 +86,44 @@ template< class X
         , class Y
         , class System
         >
-struct multiply_typeof_helper<boost::units::quantity<unit<time_dimension, System>,X>
-                            , boost::units::quantity<unit<frequency_dimension, System> ,Y>>
+struct multiply_typeof_helper<boost::units::quantity<unit<time_dimension, System>, X>
+                            , boost::units::quantity<unit<frequency_dimension, System>, Y>
+                            >
 {
     typedef typename multiply_typeof_helper<X,Y>::type          value_type;
     //typedef typename multiply_typeof_helper<Unit1,Unit2>::type  unit_type;
-    typedef pss::astrotypes::units::PhaseAngle  unit_type;
+    typedef pss::astrotypes::units::PhaseAngle                  unit_type;
     typedef quantity<unit_type,value_type>                      type;
+};
+
+
+// Division helpers
+template< class X
+        , class Y
+        , class System
+        >
+struct divide_typeof_helper< boost::units::quantity<pss::astrotypes::units::PhaseAngle, X>
+                           , boost::units::quantity<unit<frequency_dimension, System>, Y>
+                           >
+{
+    typedef typename divide_typeof_helper<X, Y>::type           value_type;
+//    typedef typename divide_typeof_helper<Unit1,Unit2>::type    unit_type;
+    typedef unit<time_dimension, System>                        unit_type;
+    typedef quantity<unit_type, value_type>                     type;
+};
+
+template< class X
+        , class Y
+        , class System
+        >
+struct divide_typeof_helper< boost::units::quantity<pss::astrotypes::units::PhaseAngle, X>
+                           , boost::units::quantity<unit<time_dimension, System>, Y>
+                           >
+{
+    typedef typename divide_typeof_helper<X, Y>::type           value_type;
+//    typedef typename divide_typeof_helper<Unit1,Unit2>::type    unit_type;
+    typedef unit<frequency_dimension, System>                   unit_type;
+    typedef quantity<unit_type, value_type>                     type;
 };
 
 } // units

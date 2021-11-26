@@ -71,6 +71,22 @@ TEST_F(PhaseTest, test_construction_from_time_freq)
     ASSERT_EQ(phase1, phase2);
 }
 
+TEST_F(PhaseTest, test_phase_decay_time)
+{
+    auto f = 1.0 * hertz;
+    Phase<double> phase(1.0 * revolutions);
+    auto t = phase/f;
+    static_assert(std::is_same<decltype(t), boost::units::quantity<boost::units::unit<boost::units::time_dimension, boost::units::si::system>, double>>::value, "Expecting a time type");
+}
+
+TEST_F(PhaseTest, test_phase_decay_freq)
+{
+    auto t = 1.0 * seconds;
+    Phase<double> phase(1.0 * revolutions);
+    auto f = phase/t;
+    static_assert(std::is_same<decltype(f), boost::units::quantity<boost::units::unit<boost::units::frequency_dimension, boost::units::si::system>, double>>::value, "Expecting a frequency type");
+}
+
 TEST_F(PhaseTest, test_conversion_from_radians)
 {
     boost::units::quantity<boost::units::si::plane_angle, double> radians(boost::math::constants::pi<double>() * boost::units::si::radians);
