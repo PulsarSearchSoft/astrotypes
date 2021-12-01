@@ -91,7 +91,7 @@ TEST_F(PhaseTest, test_conversion_from_radians)
 {
     boost::units::quantity<boost::units::si::plane_angle, double> radians(boost::math::constants::pi<double>() * boost::units::si::radians);
     Phase<double> phase(radians);
-    ASSERT_DOUBLE_EQ(phase.value(), Phase<double>(0.5 * revolutions).value());
+    ASSERT_FLOAT_EQ(phase.value(), Phase<double>(0.5 * revolutions).value());
 }
 
 TEST_F(PhaseTest, test_conversion_to_radians)
@@ -99,7 +99,7 @@ TEST_F(PhaseTest, test_conversion_to_radians)
     typedef boost::units::quantity<boost::units::si::plane_angle, double> Radians;
     Radians expected_radians(boost::math::constants::pi<double>() * boost::units::si::radians);
     Phase<double> phase(0.5 * revolutions);
-    ASSERT_DOUBLE_EQ(Radians(phase).value(), expected_radians.value());
+    ASSERT_FLOAT_EQ(Radians(phase).value(), expected_radians.value());
 }
 
 /*
