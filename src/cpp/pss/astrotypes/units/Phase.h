@@ -33,7 +33,6 @@ namespace pss {
 namespace astrotypes {
 namespace units {
 
-//static constexpr decltype(boost::units::revolution::revolution) revolutions = boost::units::revolution::revolution;
 static decltype(boost::units::revolution::revolution) revolutions = boost::units::revolution::revolution;
 
 /**
@@ -77,7 +76,6 @@ struct multiply_typeof_helper< boost::units::quantity<unit<frequency_dimension, 
                              >
 {
     typedef typename multiply_typeof_helper<X,Y>::type          value_type;
-    //typedef typename multiply_typeof_helper<Unit1,Unit2>::type  unit_type;
     typedef pss::astrotypes::units::PhaseAngle                  unit_type;
     typedef quantity<unit_type,value_type>                      type;
 };
@@ -91,7 +89,6 @@ struct multiply_typeof_helper<boost::units::quantity<unit<time_dimension, System
                             >
 {
     typedef typename multiply_typeof_helper<X,Y>::type          value_type;
-    //typedef typename multiply_typeof_helper<Unit1,Unit2>::type  unit_type;
     typedef pss::astrotypes::units::PhaseAngle                  unit_type;
     typedef quantity<unit_type,value_type>                      type;
 };
@@ -107,7 +104,6 @@ struct divide_typeof_helper< boost::units::quantity<pss::astrotypes::units::Phas
                            >
 {
     typedef typename divide_typeof_helper<X, Y>::type           value_type;
-//    typedef typename divide_typeof_helper<Unit1,Unit2>::type    unit_type;
     typedef unit<time_dimension, System>                        unit_type;
     typedef quantity<unit_type, value_type>                     type;
 };
@@ -121,7 +117,6 @@ struct divide_typeof_helper< boost::units::quantity<pss::astrotypes::units::Phas
                            >
 {
     typedef typename divide_typeof_helper<X, Y>::type           value_type;
-//    typedef typename divide_typeof_helper<Unit1,Unit2>::type    unit_type;
     typedef unit<frequency_dimension, System>                   unit_type;
     typedef quantity<unit_type, value_type>                     type;
 };

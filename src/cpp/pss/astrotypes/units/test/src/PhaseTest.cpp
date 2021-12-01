@@ -91,7 +91,15 @@ TEST_F(PhaseTest, test_conversion_from_radians)
 {
     boost::units::quantity<boost::units::si::plane_angle, double> radians(boost::math::constants::pi<double>() * boost::units::si::radians);
     Phase<double> phase(radians);
-    ASSERT_EQ(phase, Phase<double>(0.5 * revolutions));
+    ASSERT_DOUBLE_EQ(phase.value(), Phase<double>(0.5 * revolutions).value());
+}
+
+TEST_F(PhaseTest, test_conversion_to_radians)
+{
+    typedef boost::units::quantity<boost::units::si::plane_angle, double> Radians;
+    Radians expected_radians(boost::math::constants::pi<double>() * boost::units::si::radians);
+    Phase<double> phase(0.5 * revolutions);
+    ASSERT_DOUBLE_EQ(Radians(phase).value(), expected_radians.value());
 }
 
 /*
@@ -101,6 +109,17 @@ TEST_F(PhaseTest, test_compatability_with_dimensionless)
     ASSERT_EQ(phase, boost::units::quantity<boost::units::si::dimensionless, double>(0.5));
 }
 */
+
+TEST_F(PhaseTest, test_operator_scalar_multiply)
+{
+    Phase<double> phase1(0.5 * revolutions);
+    auto res = phase1 * 3.0;
+    static_assert(std::is_same<decltype(res), Phase<double>>::value, "Expecting a phase type");
+    ASSERT_EQ(res, phase1);
+    auto res2 = 3.0 * phase1;
+    static_assert(std::is_same<decltype(res2), Phase<double>>::value, "Expecting a phase type");
+    ASSERT_EQ(res2, phase1);
+}
 
 TEST_F(PhaseTest, test_operator_add)
 {
