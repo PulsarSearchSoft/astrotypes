@@ -26,38 +26,31 @@
 
 #include "pss/astrotypes/units/Time.h"
 #include "pss/astrotypes/units/Frequency.h"
+#include "pss/astrotypes/utils/ModuloOne.h"
 #include <boost/units/quantity.hpp>
+#include <boost/units/scaled_base_unit.hpp>
+#include <boost/units/static_rational.hpp>
+#include <boost/units/scale.hpp>
+#include <boost/units/base_units/angle/degree.hpp>
+#include <boost/units/make_system.hpp>
 #include <boost/units/systems/angle/revolutions.hpp>
+#include <boost/units/conversion.hpp>
 
 namespace pss {
 namespace astrotypes {
 namespace units {
 
-static decltype(boost::units::revolution::revolution) revolutions = boost::units::revolution::revolution;
+typedef boost::units::scaled_base_unit<boost::units::angle::degree_base_unit, boost::units::scale<1, boost::units::static_rational<1>>> fractional_revolution_base_unit;
+typedef boost::units::make_system<fractional_revolution_base_unit>::type fractional_system;
+typedef boost::units::unit<boost::units::plane_angle_dimension, fractional_system> fractional_plane_angle;
+BOOST_UNITS_STATIC_CONSTANT(fractional_revolution, fractional_plane_angle);
 
 /**
- * @brief representation of an angle as a real number between 0.0 and 1.0
+ * @brief Representation of an angle as a real number between 0.0 and 1.0
  */
-typedef boost::units::revolution::plane_angle PhaseAngle;
+typedef fractional_plane_angle PhaseAngle;
 
-/**
- * @brief Representation of phase
- * @details
-template<typename T = double, class Unit=PhaseAngle>
-class Phase
-{
-
-    public:
-        Phase();
-        Phase(T);
-
-    private:
-        boost::units::quantity<PhaseAngle, T> _quantity;
-
-};
-*/
-
-template<typename T> using Phase = boost::units::quantity<PhaseAngle, T>;
+template<typename T> using Phase = boost::units::quantity<PhaseAngle, utils::ModuloOne<T>>;
 
 } // namespace units
 } // namespace astrotypes
@@ -65,6 +58,15 @@ template<typename T> using Phase = boost::units::quantity<PhaseAngle, T>;
 
 namespace boost {
 namespace units {
+
+template<class T0, class T1>
+struct conversion_helper<boost::units::quantity<revolution::plane_angle, T0>, boost::units::quantity<pss::astrotypes::units::fractional_plane_angle, T1> >
+{
+    static quantity<pss::astrotypes::units::fractional_plane_angle, T1> convert(const quantity<revolution::plane_angle, T0>& source)
+    {
+        return(quantity<pss::astrotypes::units::fractional_plane_angle, T1>::from_value(std::fmod(source.value(), 1)));
+    }
+};
 
 // Multiplication helpers
 template< class X
@@ -75,9 +77,9 @@ struct multiply_typeof_helper< boost::units::quantity<unit<frequency_dimension, 
                              , boost::units::quantity<unit<time_dimension, System>, Y>
                              >
 {
-    typedef typename multiply_typeof_helper<X,Y>::type          value_type;
-    typedef pss::astrotypes::units::PhaseAngle                  unit_type;
-    typedef quantity<unit_type,value_type>                      type;
+    typedef typename multiply_typeof_helper<X, Y>::type          value_type;
+    typedef pss::astrotypes::units::PhaseAngle                   unit_type;
+    typedef quantity<unit_type, value_type>                      type;
 };
 
 template< class X
@@ -88,9 +90,9 @@ struct multiply_typeof_helper<boost::units::quantity<unit<time_dimension, System
                             , boost::units::quantity<unit<frequency_dimension, System>, Y>
                             >
 {
-    typedef typename multiply_typeof_helper<X,Y>::type          value_type;
-    typedef pss::astrotypes::units::PhaseAngle                  unit_type;
-    typedef quantity<unit_type,value_type>                      type;
+    typedef typename multiply_typeof_helper<X, Y>::type          value_type;
+    typedef pss::astrotypes::units::PhaseAngle                   unit_type;
+    typedef quantity<unit_type, value_type>                      type;
 };
 
 

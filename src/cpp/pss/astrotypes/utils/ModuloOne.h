@@ -25,6 +25,9 @@
 #ifndef PSS_ASTROTYPES_UTILS_MODULOONE_H
 #define PSS_ASTROTYPES_UTILS_MODULOONE_H
 
+//#include <boost/units/quantity.hpp>
+//#include <boost/units/systems/angle/revolutions.hpp>
+
 namespace pss {
 namespace astrotypes {
 namespace utils {
@@ -35,34 +38,28 @@ namespace utils {
  * i.e. it will return the decimal part of a number minus the integer part
  */
 
-template<typename T, typename StorageType=T>
+template<typename T>
 class ModuloOne
 {
     public:
         ModuloOne() = default;
-        explicit ModuloOne(T const& value = 0);
+        ModuloOne(T const& value = 0);
         ModuloOne(ModuloOne const&) = default;
         ModuloOne(ModuloOne&&) = default;
 
-        operator StorageType& ();
-        operator StorageType const& () const;
+        operator T const& () const;
 
         ModuloOne& operator=(T const&);
-        template<typename S>
-        ModuloOne& operator=(ModuloOne<T, S> const&);
+        ModuloOne& operator=(ModuloOne<T> const&);
         ModuloOne& operator+=(T const&);
-        template<typename S>
-        ModuloOne& operator+=(ModuloOne<T, S> const&);
+        ModuloOne& operator+=(ModuloOne<T> const&);
         ModuloOne& operator-=(T const&);
-        template<typename S>
-        ModuloOne& operator-=(ModuloOne<T, S> const&);
+        ModuloOne& operator-=(ModuloOne<T> const&);
 
         bool operator==(T const&) const;
         bool operator!=(T const&) const;
-        template<typename S>
-        bool operator==(ModuloOne<T, S> const&) const;
-        template<typename S>
-        bool operator!=(ModuloOne<T, S> const&) const;
+        bool operator==(ModuloOne<T> const&) const;
+        bool operator!=(ModuloOne<T> const&) const;
 
         ModuloOne& operator++();
         ModuloOne operator++(int);
@@ -71,31 +68,24 @@ class ModuloOne
 
         ModuloOne operator+(T const&) const;
         ModuloOne operator-(T const&) const;
-        template<typename S>
-        ModuloOne operator+(ModuloOne<T, S> const&) const;
-        template<typename S>
-        ModuloOne operator-(ModuloOne<T, S> const&) const;
+        ModuloOne operator+(ModuloOne<T> const&) const;
+        ModuloOne operator-(ModuloOne<T> const&) const;
 
         ModuloOne operator*(T const&);
         ModuloOne operator/(T const&);
-        template<typename S>
-        ModuloOne operator*(ModuloOne<T, S> const&);
-        template<typename S>
-        ModuloOne operator/(ModuloOne<T, S> const&);
+        ModuloOne operator*(ModuloOne<T> const&);
+        ModuloOne operator/(ModuloOne<T> const&);
 
         ModuloOne operator*=(T const&);
         ModuloOne operator/=(T const&);
-        template<typename S>
-        ModuloOne operator*=(ModuloOne<T, S> const&);
-        template<typename S>
-        ModuloOne operator/=(ModuloOne<T, S> const&);
+        ModuloOne operator*=(ModuloOne<T> const&);
+        ModuloOne operator/=(ModuloOne<T> const&);
 
         bool operator<(T const&) const;
-        template<typename S>
-        bool operator<(ModuloOne<T, S> const&) const;
+        bool operator<(ModuloOne<T> const&) const;
 
     private:
-        StorageType _val;
+        T _val;
 };
 
 } // namespace utils

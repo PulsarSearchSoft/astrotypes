@@ -26,48 +26,41 @@ namespace pss {
 namespace astrotypes {
 namespace utils {
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType>::ModuloOne(T const& val)
+template<typename T>
+ModuloOne<T>::ModuloOne(T const& val)
     : _val(std::fmod(val, 1))
 {
 }
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType>::operator StorageType& ()
+template<typename T>
+ModuloOne<T>::operator T const& () const
 {
     return _val;
 }
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType>::operator StorageType const& () const
-{
-    return _val;
-}
-
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType>& ModuloOne<T, StorageType>::operator=(T const& v)
+template<typename T>
+ModuloOne<T>& ModuloOne<T>::operator=(T const& v)
 {
     _val = std::fmod(v, 1);
     return *this;
 }
 
-template<typename T, typename StorageType>
-template<typename S>
-ModuloOne<T, StorageType>& ModuloOne<T, StorageType>::operator=(ModuloOne<T, S> const& v)
+template<typename T>
+ModuloOne<T>& ModuloOne<T>::operator=(ModuloOne<T> const& v)
 {
-    _val = std::fmod(static_cast<S>(v), 1);
+    _val = std::fmod(static_cast<T>(v), 1);
     return *this;
 }
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType>& ModuloOne<T, StorageType>::operator+=(T const& v)
+template<typename T>
+ModuloOne<T>& ModuloOne<T>::operator+=(T const& v)
 {
     _val = std::fmod((_val + v), 1);
     return *this;
 }
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType>& ModuloOne<T, StorageType>::operator-=(T const& v)
+template<typename T>
+ModuloOne<T>& ModuloOne<T>::operator-=(T const& v)
 {
     T v2 = std::fmod(v, 1);
     if(_val >= v2 ) {
@@ -79,161 +72,151 @@ ModuloOne<T, StorageType>& ModuloOne<T, StorageType>::operator-=(T const& v)
     return *this;
 }
 
-template<typename T, typename StorageType>
-template<typename S>
-ModuloOne<T, StorageType>& ModuloOne<T, StorageType>::operator+=(ModuloOne<T, S> const& v)
+template<typename T>
+ModuloOne<T>& ModuloOne<T>::operator+=(ModuloOne<T> const& v)
 {
-    _val = std::fmod((_val + static_cast<S>(v)), 1);
+    _val = std::fmod((_val + static_cast<T>(v)), 1);
     return *this;
 }
 
-template<typename T, typename StorageType>
-template<typename S>
-ModuloOne<T, StorageType>& ModuloOne<T, StorageType>::operator-=(ModuloOne<T, S> const& v)
+template<typename T>
+ModuloOne<T>& ModuloOne<T>::operator-=(ModuloOne<T> const& v)
 {
-    return (*this) -= static_cast<S>(v);
+    return (*this) -= static_cast<T>(v);
 }
 
-template<typename T, typename StorageType>
-bool ModuloOne<T, StorageType>::operator==(T const& val) const
+template<typename T>
+bool ModuloOne<T>::operator==(T const& val) const
 {
     return _val == val;
 }
 
-template<typename T, typename StorageType>
-bool ModuloOne<T, StorageType>::operator!=(T const& val) const
+template<typename T>
+bool ModuloOne<T>::operator!=(T const& val) const
 {
     return _val != val;
 }
 
-template<typename T, typename StorageType>
-template<typename S>
-inline bool ModuloOne<T, StorageType>::operator==(ModuloOne<T, S> const& val) const
+template<typename T>
+inline bool ModuloOne<T>::operator==(ModuloOne<T> const& val) const
 {
-    return _val == static_cast<S const&>(val);
+    return _val == static_cast<T const&>(val);
 }
 
-template<typename T, typename StorageType>
-template<typename S>
-inline bool ModuloOne<T, StorageType>::operator!=(ModuloOne<T, S> const& val) const
+template<typename T>
+inline bool ModuloOne<T>::operator!=(ModuloOne<T> const& val) const
 {
-    return _val != static_cast<S const&>(val);
+    return _val != static_cast<T const&>(val);
 }
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType>& ModuloOne<T, StorageType>::operator++()
+template<typename T>
+ModuloOne<T>& ModuloOne<T>::operator++()
 {
     ++_val;
     return *this;
 }
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType> ModuloOne<T, StorageType>::operator++(int)
+template<typename T>
+ModuloOne<T> ModuloOne<T>::operator++(int)
 {
     ModuloOne<T> cpy(_val);
     ++(*this);
     return cpy;
 }
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType>& ModuloOne<T, StorageType>::operator--()
+template<typename T>
+ModuloOne<T>& ModuloOne<T>::operator--()
 {
     --_val;
     return *this;
 }
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType> ModuloOne<T, StorageType>::operator--(int)
+template<typename T>
+ModuloOne<T> ModuloOne<T>::operator--(int)
 {
     ModuloOne<T> cpy(_val);
     --(*this);
     return cpy;
 }
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType> ModuloOne<T, StorageType>::operator+(T const& v) const
+template<typename T>
+ModuloOne<T> ModuloOne<T>::operator+(T const& v) const
 {
     return ModuloOne<T>(std::fmod((_val + v), 1));
 }
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType> ModuloOne<T, StorageType>::operator-(T const& v) const
+template<typename T>
+ModuloOne<T> ModuloOne<T>::operator-(T const& v) const
 {
     T v2 = std::fmod(v, 1);
     return ModuloOne<T>((_val >= v2) ? (_val - v2) : (1 - (v2 - _val)));
 }
 
-template<typename T, typename StorageType>
-template<typename S>
-ModuloOne<T, StorageType> ModuloOne<T, StorageType>::operator+(ModuloOne<T, S> const& v) const
+template<typename T>
+ModuloOne<T> ModuloOne<T>::operator+(ModuloOne<T> const& v) const
 {
-    return *this + static_cast<S>(v);
+    return *this + static_cast<T>(v);
 }
 
-template<typename T, typename StorageType>
-template<typename S>
-ModuloOne<T, StorageType> ModuloOne<T, StorageType>::operator-(ModuloOne<T, S> const& v) const
+template<typename T>
+ModuloOne<T> ModuloOne<T>::operator-(ModuloOne<T> const& v) const
 {
-    return *this - static_cast<S>(v);
+    return *this - static_cast<T>(v);
 }
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType> ModuloOne<T, StorageType>::operator*(T const& v)
+template<typename T>
+ModuloOne<T> ModuloOne<T>::operator*(T const& v)
 {
     return ModuloOne<T>(std::fmod((_val * v), 1));
 }
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType> ModuloOne<T, StorageType>::operator/(T const& v)
+template<typename T>
+ModuloOne<T> ModuloOne<T>::operator/(T const& v)
 {
     return ModuloOne<T>(std::fmod((_val/v), 1));
 }
 
-template<typename T, typename StorageType>
-template<typename S>
-ModuloOne<T, StorageType> ModuloOne<T, StorageType>::operator*(ModuloOne<T, S> const& v)
+template<typename T>
+ModuloOne<T> ModuloOne<T>::operator*(ModuloOne<T> const& v)
 {
-    return *this * static_cast<S>(v);
+    return *this * static_cast<T>(v);
 }
 
-template<typename T, typename StorageType>
-template<typename S>
-ModuloOne<T, StorageType> ModuloOne<T, StorageType>::operator/(ModuloOne<T, S> const& v)
+template<typename T>
+ModuloOne<T> ModuloOne<T>::operator/(ModuloOne<T> const& v)
 {
-    return (*this)/static_cast<S>(v);
+    return (*this)/static_cast<T>(v);
 }
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType> ModuloOne<T, StorageType>::operator*=(T const& v)
+template<typename T>
+ModuloOne<T> ModuloOne<T>::operator*=(T const& v)
 {
     _val = std::fmod((_val * v), 1);
     return *this;
 }
 
-template<typename T, typename StorageType>
-ModuloOne<T, StorageType> ModuloOne<T, StorageType>::operator/=(T const& v)
+template<typename T>
+ModuloOne<T> ModuloOne<T>::operator/=(T const& v)
 {
     _val = std::fmod((_val/v), 1);
     return *this;
 }
 
-template<typename T, typename StorageType>
-template<typename S>
-ModuloOne<T, StorageType> ModuloOne<T, StorageType>::operator*=(ModuloOne<T, S> const& v)
+template<typename T>
+ModuloOne<T> ModuloOne<T>::operator*=(ModuloOne<T> const& v)
 {
-    _val = std::fmod((_val * static_cast<S>(v)), 1);
+    _val = std::fmod((_val * static_cast<T>(v)), 1);
     return *this;
 }
 
-template<typename T, typename StorageType>
-template<typename S>
-ModuloOne<T, StorageType> ModuloOne<T, StorageType>::operator/=(ModuloOne<T, S> const& v)
+template<typename T>
+ModuloOne<T> ModuloOne<T>::operator/=(ModuloOne<T> const& v)
 {
-    return (*this) /= static_cast<S>(v);
+    return (*this) /= static_cast<T>(v);
 }
 
-template<typename T, typename StorageType>
-bool ModuloOne<T, StorageType>::operator<(T const& v) const
+template<typename T>
+bool ModuloOne<T>::operator<(T const& v) const
 {
    if (_val == v) return false;
    if (_val < v) {
@@ -242,11 +225,10 @@ bool ModuloOne<T, StorageType>::operator<(T const& v) const
    return _val - v > (1 - _val) + v;
 }
 
-template<typename T, typename StorageType>
-template<typename S>
-bool ModuloOne<T, StorageType>::operator<(ModuloOne<T, S> const& v) const
+template<typename T>
+bool ModuloOne<T>::operator<(ModuloOne<T> const& v) const
 {
-    return operator<(static_cast<S const&>(v));
+    return operator<(static_cast<T const&>(v));
 }
 
 } // namespace utils
