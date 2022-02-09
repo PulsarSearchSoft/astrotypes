@@ -4,6 +4,7 @@ link_directories(${GTEST_LIBRARY_DIR})
 set(
     gtest_utils_src
     src/OptionalTest.cpp
+    src/ModuloOneTest.cpp
 )
 
 add_executable(gtest_astrotypes_utils ${gtest_utils_src})
