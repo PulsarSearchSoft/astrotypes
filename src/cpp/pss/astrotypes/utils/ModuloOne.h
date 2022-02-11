@@ -27,6 +27,7 @@
 
 //#include <boost/units/quantity.hpp>
 //#include <boost/units/systems/angle/revolutions.hpp>
+#include <cmath>
 
 namespace pss {
 namespace astrotypes {
@@ -43,7 +44,7 @@ class ModuloOne
 {
     public:
         ModuloOne() = default;
-        ModuloOne(T const& value = 0);
+        ModuloOne(T const& value);
         ModuloOne(ModuloOne const&) = default;
         ModuloOne(ModuloOne&&) = default;
 
