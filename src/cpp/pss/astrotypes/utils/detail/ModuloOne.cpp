@@ -28,7 +28,7 @@ namespace utils {
 
 template<typename T>
 ModuloOne<T>::ModuloOne(T const& val)
-    : _val(std::fmod(val, 1))
+    : _val(std::fmod(val, 1.0))
 {
 }
 
@@ -41,28 +41,28 @@ ModuloOne<T>::operator T const& () const
 template<typename T>
 ModuloOne<T>& ModuloOne<T>::operator=(T const& v)
 {
-    _val = std::fmod(v, 1);
+    _val = std::fmod(v, 1.0);
     return *this;
 }
 
 template<typename T>
 ModuloOne<T>& ModuloOne<T>::operator=(ModuloOne<T> const& v)
 {
-    _val = std::fmod(static_cast<T>(v), 1);
+    _val = std::fmod(static_cast<T>(v), 1.0);
     return *this;
 }
 
 template<typename T>
 ModuloOne<T>& ModuloOne<T>::operator+=(T const& v)
 {
-    _val = std::fmod((_val + v), 1);
+    _val = std::fmod((_val + v), 1.0);
     return *this;
 }
 
 template<typename T>
 ModuloOne<T>& ModuloOne<T>::operator-=(T const& v)
 {
-    T v2 = std::fmod(v, 1);
+    T v2 = std::fmod(v, 1.0);
     if(_val >= v2 ) {
         _val -= v2;
     }
@@ -75,7 +75,7 @@ ModuloOne<T>& ModuloOne<T>::operator-=(T const& v)
 template<typename T>
 ModuloOne<T>& ModuloOne<T>::operator+=(ModuloOne<T> const& v)
 {
-    _val = std::fmod((_val + static_cast<T>(v)), 1);
+    _val = std::fmod((_val + static_cast<T>(v)), 1.0);
     return *this;
 }
 
@@ -142,13 +142,13 @@ ModuloOne<T> ModuloOne<T>::operator--(int)
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator+(T const& v) const
 {
-    return ModuloOne<T>(std::fmod((_val + v), 1));
+    return ModuloOne<T>(std::fmod((_val + v), 1.0));
 }
 
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator-(T const& v) const
 {
-    T v2 = std::fmod(v, 1);
+    T v2 = std::fmod(v, 1.0);
     return ModuloOne<T>((_val >= v2) ? (_val - v2) : (1 - (v2 - _val)));
 }
 
@@ -167,13 +167,13 @@ ModuloOne<T> ModuloOne<T>::operator-(ModuloOne<T> const& v) const
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator*(T const& v)
 {
-    return ModuloOne<T>(std::fmod((_val * v), 1));
+    return ModuloOne<T>(std::fmod((_val * v), 1.0));
 }
 
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator/(T const& v)
 {
-    return ModuloOne<T>(std::fmod((_val/v), 1));
+    return ModuloOne<T>(std::fmod((_val/v), 1.0));
 }
 
 template<typename T>
@@ -191,21 +191,21 @@ ModuloOne<T> ModuloOne<T>::operator/(ModuloOne<T> const& v)
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator*=(T const& v)
 {
-    _val = std::fmod((_val * v), 1);
+    _val = std::fmod((_val * v), 1.0);
     return *this;
 }
 
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator/=(T const& v)
 {
-    _val = std::fmod((_val/v), 1);
+    _val = std::fmod((_val/v), 1.0);
     return *this;
 }
 
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator*=(ModuloOne<T> const& v)
 {
-    _val = std::fmod((_val * static_cast<T>(v)), 1);
+    _val = std::fmod((_val * static_cast<T>(v)), 1.0);
     return *this;
 }
 

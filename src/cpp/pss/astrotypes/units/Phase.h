@@ -54,7 +54,7 @@ template<typename T> using Revolutions = boost::units::quantity<PhaseAngle, T>;
 namespace boost {
 namespace units {
 
-// Multiplication helpers
+// Output type helpers
 namespace {
 template<typename T>
 struct PssValueTypeHelper
@@ -73,27 +73,25 @@ using PssValueTypeHelper_t = typename PssValueTypeHelper<T>::type;
 
 } // namespace
 
-
+// Multiplication helpers
 template<class Unit, class X>
 inline
-//typename multiply_typeof_helper<X, quantity<Unit, pss::astrotypes::utils::ModuloOne<X>> >::type
-typename multiply_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X >::type
+typename multiply_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
 operator*(const X& lhs, const quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>& rhs)
 {
     typedef typename multiply_typeof_helper<X, quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>>::type type;
 
-    return type::from_value(lhs*static_cast<X>(rhs.value()));
+    return type::from_value(lhs * static_cast<X>(rhs.value()));
 }
-
 
 template<class Unit, class X>
 inline
-typename multiply_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X >::type
+typename multiply_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
 operator*(const quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>& lhs, const X& rhs)
 {
-    typedef typename multiply_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X >::type type;
+    typedef typename multiply_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type type;
 
-    return type::from_value(rhs*static_cast<X>(lhs.value()));
+    return type::from_value(rhs * static_cast<X>(lhs.value()));
 }
 
 template< class X
@@ -122,8 +120,27 @@ struct multiply_typeof_helper<boost::units::quantity<unit<time_dimension, System
     typedef quantity<unit_type, value_type>                                      type;
 };
 
-
 // Division helpers
+template<class Unit, class X>
+inline
+typename divide_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
+operator/(const X& lhs, const quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>& rhs)
+{
+    typedef typename divide_typeof_helper<X, quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>>::type type;
+
+    return type::from_value(lhs/static_cast<X>(rhs.value()));
+}
+
+template<class Unit, class X>
+inline
+typename divide_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
+operator/(const quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>& lhs, const X& rhs)
+{
+    typedef typename divide_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X >::type type;
+
+    return type::from_value(lhs.value()/static_cast<X>(rhs));
+}
+
 template< class X
         , class Y
         , class System
@@ -132,9 +149,9 @@ struct divide_typeof_helper< boost::units::quantity<pss::astrotypes::units::Phas
                            , boost::units::quantity<unit<frequency_dimension, System>, Y>
                            >
 {
-    typedef PssValueTypeHelper_t<typename divide_typeof_helper<X, Y>::type>           value_type;
-    typedef unit<time_dimension, System>                        unit_type;
-    typedef quantity<unit_type, value_type>                     type;
+    typedef PssValueTypeHelper_t<typename divide_typeof_helper<X, Y>::type>    value_type;
+    typedef unit<time_dimension, System>                                       unit_type;
+    typedef quantity<unit_type, value_type>                                    type;
 };
 
 template< class X
@@ -145,14 +162,12 @@ struct divide_typeof_helper< boost::units::quantity<pss::astrotypes::units::Phas
                            , boost::units::quantity<unit<time_dimension, System>, Y>
                            >
 {
-    typedef PssValueTypeHelper_t<typename divide_typeof_helper<X, Y>::type>           value_type;
-    typedef unit<frequency_dimension, System>                   unit_type;
-    typedef quantity<unit_type, value_type>                     type;
+    typedef PssValueTypeHelper_t<typename divide_typeof_helper<X, Y>::type>    value_type;
+    typedef unit<frequency_dimension, System>                                  unit_type;
+    typedef quantity<unit_type, value_type>                                    type;
 };
 
 } // units
 } // boost
-
-//#include "pss/astrotypes/units/detail/Phase.cpp"
 
 #endif // PSS_ASTROTYPES_UNITS_PHASE_H
