@@ -40,7 +40,14 @@ BOOST_UNITS_STATIC_CONSTANT(revolution, boost::units::revolution::plane_angle);
 BOOST_UNITS_STATIC_CONSTANT(revolutions, boost::units::revolution::plane_angle);
 
 /**
- * @brief Representation of an angle as a real number between 0.0 and 1.0
+ * @brief Representation of an angle as a real number between 0.0 and <1.0
+ *
+ * @detail This unit can represent an angle (phase) between 0.0 (inclusive) and 1.0 (exclusive);
+ *         a value of 1.0 will become 0.0. Due to the fact that all numbers with this type are
+ *         by definition decimal numbers, the precision of any Phase unit is limited by the ability
+ *         of the 'double' numerical type to accurately represent these values. Precision is on
+ *         the order of 7-8 decimal places, but results are currently only guaranteed to 4 decimal
+ *         places, as tested in the unit tests.
  */
 typedef boost::units::revolution::plane_angle PhaseAngle;
 
@@ -56,12 +63,15 @@ namespace units {
 
 // Output type helpers
 namespace {
+
+// Set return type of object to templated type T
 template<typename T>
 struct PssValueTypeHelper
 {
     typedef T type;
 };
 
+// Set return type of ModuloOne<T> object to templated type T
 template<typename T>
 struct PssValueTypeHelper<pss::astrotypes::utils::ModuloOne<T>>
 {
@@ -74,6 +84,9 @@ using PssValueTypeHelper_t = typename PssValueTypeHelper<T>::type;
 } // namespace
 
 // Multiplication helpers
+
+// Using the appropriate multiply_typeof_helper below, returns the results
+// of a multiplication operation with the type that matches the templated class X
 template<class Unit, class X>
 inline
 typename multiply_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
@@ -84,6 +97,8 @@ operator*(const X& lhs, const quantity<Unit, pss::astrotypes::utils::ModuloOne<X
     return type::from_value(lhs * static_cast<X>(rhs.value()));
 }
 
+// Using the appropriate multiply_typeof_helper below, returns the results
+// of a multiplication operation with the type that matches the templated class X
 template<class Unit, class X>
 inline
 typename multiply_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
@@ -94,6 +109,7 @@ operator*(const quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>& lhs, const
     return type::from_value(rhs * static_cast<X>(lhs.value()));
 }
 
+// Helper to set output type of freq * time = PhaseAngle
 template< class X
         , class Y
         , class System
@@ -107,6 +123,7 @@ struct multiply_typeof_helper< boost::units::quantity<unit<frequency_dimension, 
     typedef quantity<unit_type, value_type>                                      type;
 };
 
+// Helper to set output type of time * freq = PhaseAngle
 template< class X
         , class Y
         , class System
@@ -121,6 +138,9 @@ struct multiply_typeof_helper<boost::units::quantity<unit<time_dimension, System
 };
 
 // Division helpers
+
+// Using the appropriate divide_typeof_helper below, returns the results
+// of a division operation with the type that matches the templated class X
 template<class Unit, class X>
 inline
 typename divide_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
@@ -131,6 +151,8 @@ operator/(const X& lhs, const quantity<Unit, pss::astrotypes::utils::ModuloOne<X
     return type::from_value(lhs/static_cast<X>(rhs.value()));
 }
 
+// Using the appropriate divide_typeof_helper below, returns the results
+// // of a division operation with the type that matches the templated class X
 template<class Unit, class X>
 inline
 typename divide_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
@@ -141,6 +163,7 @@ operator/(const quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>& lhs, const
     return type::from_value(lhs.value()/static_cast<X>(rhs));
 }
 
+// Helper to set output type of PhaseAngle/freq = time
 template< class X
         , class Y
         , class System
@@ -154,6 +177,7 @@ struct divide_typeof_helper< boost::units::quantity<pss::astrotypes::units::Phas
     typedef quantity<unit_type, value_type>                                    type;
 };
 
+// Helper to set output type of PhaseAngle/time = freq
 template< class X
         , class Y
         , class System
@@ -167,7 +191,7 @@ struct divide_typeof_helper< boost::units::quantity<pss::astrotypes::units::Phas
     typedef quantity<unit_type, value_type>                                    type;
 };
 
-} // units
-} // boost
+} // namespace units
+} // namespace boost
 
 #endif // PSS_ASTROTYPES_UNITS_PHASE_H

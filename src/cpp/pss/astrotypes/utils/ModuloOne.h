@@ -32,9 +32,12 @@ namespace astrotypes {
 namespace utils {
 
 /**
- * @brief Represetation of a number Modulo one
- * @details This class will return the result of modding a value with one,
- * i.e. it will return the decimal part of a number minus the integer part
+ * @brief Represetation of a number Modulo one (1.0)
+ *
+ * @details This class will return the result of modding an input value with
+ *          one (1.0), i.e. it will return the decimal part of a number minus
+ *          the integer part for positive values (1.2 becomes 0.2), or return
+ *          (1.0 + value) for negative values (e.g. -0.2 becomes 0.8).
  */
 
 template<typename T>
