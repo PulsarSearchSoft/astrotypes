@@ -1,7 +1,7 @@
 /*
  * MIT License
  * 
- * Copyright (c) 2018 PulsarSearchSoft
+ * Copyright (c) 2022 PulsarSearchSoft
  * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,9 +25,6 @@
 #ifndef PSS_ASTROTYPES_UTILS_MODULOONE_H
 #define PSS_ASTROTYPES_UTILS_MODULOONE_H
 
-//#include <boost/units/quantity.hpp>
-//#include <boost/units/systems/angle/revolutions.hpp>
-
 namespace pss {
 namespace astrotypes {
 namespace utils {
@@ -42,7 +39,6 @@ template<typename T>
 class ModuloOne
 {
     public:
-        ModuloOne() = default;
         ModuloOne(T const& value = 0);
         ModuloOne(ModuloOne const&) = default;
         ModuloOne(ModuloOne&&) = default;
@@ -61,10 +57,10 @@ class ModuloOne
         bool operator==(ModuloOne<T> const&) const;
         bool operator!=(ModuloOne<T> const&) const;
 
-        ModuloOne& operator++();
-        ModuloOne operator++(int);
-        ModuloOne& operator--();
-        ModuloOne operator--(int);
+        const ModuloOne& operator++() const;
+        const ModuloOne& operator++(int) const;
+        const ModuloOne& operator--() const;
+        const ModuloOne& operator--(int) const;
 
         ModuloOne operator+(T const&) const;
         ModuloOne operator-(T const&) const;

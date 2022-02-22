@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2016 The SKA organisation
+ * Copyright (c) 2022 The SKA organisation
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,6 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+
+#include<cmath>
 
 namespace pss {
 namespace astrotypes {
@@ -48,7 +50,7 @@ ModuloOne<T>& ModuloOne<T>::operator=(T const& v)
 template<typename T>
 ModuloOne<T>& ModuloOne<T>::operator=(ModuloOne<T> const& v)
 {
-    _val = std::fmod(static_cast<T>(v), 1);
+    _val = v;
     return *this;
 }
 
@@ -63,7 +65,7 @@ template<typename T>
 ModuloOne<T>& ModuloOne<T>::operator-=(T const& v)
 {
     T v2 = std::fmod(v, 1);
-    if(_val >= v2 ) {
+    if (_val >= v2 ) {
         _val -= v2;
     }
     else {
@@ -110,33 +112,27 @@ inline bool ModuloOne<T>::operator!=(ModuloOne<T> const& val) const
 }
 
 template<typename T>
-ModuloOne<T>& ModuloOne<T>::operator++()
+inline const ModuloOne<T>& ModuloOne<T>::operator++() const
 {
-    ++_val;
     return *this;
 }
 
 template<typename T>
-ModuloOne<T> ModuloOne<T>::operator++(int)
+inline const ModuloOne<T>& ModuloOne<T>::operator++(int) const
 {
-    ModuloOne<T> cpy(_val);
-    ++(*this);
-    return cpy;
-}
-
-template<typename T>
-ModuloOne<T>& ModuloOne<T>::operator--()
-{
-    --_val;
     return *this;
 }
 
 template<typename T>
-ModuloOne<T> ModuloOne<T>::operator--(int)
+inline const ModuloOne<T>& ModuloOne<T>::operator--() const 
 {
-    ModuloOne<T> cpy(_val);
-    --(*this);
-    return cpy;
+    return *this;
+}
+
+template<typename T>
+inline const ModuloOne<T>& ModuloOne<T>::operator--(int) const
+{
+    return *this;
 }
 
 template<typename T>
@@ -185,7 +181,7 @@ ModuloOne<T> ModuloOne<T>::operator*(ModuloOne<T> const& v)
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator/(ModuloOne<T> const& v)
 {
-    return (*this)/static_cast<T>(v);
+    return std::fmod((*this)/static_cast<T>(v), 1);
 }
 
 template<typename T>
