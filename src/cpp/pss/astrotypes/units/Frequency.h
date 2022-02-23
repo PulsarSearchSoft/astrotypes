@@ -56,7 +56,7 @@ BOOST_UNITS_STATIC_CONSTANT(kilohertz, KiloHertz);
 BOOST_UNITS_STATIC_CONSTANT(megahertz, MegaHertz);
 BOOST_UNITS_STATIC_CONSTANT(gigahertz, MegaHertz);
 
-// Helpers
+// Determine if the templated type has a frequency dimension; if so, EnableIfIsFrequencyUnit will be aliased to type T
 template<typename T, typename Type=void>
 using EnableIfIsFrequencyUnit = typename std::enable_if<boost::units::is_unit_of_dimension<T, boost::units::frequency_dimension>::value, Type>::type;
 

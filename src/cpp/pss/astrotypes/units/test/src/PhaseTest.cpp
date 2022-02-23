@@ -1,7 +1,7 @@
 /*
  * MIT License
  *
- * Copyright (c) 2018 PulsarSearchSoft
+ * Copyright (c) 2022 PulsarSearchSoft
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -104,15 +104,6 @@ TEST_F(PhaseTest, test_conversion_to_radians)
     Phase<double> phase(0.125 * revolution);
     ASSERT_FLOAT_EQ(Radians(phase).value(), expected_radians.value());
 }
-
-/*
-TEST_F(PhaseTest, test_compatability_with_dimensionless)
-{
-    Phase<double> phase(0.5 * revolution);
-    static_assert(std::is_same<Phase<double>, boost::units::quantity<boost::units::si::dimensionless, double>>::value, "Expecting a phase type");
-    //ASSERT_EQ(phase.value(), boost::units::quantity<boost::units::si::dimensionless, double>(0.5).value());
-}
-*/
 
 TEST_F(PhaseTest, test_operator_scalar_multiply)
 {
