@@ -214,11 +214,8 @@ ModuloOne<T> ModuloOne<T>::operator/=(ModuloOne<T> const& v)
 template<typename T>
 bool ModuloOne<T>::operator<(T const& v) const
 {
-   if (_val == v) return false;
-   if (_val < v) {
-       return v - _val < (1 - v) + _val;
-   }
-   return _val - v > (1 - _val) + v;
+    T v2 = v - std::trunc(v);
+    return (v2 < 0) ? (_val < (1 + v2)) : (_val < v2);
 }
 
 template<typename T>

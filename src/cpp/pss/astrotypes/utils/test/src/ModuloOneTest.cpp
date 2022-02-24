@@ -59,7 +59,9 @@ TEST_F(ModuloOneTest, test_constuctor)
 
     double const v3 = 3.4; // floating-point value above modulus
     ModuloOne<double> mv3(v3);
-    ASSERT_FLOAT_EQ(static_cast<double>(mv3), 0.4);
+    // Use ASSERT_DOUBLE_EQ instead of ASSERT_EQ, as ASSERT_EQ compares
+    // results to too many decimal places for the double-precision result
+    ASSERT_DOUBLE_EQ(static_cast<double>(mv3), 0.4);
 
     ModuloOne<int> mv4(1); // value == modulus
     ASSERT_EQ(static_cast<int>(mv4), 0);
@@ -193,9 +195,13 @@ TEST_F(ModuloOneTest, test_multiply)
     ModuloOne<double> mv2(v1);
 
     ModuloOne<double> result = mv * 3.0;
+    // Use ASSERT_FLOAT_EQ instead of ASSERT_EQ or ASSERT_DOUBLE_EQ, as both
+    // compare results to too many decimal places for the double-precision result
     ASSERT_FLOAT_EQ(static_cast<double>(result), 0.1);
     ModuloOne<double> result2 = mv * mv2;
-    ASSERT_FLOAT_EQ(static_cast<double>(result2), 0.49);
+    // Use ASSERT_DOUBLE_EQ instead of ASSERT_EQ, as ASSERT_EQ compares
+    // results to too many decimal places for the double-precision result
+    ASSERT_DOUBLE_EQ(static_cast<double>(result2), 0.49);
 }
 
 TEST_F(ModuloOneTest, test_divide)
@@ -208,12 +214,20 @@ TEST_F(ModuloOneTest, test_divide)
     ModuloOne<double> const mv3(v3);
 
     ModuloOne<double> result = mv/v1;
-    ASSERT_FLOAT_EQ(static_cast<double>(result), 0);
+    // Use ASSERT_DOUBLE_EQ instead of ASSERT_EQ, as ASSERT_EQ compares
+    // results to too many decimal places for the double-precision result
+    ASSERT_DOUBLE_EQ(static_cast<double>(result), 0);
     ModuloOne<double> result2 = mv/mv2;
-    ASSERT_FLOAT_EQ(static_cast<double>(result2), 0);
+    // Use ASSERT_DOUBLE_EQ instead of ASSERT_EQ, as ASSERT_EQ compares
+    // results to too many decimal places for the double-precision result
+    ASSERT_DOUBLE_EQ(static_cast<double>(result2), 0);
     ModuloOne<double> result3 = mv2/mv;
-    ASSERT_FLOAT_EQ(static_cast<double>(result3), 0.5);
+    // Use ASSERT_DOUBLE_EQ instead of ASSERT_EQ, as ASSERT_EQ compares
+    // results to too many decimal places for the double-precision result
+    ASSERT_DOUBLE_EQ(static_cast<double>(result3), 0.5);
     ModuloOne<double> result4 = mv3/mv2;
+    // Use ASSERT_DOUBLE_EQ instead of ASSERT_EQ, as ASSERT_EQ compares
+    // results to too many decimal places for the double-precision result
     ASSERT_DOUBLE_EQ(static_cast<double>(result4), 0.5);
 }
 
@@ -225,8 +239,12 @@ TEST_F(ModuloOneTest, test_multiply_equal)
     ModuloOne<double> mv2(v2);
 
     mv *= 3.0;
+    // Use ASSERT_FLOAT_EQ instead of ASSERT_EQ or ASSERT_DOUBLE_EQ, as both
+    // compare results to too many decimal places for the double-precision result
     ASSERT_FLOAT_EQ(static_cast<double>(mv), 0.1);
     mv *= mv2;
+    // Use ASSERT_FLOAT_EQ instead of ASSERT_EQ or ASSERT_DOUBLE_EQ, as both
+    // compare results to too many decimal places for the double-precision result
     ASSERT_FLOAT_EQ(static_cast<double>(mv), 0.05);
 }
 
@@ -250,29 +268,73 @@ TEST_F(ModuloOneTest, test_divide_equal)
     mv4 /= mv3; // Phase/Phase; mv4 value < mv3 value
     ASSERT_EQ(static_cast<double>(mv4), 0.5);
     mv5 /= v2;  // Phase/double; mv5 value > v2 value
+    // Use ASSERT_DOUBLE_EQ instead of ASSERT_EQ, as ASSERT_EQ compares
+    // results to too many decimal places for the double-precision result
     ASSERT_DOUBLE_EQ(static_cast<double>(mv5), 0.5);
     mv6 /= mv7; // Phase/Phase; mv6 value > mv7 value
+    // Use ASSERT_DOUBLE_EQ instead of ASSERT_EQ, as ASSERT_EQ compares
+    // results to too many decimal places for the double-precision result
     ASSERT_DOUBLE_EQ(static_cast<double>(mv6), 0.5);
 }
 
 TEST_F(ModuloOneTest, test_less_than)
 {
-    for (double i = 0.0; i < 1.0; i += 0.1) {
-        ModuloOne<double> mv(i);
-        ModuloOne<double> mv2(i);
-        ASSERT_FALSE(mv < mv2);
-        ASSERT_FALSE(mv2 < mv);
-    }
+    // Test operator<() returns false when value and input value are equal
+    double const i = 0.4;
+    double const j = 1.4;
+    ModuloOne<double> mv(i);  // 0.4
+    ModuloOne<double> mv2(i); // 0.4
+    ModuloOne<double> mv3(j); // 0.4
+    ASSERT_FALSE(mv < mv2);   // Test operator<(Modulo<T>) (input value < 1 case)
+    ASSERT_FALSE(mv2 < mv);   // Test operator<(Modulo<T>) (input value < 1 case)
+    ASSERT_FALSE(mv < i);     // Test operator<(T)         (input value < 1 case)
+    ASSERT_FALSE(mv2 < i);    // Test operator<(T)         (input value < 1 case)
+    ASSERT_FALSE(mv < mv3);   // Test operator<(Modulo<T>) (input value > 1 case)
+    ASSERT_FALSE(mv < j);     // Test operator<(T)         (input value > 1 case)
 
-    for (double i = 0.0; i < 1.0; i += 0.1) {
-        SCOPED_TRACE(i);
-        for (double j = 0.1; j < 0.5; j += 0.1) {
-            ModuloOne<double> mv(i);
-            ModuloOne<double> mv2 = mv + j;
-            ASSERT_TRUE(mv < mv2);
-            ASSERT_FALSE(mv2 < mv);
-        }
-    }
+    // Test operator<() returns true if value is
+    // less than input value (input value < 1 case)
+    double const k = 0.5;
+    double const l = 0.9;
+    ModuloOne<double> mv4(k); // 0.5
+    ModuloOne<double> mv5(l); // 0.9
+    ASSERT_TRUE(mv4 < l);     // Test operator<(T)
+    ASSERT_TRUE(mv4 < mv5);   // Test operator<(Modulo<T>)
+
+    // Test operator<() returns true if value is less
+    // than modded input value (input value > 1 case)
+    double const m = 1.6;
+    ModuloOne<double> mv6(k); // 0.5
+    ModuloOne<double> mv7(m); // 0.6
+    ASSERT_TRUE(mv6 < m);     // Test operator<(T)
+    ASSERT_TRUE(mv6 < mv7);   // Test operator<(Modulo<T>)
+
+    // Test operator<() returns false if value is
+    // greater than modded input value, even if value
+    // is less than input value (input value > 1 case)
+    double const n = 1.3;
+    ModuloOne<double> mv8(k); // 0.5
+    ModuloOne<double> mv9(n); // 0.3
+    ASSERT_FALSE(mv8 < n);    // Test operator<(T)
+    ASSERT_FALSE(mv8 < mv9);  // Test operator<(Modulo<T>)
+
+    // Test operator<() returns true if value is less
+    // than modded input value, even if value is
+    // greater than input value (input value < 0 case)
+    double const o = -0.1;
+    ModuloOne<double>  mv10(k); // 0.5
+    ModuloOne<double>  mv11(o); // 0.9
+    ASSERT_TRUE(mv10 < o);      // Test operator<(T)
+    ASSERT_TRUE(mv10 < mv11);   // Test operator<(Modulo<T>)
+
+    // Test operator<() returns false if value is
+    // greater than modded input value, when value is
+    // greater than input value (input value < 0 case)
+    double const p = -0.6;
+    ModuloOne<double>  mv12(k); // 0.5
+    ModuloOne<double>  mv13(p); // 0.4
+    ASSERT_FALSE(mv12 < p);     // Test operator<(T)
+    ASSERT_FALSE(mv12 < mv13);  // Test operator<(Modulo<T>)
 }
 
 } // namespace test
