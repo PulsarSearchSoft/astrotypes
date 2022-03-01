@@ -30,6 +30,7 @@
 #include "ModifiedJulianClock.h"
 #include "cmath.h"
 #include <chrono>
+#include <type_traits>
 
 #ifndef ASTROTYPES_UNITS_TIME_H
 #define ASTROTYPES_UNITS_TIME_H

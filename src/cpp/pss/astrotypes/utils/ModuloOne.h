@@ -26,6 +26,7 @@
 #define PSS_ASTROTYPES_UTILS_MODULOONE_H
 
 #include <cmath>
+#include <boost/units/quantity.hpp>
 
 namespace pss {
 namespace astrotypes {

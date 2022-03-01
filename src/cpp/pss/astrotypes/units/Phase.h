@@ -28,9 +28,7 @@
 #include "pss/astrotypes/units/Frequency.h"
 #include "pss/astrotypes/utils/ModuloOne.h"
 #include <boost/units/quantity.hpp>
-#include <boost/units/base_units/angle/degree.hpp>
 #include <boost/units/systems/angle/revolutions.hpp>
-#include <boost/units/conversion.hpp>
 
 namespace pss {
 namespace astrotypes {

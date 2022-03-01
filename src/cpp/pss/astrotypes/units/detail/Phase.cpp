@@ -47,32 +47,6 @@ using PssValueTypeHelper_t = typename PssValueTypeHelper<T>::type;
 
 } // namespace
 
-// Multiplication helpers
-
-// Using the appropriate multiply_typeof_helper below, returns the results
-// of a multiplication operation with the type that matches the templated class X
-template<class Unit, class X>
-inline
-typename multiply_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
-operator*(const X& lhs, const quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>& rhs)
-{
-    typedef typename multiply_typeof_helper<X, quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>>::type type;
-
-    return type::from_value(lhs * static_cast<X>(rhs.value()));
-}
-
-// Using the appropriate multiply_typeof_helper below, returns the results
-// of a multiplication operation with the type that matches the templated class X
-template<class Unit, class X>
-inline
-typename multiply_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
-operator*(const quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>& lhs, const X& rhs)
-{
-    typedef typename multiply_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type type;
-
-    return type::from_value(rhs * static_cast<X>(lhs.value()));
-}
-
 // Helper to set output type of freq * time = PhaseAngle
 template< class X
         , class Y
@@ -100,32 +74,6 @@ struct multiply_typeof_helper<boost::units::quantity<unit<time_dimension, System
     typedef pss::astrotypes::units::PhaseAngle                                   unit_type;
     typedef quantity<unit_type, value_type>                                      type;
 };
-
-// Division helpers
-
-// Using the appropriate divide_typeof_helper below, returns the results
-// of a division operation with the type that matches the templated class X
-template<class Unit, class X>
-inline
-typename divide_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
-operator/(const X& lhs, const quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>& rhs)
-{
-    typedef typename divide_typeof_helper<X, quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>>::type type;
-
-    return type::from_value(lhs/static_cast<X>(rhs.value()));
-}
-
-// Using the appropriate divide_typeof_helper below, returns the results
-// // of a division operation with the type that matches the templated class X
-template<class Unit, class X>
-inline
-typename divide_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
-operator/(const quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>& lhs, const X& rhs)
-{
-    typedef typename divide_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X >::type type;
-
-    return type::from_value(lhs.value()/static_cast<X>(rhs));
-}
 
 // Helper to set output type of PhaseAngle/freq = time
 template< class X

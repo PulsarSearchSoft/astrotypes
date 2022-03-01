@@ -27,7 +27,6 @@
 #include "pss/astrotypes/units/Time.h"
 #include <boost/math/constants/constants.hpp>
 #include <boost/units/systems/si/dimensionless.hpp>
-#include <boost/units/systems/angle/degrees.hpp>
 #include <type_traits>
 
 
@@ -54,13 +53,19 @@ void PhaseTest::TearDown()
 {
 }
 
+// Test if the modulus ability of this class works internally,
+// i.e. setting a Phase value of 1.0 wraps around to 0.0
 TEST_F(PhaseTest, test_modulo)
 {
     Phase<double> p1(1.0 * revolution);
     Phase<double> p2(0.0 * revolution);
+    // Test if Phase 1.0 == 0.0
+    ASSERT_EQ(p1.value(), 0.0);
+    // Test if Phase 1.0 == Phase 0.0
     ASSERT_EQ(p1, p2);
 }
 
+// Test if multiplying {Time * Frequency} results in a unit with the same type as Phase
 TEST_F(PhaseTest, test_construction_from_time_freq)
 {
     auto f = 5.5 * hertz;
@@ -72,6 +77,7 @@ TEST_F(PhaseTest, test_construction_from_time_freq)
     ASSERT_EQ(phase1, phase2);
 }
 
+// Test if dividing {Phase/Frequency} results in a unit with the same type as Time
 TEST_F(PhaseTest, test_phase_decay_time)
 {
     auto f = 1.0 * hertz;
@@ -81,6 +87,7 @@ TEST_F(PhaseTest, test_phase_decay_time)
     ASSERT_EQ(phase.value(), t.value());
 }
 
+// Test if dividing {Phase/Time} results in a unit with the same type as Frequency
 TEST_F(PhaseTest, test_phase_decay_freq)
 {
     auto t = 1.0 * seconds;
@@ -90,24 +97,54 @@ TEST_F(PhaseTest, test_phase_decay_freq)
     ASSERT_EQ(phase.value(), f.value());
 }
 
+// Test if the conversion from radians to Phase works properly
 TEST_F(PhaseTest, test_conversion_from_radians)
 {
-    boost::units::quantity<boost::units::si::plane_angle, utils::ModuloOne<double>> radians(boost::math::constants::pi<double>()/4 * boost::units::si::radians);
+    // Test radians < 1
+    boost::units::quantity<boost::units::si::plane_angle, utils::ModuloOne<double>> radians(boost::math::constants::pi<double>()/4 * boost::units::si::radians); // 0.785 radians
     Phase<double> phase(radians);
-    ASSERT_FLOAT_EQ(phase.value(), Phase<double>(0.125 * revolution).value());
+    // Use ASSERT_FLOAT_EQ instead of ASSERT_EQ or ASSERT_DOUBLE_EQ, as both
+    // compare results to too many decimal places for the double-precision result
+    ASSERT_FLOAT_EQ(phase.value(), Phase<double>(0.125 * revolution).value()); // 0.785 radians == 45 degrees == 0.125 revolutions
+
+    // Test radians > 1 (modulo 1)
+    boost::units::quantity<boost::units::si::plane_angle, utils::ModuloOne<double>> radians2(boost::math::constants::pi<double>()/2 * boost::units::si::radians); // 1.57 radians -> 0.57 radians
+    Phase<double> phase2(radians2);
+    // Use ASSERT_FLOAT_EQ instead of ASSERT_EQ or ASSERT_DOUBLE_EQ, as both
+    // compare results to too many decimal places for the double-precision result
+    ASSERT_FLOAT_EQ(phase2.value(), Phase<double>(0.090845056 * revolution).value()); // 0.57 radians == 32.7 degrees == 0.090845 revolutions
+
+    // Test radians > 1 (no modulo)
+    boost::units::quantity<boost::units::si::plane_angle, double> radians3(boost::math::constants::pi<double>()/2 * boost::units::si::radians); // 1.57 radians
+    Phase<double> phase3(radians3);
+    // Use ASSERT_FLOAT_EQ instead of ASSERT_EQ or ASSERT_DOUBLE_EQ, as both
+    // compare results to too many decimal places for the double-precision result
+    ASSERT_FLOAT_EQ(phase3.value(), Phase<double>(0.25 * revolution).value()); // 1.57 radians == 90 degrees == 0.25 revolutions
+
+    // Test radians > 1 (no modulo), greater than one revolution
+    boost::units::quantity<boost::units::si::plane_angle, double> radians4(boost::math::constants::pi<double>() * 3 * boost::units::si::radians); // 9.42 radians
+    Phase<double> phase4(radians4);
+    // Use ASSERT_FLOAT_EQ instead of ASSERT_EQ or ASSERT_DOUBLE_EQ, as both
+    // compare results to too many decimal places for the double-precision result
+    ASSERT_FLOAT_EQ(phase4.value(), Phase<double>(0.5 * revolution).value()); // 9.42 radians == 540 degrees == 1.5 revolutions -> 0.5 revolutions
 }
 
+// Test if the conversion from Phase to radians works properly
 TEST_F(PhaseTest, test_conversion_to_radians)
 {
     typedef boost::units::quantity<boost::units::si::plane_angle, double> Radians;
     Radians expected_radians(boost::math::constants::pi<double>()/4 * boost::units::si::radians);
     Phase<double> phase(0.125 * revolution);
+    // Use ASSERT_FLOAT_EQ instead of ASSERT_EQ or ASSERT_DOUBLE_EQ, as both
+    // compare results to too many decimal places for the double-precision result
     ASSERT_FLOAT_EQ(Radians(phase).value(), expected_radians.value());
 }
 
+// Test if multiplying {Phase * double} and {double * Phase} return a Phase type
+// with the proper value (modulo 1.0 if the answer is greater than or equal to 1.0)
 TEST_F(PhaseTest, test_operator_scalar_multiply)
 {
-    // Test results > 1
+    // Test result > 1
     Phase<double> phase1(0.5 * revolution);
     auto res = phase1 * 3.0;
     static_assert(std::is_same<decltype(res), Phase<double>>::value, "Expecting a Phase<double> type");
@@ -127,19 +164,28 @@ TEST_F(PhaseTest, test_operator_scalar_multiply)
     ASSERT_EQ(res4, expected);
 }
 
+// Test if dividing {Phase/double} returns a Phase type with the proper
+// value (modulo 1.0 if the answer is greater than or equal to 1.0)
 TEST_F(PhaseTest, test_operator_scalar_divide)
 {
     // Result < 1
     Phase<double> phase1(0.8 * revolution);
     auto res1 = phase1/2.0;
     static_assert(std::is_same<decltype(res1), Phase<double>>::value, "Expecting a Phase<double> type");
+    // Use ASSERT_DOUBLE_EQ instead of ASSERT_EQ, as ASSERT_EQ compares
+    // results to too many decimal places for the double-precision result
     ASSERT_DOUBLE_EQ(res1.value(), Phase<double>(0.4 * revolution).value());
+
     // Result > 1
     auto res2 = phase1/0.5;
     static_assert(std::is_same<decltype(res2), Phase<double>>::value, "Expecting a Phase<double> type");
+    // Use ASSERT_DOUBLE_EQ instead of ASSERT_EQ, as ASSERT_EQ compares
+    // results to too many decimal places for the double-precision result
     ASSERT_DOUBLE_EQ(res2.value(), Phase<double>(0.6 * revolution).value());
 }
 
+// Test if adding {Phase + Phase} returns a Phase type with the proper
+// value (modulo 1.0 if the answer is greater than or equal to 1.0)
 TEST_F(PhaseTest, test_operator_add)
 {
     Phase<double> phase1(0.5 * revolution);
@@ -148,10 +194,16 @@ TEST_F(PhaseTest, test_operator_add)
     static_assert(std::is_same<Phase<double>, decltype(res1)>::value, "Expecting a Phase<double> type");
     auto res2 = phase2 + phase1;
     static_assert(std::is_same<Phase<double>, decltype(res2)>::value, "Expecting a Phase<double> type");
+    // Use ASSERT_DOUBLE_EQ instead of ASSERT_EQ, as ASSERT_EQ compares
+    // results to too many decimal places for the double-precision result
     ASSERT_DOUBLE_EQ(res1.value(), Phase<double>(0.2 * revolution).value());
+    // Use ASSERT_DOUBLE_EQ instead of ASSERT_EQ, as ASSERT_EQ compares
+    // results to too many decimal places for the double-precision result
     ASSERT_DOUBLE_EQ(res2.value(), Phase<double>(0.2 * revolution).value());
 }
 
+// Test if subtracting {Phase - Phase} returns a Phase type with the proper
+// value (modulo 1.0 if the answer is greater than or equal to 1.0)
 TEST_F(PhaseTest, test_operator_subtract)
 {
     Phase<double> phase1(0.5 * revolution);
@@ -160,7 +212,11 @@ TEST_F(PhaseTest, test_operator_subtract)
     static_assert(std::is_same<Phase<double>, decltype(res1)>::value, "Expecting a Phase<double> type");
     auto res2 = phase2 - phase1;
     static_assert(std::is_same<Phase<double>, decltype(res2)>::value, "Expecting a Phase<double> type");
+    // Use ASSERT_DOUBLE_EQ instead of ASSERT_EQ, as ASSERT_EQ compares
+    // results to too many decimal places for the double-precision result
     ASSERT_DOUBLE_EQ(res1.value(), Phase<double>(0.8 * revolution).value());
+    // Use ASSERT_DOUBLE_EQ instead of ASSERT_EQ, as ASSERT_EQ compares
+    // results to too many decimal places for the double-precision result
     ASSERT_DOUBLE_EQ(res2.value(), Phase<double>(0.2 * revolution).value());
 }
 
