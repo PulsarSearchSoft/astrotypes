@@ -1,8 +1,8 @@
 /*
  * MIT License
- *
- * Copyright (c) 2018 PulsarSearchSoft
- *
+ * 
+ * Copyright (c) 2022 PulsarSearchSoft
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -63,10 +63,10 @@ class ModuloOne
         bool operator==(ModuloOne<T> const&) const;
         bool operator!=(ModuloOne<T> const&) const;
 
-        ModuloOne& operator++();
-        ModuloOne operator++(int);
-        ModuloOne& operator--();
-        ModuloOne operator--(int);
+        const ModuloOne& operator++() const;
+        const ModuloOne& operator++(int) const;
+        const ModuloOne& operator--() const;
+        const ModuloOne& operator--(int) const;
 
         ModuloOne operator+(T const&) const;
         ModuloOne operator-(T const&) const;
