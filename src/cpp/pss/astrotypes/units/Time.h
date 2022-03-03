@@ -30,6 +30,7 @@
 #include "ModifiedJulianClock.h"
 #include "cmath.h"
 #include <chrono>
+#include <type_traits>
 
 #ifndef ASTROTYPES_UNITS_TIME_H
 #define ASTROTYPES_UNITS_TIME_H
@@ -41,11 +42,15 @@ namespace units {
 // Dimension
 typedef boost::units::time_dimension Time;
 
-// time points
+// Time points
 typedef JulianClock::time_point JulianDate;
 typedef ModifiedJulianClock::time_point ModifiedJulianDate;
 typedef ModifiedJulianClock::time_point MJD;
 typedef J2000Clock::time_point J2000;
+
+// Determine if the templated type has a time dimension; if so, EnableIfIsTimeUnit will be aliased to type T
+template<typename T, typename Type=void>
+using EnableIfIsTimeUnit = typename std::enable_if<boost::units::is_unit_of_dimension<T, boost::units::time_dimension>::value, Type>::type;
 
 /**
  * @brief Specialisation of Quantity unit for time dimension types

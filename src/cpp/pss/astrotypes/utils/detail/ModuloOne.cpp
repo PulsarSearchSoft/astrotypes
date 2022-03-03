@@ -22,15 +22,13 @@
  * SOFTWARE.
  */
 
-#include<cmath>
-
 namespace pss {
 namespace astrotypes {
 namespace utils {
 
 template<typename T>
 ModuloOne<T>::ModuloOne(T const& val)
-    : _val(std::fmod(val, 1))
+    : _val(std::fmod(val, 1.0))
 {
 }
 
@@ -43,7 +41,7 @@ ModuloOne<T>::operator T const& () const
 template<typename T>
 ModuloOne<T>& ModuloOne<T>::operator=(T const& v)
 {
-    _val = std::fmod(v, 1);
+    _val = std::fmod(v, 1.0);
     return *this;
 }
 
@@ -57,15 +55,15 @@ ModuloOne<T>& ModuloOne<T>::operator=(ModuloOne<T> const& v)
 template<typename T>
 ModuloOne<T>& ModuloOne<T>::operator+=(T const& v)
 {
-    _val = std::fmod((_val + v), 1);
+    _val = std::fmod((_val + v), 1.0);
     return *this;
 }
 
 template<typename T>
 ModuloOne<T>& ModuloOne<T>::operator-=(T const& v)
 {
-    T v2 = std::fmod(v, 1);
-    if (_val >= v2 ) {
+    T v2 = std::fmod(v, 1.0);
+    if (_val >= v2) {
         _val -= v2;
     }
     else {
@@ -77,7 +75,7 @@ ModuloOne<T>& ModuloOne<T>::operator-=(T const& v)
 template<typename T>
 ModuloOne<T>& ModuloOne<T>::operator+=(ModuloOne<T> const& v)
 {
-    _val = std::fmod((_val + static_cast<T>(v)), 1);
+    _val = std::fmod((_val + static_cast<T>(v)), 1.0);
     return *this;
 }
 
@@ -138,13 +136,13 @@ inline const ModuloOne<T>& ModuloOne<T>::operator--(int) const
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator+(T const& v) const
 {
-    return ModuloOne<T>(std::fmod((_val + v), 1));
+    return ModuloOne<T>(std::fmod((_val + v), 1.0));
 }
 
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator-(T const& v) const
 {
-    T v2 = std::fmod(v, 1);
+    T v2 = std::fmod(v, 1.0);
     return ModuloOne<T>((_val >= v2) ? (_val - v2) : (1 - (v2 - _val)));
 }
 
@@ -163,13 +161,13 @@ ModuloOne<T> ModuloOne<T>::operator-(ModuloOne<T> const& v) const
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator*(T const& v)
 {
-    return ModuloOne<T>(std::fmod((_val * v), 1));
+    return ModuloOne<T>(std::fmod((_val * v), 1.0));
 }
 
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator/(T const& v)
 {
-    return ModuloOne<T>(std::fmod((_val/v), 1));
+    return ModuloOne<T>(std::fmod((_val/v), 1.0));
 }
 
 template<typename T>
@@ -187,21 +185,21 @@ ModuloOne<T> ModuloOne<T>::operator/(ModuloOne<T> const& v)
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator*=(T const& v)
 {
-    _val = std::fmod((_val * v), 1);
+    _val = std::fmod((_val * v), 1.0);
     return *this;
 }
 
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator/=(T const& v)
 {
-    _val = std::fmod((_val/v), 1);
+    _val = std::fmod((_val/v), 1.0);
     return *this;
 }
 
 template<typename T>
 ModuloOne<T> ModuloOne<T>::operator*=(ModuloOne<T> const& v)
 {
-    _val = std::fmod((_val * static_cast<T>(v)), 1);
+    _val = std::fmod((_val * static_cast<T>(v)), 1.0);
     return *this;
 }
 
@@ -227,3 +225,59 @@ bool ModuloOne<T>::operator<(ModuloOne<T> const& v) const
 } // namespace utils
 } // namespace astrotypes
 } // namespace pss
+
+
+
+namespace boost {
+namespace units {
+
+// Multiplication helpers
+
+// Returns the results of the multiplication {X * ModuloOne<X>} with the type that matches the templated class X
+template<class Unit, class X>
+inline
+typename multiply_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
+operator*(const X& lhs, const quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>& rhs)
+{
+    typedef typename multiply_typeof_helper<X, quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>>::type type;
+
+    return type::from_value(lhs * static_cast<X>(rhs.value()));
+}
+
+// Returns the results of the multiplication {ModuloOne<X> * X} with the type that matches the templated class X
+template<class Unit, class X>
+inline
+typename multiply_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
+operator*(const quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>& lhs, const X& rhs)
+{
+    typedef typename multiply_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type type;
+
+    return type::from_value(rhs * static_cast<X>(lhs.value()));
+}
+
+// Division helpers
+
+// Returns the results of the division {X/ModuloOne<X>} with the type that matches the templated class X
+template<class Unit, class X>
+inline
+typename divide_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
+operator/(const X& lhs, const quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>& rhs)
+{
+    typedef typename divide_typeof_helper<X, quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>>::type type;
+
+    return type::from_value(lhs/static_cast<X>(rhs.value()));
+}
+
+// Returns the results of the division {ModuloOne<X>/X} with the type that matches the templated class X
+template<class Unit, class X>
+inline
+typename divide_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X>::type
+operator/(const quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>& lhs, const X& rhs)
+{
+    typedef typename divide_typeof_helper<quantity<Unit, pss::astrotypes::utils::ModuloOne<X>>, X >::type type;
+
+    return type::from_value(lhs.value()/static_cast<X>(rhs));
+}
+
+} // namespace units
+} // namespace boost

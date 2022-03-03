@@ -4,6 +4,7 @@ link_directories(${GTEST_LIBRARY_DIR})
 set(gtest_astrotypes_units_src
     src/UnitsTest.cpp
     src/UtilitiesTest.cpp
+    src/PhaseTest.cpp
     src/TimeTest.cpp
     src/TimePointTest.cpp
     src/JulianClockTest.cpp

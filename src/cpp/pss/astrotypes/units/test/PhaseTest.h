@@ -1,8 +1,8 @@
 /*
- * The MIT License (MIT)
- * 
- * Copyright (c) 2022 The SKA organisation
- * 
+ * MIT License
+ *
+ * Copyright (c) 2022 PulsarSearchSoft
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -21,40 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-#ifndef PSS_ASTROTYPES_UTILS_TEST_MODULOONETEST_H
-#define PSS_ASTROTYPES_UTILS_TEST_MODULOONETEST_H
+#ifndef PSS_ASTROTYPES_UNITS_TEST_PHASETEST_H
+#define PSS_ASTROTYPES_UNITS_TEST_PHASETEST_H
 
 #include <gtest/gtest.h>
 
 namespace pss {
 namespace astrotypes {
-namespace utils {
+namespace units {
 namespace test {
 
 /**
  * @brief
- *
  * @details
- *
  */
-class ModuloOneTest : public ::testing::Test
+
+class PhaseTest : public ::testing::Test
 {
     protected:
         void SetUp() override;
         void TearDown() override;
 
     public:
-        ModuloOneTest();
+        PhaseTest();
 
-        ~ModuloOneTest();
+        ~PhaseTest();
 
     private:
 };
 
+
 } // namespace test
-} // namespace utils
+} // namespace units
 } // namespace astrotypes
 } // namespace pss
 
-#endif // PSS_ASTROTYPES_UTILS_TEST_MODULOONETEST_H
+#endif // PSS_ASTROTYPES_UNITS_TEST_PHASETEST_H

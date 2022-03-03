@@ -27,30 +27,32 @@
 #
 #===============================================================================
 
-# project name and specify the minumum cmake version.
+# Project name and specify the programming language
 project(astrotypes CXX)
 
-# cmake setup.
+# Cmake setup
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 message("SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}")
 
 enable_testing()
 
-# dev tool integration
+# Dev tool integration
 include(code_coverage)  # Add code_coverage targets
 include(valgrind)       # Add valgrind targets
 
-# default installtion locations (note these will be prefixed by ${CMAKE_INSTALL_PREFIX})
+# Default installation locations (note these will be prefixed by ${CMAKE_INSTALL_PREFIX})
+set(INCLUDE_DIR_STRUCTURE "pss/${PROJECT_NAME}")
+
 if(NOT LIBRARY_INSTALL_DIR)
     set(LIBRARY_INSTALL_DIR "lib")
 endif(NOT LIBRARY_INSTALL_DIR)
 
 if(NOT INCLUDE_INSTALL_DIR)
-    set(INCLUDE_INSTALL_DIR "include/${PROJECT_NAME}")
+    set(INCLUDE_INSTALL_DIR "include/${INCLUDE_DIR_STRUCTURE}")
 endif(NOT INCLUDE_INSTALL_DIR)
 
 if(NOT MODULES_INSTALL_DIR)
-    set (MODULES_INSTALL_DIR "share/${PROJECT_NAME}")
+    set (MODULES_INSTALL_DIR "share/${INCLUDE_DIR_STRUCTURE}")
 endif(NOT MODULES_INSTALL_DIR)
 
 if(NOT DOC_INSTALL_DIR)
@@ -61,17 +63,17 @@ if(NOT BINARY_INSTALL_DIR)
     set(BINARY_INSTALL_DIR "bin")
 endif(NOT BINARY_INSTALL_DIR)
 
-# get project dependencies and compiler settings.
+# Get project dependencies and compiler settings
 include(dependencies)
 
 # create a header file with the project version.
 configure_file(${PROJECT_SOURCE_DIR}/cmake/version.h.in
-    ${PROJECT_BINARY_DIR}/${PROJECT_NAME}/version.h)
-install(FILES ${PROJECT_BINARY_DIR}/${PROJECT_NAME}/version.h
+    ${PROJECT_BINARY_DIR}/${INCLUDE_DIR_STRUCTURE}/version.h)
+install(FILES ${PROJECT_BINARY_DIR}/${INCLUDE_DIR_STRUCTURE}/version.h
     DESTINATION ${INCLUDE_INSTALL_DIR})
 
 # === process through the cheetah tree:
-add_subdirectory(pss/${PROJECT_NAME})
+add_subdirectory(${INCLUDE_DIR_STRUCTURE})
 
 # === Print build options summary.
 set(DEBUG_PRINT ON)
