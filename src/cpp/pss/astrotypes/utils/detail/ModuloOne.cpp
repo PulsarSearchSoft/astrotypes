@@ -122,7 +122,7 @@ inline const ModuloOne<T>& ModuloOne<T>::operator++(int) const
 }
 
 template<typename T>
-inline const ModuloOne<T>& ModuloOne<T>::operator--() const 
+inline const ModuloOne<T>& ModuloOne<T>::operator--() const
 {
     return *this;
 }
