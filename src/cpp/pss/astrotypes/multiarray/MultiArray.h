@@ -187,7 +187,7 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
          *              if(span.span() > DimensionSize<A>(0)) {
          *                  // the span is valid and adjusted to fit.
          *              }
-         *          @endocde
+         *          @endcode
          */
         template<typename Dim, typename... Dims>
         SliceType slice(DimensionSpan<Dim> const& range, DimensionSpan<Dims> const&...);
