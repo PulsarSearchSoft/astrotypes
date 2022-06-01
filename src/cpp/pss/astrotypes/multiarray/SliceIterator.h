@@ -116,6 +116,7 @@ class SliceIteratorBase<DerivedType, SliceType, is_const, 1>
 
         DerivedType& operator++();
         DerivedType& operator++(int);
+        DerivedType& operator+=(std::size_t increment);
 
         template<typename D, bool const_val>
         bool operator==(SliceIteratorBase<D, SliceType, const_val, 1> const&) const;

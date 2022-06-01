@@ -101,6 +101,13 @@ DerivedType& SliceIteratorBase<DerivedType, SliceType, is_const, 1>::operator++(
 }
 
 template<typename DerivedType, typename SliceType, bool is_const>
+DerivedType& SliceIteratorBase<DerivedType, SliceType, is_const, 1>::operator+=(std::size_t increment)
+{
+    _current += increment;
+    return static_cast<DerivedType&>(*this);
+}
+
+template<typename DerivedType, typename SliceType, bool is_const>
 const typename SliceIteratorBase<DerivedType, SliceType, is_const, 1>::reference SliceIteratorBase<DerivedType, SliceType, is_const, 1>::operator*() const
 {
     return *_current;
