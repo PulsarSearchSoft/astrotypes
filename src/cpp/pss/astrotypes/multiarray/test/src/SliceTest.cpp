@@ -701,6 +701,27 @@ TEST_F(SliceTest, test_three_dimensions_iterators_diff)
     }
 }
 
+TEST_F(SliceTest, test_three_dimension_iterators_plus_equal)
+{
+    ParentType<3> p(50);
+    Slice<true, ParentType<3>, TestSliceMixin, DimensionA, DimensionB, DimensionC> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(1), DimensionIndex<DimensionA>(11))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              , DimensionSpan<DimensionC>(DimensionIndex<DimensionC>(4), DimensionIndex<DimensionC>(7))
+    );
+
+    auto const it = slice.begin();
+    auto it2 = slice.begin();
+
+    // check with simple std::size_t
+    for(std::size_t i=0; i < slice.data_size(); ++i) {
+        auto it3 = it;
+        it3 += i; // apply the plus equal operator
+        ASSERT_EQ(&*it2, &*it3) << i << "begin=" << &*it;
+        ++it2;
+    }
+}
+
 TEST_F(SliceTest, test_three_dimensions_equals)
 {
     ParentType<3> const p(50);

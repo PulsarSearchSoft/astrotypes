@@ -634,7 +634,7 @@ void Slice<IsConst, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::add_it(
                                                                               , IteratorT& current
                                                                               , SlicePosition<rank>& pos) const
 {
-    std::size_t span = static_cast<std::size_t>(BaseT::_span.span());
+    std::size_t span = BaseT::data_size();
     std::size_t rank_inc = increment/span;
     BaseT::add_it(increment%span, current, pos);
     current += rank_inc * BaseT::_base_span;
