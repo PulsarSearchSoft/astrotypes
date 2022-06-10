@@ -278,6 +278,7 @@ class Slice : private Slice<IsConst, InternalSliceTraits<SliceTraitsT, Dimension
         template<typename T> friend struct FlipConstTypeHelper;
 
         template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
+        template<typename IteratorT> void add_it(std::size_t increment, IteratorT& current, SlicePosition<rank>& pos) const;
         template<typename IteratorDifferenceT> IteratorDifferenceT diff_it(IteratorDifferenceT const& diff) const;
 
         template<typename Dim>
@@ -556,6 +557,7 @@ class Slice<IsConst, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
         template<typename T> friend struct FlipConstTypeHelper;
 
         template<typename IteratorT> bool increment_it(IteratorT& current, SlicePosition<rank>& pos) const;
+        template<typename IteratorT> void add_it(std::size_t increment, IteratorT& current, SlicePosition<rank>& pos) const;
         template<typename IteratorDifferenceT> static IteratorDifferenceT diff_it(IteratorDifferenceT const& diff);
 
         // same as size() - to support base_span calls from higher dimensions

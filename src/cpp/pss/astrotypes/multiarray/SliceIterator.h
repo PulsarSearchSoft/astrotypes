@@ -82,6 +82,7 @@ class SliceIteratorBase : public SliceIteratorBase<DerivedType, SliceType, is_co
         DerivedType& operator++();
 
         difference_type operator-(SelfType const&) const;
+        DerivedType& operator+=(std::size_t increment);
 
         SliceT const& slice() const;
 

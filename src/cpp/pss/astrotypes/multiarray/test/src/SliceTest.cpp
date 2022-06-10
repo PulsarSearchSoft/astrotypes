@@ -192,6 +192,21 @@ TEST_F(SliceTest, test_single_dimension_iterators_diff)
     }
 }
 
+TEST_F(SliceTest, test_single_dimension_iterators_plus_equal)
+{
+    ParentType<1> const p(30);
+    Slice<true, ParentType<1>, TestSliceMixin, DimensionA> slice(p, DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20)));
+
+    auto const it = slice.begin();
+    auto it2 = slice.begin();
+    for(unsigned i=0; i < slice.size<DimensionA>(); ++i) {
+        auto it3 = it;
+        it3 += i; // apply the plus equal poperator
+        ASSERT_EQ(&*it2, &*it3) << i;
+        ++it2;
+    }
+}
+
 TEST_F(SliceTest, test_single_dimension_equals)
 {
     ParentType<1> const p(50);
@@ -432,6 +447,26 @@ TEST_F(SliceTest, test_two_dimensions_slice_iterators_copy)
     auto const_it = slice.cbegin();
     decltype(const_it) copy_const_it = const_it;
     ASSERT_TRUE(const_it == copy_const_it);
+}
+
+TEST_F(SliceTest, test_two_dimension_iterators_plus_equal)
+{
+    ParentType<2> const p(50);
+    Slice<true, ParentType<2>, TestSliceMixin, DimensionA, DimensionB> slice(p
+                                              , DimensionSpan<DimensionA>(DimensionIndex<DimensionA>(10), DimensionIndex<DimensionA>(20))
+                                              , DimensionSpan<DimensionB>(DimensionIndex<DimensionB>(20), DimensionIndex<DimensionB>(23))
+                                              );
+
+    auto const it = slice.begin();
+    auto it2 = slice.begin();
+
+    // check with simple std::size_t
+    for(std::size_t i=0; i < slice.data_size(); ++i) {
+        auto it3 = it;
+        it3 += i; // apply the plus equal operator
+        ASSERT_EQ(&*it2, &*it3) << i << "begin=" << &*it;
+        ++it2;
+    }
 }
 
 TEST_F(SliceTest, test_two_dimensions_slice_iterators_overlay)

@@ -629,6 +629,19 @@ bool Slice<IsConst, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::increme
 }
 
 template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
+template<typename IteratorT>
+void Slice<IsConst, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::add_it(std::size_t increment
+                                                                              , IteratorT& current
+                                                                              , SlicePosition<rank>& pos) const
+{
+    std::size_t span = static_cast<std::size_t>(BaseT::_span.span());
+    std::size_t rank_inc = increment/span;
+    BaseT::add_it(increment%span, current, pos);
+    current += rank_inc * BaseT::_base_span;
+    pos.index += rank_inc;
+}
+
+template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename IteratorDifferenceT>
 IteratorDifferenceT Slice<IsConst, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::diff_it(IteratorDifferenceT const& diff) const
 {
@@ -1011,6 +1024,14 @@ bool Slice<IsConst, SliceTraitsT, SliceMixin, Dimension>::increment_it(IteratorT
     }
     pos.index=0;
     return false;
+}
+
+template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
+template<typename IteratorT>
+void Slice<IsConst, SliceTraitsT, SliceMixin, Dimension>::add_it(std::size_t increment, IteratorT& current, SlicePosition<rank>& pos) const
+{
+    current += increment;
+    pos.index += increment;
 }
 
 template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
