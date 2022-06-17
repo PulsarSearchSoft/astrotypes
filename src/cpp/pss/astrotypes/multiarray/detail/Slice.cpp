@@ -630,15 +630,25 @@ bool Slice<IsConst, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::increme
 
 template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
 template<typename IteratorT>
-void Slice<IsConst, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::add_it(std::size_t increment
+bool Slice<IsConst, SliceTraitsT, SliceMixin, Dimension, Dimensions...>::add_it(std::size_t increment
                                                                               , IteratorT& current
                                                                               , SlicePosition<rank>& pos) const
 {
     std::size_t span = BaseT::data_size();
     std::size_t rank_inc = increment/span;
-    BaseT::add_it(increment%span, current, pos);
-    current += rank_inc * BaseT::_base_span;
-    pos.index += rank_inc;
+    if(!BaseT::add_it(increment%span, current, pos)) {
+        ++rank_inc;
+    }
+    std::size_t new_index = pos.index + rank_inc;
+    if(new_index < _span.span()) {
+        pos.index = new_index;
+        current += rank_inc * static_cast<std::size_t>(BaseT::_base_span);
+        return true;
+    }
+    std::size_t delta = new_index - _span.span();
+    current += (delta - pos.index) * static_cast<std::size_t>(BaseT::_base_span);
+    pos.index = delta;
+    return false;
 }
 
 template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension, typename... Dimensions>
@@ -1028,10 +1038,19 @@ bool Slice<IsConst, SliceTraitsT, SliceMixin, Dimension>::increment_it(IteratorT
 
 template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>
 template<typename IteratorT>
-void Slice<IsConst, SliceTraitsT, SliceMixin, Dimension>::add_it(std::size_t increment, IteratorT& current, SlicePosition<rank>& pos) const
+bool Slice<IsConst, SliceTraitsT, SliceMixin, Dimension>::add_it(std::size_t increment, IteratorT& current, SlicePosition<rank>& pos) const
 {
-    current += increment;
-    pos.index += increment;
+    std::size_t new_index = pos.index + increment;
+    if(new_index < _span.span())
+    {
+        pos.index = new_index;
+        current += increment;
+        return true;
+    }
+    current -= pos.index;
+    pos.index = new_index - _span.span();
+    current += pos.index;
+    return false;
 }
 
 template<bool IsConst, typename SliceTraitsT, template<typename> class SliceMixin, typename Dimension>

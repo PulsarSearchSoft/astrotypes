@@ -51,7 +51,9 @@ DerivedType& SliceIteratorBase<DerivedType, SliceType, is_const, rank>::operator
 template<typename DerivedType, typename SliceType, bool is_const, int rank>
 DerivedType& SliceIteratorBase<DerivedType, SliceType, is_const, rank>::operator+=(std::size_t increment)
 {
-    this->_slice->add_it(increment, this->_current, _pos);
+    if(!this->_slice->add_it(increment, this->_current, _pos)) {
+        this->_current = this->_slice->end()._current;
+    }
     return static_cast<DerivedType&>(*this);
 }
 
