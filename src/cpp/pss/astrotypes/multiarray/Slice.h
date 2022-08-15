@@ -482,7 +482,7 @@ class Slice<IsConst, SliceTraitsT, SliceMixin, Dimension> : public SliceTag
 
         /**
          * @brief return the size of the slice in the specified dimension (will always be one)
-         * @detials case where the Dim is not represented explicitly by the Slice, but by the Parent
+         * @details case where the Dim is not represented explicitly by the Slice, but by the Parent
          */
         template<typename Dim>
         constexpr

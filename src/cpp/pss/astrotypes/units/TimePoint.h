@@ -69,7 +69,7 @@ struct TimePoint : public std::chrono::time_point<ClockType, Duration>
 
     /**
      * @brief convert to a C style time struct.
-     * @detials very useful if you want to output the time as a string with e.g. std::put_time
+     * @details very useful if you want to output the time as a string with e.g. std::put_time
      */
     std::time_t to_time_t() const;
 };

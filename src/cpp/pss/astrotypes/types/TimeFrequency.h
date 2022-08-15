@@ -52,7 +52,7 @@ class TimeFreqCommon : public SliceType
         TimeFreqCommon& operator=(TimeFreqCommon const&);
 
         /// retrun a single channel across all time samples
-        //  @detials the type returned is a MultiArray @class Slice with all
+        //  @details the type returned is a MultiArray @class Slice with all
         //           the features of that available;
         //  @example
         //  @code
@@ -72,7 +72,7 @@ class TimeFreqCommon : public SliceType
         ConstChannel channel(std::size_t channel_number) const;
 
         /// @brief return a single spectrum from the specified offset
-        //  @detials the type returned is a MultiArray @class Slice with all
+        //  @details the type returned is a MultiArray @class Slice with all
         //           the features of that available;
         //  @example
         //  @code

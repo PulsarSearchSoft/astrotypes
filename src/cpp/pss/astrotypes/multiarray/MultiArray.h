@@ -197,7 +197,7 @@ class MultiArray : MultiArray<Alloc, T, SliceMixin, OtherDimensions...>
 
         /**
          * @brief overlay the Slice from another data structure creqting the equivalent slice for this structure
-         * @detials specialisation where Dimensions match that of the slice.
+         * @details specialisation where Dimensions match that of the slice.
          */
         template<bool is_const, typename SliceTraitsT, template<typename> class SliceMixin2>
         SliceType overlay(SliceMixin2<Slice<is_const, SliceTraitsT, SliceMixin2, FirstDimension, OtherDimensions...>> const&);
