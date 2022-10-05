@@ -25,7 +25,7 @@
 #define PSS_ASTROTYPES_MULTIARRAY_DIMENSIONSIZE_H
 
 #include <string>
-
+#include <cstddef>
 
 namespace pss {
 namespace astrotypes {
