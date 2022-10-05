@@ -1,5 +1,3 @@
-set(module_units_lib_src_cpu
-    PARENT_SCOPE
-)
+set(MODULE_UNITS_LIB_SRC_CPU PARENT_SCOPE)
 
 add_subdirectory(test)

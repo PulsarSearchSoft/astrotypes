@@ -1,8 +1,7 @@
 include_directories(${GTEST_INCLUDE_DIR})
 link_directories(${GTEST_LIBRARY_DIR})
 
-set(
-    gtest_utils_src
+set(gtest_utils_src
     src/OptionalTest.cpp
     src/ModuloOneTest.cpp
 )
