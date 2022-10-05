@@ -56,8 +56,8 @@ This project uses cmake as is build system. See the notes in the CMakeLists.txt 
     - You can use the class tool (in the tools directory) to autogenerate a suitable class template
 
 ## Adding a submodule
-    - To add a submodule use the SUBPACKAGE macro (see doc in cmake/subpackage.cmake).
-      To simplify, the purpose of this macro is to add the submodules contribution to the lib_src_${arch} variables which
+    - To add a submodule use the `subpackage` macro (see doc in cmake/subpackage.cmake).
+      To simplify, the purpose of this macro is to add the submodules contribution to the LIB_SRC_${ARCH} variables which
       are used to define the contents of the astrotypes libraries.
       (n.b ensure the variables defined in the submodule use PARENT_SCOPE qualifier)
 
@@ -212,7 +212,7 @@ Use this flag to ensure your code compiles and your unit tests run with or witho
 Setting specific compile flags for subpackage products shall be done through the cuda_subpackage_compile macro:
 e.g.
 
-cuda_subpackage_compile(${lib_src_cuda} OPTIONS "-arch compute_35")
+cuda_subpackage_compile(${LIB_SRC_CUDA} OPTIONS "-arch compute_35")
 
 ## Extending std classes
 While this style guide requests CamelCase typedefs, there are cases where the standard convention is to use lower_case

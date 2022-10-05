@@ -1,79 +1,96 @@
-# adapted from https://github.com/bilke/cmake-modules/blob/master/CodeCoverage.cmake
+# Adapted from https://github.com/bilke/cmake-modules/blob/master/CodeCoverage.cmake
+
+if(NOT CODE_COVERAGE_GUARD_VAR)
+    set(CODE_COVERAGE_GUARD_VAR TRUE)
+else()
+    return()
+endif()
 
 if(CMAKE_BUILD_TYPE MATCHES profile)
-    #  macro to generate a coverage report of the specified target
-    #  the target will be executed (e.g. 'make targetname' and coverage report generated for that launch.
-    macro(COVERAGE_TARGET _targetname )
-        set(_outputname coverage_${_targetname})
-        set(_outputdir coverage)
-        set(coverage_target_general coverage_report_${_targetname}) # generic target name (collect form this and all subprojects)
-        set(coverage_target coverage_report_${_targetname}_${PROJECT_NAME})  # specific to this project
-        ADD_CUSTOM_TARGET(${coverage_target}
 
-            # Cleanup lcov
-            COMMAND ${LCOV_PATH} --directory ${_outputdir} --zerocounters
+    #============================================
+    # coverage_target
+    #
+    # brief: function to generate a coverage report of the specified target
+    #
+    # usage: coverage_target(target)
+    #
+    # details: the target will be executed (e.g. 'make targetname') and coverage report generated for that launch
+    #============================================
+    function(coverage_target targetname)
 
-            # run the target
-            COMMAND ${CMAKE_MAKE_PROGRAM} ${_targetname} ${ARGN}
+        set(outputname coverage_${targetname})
+        set(outputdir "coverage")
+        set(coverage_target_general coverage_report_${targetname}) # Generic target name (collect from this and all subprojects)
+        set(coverage_target coverage_report_${targetname}_${PROJECT_NAME}) # Target name specific to this project
 
-            # Capturing lcov counters and generating report
-            COMMAND ${LCOV_PATH} --directory . --capture --output-file ${_outputdir}/${_outputname}.info
-            COMMAND ${LCOV_PATH} --remove ${_outputdir}/${_outputname}.info 'panda/*' 'test/*' '/usr/*' --output-file ${_outputdir}/${_outputname}.info.cleaned
-            COMMAND ${GENHTML_PATH} -o ${_outputdir}/${_outputname} ${_outputdir}/${_outputname}.info.cleaned
-            COMMAND ${CMAKE_COMMAND} -E remove ${_outputdir}/${_outputname}.info ${_outputdir}/${_outputname}.info.cleaned
-            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+        add_custom_target(${coverage_target}
+                          COMMAND ${LCOV_EXE} --directory ${outputdir} --zerocounters # Clean up lcov
+                          COMMAND ${CMAKE_MAKE_PROGRAM} ${targetname} ${ARGN} # Run the target
+                          COMMAND ${LCOV_EXE} --directory . --capture --output-file ${outputdir}/${outputname}.info # Capture lcov counters and generate report
+                          COMMAND ${LCOV_EXE} --remove ${outputdir}/${outputname}.info 'panda/*' 'test/*' '/usr/*' --output-file ${outputdir}/${outputname}.info.cleaned
+                          COMMAND ${GENHTML_EXE} -o ${outputdir}/${outputname} ${outputdir}/${outputname}.info.cleaned
+                          COMMAND ${CMAKE_COMMAND} -E remove ${outputdir}/${outputname}.info ${outputdir}/${outputname}.info.cleaned
+                          WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
         )
 
-        # Show info where to find the report
-        ADD_CUSTOM_COMMAND(TARGET ${coverage_target} POST_BUILD
-            COMMAND ;
-            COMMENT "see ${_outputdir}/${_outputname}/index.html for the coverage report."
+        # Show info on where to find the report
+        add_custom_command(TARGET ${coverage_target} POST_BUILD
+                           COMMAND ;
+                           COMMENT "see ${outputdir}/${outputname}/index.html for the coverage report."
         )
 
-        if(NOT _coverage_target_defined_${coverage_target_general})
-            # -- define the general target
-            set(_coverage_target_defined_${coverage_target_general} true)
-            ADD_CUSTOM_TARGET(${coverage_target_general})
+        if(NOT COVERAGE_TARGET_DEFINED_${coverage_target_general})
+            # Define the general target
+            set(COVERAGE_TARGET_DEFINED_${coverage_target_general} TRUE PARENT_SCOPE)
+            add_custom_target(${coverage_target_general})
         endif()
-        ADD_DEPENDENCIES(${coverage_target_general} ${coverage_target})
 
-    endmacro(COVERAGE_TARGET)
+        add_dependencies(${coverage_target_general} ${coverage_target})
 
-    # -- find the coverage generators
-    find_program( GCOV_PATH gcov )
-    find_program( LCOV_PATH lcov )
-    find_program( GENHTML_PATH genhtml )
+    endfunction(coverage_target)
 
-    # -- sanity checking
-    if(NOT GCOV_PATH) 
-        MESSAGE(FATAL_ERROR "gcov not found. specify with GCOV_PATH")
-    endif(NOT GCOV_PATH) 
-    
-    if(NOT LCOV_PATH) 
-        MESSAGE(FATAL_ERROR "lcov not found. specify with LCOV_PATH")
-    endif(NOT LCOV_PATH) 
+    # Find the coverage generators
+    find_program(GCOV_EXE gcov)
+    find_program(LCOV_EXE lcov)
+    find_program(GENHTML_EXE genhtml)
 
-    if(NOT GENHTML_PATH)
-        MESSAGE(FATAL_ERROR "genhtml not found. specify with GENHTML_PATH")
-    endif(NOT GENHTML_PATH)
+    # Sanity checking
+    if(NOT GCOV_EXE)
+        message(FATAL_ERROR "gcov not found; specify with GCOV_EXE")
+    endif()
+
+    if(NOT LCOV_EXE)
+        message(FATAL_ERROR "lcov not found; specify with LCOV_EXE")
+    endif()
+
+    if(NOT GENHTML_EXE)
+        message(FATAL_ERROR "genhtml not found; specify with GENHTML_EXE")
+    endif()
 
     file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/coverage)
 
-else(CMAKE_BUILD_TYPE MATCHES profile)
+else()
 
-    # -- if coverage is not available, output a suitable message if someone tries to build the target 
-    macro(COVERAGE_TARGET _targetname )
-        set(coverage_target coverage_report_${_targetname})
-        if(NOT _coverage_target_defined_${coverage_target})
-            set(_coverage_target_defined_${coverage_target} true)
-            ADD_CUSTOM_TARGET(${coverage_target}
-                COMMENT "target ${coverage_target} requires a profile build. Did you forget to set CMAKE_BUILD_TYPE=profile?"
+    #============================================
+    # coverage_target
+    #
+    # brief: function to generate a coverage report of the specified target
+    #
+    # usage: coverage_target(target)
+    #
+    # details: coverage is not available, output a suitable message if someone tries to build the target
+    #============================================
+    function(coverage_target targetname)
+        set(coverage_target coverage_report_${targetname})
+        if(NOT COVERAGE_TARGET_DEFINED_${coverage_target})
+            set(COVERAGE_TARGET_DEFINED_${coverage_target} TRUE PARENT_SCOPE)
+            add_custom_target(${coverage_target}
+                              COMMENT "target ${coverage_target} requires a profile build. Did you forget to set CMAKE_BUILD_TYPE=profile?"
             )
         endif()
-    endmacro(COVERAGE_TARGET)
+    endfunction(coverage_target)
 
 endif()
 
-# -- targets
 coverage_target(test)
-

@@ -1,7 +1,8 @@
 #===============================================================================
 # Building with CMake:
 # --------------------
-# This project is designed to be built in a separate directory from the src code.
+#
+# This project is designed to be built in a separate directory from the source code.
 #
 #   1) create a build directory
 #   2) chdir <build_dir>
@@ -12,6 +13,7 @@
 #
 # Some Common Build options:
 # --------------------------
+#
 #   -DCMAKE_BUILD_TYPE={debug|release|profile):
 #       Build in debug, release or release with debug info mode.
 #
@@ -24,37 +26,38 @@
 #
 #===============================================================================
 
-# project name and specify the minumum cmake version.
+# Specify project name and minumum cmake version
 project(astrotypes)
 if(COMMAND cmake_policy)
-  cmake_policy(SET CMP0003 NEW) # use full paths to libraries on the link line
-  cmake_policy(SET CMP0000 OLD) # don't complain about not having a minimum cmake version
+    cmake_policy(SET CMP0003 NEW) # use full paths to libraries on the link line
+    cmake_policy(SET CMP0000 OLD) # don't complain about not having a minimum cmake version
 
-  if(${CMAKE_MAJOR_VERSION} GREATER 2)
-    cmake_policy(SET CMP0048 OLD) # don't let cmake control the version variables
-  endif(${CMAKE_MAJOR_VERSION} GREATER 2)
-endif(COMMAND cmake_policy)
+    if(${CMAKE_MAJOR_VERSION} GREATER 2)
+        cmake_policy(SET CMP0048 OLD) # don't let cmake control the version variables
+    endif()
+endif()
 enable_testing()
 
-# cmake setup.
+# CMake setup
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_SOURCE_DIR}/cmake)
 
-# project version.
+# Project version
 include(git_version)
 set(VERSION_MAJOR 0)
 set(VERSION_MINOR 0)
 set(VERSION_PATCH 0)
 set(PROJECT_VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH} ${PROJECT_SOURCE_VERSION}")
 
-# installations
+# Installations
 if(NOT MODULES_INSTALL_DIR)
-    set (MODULES_INSTALL_DIR "share/${PROJECT_NAME}")
-endif(NOT MODULES_INSTALL_DIR)
+    set(MODULES_INSTALL_DIR "share/${PROJECT_NAME}")
+endif()
 
 if(NOT DOC_INSTALL_DIR)
-  set(DOC_INSTALL_DIR ${MODULES_INSTALL_DIR}/doc)
-endif(NOT DOC_INSTALL_DIR)
+    set(DOC_INSTALL_DIR ${MODULES_INSTALL_DIR}/doc)
+endif()
+
 include(doxygen)
 
-# === process through the cheetah tree:
+# Process through the astrotypes tree
 add_subdirectory(src)
