@@ -8,6 +8,7 @@ endif()
 find_program(VALGRIND_EXE valgrind)
 
 if(NOT VALGRIND_EXE)
+
     #================================================
     # valgrind_target
     #
@@ -24,7 +25,9 @@ if(NOT VALGRIND_EXE)
             set(VALGRIND_TARGET_EXISTS_${valgrind_target} TRUE PARENT_SCOPE)
         endif()
     endfunction(valgrind_target)
-else()
+
+else(NOT VALGRIND_EXE)
+
     file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/valgrind)
     #================================================
     # valgrind_target
@@ -52,6 +55,7 @@ else()
         )
         add_dependencies(${valgrind_target} ${valgrind_target_local})
     endfunction(valgrind_target)
-endif()
+
+endif(NOT VALGRIND_EXE)
 
 valgrind_target(test)

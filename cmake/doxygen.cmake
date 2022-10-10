@@ -55,9 +55,9 @@ if(ENABLE_DOC)
         )
     endif()
 
-else()
+else(ENABLE_DOC)
     add_custom_target(doc ${doc_all_target}
                       COMMAND ${CMAKE_COMMAND} -E echo
                       COMMENT "No doc target configured. Rebuild with -DENABLE_DOC=true" VERBATIM
     )
-endif()
+endif(ENABLE_DOC)

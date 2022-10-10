@@ -8,7 +8,7 @@ endif()
 
 # Check if the user wants to use the included boost, regardless of if they have a existing install
 if(NOT USE_THIRDPARTY_BOOST)
-    if(NOT BOOST_FOUND)
+    if(NOT Boost_FOUND)
         message(STATUS "Checking for an installed boost...")
         # Check for an existing boost install
         find_package(Boost)
