@@ -4,7 +4,8 @@
 #===============================================================================
 # Building with CMake:
 # --------------------
-# This project is designed to be built in a separate directory from the src code.
+#
+# This project is designed to be built in a separate directory from the source code.
 #
 #   1) create a build directory
 #   2) chdir <build_dir>
@@ -15,6 +16,7 @@
 #
 # Some Common Build options:
 # --------------------------
+#
 #   -DCMAKE_BUILD_TYPE={debug|release|profile):
 #       Build in debug, release or release with debug info mode.
 #
@@ -27,10 +29,10 @@
 #
 #===============================================================================
 
-# Project name and specify the programming language
+# Specify project name and programming language
 project(astrotypes CXX)
 
-# Cmake setup
+# CMake setup
 list(INSERT CMAKE_MODULE_PATH 0 ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 message("SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}")
 
@@ -45,39 +47,41 @@ set(INCLUDE_DIR_STRUCTURE "pss/${PROJECT_NAME}")
 
 if(NOT LIBRARY_INSTALL_DIR)
     set(LIBRARY_INSTALL_DIR "lib")
-endif(NOT LIBRARY_INSTALL_DIR)
+endif()
 
 if(NOT INCLUDE_INSTALL_DIR)
     set(INCLUDE_INSTALL_DIR "include/${INCLUDE_DIR_STRUCTURE}")
-endif(NOT INCLUDE_INSTALL_DIR)
+endif()
 
 if(NOT MODULES_INSTALL_DIR)
-    set (MODULES_INSTALL_DIR "share/${INCLUDE_DIR_STRUCTURE}")
-endif(NOT MODULES_INSTALL_DIR)
+    set(MODULES_INSTALL_DIR "share/${INCLUDE_DIR_STRUCTURE}")
+endif()
 
 if(NOT DOC_INSTALL_DIR)
-    set (DOC_INSTALL_DIR ${MODULES_INSTALL_DIR}/doc)
-endif(NOT DOC_INSTALL_DIR)
+    set(DOC_INSTALL_DIR ${MODULES_INSTALL_DIR}/doc)
+endif()
 
 if(NOT BINARY_INSTALL_DIR)
     set(BINARY_INSTALL_DIR "bin")
-endif(NOT BINARY_INSTALL_DIR)
+endif()
 
 # Get project dependencies and compiler settings
 include(dependencies)
 
-# create a header file with the project version.
+# Create a header file with the project version
 configure_file(${PROJECT_SOURCE_DIR}/cmake/version.h.in
-    ${PROJECT_BINARY_DIR}/${INCLUDE_DIR_STRUCTURE}/version.h)
+               ${PROJECT_BINARY_DIR}/${INCLUDE_DIR_STRUCTURE}/version.h
+)
 install(FILES ${PROJECT_BINARY_DIR}/${INCLUDE_DIR_STRUCTURE}/version.h
-    DESTINATION ${INCLUDE_INSTALL_DIR})
+        DESTINATION ${INCLUDE_INSTALL_DIR}
+)
 
-# === process through the cheetah tree:
+# Process through the astrotypes tree
 add_subdirectory(${INCLUDE_DIR_STRUCTURE})
 
-# === Print build options summary.
+# Print build options summary
 set(DEBUG_PRINT ON)
-if (DEBUG_PRINT)
+if(DEBUG_PRINT)
     message(STATUS "")
     message(STATUS "****************************************************************************")
     message(STATUS " name: ${PROJECT_NAME} version: ${PROJECT_VERSION}")
@@ -86,15 +90,15 @@ if (DEBUG_PRINT)
     message(STATUS " Compiler Options:")
     message(STATUS "  Build type: ${CMAKE_BUILD_TYPE}")
     message(STATUS "  C++ Compiler: ${CMAKE_CXX_COMPILER}")
-    if (${CMAKE_BUILD_TYPE} MATCHES release)
+    if(${CMAKE_BUILD_TYPE} MATCHES release)
         message(STATUS "  C++ flags: ${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_RELEASE}")
-    elseif (${CMAKE_BUILD_TYPE} MATCHES debug)
+    elseif(${CMAKE_BUILD_TYPE} MATCHES debug)
         message(STATUS "  C++ flags: ${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_DEBUG}")
-    elseif (${CMAKE_BUILD_TYPE} MATCHES relwithdebinfo)
+    elseif(${CMAKE_BUILD_TYPE} MATCHES relwithdebinfo)
         message(STATUS "  C++ flags: ${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_RELWITHDEBINFO}")
-    elseif (${CMAKE_BUILD_TYPE} MATCHES minsizerel)
+    elseif(${CMAKE_BUILD_TYPE} MATCHES minsizerel)
         message(STATUS "  C++ flags: ${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_MINSIZEREL}")
-    endif ()
+    endif()
     message(STATUS "")
     message(STATUS "Install locations: (make install)")
     message(STATUS "  Libraries: ${CMAKE_INSTALL_PREFIX}/lib")
@@ -102,10 +106,10 @@ if (DEBUG_PRINT)
     message(STATUS "  Binaries:  ${CMAKE_INSTALL_PREFIX}/${BINARY_INSTALL_DIR}")
     if(ENABLE_DOC)
         message(STATUS "  Doc:       ${CMAKE_INSTALL_PREFIX}/${DOC_INSTALL_DIR}")
-    else(ENABLE_DOC)
+    else()
         message(STATUS "  Doc:       Disabled (-DENABLE_DOC=true to enable)")
-    endif(ENABLE_DOC)
+    endif()
     message(STATUS "  Other:     ${CMAKE_INSTALL_PREFIX}/${MODULES_INSTALL_DIR}")
     message(STATUS "****************************************************************************")
     message(STATUS "")
-endif (DEBUG_PRINT)
+endif(DEBUG_PRINT)

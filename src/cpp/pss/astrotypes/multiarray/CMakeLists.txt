@@ -1,5 +1,3 @@
-set(module_multiarray_lib_src_cpu
-    PARENT_SCOPE
-)
+set(MODULE_MULTIARRAY_LIB_SRC_CPU PARENT_SCOPE)
 
 add_subdirectory(test)

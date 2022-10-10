@@ -11,7 +11,7 @@ set(gtest_astrotypes_units_src
     src/ModifiedJulianClockTest.cpp
 )
 
-add_executable(gtest_astrotypes_units ${gtest_astrotypes_units_src} )
+add_executable(gtest_astrotypes_units ${gtest_astrotypes_units_src})
 #target_link_libraries(gtest_astrotypes_units ${ASTROTYPES_TEST_UTILS} ${ASTROTYPES_LIBRARIES} ${GTEST_LIBRARIES})
 target_link_libraries(gtest_astrotypes_units ${GTEST_LIBRARIES})
 add_test(gtest_astrotypes_units gtest_astrotypes_units)

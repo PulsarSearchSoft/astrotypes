@@ -1,17 +1,16 @@
 include_directories(${GTEST_INCLUDE_DIR})
 link_directories(${GTEST_LIBRARY_DIR})
 
-set(
-   gtest_sigproc_src
-   src/HeaderTest.cpp
-   src/SigProcFormatTest.cpp
-   src/FileReaderTest.cpp
+set(gtest_sigproc_src
+    src/HeaderTest.cpp
+    src/SigProcFormatTest.cpp
+    src/FileReaderTest.cpp
 )
 
-# generate a header that hardcodes the location of the test files
+# Generate a header that hardcodes the location of the test files
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/HardCodedDataPath.h.in
                ${CMAKE_CURRENT_BINARY_DIR}/sigproc/HardCodedDataPath.h
-              )
+)
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 add_executable(gtest_astrotypes_sigproc ${gtest_sigproc_src})
