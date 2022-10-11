@@ -1,7 +1,7 @@
 # googletest build - must be built with the same compiler flags
 
-if(NOT GTEST_GUARD_VAR)
-    set(GTEST_GUARD_VAR TRUE)
+if(NOT PSS_ASTROTYPES_GTEST_GUARD_VAR)
+    set(PSS_ASTROTYPES_GTEST_GUARD_VAR TRUE)
 else()
     return()
 endif()

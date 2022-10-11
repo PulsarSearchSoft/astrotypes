@@ -1,7 +1,7 @@
 # Adapted from https://github.com/bilke/cmake-modules/blob/master/CodeCoverage.cmake
 
-if(NOT CODE_COVERAGE_GUARD_VAR)
-    set(CODE_COVERAGE_GUARD_VAR TRUE)
+if(NOT PSS_ASTROTYPES_CODE_COVERAGE_GUARD_VAR)
+    set(PSS_ASTROTYPES_CODE_COVERAGE_GUARD_VAR TRUE)
 else()
     return()
 endif()

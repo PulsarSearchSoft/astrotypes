@@ -1,7 +1,7 @@
 option(USE_THIRDPARTY_BOOST "Force the use of the included boost, even if a system install is present" false)
 
-if(NOT BOOST_GUARD_VAR)
-    set(BOOST_GUARD_VAR TRUE)
+if(NOT PSS_ASTROTYPES_BOOST_GUARD_VAR)
+    set(PSS_ASTROTYPES_BOOST_GUARD_VAR TRUE)
 else()
     return()
 endif()
