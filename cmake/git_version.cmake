@@ -1,8 +1,8 @@
 # Store the git hash of the current head
 # Based on blog of David Gobbi (http://www.cognitive-antics.net/?p=816)
 
-if(NOT GIT_VERSION_GUARD_VAR)
-    set(GIT_VERSION_GUARD_VAR TRUE)
+if(NOT PSS_ASTROTYPES_GIT_VERSION_GUARD_VAR)
+    set(PSS_ASTROTYPES_GIT_VERSION_GUARD_VAR TRUE)
 else()
     return()
 endif()

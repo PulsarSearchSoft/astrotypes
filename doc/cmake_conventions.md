@@ -145,8 +145,8 @@
 
     Guards shall have the following general syntax:
 
-        if(NOT MY_FILE_GUARD_VAR)
-            set(MY_FILE_GUARD_VAR TRUE)
+        if(NOT PSS_ASTROTYPES_MY_FILE_GUARD_VAR)
+            set(PSS_ASTROTYPES_MY_FILE_GUARD_VAR TRUE)
         else()
             return()
         endif()
