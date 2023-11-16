@@ -2,6 +2,7 @@ include_directories(${GTEST_INCLUDE_DIR})
 link_directories(${GTEST_LIBRARY_DIR})
 
 set(gtest_types_src
+    src/PhaseFrequencyArrayTest.cpp
     src/TimeFrequencyTest.cpp
     src/ExtendedTimeFrequencyTest.cpp
 )
