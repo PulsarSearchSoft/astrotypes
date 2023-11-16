@@ -21,13 +21,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#ifndef PSS_ASTROTYPES_TYPES_ACCUMULATOR_H
-#define PSS_ASTROTYPES_TYPES_ACCUMULATOR_H
+#ifndef PSS_ASTROTYPES_TYPES_PHASE_FREQUENCY_ARRAY_H
+#define PSS_ASTROTYPES_TYPES_PHASE_FREQUENCY_ARRAY_H
 
 #include "pss/astrotypes/multiarray/MultiArray.h"
 #include "pss/astrotypes/units/Phase.h"
-//#include "cheetah/data/Candidate.h"
-//#include "cheetah/data/Units.h"
 
 namespace pss {
 namespace astrotypes {
@@ -45,7 +43,6 @@ namespace types {
  *          folding data on a CPU.
  *
  */
-
 template<typename SliceT>
 class PhaseFrequencyArrayInterface : public SliceT
 {
@@ -123,16 +120,15 @@ class PhaseFrequencyArrayInterface : public SliceT
 
 template<typename NumericalT, typename Alloc=std::allocator<NumericalT>>
 class PhaseFrequencyArray : public PhaseFrequencyArrayInterface<
-                                          multiarray::MultiArray<
-                                          Alloc
-                                          , NumericalT
-                                          , PhaseFrequencyArrayInterface
-                                          , units::PhaseAngle
-                                          , units::Frequency
-                                      >
-                                  >
+                                        multiarray::MultiArray<
+                                        Alloc
+                                        , NumericalT
+                                        , PhaseFrequencyArrayInterface
+                                        , units::PhaseAngle
+                                        , units::Frequency
+                                    >
+                                >
 {
-
     private:
         typedef PhaseFrequencyArrayInterface<
                     multiarray::MultiArray<
@@ -154,7 +150,6 @@ class PhaseFrequencyArray : public PhaseFrequencyArrayInterface<
         typedef typename BaseT::SliceType SliceType;
 
         typedef NumericalT value_type;
-        //typedef Candidate<Cpu, float> CandidateType;
 
     public:
         PhaseFrequencyArray();
@@ -171,4 +166,4 @@ class PhaseFrequencyArray : public PhaseFrequencyArrayInterface<
 
 #include "detail/PhaseFrequencyArray.cpp"
 
-#endif // PSS_ASTROTYPES_TYPES_ACCUMULATOR_H
+#endif // PSS_ASTROTYPES_TYPES_PHASE_FREQUENCY_ARRAY_H
