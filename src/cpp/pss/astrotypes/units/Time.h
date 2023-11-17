@@ -263,12 +263,6 @@ template<typename Unit, typename Rep, typename T2>
 struct common_type<T2, boost::units::quantity<Unit, Rep>> : public std::common_type<T2, Rep>
 {};
 
-// cmath helpers
-template<typename Ratio, typename Rep>
-std::chrono::duration<Rep, Ratio> abs(std::chrono::duration<Rep, Ratio> const& v) {
-    return std::chrono::duration<Rep, Ratio>(std::abs(v.count()));
-}
-
 namespace chrono {
 
 // operators for standard math and boost::units::quantity types
