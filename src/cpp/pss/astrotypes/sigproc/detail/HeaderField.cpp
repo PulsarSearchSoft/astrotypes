@@ -286,7 +286,9 @@ struct compare_tolerance<HeaderField<T2>>
 template<typename T, typename ToleranceType>
 bool HeaderFieldWithTolerance<T, ToleranceType>::operator==(HeaderFieldWithTolerance const& h) const
 {
-    return compare_tolerance<typename std::decay<ToleranceType>::type>::exec(std::abs(*this->_var - *h._var) , _tolerance); 
+    // allow for ADL lookups defaulting to std
+    using std::abs;
+    return compare_tolerance<typename std::decay<ToleranceType>::type>::exec(abs(*this->_var - *h._var) , _tolerance); 
 }
 
 inline HeaderFieldBase::HeaderFieldBase(SigProcLabel const& header_name, Header& h)
