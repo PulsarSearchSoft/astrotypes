@@ -31,6 +31,7 @@
 #include "cmath.h"
 #include <chrono>
 #include <type_traits>
+#include "../utils/CompilerInfo.h"
 
 #ifndef ASTROTYPES_UNITS_TIME_H
 #define ASTROTYPES_UNITS_TIME_H
@@ -263,11 +264,14 @@ template<typename Unit, typename Rep, typename T2>
 struct common_type<T2, boost::units::quantity<Unit, Rep>> : public std::common_type<T2, Rep>
 {};
 
+//This overload of abs is not needed C++17 onward
+#ifdef DEFINE_STD_CHRONO_ABS
 // cmath helpers
 template<typename Ratio, typename Rep>
 std::chrono::duration<Rep, Ratio> abs(std::chrono::duration<Rep, Ratio> const& v) {
     return std::chrono::duration<Rep, Ratio>(std::abs(v.count()));
 }
+#endif
 
 namespace chrono {
 
