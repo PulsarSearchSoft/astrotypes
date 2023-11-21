@@ -265,7 +265,7 @@ struct common_type<T2, boost::units::quantity<Unit, Rep>> : public std::common_t
 {};
 
 //This overload of abs is not needed C++17 onward
-#ifdef DEFINE_STD_CHRONO_ABS
+#ifndef HAS_STD_CHRONO_ABS
 // cmath helpers
 template<typename Ratio, typename Rep>
 std::chrono::duration<Rep, Ratio> abs(std::chrono::duration<Rep, Ratio> const& v) {
